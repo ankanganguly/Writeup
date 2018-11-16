@@ -1,0 +1,2691 @@
+\documentclass[12pt]{article}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{pdfcomment}
+%\usepackage{coffee4}
+\usepackage{lipsum}
+%\usepackage{showkeys}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{verbatim}
+\usepackage{longtable}
+
+%General Shorthand Macros
+\newcommand{\skipLine}{\vspace{12pt}}
+\newcommand{\mb}{\mathbb}
+\newcommand{\mc}{\mathcal}
+\newcommand{\ms}{\mathscr}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\ov}{\overline}
+\newcommand{\os}{\overset}
+\newcommand{\un}{\underline}
+\newcommand{\te}{\text}
+\newcommand{\ep}{\epsilon}
+\newcommand{\tr}{\textcolor{red}}
+\newcommand{\tb}{\textcolor{blue}}
+\newcommand{\tg}{\textcolor{green}}
+\newcommand{\labe}[1]{\tr{\texttt{Label: #1}}}
+\newcommand{\tbs}{\textbackslash}
+\newcommand{\purpose}{\textbf{Purpose: }}
+\newcommand{\pfsum}{\textbf{Proof Summary: }}
+\newcommand{\usein}{\textbf{Used in: }}
+\newcommand{\app}{\textbf{Applies: }}
+\newcommand{\ind}{\hspace{24pt}}
+\newcommand{\lin}{\rule{\linewidth}{0.4 pt}}
+\newcommand{\pr}{\mb{P}}							%probability
+\newcommand{\ex}[1]{\mb{E}\left[#1\right]}			%expectation
+\newcommand{\exmu}[2]{\mb{E}^{#1}\left[#2\right]}	%exp wrt a measure
+\newcommand{\deq}{\overset{\text{(d)}}{=}}			%equal in dist
+\newcommand{\defeq}{:=}								%definition equal
+\newcommand{\msr}{\mc{M}}							%space of measures
+\newcommand{\pmsr}{\mc{P}}							%space of pmsrs
+\newcommand{\neigh}{\mc{N}}					%neighbor
+\newcommand{\dneigh}{\mc{N}^2}				%double neighbor
+
+%Paper macros
+%Section 2.1
+\renewcommand{\root}{\mathbf{0}}				%root
+\renewcommand{\v}{v}							%typical vertex
+\newcommand{\vv}{u}								%typical 2nd vertex
+\newcommand{\vvv}{w}							%typical 3rd vertex
+\renewcommand{\U}{U}							%typical vertex set
+\newcommand{\UU}{W}								%typical 2nd vert set
+\newcommand{\UUU}{R}							%typical 3rd vert
+\newcommand{\ve}[1]{_{#1}}						%Append vertex
+\newcommand{\cl}{\ov}							%closure
+\renewcommand{\S}{S}							%State space
+
+
+
+\newcommand{\degr}{D}								%max degree
+\newcommand{\poiss}[1]{N_{#1}}						%Poisson process
+\newcommand{\poisses}{\mathbf{N}}				%all Poisson processes
+\newcommand{\IG}{\mc{A}}						%Infinitesimal gens
+\newcommand{\law}{\te{Law}}							%Law of a process
+\newcommand{\leb}{\te{Leb}}							%Lebesgue measure
+\newcommand{\pup}[1]{^{#1}}							%Scaling prelimit
+\newcommand{\tree}{\mc{T}}							%Tree Subgraph
+\newcommand{\core}{\mc{D}}							%Core
+
+\renewcommand{\SS}{\tilde{\S}}						%sub state space
+\newcommand{\s}{\sigma}								%elt of \S	
+\renewcommand{\ss}{\tilde{\s}}					%2nd elt of \S
+\renewcommand{\G}{G}								%Graph
+\newcommand{\V}{V}									%Vertex set
+\newcommand{\E}{E}									%Edge set
+
+\newcommand{\T}{T}									%time bound
+\renewcommand{\t}{t}								%typical time
+\renewcommand{\tt}{s}								%typical time 2
+\newcommand{\ttt}{s'}								%typical time 3
+\renewcommand{\r}{r}								%space var for poiss
+\newcommand{\rt}[1]{\tau^{#1}}						%typical rand time
+\newcommand{\rtt}[1]{\theta^{#1}}					%typical rand time 2
+\renewcommand{\it}{k}								%iterator
+\newcommand{\itt}{i}								%iterator 2
+\newcommand{\ittt}{j}								%iterator 3
+\newcommand{\numb}{n}								%# of prelim vars
+\newcommand{\XState}[1]{\S^{#1}}				%multidim state space
+\newcommand{\sv}[2]{\s_{#1}^{#2}}					%typ elt of \XState
+\newcommand{\ev}[1]{\ep_{#1}}						%standard basis
+\newcommand{\cad}{\mb{D}}							%Cadlag space
+\newcommand{\OmegaV}[2]{\Omega_{#1}^{#2}}			%Path space
+\newcommand{\piV}[2]{\pi_{#1}^{#2}}					%projection
+\newcommand{\xvt}[2]{x_{#1}{(#2)}}					%typ path val
+\newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
+\newcommand{\xvttt}[2]{z_{#1}{(#2)}}				%typ path val3
+\newcommand{\rxvt}[2]{X_{#1}{(#2)}}					%typ rand path val
+\newcommand{\rxvtn}[3]{X_{#1}^{#3}(#2)}				%typ rp val sublim
+\newcommand{\rxvtt}[2]{Y_{#1}{(#2)}}				%typ rand path val2
+\newcommand{\rxvttn}[3]{Y_{#1}^{#3}(#2)}			%typ rp sublim val2
+\newcommand{\rxvttt}[2]{Z_{#1}{(#2)}}				%typ rand path val3
+\newcommand{\xvts}[2]{x_{#1}{#2}}					%typ path
+\newcommand{\xvtts}[2]{y_{#1}{#2}}					%typ path 2
+\newcommand{\xvttts}[2]{z_{#1}{#2}}					%typ path 3
+\newcommand{\rxvts}[2]{X_{#1}{#2}}					%typ rand path
+\newcommand{\rxvtsn}[3]{X_{#1}^{#3}{#2}}			%typ rpath sublim
+\newcommand{\rxvtts}[2]{Y_{#1}{#2}}					%typ rand path 2
+\newcommand{\rxvttsn}[3]{Y_{#1}^{#3}{#2}}			%typ rpath sublim 2
+\newcommand{\rxvttts}[2]{Z_{#1}{#2}}				%typ rand path 3
+\newcommand{\rxvtttsn}[3]{Z_{#1}^{#3}{#2}}			%typ rpath sublim 3
+\newcommand{\rp}[1]{P^{#1}}							%typ point process
+\newcommand{\m}[3]{\mu_{#2#1}^{#3}}						%typ measure
+\newcommand{\mm}[3]{\nu_{#2#1}^{#3}}						%typ measure 2
+\newcommand{\mmm}[3]{\eta_{#2#1}^{#3}}						%typ measure 3
+\newcommand{\cm}{\gamma}							%conditional msr funct
+\newcommand{\IGr}[1]{c_{#1}}						%IG rate
+\newcommand{\rate}[1]{\lambda_{#1}}					%rate
+\newcommand{\ratee}[1]{\Lambda_{#1}}				%general rate
+\newcommand{\crate}[2]{\alt{\lambda}_{#1}^{#2}}		%conditional rate
+\newcommand{\cratee}[2]{\alt{\Lambda}_{#1}^{#2}} 	%general conditional rate
+\newcommand{\F}[2]{\mc{F}_{#1}^{#2}}				%Filtrations
+\newcommand{\FF}[2]{\mc{G}_{#1}^{#2}}				%Filtrations
+\newcommand{\FFF}[2]{\mc{H}_{#1}^{#2}}				%Filtrations
+\newcommand{\dist}{d}								%general metric
+\newcommand{\gdist}{d_G}							%graph distance
+\newcommand{\cont}{\mc{C}}							%space of cont. fs
+\newcommand{\const}[1]{C_{#1}}						%Constant
+\newcommand{\Sm}{\ell}								%std msr on \S
+\newcommand{\alt}{\widetilde}						%alternate val
+\renewcommand{\b}[1]{b_{#1}}						%inf dim norm coeffs
+\newcommand{\mutex}{\|}								%Mutually exclusive
+\newcommand{\apath}{\Gamma}						%Given path for CI proof
+\newcommand{\pathset}[2]{\Lambda_{#1,#2}}			%A space of paths
+\newcommand{\pathsete}[2]{C_{#1,#2}}			%union over pathset
+\newcommand{\pathseted}[2]{H_{#1,#2}}			%pathsete with \t
+\newcommand{\rv}{A}								%Typical random element
+\newcommand{\evnt}{\mc{E}}						%Typical event
+\newcommand{\typset}{A}							%Typical set
+\renewcommand{\mark}[1]{\kappa^{#1}}				%Typical mark
+\newcommand{\dense}[2]{L_{#1}^{#2}}				%Typ density
+\newcommand{\cdense}[2]{M_{#1}^{#2}}			%Cond density
+\newcommand{\ds}[2]{\Upsilon_{#1}^{#2}}			%mapping in density
+\newcommand{\mtop}{\Lambda}						%Markov to point
+\newcommand{\spce}{\mc{X}}						%arbitrary space
+\renewcommand{\c}[1]{c(#1)}						%child function
+\newcommand{\p}[1]{p(#1)}						%parent function
+\newcommand{\pmap}[1]{\Gamma_{#1}}				%Markov to MPP	
+\newcommand{\inte}{I}							%Interval
+
+\newtheorem{thms}{Theorem: }[section]
+\newtheorem{conj}[thms]{Conjecture: }
+\newtheorem{prop}[thms]{Proposition: }
+\newtheorem{coro}[thms]{Corollary: }
+\newtheorem{lem}[thms]{Lemma: }
+%\newtheorem{sublem}{Sublemma: }[lem]
+\newtheorem{defn}[thms]{Definition: }
+\newtheorem{assu}[thms]{Assumption: }
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\title{A Local Approximation of Finite State Interacting Particle Systems on a Tree (Working Title)}
+\author{Ankan Ganguly}
+
+\maketitle
+
+\begin{abstract}
+\tg{There will be an abstract here soon enough!}
+
+Title possibilities: Transient dynamics of a typical neighborhood of particles on a regular tree. \tr{Too long and still lacks relevant info!}
+\end{abstract}
+
+\newpage
+\tableofcontents
+
+\newpage
+
+\section*{For The Author's Use Only (FTAUO)}
+\subsection*{Notation}
+
+\begin{longtable}{c|c|c|c}
+Macro Command & Arguments & Symbol & Meaning\\\hline
+\tbs pr&0&\(\pr\)	& probability\\
+\tbs ex&1&\(\ex{X}\)	&expectation\\
+\tbs exmu&2&\(\exmu{\m{}{}{}}{\rxvt{\v}{\t}}\)	&exp wrt a measure\\
+\tbs deq&0&\(\deq\)		&equal in dist\\
+\tbs defeq&0&\(\defeq\)							&definition equal\\
+\tbs msr&0&\(\msr\)							&space of measures\\
+\tbs pmsr&0&\(\pmsr\)						&space of pmsrs\\
+\tbs neigh&1&\(\neigh{\v}\)				&neighbor\\
+\tbs dneigh&1&\(\dneigh{\v}\)				&double neighbor\\
+\tbs degr&0&\(\degr\)								&max degree\\
+\tbs poiss&1&\(\poiss{\v}\)						&Poisson process\\
+\tbs poisses&0&\(\poisses\)					&all Poisson processes\\
+\tbs IG&0&\(\IG\)					&Infinitesimal gens\\
+\tbs law&0&\(\law\)							&Law of a process\\
+\tbs leb&0&\(\leb\)							&Lebesgue measure\\
+\tbs pup&1&\(\cdot\pup{n}\)						&Prelimit numbering\\
+\tbs tree&0&\(\tree\)							&Tree Subgraph\\
+\tbs core&0&\(\core\)							&Core\\
+\tbs S&0&\(\S\)							&State space\\
+\tbs SS&0&\(\SS\)						&sub state space\\
+\tbs s&0&\(\s\)								&elt of \tbs State\\
+\tbs ss&0&\(\ss\)						&2nd elt of \tbs State\\
+\tbs G&0&\(\G\)								&Graph\\
+\tbs V&0&\(\V\)									&Vertex set\\
+\tbs E&0&\(\E\)									&Edge set\\
+\tbs v&0&\(\v\)								&typical vertex\\
+\tbs vv&0&\(\vv\)									&typical 2nd vertex\\
+\tbs vvv&0&\(\vvv\)								&typical 3rd vertex\\
+\tbs U&0&\(\U\)									&typical vertex set\\
+\tbs UU&0&\(\UU\)								&typical 2nd vert set\\
+\tbs UUU&0&\(\UUU\)								&typical 3rd vert set\\
+\tbs T&0&\(\T\)									&time bound\\
+\tbs t&0&\(\t\)								&typical time\\
+\tbs tt&0&\(\tt\)								&typical time 2\\
+\tbs ttt&0&\(\ttt\)							&typical time 3\\
+\tbs r&0&\(\r\)								&space var for poiss\\
+\tbs rt&1&\(\rt{\numb}\)					&typical rand time\\
+\tbs rtt&1&\(\rtt{\numb}\)					&typical rand time 2\\
+\tbs it&0& \(\it\)							&iterator\\
+\tbs itt&0&\(\itt\)							&iterator 2\\
+\tbs ittt&0&\(\ittt\)						&iterator 3\\
+\tbs numb&0&\(\numb\)						&numbering of prelimit vars\\
+\tbs XState&1&\(\XState{\U}\)				&multidim state space\\
+\tbs sv&2&\(\sv{\v}{\U}\)					&typ elt of \tbs XState\\
+\tbs ev&1&\(\ev{\v}\)						&standard basis\\
+\tbs cad&0&\(\cad\)							&Cadlag space\\
+\tbs OmegaV&2&\(\OmegaV{\v}{\t}\)			&Path space\\
+\tbs piV&2&\(\piV{\U}{t}\)					&projection\\
+\tbs xvt&2&\(\xvt{\v}{\t}\)					&typ path val\\
+\tbs xvtt&2&\(\xvtt{\v}{\t}\)					&typ path val2\\
+\tbs xvttt&2&\(\xvttt{\v}{\t}\)				&typ path val3\\
+\tbs rxvt&2&\(\rxvt{\v}{\t}\)					&typ rand path val\\
+\tbs rxvtn&3&\(\rxvtn{\v}{\t}{\numb}\)		&typ rp val sublim\\
+\tbs rxvtt&2&\(\rxvtt{\v}{\t}\)				&typ rand path val2\\
+\tbs rxvttn&3&\(\rxvttn{\v}{\t}{\numb}\)		&typ rp val sublim 2\\
+\tbs rxvttt&2&\(\rxvttt{\v}{\t}\)				&typ rand path val3\\
+\tbs xvts&2&\(\xvts{\v}{[0,\t]}\)					&typ path\\
+\tbs xvtts&2&\(\xvtts{\v}{[0,\t]}\)					&typ path 2\\
+\tbs xvttts&2&\(\xvttts{\v}{[0,\t]}\)					&typ path 3\\
+\tbs rxvts&2&\(\rxvts{\v}{[0,\t]}\)					&typ rand path\\
+\tbs rxvtsn&3&\(\rxvtsn{\v}{[0,\t]}{\numb}\)	&typ rpath sublim\\
+\tbs rxvtts&2&\(\rxvtts{\v}{[0,\t]}\)					&typ rand path 2\\
+\tbs rxvttsn&3&\(\rxvttsn{\v}{[0,\t]}{\numb}\)	&typ rpath sublim 2\\
+\tbs rxvttts&2&\(\rxvttts{\v}{[0,\t]}\)				&typ rand path 3\\\\tbs rxvtttsn&3&\(\rxvtttsn{\v}{[0,\t]}{\numb}\)	&typ rpath sublim 3\\
+\tbs rp&1& \(\rp{\t}\)						&typ point process\\
+\tbs m&3&\(\m{\U}{\t}{\numb}\)						&typ measure\\
+\tbs mm&3&\(\mm{\U}{\t}{\numb}\)						&typ measure 2\\
+\tbs mmm&3&\(\mmm{\U}{\t}{\numb}\)						&typ measure 3\\
+\tbs cm&0&\(\cm\)							&conditional msr funct\\
+\tbs IGr&1&\(\IGr{\v}\)						&IG rate\\
+\tbs rate&1&\(\rate{\v}\)					&rate\\
+\tbs ratee&1&\(\ratee{\v}\)					&general rate\\
+\tbs crate&2&\(\crate{\v}{\t}\)		&conditional rate\\
+\tbs cratee&2&\(\cratee{\v}{\t}\)		&general conditional rate\\
+\tbs cl&0&\(\cl{\cdot}\)			&closure (in the graph)\\
+\tbs root&0&\(\root\)				&root\\
+\tbs F&2&\(\F{\U}{\t}\)&Filtrations\\
+\tbs FF&2&\(\FF{\U}{\t}\)&Filtrations\\
+\tbs FFF&2&\(\FFF{\U}{\t}\)&Filtrations\\
+\tbs dist&0& \(\dist\)				&general metric\\
+\tbs gdist &0& \(\gdist\)			&graph distance\\
+\tbs cont &0& \(\cont\)				&space of cont. \\
+\tbs const &1& \(\const{\numb}\)	&Constant\\
+\tbs Sm&0&\(\Sm\)							&std msr on \(\S\)\\
+\tbs alt&0&\(\widetilde{\cdot}\)			&alternate val\\
+\tbs b&1& \(\b{\v}\)						&inf dim norm coeffs\\
+\tbs mutex&0&\(\mutex\)						&mutually exclusive\\
+\tbs apath&0&\(\apath\)						&Given path for CI proof\\
+\tbs pathset&2&\(\pathset{\itt}{\ittt}\)	&set of paths\\
+\tbs pathsete&2&\(\pathsete{\itt}{\ittt}\)	&union over pathset\\
+\tbs pathseted&2&\(\pathseted{\itt}{\ittt}\)&pathsete with \(\t\)\\
+\tbs rv&0& \(\rv\)							&Typical random element\\
+\tbs evnt&0&\(\evnt\)						&Typical event\\
+\tbs typset&0&\(\typset\)					&Typical set\\
+\tbs mark&1&\(\mark{\numb}\)				&Typical mark\\
+\tbs dense&2& \(\dense{\numb}{\T}\)			&Typ density\\
+\tbs cdense&2&\(\cdense{\numb}{\T}\)		&cond density\\
+\tbs ds&2& \(\ds{\v}{\t}\)					&mapping in density\\
+\tbs mtop &0& \(\mtop\)						&markov to point\\
+\tbs spce &0&\(\spce\)						&arbitrary space\\
+\tbs c &1& \(\c{\v}\)						&child function\\
+\tbs p &1& \(\p{\v}\)						&parent function \\
+\tbs pmap &1& \(\pmap{\v}\)					&Markov to MPP\\
+\tbs inte &0& \(\inte\)						&interval
+\end{longtable}
+
+\subsection*{TODO}
+
+Resolve notation problems:
+
+\begin{itemize}
+\item Complete notation macros
+
+\item Try removing references to measure space \(\pmsr(\cdot)\) in section 2.
+
+\item Finish all proofs.
+\end{itemize}
+
+\section{Introduction}
+\label{sec::Intro}\labe{sec::Intro}
+
+Partial Lit Review: \tr{A lot of these results are specifically for diffusions. Consider whether they are still relevant.}
+
+Convergence of the Empirical Measure (relevant if I prove equivalence of limiting empirical distribution and limiting typical particle dynamics.):
+
+\begin{itemize}
+\item \cite{Yin15} uses Stein's method to proof convergence and estimate rate of convergence.
+
+\item \cite{DupRamWu16} study convergence in finite state space case and analyze Large deviations.
+
+\item \cite{VveDobKar96} and \cite{Mit01} apply analysis to power of two load balancing on a complete network. 
+\end{itemize}
+
+McKean-Vlasov Equations:
+
+\begin{itemize}
+\item \cite{Mck66} introduces the notation of non-linear Markov processes.
+
+\item \cite{Oel84} uses standard Martingale convergence arguments to prove the McKean-Vlasov weak limit for diffusions and jump processes.
+
+\item \cite{Szn91} uses a fixed point algorithm to prove the McKean-Vlasov limit for diffusions. Explicitly provided a coupling in which the path of a typical particle converges.
+
+\item \cite{Lac15} provides a brief summary of methods by which the McKean-Vlasov limit has been proved. He also addresses cases in which the limiting equation does not have a unique solution and the case of shared noise. Most of the thesis considers a control process derived from these processes.
+
+\item \cite{SzpTanTse17} develop multilevel Monti Carlo estimation of McKean-Vlasov SDEs using Sznitman's fixed point argument.
+\end{itemize}
+
+Dense Graph Approximation:
+
+\begin{itemize}
+\item \cite{BhaBudWu17} show convergence to McKean-Vlasov of diffusions over asymptotically dense random networks.
+
+\item \cite{MukBorLee17} analyze join-the-shortest-neighboring-queue load balancing over asymptotically dense random networks. \cite{BudMukWu17} also address heterogeneous deterministic networks.
+
+\item \cite{MieBov15},\cite{GreKisKao06} study mean-field numerically for various epidemic models. They demonstrate that it works well for dense graphs and that it's inaccurate for sparse graphs.
+\end{itemize}
+
+Alternatives:
+
+\begin{itemize}
+\item \cite{Gas15} demonstrates the pairwise approximation. It's better than mean-field, but tail probabilities are still inaccurate.
+
+\item Cavity method may provide an alternative approach. It is currently known as a discrete time algorithm \cite{Lac15}\cite{KanMon11}. There is current work extending it to continuous time \tr{(Citation needed)}.
+\end{itemize}
+
+\tg{Outline will be here someday somehow!}
+
+
+\section{Preliminaries}
+\label{sec::Preli}\labe{sec::Preli}
+
+\subsection{Notation}
+\label{subsec::Notat:sec::Preli}\labe{subsec::Notat:sec::Preli}
+
+Let \(\G = (\V,\E)\) be a graph with bounded degree with rooted node \(\root \in \V\). For any \(\v \in \V\), let \(\neigh{\v}\) be the set of nodes adjacent to \(\v\). Similarly, for any \(\U \subseteq \V\), let \(\neigh{\U}\) be the set of nodes adjacent to \(\U\) but not in \(\U\). Let \(\cl{\v} = \{\v\}\cup\neigh{\v}\) and \(\cl{\U} = \U\cup \neigh{\U}\). 
+
+\ind Let \(\S\) be a finite set. Without loss of generality, let \(S\) be a finite abelian group with group operation \(+\) and equipped with the norm \(|\cdot|\). 
+
+\ind Let \(\S^\V\) be the set of vectors, \(\sv{}{\V}\) with components \(\sv{\v}{\V} \in \S\) indexed by \(\v\in \V\). Let \(\{\ev{\v}: \v\in \V\}\) be the standard basis vectors of \(\S^\V\). Let \(\{\b{\v}:\v\in \V\}\) be a sequence of positive numbers such that \(\sum_{\v\in\V} \b{\v} < \infty\). Then let \(\|\cdot\|_{\b{}}\) be a norm on \(\S^\V\) defined by \(\|\sv{}{\V}\|_{\b{}} = \sum_{\v\in\V} \b{\v}|\sv{\v}{\V}|\). For any \(\U\subseteq \V\), we will generally assume \(\S^\U\) is embedded in \(\S^\V\). That is, for \(\sv{}{\U}\in \S^\U\), \(\sv{\v}{\U} = 0\) for all \(\v\notin\U\). Thus, we can also define the norm \(\|\sv{}{\U}\|_{\b{}} = \sum_{\v\in\U} \b{\v}|\sv{\v}{\U}|\). \(\S^\V\) acts as the state space of an interacting particle system on \(\G\) whose nodes have state space \(\S\).
+
+\ind Fix some \(\T < \infty\). For any \(\U\subseteq \V\) and \(\t\in [0,\T]\), let \(\OmegaV{\U}{\t} = \cad([0,\t],\S^{\U})\) and \(\OmegaV{\U}{\t-} = \cad([0,\t),\S^\U)\). For any \(\xvts{}{} \in \OmegaV{\V}{\T}\), \(\v\in \V\) and  \(\t \in [0,\T]\), let \(\xvt{\v}{\t}\) be the value of the \(\v\)-node of \(\xvts{}{}\) at time \(\t\). For any \(\U\subseteq \V\), let \(\piV{\U}{\t}\) be the standard projection/embedding into the space \(\OmegaV{\U}{\t}\). In a slight misuse of notation, we will make the domain clear from context. Let \(\piV{\U}{} \defeq \piV{\U}{0}\) be the projection to \(\S^\U\). For any \(\U\subseteq \V\), define the norm on \(\OmegaV{\t}{\U}\) by \(\|\xvts{\U}{}\|_{\b{},\t} \defeq \sup_{\tt \leq \t} \|\xvt{\U}{\tt}\|_{\b{}}\). Let \(\F{\U}{\t}\) be the Borel \(\sigma\)-algebra of \(\OmegaV{\U}{\t}\) with respect to the Skorokhod topology. Let \(\rxvts{}{}\) be an \(\OmegaV{\V}{\t}\)-valued random variable. We say that \(\rxvt{\v}{\t}\) is the state of the \(\v\)-component of \(\rxvts{}{}\) at time \(\t\). Assume \(\rxvts{}{}\) is a Feller process with infinitesimal generator \(\IG\) given by,
+
+\begin{equation}
+\IG f(\sv{}{\V}) = \sum_{\v \in \V}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V} + \s \ev{\v}) - f(\sv{}{\V})],
+\label{subsec::Notat:Eqn::IG}
+\end{equation}
+\labe{subsec::Notat:Eqn::IG}
+
+where \(\{\IGr{\v}:\v\in \V\}\) are chosen such that \(\rxvts{}{}\) is well-defined (See Appendix \ref{sec::Infin} for more information. See sections \ref{subsec::Assum:sec::Preli} and \ref{subsec::Well-:sec::Preli} for examples of such \(\IGr{\v}\) relevant to this paper). 
+
+\tr{I have not mentioned any probability measure stuff yet.}
+
+\subsection{Assumptions}
+\label{subsec::Assum:sec::Preli}\labe{subsec::Assum:sec::Preli}
+
+Throughout this paper, we will assume that \(\rxvt{}{0}\) is a vector of i.i.d. \(\S\)-valued random variables with respect to \(\pr\).
+
+\lin
+
+\begin{assu}
+The following three conditions hold:
+\begin{enumerate}
+\item \(\IGr{\v}\) as defined in equation \eqref{subsec::Notat:Eqn::IG} is uniformly bounded. That is, there exists a constant \(\const{}\) such that,
+
+\begin{equation}
+\sup_{\v\in \V,\s \in \S,\sv{}{\V}\in \S^\V} \IGr{\v}(\sv{}{\V},\s) = \const{} < \infty.
+\label{subsec::Assum:Eqn::bddcv}
+\end{equation}
+\labe{subsec::Assum:Eqn::bddcv}
+
+\item \(\IGr{\v}\) only depends on \(\sv{\cl{\v}}{\V}\). That is, for any \(\v\in \V\), \(\s\in \S\) and \(\sv{}{\V},\ov{\sv{}{\V}} \in \S^\V\) such that \(\sv{\cl{\v}}{\V} = \ov{\sv{\cl{\v}}{\V}}\), \(\IGr{\v}(\sv{}{\V},\s) = \IGr{\v}(\ov{\sv{}{\V}},\s)\).
+
+\item \(\G\) has bounded degree. That is, \(\degr \defeq \sup_\v |\neigh{\v}| < \infty\).
+\end{enumerate}
+\label{subsec::Assum:Assu::CI}\labe{subsec::Assum:Assu::CI}
+\end{assu}
+
+\purpose Intuitively, we are assuming that each node of the process changes state at a bounded rate and that the number of nodes that any one node interacts with is bounded. This assumption (along with independent initial conditions) yields sufficient conditions for well-posedness of the infinitesimal generator and SDE. It is also all that is required to prove the conditional independence property (Theorem \ref{sec::Main:Thm::CI}). 
+
+\usein All of section \ref{subsec::Well-:sec::Preli}. Theorem \ref{sec::Main:Thm::CI}. All of section \ref{sec::Proof1}.
+
+\lin
+
+\begin{assu}
+There exists a fixed \(\degr\in \mb{N}\) such that:
+
+\begin{enumerate}
+\item There exists a mapping \(\IGr{}: \S^{d+1} \times \S \ra [0,\infty)\) such that:
+
+\begin{equation}
+\IGr{\v}(\sv{}{\V},\s) = \IGr{}(\sv{\cl{\v}}{\V},\s) \te{ for all } \v\in \V, \s\in \S\te{ and } \sv{}{\V} \in \S^\V
+\label{subsec::Assum:Eqn::Symmetry}
+\end{equation}
+\labe{subsec::Assum:Eqn::Symmetry}
+
+\item \(\G\) is a regular \(\degr\)-tree. In this case we call an arbitrary node \(\root\in \V\) the root. Let \(\gdist\) be the graph distance. Define \(\tree^\numb = \{\v \in \V: \gdist(\v,\root) \leq \numb\}\) for all \(\numb\in \mb{N}\).
+\end{enumerate}
+\label{subsec::Assum:Assu::Local}\labe{subsec::Assum:Assu::Local}
+\end{assu}
+
+\purpose Assumption \ref{subsec::Assum:Assu::Local} implies Assumption \ref{subsec::Assum:Assu::CI}, so all results for Assumption \ref{subsec::Assum:Assu::CI} hold for Assumption \ref{subsec::Assum:Assu::Local}. This assumption adds an additional symmetry assumption. We also work on trees so we do not have to deal with cycles (which add extra dependencies making the problem harder to analyze). Furthermore, this assumption is sufficient for Theorem \ref{sec::Main:Thm::Local SDE} (existence and uniqueness of a local representation of \(\m{}{}{} \defeq \law(\rxvts{}{})\)).
+
+\usein Theorem \ref{sec::Main:Thm::Local SDE}, all of section \ref{sec::Proof2}.
+
+\ind \(\tree^\numb\) is the tree rooted at \(\root\) with \(\numb\) generations such that \(\root\) has \(\degr\) children and all other non-leaf nodes have \(\degr-1\) children.
+
+\lin
+
+\subsection{Well-Posedness Results}
+\label{subsec::Well-:sec::Preli}\labe{subsec::Well-:sec::Preli}
+
+\rule{\linewidth}{0.4 pt}
+
+\begin{prop}
+Suppose \(\rxvts{}{}\) is the Feller process defined by equation \eqref{subsec::Notat:Eqn::IG}. If \(\rxvts{}{}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, then there exists a domain \(\core(\IG)\) such that operator \(\IG\) defined in equation \eqref{subsec::Notat:Eqn::IG} on \(\mc{D}(\IG)\) is an infinitesimal generator with core \(\core\) defined by,
+
+\begin{equation}
+\core \defeq \left\{f \in \cont(\S^\V): \sum_{\v\in\V} \triangle_f(\v) < \infty\right\},
+\label{subsec::Well-:Eqn::core}
+\end{equation}
+\labe{subsec::Well-:Eqn::core}
+
+where we define,
+
+\begin{equation}
+\triangle_f(\v) \defeq \sup\left\{|f(\sv{}{\V}) - f(\sv{}{\V}+\s\ev{\v})|: \sv{}{\V} \in \S^\V,\s \in \S\right\}.
+\label{subsec::Well-:Eqn::fvar}
+\end{equation}
+\labe{subsec::Well-:Eqn::fvar}
+
+\label{subsec::Well-:Prop::Welldef}
+\end{prop}
+\labe{subsec::Well-:Prop::Welldef}
+
+\purpose This is necessary for obvious reasons. If \(\rxvts{}{}\) is not well-defined, then there is no longer any point in deriving any results about its properties. The infinitesimal generator representation of \(\rxvts{}{}\) is used to prove convergence of the finite-dimensional approximations of \(\rxvts{}{}\) to \(\rxvts{}{}\).
+
+\usein This is important for Propositions \ref{subsec::Well-:Prop::SDE=IG} and \ref{subsec::Well-:Prop::IGApprox}. It is only implicitly used in \ref{subsec::Well-:Prop::SDE=IG}.
+
+\app \cite[Theorem 3.9]{Lig85} and Assumption \ref{subsec::Assum:Assu::CI}.
+
+\begin{proof}
+By \cite[Theorem 3.9 (a) and (b)]{Lig85}, it suffices to show that:
+
+\begin{enumerate}[i)]
+\item 
+
+\[\sup_{\v \in \V,\sv{}{\V} \in \S^\V} \sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s) < \infty.\]
+
+\item 
+
+\[\sup_{\v\in \V}\sum_{\vv\neq \v} \sup_{\substack{\sv{}{\V} \in \S^\V\\ \s\in \S\\ \SS \subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{\V},\ss) - \IGr{\v}(\sv{}{\V}+\s \ev{\vv},\ss))\right| < \infty.\]
+\end{enumerate}
+
+We have,
+
+\begin{enumerate}[i)]
+\item This is just statement 1 of Assumption \ref{subsec::Assum:Assu::CI}.
+
+\item By statement 2 of Assumption \ref{subsec::Assum:Assu::CI}, 
+
+\[\sup_{\substack{\sv{}{\V} \in \S^\V\\ \s\in \S\\ \SS\subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{\V},\ss) - \IGr{\v}(\sv{}{\V}+\s \ev{\vv},\ss))\right| = 0 \te{ for all } \vv \notin \cl{\v}\]
+
+Furthermore, \(\IGr{\v}\) is non-negative and bounded from above by some \(\const{} < \infty\) (statement 1 of Assumption \ref{subsec::Assum:Assu::CI}). Therefore, 
+
+\[\left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{\V},\ss) - \IGr{\v}(\sv{}{\V}+\s\ev{\vv},\ss))\right| \leq \const{}|\S| \te{ for all } \sv{}{\V} \in \S^\V,\v \in \V, \vv \in \cl{\v}, \s \in \S \te{ and } \SS\subseteq \S\]
+
+Finally, by statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, \(|\neigh{\v}| \leq \degr\) for all \(\v \in \V\). Thus,
+
+\begin{align*}
+\sup_{\v\in \V}\sum_{\vv \neq \v} \sup_{\substack{\sv{}{\V} \in \S^\V\\ \s\in \S\\ \SS\subseteq \S}}& \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{\V},\ss) - \IGr{\v}(\sv{}{\V}+\s\ev{\vv},\ss))\right|\\
+&  = \sup_{\v\in \V}\sum_{\vv\in \neigh{\v}} \sup_{\substack{\sv{}{\V} \in \S^\V\\ \s\in \S\\ \SS\subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{\V},\ss) - \IGr{\v}(\sv{}{\V}+\s\ev{\vv},\ss))\right|\\
+&\leq \sup_{\v\in \V} \sum_{\vv \in \neigh{\v}} \const{}|\S|\\
+&\leq \degr \const{}|\S| < \infty.
+\end{align*}
+
+
+\end{enumerate}
+\end{proof}
+
+\lin
+
+\begin{prop}
+Let \(\poisses \defeq \{\poiss{\v}:\v\in \V\}\) be a sequence of i.i.d. Poisson processes on \(\mb{R}^2\times \S\) with intensity measure \(\leb\otimes \Sm\) where \(\leb\) is the Lebesgue measure on \(\mb{R}^2\) and \(\Sm\) is a probability measure on \(\S\) having 0 weight on 0 and nonzero weight on \(\S\setminus \{0\}\). Suppose \(\IGr{\v}\) and \(\G\) satisfy Assumption \ref{subsec::Assum:Assu::CI} and suppose \(\rate{\v}(\sv{}{\V},\s) = \frac{\IGr{\v}(\sv{}{\V},\s)}{\Sm(\{\s\})}\) for \(\sv{}{\V} \in \S^\V\) and \(\s \in \S\). Then the coupled equation,
+
+\begin{equation}
+\rxvt{\v}{\t} = \rxvt{\v}{0} + \int_\S\int_0^\t \s\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\rxvt{}{\tt-},\s)\right],d\s\right) \te{ for all }\v \in \V
+\label{subsec::Well-:Eqn::SDE}
+\end{equation}
+\labe{subsec::Well-:Eqn::SDE}
+
+has a unique strong solution.
+\label{subsec::Well-:Prop::SDEWP}
+\end{prop}
+\labe{subsec::Well-:Prop::SDEWP}
+
+\purpose The SDE representation of \(\rxvts{}{}\) is used to prove the conditional independence property. I also make heavy use of this representation in proving uniqueness of the local characterization.
+
+\pfsum Prove uniqueness using Gronwall's inequality. Prove existence using Picard iterations. Proof is provided after Lemma \ref{subsec::Well-:Lem::GronwallPrep}.
+
+\usein Proposition \ref{subsec::Well-:Prop::SDE=IG}, Lemma \ref{sec::Proof1:Lem::Decomposition} and section \ref{subsec::ProofU:sec::Proof2}.
+
+\app Lemma \ref{subsec::Well-:Lem::GronwallPrep} and Assumption \ref{subsec::Assum:Assu::CI}. Lemma \ref{subsec::Well-:Lem::SDEWP} is an intermediate result used to prove Lemma \ref{subsec::Well-:Lem::GronwallPrep}.
+
+\lin
+
+\begin{lem}
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(F_\poisses: \OmegaV{\V}{\T} \ra \OmegaV{\V}{\T}\) parameterized by a sequence of Poisson processes and defined by,
+
+\[\left(F_\poisses(\xvts{}{})\right)_\v(\t) := \xvt{\v}{0} + \int_\S\int_0^\t \s \,\poiss{\v}(d\tt,(0,\rate{\v}(\xvt{}{\tt-},\s)],d\s) \te{ for all }\xvts{}{} \in \OmegaV{\V}{\T}, \v \in \V\te{ and }\t \in [0,\T].\]
+
+Then for any pair of random processes \(\rxvts{}{},\alt{\rxvts{}{}}:\OmegaV{\V}{\T} \ra \OmegaV{\V}{\T}\), \(\v\in \V\) and \(\t \in [0,\T]\),
+
+\[\ex{\|F_\poisses(\rxvts{}{})_\v - F_\poisses(\alt{\rxvts{}{}})_\v\|_\t} \leq \ex{|\rxvt{\v}{0} - \alt{\rxvt{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\rxvts{\vv}{} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\]
+
+for some constant \(\const{1} < \infty\).
+
+\label{subsec::Well-:Lem::SDEWP}
+\end{lem}
+\labe{subsec::Well-:Lem::SDEWP}
+
+\purpose Proposition \ref{subsec::Well-:Prop::SDEWP} is proved using Picard iterations to prove existence and a similar inequality to prove uniqueness. This lemma is also applied in the proof of Proposition \ref{subsec::Well-:Prop::SDE=IG}. Furthermore, the proof that any strong solution, \(\rxvts{}{}\), to equation \eqref{subsec::Well-:Eqn::SDE} also involves a similar computation. This Lemma allows us to do the computation a single time to avoid repetition or citing results found within proofs.
+
+\usein Lemma \ref{subsec::Well-:Lem::GronwallPrep} and Proposition \ref{subsec::Well-:Prop::SDE=IG}. Proof is referenced in Lemma \ref{sec::Proof1:Lem::Decomposition}.
+
+\app Assumption \ref{subsec::Assum:Assu::CI}.
+
+\begin{proof}
+Recall that \(\{\IGr{\v}:\v\in\V\}\) is necessarily bounded from above by some \(\const{} < \infty\) (Statement 1 of Assumption \ref{subsec::Assum:Assu::CI}). By assumption, \(\Sm(\{\s\}) > 0\) for all \(\s \in \S\setminus \{0\}\). Since \(\S\) is finite, that means that \(\min_{\s \neq 0} \Sm(\{\s\}) > 0\), so \(\rate{\v}(\sv{}{\V},\s)\) is also bounded from above. Without loss of generality, suppose \(\rate{\v}(\sv{}{\V},\s) < \const{}\) for all \(\v\in \V,\sv{}{\V} \in \S^\V\te{ and } \s \in \S\).
+
+\ind By statement 2 of Assumption \ref{subsec::Assum:Assu::CI}, 
+
+\[\inf_{\substack{\sv{}{\V},\alt{\sv{}{\V}} \in \S^\V, \s\in \S\\ \rate{\v}(\sv{}{\V},\s) \neq \rate{\v}(\alt{\sv{}{\V}},\s)}} \sum_{\vv \in \cl{\v}} |\sv{\vv}{\V} - \alt{\sv{\vv}{\V}}| \geq 1.\]
+
+Then,
+
+\[\sup_{\v\in \V} \sup_{\substack{\sv{}{\V},\alt{\sv{}{\V}} \in \S^\V, \s\in \S\\ \rate{\v}(\sv{}{\V},\s) \neq \rate{\v}(\alt{\sv{}{\V}},\s)}} \frac{|\rate{\v}(\sv{}{\V},\s) - \rate{\v}(\alt{\sv{}{\V}},\s)|}{\sum_{\vv \in \cl{\v}} |\sv{\vv}{\V} - \alt{\sv{\vv}{\V}}|} \leq \const{}\]
+
+So,
+
+\[|\rate{\v}(\sv{}{\V},\s) - \rate{\v}(\alt{\sv{}{\V}},\s)|\leq \const{}\sum_{\vv \in \cl{\v}} |\sv{\vv}{\V} - \alt{\sv{\vv}{\V}}| \te{ for all } \sv{}{\V},\alt{\sv{}{\V}}\in \S^\V,\s\in \S\te{ and }\v\in \V.\]
+
+That is, \(\rate{\v}\) satisfies a Lipschitz-like condition with coefficient bounded from above by \(\const{}\). For any \(\v\in \V\),
+
+\begin{align*}
+\mb{E}\bigg[&\|F_\poisses(\rxvts{}{})_\v - F_\poisses(\alt{\rxvts{}{}})_\v\|_\t\bigg] - \ex{|\rxvt{\v}{0} - \alt{\rxvt{\v}{0}}|}\\
+&= \ex{\sup_{\ttt \leq \t}\left|\int_\S\int_0^{\ttt} \s\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\rxvt{}{\tt-},\s)\right],d\s\right) -  \int_\S\int_0^{\ttt} \s\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\alt{\rxvt{}{\tt-}},\s)\right],d\s\right)\right|}\\
+&=\ex{\sup_{\ttt\leq \t} \left|\int_\S \int_0^{\const{}} \int_0^{\ttt} \s\left(\mb{I}_{\r < \rate{\v}(\rxvt{}{\tt-},\s)} - \mb{I}_{\r < \rate{\v}(\alt{\rxvt{}{\tt-}},\s)}\right)\,\poiss{\v}(d\tt\,d\r\,d\s)\right|}\\
+&\leq \ex{\int_\S\int_0^{\const{}}\int_0^\t \left|\s\left(\mb{I}_{\r < \rate{\v}(\rxvt{}{\tt-},\s)} - \mb{I}_{\r < \rate{\v}(\alt{\rxvt{}{\tt-}},\s)}\right)\right|\,\poiss{\v}(d\tt\,d\r\,d\s)}\\
+&=\int_\S\int_0^\t\int_0^{\const{}} |\s|\ex{\mb{I}_{\rate{\v}(\rxvt{}{\tt-},\s) \leq \r < \rate{\v}(\alt{\rxvt{}{\tt-}},\s)} + \mb{I}_{\rate{\v}(\alt{\rxvt{}{\tt-}},\s) \leq \r < \rate{\v}(\rxvt{}{\tt-},\s)}}\,d\r\,d\tt\,\Sm(d\s)\\
+&= \int_\S\int_0^\t|\s|\ex{\left|\rate{\v}(\rxvt{}{\tt-},\s) - \rate{\v}(\alt{\rxvt{}{\tt-}},\s)\right|}\,d\tt\,\Sm(d\s)\\
+&\leq \const{}\int_\S\int_0^\t |\s| \ex{\sum_{\vv \in \cl{\v}}|\rxvt{\vv}{\tt-} - \alt{\rxvt{\vv}{\tt-}}|}\,d\tt\,\Sm(d\s)\\
+&\leq \const{}|\S|\int_0^\t \sum_{\vv \in \cl{\v}}\ex{\|\rxvts{\vv}{} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\\
+\end{align*}
+
+Then,
+
+\[\ex{\|F_\poisses(\rxvts{}{})_\v - F_\poisses(\alt{\rxvts{}{}})_\v\|_\t} \leq \ex{|\rxvt{\v}{0} - \alt{\rxvt{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\rxvts{\vv}{} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt.\]
+
+\end{proof}
+
+\lin
+
+\begin{lem}
+Given the conditions and notation of Lemma \ref{subsec::Well-:Lem::SDEWP}, assume that \(\rxvt{}{0} = \alt{\rxvt{}{0}}\) almost surely. Then,
+
+\[\sup_{\v \in \V} \ex{\left\|F_\poisses(\rxvts{}{})_\v - F_\poisses(\alt{\rxvts{}{}})_\v\right\|_\t} \leq (\degr+1)\const{1}\int_0^\t \sup_{\v \in \V} \ex{\|\rxvts{\v}{} - \alt{\rxvts{\v}{}}\|_\tt}\,d\tt.\]
+\label{subsec::Well-:Lem::GronwallPrep}
+\end{lem}
+\labe{subsec::Well-:Lem::GronwallPrep}
+
+\purpose Provides a nice Gronwall-like inequality for use in proving Proposition \ref{subsec::Well-:Prop::SDEWP}.
+
+\usein Proposition \ref{subsec::Well-:Prop::SDEWP}.
+
+\app Lemma \ref{subsec::Well-:Lem::SDEWP} and Assumption \ref{subsec::Assum:Assu::CI}.
+
+\begin{proof}
+By statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, every node \(v \in V\) has degree less than or equal to \(\degr\). By Lemma \ref{subsec::Well-:Lem::SDEWP},
+
+\begin{align*}
+\sup_{\v \in \V} \ex{\left\|F_\poisses(\rxvts{}{})_\v - F_\poisses(\alt{\rxvts{}{}})_\v\right\|_\t} &\leq \sup_{\v\in \V}\left(\ex{|\rxvt{\v}{0} - \alt{\rxvt{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\rxvts{\vv} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\right)\\
+&=\sup_{\v \in \V} \const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\|\rxvts{\vv} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\\
+&\leq \const{1}\int_0^\t \sup_{\v \in \V}\sum_{\vv \in \cl{\v}} \ex{\|\rxvts{\vv} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\\
+&\leq \const{1}\int_0^\t \sup_{\v \in \V}\sum_{\vv \in \cl{\v}}\sup_{\vvv\in\V} \ex{\|\rxvts{\vvv} - \alt{\rxvts{\vvv}{}}\|_\tt}\,d\tt\\
+&= \const{1}\int_0^\t \sup_{\v \in \V}(\degr+1)\sup_{\vvv\in\V} \ex{\|\rxvts{\vvv} - \alt{\rxvts{\vvv}{}}\|_\tt}\,d\tt\\
+&= (\degr+1)\const{1}\int_0^\t \sup_{\v\in\V} \ex{\|\rxvts{\v} - \alt{\rxvts{\v}{}}\|_\tt}\,d\tt\\
+\end{align*}
+\end{proof}
+\lin
+
+\begin{proof}[Proof of Proposition \ref{subsec::Well-:Prop::SDEWP}]
+
+This proof is fairly standard. We begin by proving uniqueness. Suppose \(\rxvts{}{}\) and \(\alt{\rxvts{}{}}\) are both strong solutions to equation \ref{subsec::Well-:Eqn::SDE}. Let \(F_\poisses\) be the mapping introduced in Lemmas \ref{subsec::Well-:Lem::SDEWP} and \ref{subsec::Well-:Lem::GronwallPrep}. Then,
+
+\[\rxvts{}{} = F_\poisses(\rxvts{}{})\te{ and } \alt{\rxvts{}{}} = F_\poisses(\alt{\rxvts{}{}}),\]
+
+and \(\rxvt{}{0} = \alt{\rxvt{}{0}}\) almost surely. By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(\t\in [0,\T]\),
+
+\begin{align*}
+\sup_{\v\in \V}\ex{\|\rxvts{\v}{} - \alt{\rxvts{\v}{}}\|_\t} \leq (\degr+1)\const{1}\int_0^\t\sup_{\v\in \V} \ex{\|\rxvts{\v}{} - \alt{\rxvts{\v}{}}\|_\tt}\,d\tt.
+\end{align*}
+
+By Gronwall's inequality, \(\sup_{\v \in \V} \ex{\|\rxvts{\v}{} - \alt{\rxvts{\v}{}}\|_\T} = 0\), so \(\rxvts{}{} = \alt{\rxvts{}{}}\) almost surely.
+
+\skipLine
+
+To prove existence, we use Picard iterations. Define \(\rxvtn{}{\t}{0} \defeq \rxvt{}{0}\) for all \(\t \in [0,\T]\). Define,
+
+\[\rxvtsn{}{}{\numb+1} = F_\poisses(\rxvtsn{}{}{\numb}).\]
+
+Once again, by Lemma \ref{subsec::Well-:Lem::GronwallPrep},
+
+\[\sup_{\v \in \V} \ex{\|\rxvtsn{\v}{}{\numb+1} - \rxvtsn{\v}{}{\numb}\|_\t} \leq (\degr+1)\const{1} \int_0^\t \sup_{\v \in \V} \ex{\|\rxvtsn{\v}{}{\numb} - \rxvtsn{\v}{}{\numb-1}\|_\tt}\,d\tt\] 
+
+Furthermore, 
+
+\begin{align*}
+\ex{\|\rxvtsn{\v}{}{1} - \rxvtsn{\v}{}{0}\|_\t} &\leq \ex{\int_\S\int_0^\t |\s|\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\rxvt{}{0},\s)\right],d\s\right)}\\
+&\leq \ex{\int_\S\int_0^\t |\s|\,\poiss{\v}\left(d\tt,\left(0,\const{}\right],d\s\right)}\\
+&= \const{}\int_\S\int_0^\t |\s|\,d\tt\,\Sm(d\s)\\
+&=\const{}\t\int_\S |\s|\,\Sm(\s)\\
+&\leq \const{}\t|\S|
+\end{align*}
+
+here we use the fact that \(\rate{\cdot}(\cdot,\cdot)\) is bounded by some \(\const{} < \infty\) which does not depend on \(\v\), and the fact that \(\S\) is finite and \(\Sm\) is a probability measure. This gives us,
+
+\[\sup_{\v \in \V}\ex{\|\rxvtsn{\v}{}{1} - \rxvtsn{\v}{}{0}\|_\t} \leq \t\const{2} \defeq \t\const{}|\S|\]
+
+Iterating yields
+
+\[\sup_{\v \in \V} \ex{\|\rxvtsn{\v}{}{\numb+1} - \rxvtsn{\v}{}{\numb}\|_\t} \leq \t\const{2}\frac{(\t(\degr+1)\const{1})^\numb}{(\numb+1)!}\]
+
+Then,
+
+\begin{align*}
+\sum_{\numb=0}^\infty \sup_{\v \in \V} \ex{\|\rxvtsn{\v}{}{\numb+1} - \rxvtsn{\v}{}{\numb}\|_\T} &= \sum_{\numb=1}^\infty \frac{\const{2}}{(\degr+1)\const{1}}\frac{(\T(\degr+1)\const{1})^{\numb}}{\numb !}\\
+& = \frac{\const{2}}{(\degr+1)\const{1}}(e^{\T(\degr+1)\const{1}} - 1) < \infty
+\end{align*}
+
+
+So \(\rxvtsn{}{}{\numb} \ra \rxvts{}{}\) for some \(\rxvts{}{}\) componentwise almost surely (fast convergence in expectation implies almost sure convergence). Let 
+
+\[\alt{\rxvts{}{}} = F_\poisses(\rxvts{}{}).\]
+
+By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(\numb\in\mb{N}\),
+
+\begin{align*}
+\sup_{\v \in \V} \ex{\|\alt{\rxvts{\v}{}} - \rxvtsn{\v}{}{\numb+1}\|_\T} &\leq (\degr+1)\const{1}\int_0^\T \sup_{\v \in \V}\ex{\|\rxvts{\v}{} - \rxvtsn{\v}{}{\numb}\|_\tt}\,d\tt \\
+&\leq \T\const{1}(\degr+1)\sup_{\v\in \V} \ex{\|\rxvts{\v}{} - \rxvtsn{\v}{}{\numb}\|_\T}.
+\end{align*}
+
+Taking a limit as \(\numb\) goes to infinity on both sides yields
+
+\[\lim_{\numb\ra\infty} \sup_{\v \in \V} \ex{\|\alt{\rxvts{\v}{}} - \rxvtsn{\v}{}{\numb}\|_\T} = 0.\]
+
+So \(\rxvts{}{}= F_\poisses(\rxvts{}{})\) almost surely.
+\end{proof}
+
+\lin
+
+\begin{prop}
+Let \(\rxvts{}{}\) be defined as in Proposition \ref{subsec::Well-:Prop::SDEWP}. Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Then \(\rxvts{}{}\) is the unique Feller process with initial condition \(\rxvt{}{0}\) and infinitesimal generator given by \eqref{subsec::Notat:Eqn::IG}:
+
+\[\IG f(\sv{}{\V}) = \sum_{\v\in \V}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V} + \ev{\v}\s) - f(\sv{}{\V})].\]
+\label{subsec::Well-:Prop::SDE=IG}
+\end{prop}
+\labe{subsec::Well-:Prop::SDE=IG}
+
+\purpose This proves the two representations of \(\rxvts{}{}\) are equivalent.
+
+\pfsum We prove \(\rxvts{}{}\) is Feller, then directly apply the bijection between Feller processes and infinitesimal generators given in the appendix. (Proposition \ref{sec::Infin:Thm::Bij}).
+
+\usein Theorem \ref{sec::Main:Thm::Local SDE} (both existence and uniqueness). Lemma \ref{sec::TL:Lem::TightSupport}.
+
+\app Assumption \ref{subsec::Assum:Assu::CI}, Proposition \ref{subsec::Well-:Prop::SDEWP}, Definition \ref{sec::Infin:Def::Feller}, Lemma \ref{subsec::Well-:Lem::SDEWP}, Lemma \ref{sec::TL:Lem::concbd} and Theorem \ref{sec::Infin:Thm::Bij}.
+
+\begin{proof}
+First, we show that \(\rxvts{}{}\) is a Feller process. Notice that \(\rxvts{}{}\) conditioned on the event \(\rxvt{}{0} = \sv{}{\V}\) is given by the law of the unique solution (Proposition \ref{subsec::Well-:Prop::SDEWP}) to the equation
+
+\begin{equation}
+\rxvt{\v}{\t} = \sv{\v}{\V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\rxvt{}{\tt-},\s)],d\s).
+\label{subsec::Well-:Eqn::condSDE}
+\end{equation}
+\labe{subsec::Well-:Eqn::condSDE}
+
+For all \(\sv{}{\V}\in\S^\V\), suppose \(\rxvtn{}{0}{\sv{}{\V}}\) is the unique strong solution to equation \eqref{subsec::Well-:Eqn::condSDE}. By Definition \ref{sec::Infin:Def::Feller}, we need to prove that for all \(\sv{}{\V}\in \S^\V\),
+
+\begin{enumerate}[(a)]
+\item \(\rxvtn{}{0}{\sv{}{\V}} = \sv{}{\V}\) almost surely.
+
+\item The mapping \(\sv{}{\V}\mapsto \pr\left(\rxvtn{}{0}{\sv{}{\V}}\in A\right)\) is measurable for all \(A\in \F{\U}{\T}\).
+
+\item \(\pr\left(\rxvtn{}{\t+\cdot}{\sv{}{\V}}\in A\middle|\rxvtn{}{\tt}{\sv{}{\V}}:\tt \in [0,\t]\right) = \pr\left(\rxvtn{}{\cdot}{\rxvtn{}{\t}{\sv{}{\V}}} \in A\middle| \rxvtn{}{\t}{\sv{}{\V}} \right)\) for all \(A \in \F{\U}{\T}\).
+
+\item For all \(f \in \cont(\S^\V)\) (that is, for all continuous \(f\)), the mapping \(\sv{}{\V}\mapsto \ex{f(\rxvtn{}{\t}{\sv{}{\V}})}\) is also continuous for all \(t\geq 0\).
+\end{enumerate}
+
+The proof that \(\rxvtsn{}{}{\sv{}{\V}}\) satisfies these properties is as follows:
+
+\begin{enumerate}[(a)]
+\item This is trivially true.
+
+\item Since \(\S\) is finite, \(\S^\V\) is countably infinite. Thus \(\ms{B}(\S^\V)\) is the set of subsets of \(\S^\V\). But then for any \(A \in \F{\U}{\T}\) and \(E \in \ms{B}([0,1])\), we have \(\S^\V \supseteq \left\{\sv{}{\V}: \pr\left(\rxvtsn{}{}{\sv{}{\V}} \in A\right) \in E\right\}\), so the mapping is measurable.
+
+\item Notice that we can write,
+
+\[\rxvtn{\v}{\t+\cdot}{\sv{}{\V}} = \rxvtn{\v}{\t}{\sv{}{\V}} + \int_\S\int_\t^{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\rxvtn{}{\tt-}{\sv{}{\V}},\s)],d\s).\]
+
+Let \(\alt{\rxvts{}{}}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
+
+\[\alt{\rxvt{\v}{\cdot}} = \rxvtn{\v}{\t}{\sv{}{\V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\alt{\rxvt{}{\tt-}},\s)],d\s).\]
+
+Then \(\rxvtn{}{\t+\cdot}{\sv{}{\V}} \deq \alt{\rxvt{}{\cdot}}\). By the definition of \(\rxvtsn{}{}{\sv{}{\V}}\), \(\alt{\rxvts{}{}} \deq \rxvtsn{}{}{\rxvtn{}{\t}{\sv{}{\V}}}\) as desired.
+
+\item Let \(\root \in \V\). Define the sequence of sets \(\V\pup{0}\subset \V\pup{1}\subset \cdots \subseteq \V\) as follows: let \(\V\pup{0} = \{\root\}\). For \(\numb \geq 1\), let \(\V\pup{\numb+1} = \cl{\V\pup{\numb}}\).
+
+\ind Now suppose for \(\sv{}{\V},\alt{\sv{}{\V}}\in \S^\V\),
+
+\begin{align*}
+\rxvt{\v}{\t} &= \sv{\v}{\V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\rxvt{}{\tt-},\s)],d\s)&\te{ for all } \v \in \V\\
+\alt{\rxvt{\v}{\t}} &= \alt{\sv{\v}{\V}} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\alt{\rxvt{}{\tt-}},\s)],d\s)&\te{ for all } \v \in \V\\
+\end{align*}
+
+Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
+
+\[\ex{\|\rxvts{\v}{} - \alt{\rxvts{\v}{}}\|_\t} \leq |\sv{\v}{\V} - \alt{\sv{\v}{\V}}| + \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\rxvts{\vv}{} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\]
+
+for all \(\t \in [0,\T]\).
+
+\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in \V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-\numb}\) if \(\v \in \V\pup{\numb}\setminus \V\pup{\numb-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(\G\) is bounded by \(\degr\), we know that \(|\V\pup{\numb}\setminus \V\pup{\numb-1}| \leq \degr^{\numb}\) for all \(\numb\in \mb{N}\). Then \(\sum_{\v \in \V} \b{\v} \leq \sum_{\numb=0}^\infty \left(\frac{\degr}{\b{}}\right)^{-\numb} < \infty\). Since \(\S\) is finite, the norm \(\|\sv{}{\V}\|_{\b{}} := \sum_{\v \in \V} \b{\v}|\sv{\v}{\V}|\) generates the topology of componentwise convergence on \(\S^\V\). We can now apply Gronwall's inequality:
+
+\begin{align*}
+\ex{\|\rxvts{}{} - \alt{\rxvts{}{}}\|_{\b{},\t}} &= \sum_{\v \in \V} \b{\v}\ex{\|\rxvts{\v}{} - \alt{\rxvts{\v}{}}\|_\t}\\
+&\leq \|\sv{}{\V} - \alt{\sv{}{\V}}\|_{\b{}} + \sum_{\v \in \V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\rxvts{\vv}{} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\\
+&\os{\b{\v}\leq \b{}\b{\vv}}{\leq} \|\sv{}{\V} - \alt{\sv{}{\V}}\|_{\b{}} + \sum_{\v \in \V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\rxvts{\vv}{} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\\
+&= \|\sv{}{\V} - \alt{\sv{}{\V}}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in \V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\rxvts{\vv}{} - \alt{\rxvts{\vv}{}}\|_\tt}\,d\tt\\
+&=\|\sv{}{\V} - \alt{\sv{}{\V}}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\rxvts{}{} - \alt{\rxvts{}{}}\|_{\b{},\tt}}\,d\tt\\
+\end{align*}
+
+Applying Gronwall's inequality:
+
+\[\ex{\|\rxvts{}{} - \alt{\rxvts{}{}}\|_{\b{},\T}} \leq \|\sv{}{\V} - \alt{\sv{}{\V}}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\]
+
+Now, let \(f: \S^\V \ra \mb{R}\) be a continuous function. Since \(\S^\V\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv{}{\V}) - f(\alt{\sv{}{\V}})| \leq \phi(|\sv{}{\V} - \alt{\sv{}{\V}}|)\) for all \(\sv{}{\V},\alt{\sv{}{\V}}\in \S^\V\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
+
+\ind Fix any \(\ep > 0\). Let \(\psi_\ep\) be a convex, monotonic, upper-bound of \(\phi\) such that \(\psi_\ep(0) = \ep\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
+
+\begin{align*}
+\ex{\|f(\rxvts{}{}) - f(\alt{\rxvts{}{}})\|_\T} &\leq \ex{\psi_\ep\left(\|\rxvts{}{} - \alt{\rxvts{}{}}\|_{\T,\b{}}\right)}\\
+&\leq \psi_\ep\left(\ex{\|\rxvts{}{} - \alt{\rxvts{}{}}\|_{\T,\b{}}}\right)\\
+&\leq \psi_\ep\left(\|\sv{}{\V} - \alt{\sv{}{\V}}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv{}{\V} \ra\alt{\sv{}{\V}}}{\ra} \ep.
+\end{align*}
+
+Since \(\ep > 0\) is arbitrary, we can conclude that 
+
+\[\ex{\|f(\rxvts{}{}) - f(\alt{\rxvts{}{}})\|_\T} \os{\sv{}{\V} \ra\alt{\sv{}{\V}}}{\ra} 0.\]
+
+This concludes the proof that \(\rxvts{}{}\) is Feller.
+\end{enumerate}
+
+Let \(f \in \core\). Recall that \(\core\) is the core of \(\IG\). Then \(f\) can be represented by the SDE
+
+\[f(\rxvt{}{\t}) = f(\rxvt{}{0}) + \sum_{\v \in \V} \int_\S\int_0^\t [f(\rxvt{}{\tt-} + \s\ev{\v}) - f(\rxvt{}{\tt-})]\,\poiss{\v}\left(d\tt,(0,\rate{\v}(\rxvt{}{\tt-},\s)],d\s\right)\]
+
+
+By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\rxvts{}{}\) applied to \(f\) is given by 
+
+\begin{align*}
+\IG f(\sv{}{\V}) &= \lim_{\t \searrow 0} \frac{1}{\t} \ex{f(\rxvt{}{\t}) - f(\sv{}{\V})|\rxvt{}{0} = \sv{}{\V}}\\
+&= \lim_{\t \searrow 0} \ex{\sum_{\v \in \V} \frac{1}{\t}\int_\S\int_0^\t \left[f(\rxvt{}{\tt-} + \s\ev{\v}) - f(\rxvt{}{\tt-})\right]\,\poiss{\v}\left(d\tt,(0,\rate{\v}(\rxvt{}{\tt-},\s)],d\s\right)\middle|\rxvt{}{0} = \sv{}{\V}}\\
+&\os{f \in \mc{D}}{=} \lim_{\t \searrow 0}\sum_{\v \in \V} \frac{1}{\t}\int_\S\int_0^\t \ex{\left[f(\rxvt{}{\tt-} + \s\ev{\v}) - f(\rxvt{}{\tt-})\right]\rate{\v}(\rxvt{}{\tt-},\s)\middle|\rxvt{}{0} = \sv{}{\V}}d\tt\,\Sm(d\s)\\
+&\os{\te{Lebesgue Differentiation}}{=} \sum_{\v \in \V} \int_\S \rate{\v}(\sv{}{\V},\s)[f(\sv{}{\V} + \s\ev{\v}) - f(\sv{}{\V})]\,\Sm(d\s)\\
+&= \sum_{\v \in \V} \sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V} + \s\ev{\v}) - f(\sv{}{\V})]
+\end{align*}
+\end{proof}
+
+\lin
+
+\begin{prop}
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in \V\) be some node. Let \(\V\pup{0} = \{\root\}\) and \(\V\pup{\numb+1} = \cl{\V\pup{\numb}}\) for all \(\numb \in \mb{N}\). For all \(\U \subseteq \V\) and \(\t \in [0,\T]\), let \(\OmegaV{\U}{\t}\) be embedded in \(\OmegaV{\V}{\t}\) in the standard way. Let \(\rxvtn{}{0}{\numb} = \piV{\V\pup{\numb}}{0}(\rxvt{}{0})\). For each \(\numb\in\mb{N}\), let the \(\OmegaV{\V\pup{\numb}}{\T}\)-valued random element \(\rxvtsn{}{}{\numb}\) be the unique Feller process with initial condition \(\rxvtn{}{0}{\numb}\) and infinitesimal generator,
+
+\begin{equation}
+\IG\pup{\numb}f(\sv{}{\V\pup{\numb}}) = \sum_{\v\in \V\pup{\numb}}\sum_{\s\in \S} \IGr{\v}(\sv{}{\V\pup{\numb}}, \s)[f(\sv{}{\V\pup{\numb}} + \s\ev{\v}) - f(\sv{}{\V\pup{\numb}})]\te{ for all } \sv{}{\V\pup{\numb}} \in \S^{\V\pup{\numb}}.
+\label{subsec::Well-:eqn::FinIG}
+\end{equation}
+\labe{subsec::Well-:eqn::FinIG}
+
+(Here we use the embedding \(\sv{\v}{\V\pup{\numb}} = \mb{I}_{\v\in\V\pup{\numb}} \sv{\v}{\V\pup{\numb}}\) for all \(\v \in \V\)) Then \(\rxvtsn{}{}{\numb} \Rightarrow \rxvts{}{}\).
+\label{subsec::Well-:Prop::IGApprox}
+\end{prop}
+\labe{subsec::Well-:Prop::IGApprox}
+
+\purpose Our goal is to apply the local representation to finite networks. In order for that to work, we must first know that the marginals converge so that representations of the marginals on the infinite network are asymptotically valid for finite networks.
+
+\pfsum Use Theorem \ref{sec::TL:Thm::Tight} to prove that the sequence is tight. Then show that the infinitesimal generators converge using properties of the core. Finally apply Corollary \ref{sec::Infin:Cor::Convergence} from the appendix to obtain weak convergence.
+
+\usein Nowhere (I should write a corollary to Theorem \ref{sec::Main:Thm::Local SDE} making use of this proposition).
+
+\app Assumption \ref{subsec::Assum:Assu::CI}, Proposition \ref{subsec::Well-:Prop::Welldef}, Definition \ref{sec::TL:Def::modulus}, Lemma \ref{sec::TL:Lem::TightSupport}, Theorem \ref{sec::TL:Thm::Tight} and Corollary \ref{sec::Infin:Cor::Convergence}.
+
+\begin{proof}
+First, for each \(\numb\in\mb{N}\), \(\rxvtsn{}{}{\numb}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, so by Proposition \ref{subsec::Well-:Prop::Welldef}, \(\rxvtsn{}{}{\numb}\) is uniquely defined by its initial condition \(\rxvtn{}{0}{\numb}\) and its infinitesimal generator \(\IG\pup{\numb}\).
+
+\ind To prove weak convergence, we first begin by showing that \(\{\rxvtsn{}{}{\numb}:\numb\in \mb{N}\}\) is tight. Note that \(\S^\V\) is compact, so \(\sup_{\sv{}{\V} \in \S^\V} \|\sv{}{\V}\|_{\b{}} < \infty\) (recall that \(\|\sv{}{\V}\|_{\b{}} = \sum_{\v \in \V} \b{\v} |\sv{\v}{\V}|\) where \(\b{\v} = \b{}^{-\numb}\) for some \(\b{} > \degr\) if \(\v \in \V\pup{\numb}\setminus \V\pup{\numb-1}\)).
+
+\ind Now fix \(\ep > 0\). Let \(M\) be large enough that
+
+\[\sup_{\sv{}{\left(\V\pup{M}\right)^c} \in \S^{\left(\V\pup{M}\right)^c}} \left\|\sv{}{\left(\V\pup{M}\right)^c}\right\|_{\b{}} \leq |\S|\sum_{\v \notin \V\pup{M}} \b{\v} < \ep/4.\]
+
+Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the modulus of continuity is given by,
+
+\[\omega'_{\rxvts{}{}}(\delta) = \inf_{\{\t\pup{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \|\rxvt{}{\tt} - \rxvt{}{\ttt}\|_{\b{}},\]
+
+where \(\{\t\pup{\it}\} := 0 \leq \t\pup{1} < \t\pup{2} < \cdots < \t\pup{\cdot} = \T\) and \(\min_\it|\t\pup{\it} - \t\pup{\it-1}| > \delta\). Note that \(\rxvtsn{}{}{\numb}\) is \(\OmegaV{\V\pup{\numb}}{\T}\)-valued and can be embedded in \(\OmegaV{\V}{\T}\) the same way we embed \(\S^{\V\pup{\numb}}\) in \(\S^\V\): let \(\rxvtsn{\v}{}{\numb} \equiv 0\) for \(\v \notin \V\pup{\numb}\). Recall also that \(\piV{\U}{\T}\) is the projection to \(\OmegaV{\U}{\T}\) for all \(\U\subseteq \V\). Then for any \(\numb\in \mb{N}\),
+
+\begin{align*}
+\pr\left(\sup_\numb \omega'_{\rxvtsn{}{}{\numb}}(\delta) > \epsilon\right) &= \pr\left(\sup_\numb\inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v \in \V} \b{\v}|(\rxvtn{\v}{\tt}{\numb} - \rxvtn{\v}{\ttt}{\numb}| > \epsilon \right)\\
+&\leq \pr\left(\sup_\numb \left(\omega'_{\piV{\V\pup{M}}{\T}(\rxvtsn{}{}{\numb})}(\delta) + \omega'_{\piV{\left(\V\pup{M}\right)^c}{\T}(\rxvtsn{}{}{\numb})}(\delta)\right) > \ep\right)\\
+&\leq \pr\left(\sup_\numb \omega'_{\piV{\V\pup{M}}{\T}(\rxvtsn{}{}{\numb})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
+\end{align*}
+
+The last inequality arises because
+
+\[\omega'_{\piV{\left(\V\pup{M}\right)^c}{\T}(\rxvtsn{}{}{\numb})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\piV{\left(\V\pup{M}\right)^c}{\T}(\rxvtsn{}{}{\numb})\right\|_{\b{}} \leq 2 \sup_{\sv{}{\left(\V\pup{M}\right)^c} \in \S^{\left(\V\pup{M}\right)^c}} \left\|\sv{}{\left(\V\pup{M}\right)^c}\right\|_{\b{}} < \ep/2\]
+
+Finally, the convergence to 0 at the end is the result of a direct application of Lemma \ref{sec::TL:Lem::TightSupport}. Thus, \(\{\rxvtsn{}{}{\numb}:\numb\in \mb{N}\}\) is tight, and therefore relatively compact with respect to the topology of weak convergence (Theorem \ref{sec::TL:Thm::Tight}).
+
+Now, suppose \(f\in \core\). Then for all \(\sv{}{\V} \in \S^\V\),
+
+\begin{align*}
+\big|\IG&\pup{\numb}f(\sv{}{\V}) - \IG f(\sv{}{\V})\big|\\
+&= \left|\sum_{\v \in \V\pup{\numb}} \sum_{\s \in \S} \IGr{\v}(\piV{\V\pup{\numb}}{}(\sv{}{\V}),\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})] - \sum_{\v \in \V}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})]\right|\\
+&\leq  \left|\sum_{\v \in \V\pup{\numb}} \sum_{\s \in \S} \IGr{\v}(\piV{\V\pup{\numb}}{}(\sv{}{\V}),\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})] - \sum_{\v \in \V\pup{\numb}}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})]\right|\\
+&\ind  +\left|\sum_{\v \notin \V\pup{\numb}} \sum_{\s\in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})]\right|\\
+&\leq \sum_{\v \in \V\pup{\numb}}\sum_{\s \in \S} \left|\IGr{\v}(\piV{\V\pup{\numb}}{}(\sv{}{\V}),\s) - \IGr{\v}(\sv{}{\V},\s)\right|\triangle_f(\v) + \sum_{\v \in \V\setminus \V\pup{\numb}} \const{}\triangle_f(\v)\\
+&\os{Assump. \ref{subsec::Assum:Assu::CI}.2}{=} \sum_{\v \in \V\pup{\numb}\setminus\V\pup{\numb-1}} |\S|\const{} \triangle_f(\v) + \sum_{\v \in \V\setminus \V\pup{\numb}} \const{}\triangle_f(\v)\\
+&\leq |\S|C\sum_{\v \in \V\setminus \V\pup{\numb-1}} \triangle_f(\v) \os{n\ra\infty}{\ra} 0.
+\end{align*}
+
+Here \(\triangle_f(\v) = \sup\left\{|f(\sv{}{\V}) - f(\sv{}{\V} + \s\ev{\v}): \sv{}{\V}\in \S^\V,\s \in \S\right\}\) as defined in equation \eqref{subsec::Well-:Eqn::fvar}. By Corollary \ref{sec::Infin:Cor::Convergence}, \(\rxvtsn{}{}{\numb}\Rightarrow \rxvts{}{}\).
+\end{proof}
+
+
+\lin
+\section{Main Results}
+\label{sec::Main}\labe{sec::Main}
+
+Some further notation. Let \(\rxvts{}{[0,\t]}\) denote the trajectory of \(\rxvts{}{}\) on the time interval \([0,\t]\). Similarly, \(\rxvts{}{[0,\t)}\) is \(\rxvts{}{}\) on the interval \([0,\t)\) and so on.
+
+\ind For \(\U \subseteq \V\), let \(\dneigh{\U} = \neigh{\U} \cup \neigh{\ov{\U}}\). 
+
+\ind For random elements \(\rxvts{}{},\rxvtts{}{}\) and \(\rxvttts{}{}\), we say that \(\rxvts{}{}\) is conditionally independent of \(\rxvtts{}{}\) given \(\rxvttts{}{}\) if \(\rxvts{}{}\perp\rxvtts{}{}|\rxvttts{}{}\).
+
+\lin
+
+\begin{thms}
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset \V\). Let \(\UU = \V\setminus \ov{\ov{\U}}\). Let \(\UUU= \dneigh{U}\) and suppose that \(|\UUU| < \infty\). Then for all \(\t < \infty\),
+
+\[\rxvts{\U}{[0,\t)}\perp \rxvts{\UU}{[0,\t)}|\rxvts{\UUU}{[0,\t)}\]
+\label{sec::Main:Thm::CI}
+\end{thms}
+\labe{sec::Main:Thm::CI}
+
+\purpose This property may be of independent interest elsewhere. However, in this paper it is vital because it allows us to use a crucial recursion in the local representation of \(\rxvts{}{}\).
+
+\pfsum See Section \ref{sec::Proof1}.
+
+\lin
+
+\begin{thms}
+Let \(\rxvts{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m{}{}{} = \law(\rxvts{}{})\). Let the sequence \(\{\rate{\v},\poiss{\v}:\v\in \V\}\) be defined as in Proposition \ref{subsec::Well-:Prop::SDEWP}. Let \(\root\) be the root of \(\G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(\G\). For any \(\Omega \supseteq\OmegaV{\tree\pup{1}}{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\Omega)\), define \(\cm_\t:\OmegaV{\{\root,1\}}{\t-}\times \pmsr(\Omega) \ra \pmsr(\OmegaV{\{2,\dots,\degr\}}{\t-})\) by,
+
+\begin{equation}
+\cm_\t(\xvts{\{\root,1\}}{[0,\t)},\mmm{}{}{})(\cdot) = \pr^{\mmm{}{}{}}\left(\rxvts{\{2,\dots,\degr\}}{[0,\t)} \in \cdot|\rxvts{\{\root,1\}}{[0,\t)} = \xvts{\{\root,1\}}{[0,\t)}\right).
+\label{sec::Main:eqn::gamma}
+\end{equation}
+\labe{sec::Main:eqn::gamma}
+
+Then there exists a unique solution, \(\alt{\m{}{}{}} \in \pmsr(\OmegaV{\tree\pup{1}}{\T})\), to the following equation:
+
+\begin{align}
+\rxvt{\v}{\t} &= \rxvt{\v}{0} + \int_0^\t\int_\S \s\,\poiss{\v}(d\s,(0,\alt{\rate{}}(\rxvts{\{\v,\root\}}{[0,\tt)},\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\}\nonumber\\
+\rxvt{\root}{\t} &= \rxvt{\root}{0} + \int_0^\t\int_\S \s\,\poiss{\root}(d\s,(0,\rate{\root}(\rxvt{}{\tt-},\s)],d\tt)\nonumber\\
+\alt{\m{}{}{}} &= \law(\rxvts{}{})
+\label{sec::Main:eqn::Local SDE}
+\end{align}
+\labe{sec::Main:eqn::Local SDE}
+
+where
+
+\[\alt{\rate{}}(\rxvts{\{\v,\root\}}{[0,\t)},\s) = \exmu{\cm_t(\rxvts{\{\v,\root\}}{[0,\t)},\alt{\m{}{}{}})}{\rate{\root}(\rxvt{}{\t-},\s)}\]
+
+for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \piV{\tree\pup{1}}{\T}(\m{}{}{})\).
+\label{sec::Main:Thm::Local SDE}
+\end{thms}
+\labe{sec::Main:Thm::Local SDE}
+
+\purpose This is the main result of the paper. 
+
+\pfsum See section \ref{sec::Proof2}.
+
+\lin
+
+\section{Proof of Theorem \ref{sec::Main:Thm::CI}}
+\label{sec::Proof1}\labe{sec::Proof1}
+
+\pfsum We consider two sets of stopping times. The events driving \(\rxvts{}{}^{\neigh{\U}}\) and the events driving \(\rxvts{}{}^{\neigh{\UU}}\). Because \(|\UUU| < \infty\), these are well behaved. We apply induction by iterating over one of the stopping times along a path in \(\mb{N}^2\). At each inductive step, we combine various properties of conditional independence with a breakdown of each path into its component random elements to prove the result. By combining all possible paths, we change from stopping times to deterministic times. There is a minor adaptation we have to make at the end to change from closed intervals to half-open intervals.
+
+\skipLine
+
+\textbf{Remark:} In this section we will distinguish between the events \(\{\rxvts{}{[0,\t]} = 0\}\) and \(\{\rxvts{}{[0,\t]}\equiv 0\}\). The first event is an event of probability 0 when \(\rxvts{}{}\) is a \(\OmegaV{\U}{\t}\) or \(\OmegaV{\U}{\t-}\)-valued random variable for some \(\U\subseteq \V\) and \(\t \in [0,\T]\) (because 0 is not a path) while the second event is the event that \(\rxvt{}{\tt} = 0\) for all \(\tt \in [0,\t]\).
+
+\ind Given three random elements \(\rxvts{}{},\rxvtts{}{} \te{ and } \rxvttts{}{}\), we say \(\rxvts{}{}\perp \rxvtts{}{}\) if \(\rxvts{}{}\) and \(\rxvtts{}{}\) are independent. We say \(\rxvts{}{}\mutex \rxvtts{}{}\) if the events \(\{\rxvts{}{}\neq 0\}\) and \(\{\rxvtts{}{} \neq 0\}\) are mutually exclusive. We say \(\rxvts{}{}\perp \rxvtts{}{}|\rxvttts{}{}\) if \(\rxvts{}{}\) and \(\rxvtts{}{}\) are conditionally independent given \(\rxvttts{}{}\).
+
+\lin
+
+\begin{defn}
+We define the pair of sequences of stopping times:
+
+\begin{align*}
+\rt{\itt} &= \inf \left\{\t > 0: \poiss{\neigh{\U}}\left([0,\t],(0,\const{}],\S\right) = \itt\right\}\\
+\rtt{\ittt} &= \inf \left\{\t > 0: \poiss{\neigh{\UU}}\left([0,\t],(0,\const{}],\S\right) = \ittt\right\}.
+\end{align*}
+
+Here \(\const{}\) is as defined in Assumption \ref{subsec::Assum:Assu::CI}. We also define the set of paths along \(\mb{N}^2\) by,
+
+\begin{align}
+\pathset{\itt}{\ittt} = \{\apath \in (\mb{N}^2)^{\itt+\ittt-1}: &\apath(1) = (1,1)\te{, } \apath(\itt+\ittt-1) = (\itt,\ittt)\te{, and } \nonumber\\
+&\Gamma(\it+1) - \Gamma(\it)\in \{\ev{1},\ev{2}\}\te{ for }\it\in \{1,\dots, \itt+\ittt-2\}\}.
+\label{sec::Proof1:eqn::Lambda}
+\end{align}
+\labe{sec::Proof1:eqn::Lambda}
+
+\(\ev{1},\ev{2}\) are assumed to be the standard basis vectors on \(\mb{N}^2\). We can equivalently define a path \(\apath \in \pathset{\itt}{\ittt}\) as an event:
+
+\begin{align}
+\apath(\it) &= \begin{cases}
+\left\{\rt{\apath_1(\it)} \leq \rtt{\apath_2(\it)}\right\} &\te{ if } \apath(\it+1) - \apath(\it) = \ev{1}\\
+\left\{\rt{\apath_1(\it)} > \rtt{\apath_2(\it)}\right\} &\te{ if } \apath(\it+1) - \apath(\it) = \ev{2}
+\end{cases}\\
+\apath &= \bigcap_{\it=1}^{\itt+\ittt-2} \apath(\it)
+\label{sec::Proof1:eqn::Gamma}
+\end{align}
+\labe{sec::Proof1:eqn::Gamma}
+\label{sec::Proof1:Def::GammaLambda}
+\end{defn}
+\labe{sec::Proof1:Def::GammaLambda}
+
+\purpose The core of the proof of Theorem \ref{sec::Main:Thm::CI} comes from iterating over these stopping times in such a way that no stopping time gets too large with respect to the other. \(\apath\) tracks the route taken while \(\pathset{\itt}{\ittt}\) is the set of all possible values of \(\apath\) given the current state of induction.
+
+\lin
+
+\begin{lem}
+For all \((\itt,\ittt)\in \mb{N}_0^2\) and \(\apath \in \pathset{\itt}{\ittt}\),
+
+\[\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\apath}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}|\left(\rxvts{\neigh{\U}}{[0,\rt{\it})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\apath}\]
+\label{sec::Proof1:Lem::Induction}
+\end{lem}
+\labe{sec::Proof1:Lem::Induction}
+
+\purpose This is the inductive step on the stopping times given a certain path of induction.
+
+\pfsum Using Lemma \ref{sec::Proof1:Lem::Decomposition}, we break \(\rxvts{}{}\) into its component random elements and manipulate it using the properties of conditional independence proven in Appendix \ref{sec::TL}.
+
+\lin
+
+\begin{lem}
+For all \((\itt,\ittt)\in \mb{N}^2\), there exist measurable mappings \(\phi\) and \(\psi\) such that 
+
+\begin{equation}
+\rxvts{\U}{[0,\rt{\itt+1})} = \phi\left(\rxvts{\cl{\U}}{[0,\rt{\itt}]}, \poiss{\U}\left((\rt{\itt}, \rt{\itt+1}]\times \mb{R}\times \S\right)\right)
+\label{sec::Proof1:eqn::XU forward map}
+\end{equation}
+\labe{sec::Proof1:eqn::XU forward map}
+
+and
+
+\begin{equation}
+\rxvts{\UU}{[0,\rtt{\ittt+1})} = \phi\left(\rxvts{\cl{\UU}}{[0,\rtt{\ittt}]}, \poiss{\UU}\left((\rtt{\ittt}, \rtt{\ittt+1}]\times \mb{R}\times \S\right)\right)
+\label{sec::Proof1:eqn::XW forward map}
+\end{equation}
+\labe{sec::Proof1:eqn::XW forward map}
+
+\label{sec::Proof1:Lem::Decomposition}
+\end{lem}
+\labe{sec::Proof1:Lem::Decomposition}
+
+\purpose This is an intermediate step required to prove Lemma \ref{sec::Proof1:Lem::Induction}.
+
+\pfsum Take the SDE definition of \(\rxvts{}{}\). Use the existence of a unique solution to break down exactly which random elements need to be known to derive \(\rxvts{\U}{[0,\rt{\itt+1})}\). The same idea holds for \(\rxvts{\UU}{[0,\rtt{\ittt+1})}\).
+
+
+\begin{proof}
+By symmetry, it suffices to prove that equation \ref{sec::Proof1:eqn::XU forward map} holds (if we proof equation \eqref{sec::Proof1:eqn::XU forward map} holds for all \(\U \subseteq \V\), then we can proof equation \eqref{sec::Proof1:eqn::XW forward map} holds by swapping the definitions of \(\U\) and \(\UU\)). By Proposition \ref{subsec::Well-:Prop::SDEWP}, for any sequence of i.i.d. Poisson processes, \(\poisses\), on \(\mb{R}^2\times \S\) with intensity measure \(\leb\times\Sm\) we can write,
+
+\[\rxvt{\v}{\t} = \rxvt{\v}{0} + \int_\S\int_0^\t \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\rxvt{}{\tt-},\s)\right],d\s\right)\te{ for all } \v\in \V.\]
+
+Consider the following coupled equations:
+
+\begin{align}
+\rxvtt{\vv}{\t} &= \rxvt{\vv}{\rt{\itt}} + \int_\S\int_0^\t \s\alt{\poiss{\vv}}\left(d\tt,\left(0,\rate{\vv}(\rxvtt{}{\tt-},\s)\right],d\s\right)\te{ for } \vv \in \cl{\U} \te{ on } \rt{\itt} < \infty \label{sec::Proof1:eqn::alternate SDE}\\
+\rxvtts{\vv}{} &\equiv 0\te{ for } \vv\notin \cl{\U}\nonumber\\
+\alt{\poiss{\vv}}(d\tt,d\r,d\s) &= \poiss{\vv}(\rt{\itt} + d\tt,d\r,d\s) \te{ for all }\vv\in \cl{\U}\nonumber\\
+\alt{\rxvt{\vv}{\t}} &= \begin{cases}
+\rxvt{\vv}{\t} &\te{ on } \t \leq \rt{\itt}\\
+\rxvtt{\vv}{\t - \rt{\itt}} &\te{ on } \t > \rt{\itt}
+\end{cases} \te{ for all } \vv\in \cl{\U} \nonumber
+\end{align}
+\labe{sec::Proof1:eqn::alternate SDE}
+
+It's easy to see that \(\rt{\itt}\) is almost surely finite for every finite \(\itt\) \(\left(\ex{\rt{\itt}} = \frac{\itt}{\const{}|\neigh{\U}|} < \infty\right)\). 
+
+\ind \tr{Originally I used the strong Markov property to reduce to the case of \(\itt = 0\). However, since \(\rt{\itt}\) is not an \(\rxvts{}{}\)-stopping time, I need to show that \(\rxvts{}{}\) is strong-Markov or Feller with respect to the larger filtration containing the driving Poisson processes. While this is not that difficult, the argument is tedious and long, so I chose not to use this reduction.}
+
+\ind By Proposition \ref{subsec::Well-:Prop::SDEWP}, equation \eqref{sec::Proof1:eqn::alternate SDE} has a unique solution, so \(\alt{\rxvts{}{}}\) is well-defined. To prove this lemma, we first show that \(\rxvts{\U}{[0,\rt{\itt+1})} = \alt{\rxvts{\U}{}}{[0,\rt{\itt+1})}\) almost surely. 
+
+\ind Fix any \(\t > 0\). Let \(\evnt_\t = \{\t < \rt{\itt+1}\}\) and \(\alt{\evnt}_\t = \{\t\in [\rt{\itt},\rt{\itt+1})\}\). Notice that \(\evnt_\tt \supseteq \evnt_\t\) for all \(\tt\in [0,\t]\) when \(\t > 0\). 
+
+\ind Notice that \(\rt{\itt} \perp \poiss{\v}\) for all \(\v \in \U\). Thus, \(\poiss{\v}(d\tt+\rt{\itt},dr,d\s) \deq \poiss{\v}(d\tt,dr,d\s)\). Now, \(\alt{\rxvts{\neigh{\U}}{}}[0,\rt{\itt}] = \rxvts{\neigh{\U}}{[0,\rt{\itt}]}\) almost surely by definition. Furthermore,
+
+\[\alt{\rxvt{\neigh{\U}}{\t}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \alt{\rxvt{\neigh{\U}}{\rt{\itt}}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \rxvt{\neigh{\U}}{\rt{\itt}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \rxvt{\neigh{\U}}{\t}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}}\]
+
+so
+
+\[\alt{\rxvts{\neigh{\U}}{}}[0,\rt{\itt+1}) = \rxvts{\neigh{\U}}{[0,\rt{\itt+1})} \te{ a.s.}\]
+
+Furthermore, by the same argument presented in the beginning of the proof of Lemma \ref{subsec::Well-:Lem::SDEWP}, we can assume without loss of generality that 
+
+\[|\rate{\v}(\sv{\V}{},\s) - \rate{\v}(\alt{\sv{\V}{}},\s)| \leq \const{}\sum_{\vv\in \cl{\v}} |\sv{\V}{\vv} - \alt{\sv{\V}{\vv}}|\te{ for all } \sv{\V}{},\alt{\sv{\V}{}}\in \S^\V,\s \in \S \te{ and } \v \in \V.\]
+
+\tr{For any \(a,b\in \mb{R}\), I use the shorthand \((a,b]\) to denote the interval \((a\wedge b,a\vee b]\)}. Then for all \(v\in \U\) and \(\t > 0\),
+
+\begin{align*}
+&\ex{\left\|\alt{\rxvts{\v}{}} - \rxvts{\v}{}\right\|_{\t}\mb{I}_{\t < \rt{\itt+1}}} = \ex{\left\|\alt{\rxvts{\v}{}} - \rxvts{\v}{}\right\|_{\t}\mb{I}_{\evnt_\t}}\os{\alt{\rxvts{\cl{\U}}{}}[0,\rt{\itt}] = \rxvts{\cl{\U}}{[0,\rt{\itt}]}}{=} \ex{\left\|\alt{\rxvts{\v}{}} - \rxvts{\v}{}\right\|_{\t}\mb{I}_{\alt{\evnt}_\t}}\\
+&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int_{(\rt{\itt},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\rxvt{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt{\itt},\t]} \s\,\alt{\poiss{\v}}\left(d\tt,\left(0,\rate{\v}(\alt{\rxvt{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
+&\ind \leq \ex{\int_\S\int_{\mb{R}}\int_{(\rt{\itt},\t]}|\s|\mb{I}_{\alt{\evnt}_\t}\mb{I}_{\r\in \left(\rate{\v}(\rxvt{}{\tt-},\s), \rate{\v}(\alt{\rxvt{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind \os{\alt{\rxvts{\cl{\U}}{}}[0,\rt{\itt}] = \rxvts{\cl{\U}}{[0,\rt{\itt}]}}{=} \ex{\int_\S\int_{\mb{R}}\int_{(0,\t]}|\s|\mb{I}_{\evnt_\t}\mb{I}_{\r\in \left(\rate{\v}(\rxvt{}{\tt-},\s), \rate{\v}(\alt{\rxvt{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt_\t}\mb{I}_{\r\in\left(\rate{\v}(\rxvt{}{\tt-},\s),\rate{\v}(\alt{\rxvt{}{\tt-}},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
+&\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt_t}\left|\rate{\v}(\alt{\rxvt{}{\tt-}},\s) - \rate{\v}(\rxvt{}{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
+&\ind \leq \const{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt_t}\sum_{\vv\in \cl{\v}}\left|\alt{\rxvt{\vv}{\tt-}} - \rxvt{\vv}{\tt-}\right|}\,d\tt\\
+&\ind \os{\mb{I}_{\evnt_\t}\|\alt{\rxvts{\neigh{\U}}{}} - \rxvts{\neigh{\U}}{}\|_t = 0}{\leq} \left(\int_\S|\s|\,\Sm(d\s)\right)\const{} \int_0^\t \sum_{\vv\in \cl{\v}\cap\U}\ex{\mb{I}_{\evnt_t}\|\alt{\rxvts{\vv}{}} - \rxvts{\vv}{}\|_\tt}\,d\tt\\
+&\ind \os{\evnt_\tt \supseteq \evnt_\t}{\leq} |S|\const{}(\degr+1) \int_0^\t \sup_{\v\in \U}\ex{\mb{I}_{\evnt_\tt}\|\alt{\rxvts{\v}{}} - \rxvts{\v}{}\|_\tt}\,d\tt.
+\end{align*}
+
+We can conclude that
+
+\[\sup_{\v\in \U}\ex{\left\|\alt{\rxvts{\v}{}} - \rxvts{\v}{}\right\|_{\t}\mb{I}_{t <\rt{\itt+1}}} \leq |\S|\const{}(\degr+1)\int_0^\t\sup_{v\in\U}\ex{\left\|\alt{\rxvts{\v}{}} - \rxvts{\v}{}\right\|_\tt\mb{I}_{\tt < \rt{\itt+1}}}\,d\tt.\]
+
+By Gronwall's inequality,
+
+\[\sup_{v\in \U}\ex{\left\|\alt{\rxvts{\v}{}} - \rxvts{\v}{}\right\|_\t\mb{I}_{\t < \rt{\itt+1}}} = 0 \te{ for all } \t > 0,\]
+
+so \(\alt{\rxvts{\U}{}}[0,\rt{\itt+1}) = \rxvts{\U}{[0,\rt{\itt+1})}\) almost surely. However, \(\alt{\rxvts{\U}{}}[0,\rt{\itt+1})\) is uniquely defined by \(\rxvts{\cl{\U}}{[0,\rt{\itt}]}\) and \(\poiss{\cl{\U}}\left((\rt{\itt},\rt{\itt+1}]\times \mb{R}\times \S\right)\).
+\end{proof}
+
+\lin
+
+\begin{proof}[Proof of Lemma \ref{sec::Proof1:Lem::Induction}:]
+Begin the proof with the base case of \(\itt=\ittt =1\). \(\pathset{1}{1}\) contains a single element \(\apath = ((1,1))\). In addition, \(\mb{I}_{\apath} = 1\).
+
+By independence of initial conditions,
+
+\[\rxvt{\U}{0}\perp \rxvt{\UU}{0}|\rxvt{\dneigh{\U}}{0}.\]
+
+\(\rt{1}\) is \(\sigma\left(\poiss{\vv}:\vv\in \neigh{\U}\right)\) measurable and \(\rtt{1}\) is \(\sigma\left(\poiss{\vv}:\vv\in \neigh{\UU}\right)\) measurable. Therefore, both stopping times are independent of each other and of the initial conditions. By Lemma \ref{sec::TL:Lem::Props}(b), 
+
+\[\rxvt{\U}{0}\perp \rxvt{\UU}{0}|\left(\rxvt{\neigh{\U}}{0},\rxvt{\neigh{\UU}}{0},\rt{1},\rtt{1}\right).\]
+
+Since \(\rxvts{\neigh{\U}}{}\) is constant on \([0,\rt{1})\) and \(\rxvts{\neigh{\UU}}{}\) is constant on \([0,\rtt{1})\), the mapping \((\rxvt{\dneigh{\U}}{0},\rt{1},\rtt{1}) \mapsto (\rxvts{\neigh{\U}}{[0,\rt{1})},\rxvts{\neigh{\UU}}{[0,\rtt{1})})\) is 1-to-1. By Lemma \ref{sec::TL:Lem::Props}(a),
+
+\begin{equation}
+\rxvt{\U}{0}\perp \rxvtt{\U}{0}|\left(\rxvts{\neigh{\U}}{[0,\rt{1})},\rxvts{\neigh{\UU}}{[0,\rtt{1})}\right).
+\label{sec::Proof1:eqn::induction_intermediate_1}
+\end{equation}
+\labe{sec::Proof1:eqn::induction\_intermediate\_1}
+
+By Lemma \ref{sec::Proof1:Lem::Decomposition}, we can express \(\rxvts{\U}{[0,\rt{1})}\) in terms of \(\rxvt{\cl{\U}}{0}\) and \(\poiss{\U}([0,\rt{1})\times\mb{R}\times\S)\). We can equivalently describe \(\rxvts{\U}{[0,\rt{1})}\) in terms of \(\rxvt{\U}{0}\), \(\rxvts{\neigh{\U}}{[0,\rt{1})}\) and \(\poiss{\U}([0,\rt{1})\times \mb{R}\times \S)\) which is independent of all terms in expression \eqref{sec::Proof1:eqn::induction_intermediate_1}. Applying a similar argument for \(\rxvts{\UU}{}\), we can apply Lemmas \ref{sec::TL:Lem::Props}(a) and (e) to get
+
+\[\rxvts{\U}{[0,\rt{1})}\perp \rxvts{\UU}{[0,\rtt{1})}|\left(\rxvts{\neigh{\U}}{[0,\rt{1})},\rxvts{\neigh{\UU}}{[0,\rtt{1})}\right)\]
+
+This proves that Lemma \ref{sec::Proof1:Lem::Induction} holds in the base case where \(\itt = \ittt = 1\).
+
+\ind Now, we prove the general case. Suppose Lemma \ref{sec::Proof1:Lem::Induction} holds for \(\alt{\apath} \in \pathset{\itt}{\ittt}\). Then there exists a unique extension, \(\apath \in \pathset{\itt+1}{\ittt}\), of \(\alt{\apath}\). It suffices to prove that Lemma \ref{sec::Proof1:Lem::Induction} holds for \(\apath\) (by symmetry it will also hold for the unique extension of \(\alt{\apath} \te{ to } \pathset{\itt}{\ittt+1}\)). First, note that
+
+\begin{equation}
+\mb{I}_{\apath} = \mb{I}_{\alt{\apath}}\mb{I}_{\rt{\itt} \leq \rtt{\ittt}}
+\label{sec::Proof1:eqn::extpath}
+\end{equation}
+\labe{sec::Proof1:eqn::extpath}
+
+By assumption,
+
+\[\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\alt{\apath}}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\alt{\apath}}|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\alt{\apath}}\]
+
+By Lemma \ref{sec::TL:Lem::Props}(d), we can multiply everything by \(\mb{I}_{\rt{\itt} \leq \rtt{\ittt}}\):
+
+\[\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\apath}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\apath}.\]
+
+By definition of \(\rt{\itt}\), there is an event in \(\poiss{\neigh{\U}}\) at time \(\rt{\itt}\) for every \(\itt \in \mb{ N}\). Let \(\rv\) be the random vector signifying in which node of \(\neigh{\U}\) the event is located as well as the height and mark of the event. Because Poisson processes are simple, \(\rv\) is well-defined. Furthermore, \(\rv\) is independent of all terms in the equation above. We can specifically describe the distribution of \(\rv\). Let \(\rv^1\) be uniform over \(\neigh{\U}\). Let \(\rv^2\) be an \(\S\)-valued random variable with distribution \(\Sm\). Finally, let \(\rv^3\) be a uniform \([0,\const{}]\) random variable. Then, if \(\rv=(\rv^1,\rv^2,\rv^3)\),
+
+\[\rxvt{\neigh{\U}}{\rt{\itt}} = \begin{cases}
+\rxvt{\neigh{\U}}{\rt{\itt}-} + \rv^2\ev{\rv^1} &\te{ if } \rv^3< \rate{\rv^1}(\rxvt{}{\rt{\itt}-}, \rv^2)\\
+\rxvt{\neigh{\U}}{\rt{\itt}-} &\te{ otherwise}
+\end{cases}\]
+
+Note, because \(\rxvts{}{}\) satisfies assumption \ref{subsec::Assum:Assu::CI}, \(\rxvt{\neigh{\U}}{\rt{\itt}}\) only depends on \(\rxvt{\cl{\cl{\U}}}{\rt{\itt}-}\) and \(\rv\). By Lemma \ref{sec::TL:Lem::Props}(c), 
+
+\[\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\apath}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt}]},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\apath}.\]
+
+\(\rt{\itt+1} - \rt{\itt}\) is \(\sigma(\poiss{\neigh{\U}}(\rt{\itt},\infty))\) measurable, so it is independent of all terms above. Therefore, by Lemma \ref{sec::TL:Lem::Props}(b),
+
+\[\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\apath}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt}]},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})},\rt{\itt+1} - \rt{\itt}\right)\mb{I}_{\apath}.\]
+
+\(\rxvts{\neigh{\U}}{}\) is constant on \([\rt{\itt},\rt{\itt+1})\), so we can use a 1-to-1 function and Lemma \ref{sec::TL:Lem::Props}(a) to reduce the above statement to
+
+\[\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\apath}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt+1})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\apath}.\]
+
+Now, \(\rxvt{\U}{\rt{\itt}}\) is \(\left(\rxvts{\U}{[0,\rt{\itt})}, \rxvts{\neigh{\U}}{[0,\rt{\itt})}, \poiss{\U}(\{\rt{\itt}\}\times [0,\const{}]\times\S)\right)\) measurable. Applying lemmas \ref{sec::TL:Lem::Props} (a) and (e), we get
+
+\[\rxvts{\U}{[0,\rt{\itt}]}\mb{I}_{\apath}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt+1})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\apath}.\]
+
+Combining Lemmas \ref{sec::Proof1:Lem::Decomposition}, \ref{sec::TL:Lem::Props}(a) and \ref{sec::TL:Lem::Props}(e) as in the base case, we get
+
+\[\rxvts{\U}{[0,\rt{\itt+1})}\mb{I}_{\apath}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt+1})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\apath}.\]
+
+which completes the proof.
+\end{proof}
+
+\lin
+
+\begin{lem}
+Notice that for any \((\itt,\ittt) \in \mb{N}^2\), \(\pathset{\itt}{\ittt}\) is a space of disjoint events. Define
+
+\[\pathsete{\itt}{\ittt} := \bigcup_{\apath\in\pathset{\itt}{\ittt}} \apath\]
+
+Then \(\pathsete{\itt}{\ittt}\) differs from \(\{\rt{\itt} > \rtt{\ittt-1}, \rtt{\ittt} > \rt{\itt-1}\}\) by a set of probability zero.
+\label{sec::Proof1:Lem::Ckk'}
+\end{lem}
+\labe{sec::Proof1:Lem::Ckk'}
+
+\purpose This allows us to combine all possible paths to get a simple event which we can use to reduce to the deterministic time case.
+
+\pfsum Direct argument.
+
+\begin{proof}
+In this proof, we will implicitly work in the equivalence class of events given by \(\evnt^1 = \evnt^2\) if \(\pr(\evnt^1 \triangle \evnt^2) = 0\).  
+
+\ind First, \(\pathsete{1}{1} = \{\rt{1} > 0,\rtt{1} > 0\} = \{\rt{1} > \rtt{0},\rtt{1}>\rt{0}\}\). For any \(\it > 1\),
+
+\begin{align*}
+\pathsete{\it}{1} &= \bigcup_{\apath \in \pathset{\it}{1}} \apath = \{((1,1),\dots,(\it,1))\} = \bigcap_{\itt < \it} \{\rt{\itt} < \rtt{1}\} = \{\rt{\it-1} < \rtt{1}\} = \{\rt{\it} > \rtt{0},\rtt{1} > \rt{\it-1}\}
+\end{align*}
+
+Similarly, \(\pathsete{1}{\it} = \{\rt{1} > \rtt{\it-1}, \rtt{\it} > \rt{0}\}\). Suppose that there exists some \(\numb\geq 3\) such that
+
+\begin{equation}
+\pathsete{\itt}{\ittt} = \{\rt{\itt} > \rtt{\ittt-1},\rtt{\ittt} > \rt{\itt-1}\}
+\label{sec::Proof1:eqn::Ckk'}
+\end{equation}
+\labe{sec::Proof1:eqn::Ckk'}
+
+for all \(\itt, \ittt\in \mb{N}\) such that \(\itt+\ittt = \numb\). Fix one such pair such that both \(\itt \geq 2\). We know that away from a set of probability zero, \(\{\rt{\cdot}\}\) and \(\{\rtt{\cdot}\}\) are strictly increasing sequences such that \(\rt{\it} \neq \rtt{\it'}\) for all \((\it,\it')\in \mb{N}^2\). By applying equation \eqref{sec::Proof1:eqn::extpath}, we get
+
+\begin{align*}
+\pathsete{\itt}{\ittt+1} &= \left(\pathsete{\itt-1}{\ittt+1} \cap \{\rt{\itt - 1} < \rtt{\ittt+1}\}\right) \cup \left(\pathsete{\itt}{\ittt}\cap \{\rtt{\ittt} < \rt{\itt}\}\right)\\
+&= \{\rt{\itt - 1} > \rtt{\ittt}, \rtt{\ittt+1} > \rt{\itt - 2},  \rtt{\ittt+1} > \rt{\itt -1}\}\cup\{\rt{\itt} > \rtt{\ittt-1}, \rtt{\ittt} > \rt{\itt - 1},\rt{\itt} > \rtt{\ittt}\}\\
+&= \{\rt{\itt - 1} > \rtt{\ittt}, \rtt{\ittt+1} > \rt{\itt - 1}\}\cup\{\rtt{\ittt} > \rt{\itt - 1},\rt{\itt} > \rtt{\ittt}\}\\
+&:= \pathsete{\itt}{\ittt+1}' \cup\pathsete{\itt}{\ittt+1}''
+\end{align*}
+
+Now, it is clear that for any \(\apath \in \pathsete{\itt}{\ittt+1}'\) or \(\apath \in \pathsete{\itt}{\ittt+1}''\), \(\apath\in \{\rt{\itt} > \rtt{\ittt},\rtt{\ittt+1} > \rt{\it-1}\}\);
+
+\[\pathsete{\itt}{\ittt+1} \subseteq \{\rt{\itt} > \rtt{\ittt},\rtt{\ittt+1} > \rt{\itt-1}\}.\]
+
+In the other direction, we can enumerate all orderings of \(\rt{\itt-1},\rt{\itt},\rtt{\ittt}\te{ and } \rtt{\ittt+1}\) in \(\{\rt{\itt} > \rtt{\ittt}, \rtt{\ittt+1} > \rt{\it-1}\}\):
+
+\begin{align*}
+\{\rt{\itt} > \rtt{\ittt},\rtt{\ittt+1} > \rt{\itt-1}\} &= \{\rt{\itt-1} < \rtt{\ittt} < \rtt{\ittt+1} < \rt{\itt}\} \cup \{\rtt{\ittt} < \rt{\itt-1} < \rtt{\ittt+1} < \rt{\itt}\}\\
+&\cup \{\rt{\itt-1} < \rtt{\ittt} < \rt{\itt} < \rtt{\ittt+1}\} \cup \{\rtt{\ittt} < \rt{\itt-1} <\rt{\itt} < \rtt{\ittt+1}\}
+\end{align*}
+
+Each set in the union above is an element of either \(\pathsete{\itt}{\ittt+1}'\) or \(\pathsete{\itt}{\ittt+1}''\). Thus,
+
+\[\pathsete{\itt}{\ittt+1} = \{\rt{\itt} > \rtt{\ittt},\rtt{\ittt+1} > \rt{\itt-1}\}.\]
+
+By an identical argument, \(\pathsete{\itt+1}{\ittt} = \{\rtt{\ittt} > \rt{\itt},\rt{\itt+1} > \rtt{\ittt-1}\}\) when \(\itt + \ittt = \numb\) and \(\ittt \geq 2\).
+
+Then we proved directly that equation \eqref{sec::Proof1:eqn::Ckk'} holds for \(\itt = \ittt=1\) in which case \(\numb = 2\). For any \(\numb > 2\) and any \(\itt,\ittt\in \mb{N}\) such that \(\itt + \ittt = \numb\), one of the following holds:
+
+\begin{itemize}
+\item \(\min\{\itt,\ittt\} = 1\). We've shown directly that equation \eqref{sec::Proof1:eqn::Ckk'} holds in this case.
+
+\item both \(\itt\) and \(\ittt\) are greater than 2. In this case, we can inductively assume that equation \eqref{sec::Proof1:eqn::Ckk'} holds for \(\pathsete{\itt-1}{\ittt}\) and \(\pathsete{\itt}{\ittt-1}\). In this case we've proven that it also holds for \(\pathsete{\itt}{\ittt}\).
+\end{itemize}
+
+So by induction, equation \eqref{sec::Proof1:eqn::Ckk'} holds for all \(\itt,\ittt\in \mb{N}\).
+\end{proof}
+
+\lin
+
+\begin{proof}[Proof of Theorem \ref{sec::Main:Thm::CI}]
+
+Fix \((\itt,\ittt) \in \mb{N}^2\). By Lemma \ref{sec::Proof1:Lem::Induction}, 
+
+\[\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\apath}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}\big|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\apath}\te{ for all }\apath \in \pathset{\itt}{\ittt}.\]
+
+Notice that all terms have disjoint support for different \(\apath\). By Lemma \ref{sec::TL:Lem::Props}(f), 
+
+\[\sum_{\apath\in\pathset{\itt}{\ittt}}\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\apath}\perp \sum_{\apath\in\pathset{\itt}{\ittt}}\rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\apath}\bigg|\sum_{\apath\in\pathset{\itt}{\ittt}}\left(\rxvts{\neigh{\U}}{[0,\rt{\itt})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\apath}\te{ for all }\apath \in \pathset{\itt}{\ittt}.\]
+
+By Lemma \ref{sec::Proof1:Lem::Ckk'}, this simplifies to 
+
+\begin{equation}
+\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\pathsete{\itt}{\ittt}}\perp \rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\pathsete{\itt}{\ittt}}\big|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\pathsete{\itt}{\ittt}}.
+\label{sec::Proof1:eqn::thmint1}
+\end{equation}
+\labe{sec::Proof1:eqn::thmint1}
+
+Define
+
+\begin{align*}
+\pathseted{\itt}{\ittt}(\t) :&= \pathsete{\itt}{\ittt}\cap \{\rt{\itt-1}\leq \t < \rt{\itt}\}\cap \{\rtt{\ittt-1} \leq \t < \rtt{\ittt}\}\\
+&=\pathsete{\itt}{\ittt}\cap\{\rt{\itt-1}\vee\rtt{\ittt-1} \leq \t < \rt{\itt}\wedge \rtt{\ittt}\}\\
+&=\{\rt{\itt-1}\vee\rtt{\ittt-1}  < \rt{\itt}\wedge \rtt{\ittt}\} \cap \{\rt{\itt-1}\vee\rtt{\ittt-1} \leq \t < \rt{\itt}\wedge \rtt{\ittt}\}\\
+&= \{\rt{\itt-1}\vee\rtt{\ittt-1} \leq \t < \rt{\itt}\wedge \rtt{\ittt}\}.
+\end{align*}
+
+It should be clear that for any \(\t > 0\), \(\{\pathseted{\itt}{\ittt}(\t)\}_{(\itt,\ittt)\in\mb{N}_0^2}\) forms a partition of all possible events up to an event of probability zero (the event that two stopping times coincide). Furthermore, for any \(t > 0\) and \(\itt,\ittt\in \mb{N}\), \(\mb{I}_{\pathsete{\itt}{\ittt}}\mb{I}_{\pathseted{\itt}{\ittt}} = \mb{I}_{\pathseted{\itt}{\ittt}}\).
+
+\ind Fix \(\t \geq 0\) and apply Lemma \ref{sec::TL:Lem::Props}(d) by multiplying equation\eqref{sec::Proof1:eqn::thmint1} by \(\mb{I}_{\pathseted{\itt}{\ittt}}\) to get
+
+\[\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\perp\rxvts{\UU}{[0,\rtt{\ittt})}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\big|\left(\rxvts{\neigh{\U}}{[0,\rt{\itt})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\pathseted{\itt}{\ittt}(\t)}.\]
+
+
+Notice by definition of \(\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\), \(\rxvts{\U}{[0,\rt{\itt})}\mb{I}_{\pathseted{\itt}{\ittt}(\t)} \mapsto \rxvts{\U}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\) is measurable. We can map \(\rxvts{\UU}{}\) similarly. Finally, \(\left(\rxvts{\neigh{\U}}{[0,\rt{\itt})},\rxvts{\neigh{\UU}}{[0,\rtt{\ittt})}\right)\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\mapsto (\rxvts{\dneigh{\U}}{[0,t]}, \rt{\itt},\rtt{\ittt})\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\) is a 1-to-1 mapping. By Lemma \ref{sec::TL:Lem::Props}(a),
+
+\[\rxvts{\U}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\perp\rxvts{\UU}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\big|\left(\rxvts{\dneigh{\U}}{[0,t]},\rt{\itt},\rtt{\ittt}\right)\mb{I}_{\pathseted{\itt}{\ittt}(\t)}.\]
+
+But \(\poiss{\dneigh{\U}}\) is a strong Markov process, so 
+
+\[(\rt{\itt},\rtt{\ittt})\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\perp \rxvts{}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}|\mb{I}_{\pathseted{\itt}{\ittt}(\t)}.\]
+
+By Lemma \ref{sec::TL:Lem::Props}(g), this gives us
+
+\[\rxvts{\U}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\perp\rxvts{\UU}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\big|\rxvts{\dneigh{\U}}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}.\]
+
+Applying Lemma \ref{sec::TL:Lem::Props}(f),
+
+\[\sum_{(\itt,\ittt)\in\mb{N}^2}\rxvts{\U}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\perp\sum_{(\itt,\ittt)\in\mb{N}^2}\rxvts{\UU}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)}\bigg|\sum_{(\itt,\ittt)\in\mb{N}^2}\rxvts{\dneigh{\U}}{[0,t]}\mb{I}_{\pathseted{\itt}{\ittt}(\t)},\]
+
+which simplifies to 
+
+\[\rxvts{\U}{[0,\t]}\perp\rxvts{\UU}{[0,\t]}\big|\rxvts{\dneigh{\U}}{[0,\t]}.\]
+
+Because \(|\dneigh{\U}| < \infty\), the event \(\{\rxvt{\dneigh{\U}}{\t} = \rxvt{\dneigh{\U}}{\t-}\}\) occurs with probability 1 for all \(\t \in [0,\T]\). It is also \(\rxvts{\dneigh{\U}}{[0,\t]}\)-measurable. By Lemma \ref{sec::TL:Lem::Props}(d),
+
+\[\rxvts{\U}{[0,t]}\mb{I}_{\rxvt{\dneigh{\U}}{\t} = \rxvt{\dneigh{\U}}{\t-}}\perp\rxvts{\UU}{[0,t]}\mb{I}_{\rxvt{\dneigh{\U}}{\t} = \rxvt{\dneigh{\U}}{\t-}}\big|\rxvts{\dneigh{\U}}{[0,t]}\mb{I}_{\rxvt{\dneigh{\U}}{\t} = \rxvt{\dneigh{\U}}{\t-}}.\]
+
+Applying Lemma \ref{sec::TL:Lem::Props}(a),
+
+\[\rxvts{\U}{[0,t)}\mb{I}_{\rxvt{\dneigh{\U}}{\t} = \rxvt{\dneigh{\U}}{\t-}}\perp\rxvts{\UU}{[0,t)}\mb{I}_{\rxvt{\dneigh{\U}}{\t} = \rxvt{\dneigh{\U}}{\t-}}\big|\rxvts{\dneigh{\U}}{[0,t)}\mb{I}_{\rxvt{\dneigh{\U}}{\t} = \rxvt{\dneigh{\U}}{\t-}}.\]
+
+Finally, by Lemma \ref{sec::TL:Lem::Props}(h),
+
+\[\rxvts{\U}{[0,\t)}\perp\rxvts{\UU}{[0,\t)}\big|\rxvts{\dneigh{\U}}{[0,\t)}.\]
+\end{proof}
+
+\lin
+
+\section{Proof of Theorem \ref{sec::Main:Thm::Local SDE}}
+\label{sec::Proof2}\labe{sec::Proof2}
+
+\subsection{Proof of Existence}
+\label{subsec::ProofE:sec::Proof2}\labe{subsec::ProofE:sec::Proof2}
+
+\pfsum \(\piV{\tree{1}}{\T}(\rxvts{}{})\) can be expressed as a sum of a random variable and a non-explosive marked point process. The trick is to find a \(\piV{\tree{1}}{\T}(\rxvts{}{})\)-measurable intensity for that point process. However, theorems that allow us to do that require that the candidate intensity have certain measurability properties, so we begin by proving those.
+
+\lin
+
+\begin{defn}
+Let \(\U\subseteq \V\) and suppose \(\rxvts{}{} \in \OmegaV{\U}{\T-}\) is a stochastic process adapted to its own natural filtration. Then define the marked point process \(\pmap{}(\rxvts{}{})\) as a random measure on \((0,\T) \times \S^\U\) defined by,
+
+\[\pmap{}(\rxvts{}{})(\{(\rt{},\mark{})\}) = \begin{cases}
+1 &\te{ if } \rxvt{}{\rt{}} - \rxvt{}{\rt{}-} = \mark{}\\
+0 &\te{ otherwise}
+\end{cases}.\]
+
+Similarly, for \(\UU \subseteq \U\), \(\pmap{\UU}(\rxvts{}{}) = \pmap{}\left(\piV{\UU}{\T}(\rxvts{}{})\right)\). For any \(\v\in \U\), \(\pmap{\v}(\rxvts{}{})\) is a random measure on \((0,\T) \times \S\) given by,
+
+\[\pmap{\v}(\rxvts{}{})(\{(\rt{},\mark{})\}) = \begin{cases}
+1 &\te{ if } \rxvt{\v}{\rt{}} - \rxvt{\v}{\rt{}-} = \mark{}\\
+0 &\te{ otherwise}
+\end{cases}.\]
+\label{subsec::ProofE:Defn::pmap}
+\end{defn}
+\labe{subsec::ProofE:Defn::pmap}
+
+\lin
+
+\begin{assu}
+Let \(\tree\pup{1}\subseteq\U \subseteq \V\). Let \(\rxvts{}{}\in \OmegaV{\U}{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap{\v}(\rxvts{}{})\) has an \(\rxvts{}{}\)-predictable intensity, \(\ratee{\v}\), and there exists a constant \(\const{} < \infty\) such that \(\sup_{\v\in\U} \ratee{\v} \leq \const{}\). Furthermore, \(\lambda: \S^{\degr+1}\times \S\ra[0,\const{}]\) is some function.
+\label{subsec::ProofE:Assu::Eassu}
+\end{assu}
+\labe{subsec::ProofE:Assu::Eassu}
+
+\lin
+
+\begin{lem}
+Let \(\rp{}\) be an \(\F{}{}\)-adapted marked point process with \(\F{}{}\)-predictable intensity \(\ratee{}\) and a countable mark space. For all \(\t \in [0,\T]\), let \(\sigma(\rp{\t}) \subseteq \alt{\F{}{\t}}\subset \F{}{\t}\) define a subfiltration of \(\F{}{}\) containing the history of \(\rp{}\). If there exists an \(\Sm\times \pr\)-almost sure left-continuous modification of \(\cratee{}{}(\t,\mark{}) := \ex{\ratee{}(\t,\mark{})|\alt{\F{}{}}^{\t-}}\) with respect to \(\t\) for all \(\mark{}\) in the mark space, then \(\cratee{}{}\) is the \(\alt{\F{}{}}\)-predictable intensity of \(\rp{}\).
+\label{subsec::ProofE:Lem::filtering}
+\end{lem}
+\labe{subsec::ProofE:Lem::filtering}
+
+\purpose This allows us to derive a new intensity on the cruder filtration that arises once we project to \(\S^{\tree^1}\).
+
+\begin{proof}
+This is a restatement of \cite[Theorem 14.3.III]{DalVer08}.
+\end{proof}
+
+\lin
+
+\begin{lem}
+Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\m{}{}{} = \law(\rxvts{}{})\). Suppose,
+
+\[\crate{\v}{\t}(\s) := \crate{}{}(\rxvts{\{\v,\root\}}{[0,\t)},\s) = \exmu{\cm_\t(\rxvts{\{\v,\root\}}{[0,\t)},\m{}{}{})}{\rate{}(\rxvts{\tree\pup{1}}{\t-},\s)}.\]
+
+
+Then \(\crate{\v}{\t}(\s)\) has an almost surely left-continuous modification on \([0,\T)\) with respect to \(\t\) for every \(\v \in \tree\pup{1}\setminus\{\root\}\) and \(\s \in \S\).
+\label{subsec::ProofE:Lem::leftmod}
+\end{lem}
+\labe{subsec::ProofE:Lem::leftmod}
+
+\purpose This is used to prove that \(\crate{}{}\) satisfies the conditions of Lemma \ref{subsec::ProofE:Lem::filtering}.
+
+\pfsum Apply Lemmas \ref{subsec::ProofE:Lem::leftmodgen} and \ref{subsec::ProofE:Lem::bddvar}. The proof is provided after lemma \ref{subsec::ProofE:Lem::bddvar}.
+
+\lin
+
+\begin{defn}
+A set \(\evnt\) is called elementary with respect to a filtration \(\{\F{}{\t}\}\) if it is a finite union of sets of the form \((\tt,\t]\times \alt{\evnt}\) where \(\alt{\evnt} \in \F{}{\tt}\).
+\label{subsec::ProofE:Defn::elementary}
+\end{defn}
+\labe{subsec::ProofE:Defn::elementary}
+
+\purpose This definition is used in the statement of Lemma \ref{subsec::ProofE:Lem::leftmodgen}.
+
+\lin
+
+\begin{lem}
+Let \(\rxvt{}{\t}\) be a stochastic process that is left continuous in probability and such that \(\sup_{\evnt\te{ elementary}}\ex{\int_0^\T \mb{I}_\evnt\,d\rxvts{}{}} < \infty\). Then there exists a left-continuous modification of \(\rxvts{}{}\).
+\label{subsec::ProofE:Lem::leftmodgen}
+\end{lem}
+\labe{subsec::ProofE:Lem::leftmodgen}
+
+\purpose Lemma \ref{subsec::ProofE:Lem::leftmod} is a direct application of this lemma.
+
+\pfsum The website Almost Sure (url: https://almostsure.wordpress.com/2009/12/18/cadlag-modifications/) has a statement of a similar result along with a partial proof. Completing the proof and adapting it to left-continuous modifications instead of c\`adl\`ag functions is simple.
+
+\begin{proof}
+This is a completed proof based off of the partial proof provided in the link above.
+
+\ind Fix some \(0\leq a < b < \infty\). Let \(\alt{T} \subset [0,\T]\) be a finite set. Let \(U_{\alt{\T}}[a,b]\) denote the number of upcrossings of \(\rxvts{}{}\) restricted to \(\alt{\T}\) with respect to the interval \([a,b]\).
+
+\ind It can be shown directly that there exists an elementary set \(\evnt\) such that,
+
+\begin{equation}
+(b-a)U_{\alt{T}}[a,b] \leq \int_0^\T \mb{I}_{\evnt}\,d\rxvts{}{} + \max\{a - \rxvt{}{\T},0\}.
+\label{subsec::ProofE:eqn::upcrossingineq}
+\end{equation}
+\labe{subsec::ProofE:eqn::upcrossingineq}
+
+(see https://almostsure.wordpress.com/2009/12/06/upcrossings-downcrossings-and-martingale-convergence/). For every \(M \in [0,\infty)\), define
+
+\[\rt{M}_{\alt{T}} := \inf\{\t\in \alt{\T}: \rxvt{}{\t} > M\}.\]
+
+Because \(\alt{T}\) is finite, \(\mb{I}_{(\rt{M}_{\alt{T}},\T]}\) is an elementary set.
+
+\[\int_0^\T \mb{I}_{(\rt{M}_{\alt{T}},\T]}\,d\rxvts{}{} = \mb{I}_{\sup_{\t\in \alt{T}} \rxvt{}{\t} > M}(\rxvt{}{\T} - \rxvt{}{\rt{M}_{\alt{T}}}) \leq |\rxvt{}{\T}| - M\mb{I}_{\sup_{\t \in \alt{T}} \rxvt{}{\t} > M}.\]
+
+\[M\mb{I}_{\sup_{\t\in\alt{T}} \rxvt{}{\t} > M} \leq |\rxvt{}{\T}| - \int_0^T \mb{I}_{(\rt{M}_{\alt{T}},\T]}\,d\rxvts{}{}.\]
+
+
+Replacing \(\rxvts{}{}\) by \(-\rxvts{}{}\) gives us the inequality,
+
+\[M\mb{I}_{\inf_{\t\in\alt{T}} \rxvt{}{\t} < -M} \leq |\rxvt{}{\T}| + \int_0^T \mb{I}_{(\alt{\rt{M}_{\alt{T}}},\T]}\,d\rxvts{}{},\]
+
+where \(\alt{\rt{M}_{\alt{T}}} = \inf\{\t\in \alt{T}: \rxvt{}{\t} < -M\}\). Summing yields,
+
+\begin{equation}
+M\mb{I}_{\sup_{\t\in\alt{T}}|\rxvt{}{\t}| > M} \leq M\mb{I}_{\sup_{\t\in\alt{T}}\rxvt{}{\t} > M} + M\mb{I}_{\inf_{\t\in\alt{T}}\rxvt{}{\t} < -M} \leq 2|\rxvt{}{\T}| + \int_0^\T \mb{I}_{(\alt{\rt{M}_{\alt{T}}},\T]}\,d\rxvts{}{} - \int_0^\T \mb{I}_{(\rt{M}_{\alt{T}},\T]}\,d\rxvts{}{}
+\label{subsec::ProofE:eqn::bdd}
+\end{equation}
+\labe{subsec::ProofE:eqn::bdd}
+
+By assumption there exists a constant \(\const{} < \infty\) such that \(\ex{\int_0^\T \mb{I}_{\evnt}\,d\rxvts{}{}} \leq \const{}\) for all elementary \(\evnt\). Taking an expectation of equations \eqref{subsec::ProofE:eqn::upcrossingineq} and \eqref{subsec::ProofE:eqn::bdd}, we get:
+
+\begin{align}
+(b-a)\ex{U_{\alt{T}}[a,b]} &\leq \const{} + \ex{\max\{a-\rxvt{}{\T},0\}}
+\label{subsec::ProofE:eqn::expupcrossingineq}\\
+\pr\left(\sup_{\t\in\alt{T}} |\rxvt{}{\T}| > M\right) &\leq \frac{2}{M}\left(\ex{|\rxvt{}{\T}|} + \const{}\right)
+\label{subsec::ProofE:eqn::expbdd}
+\end{align}
+\labe{subsec::ProofE:eqn::expupcrossingineq}
+
+\labe{subsec::ProofE:eqn::expbdd}
+
+By the monotone convergence theorem, equations \eqref{subsec::ProofE:eqn::expupcrossingineq} and \eqref{subsec::ProofE:eqn::expbdd} hold for any countable \(\alt{T}\). Furthermore, the right side of both equations is constant (with respect to \(\alt{T}\)). Thus, for any \(a < b \in \mb{Q}\), \(U_{\alt{T}}[a,b]\) is almost surely finite and \(\rxvts{}{}\) is almost surely bounded on \(\alt{T}\).
+
+\ind Because \(\rxvts{}{}\) is bounded on \(\alt{T}\) and because \(U_{\alt{T}}[a,b]\) is almost surely finite for all rational \(a < b\), we can conclude that \(\lim_{\substack{\tt \nearrow \t\\ \tt \in \alt{T}}} \rxvt{}{\tt}\) and \(\lim_{\substack{\tt \searrow \t\\ \tt \in \alt{T}}} \rxvt{}{\tt}\) exist for all \(\t \in [0,\T]\). Define,
+
+\[\rxvtt{}{\t} := \lim_{\substack{\tt \nearrow \t\\\tt \in \alt{T}}} \rxvt{}{\tt}\te{ for all } \t \in [0,\T].\]
+
+Then \(\rxvtts{}{}\) has left and right limits everywhere and it is almost surely left-continuous. Furthermore, if \(\alt{\rxvtts{}{}}\) is generated by \(\alt{T'}\), where \(\alt{T'}\) is the union of \(\alt{T}\) and a countable number of points, then \(\rxvtts{}{}\) and \(\alt{\rxvtts{}{}}\) are identical processes. 
+
+\ind For each \(\numb \in \mb{N}\), let \(\typset\pup{\numb} \subset [0,\T]\) be defined by,
+
+\[\typset\pup{\numb} := \left\{\t\in [0,\T]: \pr\left(|\rxvt{}{\t} - \rxvtt{}{\t}| > 1/\numb\right) > 1/\numb\right\}.\] 
+
+Suppose \(\typset\pup{\numb}\) is not finite. Then there exists an increasing or decreasing sequence \(\{\t\pup{\it}:\it\in \mb{N}\}\subseteq \typset\pup{\numb}\). Since this sequence is contained in the bounded interval \([0,\T]\), it is convergent. Without loss of generality, we can enlarge \(\alt{T}\) to contain this sequence so that
+
+\[\lim_{\it \ra\infty} \rxvt{}{\t\pup{\it}} = \lim_{\it\ra\infty} \rxvtt{}{\t\pup{\it}} \te{ almost surely.}\]
+
+Thus, \(\pr(|\rxvt{}{\t\pup{\it}} - \rxvtt{}{\t\pup{\it}}| > 1/\numb) \ra 0\), which contradicts the fact that \(\t\pup{\it} \in \typset\pup{\numb}\) for all \(\it\in\mb{N}\). We can then conclude that,
+
+\[\typset:= \{\t\in [0,\T]: \pr(\rxvt{}{\t} \neq \rxvtt{}{\t}) > 0\} = \cap_{\numb = 1}^\infty \typset\pup{\numb}\]
+
+is a finite set. Define,
+
+\[\rxvttt{}{\t}= \begin{cases}
+\rxvtt{}{\t} &\te{ for } \t \notin \typset\\
+\rxvt{}{\t} &\te{ otherwise.}
+\end{cases}\]
+
+Then \(\rxvttts{}{}\) differs from \(\rxvtts{}{}\) at an almost surely finite number of points, so left and right limits exist everywhere for \(\rxvttts{}{}\) and it is left-continuous on \(\typset^c\). Furthermore, by definition, \(\rxvttts{}{}\) is a modification of \(\rxvts{}{}\). Recall that \(\rxvts{}{}\) is left-continuous in probability. That means,
+
+\[\te{plim}_{\tt\nearrow \t} \rxvt{}{\tt} = \rxvt{}{\t}.\]
+
+More specifically,
+
+\[\te{plim}_{\substack{\tt\pup{\it}\nearrow \t\\\{\tt\pup{\it}\} \subseteq \alt{T}}} \rxvt{}{\tt\pup{\it}} = \rxvt{}{\t}\]
+
+Convergence in probability implies almost sure convergence of a subsequence:
+
+\[\lim_{\substack{\tt\pup{\it\pup{\itt}} \nearrow \t\\\{\tt\pup{\it}\}\subseteq \alt{T}}} \rxvt{}{\tt\pup{\it\pup{\itt}}} = \rxvt{}{\t} = \rxvtt{}{\t} \te{ almost surely.}\]
+
+By definition of \(\rxvttts{}{}\), \(\rxvttt{}{\t} = \rxvtt{}{\t}\). However, this holds for all \(\t \in (0,\T]\), so \(\rxvttts{}{} = \rxvtts{}{}\) on the interval \((0,\T]\) (as in the two processes are identical on \((0,\T]\), not just almost surely equal at every point). Since \(\rxvtts{}{}\) is left-continuous, it follows that \(\rxvttts{}{}\) is a left-continuous modification of \(\rxvts{}{}\) (note: the value of \(\rxvttt{}{0}\) has no effect on the left-continuity of the process on \([0,\T]\)).
+\end{proof}
+
+\lin
+
+\begin{lem}
+Let \(\rxvts{}{},\ratee{}{}\) and \(\rate{}\) satisfy the conditions of Assumption \ref{subsec::ProofE:Assu::Eassu}. Let \(\crate{\v}{\t}(\s)\) be defined as in Lemma \ref{subsec::ProofE:Lem::leftmod}. Then \(\crate{\v}{\t}(\s)\) is left-continuous in probability for \(\v \in \tree\pup{1}\setminus\{\root\}\) and \(\s \in \S\setminus\{0\}\). That is, for every \(\t \in (0,\T]\), \(\s \in \S\), \(\ep > 0\) and \(\v\in \{1,\dots,\degr\}\),
+
+\[\lim_{\tt \nearrow \t}\pr\left(|\crate{\v}{\t}(\s)- \crate{\v}{\t-\tt}(\s)| > \ep\right) = 0.\]
+
+Furthermore, consider the event,
+
+\[\evnt^\U_{\tt,\t} := \{\rxvts{\U}{} \te{ is constant over the interval } [\t-\tt,\t)\}.\]
+
+Then there exists an \(O(s)\) function, \(f:[0,\infty)\ra[0,\infty)\), such that 
+
+\[\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)| \leq f(s) \te{ almost surely.}\]
+\label{subsec::ProofE:Lem::pleft}
+\end{lem}
+\labe{subsec::ProofE:Lem::pleft}
+
+\purpose This is one of the conditions of Lemma \ref{subsec::ProofE:Lem::leftmodgen}.
+
+\pfsum Use the fact that over any small interval \([t-s,t)\), \(X^U\) is constant with high probability for all finite \(U\). Thus \(\ov{\lambda}^v_{t-s}\) will vary by only a tiny amount from \(\ov{\lambda}^v_t\) with very high probability. We can actually estimate how quickly this probability converges to 1 as a function of \(s\).
+
+\begin{proof}
+Fix \(\v\in \V\). By Assumption \ref{subsec::ProofE:Assu::Eassu}, \(\pmap{}(\rxvts{\{\v,\root\}}{})\) has intensity bounded from above by \(2\const{}\). Therefore, for every \(\t > 0\) there almost surely exists an \(\tt\) small enough such that \(\evnt^{\{\v,\root\}}_{\tt,\t}\) holds. Fix \(\tt < \t\). Let \(\const{}\) be the upper bound of \(\rate{}\). Fix any \(\s\in \S\). We begin by computing
+
+\[\ex{\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)|}.\]
+
+Fix some \(\xvts{}{}\in \evnt^{\{\v,\root\}}_{\tt,\t}\). Let 
+
+\[\alt{\evnt}_\t = \{\rxvts{\{\root,1\}}{[0,\t)} = \xvts{\{\v,\root\}}{[0,\t)}\}.\]
+
+Then we will write,
+
+\begin{align*}
+\crate{\v}{\t}(\xvts{}{},\s) &:=\crate{}{}(\xvts{\{\v,\root\}}{[0,\t)},\s) = \ex{\rate{}(\rxvt{\tree\pup{1}}{\t-},\s)|\alt{\evnt}_\t}\\
+\crate{\v}{\t-\tt}(\xvts{}{},\s) &:= \crate{}{}(\xvts{\{\v,\root\}}{[0,\t-\tt)},\s) = \ex{\rate{}(\rxvt{\tree\pup{1}}{(\t-\tt)-},\s)|\alt{\evnt}_{\t-\tt}}
+\end{align*}
+
+Then,
+
+\begin{align*}
+\crate{\v}{\t}(\xvts{}{},\s) &= \ex{\rate{}(\rxvt{\tree\pup{1}}{\t-},\s)|\alt{\evnt}_\t}\\
+&= \sum_{\sv{}{\tree\pup{1}} \in \S^{\tree\pup{1}}} \rate{}(\sv{}{\tree\pup{1}},\s)\pr\left(\rxvt{\tree\pup{1}}{\t-} = \sv{}{\tree\pup{1}}|\alt{\evnt}_\t\right)\\
+&= \sum_{\sv{}{\tree\pup{1}} \in \S^{\tree\pup{1}}} \rate{}(\sv{}{\tree\pup{1}},\s) \sum_{\alt{\sv{}{\tree\pup{1}}} \in \S^{\tree\pup{1}}} \pr\left(\rxvt{\tree\pup{1}}{\t-} = \sv{}{\tree\pup{1}},\rxvt{\tree\pup{1}}{(\t-\tt)-} = \alt{\sv{}{\tree\pup{1}}}|\alt{\evnt}_\t\right)\\
+&= \sum_{\sv{}{\tree\pup{1}},\alt{\sv{}{\tree\pup{1}}} \in \S^{\tree\pup{1}}} \rate{}(\sv{}{\tree\pup{1}},\s)\pr\left(\rxvt{\tree\pup{1}}{\t-} = \sv{}{\tree\pup{1}}|\rxvt{\tree\pup{1}}{(\t-\tt)-}=\alt{\sv{}{\tree\pup{1}}},\alt{\evnt}_\t\right)\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\alt{\sv{}{\tree\pup{1}}}|\alt{\evnt}_\t\right)\\
+\end{align*}
+
+Because the jump rate of \(\pmap{\v}(\rxvts{}{})\) is bounded from above by \(\const{}\) for any \(\v\in\tree\pup{1}\),  when \(\sv{}{\tree\pup{1}}\neq\alt{\sv{}{\tree\pup{1}}}\), 
+
+\[\pr\left(\rxvt{\tree\pup{1}}{\t-} = \sv{}{\tree\pup{1}}|\rxvt{\tree\pup{1}}{(\t-\tt)-}=\alt{\sv{}{\tree\pup{1}}},\alt{\evnt}_\t\right) \leq 1-e^{-\tt(\degr+1)\const{}}\]
+
+and when \(\sv{}{\tree\pup{1}}=\alt{\sv{}{\tree\pup{1}}}\),
+
+\[\pr\left(\rxvt{\tree\pup{1}}{\t-} = \sv{}{\tree\pup{1}}|\rxvt{\tree\pup{1}}{(\t-\tt)-}=\alt{\sv{}{\tree\pup{1}}},\alt{\evnt}_\t\right) \geq e^{-\tt(\degr+1)\const{}}.\]
+
+So,
+
+\begin{equation}
+e^{-\tt(\degr+1)\const{}}\sum_{\sv{}{\tree\pup{1}}\in \S^{\tree\pup{1}}} \rate{}(\sv{}{\tree\pup{1}},\s)\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_\t\right) \leq \crate{\v}{\t}(\xvts{}{},\s),
+\label{subsec::ProofE:eqn::partlowbd}
+\end{equation}
+\labe{subsec::ProofE:eqn::partlowbd}
+
+and
+
+\begin{align}
+\crate{\v}{\t}(\xvts{}{},\s)&\leq (1 - e^{-\tt(\degr+1)\const{}})\sum_{\sv{}{\tree\pup{1}}\neq \alt{\sv{}{\tree\pup{1}}} \in \S^{\tree\pup{1}}} \rate{}(\sv{}{\tree\pup{1}},\s)\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\alt{\sv{}{\tree\pup{1}}}|\alt{\evnt}_\t\right)\nonumber\\
+&\hspace{24 pt} +\sum_{\sv{}{\tree\pup{1}} \in \S^{\tree\pup{1}}} \rate{}(\sv{}{\tree\pup{1}},\s)\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_\t\right)\nonumber\\
+&\leq \const{}(1 - e^{-\tt(\degr+1)\const{}})|\S|^{\degr(\degr+1)/2} + \sum_{\sv{}{\tree\pup{1}} \in \S^{\tree\pup{1}}} \rate{}(\sv{}{\tree\pup{1}},\s)\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_\t\right)
+\label{subsec::ProofE:eqn::partupbd}
+\end{align}
+\labe{subsec::ProofE:eqn::partupbd}
+
+So we simply need to understand \(\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_\t\right)\). Recalling that \(\xvts{}{} \in \evnt^{\{\v,\root\}}_{\tt,\t}\), notice that
+
+\[\alt{\evnt}_\t = \alt{\evnt}_{\t-\tt}\cap \evnt^{\{\root,1\}}_{\tt,\t}.\]
+
+\begin{align*}
+\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_\t\right) &= \pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_{\t-\tt},\evnt^{\{\root,1\}}_{\tt,\t}\right)\\
+&=\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_{\t-\tt}\right)\frac{\pr\left(\evnt^{\{\root,1\}}_{\tt,\t}|\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}},\alt{\evnt}_{\t-\tt}\right)}{\pr\left(\evnt^{\{\root,1\}}_{\tt,\t}|\alt{\evnt}_{\t-\tt}\right)}
+\end{align*}
+
+Notice that for any non-null \(\rxvts{\tree\pup{1}}{[0,\t-\tt)}\)-measurable set \(\typset\), 
+
+\[\pr(\evnt^{\{\root,1\}}_{\tt,\t}|\typset) \geq e^{-2\tt\const{}}\]
+
+Then,
+
+\begin{align}
+e^{-2\tt\const{}}\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_{\t-\tt}\right) &\leq \pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_{\t}\right)\nonumber\\
+&\leq e^{2\tt\const{}}\pr\left(\rxvt{\tree\pup{1}}{(\t-\tt)-}=\sv{}{\tree\pup{1}}|\alt{\evnt}_{\t-\tt}\right).
+\label{subsec::ProofE:eqn::secpartbd}
+\end{align}
+\labe{subsec::ProofE:eqn::secpartbd}
+
+Now
+
+\[\crate{\v}{\t-\tt}(\xvts{\tree\pup{1}}{},\s) = \ex{\rate{}(\rxvt{\tree\pup{1}}{(\t-\tt)-},\s)|\alt{\evnt}_{\t-\tt}} = \sum_{\sv{}{\tree\pup{1}}\in \S^{\tree\pup{1}}}\rate{}(\sv{}{\tree\pup{1}},\s)\pr\left(\rxvts{\tree\pup{1}}{(\t-\tt)-} = \sv{}{\tree\pup{1}}|\alt{\evnt}_{\t-\tt}\right)\]
+
+Applying equation \eqref{subsec::ProofE:eqn::secpartbd},
+
+\[e^{-2\tt\const{}}\crate{\v}{\t-\tt}(\xvts{\tree\pup{1}}{},\s) \leq \sum_{\sv{}{\tree\pup{1}}\in \S^{\tree\pup{1}}} \lambda(\sv{}{\tree\pup{1}},\s)\pr(\rxvts{\tree\pup{1}}{(\t-\tt)-} = \sv{}{\tree\pup{1}}|\alt{\evnt}_\t)\leq e^{2\tt\const{}}\crate{\v}{\t-\tt}(\xvts{\tree\pup{1}}{},\s)\]
+
+Additionally, we can apply equations \eqref{subsec::ProofE:eqn::partlowbd} and  \eqref{subsec::ProofE:eqn::partupbd} to get,
+
+\[e^{-\tt(\degr+3)\const{}}\crate{\v}{\t-\tt}(\xvts{\tree\pup{1}}{},\s) \leq \crate{\v}{\t}(\xvts{\tree\pup{1}}{},\s) \leq \const{}(1 - e^{-\tt(\degr+1)\const{}})|S|^{\degr(\degr+1)/2} + e^{2\tt\const{}}\crate{\v}{\t-\tt}(\xvts{\tree\pup{1}}{},\s)\]
+
+Then for all \(\xvts{}{} \in \evnt^{\{\v,\root\}}_{\tt,\t}\), we can bound \(|\crate{\v}{\t}(\xvts{}{},\s) - \crate{\v}{\t-\tt}(\xvts{}{},\s)|\):
+
+\begin{align*}
+&|\crate{\v}{\t}(\xvts{}{},\s) - \crate{\v}{\t-\tt}(\xvts{}{},\s)| \\
+&\hspace{24pt}\leq \max\left\{\crate{\v}{\t-\tt}(\xvts{}{},\s)\left(1 - e^{-\tt(\degr+3)\const{}}\right),\const{}(1-e^{-\tt(\degr+1)\const{}})|\S|^{\degr(\degr+1)/2} + \crate{\v}{\t-\tt}(\xvts{}{},\s)\left(e^{2\tt\const{}} - 1\right)\right\}\\
+&\hspace{24pt}\leq \const{}\max\left\{\left(1 - e^{-\tt(\degr+3)\const{}}\right),(1-e^{-\tt(\degr+1)\const{}})|\S|^{\degr(\degr+1)/2} + \left(e^{2\tt\const{}} - 1\right)\right\}\\
+\end{align*}
+
+which is an \(O(s)\) function. Then,
+
+\begin{align*}
+\ex{|\crate{\v}{\t}(\xvts{}{},\s) - \crate{\v}{\t-\tt}(\xvts{}{},\s)|} &\leq \const{}\pr\left(\te{not }\evnt^{\{\v,\root\}}_{\tt,\t}\right) + \ex{\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\xvts{}{},\s) - \crate{\v}{\t-\tt}(\xvts{}{},\s)|}\\
+&\leq \const{}(1 - e^{-2\tt\const{}}) + O(s) = O(s).
+\end{align*}
+
+The result follows by Chebyshev's inequality.
+\end{proof}
+
+\lin
+
+\begin{lem}
+Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\crate{\v}{\t}(\s)\) be defined as in Lemma \ref{subsec::ProofE:Lem::leftmod}. Then \(\crate{\v}{\t}(\s)\) is integrable and 
+
+\[\sup_{\typset\te{ elementary}} \ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} < \infty\]
+\label{subsec::ProofE:Lem::bddvar}
+\end{lem}
+\labe{subsec::ProofE:Lem::bddvar}
+
+\purpose This is one of the conditions of Lemma \ref{subsec::ProofE:Lem::leftmodgen}.
+
+\pfsum Look at the variation of \(\ov{\lambda}\) where it is continuous (which is obtained from an estimate in the proof of Lemma \ref{subsec::ProofE:Lem::pleft}) and use the fact that the number of jumps is finite in expectation.
+
+\begin{proof}
+Any elementary set can be expressed in the form
+
+\[\typset = \bigcup_{\it = 1}^\numb [\tt^\it,\t^\it)\times \typset\pup{\it},\]
+
+where \(\{[\tt^\it,\t^\it):\it=1,\dots,\numb\}\) are disjoint, if \(\tt^\it = \t^\it = 0\), then \([\tt^\it,\t^\it) = \{0\}\) and \(\typset\pup{\it}\) are all \(\sigma(\crate{\v}{\t}(\s):\s \in \S,\t\in [0,\tt^\it])\)-measurable. 
+
+By Lemma \ref{subsec::ProofE:Lem::pleft}, there exists a \(\const{1} < \infty\) such that,
+
+\begin{equation}
+\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)| \leq \const{1}\tt.
+\label{subsec::ProofE:eqn::driftbound}
+\end{equation}
+\labe{subsec::ProofE:eqn::driftbound}
+
+Furthermore, since \(\crate{\v}{\t}(\s)\) is a \([0,\const{}]\)-valued process, jumps of \(\crate{\v}{\t}(\s)\) are bounded by \(\const{}\). Thus, for any \(\numb \in \mb{N}\),
+
+\[\mb{I}_{\{\rxvts{\{\v,\root\}}{}\te{ has }\numb\te{ jumps in } [\t-\tt,\t)\}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)|\leq C_1\tt + \numb \const{}.\]
+
+\tr{This holds even with random times because inequality \eqref{subsec::ProofE:eqn::driftbound} holds for all \(\tt\) almost surely.} Then,
+
+\begin{align*}
+\ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} &= \sum_{\it = 1}^\numb \mb{I}_{\typset^\it}\ex{\left|\crate{\v}{\t^k}(\s) - \crate{\v}{\tt^k}(\s)\right|}\\
+&\leq \sum_{\it=1}^\numb \const{1}|\t^\it - \tt^\it| + \const{}\ex{\te{\# of jumps of }\rxvts{\{\v,\root\}}{[\tt^\it,\t^\it)}}\\
+&\leq \const{1}\T + \const{}\ex{\te{\# of jumps in }\rxvts{\{\v,\root\}}{[0,\T)}}\\
+&\leq \const{1}\T + 2\const{}^2\T < \infty.
+\end{align*}
+
+Thus,
+
+\[\sup_{\typset\te{ elementary}} \ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} \leq \const{1}\T + 2\const{}^2\T < \infty.\]
+\end{proof}
+
+\lin
+
+\begin{proof}[Proof of Lemma \ref{subsec::ProofE:Lem::leftmod}]
+
+By Lemma \ref{subsec::ProofE:Lem::pleft}, \(\crate{\{\v,\root\}}{\t}(\s)\) is left-continuous in probability. By Lemma \ref{subsec::ProofE:Lem::bddvar},
+
+\[\sup_{\typset\te{ elementary}} \ex{\int_0^\T \mb{I}_{\typset}\,d\crate{\v}{\t}(\s)} < \infty.\]
+
+Therefore \(\crate{\v}{\t}(\s)\) satisfies the conditions of Lemma \ref{subsec::ProofE:Lem::leftmodgen}, so there exists a left-continuous modification of \(\crate{\v}{\t}(\s)\).
+\end{proof}
+
+\lin
+
+\begin{proof}[Proof of existence in Theorem \ref{sec::Main:Thm::Local SDE}]
+
+Let \(\{\F{\tree\pup{1}}{\t}:\t\in [0,\T]\}\) be the natural filtration of \(\rxvts{\tree\pup{1}}{}\). Recall that by Proposition \ref{subsec::Well-:Prop::SDE=IG}, \(\rxvts{}{}\) can be expressed as the unique solution to,
+
+\[\rxvt{\v}{\t} = \rxvt{\v}{0} + \int_\S\int_0^\t \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\rxvt{}{\tt-},\s)\right],d\s\right) \te{ for all } \v \in \V.\]
+
+Then,
+
+\[\left(\piV{\tree\pup{1}}{\T}(\rxvts{}{})\right)^\t = \left(\piV{\tree\pup{1}}{\T}(\rxvts{}{})\right)^0 + \sum_{\v \in \tree\pup{1}}\ev{\v}\int_\S\int_0^\t \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\rxvt{}{\tt-},\s)\right],d\s\right).\]
+
+However, this is not \(\F{\tree\pup{1}}{\t}\)-adapted. Let \(\rp{} = \{(\rt{\it},\mark{\it})\} = \pmap{\tree\pup{1}}(\rxvts{}{}).\) Then,
+
+\[\left(\piV{\tree\pup{1}}{\T}(\rxvts{}{})\right)^\t = \left(\piV{\tree\pup{1}}{\T}(\rxvts{}{})\right)^0 + \sum_{0 < \rt{\it} \leq t}\mark{\it}\]
+
+Therefore it suffices to derive the \(\F{\tree\pup{1}}{\t}\)-intensity of \(\rp{}\). \(\rp{}\) has \(\F{\V}{\t}\)-intensity \(\rate{\rp{}}(\rxvt{}{\t-},\mark{}) := \sum_{\v \in \tree^1}\sum_{\s\in S}\mb{I}_{\mark{} = \s\ev{\v}}\rate{\v}(\rxvt{}{\t-},\s)\). Each \(\rate{\v}\) is clearly left-continuous in time, so \(\rate{\rp{}}\) is also left-continuous in time. Recall that \(\m{}{}{}\) is the law of \(\rxvts{}{}\). Then,
+
+\[\exmu{\m{}{}{}}{\rate{\rp{}}(\rxvt{}{\t-},\mark{})|\F{\tree\pup{1}}{\t-}} = \sum_{\v \in \tree\pup{1}}\sum_{\s\in S} \mb{I}_{\mark{} = \s\ev{\v}}\exmu{\m{}{}{}}{\rate{\v}(\rxvt{}{\t-},\s)|\F{\tree\pup{1}}{\t-}}.\]
+
+Applying Theorem \ref{sec::Main:Thm::CI} and symmetry of \(\m{}{}{}\) yields,
+
+\begin{align*}
+\exmu{\m{}{}{}}{\rate{\v}(\rxvt{}{\t-},\s)|\F{\tree\pup{1}}{\t-}} &= \exmu{\m{}{}{}}{\rate{\v}(\rxvt{}{\t-},\s)|\rxvts{\tree\pup{1}}{[0,\t)}}\\
+&\os{\te{Thm \ref{sec::Main:Thm::CI}}}{=} \exmu{\m{}{}{}}{\rate{}(\rxvt{\cl{\v}}{\t-},\s)|\rxvts{\{\v,\root\}}{[0,\t)}} \\
+&\os{\te{Sym}}{=} \exmu{\rxvtts{}{}\sim \m{}{}{}}{\rate{}(\rxvtt{\tree\pup{1}}{\t-},\s)|\rxvtts{\{\root,1\}}{[0,\t)} = \rxvts{\{\v,\root\}}{[0,\t)}}\\
+&= \exmu{\rxvtts{}{}\sim \piV{\tree\pup{1}}{\T}(\m{}{}{})}{\rate{}(\rxvtt{\tree\pup{1}}{\t-},\s)|\rxvtts{\{\root,1\}}{[0,\t)} = \rxvts{\{\v,\root\}}{[0,\t)}}\\
+&= \exmu{\cm_\t\left(\rxvts{\{\v,\root\}}{[0,\t)},\piV{\tree\pup{1}}{\T}(\m{}{}{})\right)}{\rate{}(\rxvt{\tree\pup{1}}{\t-},\s)}\\
+&=\crate{}{}(\rxvts{\{\v,\root\}}{[0,\t)},\s) = \crate{\v}{\t}(\s).
+\end{align*}
+
+By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{\v}{\t}(\s)\) has a left-continuous modification. Then, by Lemma \ref{subsec::ProofE:Lem::filtering}, \(\crate{\v}{\t}(\s)\) is a \(\F{\tree\pup{1}}{}\)-predictable filtration of \(\rxvtts{}{}\).
+
+\ind By lemma \ref{subsec::Some:Lem::PPtoSDE}, we can characterize the law of \(\piV{\tree\pup{1}}{\T}(\rxvts{}{})\) as the law of the unique solution (given \(\piV{\tree\pup{1}}{\T}(\m{}{}{})\)) to the SDE
+
+\begin{align*}
+\rxvt{\v}{\t} &= \rxvt{\v}{0} + \int_0^\t\int_\S \s\,\poiss{\v}(d\s,(0,\crate{\v}{\tt}(\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\},\\
+\rxvt{\root}{\t} &= \rxvt{\root}{0} + \int_0^\t\int_\S \s\,\poiss{\root}(d\s,(0,\rate{\root}(\rxvt{}{\tt-},\s)],d\tt).
+\end{align*}
+\end{proof}
+
+\subsection{Proof of Uniqueness}
+\label{subsec::ProofU:sec::Proof2}\labe{subsec::ProofU:sec::Proof2}
+
+\pfsum We start with an arbitrary measure \(\mmm{}{}{1}\) satisfying the characterization provided in Theorem \ref{sec::Main:Thm::Local SDE}. We characterize the density of this measure with respect to a simple process. Using these densities, we extend the process to an infinite dimensional process whose marginal distribution is \(\mmm{}{}{1}\). We then prove this infinite dimensional process is precisely \(\m{}{}{}\).
+
+\begin{proof}[Proof of Theorem \ref{sec::Main:Thm::Local SDE}]
+
+Assume \(\mmm{}{}{1}\) is a probability measure on \(\OmegaV{\tree\pup{1}}{\T-}\) and suppose that \(\mmm{}{}{1}\) is a solution to equation \eqref{sec::Main:eqn::Local SDE}.
+
+\ind Let \(\rxvtsn{}{}{1}\) be a process with law \(\mmm{}{}{1}\) embedded in \(\OmegaV{\V}{\T-}\). That is, \(\rxvtsn{\v}{}{1} \equiv 0\) for \(\v \notin \tree\pup{1}\). Recall that, for \(\v \in \tree\pup{1}\setminus\{\root\}\),
+
+\[\crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) = \exmu{\cm_\t(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\mmm{}{}{1})}{\rate{}(\rxvtn{}{\t-}{1},\s)}.\]
+
+\ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m{}{}{}\), which is the law of \(\rxvts{}{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\rxvtsn{}{}{\numb}:\numb\in\mb{N}\}\) on \(\OmegaV{\tree\pup{\numb}}{\T-}\) converging weakly to \(\rxvts{}{}\). 
+
+\lin
+
+\begin{lem}
+The marginal distribution of \(\mmm{}{}{1}\) on \(\OmegaV{\{\v,\root\}}{\T}\) for \(\v \in \tree\pup{1}\setminus\{\root\}\) is the law of the unique solution to the following SDE:
+
+\begin{align}
+\rxvtn{\{\v,\root\}}{\t}{1} = \rxvtn{\{\v,\root\}}{0}{1} &+ \ev{\v}\int_\S\int_{(0,\crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\tt)}{1},\s)]}\int_{(0,t]}\s\,\poiss{\v}(d\tt,d\r,d\s)\nonumber\\
+&+ \ev{\root}\int_\S\int_{(0,\crate{}{}(\rxvtsn{\{\root,\v\}}{[0,\tt)}{1},\s)]}\int_{(0,t]}\s\,\poiss{\root}(d\tt,d\r,d\s)
+\label{subsec::ProofU:eqn::Marginal}
+\end{align}
+\labe{subsec::ProofU:eqn::Marginal}
+\label{subsec::ProofU:Lem::Marginal}
+\end{lem}
+\labe{subsec::ProofU:Lem::Marginal}
+
+\purpose This allows us to derive the marginal density of the double neighborhood of \((\tree\pup{n})^c\) for all \(\numb\). With this marginal density, we can derive conditional intensities that can be used to extend \(\mmm{}{}{1}\) to more nodes.
+
+\pfsum By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{}{}\) has a left-continuous modification so we can directly apply Lemma \ref{subsec::ProofE:Lem::filtering}.
+
+\begin{proof}
+Let \(\rp{} = \pmap{\tree\pup{1}}(\rxvtsn{}{}{1})\) be defined as in Definition \ref{subsec::ProofE:Defn::pmap}. Then \(\rp{}\) has \(\F{\tree\pup{1}}{}\)-predictable intensity,
+
+\[\crate{\rp{}}{\t}(\rxvtsn{}{[0,\t)}{1},\mark{}) = \sum_{\v\in \tree\pup{1}\setminus\{\root\}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in\S}\mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\rxvtn{}{\t-}{1},\s).\]
+
+Then \(\piV{\{\v,\root\}}{\T}(\rp{})\defeq \pmap{\{\v,\root\}}(\rxvtsn{}{}{1})\) \tr{notation?} has \(\F{\tree\pup{1}}{}\)-predictable intensity,
+
+\[\rate{\piV{\{\v,\root\}}{\T}(\rp{})}^{\t}(\rxvtsn{}{[0,\t)}{1},\mark{}) = \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\rxvtn{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S^{\{\v,\root\}}.\]
+
+Consider the candidate rate \(\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}\) defined in the following manner:
+
+\begin{align*}
+\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}(\kappa) &= \exmu{\m{}{}{1}}{\rate{\piV{\{\v,\root\}}{\T}(\rp{})}^{\t}(\rxvtsn{}{[0,\t)}{1},\kappa)\middle|\F{\{\v,\root\}}{\t-}}\\
+&=\exmu{\m{}{}{1}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\rate{\root}(\rxvtn{}{\t-}{1},\s)\right)\middle|\F{\{\v,\root\}}{\t-}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\m{}{}{1}}{\rate{\root}(\rxvtn{}{\t-}{1},\s)\middle|\F{\{\v,\root\}}{\t-}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\rxvttts{}{} \sim \m{}{}{1}}{\rate{}(\rxvttt{\tree\pup{1}}{\t-},\s)\middle|\rxvttts{\{\root,\v\}}{[0,\t)} = \rxvtsn{\{\root,\v\}}{[0,\t)}{1}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\cm_t(\rxvtsn{\{\root,\v\}}{[0,\t)}{1},\m{}{}{1})}{\rate{}(\rxvtn{\tree\pup{1}}{\t-}{1},\s)}\\
+&=\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\crate{}{}(\rxvtsn{\{\root,\v\}}{[0,\t)}{1},\s)\right)\\
+\end{align*}
+
+Notice that \(\rxvtsn{}{}{1}\) and \(\rate{}\) satisfy Assumption \ref{subsec::ProofE:Assu::Eassu}. Thus, \(\crate{}{}(\rxvtsn{\{\root,\v\}}{[0,\t)}{1},\s)\) has a left-continuous modification by Lemma \ref{subsec::ProofE:Lem::leftmod}. Then \(\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}(\mark{})\) also has a left-continuous modification. By Lemma \ref{subsec::ProofE:Lem::filtering}, \(\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}(\kappa)\) is the \(\F{\{\v,\root\}}{}\)-predictable intensity of \(\rp{}\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, equation \eqref{subsec::ProofU:eqn::Marginal} has a unique solution and by Lemma \ref{subsec::Some:Lem::PPtoSDE}, that solution has jump intensity given by the above.
+
+\end{proof}
+
+\lin
+
+\tr{TODO::standardize space, time and mark orderings of Poisson processes.}
+
+\begin{defn}
+Suppose \(\{\poiss{}\}\) is Poisson process with intensity \(\leb\otimes \Sm\) on \(\mb{R}^2\times \S\). Define,
+
+\[\rxvtt{}{\t} = \rxvtt{}{0} + \int_{(0,\t]}\int_{(0,1]}\int_\S\s\,\poiss{}(d\s,d\r,d\tt).\]
+
+Let \(\mm{}{}{} = \law(\rxvtts{}{})\). Suppose \(\mmm{\v}{0,}{1}\ll\mm{}{0}{}\) for all \(\v\in\tree\pup{1}\). Let \(\{\mm{\v}{}{}:\v\in\V\}\) be the distributions of a sequence of i.i.d. \(\S^{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq \V\), let 
+
+\[\mm{\U}{}{} = \otimes_{\v\in\U} \mm{\v}{}{}.\]
+
+Finally, for any \(\t\in [0,\T)\), let \(\mm{\U}{\t,}{}\) be the projection of \(\mm{\U}{}{}\) to \(\pmsr(\OmegaV{\U}{\t-})\). Use a similar system for all measures.
+\label{subsec::ProofU:Defn::nu}
+\end{defn}
+\labe{subsec::ProofU:Defn::nu}
+
+\lin
+
+\begin{lem}
+For any \(\v \in \V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(\numb \in \mb{N}\). Let \(\mmm{}{}{\numb} \in \pmsr\left(\OmegaV{\tree\pup{\numb}}{\T-}\right)\) be the law of the unique solution to the following SDE:
+
+\begin{equation}
+\rxvt{\v}{\t} = \begin{cases}
+\rxvt{\v}{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\crate{}{}(\rxvts{\{\v,\p{\v}\}}{[0,\tt)},\s)\right]}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\pup{\numb}\setminus \tree\pup{\numb-1}\\
+\rxvt{\v}{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\rate{}(\rxvt{\cl{\v}}{\tt-},\s\right)}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\pup{\numb-1}
+\end{cases}
+\label{subsec::ProofU:eqn::extendedSDE}
+\end{equation}
+\labe{subsec::ProofU:eqn::extendedSDE}
+
+Then for any \(\alt{\numb} < \numb\), \(\mmm{}{\t}{\alt{\numb}} = \piV{\tree\pup{\alt{\numb}}}{\t}(\mmm{}{\t}{\numb})\).
+\label{subsec::ProofU:Lem::extendedSDE}
+\end{lem}
+\labe{subsec::ProofU:Lem::extendedSDE}
+
+\purpose By constructing larger processes with the whose marginal distribution is \(\mmm{}{}{1}\), we can, in the limit, construct an interacting particle system on \(V\) that projects down to \(\mmm{}{}{}\). All that will remain will be to prove that this process is equal in distribution to \(\m{}{}{}\).
+
+\pfsum Using Lemmas \ref{subsec::ProofU:Lem::Marginal} and \ref{subsec::Some:Lem::radnik} \tr{rrewrite}, we can construct a conditional density which can be used to extend \(\mu\pup{1}\). We can use simple density arguments to prove the marginal properties we can use Lemma \ref{subsec::Some:Lem::radnik} \tr{rrewrite} to get the SDE formulation.
+
+\begin{proof}
+\tr{I'm not being consistent about the intervals I am using. Everything is in half open intervals. I should make the final result the same.}
+
+Let \(\mm{}{}{} \in \pmsr(\OmegaV{\V}{\T-})\) be as defined in Definition \ref{subsec::ProofU:Defn::nu}.
+
+\ind Recall that \(\rp{} \defeq \pmap{}(\rxvtsn{}{}{1})\) maps \(\rxvtsn{}{}{1}\) to the point process coinciding with the jumps of \(\rxvtsn{}{}{1}\). This point process has intensity,
+
+\[\ratee{}(\rp{}[0,\t),\mark{}) = \begin{cases}
+\crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\t)}{1},\s) &\te{ if } \v\in \tree\pup{1}\setminus\{\root\}\te{ and } \mark{} = \s\ev{\v}\\
+\rate{}(\rxvtn{\tree\pup{1}}{\t-}{1},\s) &\te{ if } \mark{} = \s\ev{\root}\\
+0 &\te{ otherwise}.
+\end{cases}\]
+
+Let \(\mm{}{}{1} \defeq \mm{\tree\pup{1}}{}{}\). Then \(\pmap{}(\mm{}{}{1})\) has constant intensity \(\mb{I}_{\kappa \in\{\s\ev{\v}:\s\in\S\setminus\{0\},\v\in\tree\pup{1}\}}\). 
+
+\ind Define the following mapping,
+
+\begin{align}
+\ds{\v}{\t}(\rxvttts{}{},f) &\defeq \sum_{0 < \rt{\it}_\v \leq \t} \log{f(\rxvttts{}{[0,\rt{\it}_\v)},\mark{\it}_\v)} - \int_{(0,\t]\times \S} [f(\rxvttts{}{[0,\tt)},\s) - 1]\,ds\,\Sm(d\s) \label{subsec::ProofU:eqn::shortdense}\\
+f&\te{ is a }[0,\const{}] \te{-valued mapping and } \pmap{\v}(\rxvttts{}{}) = \{(\rt{\it}_\v,\mark{\it}_\v):\it\in\mb{N}\}.\nonumber
+\end{align} 
+\labe{subsec::ProofU:eqn::shortdense}
+
+Let \(\{(\rt{\it},\mark{\it})\}\) be the events of \(\pmap{}(\rxvtsn{}{}{1})\). By Lemma \ref{subsec::Some:Lem::radnik},
+
+\begin{align}
+\dense{1}{\t}(\rxvts{\tree\pup{1}}{})&\defeq \frac{d\mmm{}{\t}{1}}{d\mm{}{\t}{1}}\nonumber\\
+&= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\left(\sum_{0< \rt{\it} \leq \t} \log{\ratee{}(\rxvtsn{}{[0,\rt{\it})}{1},\mark{\it})} - \int_{(0,\t]\times\S} [\ratee{}(\rxvtsn{}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+&= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\Bigg(\sum_{\v\in\tree\pup{1}\setminus\{\root\}}\left(\sum_{0< \rt{\it}_\v \leq \t} \log{\crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\rt{\it}_\v)}{1},\mark{\it})} - \int_{(0,\t]\times\S} [\crate{}{}(\rxvtsn{\{\v,\root\}}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+&\hspace{24pt} + \left(\sum_{0 < \rt{\it}_\root \leq \t} \log{\rate{}(\rxvtn{\tree\pup{1}}{\rt{\it}_\root-}{1},\mark{\it}_\root)} - \int_{(0,\t]\times\S} [\rate{}(\rxvtn{\tree\pup{1}}{\tt-}{1},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
+&= \frac{d\mmm{}{0}{1}}{d\mm{}{0}{1}}\exp\left(\sum_{\v\in\tree\pup{1}\setminus\{\root\}} \ds{\v}{\t}(\rxvtsn{\{\v,\root\}}{}{1},\crate{}{}) + \ds{\root}{\t}(\rxvtsn{\tree\pup{1}}{}{1},\rate{})\right).
+\label{subsec::ProofU:eqn::L1 density}
+\end{align}
+
+By a similar calculation, we can apply Lemmas \ref{subsec::Some:Lem::radnik} and \ref{subsec::ProofU:Lem::Marginal} to get,
+
+\begin{equation}
+\alt{\dense{}{\t}}(\rxvtsn{\{\v,\root\}}{}{1}) \defeq \frac{d\mmm{\{\v,\root\}}{\t,}{}}{d\mm{\{\v,\root\}}{\t,}{}} = \frac{d\mmm{\{\v,\root\}}{0,}{}}{d\mm{\{\v,\root\}}{0,}{}}\exp\left(\ds{\v}{\t}(\rxvtsn{\{\v,\root\}}{}{1},\crate{}{}) + \ds{\root}{\t}(\rxvtsn{\{\root,\v\}}{}{1},\crate{}{})\right).
+\label{subsec::ProofU:eqn::Margdense}
+\end{equation}
+\labe{subsec::ProofU:eqn::Margdense}
+
+Define,
+
+\begin{align*}
+\cdense{}{\t}&(\rxvtsn{\{\tree\pup{1}\setminus\{\root\}\}}{}{1};\xvts{\{\root,1\}}{})\\
+& \defeq\frac{d\mmm{\tree\pup{1}\setminus\{\root,1\}}{0,}{}}{d\mm{\tree\pup{1}\setminus\{\root,1\}}{0,}{}}\exp\left(\sum_{\v\in \tree\pup{1}\setminus\{\root,1\}} \ds{\v}{\t}([\rxvtsn{\{v\}}{}{1},\xvts{\root}{}],\crate{}{}) + \ds{\root}{\t}([\rxvtsn{\tree\pup{1}\setminus\{\root,1\}}{}{1},\xvts{\{\root,1\}}{}],\rate{}) - \ds{\root}{\t}(\xvts{\{\root,1\}}{},\crate{}{})\right)\\
+\end{align*}
+
+Then,
+
+\[\cdense{}{\t}(\rxvtsn{\tree\pup{1}\setminus\{\root\}}{}{1};\xvts{\{\root,1\}}{}) = \frac{\dense{1}{\t}([\rxvtsn{\tree\pup{1}\setminus\{\root\}}{}{1},\xvts{\{\root,1\}}{}])}{\alt{\dense{}{\t}}(\xvts{\{1,\root\}}{})}.\]
+
+By definition,
+
+\[\alt{\dense{}{\t}}(\rxvtsn{\{1,\root\}}{}{1}) = \exmu{\mm{\tree\pup{1}\setminus\{1,\root\}}{\t,}{}(\rxvtsn{\tree\pup{1}\setminus\{1,\root\}}{}{1})}{\dense{1}{\t}([\rxvtsn{\tree\pup{1}\setminus\{\root\}}{}{1},\xvts{\{\root,1\}}{}])}.\]
+
+So,
+
+\[\exmu{\mm{\tree\pup{1}\setminus\{1,\root\}}{\t,}{}}{\cdense{}{\t}(\rxvtsn{\tree\pup{1}\setminus\{\root\}}{}{1};\xvts{\{1,\root\}}{})} = 1.\]
+
+The important thing is that this can be used to extend \(\rxvtsn{}{}{1}\) to a process with nodes in \(\tree\pup{2}\) whose marginal distribution with respect to the nodes on \(\tree\pup{1}\) is equal to \(\rxvtsn{}{}{1}\). To do that, consider the following notation:
+
+\ind Let \(\v \in \V\setminus\{\root\}\). Let \(\c{}:\V\setminus\{\root\} \ra \V^{\degr-1}\) be defined such that \(\c{\v} = (c^1(\v),\dots,c^{\degr-1}(\v))\) are the children of \(\v\). Let \(\p{}:\V\setminus\{\root\}\ra\V\) map nodes to their parents.
+
+\ind We can define the sequence of functions \(\dense{\numb}{\t}: \OmegaV{\tree\pup{\numb}}{\t-} \ra [0,\infty)\) by,
+
+\[\dense{\numb}{\t}(\rxvtsn{}{}{\numb}) := \dense{\numb-1}{\t}(\rxvtsn{\tree\pup{\numb-1}}{}{\numb})\prod_{\v\in \tree\pup{\numb-1}\setminus\tree\pup{\numb-2}} \cdense{}{\t}(\rxvtsn{\c{\v}}{}{\numb};\rxvtsn{\{\v,\root\}}{}{\numb})\]
+
+for \(\numb > 1\) (\(\tree\pup{0} = \{\root\}\)). We can show using induction,
+
+\ind Let \(\mm{\tree\pup{\numb}}{}{} = \mm{}{}{\numb}\) and assume for any \(\U \subseteq \V\), \(\mmm{\U}{0,}{} = \otimes_{\v\in\U}\mmm{\v}{0,}{}\) where \(\{\mmm{\v}{0,}{}:\v\in\V\}\) describes a sequence of i.i.d. \(\S\)-valued random variables. We can show using induction that,
+
+\begin{equation}
+\dense{\numb}{\t}(\rxvtsn{}{}{\numb}) = \frac{d\mmm{}{\t}{\numb}}{d\mm{}{0}{\numb}}\exp\left(\sum_{\v\in\tree\pup{\numb-1}}\ds{\v}{\t}(\rxvtsn{\cl{\v}}{}{\numb},\rate{}) + \sum_{\v\in\tree\pup{\numb}\setminus\tree\pup{\numb-1}} \ds{\v}{\t}(\rxvtsn{\{v,\p{\v}\}}{}{\numb},\crate{}{})\right).
+\label{subsec::ProofU:eqn::densen}
+\end{equation}
+\labe{subsec::ProofU:eqn::densen}
+
+Assume equation \eqref{subsec::ProofU:eqn::densen} holds for \(\dense{\numb-1}{\t}\). Then,
+
+\begin{align*}
+\dense{\numb}{\t}(\rxvtsn{}{}{\numb}) &= \dense{\numb-1}{\t}(\rxvtsn{\tree\pup{\numb-1}}{}{\numb})\prod_{\v\in\tree\pup{\numb-1}\setminus\tree\pup{\numb-2}} \cdense{}{\t}(\rxvtsn{\c{\v}}{}{2};\rxvtsn{\{\v,\p{\v}\}}{}{2})\\
+&=\left(\frac{d\mmm{}{0}{\numb-1}}{d\mm{}{0}{\numb-1}}\prod_{\v\in\tree\pup{\numb-1}\setminus\tree\pup{\numb-2}}\frac{d\mmm{\c{\v}}{0,}{}}{d\mm{\c{\v}}{0,}{}}\right)\exp\Bigg(\sum_{\v\in\tree\pup{\numb-2}}\ds{\v}{\t}(\rxvtsn{\cl{\v}}{}{\numb},\rate{}) + \sum_{\v\in\tree\pup{\numb-1}\setminus\tree\pup{\numb-2}} \ds{\v}{\t}(\rxvtsn{\{\v,\p{\v}\}}{}{\numb},\crate{}{})\\
+&\ind + \sum_{\v\in\tree\pup{\numb-1}\setminus\tree\pup{\numb-2}}\left(\sum_{\vv\in \c{\v}} \ds{\vv}{\t}(\rxvtsn{\{\vv,\v\}}{}{\numb},\crate{}{}) + \ds{\v}{\t}(\rxvtsn{\cl{\v}}{}{\numb},\rate{}) - \ds{\v}{\t}(\rxvtsn{\{\v,\p{\v}\}}{}{\numb},\crate{}{})\right)\Bigg)\\
+&=\frac{d\mmm{}{0}{\numb}}{d\mm{}{0}{\numb}}\exp\left(\sum_{\v\in\tree\pup{\numb-1}}\ds{\v}{\t}(\rxvtsn{\cl{\v}}{}{\numb},\rate{}) + \sum_{\v\in\tree\pup{\numb}\setminus\tree\pup{\numb-1}} \ds{\v}{\t}(\rxvtsn{\{\v,\p{\v}\}}{}{\numb},\crate{}{})\right).
+\end{align*}
+
+By a simple calculation analogous to what we did earlier to show that \(\dense{1}{\t}\) was a Radon-Nykodim derivative, we can apply Proposition \ref{subsec::Prope:Prop::radnikder} to prove that this is the Radon-Nikodym derivative of a marked point process. 
+
+\ind For each \(\numb > 1\), define \(\mmm{}{}{\numb} \in \pmsr(\OmegaV{\tree\pup{\numb}}{\T-})\) by,
+
+\[\frac{d\mmm{}{\t}{\numb}}{d\mm{}{\t}{\numb}} = \dense{\numb}{\t}(\rxvtsn{}{}{\numb}).\]
+
+Then,
+
+\begin{align*}
+\frac{d\piV{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb})}{d\mm{}{\t}{\numb-1}} &= \int_{\OmegaV{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t-}} \frac{d\mmm{}{\t}{\numb}}{d\mm{}{\t}{\numb}}\,\mm{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t,}{}(d\rxvtsn{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{}{\numb})\\
+&=\int_{\OmegaV{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t-}} \dense{\numb}{\t}(\rxvtsn{}{}{\numb})\,\mm{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t,}{}(d\rxvtsn{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{}{\numb})\\
+&= \int_{\OmegaV{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t-}} \dense{\numb-1}{\t}(\rxvtsn{\tree\pup{\numb-1}}{}{\numb})\prod_{\v\in \tree\pup{\numb-1}\setminus\tree\pup{\numb-2}} \cdense{}{\t}(\rxvtsn{\c{\v}}{}{\numb};\rxvtsn{\{v,\p{\v}\}}{}{\numb})\,\mm{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t,}{}(d\rxvtsn{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{}{\numb})\\
+&= \dense{\numb-1}{\t}(\rxvtsn{\tree\pup{\numb-1}}{}{\numb})\prod_{\v\in \tree\pup{\numb-1}\setminus\tree\pup{\numb-2}}\int_{\OmegaV{\c{\v}}{\t-}} \cdense{}{\t}(\rxvtsn{\c{\v}}{}{\numb};\rxvtsn{\{v,\p{\v}\}}{}{\numb})\,\mm{\c{\v}}{\t,}{}(d\rxvtsn{\c{\v}}{}{\numb})\\
+&= \dense{\numb-1}{\t}(\rxvtsn{\tree\pup{\numb-1}}{}{\numb})\prod_{\v\in \tree\pup{\numb-1}\setminus\tree\pup{\numb-2}}\exmu{\mm{\c{\v}}{\t,}{}}{\cdense{}{\t}(\rxvtsn{\c{\v}}{}{\numb};\rxvtsn{\{v,\p{\v}\}}{}{\numb})}\\
+&= \dense{\numb-1}{\t}(\rxvtsn{\tree\pup{\numb-1}}{}{\numb}).
+\end{align*}
+
+This proves that \(\piV{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb}) = \mmm{}{\t}{\numb-1}\). Furthermore, for any \(\alt{\numb} < \numb\),
+
+\[\piV{\tree\pup{\alt{\numb}}}{\t}(\mmm{}{\t}{\numb}) = \piV{\tree\pup{\alt\numb}}{\t}\circ\piV{\tree\pup{\alt{\numb} + 1}}{\t} \circ\cdots\circ \piV{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb}) = \piV{\tree\pup{\alt\numb}}{\t}\circ\piV{\tree\pup{\alt{\numb} + 1}}{\t} \circ\cdots\circ \piV{\tree\pup{\numb-2}}{\t}(\mmm{}{\t}{\numb-1}) = \cdots = \mmm{}{\t}{\alt{\numb}}.\]
+
+\ind Fix \(\numb\in\mb{N}\). By Lemma \ref{subsec::Some:Lem::radnik}, \(\mmm{}{}{\numb}\) can be described as the law of the unique solution to equation \eqref{subsec::ProofU:eqn::extendedSDE}.
+\end{proof}
+
+\lin
+
+For any \(\U\subseteq \V\), we can consider the embedding \(\pmsr\left(\OmegaV{\U}{\t-}\right) = \pmsr\left((\OmegaV{\U}{\t-},\F{\U}{\t-})\right) \subseteq \pmsr\left((\OmegaV{\V}{\t-},\F{\U}{\t-})\right)\). That is, a measure \(\mmm{}{}{}\in \pmsr\left(\OmegaV{\U}{\t-}\right)\) can be considered as a \(\F{\U}{}\)-adapted measure on \(\OmegaV{\V}{\t-}\).
+
+\ind Let's summarize what we have so far. We have a sequence of measures \(\{\mmm{}{}{\numb}:\numb\in\mb{N}\} \subset \pmsr(\OmegaV{\V}{\T-})\) satisfying:
+
+\begin{enumerate}[(a)]
+\item \(\mmm{}{}{1}\) solves equation \eqref{sec::Main:eqn::Local SDE}.
+
+\item \(\mmm{}{}{\numb}(\rxvtsn{\tree\pup{\alt{\numb}}}{}{\numb} \in \cdot) = \mmm{}{}{\alt{\numb}}(\rxvtsn{\tree\pup{\alt{\numb}}}{}{\alt{\numb}}\in \cdot)\) for all \(\numb \geq \alt{\numb}\).
+
+\item \(\frac{d\mmm{}{\t}{\numb}}{d\mm{}{\t}{\numb}} = \dense{\numb}{\t}(\rxvtsn{}{}{\numb})\).
+\end{enumerate}
+
+Let \(\{\mmm{\U}{\t,}{}:\t \leq \T\}_{\U\subset \V,\U\te{ finite}}\) be a collection of measures defined by
+
+\[\mmm{\U}{\t,}{}(\cdot) = \mmm{}{\t}{\numb}(\rxvtsn{}{[0,\t)}{\numb} \in \cdot) \te{ for any }\numb\te{ s.t. }\U \subseteq \tree\pup{\numb}.\]
+
+By property (b) above, this is well-defined. Since each \(\mmm{\U}{}{}\) is a probability measure defined on the Borel sets of \(\OmegaV{\U}{\T-}\), they are all inner regular (\tr{citation?}). Now, fix some finite \(\U\subseteq \V\) and let \(\UU \subseteq \U\). Suppose \(\numb\) is such that \(\U \subseteq \tree\pup{\numb}\). Then \(\UU\subseteq \tree\pup{\numb}\), so
+
+\[\piV{\UU}{\t}(\mmm{\U}{\t,}{})(\cdot) = \mmm{\U}{\t,}{}\left(\piV{\UU}{\t}(\rxvtsn{\U}{}{\numb}) \in \cdot\right) = \mmm{}{\t}{\numb}\left(\rxvtsn{\UU}{}{\numb} \in \cdot\right) = \mmm{\UU}{\t,}{}(\cdot).\]
+
+Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied. Therefore, there exists a \(\mmm{}{}{}\in \ms{P}(\OmegaV{\U}{\T-})\) such that \(\piV{\U}{\T-}(\mmm{}{}{}) =\mmm{\U}{}{}\) for all finite \(\U\). \tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
+
+\ind In particular, there exists a probability space with canonical process \(\rxvts{}{}\) such that \(\mmm{}{}{} = \law(\rxvts{}{[0,\T)})\) and \(\mmm{\v}{}{} = \law(\rxvts{\v}{[0,\T)})\) for all \(\v \in \V\). In particular, this means that \(\law(\rxvts{\tree\pup{\numb}}{[0,\T)}) = \mmm{\tree\pup{\numb}}{}{} = \mmm{}{}{\numb}\). Since \(\rxvts{\tree\pup{\numb}}{} \ra \rxvts{}{}\) almost surely (we are in the topology of componentwise convergence), \(\mmm{}{}{\numb} \Rightarrow \mmm{}{}{}\). In order to characterize \(\rxvts{}{}\) and \(\mmm{}{}{}\), we construct a stochastic differential equation on a probability space on which \(\rxvtsn{}{}{\numb} \sim \mmm{}{}{\numb}\) and \(\rxvtsn{}{}{\numb} = \rxvts{\tree\pup{\numb}}{}\) almost surely. \tr{I don't know if it's clear, but we are taking \(\rxvtsn{}{}{\numb}\) and \(\rxvts{}{}\) as given in this probability space.}
+
+\ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. The result is given in \cite[Exercise 14.7.1]{DalVer08} \tr{TODO: rigorously solve this exercise myself}).
+
+\ind Let \(\alt{\S}^\numb = \{\s\ev{\v}: \s\in\S,\v \in \tree\pup{\numb}\}\). Let \(\alt{\Sm}\pup{\numb}\) be the measure on \(\alt{\S}^\numb\) defined by \(\alt{\Sm}\pup{\numb}(\{\s\ev{\v}\}) = \mb{I}_{\v \in \tree\pup{\numb}}\Sm(\s)\). Let \(\{\rt{\numb,\it}_\v,\mark{\numb,\it}_{\v}\}\) be the jump sizes and jump times of \(\rxvtsn{\v}{}{\numb}\). Let \(\alt{\poiss{\numb}}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{S}^\numb\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^\numb\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{S}^{\numb-1}\times \mb{R}^+)\), then \(\alt{\poiss{\numb}}(\evnt\times \{0\}^{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}) = \alt{\poiss{\numb-1}}(\evnt)\). Assume \(\{\alt{\poiss{\numb}}:\numb\in\mb{N}\}\) are independent of \(\{\rxvts{}{},\rxvtsn{}{}{\numb}:\numb\in\mb{N}\}\). Let \(\{\rv_{\v}^{\itt}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
+
+\ind Recall the mapping \(\pmap{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{\numb} = \pmap{}(\rxvtsn{}{}{\numb})\). Then the intensity of \(\rp{\numb}\) is given by,
+
+\[\rate{\numb}(\t,\sv{}{\tree\pup{\numb}}) = \begin{cases}
+\rate{}(\rxvtn{\cl{\v}}{\t-}{\numb},\s) &\te{ if } \sv{}{\tree\pup{\numb}} = \s\ev{\v},\s \in \S\setminus\{0\},\v\in\tree\pup{\numb-1}\\
+\crate{}{}(\rxvtsn{\{\v,\p{\v}\}}{[0,\t)}{\numb},\s) &\te{ if } \sv{}{\tree\pup{\numb}} = \s\ev{\v},\s\in\S\setminus\{0\},\v\in\tree\pup{\numb}\setminus\tree\pup{\numb-1}\\
+0 &\te{ otherwise.}
+\end{cases}\]
+
+For any \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^\numb\times\mb{R}^+)\), define
+
+\[\poiss{\numb}(\evnt) = \alt{\poiss{\numb}}\left(\evnt\cap\{(t,\sv{}{\tree\pup{\numb}},\r):\r > \rate{\numb}(\t,\sv{}{\tree\pup{\numb}})\}\right) + \#\{(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v,\rv_{\v}^{\it}\rate{\numb}(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v) \in \evnt: \v\in \tree\pup{\numb}\}.\]
+
+Then \(\poiss{\numb}\) is a Poisson random measure on \(\mb{R}^+\times\alt{\S}^\numb\times \mb{R}^+\) with intensity measure \(d\t\times \alt{\Sm}^\numb\times d\r\) (see proof of \cite[Theorem 14.7.1(b)]{DalVer08})\tr{TODO:: double check for any subtleties involving the slightly larger filtration on which \(\rate{\numb}\) is defined.}
+
+\ind Notice that for any \(\evnt \in \ms{B}(\mb{R}^+\times \alt{\S}^{\numb-2}\times \mb{R}^+)\), \(\poiss{\numb}(\evnt\times \{0\}^{\tree\pup{\numb}\setminus\tree\pup{\numb-2}}) = \poiss{\numb-1}(\evnt\times\{0\}^{\tree\pup{\numb-1}\setminus\tree\pup{\numb-2}})\) almost surely. Define the random measure \(\poiss{}\) on \(\ms{B}(\mb{R}^+\times \{\s\ev{\v}:\s\in \S,\v \in \V\}\times \mb{R}^+)\) by,
+
+\[\poiss{}(\evnt) = \lim_{\numb \ra\infty}\poiss{\numb}\left(\piV{\tree\pup{\numb}}{}(\evnt)\cap\left(\mb{R}^+\times(\alt{\S}^{\numb-1}\times\{0\}^{\tree\pup{\numb}\setminus\tree\pup{\numb-1}})\times\mb{R}^+\right)\right).\]
+
+Here \(\piV{\tree\pup{\numb}}{}(\evnt)\) is the of \(\evnt\) to \(\mb{R}^+\times \alt{\S}^\numb\times\mb{R}^+\). 
+
+\ind Notice that this limit exists almost surely, because it is the limit of an almost surely monotonically increasing sequence. Let \(\poiss{\v}\) be random measures on \(\mb{R}^+\times\S\times\mb{R}^+\) with intensity \(d\t\times\Sm(d\s)\times d\r\). Define it by,
+
+\[\poiss{\v}(\evnt) = \poiss{}\left(\{(\t,\s\ev{\v},\r):(\t,\s,\r)\in \evnt\}\right) \te{ for } \evnt \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+).\]
+
+Similarly define,
+
+\[\alt{\poiss{\v}}(\evnt) = \poiss{\numb}\left(\{(\t,\s\ev{\v},\r):(\t,\s,\r)\in \evnt\}\right)\te{ for } \evnt \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+)\te{ and }\numb\te{ such that } \v\in \tree\pup{\numb}.\]
+
+Then \(\{\poiss{\v}\}\) and \(\{\alt{\poiss{\v}}\}\) are both sequences of i.i.d. Poisson processes. Furthermore, for any \(\numb \in \mb{N}\), \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\pup{\numb-1},\vvv\in\tree\pup{\numb}\setminus\tree\pup{\numb-1}\}\) are i.i.d.
+
+\lin
+
+\begin{lem}
+The claims above are true. Namely, \(\poiss{\numb}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{\numb}}\times d\r\), \(\{\poiss{\v}:\v\in\V\}\) and \(\{\alt{\poiss{\v}}:\v\in\V\}\) are both sequences of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\pup{\numb-1},\vvv\in\tree\pup{\numb}\setminus\tree\pup{\numb-1}\}\) are i.i.d. for any \(\numb \in \mb{N}\).
+
+\label{subsec::ProofU:Lem::Poisson}
+\end{lem}
+\labe{subsec::ProofU:Lem::Poisson}
+\begin{proof}
+
+We begin by characterizing \(\poiss{\numb}\) for some fixed \(\numb\in \mb{N}\). By the R\'enyi-M\"onch theorem \cite[Theorem 9.2.XII]{DalVer08}, it suffice to prove that,
+
+\[\pr\left(\poiss{\numb}(\inte\times \s\ev{\v}\times \alt{\inte}) = 0\right) = \exp\left(-|\inte||\alt{\inte}|\Sm(\s)\right),\]
+
+for all finite intervals \(\inte,\alt{\inte}\subseteq \mb{R}^+\) and \(\v\in \tree\pup{\numb},\s\in \S\setminus\{0\}.\) \tr{technically that is only true if we want to characterize \(\poiss{\numb}\) on a bounded set, but we are only interested in the values \(\poiss{\numb}\) takes on the set \([0,\T)\times \S\times [0,\const{}]\).}
+
+Let \(\inte = [a,b)\) and \(\alt{\inte} = [a',b')\). Let \(\evnt = \{\poiss{\numb} =0\}\). Then,
+
+\begin{align*}
+\evnt &= \left\{\alt{\poiss{\numb}}\left(\{(\t,\s\ev{\v},\r):\t\in \inte,\r\in \alt{\inte}, \r > \rate{\numb}(\t,\s\ev{\v})\}\right) =0 \right\} \cap \{\nexists \rt{\numb,\it}_{\v} \in \inte \te{ such that } \mark{\numb,\it}_\v = \s\}\\
+&\defeq \evnt_1 \cap \evnt_2
+\end{align*}
+
+We can use this to decompose the probability into \(\pr(\evnt) = \pr(\evnt_1|\evnt_2)\pr(\evnt_2)\). Recall that \(\rxvtsn{}{}{\numb}\) and \(\alt{\poiss{\numb}}\) are independent, so \(\alt{\poiss{\numb}}\) is independent of \(\evnt_2\). In particular, this also means that \(\alt{\poiss{\numb}}\) is still a Poisson process when conditioned on \(\evnt_2\). Let \(\evnt_1' = \{(\t,\{\s\},\r): (\t,\r) \in \inte\times\alt{\inte},\r> \rate{\numb}(\t,\s\ev{\v})\}\). Then,
+
+\begin{align*}
+\ex{\poiss{\numb}(\evnt_1')\mb{I}_{\evnt_2}} &= \ex{\Sm(\s)\int_a^b\int_{a'}^{b'} \mb{I}_{\r > \rate{\numb}(\t,\s\ev{\v})}\mb{I}_{\evnt_2}\,d\r\,d\t}\\
+\pr(\evnt_1|\evnt_2) &= \pr\left(\poiss{\numb}(\evnt_1')= 0|\evnt_2\right) = \exp\left(-\ex{\poiss{\numb}(\evnt_1')\mb{I}_{\evnt_2}}/\pr(\evnt_2)\right).
+\end{align*}
+
+Now, because \(\rate{\numb}\) is the jump-rate of \(\pmap{}(\rxvtsn{}{}{\numb})\), we can write,
+
+\[\ex{\#\{(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v,\rv_\v^\it \rate{\numb}(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v)) \in \inte\times \{\s\ev{\v}\}\times\alt{\inte}\setminus \evnt_1'\}} = \Sm(\s)\int_a^b\int_{a'}^{b'} \pr\left(\r \leq \rate{\numb}(\t,\s\ev{\v})\right)\,d\r\,d\t\] 
+
+Then,
+
+\begin{align*}
+\pr(\evnt) &=\pr(\evnt_1)\pr(\evnt_2)\\
+&= \exp\left(-\Sm(\s)\left(\int_a^b\int_{a'}^{b'} \pr\left(\r > \rate{\numb}(\t,\s\ev{\v})\right) + \pr\left(\r \leq \rate{\numb}(\t,\s\ev{\v})\right)\,d\r\,d\t\right)\right)\\
+&=\exp\left(-\Sm(\s)\left(\int_a^b\int_{a'}^{b'}\,d\r\,d\t\right)\right)\\
+&=\exp\left(-|\inte||\alt{\inte}|\Sm(\s)\right).
+\end{align*}
+
+Now, notice that if \(\evnt \in \ms{B}(\mb{R}^+\times\mb{R}^+)\times \{\s\ev{\v}\}\), then \(\poiss{}(\evnt) = \poiss{\numb}(\evnt)\) is constant for all \(\numb\) such that \(\v \in \tree\pup{\numb-1}\). Thus, \(\{\poiss{\v}:\v \in \V\}\) can be expressed as \(\poiss{}\) restricted to disjoint sets. Since \(\poiss{}\) is Poisson, we can conclude that \(\{\poiss{\v}\}\) are i.i.d.
+
+\ind The final statement comes from the fact that \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\pup{\numb-1},\vvv\in\tree\pup{\numb}\setminus\tree\pup{\numb-1}\}\) are restrictions of \(\poiss{\numb}\) to disjoint sets of equal measure.
+\end{proof}
+\lin
+
+Let \(\{\poiss{\v},\alt{\poiss{\v}}:\v\in\V\}\) be constructed as above. Then \(\rxvtsn{}{}{\numb}\) almost surely solves the equation,
+
+\begin{equation}
+\rxvtn{\v}{\t}{\numb} = \begin{cases}
+\rxvtn{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\crate{}{}(\rxvtsn{\{\v,\p{\v}\}}{[0,\tt)}{\numb},\s)]}\s\alt{\poiss{\v}}(d\tt,d\s,d\r)\te{ for } \v \in \tree\pup{\numb}\setminus\tree\pup{\numb-1}\\
+\rxvtn{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\rxvtn{\cl{\v}}{\tt-}{\numb},\s)]}\s\,\poiss{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\pup{\numb-1}.
+\end{cases}
+\label{subsec::ProofU:eqn::ExtendedSDE_fixedPoisson}
+\end{equation}
+\labe{subsec::ProofU:eqn::ExtendedSDE\_fixedPoisson}
+
+By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. By Lemma \ref{subsec::ProofU:Lem::extendedSDE}, \(\te{law}(\rxvtsn{}{}{\numb}) = \mmm{}{}{\numb}\). By construction, \(\piV{\tree\pup{\numb}}{\T-}(\rxvts{}{}) = \rxvtsn{}{}{\numb}\) for all \(\numb\in\mb{N}\).
+
+\ind Fix any \(\v\in\V\). Let \(\numb\in \mb{N}\) be any natural number such that \(\v\in \tree\pup{\numb-1}\). Then for any \(\t \in [0,\T)\),
+
+\begin{align*}
+\rxvt{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\rxvt{\cl{\v}}{\tt-},\s)]}\s\poiss{\v}(d\r,d\s,d\tt) &= \rxvt{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\rxvtn{\cl{\v}}{\tt-}{\numb},\s)]}\s\poiss{\v}(d\r,d\s,d\tt)\\
+&=\rxvtn{\v}{\t}{\numb} = \rxvt{\v}{\t}.
+\end{align*}
+
+Thus, \(\rxvts{}{}\) is a solution to the coupled equation,
+
+\begin{equation}
+\rxvt{\v}{\t} = \rxvt{\v}{0} + \int_{(0,\t]}\int_\S \int_{(0,\rate{}(\rxvts{}{\tt-},\s)]}\s\,\poiss{\v}(d\r,d\s,d\tt).
+\label{subsec::ProofU:eqn::XSDE}
+\end{equation}
+\labe{subsec::ProofU:eqn::XSDE}
+
+However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m{}{}{}\). Thus, \(\mmm{}{}{} = \m{}{}{}\). We conclude that \(\mmm{}{}{1} = \piV{\tree\pup{1}}{\T-}(\m{}{}{})\).
+
+\end{proof}
+\newpage
+\appendix
+
+\section{Infinitesimal Generators}
+\label{sec::Infin}\labe{sec::Infin}
+
+Let \(\mc{X}\) be a compact and countable set. \tr{For most of the paper, \(\mc{X} = S^V\) which is compact with respect to the topology of componentwise convergence.}
+
+Let \(\mc{C}(\mc{X})= \{f:\mc{X} \ra \mb{R} \te{ continuous}\}\).
+
+\begin{defn}
+A Feller process on \(\mc{X}\) is a collection of probability measures \(\{\pr^x:x \in \mc{X}\}\) on \(\cad([0,\infty),\mc{X})\) with canonical process \(X\) such that
+
+\begin{enumerate}[(a)]
+\item \(\pr^x(X_0 = x) = 1\) for all \(x \in \mc{X}\).
+
+\item The mapping \(x \mapsto \pr^x(A)\) is measurable for every \(\sigma(X)\)-measurable set \(A\).
+
+\item \(\pr^x(X_{s+\cdot} \in A|X_r:r \in [0,s]) = \pr^{X_s}(A)\) for all \(A \in \sigma(X)\) and \(x \in \mc{X}\).
+
+\item For all \(f\in \mc{C}(\mc{X})\), the mapping \(x\mapsto \mb{E}^x[f(X_t)]\) is also continuous.
+\end{enumerate}
+\label{sec::Infin:Def::Feller}
+\end{defn}
+\labe{sec::Infin:Def::Feller}
+
+\textbf{Source: } This definition is adapted from \cite[Definition 1.1,1.2]{Lig85}.
+
+\textbf{Remark: } We will also refer to a probability measure \(\mu \in \mc{P}(\cad([0,T],\mc{X}))\) as Feller if
+
+\begin{enumerate}[(a)]
+\item There exists an measure \(\ov{\mu}\in \mc{P}(\cad([0,\infty),\mc{X}))\) such that \(\ov{\mu}|_{\cad([0,T],\mc{X})} = \mu\).
+
+\item There exists a probability measure \(\nu\in \mc{P}(\mc{X})\) and a Feller process \(\{\ov{\mu}^x:x \in \mc{X}\}\) such that 
+
+\[\ov{\mu}(\cdot) = \int_{\mc{X}} \ov{\mu}^x(\cdot)\,d\nu(x).\]
+\end{enumerate}
+
+\textbf{Another Remark: } Given a c\`adl\`ag \(\mc{X}\)-valued random process \(\rxvts{}{}\), we say \(\rxvts{}{}\) is Feller if,
+
+\[\left\{\law\left(\rxvts{}{}\middle|\rxvt{}{0} = \xvts{}{}\right): \xvts{}{} \in \mc{X}\right\}\]
+
+satisfies Definition \ref{sec::Infin:Def::Feller}.
+
+\purpose As shown later, there is a bijection between Feller processes and Infinitesimal generators. This allows us to express the process \(\mu\) in terms of its infinitesimal generator in equation \eqref{subsec::Notat:Eqn::IG}.
+
+\begin{defn}
+An infinitesimal generator is a (possibly unbounded) linear operator \(\IG{}\) on the space of continuous functions \(\mc{C}(\mc{X})\) paired with a dense domain \(\mc{D}(\IG{}) \subseteq \mc{C}(\mc{X})\) satisfying the following properties:
+
+\begin{enumerate}
+\item If \(f \in \mc{D}(\IG{})\), \(a \geq 0\) and \(g:= f - a\IG{} f\), then 
+
+\[\inf_{x \in S} f(x) \geq \inf_{x \in S} g(x)\]
+
+\noindent In particular, this implies that \(\|f\| \leq \|f - a\IG{} f\|\).
+
+\item For all sufficiently small \(a > 0\), \(I - a\IG{}\) is surjective as a mapping from \(\mc{D}(\IG{})\) to \(\mc{C}(\mc{X})\).
+
+\item \(1 \in \mc{D}(\IG{})\) and \(\IG{} 1 = 0\).
+\end{enumerate}
+\label{sec::Infin:Def::IG}
+\end{defn}
+\labe{sec::Infin:Def::IG}
+
+\textbf{Source: }\cite[Definitions 2.1,2.7]{Lig85}
+
+\purpose This is an abstract definition of the class of unbounded operators that can be infinitesimal generators. The more well-known definition of infinitesimal generators arises from the bijection between Feller Processes and infinitesimal generators (Proposition \ref{sec::Infin:Thm::Bij}).
+
+\begin{thms}
+There is a bijection between infinitesimal generators and Feller processes. Furthermore, the infinitesimal generator \(\IG{}\) can be obtained from the Feller process \(\mu\) by the following relation:
+
+\begin{equation}
+\mc{A}f(x) = \lim_{t\searrow 0} \frac{1}{t}\left(\mb{E}^\mu[f(X_t)|X_0=x] - f(x)\right)
+\label{sec::Infin:eqn::FellerIG}
+\end{equation}
+\labe{sec::Infin:eqn::FellerIG}
+\label{sec::Infin:Thm::Bij}
+\end{thms}
+\labe{sec::Infin:Thm::Bij}
+
+\purpose This proves that infinitesimal generators characterize Feller processes.
+
+\pfsum Apply \cite[Theorem 1.5,2.9]{Lig85}.
+
+\begin{defn}
+Let \(\IG{}\) be an infinitesimal generator. A dense subset \(\core\subset \core(\IG{})\) is called a core of \(\IG{}\) if \(\IG{}\) is the closure of the operator \(\IG{}|_\core\).
+\label{sec::Infin:Def::core}
+\end{defn}
+\labe{sec::Infin:Def::core}
+
+\textbf{Source: }\cite[Definition 2.11]{Lig85}
+
+\purpose \(\core(\IG{})\) is extremely difficult to characterize in general. However, we can explicitly derive the core of the processes we are interested in.
+
+\begin{thms}[Trotter-Kurtz]
+Suppose \(\IG{n}\) and \(\IG{}\) are generators of Feller processes \(\mu_n\) and \(\mu\) respectively. If there is a core \(\core\) for \(\IG{}\) such that \(\core \subset \mc{D}(\IG{n})\) for all \(n\) and \(\IG{n} f \ra \IG{} f\) for all \(f \in \core\), then 
+
+\[\exmu{\mu_n}{f(Z_t)|Z_0=\cdot} \ra \exmu{\mu}{f(Z_t)|Z_0=\cdot}\]
+
+uniformly in \(t\) for all \(f \in \mc{C}(\mc{X})\).
+\label{sec::Infin:Thm::TrotterKurtz}
+\end{thms}
+\labe{sec::Infin:Thm::TrotterKurtz}
+
+\purpose This shows that convergence of infinitesimal generators implies convergence of the process in "a sense." This is used to prove Corollary \ref{sec::Infin:Cor::Convergence}, which tells us when convergence of infinitesimal generators gives us weak convergence of the corresponding Feller processes.
+
+\pfsum Apply \cite[Theorem 2.12]{Lig85}
+
+\begin{coro}
+In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, suppose that \(\{\mu_n\}\) are tight and that \((\mu_n)_0 \Rightarrow \mu_0\). Then \(\mu_n \Rightarrow \mu'\).
+\label{sec::Infin:Cor::Convergence}
+\end{coro}
+\labe{sec::Infin:Cor::Convergence}
+
+\purpose We use this theorem to prove that our exact local representation on the infinite graph is a good approximation on large finite graphs.
+
+\pfsum Use the same methods as in the proof of \cite[Theorem 4.2]{Kur81} to show weak convergence of the finite dimensional distributions. Apply \cite[Theorem 13.1]{Bil99} to get weak convergence.
+
+\section{Point Processes}
+\label{sec::Point}\labe{sec::Point}
+
+\subsection{Properties of Point Processes}
+\label{subsec::Prope:sec::Point}\labe{subsec::Prope:sec::Point}
+
+\begin{defn}
+Let \(\mc{X}\) be a Polish space. Let \(Y\) be a random non-negative integer valued measure on \(\mc{X}\) such that \(\sup_{x \in \mc{X}} Y(\{x\})\leq 1\) almost surely. Then \(Y\) is called a simple point process on \(\mc{X}\) and the random set \(E = \{x \in \mc{X}: Y(\{x\}) = 1\}\) is the set of events in \(\mc{X}\). In the case where \(\mc{X} \subseteq [0,\infty)\), we use the notation \(Y_t := Y([0,t])\). We also use the notation \(E = \{\tau_i\}_{i=1}^{\infty}\) where \(\tau_i < \tau_{i+1}\) almost surely for all \(i\). We will use \(E = \{t_i\}\) to denote a sample from \(\{\tau_i\}\).
+\label{subsec::Prope:Def::SPP}
+\end{defn}
+\labe{subsec::Prope:Def::SPP}
+
+\textbf{Source: }\cite[Definition 9.1.II]{DalVer08}
+
+\purpose Used to define Marked point processes.
+
+\begin{defn}
+Let \(\mc{K}\) be a Polish space. Let \(Y\) be a simple point process on \([0,\infty)\times \mc{K}\). Define \(Y_g\) by \(Y_g(A) = Y(A\times \mc{K})\) for all \(A \in \ms{B}([0,\infty))\). If \(Y_g\) is a simple point process on \([0,\infty)\), then \(Y\) is a simple marked point process on \([0,\infty)\times \mc{K}\). If \((t,k) \in E\), then we call \(t\) an event of \(Y\) and \(k\) is the corresponding mark. We will generally write \(E = \{(\tau_i,\kappa_i)\}_{i=1}^{\infty}\) where \(\tau_i < \tau_{i+1}\) almost surely for all \(i\). Sample events are written as \(E = \{(t_i,k_i)\}\). 
+\label{subsec::Prope:Def::MPP}
+\end{defn}
+\labe{subsec::Prope:Def::MPP}
+
+\textbf{Source: }\cite[Definition 6.4.I]{DalVer03}.
+
+\purpose Jump Markov processes can be characterized by marked point processes. This allows us to apply point process theory to processes that satisfy Assumption \ref{subsec::Assum:Assu::Local}.
+
+\begin{defn}
+A marked point process \(Y\) is called non-explosive if \(\ex{(Y_g)_T} < \infty\). (Based on boundedly finite measures \cite[Definition 9.1.I]{DalVer08}.
+\label{subsec::Prope:Def::non-explosive}
+\end{defn}
+\labe{subsec::Prope:Def::non-explosive}
+
+\textbf{Source: } Called boundedly finite measures in \cite[Definition 9.1.I]{DalVer08}.
+
+\purpose This is an assumption used in several theorems in \cite{DalVer03} and \cite{DalVer08}.
+
+\begin{defn}
+A non-explosive simple point process \(Y\) on \([0,\infty)\) adapted to some filtration \(\{\mc{F}_t\}\) is said to have intensity \(\lambda_t\) if \(\lambda_t\) is \(\mc{F}_t\)-predictable and \(Y_{t\wedge \tau_n} - \int_0^{t\wedge \tau_n} \lambda_s\,ds\) is a Martingale for all \(n\) where \(\tau_n = \sup\{t \in \mb{R}_+: Y_t < n\}\). 
+\label{subsec::Prope:Def::SI defn}
+\end{defn}
+\labe{subsec::Prope:Def::SI defn}
+
+\textbf{Source: } \cite[Definitions 14.3.I,14.1.I]{DalVer08}
+
+\purpose See Definition \ref{subsec::Prope:Def::MI defn}.
+
+\begin{defn}
+Let \(Y\) be a non-explosive marked point process on the Polish space \([0,\infty)\times \mc{K}\) adapted to some filtration \(\mc{F}_t\). Let \(\ell\) be some fixed non-negative measure on \(\mc{K}\) which we will call the reference measure on \(\mc{K}\). Then \(Y\) is said to have \(\mc{F}_t\)-predictable intensity \(\lambda(t,k)\) if for all \(K \in \ms{B}(\mc{K})\), \(\int_K \lambda(t,k)\ell(dk)\) is the \(\mc{F}_t\)-predictable intensity of \(Y([0,t]\times K)\). 
+\label{subsec::Prope:Def::MI defn}
+\end{defn}
+\labe{subsec::Prope:Def::MI defn}
+
+\textbf{Source: }\cite[Definition 14.3.I]{DalVer08}
+
+\purpose Section \ref{subsec::ProofU:sec::Proof2} makes heavy use of relative likelihoods of Marked point processes which can be written in terms of the intensity of the process.
+
+\begin{prop}
+Suppose \(Y\) is a \(\mc{F}\)-adapted non-explosive marked point process on \([0,\infty)\times \mc{K}\) with \(\mc{F}\)-predictable intensity \(\lambda\). Suppose \(\mc{F}_t\) can be expressed in the form \(\mc{F}_t = \mc{F}_0\wedge \mc{H}_t\) where \(\mc{H}_t\) is the natural history of \(Y\) and \(\mc{F}_0 = \sigma(X_0)\) for some random variable \(X_0\). Let \(E = \{(\tau_n,\kappa_n)\}\) be the sequence of events of \(Y\) increasing in \(\tau\). Then \(\lambda\) uniquely characterizes \(Y\).
+\label{subsec::Prope:Prop::intense char}
+\end{prop}
+\labe{subsec::Prope:Prop::intense char}
+
+\purpose This means that for non-explosive point processes, it is enough to know the intensity. This is why the statement of Proposition \ref{subsec::Prope:Prop::radnikder} is meaningful.
+
+\pfsum Apply \cite[Propositions 14.3.II(b),14.2.IV(c) and 9.2.III]{DalVer08}. There is one extra technical condition that we have to proof holds which we can show using \cite[Proposition A1.5.III]{DalVer03}.
+
+\lin
+
+\begin{lem}
+Suppose \(Y\) is a marked process with \(\mc{F}'_t\)-predictable ground intensity \(\lambda_t\) bounded by some \(B < \infty\). Assume \(Y\) has marks in \(K\) and \(\lambda\) is defined with respect to the reference measure \(\ell\) on \(K\). Then for all \(K \in \ms{B}(\mc{K})\), \(Y([0,t]\times K) - \int_0^t\int_K \lambda(s,\kappa)\,\ell(d\kappa)\,ds\) is a Martingale.
+\label{Subsec::Prope:Lem::easier}
+\end{lem}
+\labe{Subsec::Prope:Lem::easier}
+
+\begin{proof}
+Fix some \(K \in \ms{B}(\mc{K})\). Let \(\lambda_K(t) = \lambda(t,K)\). Let \(Y_K(\cdot) = Y(\cdot\times K)\). Then \(\lambda_K(t) \leq \lambda(t,\mc{K}) \leq B\). Therefore \(Y_K\) is a simple point process with bounded intensity. Reduce to the case of a simple point process (\(\mc{K} = \{0\}, K = \mc{K}, Y = Y_K,\lambda(t) = \lambda_K(t)\)).
+
+Let \(M(t) = Y(t) - \int_0^t \lambda(s)\,ds\). Let \(\tau_n\) be as in definition \ref{Subsec::Prop:Def::SI defn}. Notice for all \(n\),
+
+\[|M(t\wedge \tau_n)| \leq \max\{Y(t\wedge \tau_n),tB\}\leq \max\{Y(t),tB\}\]
+
+So \(M(t\wedge\tau_n)\) is dominated by \(\max\{Y(t),tB\}\), and \(\ex{\max\{Y(t),tB\}} \leq \ex{Y(t) + tB} \leq 2tB < \infty\). By dominated convergence,
+
+\[\ex{M(t)|\mc{F}'_s} = \ex{\lim_{n\ra\infty} M(t\wedge \tau_n)\middle|\mc{F}'_s} = \lim_{n\ra\infty}\ex{M(t\wedge \tau_n)|\mc{F}'_s} = \lim_{n\ra\infty} M(s\wedge \tau_n) = M(s)\]
+\end{proof}
+
+\lin
+
+\begin{lem}
+Let \(Y\) be a marked point process with bounded \(\mc{F}'_t\)-predictable ground intensity \(\lambda_g\leq B\). Suppose that for any \(K \subseteq \mc{K}\), \(\lambda(t,K)\) is almost surely left-continuous. Then for any \(K \subseteq \mc{K}\),
+
+\[\lambda(t,K) = \lim_{s\searrow 0}\frac{1}{s}\ex{Y((t,t+s]\times K)|\mc{F}'_{t-}}\]
+
+\tb{There is a slight subtlety here. We need to know that the intensity exists and that it is left-continuous and uniformly bounded for this lemma to hold. Otherwise, this can fail in a number of ways. Proving existence of the intensity is fine, but left-continuity can be tricky.}
+
+\label{Subsec::Prope:Lem::easy intense calc}
+\end{lem}
+\labe{Subsec::Prope:Lem::easy intense calc}
+
+\begin{proof}
+By Lemma \ref{Subsec::Prope:Lem::easier}, we can use the Martingale definition of intensity.
+
+\begin{align*}
+\lim_{s\searrow 0}\frac{1}{s}\ex{Y((t,t+s]\times K)|\mc{F}'_{t-}}& = \lim_{s\searrow 0}\frac{1}{s}\ex{\ex{Y((t,t+s]\times K)|\mc{F}'_t}\middle|\mc{F}'_{t-}}\\
+&= \lim_{s\searrow 0}\frac{1}{s}\ex{\ex{\int_t^{t+s} \lambda(r,K)\,dr\middle|\mc{F}'_t}\middle|\mc{F}'_{t-}}\\
+&= \ex{\ex{\lim_{s \searrow 0} \frac{1}{s}\int_t^{t+s} \lambda(r,K)\,dr\middle|\mc{F}'_t}\middle|\mc{F}'_{t-}}\\
+&=\ex{\ex{\lambda(t+,K)|\mc{F}'_t}\middle|\mc{F}'_{t-}}\\
+&=\lambda(t,K)
+\end{align*}
+
+We were able to move the limit inside the expectation by bounded convergence. Then we apply Lebesgue differentiation getting a right-continuous modification by virtue of the integral chosen in the prelimit.
+\end{proof}
+
+\lin
+
+\begin{prop}
+Suppose \(\rp{}\) is a \(\F{}{}\)-adapted point process on \([0,\T)\times \spce\) with \(\F{}{}\)-predictable intensity \(\ratee{\t}:\spce \ra\mb{R}^+\) with respect to the reference probability measure \(\Sm\) on \(\spce\). Suppose there exists a constant \(\const{} < \infty\) such that \(\rate{}\) is bounded from above by \(\const{}\). Then for any interval \(I \subseteq [0,\T)\) and any measurable \(\typset \subseteq \spce\),
+
+\[\pr(\rp{}(I\times\typset) = 0) = \exp\left(-\ex{\int_I\int_\typset \ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\right).\]
+\label{subsec::Prope:Prop::voidprob}
+\end{prop}
+\labe{subsec::Prope:Prop::voidprob}
+
+\begin{proof}
+The proof is similar to the proof of \cite[Lemma 1]{BreMas96}. By Lemma \ref{Subsec::Prope:Lem::easier}, \(M(t) = \rp{}([0,\t]\times \typset) - \int_0^\t \int_{\typset} \ratee{\tt}(\mark{})\,\Sm{}(d\mark{})\,d\tt\) is a Martingale. Then,
+
+\[\ex{\rp{}(I\times\typset)} = \ex{\int_I\int_\typset \ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t} \os{\te{Tonelli}}{=} \int_I\int_\typset \ex{\ratee{\t}(\mark{})}\,\Sm(d\mark{})\,d\t.\]
+
+Let \(\rp{\typset}(\t) \defeq \rp{}([0,\t]\times \typset)\). Since \(\ratee{}\) is bounded, we can assume without loss of generality that \(I = (a,b]\) for some \(0 \leq a < b < \T\). Then,
+
+\[\mb{I}_{\rp{}{(a,b]\times \typset} = 0} = 1 - \int_{(a,b]} \mb{I}_{\rp{}((a,\t)\times \typset) = 0}\,\rp{\typset}(d\t).\]
+
+
+Taking an expectation,
+
+\[\pr\left(\rp{}(I\times\typset)=0\right) = 1 - \ex{\int_{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\,\rp{\typset}(d\t)}.\]
+
+\tr{for me: Since \(\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\) is \(\F{}{\t}\)-predictable, we can replace the integral with respect to \(\rp{\typset}\) with an integral with density \(\ratee{}\). To prove this fact, it suffices to show it for elementary predictable functions and then extend to all predictable processes.}
+
+\ind Then,
+
+\begin{align*}
+\pr\left(\rp{}(I\times\typset)=0\right) &= 1 - \ex{\int_{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\int_\typset\ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\\
+& = 1 - \int_{I\times \typset} \pr\left(\rp{}((a,\t)\times\typset) = 0\right)\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.\\
+& = 1 - \int_{I\times \typset} \pr\left(\rp{}((a,\t]\times\typset) = 0\right)\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.
+\end{align*}
+
+Letting \(f(\t) = \pr(\rp{}((a,\t]\times \typset) = 0)\) and \(g(\t) = \int_A\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times \typset) = 0}\Sm(d\mark{})\), this simplifies to
+
+\[f(\t) = 1 - \int_a^\t f(\tt)g(\tt)\,d\tt.\]
+
+This has the unique solution,
+
+\[f(\t) = \exp\left(-\int_a^\t g(\tt)\,d\tt\right).\]
+
+That is,
+
+\[\pr\left(\rp{}(I\times\typset) = 0\right) = \exp\left(-\int_{I\times\typset} \ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t\right).\]
+
+\end{proof}
+
+
+\lin
+
+\begin{prop}
+Let \(Y\) be a marked process adapted to the filtration \(\mc{F}_t := \mc{F}_0\wedge \mc{H}_t\) where \(\mc{H}\) is its natural filtration on the sample space \((\Omega,\mc{F})\). Let the events and marks of \(Y\) be given by \(\{(\tau_j,\kappa_j)\}\) such that \(\{\tau_j\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr^i\) be probability measures on the probability space such that \(Y\) is non-explosive and simple with respect to both probability measures. Let \(\pr^i_t\) be the restriction of \(\pr^i\) to \(\mc{F}_t\). Suppose \(\mc{F}_0\) describes a random variable with law \(\nu^i\) under \(\pr^i\). If \(Y\) has a strictly positive \(\pr^1,\mc{F}\)-predictable intensity \(\lambda^1\), then \(\pr^2_t \ll \pr^1_t\) for all \(t \in [0,T]\) if and only if there exists a non-negative, \(\mc{F}\)-predictable process \(\mu\) such that \(Y\) admits the \(\mc{F}\)-intensity \(\lambda^2 = \mu\lambda^1\) under \(\pr^2\) and \(\nu^2 \ll \nu^1\). When this is satisfied, the likelihood ratio is the \(\pr^1\)-a.s. c\`adl\`ag process defined by 
+
+\begin{equation}
+L_t:= \frac{d\pr^2_t}{d\pr^1_t}(Y) = \frac{d\nu^2}{d\nu^1}\left(\prod_{0<\tau^i\leq t} \mu(\tau^i,\kappa^i)\right)\exp\left(-\int_{(0,t]\times \mc{K}}[\mu(t,\kappa) - 1]\lambda^1(t,\kappa)\,ds\,\ell(d\kappa)\right)
+\label{subsec::Prope:eqn::Lnat}
+\end{equation}
+\labe{subsec::Prope:eqn::Lnat}
+\label{subsec::Prope:Prop::radnikder}
+\end{prop}
+\labe{subsec::Prope:Prop::radnikder}
+
+\purpose We can define a standard process by choosing some fixed intensity \(\lambda^1\) and use it to completely characterize Markov processes. In fact, a large portion of section \ref{subsec::ProofU:sec::Proof2} involves manipulations of such Radon-Nykodim derivatives to construct various processes.
+
+\pfsum In the case where \(\mc{F}_0\) is trivial, we can directly apply \cite[Theorem 14.4.I]{DalVer08}. To extend, we define \(\pr^i\) as an integral of a class of regular conditional probabilities and apply \cite[Theorem 14.4.I]{DalVer08} accordingly.
+
+\subsection{Some Results on History-Dependent Poisson SDEs}
+\label{subsec::Some:sec::Point}\labe{subsec::Some:sec::Point}
+
+\lin
+
+\begin{lem}
+Let \(\G = (\V,\E)\) be a finite graph and let \(0 < \const{}< \infty\). Let \(\rxvt{}{0}\) be an \(\S^\V\)-valued random variable. Let \(\Sm\) be a probability measure over \(\S\) with positive weight on all elements in \(S\setminus\{0\}\) and 0 weight on \(\{0\}\). Let \(\{\ratee{\t,\v}\}_{\v \in \V,\t\in [0,\T]}\) be a set of measurable mappings from \(\OmegaV{\V}{\t-} \times \S\) to \([0,\const{}]\) such that if \(h \in \OmegaV{\V}{\t-}\), then \(\t\mapsto \ratee{\t,\v}(h[0,\t),\s)\) is left-continuous for all \(\v \in \V\) and \(\s \in \S\). Let \(\{\poiss{\v}\}_{\v \in \V}\) be i.i.d. Poisson processes on \(\mb{R}^+\times \S\times\mb{R}^+\) with intensity measure \(\leb\otimes\Sm\otimes\leb\) where \(\leb\) is the Lebesgue measure on \(\mb{R}\).
+
+\ind Then given any \(\S^\V\)-valued random variable, \(\rxvt{}{0}\), the following SDE has a unique strong solution:
+
+\begin{equation}
+\rxvt{\v}{\t} = \rxvt{0}{\v} + \int_{(0,\t]}\int_\S\int_{(0,\ratee{\tt,\v}(\rxvts{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt)
+\label{subsec::Some:eqn::genfiniteSDE}
+\end{equation}
+\labe{subsec::Some:eqn::genfiniteSDE}
+\label{subsec::Some:Lem::genfiniteSDE}
+\end{lem}
+\labe{subsec::Some:Lem::genfiniteSDE}
+
+\purpose The local representation is given by a fixed point SDE of this form. We will create several processes that solve similar equations and we need them to be well-posed.
+
+\pfsum Direct construction.
+
+\begin{proof}
+Since \(\ratee{\tt,\v} \leq \const{}\), we can view \(\{\poiss{\v}:\v\in\V\}\) as a sequence of Poisson random measures on \([0,\T)\times \S\times [0,\const{}]\). Notice that,
+
+\[\ex{\sum_{\v\in\V}\poiss{\v}([0,\T)\times\S\times[0,\const{}])} = \const{}\T|\V|.\]
+
+Thus, \(\sum_{\v\in\V}\poiss{\v}\) is an almost surely finite measure on \([0,\T)\times \S\times [0,\const{}]\). Let \(\{(\rt{\it},\mark{\it},\r^\it,\v^\it):\it = 0,\dots,\numb, \numb\in \mb{N}\}\) be the set of events of \(\sum_{\v\in\V}\) in \([0,\T)\times\S\times [0,\const{})\times \V\) ordered so that \(0=\rt{0} < \rt{1} < \cdots < \rt{\numb} < \T\). In each event, \(\rt{\it} \in [0,\T)\), \(\mark{\it}\in \S\setminus\{0\}, \r^\it \in [0,\const{}]\) and \(\v^\it \in \V\) denotes which process went off.
+
+\ind Let \(\rxvts{}{}\) be the c\`adl\`ag process constructed below:
+
+\begin{enumerate}
+\item \(\rxvt{}{0}\) is given as in the statement of the Lemma.
+
+\item \(\rxvt{}{\t} = \rxvt{}{0}\) on \([0,\rt{1})\).
+
+\item 
+
+\[\rxvt{}{\rt{1}} = \begin{cases}
+\rxvt{}{0} + \mark{1}\ev{\v^1} &\te{ if } \r^1 \leq \ratee{\rt{1},\v^1}(\rxvts{}{[0,\rt{1})},\mark{1})\\
+\rxvt{}{0} &\te{ otherwise.}
+\end{cases}
+\] 
+
+\item Continue on. In general, \(\rxvt{}{\t} = \rxvt{}{\rt{\it-1}}\) on \(\t \in [\rt{\it-1},\rt{\it})\) for \(\it= 1,\dots,\numb\).
+
+\item 
+
+\[\rxvt{}{\rt{\it}} = \begin{cases}
+\rxvt{}{\rt{\it-1}} + \mark{\it}\ev{\v^\it} &\te{ if } \r^\it \leq \ratee{\rt{\it},\v^\it}(\rxvts{}{[0,\rt{\it})},\mark{\it})\\
+\rxvt{}{\rt{\it-1}} &\te{ otherwise.}
+\end{cases}\]
+
+\item Then \(\rxvt{}{\t} = \rxvt{}{\rt{\numb}}\) for \(\t\in [\rt{\numb},\T)\).
+\end{enumerate}
+
+\(\rxvts{}{}\) solves equation \eqref{subsec::Some:eqn::genfiniteSDE} by construction. Furthermore, if \(\rxvtts{}{}\) also solves \eqref{subsec::Some:eqn::genfiniteSDE}, then 
+
+\begin{enumerate}
+\item \(\rxvtt{}{0} = \rxvt{}{0}\) by assumption.
+
+\item \(\rxvtt{}{\t} = \rxvtt{}{0} = \rxvt{}{0} = \rxvt{}{\t}\) for all \(\t\in [0,\rt{1})\).
+
+\item 
+
+\begin{align*}
+\rxvtt{}{\rt{1}} &= \begin{cases}
+\rxvtt{}{0} + \mark{1}\ev{\v^1} &\te{ if } \r^1 \leq \ratee{\rt{1},\v^1}(\rxvtts{}{[0,\rt{1})},\mark{1})\\
+\rxvtt{}{0} &\te{ otherwise.}
+\end{cases}\\
+&= \begin{cases}
+\rxvt{}{0} + \mark{1}\ev{\v^1} &\te{ if } \r^1 \leq \ratee{\rt{1},\v^1}(\rxvts{}{[0,\rt{1})},\mark{1})\\
+\rxvt{}{0} &\te{ otherwise.}
+\end{cases}\\
+&= \rxvt{}{\rt{1}}.
+\end{align*}
+
+\item Inductive hypothesis: \(\rxvtt{}{\t} = \rxvt{}{\t}\) for \(\t\in [0,\rt{\it})\). 
+
+\item 
+
+\begin{align*}
+\rxvtt{}{\rt{\it}} &= \begin{cases}
+\rxvtt{}{\rt{\it-1}} + \mark{\it}\ev{\v^\it} &\te{ if } \r^\it \leq \ratee{\rt{\it},\v^\it}(\rxvtts{}{[0,\rt{\it})},\mark{\it})\\
+\rxvtt{}{\rt{\it-1}} &\te{ otherwise.}
+\end{cases}\\
+&= \begin{cases}
+\rxvt{}{\rt{\it-1}} + \mark{\it}\ev{\v^\it} &\te{ if } \r^\it \leq \ratee{\rt{\it},\v^\it}(\rxvts{}{[0,\rt{\it})},\mark{\it})\\
+\rxvt{}{\rt{\it-1}} &\te{ otherwise.}
+\end{cases}\\
+&= \rxvt{}{\rt{\it}}.
+\end{align*}
+
+\item Then \(\rxvtt{}{\t} = \rxvtt{}{\rt{\it}} = \rxvt{}{\rt{\it}} = \rxvt{}{\t}\) for \(\t \in [\rt{\it},\rt{\it+1})\). Then, \(\rxvtt{}{\t} = \rxvt{}{\t}\) for \(\t\in [0,\rt{\it+1})\).
+
+\item Finally, \(\rxvtt{}{\t} = \rxvtt{}{\rt{\numb}} = \rxvt{}{\rt{\numb}} = \rxvt{}{\t}\) for \(\t\in [\rt{\numb},\T)\), so \(\rxvtts{}{} = \rxvts{}{}\) almost surely.
+\end{enumerate}
+\end{proof}
+
+\lin
+
+\begin{lem}
+Suppose that \(\V\) is finite. Recall that \(\pmap{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap{}(\rxvtts{}{})\) for some \(\OmegaV{\V}{\T-}\)-valued stochastic process, \(\rxvtts{}{}\). Suppose also that \(\rp{}\) has \(\rxvtts{}{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\OmegaV{}{\t-}\times \S \ra [0,\const{}]\}_{\t\in[0,\T),\v\in \V}\) such that 
+
+\begin{equation}
+\ratee{\t}(\sv{}{\V}) := \begin{cases}
+\ratee{\t,\v}(\rxvtts{}{[0,\t)},\s) &\te{ if } \sv{}{\V} = \s\ev{\v}\\
+0 &\te{ otherwise,}
+\end{cases}
+\label{subsec::Some:eqn::intense}
+\end{equation}
+\labe{subsec::Some:eqn::intense}
+
+and such that \(\t\mapsto \ratee{\t,\v}(\rxvtts{}{[0,\t)},\sv{}{\V})\) is almost-surely left continuous on \([0,\T)\) for all \(\v\in \V,\sv{}{\V}\in \S^\V\). Then there is a unique solution, \(\rxvts{}{}\), to equation \eqref{subsec::Some:eqn::genfiniteSDE}, and if \(\rxvt{}{0} \deq \rxvtt{}{0}\), then \(\rxvts{}{} \deq \rxvtts{}{}\).
+
+\label{subsec::Some:Lem::PPtoSDE}
+\end{lem}
+\labe{subsec::Some:Lem::PPtoSDE}
+
+\begin{proof}
+
+We can assume without loss of generality that \(\ratee{\t,\v}(\xvtts{}{[0,\t)},\s) = 0\) for all \(\xvtts{}{[0,\t)}\in \OmegaV{}{\t-}\) such that \(\pr(\rxvtts{}{[0,\t)} = \xvtts{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in \V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
+
+\[\rxvt{\v}{\t} = \rxvt{0}{\v} + \int_{(0,\t]}\int_\S\int_{(0,\ratee{\tt,\v}(\rxvts{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt).\]
+
+By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap{\v}(\rxvts{}{})\) has \(\rxvts{}{}\)-predictable intensity \(\ratee{\t,\v}(\rxvts{}{[0,\t)},\s)\) for \(\s \in \S\). Then \(\alt{\rp{}} \defeq \pmap{}(\rxvts{}{})\) has \(\rxvts{}{}\)-predictable intensity,
+
+\[\ratee{\t}(\rxvts{}{[0,\t)},\sv{}{\V}) = \begin{cases}
+\ratee{\t,\v}(\rxvts{}{[0,\t)},\sv{}{\V}) &\te{ if } \sv{}{\V} = \s\ev{\v}\\
+0&\te{ otherwise.}
+\end{cases}\]
+
+By assumption, \(\rxvt{}{0} \deq \rxvtt{}{0}\). Thus, \(\rp{}\) and \(\alt{\rp{}}\) have the same intensity. By Proposition \ref{subsec::Prope:Prop::intense char}, \(\rp{} \deq \alt{\rp{}}\).
+\end{proof}
+\lin
+
+\begin{lem}
+Assume the notation and assumptions from Lemmas \ref{subsec::Some:Lem::genfiniteSDE} and \ref{subsec::Some:Lem::PPtoSDE} hold under the probability measure \(\m{}{}{}\). Suppose under \(\mm{}{}{}\), \(\rxvts{}{}\) solves,
+
+\[\rxvt{\v}{\t} = \rxvt{\v}{0} +\int_{(0,\t]}\int_\S\int_{(0,1]} \s \poiss{\v}(d\r,d\s,d\tt),\]
+
+where \(\{\rxvt{\v}{0}\}_{\v \in \V}\) are i.i.d uniformly distributed over \(\S\). Let \(\rp{} \defeq \pmap{}(\rxvts{}{}) = \{(\rt{\it},\mark{\it}):\it\in \mb{N}\}\).
+
+\ind Let \(\ov{\ell}\) be the extension of \(\Sm\) to \(\alt{\S} = \{\s\ev{\v}: \s \in \S, \v \in \V\}\) given by \(\alt{\Sm}(\typset\ev{\v}) = \Sm(\typset)\) for any \(\typset \subseteq \S\). Then,
+
+\begin{equation}
+\frac{d\m{}{\t}{}}{d\mm{}{\t}{}}= \frac{d\m{}{0}{}}{d\mm{}{0}{}}\left(\prod_{0< \rt{\it}\leq t} \ratee{\t}(\mark{\it})\right)\exp\left(-\int_{(0,\t]\times \S} (\ratee{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
+\label{subsec::Some:eqn::radnik}
+\end{equation}
+\labe{subsec::Some:eqn::radnik}
+\label{subsec::Some:Lem::radnik}
+\end{lem}
+\labe{subsec::Some:Lem::radnik}
+
+\purpose This lemma combined with Lemma \ref{subsec::Some:Lem::genfiniteSDE} allow us to freely alternate between SDE and density formulations of finite node Markov processes.
+
+\pfsum The key is to express \(X\) in terms of a Marked point process. Then we can compute the intensities of the point process under \(\mu\) and \(\nu\) respectively and apply Proposition \ref{subsec::Prope:Prop::radnikder}.
+
+\begin{proof}
+Notice that \(\rxvts{}{} \mapsto (\rxvt{}{0},\pmap{\rxvts{}{}})\) is a one-to-one mapping from c\`adl\`ag processes on \(\S^\V\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F{}{\t}\)-adapted, where \(\F{}{\t} = \F{}{0}\vee \FFF{}{\t}\) and \(\FFF{}{\t}\) is the natural filtration of \(\rp{}\).
+
+\ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp{}\) has predictable intensity \(\ratee{\t}(\cdot)\) with respect to \(\F{}{\t}\) and \(\m{}{}{}\). \(\rp{}\) has predictable intensity 1 with respect to \(\F{}{\t}\) and \(\mm{}{}{}\). This holds all of the information about the original process \(\rxvts{}{}\), so we can consider \(\frac{d\m{}{\t}{}}{d\mm{}{\t}{}}\) as a change of measure affecting \(\rp{}\) instead of \(\rxvts{}{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee{\t,\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
+\end{proof}
+
+\lin
+\section{Other Technical Lemmas}
+\label{sec::TL}\labe{sec::TL}
+
+\begin{lem}
+Assume \(X,Y\) and \(Z\) are random elements such that \(X\perp Y|Z\). Assume also that \(\pr(X=0) = \pr(Y=0) = \pr(Z=0) = 0\).
+
+\begin{enumerate}[(a)]
+\item If \(\phi,\psi\) are measurable functions and \(\theta\) is a 1-to-1 function, then \(\phi(X)\perp \psi(Y)|\theta(Z)\).
+
+\item If \(T\perp(X,Y,Z)\), then \(X\perp Y|(Z,T)\), \((X,T)\perp Y|Z\) and \(X\perp (Y,T)|Z\).
+
+\item If \(T\perp (X,Y,Z)\) and \(\phi\) is a measurable function, then
+
+\[X\perp Y|(Z,\phi(X,Z,T))\]
+
+\item If \(A\) is \(\sigma(Z)\) measurable, then 
+
+\[X\mb{I}_A\perp Y\mb{I}_A|Z\mb{I}_A\]
+
+\item If \(U\perp V\) and \((U,V)\perp(X,Y,Z)\), then 
+
+\[(X,Z,U)\perp (Y,Z,V)|Z\]
+
+\item Suppose \(X\mb{I}_{A_i}\perp Y\mb{I}_{A_i}|Z\mb{I}_{A_i}\) for all \(i\in I\) where \(I\) is a finite or countably infinite set and \(\{A_i\}\) is a family of disjoint sets. Then,
+
+\[X\mb{I}_{\cup_i A_i}\perp Y\mb{I}_{\cup_i A_i}|Z\mb{I}_{\cup_i A_i}\]
+
+\item Let \(A\) be any event such that \(\pr(A) > 0\). Suppose \(U\mb{I}_A\perp \mb{I}_A(X,Y,Z)|\mb{I}_A\). Suppose also that \(X\mb{I}_A\perp Y\mb{I}_A|\mb{I}_A(Z,U)\), but do not necessarily assume \(X\perp Y|Z\). Then 
+
+\[X\mb{I}_A\perp Y\mb{I}_A|Z\mb{I}_A\]
+
+\item If \(A\) is an event that happens with probability 1, and \(X\mb{I}_A \perp Y\mb{I}_A |Z\mb{I}_A\), then 
+
+\[X\perp Y |Z\]
+\end{enumerate}
+\label{sec::TL:Lem::Props}
+\end{lem}
+\labe{sec::TL:Lem::Props}
+
+\lin
+
+\begin{lem}
+Let \(\phi: \mb{R}^+ \ra \mb{R}^+\) be a monotonic function such that \(\phi(0+) = 0\). Suppose also that \(\phi \leq C\) for some constant \(C\). Then for every \(\ep > 0\), there exists a continuous monotonic concave function \(\psi_\ep:\mb{R}^+\ra \mb{R}^+\) such that \(\psi_\ep(0) = \ep\) and \(\phi \leq \psi_\ep\leq C\). \tr{Take an infimum and I get a continuous monotonic concave function \(\psi\) such that \(\psi(0) = 0\)?}
+\label{sec::TL:Lem::concbd}
+\end{lem}
+\labe{sec::TL:Lem::concbd}
+
+\purpose This is used in Proposition \ref{subsec::Well-:Prop::SDE=IG} for a technical result.
+
+\begin{proof}
+Since \(\phi(0+) = 0\), there exists a \(\delta > 0\) such that \(\phi(\delta) < \ep/2\). Let \(\ov{\phi} = \min\{\phi+\ep/2, C\}\).
+
+\ind Let \(a_1 = \inf\{a \geq 0: ax + \ep \geq \ov{\phi}_1(x)\te{ for all } x\geq 0\}\). Note that \(0\leq a \leq C/\delta\). 
+
+Then \(\psi_\ep(x) = \min\{ax+\ep,C\}\) is continuous, concave and \(\psi_\ep \geq \phi\).
+\end{proof}
+
+\lin
+
+\begin{defn}
+Let \(\{t_i\}\) be denote a finite set of times \(0=t_0 <t_1 <\cdots < t_n=1\). Let \(X\in \cad([0,T],\mc{X})\) where \(\mc{X}\) is a separable and complete space with respect to the metric \(d\). Define,
+
+\[\omega_X([t_{i-1},t_i)) = \sup_{s,t\in [t_{i-1},t_i)} d(X(t),X(s)).\]
+
+Then for all \(\delta \in (0,T)\),
+
+\[\omega_X'(\delta) = \inf_{\{t_i\}: \max_i |t_i - t_{i-1}| > \delta} \min_{i} \omega_X([t_{i-1},t_i))\]
+
+is called the c\`adl\`ag modulus of continuity.
+\label{sec::TL:Def::modulus}
+\end{defn}
+\labe{sec::TL:Def::modulus}
+
+\purpose This modulus of continuity is useful for the c\`adl\`ag version of the Arzela-Ascoli Theorem.
+
+\lin
+
+\begin{thms}
+Let \(\{\mu^i\}\subseteq \mc{P}\left(\cad([0,T],\mc{X})\right)\) where \(\mc{X}\) is a separable and complete normed space. Assume \(X^i\) is a random process with law \(\mu^i\) for each \(i\). Then \(\{\mu_i\}\) is tight if and only if:
+
+\begin{enumerate}[(1)]
+\item 
+
+\[\lim_{a \ra \infty}\limsup_{n \ra\infty} \pr\left(\sup_{t \in [0,T]} |X^i_t| \geq a\right) = 0.\]
+
+\item For all \(\ep > 0\),
+
+\[\lim_{\delta \searrow 0}\limsup_{n\ra\infty} \pr\left(\omega'_{X^i}(\delta) \geq \ep\right) = 0.\]
+\end{enumerate}
+\label{sec::TL:Thm::Tight}
+\end{thms}
+\labe{sec::TL:Thm::Tight}
+
+\begin{proof}
+This is simply a restatement of \cite[Theorem 13.2]{Bil99}.
+\end{proof}
+
+\lin
+
+\begin{lem}
+Let \(\{\rxvtsn{}{}{\numb}\}\) be a sequence \(\OmegaV{\V}{\T}\)-valued Feller processes satisfying Assumption \ref{subsec::Assum:Assu::CI}. Let the infinitesimal generators of these processes be given by the equation:
+
+\[\IG\pup{\numb}f(\sv{}{\V}) = \sum_{\v\in \V}\sum_{\s \in \S} \IGr{\v}\pup{\numb}(\sv{}{\V},\s)[f(\sv{}{\V} + \s\ev{\v}) - f(\sv{}{\V})].\]
+
+If there exists some \(\const{} < \infty\) such that
+
+\[\sup_{\numb}\sup_{\sv{}{\V}\in \S^\V}\sup_{\v\in\V}\sup_{\s\in \S} \IGr{\v}\pup{\numb}(\sv{}{\V},\s) \leq \const{},\]
+
+then for all finite \(\U \subseteq \V\),
+
+\[\lim_{\delta \searrow 0} \sup_\numb \pr\left(\omega'_{\piV{\U}{\T}\left(\rxvtsn{}{}{\numb}\right)}(\delta) \geq \ep\right) = 0\]
+
+for all \(\ep > 0\).
+\label{sec::TL:Lem::TightSupport}
+\end{lem}
+\labe{sec::TL:Lem::TightSupport}
+
+\purpose This allows us to obtain the c\`adl\`ag version of the equicontinuity condition necessary for Theorem \ref{sec::TL:Thm::Tight}. Note: The first time this lemma is applied is in the proof of Proposition \ref{subsec::Well-:Prop::IGApprox}. The proof refers to Proposition \ref{subsec::Well-:Prop::SDE=IG}.
+
+\begin{proof}
+Fix any \(\numb \in \mb{N}\). Let \(M = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\rxvtts{}{}\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
+
+\[\rxvtt{}{\t} = \sum_{\v \in \U}M\ev{\v}\int_0^\t\int_0^{\const{}}\alt{\poiss{\v}}(d\r, d\tt)\]
+
+where \(\{\alt{\poiss{\v}}:\v \in \U\}\) are a sequence of i.i.d. unit rate Poisson processes on \(\mb{R}^2\). 
+
+\ind By Proposition \ref{subsec::Well-:Prop::SDE=IG}, there exists a sequence of i.i.d Poisson processes, \(\{\poiss{\v}:\v\in \V\}\), on \(\S\times\mb{R}^2\) with intensity measure \(\Sm\otimes \leb\) such that,
+
+\[\rxvtn{\v}{\t}{\numb} = \rxvtn{\v}{0}{\numb} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\rxvtn{}{\tt-}{\numb})],d\s)\]
+
+for all \(\v\in \V\). Let
+
+\[\alt{\poiss{\v}}(\cdot) = \int_\S\,\poiss{\v}(\cdot\times \S).\]
+
+Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in \V\}\) are i.i.d., it follows that \(\{\alt{\poiss{\v}}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\piV{\U}{\T}(\rxvtsn{}{}{\numb})\) experiences a jump, \(\rxvtts{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\rxvtts{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
+
+\begin{align*}
+|\rxvtn{\v}{\tt}{\numb} - \rxvtn{\v}{\ttt}{\numb}|&\leq M\left|\{\#\te{ of jumps in }\rxvtsn{\v}{(\tt,\ttt]}{\numb}\}\right| \\
+&\leq M\left|\{\#\te{ of jumps in }\rxvtts{\v}{(\tt,\ttt]}\}\right| = \left|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}\right|
+\end{align*}
+
+It follows that for any partition \(\{\t\pup{\it}\}\) of \([0,\T]\),
+
+\begin{align*}
+\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtn{\v}{\tt}{\numb} - \rxvtn{\v}{\ttt}{\numb}|\leq \sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|.
+\end{align*}
+
+Fix \(\delta > 0\). Taking the infimum over all partitions with minimum interval length \(\delta\) yields,
+
+\begin{align*}
+\omega'_{\piV{\U}{\T}\left(\rxvtsn{}{}{\numb}\right)}(\delta) &= \inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtn{\v}{\tt}{\numb} - \rxvtn{\v}{\ttt}{\numb}|\\
+&\leq \inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|\\
+&= \omega'_{\rxvtts{}{}}(\delta).
+\end{align*}
+
+Thus,
+
+\[\pr\left(\omega'_{\piV{\U}{\T}\left(\rxvtsn{}{}{\numb}\right)}(\delta) \geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
+
+By applying this same argument to arbitrary \(\numb\in \mb{N}\) and noticing that the distribution of \(\rxvtts{}{}\) does not vary with respect to our choice of coupling, we get,
+
+\[\sup_{\numb}\pr\left(\omega'_{\piV{\U}{\T}\left(\rxvtsn{}{}{\numb}\right)}(\delta)\geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
+
+However, \(\rxvtts{}{}\) is just a homogeneous Poisson point process, so the c\`adl\`ag modulus of continuity of \(\rxvtts{}{}\) converges to 0 in probability as \(\delta \ra 0\). Thus,
+
+\[\lim_{\delta \searrow 0}\sup_{\numb}\pr\left(\omega'_{\piV{\U}{\T}\left(\rxvtsn{}{}{\numb}\right)}(\delta) \geq \ep\right) \leq \lim_{\delta\searrow 0}\pr\left(\omega'_{\rxvtts{}{}}(\delta)\geq \ep\right) = 0.\]
+
+
+\end{proof}
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{weekly_refs}
+\end{document}
