@@ -48,6 +48,8 @@
 \newcommand{\pmsr}{\mc{P}}							%space of pmsrs
 \newcommand{\neigh}{\mc{N}}					%neighbor
 \newcommand{\dneigh}{\mc{N}^2}				%double neighbor
+\newcommand{\cad}{\mb{D}}							%Cadlag space
+
 
 %Paper macros
 %Section 2.1
@@ -61,6 +63,18 @@
 \newcommand{\ve}[1]{_{#1}}						%Append vertex
 \newcommand{\cl}{\ov}							%closure
 \renewcommand{\S}{S}							%State space
+\newcommand{\s}{\sigma}							%elt of \S	
+\newcommand{\sv}[1]{\s^{#1}}					%typ elt of \XState
+\renewcommand{\b}[1]{b_{#1}}					%inf dim norm coeffs
+\newcommand{\ev}[1]{\ep_{#1}}					%standard basis
+\newcommand{\T}{T}								%time bound
+\newcommand{\OmegaV}[2]{\Omega_{#1}^{#2}}		%Path space
+\newcommand{\x}{x}								%element of OmegaV
+\renewcommand{\t}{t}							%typical time
+
+
+
+
 
 
 
@@ -75,14 +89,14 @@
 \newcommand{\core}{\mc{D}}							%Core
 
 \renewcommand{\SS}{\tilde{\S}}						%sub state space
-\newcommand{\s}{\sigma}								%elt of \S	
+
 \renewcommand{\ss}{\tilde{\s}}					%2nd elt of \S
 \renewcommand{\G}{G}								%Graph
 \newcommand{\V}{V}									%Vertex set
 \newcommand{\E}{E}									%Edge set
 
-\newcommand{\T}{T}									%time bound
-\renewcommand{\t}{t}								%typical time
+
+
 \renewcommand{\tt}{s}								%typical time 2
 \newcommand{\ttt}{s'}								%typical time 3
 \renewcommand{\r}{r}								%space var for poiss
@@ -93,10 +107,10 @@
 \newcommand{\ittt}{j}								%iterator 3
 \newcommand{\numb}{n}								%# of prelim vars
 \newcommand{\XState}[1]{\S^{#1}}				%multidim state space
-\newcommand{\sv}[2]{\s_{#1}^{#2}}					%typ elt of \XState
-\newcommand{\ev}[1]{\ep_{#1}}						%standard basis
-\newcommand{\cad}{\mb{D}}							%Cadlag space
-\newcommand{\OmegaV}[2]{\Omega_{#1}^{#2}}			%Path space
+
+
+
+
 \newcommand{\piV}[2]{\pi_{#1}^{#2}}					%projection
 \newcommand{\xvt}[2]{x_{#1}{(#2)}}					%typ path val
 \newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
@@ -134,7 +148,7 @@
 \newcommand{\const}[1]{C_{#1}}						%Constant
 \newcommand{\Sm}{\ell}								%std msr on \S
 \newcommand{\alt}{\widetilde}						%alternate val
-\renewcommand{\b}[1]{b_{#1}}						%inf dim norm coeffs
+
 \newcommand{\mutex}{\|}								%Mutually exclusive
 \newcommand{\apath}{\Gamma}						%Given path for CI proof
 \newcommand{\pathset}[2]{\Lambda_{#1,#2}}			%A space of paths
