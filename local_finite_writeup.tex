@@ -124,16 +124,12 @@
 \newcommand{\piV}[2]{\pi_{#1}^{#2}}					%projection
 \newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
 \newcommand{\xvttt}[2]{z_{#1}{(#2)}}				%typ path val3
-\newcommand{\rxvt}[2]{X_{#1}{(#2)}}					%typ rand path val
-\newcommand{\rxvtn}[3]{X_{#1}^{#3}(#2)}				%typ rp val sublim
 \newcommand{\rxvtt}[2]{Y_{#1}{(#2)}}				%typ rand path val2
 \newcommand{\rxvttn}[3]{Y_{#1}^{#3}(#2)}			%typ rp sublim val2
 \newcommand{\rxvttt}[2]{Z_{#1}{(#2)}}				%typ rand path val3
 
 \newcommand{\xvtts}[2]{y_{#1}{#2}}					%typ path 2
 \newcommand{\xvttts}[2]{z_{#1}{#2}}					%typ path 3
-\newcommand{\rxvts}[2]{X_{#1}{#2}}					%typ rand path
-\newcommand{\rxvtsn}[3]{X_{#1}^{#3}{#2}}			%typ rpath sublim
 \newcommand{\rxvtts}[2]{Y_{#1}{#2}}					%typ rand path 2
 \newcommand{\rxvttsn}[3]{Y_{#1}^{#3}{#2}}			%typ rpath sublim 2
 \newcommand{\rxvttts}[2]{Z_{#1}{#2}}				%typ rand path 3
@@ -260,7 +256,7 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs xvtt&2&\(\xvtt{\v}{\t}\)					&typ path val2\\
 \tbs xvttt&2&\(\xvttt{\v}{\t}\)				&typ path val3\\
 \tbs rxvt&2&\(\X{\v}{\t}\)					&typ rand path val\\
-\tbs rxvtn&3&\(\rxvtn{\v}{\t}{\numb}\)		&typ rp val sublim\\
+\tbs rxvtn&3&\(\X{\v}{\t}{\numb}\)		&typ rp val sublim\\
 \tbs rxvtt&2&\(\rxvtt{\v}{\t}\)				&typ rand path val2\\
 \tbs rxvttn&3&\(\rxvttn{\v}{\t}{\numb}\)		&typ rp val sublim 2\\
 \tbs rxvttt&2&\(\rxvttt{\v}{\t}\)				&typ rand path val3\\
@@ -653,7 +649,7 @@ By Gronwall's inequality, \(\sup_{\v \in \V} \ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\
 
 \skipLine
 
-To prove existence, we use Picard iterations. Define \(\rxvtn{}{\t}{0} \defeq \X{}{0}\) for all \(\t \in [0,\T]\). Define,
+To prove existence, we use Picard iterations. Define \(\X{}{\t}{0} \defeq \X{}{0}\) for all \(\t \in [0,\T]\). Define,
 
 \[\X{}{}{\numb+1} = F_\poisses(\X{}{}{\numb}).\]
 
@@ -732,16 +728,16 @@ First, we show that \(\X{}{}\) is a Feller process. Notice that \(\X{}{}\) condi
 \end{equation}
 \labe{subsec::Well-:Eqn::condSDE}
 
-For all \(\sv{}{\V}\in\S^\V\), suppose \(\rxvtn{}{0}{\sv{}{\V}}\) is the unique strong solution to equation \eqref{subsec::Well-:Eqn::condSDE}. By Definition \ref{sec::Infin:Def::Feller}, we need to prove that for all \(\sv{}{\V}\in \S^\V\),
+For all \(\sv{}{\V}\in\S^\V\), suppose \(\X{}{0}{\sv{}{\V}}\) is the unique strong solution to equation \eqref{subsec::Well-:Eqn::condSDE}. By Definition \ref{sec::Infin:Def::Feller}, we need to prove that for all \(\sv{}{\V}\in \S^\V\),
 
 \begin{enumerate}[(a)]
-\item \(\rxvtn{}{0}{\sv{}{\V}} = \sv{}{\V}\) almost surely.
+\item \(\X{}{0}{\sv{}{\V}} = \sv{}{\V}\) almost surely.
 
-\item The mapping \(\sv{}{\V}\mapsto \pr\left(\rxvtn{}{0}{\sv{}{\V}}\in A\right)\) is measurable for all \(A\in \F{\U}{\T}\).
+\item The mapping \(\sv{}{\V}\mapsto \pr\left(\X{}{0}{\sv{}{\V}}\in A\right)\) is measurable for all \(A\in \F{\U}{\T}\).
 
-\item \(\pr\left(\rxvtn{}{\t+\cdot}{\sv{}{\V}}\in A\middle|\rxvtn{}{\tt}{\sv{}{\V}}:\tt \in [0,\t]\right) = \pr\left(\rxvtn{}{\cdot}{\rxvtn{}{\t}{\sv{}{\V}}} \in A\middle| \rxvtn{}{\t}{\sv{}{\V}} \right)\) for all \(A \in \F{\U}{\T}\).
+\item \(\pr\left(\X{}{\t+\cdot}{\sv{}{\V}}\in A\middle|\X{}{\tt}{\sv{}{\V}}:\tt \in [0,\t]\right) = \pr\left(\X{}{\cdot}{\X{}{\t}{\sv{}{\V}}} \in A\middle| \X{}{\t}{\sv{}{\V}} \right)\) for all \(A \in \F{\U}{\T}\).
 
-\item For all \(f \in \cont(\S^\V)\) (that is, for all continuous \(f\)), the mapping \(\sv{}{\V}\mapsto \ex{f(\rxvtn{}{\t}{\sv{}{\V}})}\) is also continuous for all \(t\geq 0\).
+\item For all \(f \in \cont(\S^\V)\) (that is, for all continuous \(f\)), the mapping \(\sv{}{\V}\mapsto \ex{f(\X{}{\t}{\sv{}{\V}})}\) is also continuous for all \(t\geq 0\).
 \end{enumerate}
 
 The proof that \(\X{}{}{\sv{}{\V}}\) satisfies these properties is as follows:
@@ -753,13 +749,13 @@ The proof that \(\X{}{}{\sv{}{\V}}\) satisfies these properties is as follows:
 
 \item Notice that we can write,
 
-\[\rxvtn{\v}{\t+\cdot}{\sv{}{\V}} = \rxvtn{\v}{\t}{\sv{}{\V}} + \int_\S\int_\t^{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\rxvtn{}{\tt-}{\sv{}{\V}},\s)],d\s).\]
+\[\X{\v}{\t+\cdot}{\sv{}{\V}} = \X{\v}{\t}{\sv{}{\V}} + \int_\S\int_\t^{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\X{}{\tt-}{\sv{}{\V}},\s)],d\s).\]
 
 Let \(\alt{\X{}{}}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
 
-\[\alt{\X{\v}{\cdot}} = \rxvtn{\v}{\t}{\sv{}{\V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\alt{\X{}{\tt-}},\s)],d\s).\]
+\[\alt{\X{\v}{\cdot}} = \X{\v}{\t}{\sv{}{\V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\alt{\X{}{\tt-}},\s)],d\s).\]
 
-Then \(\rxvtn{}{\t+\cdot}{\sv{}{\V}} \deq \alt{\X{}{\cdot}}\). By the definition of \(\X{}{}{\sv{}{\V}}\), \(\alt{\X{}{}} \deq \X{}{}{\rxvtn{}{\t}{\sv{}{\V}}}\) as desired.
+Then \(\X{}{\t+\cdot}{\sv{}{\V}} \deq \alt{\X{}{\cdot}}\). By the definition of \(\X{}{}{\sv{}{\V}}\), \(\alt{\X{}{}} \deq \X{}{}{\X{}{\t}{\sv{}{\V}}}\) as desired.
 
 \item Let \(\root \in \V\). Define the sequence of sets \(\V\pup{0}\subset \V\pup{1}\subset \cdots \subseteq \V\) as follows: let \(\V\pup{0} = \{\root\}\). For \(\numb \geq 1\), let \(\V\pup{\numb+1} = \cl{\V\pup{\numb}}\).
 
@@ -826,7 +822,7 @@ By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X{}{}\) 
 \lin
 
 \begin{prop}
-Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in \V\) be some node. Let \(\V\pup{0} = \{\root\}\) and \(\V\pup{\numb+1} = \cl{\V\pup{\numb}}\) for all \(\numb \in \mb{N}\). For all \(\U \subseteq \V\) and \(\t \in [0,\T]\), let \(\Omega{\U}{\t}\) be embedded in \(\Omega{\V}{\t}\) in the standard way. Let \(\rxvtn{}{0}{\numb} = \piV{\V\pup{\numb}}{0}(\X{}{0})\). For each \(\numb\in\mb{N}\), let the \(\Omega{\V\pup{\numb}}{\T}\)-valued random element \(\X{}{}{\numb}\) be the unique Feller process with initial condition \(\rxvtn{}{0}{\numb}\) and infinitesimal generator,
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in \V\) be some node. Let \(\V\pup{0} = \{\root\}\) and \(\V\pup{\numb+1} = \cl{\V\pup{\numb}}\) for all \(\numb \in \mb{N}\). For all \(\U \subseteq \V\) and \(\t \in [0,\T]\), let \(\Omega{\U}{\t}\) be embedded in \(\Omega{\V}{\t}\) in the standard way. Let \(\X{}{0}{\numb} = \piV{\V\pup{\numb}}{0}(\X{}{0})\). For each \(\numb\in\mb{N}\), let the \(\Omega{\V\pup{\numb}}{\T}\)-valued random element \(\X{}{}{\numb}\) be the unique Feller process with initial condition \(\X{}{0}{\numb}\) and infinitesimal generator,
 
 \begin{equation}
 \IG\pup{\numb}f(\sv{}{\V\pup{\numb}}) = \sum_{\v\in \V\pup{\numb}}\sum_{\s\in \S} \IGr{\v}(\sv{}{\V\pup{\numb}}, \s)[f(\sv{}{\V\pup{\numb}} + \s\ev{\v}) - f(\sv{}{\V\pup{\numb}})]\te{ for all } \sv{}{\V\pup{\numb}} \in \S^{\V\pup{\numb}}.
@@ -848,7 +844,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in \V\) be s
 \app Assumption \ref{subsec::Assum:Assu::CI}, Proposition \ref{subsec::Well-:Prop::Welldef}, Definition \ref{sec::TL:Def::modulus}, Lemma \ref{sec::TL:Lem::TightSupport}, Theorem \ref{sec::TL:Thm::Tight} and Corollary \ref{sec::Infin:Cor::Convergence}.
 
 \begin{proof}
-First, for each \(\numb\in\mb{N}\), \(\X{}{}{\numb}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, so by Proposition \ref{subsec::Well-:Prop::Welldef}, \(\X{}{}{\numb}\) is uniquely defined by its initial condition \(\rxvtn{}{0}{\numb}\) and its infinitesimal generator \(\IG\pup{\numb}\).
+First, for each \(\numb\in\mb{N}\), \(\X{}{}{\numb}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, so by Proposition \ref{subsec::Well-:Prop::Welldef}, \(\X{}{}{\numb}\) is uniquely defined by its initial condition \(\X{}{0}{\numb}\) and its infinitesimal generator \(\IG\pup{\numb}\).
 
 \ind To prove weak convergence, we first begin by showing that \(\{\X{}{}{\numb}:\numb\in \mb{N}\}\) is tight. Note that \(\S^\V\) is compact, so \(\sup_{\sv{}{\V} \in \S^\V} \|\sv{}{\V}\|_{\b{}} < \infty\) (recall that \(\|\sv{}{\V}\|_{\b{}} = \sum_{\v \in \V} \b{\v} |\sv{\v}{\V}|\) where \(\b{\v} = \b{}^{-\numb}\) for some \(\b{} > \degr\) if \(\v \in \V\pup{\numb}\setminus \V\pup{\numb-1}\)).
 
@@ -863,7 +859,7 @@ Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the
 where \(\{\t\pup{\it}\} := 0 \leq \t\pup{1} < \t\pup{2} < \cdots < \t\pup{\cdot} = \T\) and \(\min_\it|\t\pup{\it} - \t\pup{\it-1}| > \delta\). Note that \(\X{}{}{\numb}\) is \(\Omega{\V\pup{\numb}}{\T}\)-valued and can be embedded in \(\Omega{\V}{\T}\) the same way we embed \(\S^{\V\pup{\numb}}\) in \(\S^\V\): let \(\X{\v}{}{\numb} \equiv 0\) for \(\v \notin \V\pup{\numb}\). Recall also that \(\piV{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq \V\). Then for any \(\numb\in \mb{N}\),
 
 \begin{align*}
-\pr\left(\sup_\numb \omega'_{\X{}{}{\numb}}(\delta) > \epsilon\right) &= \pr\left(\sup_\numb\inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v \in \V} \b{\v}|(\rxvtn{\v}{\tt}{\numb} - \rxvtn{\v}{\ttt}{\numb}| > \epsilon \right)\\
+\pr\left(\sup_\numb \omega'_{\X{}{}{\numb}}(\delta) > \epsilon\right) &= \pr\left(\sup_\numb\inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v \in \V} \b{\v}|(\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}| > \epsilon \right)\\
 &\leq \pr\left(\sup_\numb \left(\omega'_{\piV{\V\pup{M}}{\T}(\X{}{}{\numb})}(\delta) + \omega'_{\piV{\left(\V\pup{M}\right)^c}{\T}(\X{}{}{\numb})}(\delta)\right) > \ep\right)\\
 &\leq \pr\left(\sup_\numb \omega'_{\piV{\V\pup{M}}{\T}(\X{}{}{\numb})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
 \end{align*}
@@ -1730,7 +1726,7 @@ Assume \(\mmm{}{}{1}\) is a probability measure on \(\Omega{\tree\pup{1}}{\T-}\)
 
 \ind Let \(\X{}{}{1}\) be a process with law \(\mmm{}{}{1}\) embedded in \(\Omega{\V}{\T-}\). That is, \(\X{\v}{}{1} \equiv 0\) for \(\v \notin \tree\pup{1}\). Recall that, for \(\v \in \tree\pup{1}\setminus\{\root\}\),
 
-\[\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) = \exmu{\cm_\t(\X{\{\v,\root\}}{[0,\t)}{1},\mmm{}{}{1})}{\rate{}(\rxvtn{}{\t-}{1},\s)}.\]
+\[\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) = \exmu{\cm_\t(\X{\{\v,\root\}}{[0,\t)}{1},\mmm{}{}{1})}{\rate{}(\X{}{\t-}{1},\s)}.\]
 
 \ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m{}{}{}\), which is the law of \(\X{}{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X{}{}{\numb}:\numb\in\mb{N}\}\) on \(\Omega{\tree\pup{\numb}}{\T-}\) converging weakly to \(\X{}{}\). 
 
@@ -1740,7 +1736,7 @@ Assume \(\mmm{}{}{1}\) is a probability measure on \(\Omega{\tree\pup{1}}{\T-}\)
 The marginal distribution of \(\mmm{}{}{1}\) on \(\Omega{\{\v,\root\}}{\T}\) for \(\v \in \tree\pup{1}\setminus\{\root\}\) is the law of the unique solution to the following SDE:
 
 \begin{align}
-\rxvtn{\{\v,\root\}}{\t}{1} = \rxvtn{\{\v,\root\}}{0}{1} &+ \ev{\v}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s)]}\int_{(0,t]}\s\,\poiss{\v}(d\tt,d\r,d\s)\nonumber\\
+\X{\{\v,\root\}}{\t}{1} = \X{\{\v,\root\}}{0}{1} &+ \ev{\v}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s)]}\int_{(0,t]}\s\,\poiss{\v}(d\tt,d\r,d\s)\nonumber\\
 &+ \ev{\root}\int_\S\int_{(0,\crate{}{}(\X{\{\root,\v\}}{[0,\tt)}{1},\s)]}\int_{(0,t]}\s\,\poiss{\root}(d\tt,d\r,d\s)
 \label{subsec::ProofU:eqn::Marginal}
 \end{align}
@@ -1756,20 +1752,20 @@ The marginal distribution of \(\mmm{}{}{1}\) on \(\Omega{\{\v,\root\}}{\T}\) for
 \begin{proof}
 Let \(\rp{} = \pmap{\tree\pup{1}}(\X{}{}{1})\) be defined as in Definition \ref{subsec::ProofE:Defn::pmap}. Then \(\rp{}\) has \(\F{\tree\pup{1}}{}\)-predictable intensity,
 
-\[\crate{\rp{}}{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\v\in \tree\pup{1}\setminus\{\root\}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in\S}\mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\rxvtn{}{\t-}{1},\s).\]
+\[\crate{\rp{}}{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\v\in \tree\pup{1}\setminus\{\root\}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in\S}\mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s).\]
 
 Then \(\piV{\{\v,\root\}}{\T}(\rp{})\defeq \pmap{\{\v,\root\}}(\X{}{}{1})\) \tr{notation?} has \(\F{\tree\pup{1}}{}\)-predictable intensity,
 
-\[\rate{\piV{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\rxvtn{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S^{\{\v,\root\}}.\]
+\[\rate{\piV{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S^{\{\v,\root\}}.\]
 
 Consider the candidate rate \(\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}\) defined in the following manner:
 
 \begin{align*}
 \crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}(\kappa) &= \exmu{\m{}{}{1}}{\rate{\piV{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\kappa)\middle|\F{\{\v,\root\}}{\t-}}\\
-&=\exmu{\m{}{}{1}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\rate{\root}(\rxvtn{}{\t-}{1},\s)\right)\middle|\F{\{\v,\root\}}{\t-}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\m{}{}{1}}{\rate{\root}(\rxvtn{}{\t-}{1},\s)\middle|\F{\{\v,\root\}}{\t-}}\\
+&=\exmu{\m{}{}{1}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s)\right)\middle|\F{\{\v,\root\}}{\t-}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\m{}{}{1}}{\rate{\root}(\X{}{\t-}{1},\s)\middle|\F{\{\v,\root\}}{\t-}}\\
 &=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\rxvttts{}{} \sim \m{}{}{1}}{\rate{}(\rxvttt{\tree\pup{1}}{\t-},\s)\middle|\rxvttts{\{\root,\v\}}{[0,\t)} = \X{\{\root,\v\}}{[0,\t)}{1}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\cm_t(\X{\{\root,\v\}}{[0,\t)}{1},\m{}{}{1})}{\rate{}(\rxvtn{\tree\pup{1}}{\t-}{1},\s)}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\cm_t(\X{\{\root,\v\}}{[0,\t)}{1},\m{}{}{1})}{\rate{}(\X{\tree\pup{1}}{\t-}{1},\s)}\\
 &=\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\crate{}{}(\X{\{\root,\v\}}{[0,\t)}{1},\s)\right)\\
 \end{align*}
 
@@ -1827,7 +1823,7 @@ Let \(\mm{}{}{} \in \pmsr(\Omega{\V}{\T-})\) be as defined in Definition \ref{su
 
 \[\ratee{}(\rp{}[0,\t),\mark{}) = \begin{cases}
 \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) &\te{ if } \v\in \tree\pup{1}\setminus\{\root\}\te{ and } \mark{} = \s\ev{\v}\\
-\rate{}(\rxvtn{\tree\pup{1}}{\t-}{1},\s) &\te{ if } \mark{} = \s\ev{\root}\\
+\rate{}(\X{\tree\pup{1}}{\t-}{1},\s) &\te{ if } \mark{} = \s\ev{\root}\\
 0 &\te{ otherwise}.
 \end{cases}\]
 
@@ -1847,7 +1843,7 @@ Let \(\{(\rt{\it},\mark{\it})\}\) be the events of \(\pmap{}(\X{}{}{1})\). By Le
 \dense{1}{\t}(\X{\tree\pup{1}}{})&\defeq \frac{d\mmm{}{\t}{1}}{d\mm{}{\t}{1}}\nonumber\\
 &= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\left(\sum_{0< \rt{\it} \leq \t} \log{\ratee{}(\X{}{[0,\rt{\it})}{1},\mark{\it})} - \int_{(0,\t]\times\S} [\ratee{}(\X{}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
 &= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\Bigg(\sum_{\v\in\tree\pup{1}\setminus\{\root\}}\left(\sum_{0< \rt{\it}_\v \leq \t} \log{\crate{}{}(\X{\{\v,\root\}}{[0,\rt{\it}_\v)}{1},\mark{\it})} - \int_{(0,\t]\times\S} [\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
-&\hspace{24pt} + \left(\sum_{0 < \rt{\it}_\root \leq \t} \log{\rate{}(\rxvtn{\tree\pup{1}}{\rt{\it}_\root-}{1},\mark{\it}_\root)} - \int_{(0,\t]\times\S} [\rate{}(\rxvtn{\tree\pup{1}}{\tt-}{1},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
+&\hspace{24pt} + \left(\sum_{0 < \rt{\it}_\root \leq \t} \log{\rate{}(\X{\tree\pup{1}}{\rt{\it}_\root-}{1},\mark{\it}_\root)} - \int_{(0,\t]\times\S} [\rate{}(\X{\tree\pup{1}}{\tt-}{1},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
 &= \frac{d\mmm{}{0}{1}}{d\mm{}{0}{1}}\exp\left(\sum_{\v\in\tree\pup{1}\setminus\{\root\}} \ds{\v}{\t}(\X{\{\v,\root\}}{}{1},\crate{}{}) + \ds{\root}{\t}(\X{\tree\pup{1}}{}{1},\rate{})\right).
 \label{subsec::ProofU:eqn::L1 density}
 \end{align}
@@ -1963,7 +1959,7 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 \ind Recall the mapping \(\pmap{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{\numb} = \pmap{}(\X{}{}{\numb})\). Then the intensity of \(\rp{\numb}\) is given by,
 
 \[\rate{\numb}(\t,\sv{\tree\pup{\numb}}) = \begin{cases}
-\rate{}(\rxvtn{\cl{\v}}{\t-}{\numb},\s) &\te{ if } \sv{\tree\pup{\numb}} = \s\ev{\v},\s \in \S\setminus\{0\},\v\in\tree\pup{\numb-1}\\
+\rate{}(\X{\cl{\v}}{\t-}{\numb},\s) &\te{ if } \sv{\tree\pup{\numb}} = \s\ev{\v},\s \in \S\setminus\{0\},\v\in\tree\pup{\numb-1}\\
 \crate{}{}(\X{\{\v,\p{\v}\}}{[0,\t)}{\numb},\s) &\te{ if } \sv{\tree\pup{\numb}} = \s\ev{\v},\s\in\S\setminus\{0\},\v\in\tree\pup{\numb}\setminus\tree\pup{\numb-1}\\
 0 &\te{ otherwise.}
 \end{cases}\]
@@ -2016,9 +2012,9 @@ Fix \(\numb \in \mb{N}\). Notice that most of the assumptions of \cite[Propositi
 Let \(\{\poiss{\v},\alt{\poiss{\v}}:\v\in\V\}\) be constructed as above. Then \(\X{}{}{\numb}\) almost surely solves the equation,
 
 \begin{equation}
-\rxvtn{\v}{\t}{\numb} = \begin{cases}
-\rxvtn{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)}{\numb},\s)]}\s\alt{\poiss{\v}}(d\tt,d\s,d\r)\te{ for } \v \in \tree\pup{\numb}\setminus\tree\pup{\numb-1}\\
-\rxvtn{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\rxvtn{\cl{\v}}{\tt-}{\numb},\s)]}\s\,\poiss{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\pup{\numb-1}.
+\X{\v}{\t}{\numb} = \begin{cases}
+\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)}{\numb},\s)]}\s\alt{\poiss{\v}}(d\tt,d\s,d\r)\te{ for } \v \in \tree\pup{\numb}\setminus\tree\pup{\numb-1}\\
+\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{\numb},\s)]}\s\,\poiss{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\pup{\numb-1}.
 \end{cases}
 \label{subsec::ProofU:eqn::ExtendedSDE_fixedPoisson}
 \end{equation}
@@ -2029,8 +2025,8 @@ By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. B
 \ind Fix any \(\v\in\V\). Let \(\numb\in \mb{N}\) be any natural number such that \(\v\in \tree\pup{\numb-1}\). Then for any \(\t \in [0,\T)\),
 
 \begin{align*}
-\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-},\s)]}\s\poiss{\v}(d\r,d\s,d\tt) &= \X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\rxvtn{\cl{\v}}{\tt-}{\numb},\s)]}\s\poiss{\v}(d\r,d\s,d\tt)\\
-&=\rxvtn{\v}{\t}{\numb} = \X{\v}{\t}.
+\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-},\s)]}\s\poiss{\v}(d\r,d\s,d\tt) &= \X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{\numb},\s)]}\s\poiss{\v}(d\r,d\s,d\tt)\\
+&=\X{\v}{\t}{\numb} = \X{\v}{\t}.
 \end{align*}
 
 Thus, \(\X{}{}\) is a solution to the coupled equation,
@@ -2930,7 +2926,7 @@ where \(\{\alt{\poiss{\v}}:\v \in \U\}\) are a sequence of i.i.d. unit rate Pois
 
 \ind By Proposition \ref{subsec::Well-:Prop::SDE=IG}, there exists a sequence of i.i.d Poisson processes, \(\{\poiss{\v}:\v\in \V\}\), on \(\S\times\mb{R}^2\) with intensity measure \(\Sm\otimes \leb\) such that,
 
-\[\rxvtn{\v}{\t}{\numb} = \rxvtn{\v}{0}{\numb} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\rxvtn{}{\tt-}{\numb})],d\s)\]
+\[\X{\v}{\t}{\numb} = \X{\v}{0}{\numb} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\X{}{\tt-}{\numb})],d\s)\]
 
 for all \(\v\in \V\). Let
 
@@ -2939,20 +2935,20 @@ for all \(\v\in \V\). Let
 Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in \V\}\) are i.i.d., it follows that \(\{\alt{\poiss{\v}}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\piV{\U}{\T}(\X{}{}{\numb})\) experiences a jump, \(\rxvtts{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\rxvtts{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
 
 \begin{align*}
-|\rxvtn{\v}{\tt}{\numb} - \rxvtn{\v}{\ttt}{\numb}|&\leq M\left|\{\#\te{ of jumps in }\X{\v}{(\tt,\ttt]}{\numb}\}\right| \\
+|\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|&\leq M\left|\{\#\te{ of jumps in }\X{\v}{(\tt,\ttt]}{\numb}\}\right| \\
 &\leq M\left|\{\#\te{ of jumps in }\rxvtts{\v}{(\tt,\ttt]}\}\right| = \left|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}\right|
 \end{align*}
 
 It follows that for any partition \(\{\t\pup{\it}\}\) of \([0,\T]\),
 
 \begin{align*}
-\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtn{\v}{\tt}{\numb} - \rxvtn{\v}{\ttt}{\numb}|\leq \sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|.
+\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|\leq \sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|.
 \end{align*}
 
 Fix \(\delta > 0\). Taking the infimum over all partitions with minimum interval length \(\delta\) yields,
 
 \begin{align*}
-\omega'_{\piV{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) &= \inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtn{\v}{\tt}{\numb} - \rxvtn{\v}{\ttt}{\numb}|\\
+\omega'_{\piV{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) &= \inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|\\
 &\leq \inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|\\
 &= \omega'_{\rxvtts{}{}}(\delta).
 \end{align*}
@@ -2989,15 +2985,15 @@ I use the notation of section \ref{subsec::ProofU:sec::Proof2}. The assumptions 
 
 If we let \(\poiss{}(\cdot,\cdot) = \pmap{}(\X{}{}{\numb})\) (see Definition \ref{subsec::ProofE:Defn::pmap}), then the proof of \cite[Proposition 14.7.I(b)]{DalVer08} shows that the point process defined in equation \eqref{subsec::ProofU:eqn::Poissonexpl} is a Poisson point process with intensity \(d\t\times \alt{\Sm^\numb}\times d\r\) and adapted to a larger filtration.
 
-\ind However, our intensity is actually only predictable with respect to \(\mc{F} \supseteq \mc{H}\) which includes the value of \(\rxvtn{}{0}{\numb}\). This can be fixed simply. Let \(\rate{\v}^{\sv{}{\tree\pup{\numb}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\rxvtn{}{0}{\numb} = \sv{}{\tree\pup{\numb}})\). Then \(\rate{\v}^{\sv{}{\tree\pup{\numb}}}(t,\kappa)\) satisfies the conditions above. Then,
+\ind However, our intensity is actually only predictable with respect to \(\mc{F} \supseteq \mc{H}\) which includes the value of \(\X{}{0}{\numb}\). This can be fixed simply. Let \(\rate{\v}^{\sv{}{\tree\pup{\numb}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X{}{0}{\numb} = \sv{}{\tree\pup{\numb}})\). Then \(\rate{\v}^{\sv{}{\tree\pup{\numb}}}(t,\kappa)\) satisfies the conditions above. Then,
 
 \[\poiss{\numb}^{\sv{}{\tree\pup{\numb}}}(\evnt) = \alt{\poiss{\numb}}\left(\evnt\cap\{(t,\sv{}{\tree\pup{\numb}},\r):\r > \rate{\numb}^{\sv{}{\tree\pup{\numb}}}(\t,\sv{}{\tree\pup{\numb}})\}\right) + \#\{(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v,\rv_{\v}^{\it}\rate{\numb}^{\sv{}{\tree\pup{\numb}}}(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v) \in \evnt: \v\in \tree\pup{\numb}\}\]
 
 is a Poisson process with intensity \(d\t\times \alt{\Sm^\numb}\times d\r\). Let \(R \subseteq \alt{\S^\numb}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
 
 \begin{align*}
-\pr\left(\poiss{\numb}\left(\inte\times R\times \alt{\inte}\right) = 0\right) &= \sum_{\sv{}{\tree\pup{\numb}} \in \alt{S}^\numb} \pr\left(\poiss{\numb}^{\sv{}{\tree\pup{\numb}}}\left(\inte\times R\times \alt{\inte}\right) = 0\right)\pr(\rxvtn{}{0}{\numb} = \sv{}{\tree\pup{\numb}})\\
-&= \exp\left(-|R| |\inte||\alt{\inte}|\right)\sum_{\sv{}{\tree\pup{\numb}} \in \alt{S^\numb}} \pr(\rxvtn{}{0}{\numb} = \sv{}{\tree\pup{\numb}})\\
+\pr\left(\poiss{\numb}\left(\inte\times R\times \alt{\inte}\right) = 0\right) &= \sum_{\sv{}{\tree\pup{\numb}} \in \alt{S}^\numb} \pr\left(\poiss{\numb}^{\sv{}{\tree\pup{\numb}}}\left(\inte\times R\times \alt{\inte}\right) = 0\right)\pr(\X{}{0}{\numb} = \sv{}{\tree\pup{\numb}})\\
+&= \exp\left(-|R| |\inte||\alt{\inte}|\right)\sum_{\sv{}{\tree\pup{\numb}} \in \alt{S^\numb}} \pr(\X{}{0}{\numb} = \sv{}{\tree\pup{\numb}})\\
 &=\exp\left(-|R| |\inte||\alt{\inte}|\right)
 \end{align*}
 
