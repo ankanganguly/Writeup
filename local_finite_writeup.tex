@@ -79,6 +79,11 @@
 \newcommand{\FG}[2]{\mc{G}}						%Filtrations
 \newcommand{\FH}[2]{\mc{H}}						%Filtrations
 \newcommand{\X}{X}								%typ random process
+\newcommand{\IG}{\mc{A}}						%Infinitesimal gens
+\newcommand{\IGr}{c}							%IG rate
+\newcommand{\f}{f}								%generic function
+
+
 
 %Modifiers
 \newcommand{\cl}{\ov}							%closure
@@ -92,7 +97,7 @@
 \newcommand{\degr}{D}								%max degree
 \newcommand{\poiss}[1]{N_{#1}}						%Poisson process
 \newcommand{\poisses}{\mathbf{N}}				%all Poisson processes
-\newcommand{\IG}{\mc{A}}						%Infinitesimal gens
+
 \newcommand{\law}{\te{Law}}							%Law of a process
 \newcommand{\leb}{\te{Leb}}							%Lebesgue measure
 \newcommand{\pup}[1]{^{#1}}							%Scaling prelimit
@@ -118,10 +123,6 @@
 \newcommand{\numb}{n}								%# of prelim vars
 \newcommand{\XState}[1]{\S^{#1}}				%multidim state space
 
-
-
-
-\newcommand{\piV}[2]{\pi_{#1}^{#2}}					%projection
 \newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
 \newcommand{\xvttt}[2]{z_{#1}{(#2)}}				%typ path val3
 \newcommand{\rxvtt}[2]{Y_{#1}{(#2)}}				%typ rand path val2
@@ -139,7 +140,6 @@
 \newcommand{\mm}[3]{\nu_{#2#1}^{#3}}						%typ measure 2
 \newcommand{\mmm}[3]{\eta_{#2#1}^{#3}}						%typ measure 3
 \newcommand{\cm}{\gamma}							%conditional msr funct
-\newcommand{\IGr}[1]{c_{#1}}						%IG rate
 \newcommand{\rate}[1]{\lambda_{#1}}					%rate
 \newcommand{\ratee}[1]{\Lambda_{#1}}				%general rate
 \newcommand{\crate}[2]{\alt{\lambda}_{#1}^{#2}}		%conditional rate
@@ -252,7 +252,7 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs ev&1&\(\ev{\v}\)						&standard basis\\
 \tbs cad&0&\(\cad\)							&Cadlag space\\
 \tbs OmegaV&2&\(\Omega{\v}{\t}\)			&Path space\\
-\tbs piV&2&\(\piV{\U}{t}\)					&projection\\
+\tbs piV&2&\(\proj{\U}{t}\)					&projection\\
 \tbs xvtt&2&\(\xvtt{\v}{\t}\)					&typ path val2\\
 \tbs xvttt&2&\(\xvttt{\v}{\t}\)				&typ path val3\\
 \tbs rxvt&2&\(\X{\v}{\t}\)					&typ rand path val\\
@@ -383,7 +383,7 @@ Let \(\G = (\V,\E)\) be a graph with bounded degree with rooted node \(\root \in
 
 \ind Let \(\S^\V\) be the set of vectors, \(\sv{}{\V}\) with components \(\sv{\v}{\V} \in \S\) indexed by \(\v\in \V\). Let \(\{\ev{\v}: \v\in \V\}\) be the standard basis vectors of \(\S^\V\). Let \(\{\b{\v}:\v\in \V\}\) be a sequence of positive numbers such that \(\sum_{\v\in\V} \b{\v} < \infty\). Then let \(\|\cdot\|_{\b{}}\) be a norm on \(\S^\V\) defined by \(\|\sv{}{\V}\|_{\b{}} = \sum_{\v\in\V} \b{\v}|\sv{\v}{\V}|\). For any \(\U\subseteq \V\), we will generally assume \(\S^\U\) is embedded in \(\S^\V\). That is, for \(\sv{}{\U}\in \S^\U\), \(\sv{\v}{\U} = 0\) for all \(\v\notin\U\). Thus, we can also define the norm \(\|\sv{}{\U}\|_{\b{}} = \sum_{\v\in\U} \b{\v}|\sv{\v}{\U}|\). \(\S^\V\) acts as the state space of an interacting particle system on \(\G\) whose nodes have state space \(\S\).
 
-\ind Fix some \(\T < \infty\). For any \(\U\subseteq \V\) and \(\t\in [0,\T]\), let \(\Omega{\U}{\t} = \cad([0,\t],\S^{\U})\) and \(\Omega{\U}{\t-} = \cad([0,\t),\S^\U)\). For any \(\x{}{} \in \Omega{\V}{\T}\), \(\v\in \V\) and  \(\t \in [0,\T]\), let \(\x{\v}{\t}\) be the value of the \(\v\)-node of \(\x{}{}\) at time \(\t\). For any \(\U\subseteq \V\), let \(\piV{\U}{\t}\) be the standard projection/embedding into the space \(\Omega{\U}{\t}\). In a slight misuse of notation, we will make the domain clear from context. Let \(\piV{\U}{} \defeq \piV{\U}{0}\) be the projection to \(\S^\U\). For any \(\U\subseteq \V\), define the norm on \(\Omega{\t}{\U}\) by \(\|\x{\U}{}\|_{\b{},\t} \defeq \sup_{\tt \leq \t} \|\x{\U}{\tt}\|_{\b{}}\). Let \(\F{\U}{\t}\) be the Borel \(\sigma\)-algebra of \(\Omega{\U}{\t}\) with respect to the Skorokhod topology. Let \(\X{}{}\) be an \(\Omega{\V}{\t}\)-valued random variable. We say that \(\X{\v}{\t}\) is the state of the \(\v\)-component of \(\X{}{}\) at time \(\t\). Assume \(\X{}{}\) is a Feller process with infinitesimal generator \(\IG\) given by,
+\ind Fix some \(\T < \infty\). For any \(\U\subseteq \V\) and \(\t\in [0,\T]\), let \(\Omega{\U}{\t} = \cad([0,\t],\S^{\U})\) and \(\Omega{\U}{\t-} = \cad([0,\t),\S^\U)\). For any \(\x{}{} \in \Omega{\V}{\T}\), \(\v\in \V\) and  \(\t \in [0,\T]\), let \(\x{\v}{\t}\) be the value of the \(\v\)-node of \(\x{}{}\) at time \(\t\). For any \(\U\subseteq \V\), let \(\proj{\U}{\t}\) be the standard projection/embedding into the space \(\Omega{\U}{\t}\). In a slight misuse of notation, we will make the domain clear from context. Let \(\proj{\U}{} \defeq \proj{\U}{0}\) be the projection to \(\S^\U\). For any \(\U\subseteq \V\), define the norm on \(\Omega{\t}{\U}\) by \(\|\x{\U}{}\|_{\b{},\t} \defeq \sup_{\tt \leq \t} \|\x{\U}{\tt}\|_{\b{}}\). Let \(\F{\U}{\t}\) be the Borel \(\sigma\)-algebra of \(\Omega{\U}{\t}\) with respect to the Skorokhod topology. Let \(\X{}{}\) be an \(\Omega{\V}{\t}\)-valued random variable. We say that \(\X{\v}{\t}\) is the state of the \(\v\)-component of \(\X{}{}\) at time \(\t\). Assume \(\X{}{}\) is a Feller process with infinitesimal generator \(\IG\) given by,
 
 \begin{equation}
 \IG f(\sv{}{\V}) = \sum_{\v \in \V}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V} + \s \ev{\v}) - f(\sv{}{\V})],
@@ -822,7 +822,7 @@ By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X{}{}\) 
 \lin
 
 \begin{prop}
-Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in \V\) be some node. Let \(\V\pup{0} = \{\root\}\) and \(\V\pup{\numb+1} = \cl{\V\pup{\numb}}\) for all \(\numb \in \mb{N}\). For all \(\U \subseteq \V\) and \(\t \in [0,\T]\), let \(\Omega{\U}{\t}\) be embedded in \(\Omega{\V}{\t}\) in the standard way. Let \(\X{}{0}{\numb} = \piV{\V\pup{\numb}}{0}(\X{}{0})\). For each \(\numb\in\mb{N}\), let the \(\Omega{\V\pup{\numb}}{\T}\)-valued random element \(\X{}{}{\numb}\) be the unique Feller process with initial condition \(\X{}{0}{\numb}\) and infinitesimal generator,
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in \V\) be some node. Let \(\V\pup{0} = \{\root\}\) and \(\V\pup{\numb+1} = \cl{\V\pup{\numb}}\) for all \(\numb \in \mb{N}\). For all \(\U \subseteq \V\) and \(\t \in [0,\T]\), let \(\Omega{\U}{\t}\) be embedded in \(\Omega{\V}{\t}\) in the standard way. Let \(\X{}{0}{\numb} = \proj{\V\pup{\numb}}{0}(\X{}{0})\). For each \(\numb\in\mb{N}\), let the \(\Omega{\V\pup{\numb}}{\T}\)-valued random element \(\X{}{}{\numb}\) be the unique Feller process with initial condition \(\X{}{0}{\numb}\) and infinitesimal generator,
 
 \begin{equation}
 \IG\pup{\numb}f(\sv{}{\V\pup{\numb}}) = \sum_{\v\in \V\pup{\numb}}\sum_{\s\in \S} \IGr{\v}(\sv{}{\V\pup{\numb}}, \s)[f(\sv{}{\V\pup{\numb}} + \s\ev{\v}) - f(\sv{}{\V\pup{\numb}})]\te{ for all } \sv{}{\V\pup{\numb}} \in \S^{\V\pup{\numb}}.
@@ -856,17 +856,17 @@ Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the
 
 \[\omega'_{\X{}{}}(\delta) = \inf_{\{\t\pup{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \|\X{}{\tt} - \X{}{\ttt}\|_{\b{}},\]
 
-where \(\{\t\pup{\it}\} := 0 \leq \t\pup{1} < \t\pup{2} < \cdots < \t\pup{\cdot} = \T\) and \(\min_\it|\t\pup{\it} - \t\pup{\it-1}| > \delta\). Note that \(\X{}{}{\numb}\) is \(\Omega{\V\pup{\numb}}{\T}\)-valued and can be embedded in \(\Omega{\V}{\T}\) the same way we embed \(\S^{\V\pup{\numb}}\) in \(\S^\V\): let \(\X{\v}{}{\numb} \equiv 0\) for \(\v \notin \V\pup{\numb}\). Recall also that \(\piV{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq \V\). Then for any \(\numb\in \mb{N}\),
+where \(\{\t\pup{\it}\} := 0 \leq \t\pup{1} < \t\pup{2} < \cdots < \t\pup{\cdot} = \T\) and \(\min_\it|\t\pup{\it} - \t\pup{\it-1}| > \delta\). Note that \(\X{}{}{\numb}\) is \(\Omega{\V\pup{\numb}}{\T}\)-valued and can be embedded in \(\Omega{\V}{\T}\) the same way we embed \(\S^{\V\pup{\numb}}\) in \(\S^\V\): let \(\X{\v}{}{\numb} \equiv 0\) for \(\v \notin \V\pup{\numb}\). Recall also that \(\proj{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq \V\). Then for any \(\numb\in \mb{N}\),
 
 \begin{align*}
 \pr\left(\sup_\numb \omega'_{\X{}{}{\numb}}(\delta) > \epsilon\right) &= \pr\left(\sup_\numb\inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v \in \V} \b{\v}|(\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}| > \epsilon \right)\\
-&\leq \pr\left(\sup_\numb \left(\omega'_{\piV{\V\pup{M}}{\T}(\X{}{}{\numb})}(\delta) + \omega'_{\piV{\left(\V\pup{M}\right)^c}{\T}(\X{}{}{\numb})}(\delta)\right) > \ep\right)\\
-&\leq \pr\left(\sup_\numb \omega'_{\piV{\V\pup{M}}{\T}(\X{}{}{\numb})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
+&\leq \pr\left(\sup_\numb \left(\omega'_{\proj{\V\pup{M}}{\T}(\X{}{}{\numb})}(\delta) + \omega'_{\proj{\left(\V\pup{M}\right)^c}{\T}(\X{}{}{\numb})}(\delta)\right) > \ep\right)\\
+&\leq \pr\left(\sup_\numb \omega'_{\proj{\V\pup{M}}{\T}(\X{}{}{\numb})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
 \end{align*}
 
 The last inequality arises because
 
-\[\omega'_{\piV{\left(\V\pup{M}\right)^c}{\T}(\X{}{}{\numb})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\piV{\left(\V\pup{M}\right)^c}{\T}(\X{}{}{\numb})\right\|_{\b{}} \leq 2 \sup_{\sv{}{\left(\V\pup{M}\right)^c} \in \S^{\left(\V\pup{M}\right)^c}} \left\|\sv{}{\left(\V\pup{M}\right)^c}\right\|_{\b{}} < \ep/2\]
+\[\omega'_{\proj{\left(\V\pup{M}\right)^c}{\T}(\X{}{}{\numb})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left(\V\pup{M}\right)^c}{\T}(\X{}{}{\numb})\right\|_{\b{}} \leq 2 \sup_{\sv{}{\left(\V\pup{M}\right)^c} \in \S^{\left(\V\pup{M}\right)^c}} \left\|\sv{}{\left(\V\pup{M}\right)^c}\right\|_{\b{}} < \ep/2\]
 
 Finally, the convergence to 0 at the end is the result of a direct application of Lemma \ref{sec::TL:Lem::TightSupport}. Thus, \(\{\X{}{}{\numb}:\numb\in \mb{N}\}\) is tight, and therefore relatively compact with respect to the topology of weak convergence (Theorem \ref{sec::TL:Thm::Tight}).
 
@@ -874,10 +874,10 @@ Now, suppose \(f\in \core\). Then for all \(\sv{}{\V} \in \S^\V\),
 
 \begin{align*}
 \big|\IG&\pup{\numb}f(\sv{}{\V}) - \IG f(\sv{}{\V})\big|\\
-&= \left|\sum_{\v \in \V\pup{\numb}} \sum_{\s \in \S} \IGr{\v}(\piV{\V\pup{\numb}}{}(\sv{}{\V}),\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})] - \sum_{\v \in \V}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})]\right|\\
-&\leq  \left|\sum_{\v \in \V\pup{\numb}} \sum_{\s \in \S} \IGr{\v}(\piV{\V\pup{\numb}}{}(\sv{}{\V}),\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})] - \sum_{\v \in \V\pup{\numb}}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})]\right|\\
+&= \left|\sum_{\v \in \V\pup{\numb}} \sum_{\s \in \S} \IGr{\v}(\proj{\V\pup{\numb}}{}(\sv{}{\V}),\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})] - \sum_{\v \in \V}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})]\right|\\
+&\leq  \left|\sum_{\v \in \V\pup{\numb}} \sum_{\s \in \S} \IGr{\v}(\proj{\V\pup{\numb}}{}(\sv{}{\V}),\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})] - \sum_{\v \in \V\pup{\numb}}\sum_{\s \in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})]\right|\\
 &\ind  +\left|\sum_{\v \notin \V\pup{\numb}} \sum_{\s\in \S} \IGr{\v}(\sv{}{\V},\s)[f(\sv{}{\V}+\s\ev{\v}) - f(\sv{}{\V})]\right|\\
-&\leq \sum_{\v \in \V\pup{\numb}}\sum_{\s \in \S} \left|\IGr{\v}(\piV{\V\pup{\numb}}{}(\sv{}{\V}),\s) - \IGr{\v}(\sv{}{\V},\s)\right|\triangle_f(\v) + \sum_{\v \in \V\setminus \V\pup{\numb}} \const{}\triangle_f(\v)\\
+&\leq \sum_{\v \in \V\pup{\numb}}\sum_{\s \in \S} \left|\IGr{\v}(\proj{\V\pup{\numb}}{}(\sv{}{\V}),\s) - \IGr{\v}(\sv{}{\V},\s)\right|\triangle_f(\v) + \sum_{\v \in \V\setminus \V\pup{\numb}} \const{}\triangle_f(\v)\\
 &\os{Assump. \ref{subsec::Assum:Assu::CI}.2}{=} \sum_{\v \in \V\pup{\numb}\setminus\V\pup{\numb-1}} |\S|\const{} \triangle_f(\v) + \sum_{\v \in \V\setminus \V\pup{\numb}} \const{}\triangle_f(\v)\\
 &\leq |\S|C\sum_{\v \in \V\setminus \V\pup{\numb-1}} \triangle_f(\v) \os{n\ra\infty}{\ra} 0.
 \end{align*}
@@ -935,7 +935,7 @@ where
 
 \[\alt{\rate{}}(\X{\{\v,\root\}}{[0,\t)},\s) = \exmu{\cm_t(\X{\{\v,\root\}}{[0,\t)},\alt{\m{}{}{}})}{\rate{\root}(\X{}{\t-},\s)}\]
 
-for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \piV{\tree\pup{1}}{\T}(\m{}{}{})\).
+for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \proj{\tree\pup{1}}{\T}(\m{}{}{})\).
 \label{sec::Main:Thm::Local SDE}
 \end{thms}
 \labe{sec::Main:Thm::Local SDE}
@@ -1318,7 +1318,7 @@ Finally, by Lemma \ref{sec::TL:Lem::Props}(h),
 \subsection{Proof of Existence}
 \label{subsec::ProofE:sec::Proof2}\labe{subsec::ProofE:sec::Proof2}
 
-\pfsum \(\piV{\tree{1}}{\T}(\X{}{})\) can be expressed as a sum of a random variable and a non-explosive marked point process. The trick is to find a \(\piV{\tree{1}}{\T}(\X{}{})\)-measurable intensity for that point process. However, theorems that allow us to do that require that the candidate intensity have certain measurability properties, so we begin by proving those.
+\pfsum \(\proj{\tree{1}}{\T}(\X{}{})\) can be expressed as a sum of a random variable and a non-explosive marked point process. The trick is to find a \(\proj{\tree{1}}{\T}(\X{}{})\)-measurable intensity for that point process. However, theorems that allow us to do that require that the candidate intensity have certain measurability properties, so we begin by proving those.
 
 \lin
 
@@ -1330,7 +1330,7 @@ Let \(\U\subseteq \V\) and suppose \(\X{}{} \in \Omega{\U}{\T-}\) is a stochasti
 0 &\te{ otherwise}
 \end{cases}.\]
 
-Similarly, for \(\UU \subseteq \U\), \(\pmap{\UU}(\X{}{}) = \pmap{}\left(\piV{\UU}{\T}(\X{}{})\right)\). For any \(\v\in \U\), \(\pmap{\v}(\X{}{})\) is a random measure on \((0,\T) \times \S\) given by,
+Similarly, for \(\UU \subseteq \U\), \(\pmap{\UU}(\X{}{}) = \pmap{}\left(\proj{\UU}{\T}(\X{}{})\right)\). For any \(\v\in \U\), \(\pmap{\v}(\X{}{})\) is a random measure on \((0,\T) \times \S\) given by,
 
 \[\pmap{\v}(\X{}{})(\{(\rt{},\mark{})\}) = \begin{cases}
 1 &\te{ if } \X{\v}{\rt{}} - \X{\v}{\rt{}-} = \mark{}\\
@@ -1684,11 +1684,11 @@ Let \(\{\F{\tree\pup{1}}{\t}:\t\in [0,\T]\}\) be the natural filtration of \(\X{
 
 Then,
 
-\[\left(\piV{\tree\pup{1}}{\T}(\X{}{})\right)^\t = \left(\piV{\tree\pup{1}}{\T}(\X{}{})\right)^0 + \sum_{\v \in \tree\pup{1}}\ev{\v}\int_\S\int_0^\t \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{\tt-},\s)\right],d\s\right).\]
+\[\left(\proj{\tree\pup{1}}{\T}(\X{}{})\right)^\t = \left(\proj{\tree\pup{1}}{\T}(\X{}{})\right)^0 + \sum_{\v \in \tree\pup{1}}\ev{\v}\int_\S\int_0^\t \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{\tt-},\s)\right],d\s\right).\]
 
 However, this is not \(\F{\tree\pup{1}}{\t}\)-adapted. Let \(\rp{} = \{(\rt{\it},\mark{\it})\} = \pmap{\tree\pup{1}}(\X{}{}).\) Then,
 
-\[\left(\piV{\tree\pup{1}}{\T}(\X{}{})\right)^\t = \left(\piV{\tree\pup{1}}{\T}(\X{}{})\right)^0 + \sum_{0 < \rt{\it} \leq t}\mark{\it}\]
+\[\left(\proj{\tree\pup{1}}{\T}(\X{}{})\right)^\t = \left(\proj{\tree\pup{1}}{\T}(\X{}{})\right)^0 + \sum_{0 < \rt{\it} \leq t}\mark{\it}\]
 
 Therefore it suffices to derive the \(\F{\tree\pup{1}}{\t}\)-intensity of \(\rp{}\). \(\rp{}\) has \(\F{\V}{\t}\)-intensity \(\rate{\rp{}}(\X{}{\t-},\mark{}) := \sum_{\v \in \tree^1}\sum_{\s\in S}\mb{I}_{\mark{} = \s\ev{\v}}\rate{\v}(\X{}{\t-},\s)\). Each \(\rate{\v}\) is clearly left-continuous in time, so \(\rate{\rp{}}\) is also left-continuous in time. Recall that \(\m{}{}{}\) is the law of \(\X{}{}\). Then,
 
@@ -1700,14 +1700,14 @@ Applying Theorem \ref{sec::Main:Thm::CI} and symmetry of \(\m{}{}{}\) yields,
 \exmu{\m{}{}{}}{\rate{\v}(\X{}{\t-},\s)|\F{\tree\pup{1}}{\t-}} &= \exmu{\m{}{}{}}{\rate{\v}(\X{}{\t-},\s)|\X{\tree\pup{1}}{[0,\t)}}\\
 &\os{\te{Thm \ref{sec::Main:Thm::CI}}}{=} \exmu{\m{}{}{}}{\rate{}(\X{\cl{\v}}{\t-},\s)|\X{\{\v,\root\}}{[0,\t)}} \\
 &\os{\te{Sym}}{=} \exmu{\rxvtts{}{}\sim \m{}{}{}}{\rate{}(\rxvtt{\tree\pup{1}}{\t-},\s)|\rxvtts{\{\root,1\}}{[0,\t)} = \X{\{\v,\root\}}{[0,\t)}}\\
-&= \exmu{\rxvtts{}{}\sim \piV{\tree\pup{1}}{\T}(\m{}{}{})}{\rate{}(\rxvtt{\tree\pup{1}}{\t-},\s)|\rxvtts{\{\root,1\}}{[0,\t)} = \X{\{\v,\root\}}{[0,\t)}}\\
-&= \exmu{\cm_\t\left(\X{\{\v,\root\}}{[0,\t)},\piV{\tree\pup{1}}{\T}(\m{}{}{})\right)}{\rate{}(\X{\tree\pup{1}}{\t-},\s)}\\
+&= \exmu{\rxvtts{}{}\sim \proj{\tree\pup{1}}{\T}(\m{}{}{})}{\rate{}(\rxvtt{\tree\pup{1}}{\t-},\s)|\rxvtts{\{\root,1\}}{[0,\t)} = \X{\{\v,\root\}}{[0,\t)}}\\
+&= \exmu{\cm_\t\left(\X{\{\v,\root\}}{[0,\t)},\proj{\tree\pup{1}}{\T}(\m{}{}{})\right)}{\rate{}(\X{\tree\pup{1}}{\t-},\s)}\\
 &=\crate{}{}(\X{\{\v,\root\}}{[0,\t)},\s) = \crate{\v}{\t}(\s).
 \end{align*}
 
 By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{\v}{\t}(\s)\) has a left-continuous modification. Then, by Lemma \ref{subsec::ProofE:Lem::filtering}, \(\crate{\v}{\t}(\s)\) is a \(\F{\tree\pup{1}}{}\)-predictable filtration of \(\rxvtts{}{}\).
 
-\ind By lemma \ref{subsec::Some:Lem::PPtoSDE}, we can characterize the law of \(\piV{\tree\pup{1}}{\T}(\X{}{})\) as the law of the unique solution (given \(\piV{\tree\pup{1}}{\T}(\m{}{}{})\)) to the SDE
+\ind By lemma \ref{subsec::Some:Lem::PPtoSDE}, we can characterize the law of \(\proj{\tree\pup{1}}{\T}(\X{}{})\) as the law of the unique solution (given \(\proj{\tree\pup{1}}{\T}(\m{}{}{})\)) to the SDE
 
 \begin{align*}
 \X{\v}{\t} &= \X{\v}{0} + \int_0^\t\int_\S \s\,\poiss{\v}(d\s,(0,\crate{\v}{\tt}(\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\},\\
@@ -1754,14 +1754,14 @@ Let \(\rp{} = \pmap{\tree\pup{1}}(\X{}{}{1})\) be defined as in Definition \ref{
 
 \[\crate{\rp{}}{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\v\in \tree\pup{1}\setminus\{\root\}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in\S}\mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s).\]
 
-Then \(\piV{\{\v,\root\}}{\T}(\rp{})\defeq \pmap{\{\v,\root\}}(\X{}{}{1})\) \tr{notation?} has \(\F{\tree\pup{1}}{}\)-predictable intensity,
+Then \(\proj{\{\v,\root\}}{\T}(\rp{})\defeq \pmap{\{\v,\root\}}(\X{}{}{1})\) \tr{notation?} has \(\F{\tree\pup{1}}{}\)-predictable intensity,
 
-\[\rate{\piV{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S^{\{\v,\root\}}.\]
+\[\rate{\proj{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S^{\{\v,\root\}}.\]
 
-Consider the candidate rate \(\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}\) defined in the following manner:
+Consider the candidate rate \(\crate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}\) defined in the following manner:
 
 \begin{align*}
-\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}(\kappa) &= \exmu{\m{}{}{1}}{\rate{\piV{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\kappa)\middle|\F{\{\v,\root\}}{\t-}}\\
+\crate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}(\kappa) &= \exmu{\m{}{}{1}}{\rate{\proj{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\kappa)\middle|\F{\{\v,\root\}}{\t-}}\\
 &=\exmu{\m{}{}{1}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s)\right)\middle|\F{\{\v,\root\}}{\t-}}\\
 &=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\m{}{}{1}}{\rate{\root}(\X{}{\t-}{1},\s)\middle|\F{\{\v,\root\}}{\t-}}\\
 &=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\rxvttts{}{} \sim \m{}{}{1}}{\rate{}(\rxvttt{\tree\pup{1}}{\t-},\s)\middle|\rxvttts{\{\root,\v\}}{[0,\t)} = \X{\{\root,\v\}}{[0,\t)}{1}}\\
@@ -1769,7 +1769,7 @@ Consider the candidate rate \(\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}\) define
 &=\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\crate{}{}(\X{\{\root,\v\}}{[0,\t)}{1},\s)\right)\\
 \end{align*}
 
-Notice that \(\X{}{}{1}\) and \(\rate{}\) satisfy Assumption \ref{subsec::ProofE:Assu::Eassu}. Thus, \(\crate{}{}(\X{\{\root,\v\}}{[0,\t)}{1},\s)\) has a left-continuous modification by Lemma \ref{subsec::ProofE:Lem::leftmod}. Then \(\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}(\mark{})\) also has a left-continuous modification. By Lemma \ref{subsec::ProofE:Lem::filtering}, \(\crate{\piV{\{\v,\root\}}{\T}(\rp{})}{\t}(\kappa)\) is the \(\F{\{\v,\root\}}{}\)-predictable intensity of \(\rp{}\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, equation \eqref{subsec::ProofU:eqn::Marginal} has a unique solution and by Lemma \ref{subsec::Some:Lem::PPtoSDE}, that solution has jump intensity given by the above.
+Notice that \(\X{}{}{1}\) and \(\rate{}\) satisfy Assumption \ref{subsec::ProofE:Assu::Eassu}. Thus, \(\crate{}{}(\X{\{\root,\v\}}{[0,\t)}{1},\s)\) has a left-continuous modification by Lemma \ref{subsec::ProofE:Lem::leftmod}. Then \(\crate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}(\mark{})\) also has a left-continuous modification. By Lemma \ref{subsec::ProofE:Lem::filtering}, \(\crate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}(\kappa)\) is the \(\F{\{\v,\root\}}{}\)-predictable intensity of \(\rp{}\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, equation \eqref{subsec::ProofU:eqn::Marginal} has a unique solution and by Lemma \ref{subsec::Some:Lem::PPtoSDE}, that solution has jump intensity given by the above.
 
 \end{proof}
 
@@ -1805,7 +1805,7 @@ For any \(\v \in \V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(
 \end{equation}
 \labe{subsec::ProofU:eqn::extendedSDE}
 
-Then for any \(\alt{\numb} < \numb\), \(\mmm{}{\t}{\alt{\numb}} = \piV{\tree\pup{\alt{\numb}}}{\t}(\mmm{}{\t}{\numb})\).
+Then for any \(\alt{\numb} < \numb\), \(\mmm{}{\t}{\alt{\numb}} = \proj{\tree\pup{\alt{\numb}}}{\t}(\mmm{}{\t}{\numb})\).
 \label{subsec::ProofU:Lem::extendedSDE}
 \end{lem}
 \labe{subsec::ProofU:Lem::extendedSDE}
@@ -1911,7 +1911,7 @@ By a simple calculation analogous to what we did earlier to show that \(\dense{1
 Then,
 
 \begin{align*}
-\frac{d\piV{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb})}{d\mm{}{\t}{\numb-1}} &= \int_{\Omega{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t-}} \frac{d\mmm{}{\t}{\numb}}{d\mm{}{\t}{\numb}}\,\mm{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t,}{}(d\X{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{}{\numb})\\
+\frac{d\proj{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb})}{d\mm{}{\t}{\numb-1}} &= \int_{\Omega{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t-}} \frac{d\mmm{}{\t}{\numb}}{d\mm{}{\t}{\numb}}\,\mm{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t,}{}(d\X{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{}{\numb})\\
 &=\int_{\Omega{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t-}} \dense{\numb}{\t}(\X{}{}{\numb})\,\mm{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t,}{}(d\X{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{}{\numb})\\
 &= \int_{\Omega{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t-}} \dense{\numb-1}{\t}(\X{\tree\pup{\numb-1}}{}{\numb})\prod_{\v\in \tree\pup{\numb-1}\setminus\tree\pup{\numb-2}} \cdense{}{\t}(\X{\c{\v}}{}{\numb};\X{\{v,\p{\v}\}}{}{\numb})\,\mm{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{\t,}{}(d\X{\tree\pup{\numb}\setminus\tree\pup{\numb-1}}{}{\numb})\\
 &= \dense{\numb-1}{\t}(\X{\tree\pup{\numb-1}}{}{\numb})\prod_{\v\in \tree\pup{\numb-1}\setminus\tree\pup{\numb-2}}\int_{\Omega{\c{\v}}{\t-}} \cdense{}{\t}(\X{\c{\v}}{}{\numb};\X{\{v,\p{\v}\}}{}{\numb})\,\mm{\c{\v}}{\t,}{}(d\X{\c{\v}}{}{\numb})\\
@@ -1919,9 +1919,9 @@ Then,
 &= \dense{\numb-1}{\t}(\X{\tree\pup{\numb-1}}{}{\numb}).
 \end{align*}
 
-This proves that \(\piV{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb}) = \mmm{}{\t}{\numb-1}\). Furthermore, for any \(\alt{\numb} < \numb\),
+This proves that \(\proj{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb}) = \mmm{}{\t}{\numb-1}\). Furthermore, for any \(\alt{\numb} < \numb\),
 
-\[\piV{\tree\pup{\alt{\numb}}}{\t}(\mmm{}{\t}{\numb}) = \piV{\tree\pup{\alt\numb}}{\t}\circ\piV{\tree\pup{\alt{\numb} + 1}}{\t} \circ\cdots\circ \piV{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb}) = \piV{\tree\pup{\alt\numb}}{\t}\circ\piV{\tree\pup{\alt{\numb} + 1}}{\t} \circ\cdots\circ \piV{\tree\pup{\numb-2}}{\t}(\mmm{}{\t}{\numb-1}) = \cdots = \mmm{}{\t}{\alt{\numb}}.\]
+\[\proj{\tree\pup{\alt{\numb}}}{\t}(\mmm{}{\t}{\numb}) = \proj{\tree\pup{\alt\numb}}{\t}\circ\proj{\tree\pup{\alt{\numb} + 1}}{\t} \circ\cdots\circ \proj{\tree\pup{\numb-1}}{\t}(\mmm{}{\t}{\numb}) = \proj{\tree\pup{\alt\numb}}{\t}\circ\proj{\tree\pup{\alt{\numb} + 1}}{\t} \circ\cdots\circ \proj{\tree\pup{\numb-2}}{\t}(\mmm{}{\t}{\numb-1}) = \cdots = \mmm{}{\t}{\alt{\numb}}.\]
 
 \ind Fix \(\numb\in\mb{N}\). By Lemma \ref{subsec::Some:Lem::radnik}, \(\mmm{}{}{\numb}\) can be described as the law of the unique solution to equation \eqref{subsec::ProofU:eqn::extendedSDE}.
 \end{proof}
@@ -1946,9 +1946,9 @@ Let \(\{\mmm{\U}{\t,}{}:\t \leq \T\}_{\U\subset \V,\U\te{ finite}}\) be a collec
 
 By property (b) above, this is well-defined. Since each \(\mmm{\U}{}{}\) is a probability measure defined on the Borel sets of \(\Omega{\U}{\T-}\), they are all inner regular (\tr{citation?}). Now, fix some finite \(\U\subseteq \V\) and let \(\UU \subseteq \U\). Suppose \(\numb\) is such that \(\U \subseteq \tree\pup{\numb}\). Then \(\UU\subseteq \tree\pup{\numb}\), so
 
-\[\piV{\UU}{\t}(\mmm{\U}{\t,}{})(\cdot) = \mmm{\U}{\t,}{}\left(\piV{\UU}{\t}(\X{\U}{}{\numb}) \in \cdot\right) = \mmm{}{\t}{\numb}\left(\X{\UU}{}{\numb} \in \cdot\right) = \mmm{\UU}{\t,}{}(\cdot).\]
+\[\proj{\UU}{\t}(\mmm{\U}{\t,}{})(\cdot) = \mmm{\U}{\t,}{}\left(\proj{\UU}{\t}(\X{\U}{}{\numb}) \in \cdot\right) = \mmm{}{\t}{\numb}\left(\X{\UU}{}{\numb} \in \cdot\right) = \mmm{\UU}{\t,}{}(\cdot).\]
 
-Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied. Therefore, there exists a \(\mmm{}{}{}\in \ms{P}(\Omega{\U}{\T-})\) such that \(\piV{\U}{\T-}(\mmm{}{}{}) =\mmm{\U}{}{}\) for all finite \(\U\). \tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
+Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied. Therefore, there exists a \(\mmm{}{}{}\in \ms{P}(\Omega{\U}{\T-})\) such that \(\proj{\U}{\T-}(\mmm{}{}{}) =\mmm{\U}{}{}\) for all finite \(\U\). \tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
 
 \ind In particular, there exists a probability space with canonical process \(\X{}{}\) such that \(\mmm{}{}{} = \law(\X{}{[0,\T)})\) and \(\mmm{\v}{}{} = \law(\X{\v}{[0,\T)})\) for all \(\v \in \V\). In particular, this means that \(\law(\X{\tree\pup{\numb}}{[0,\T)}) = \mmm{\tree\pup{\numb}}{}{} = \mmm{}{}{\numb}\). Since \(\X{\tree\pup{\numb}}{} \ra \X{}{}\) almost surely (we are in the topology of componentwise convergence), \(\mmm{}{}{\numb} \Rightarrow \mmm{}{}{}\). In order to characterize \(\X{}{}\) and \(\mmm{}{}{}\), we construct a stochastic differential equation on a probability space on which \(\X{}{}{\numb} \sim \mmm{}{}{\numb}\) and \(\X{}{}{\numb} = \X{\tree\pup{\numb}}{}\) almost surely. \tr{I don't know if it's clear, but we are taking \(\X{}{}{\numb}\) and \(\X{}{}\) as given in this probability space.}
 
@@ -1976,9 +1976,9 @@ Then \(\poiss{\numb}\) is a Poisson random measure on \(\mb{R}^+\times\alt{\S}^\
 
 \ind Notice that for any \(\evnt \in \ms{B}(\mb{R}^+\times \alt{\S}^{\numb-2}\times \mb{R}^+)\), \(\poiss{\numb}(\evnt) = \poiss{\numb-1}(\evnt)\) almost surely. Define the random measure \(\poiss{}\) on \(\ms{B}(\mb{R}^+\times \{\s\ev{\v}:\s\in \S,\v \in \V\}\times \mb{R}^+)\) by,
 
-\[\poiss{}(\evnt) = \lim_{\numb \ra\infty}\poiss{\numb}\left(\piV{\tree\pup{\numb-1}}{}(\evnt)\right).\]
+\[\poiss{}(\evnt) = \lim_{\numb \ra\infty}\poiss{\numb}\left(\proj{\tree\pup{\numb-1}}{}(\evnt)\right).\]
 
-Here \(\piV{\tree\pup{\numb}}{}(\evnt)\) is the restriction of \(\evnt\) to \(\mb{R}^+\times \alt{\S}^\numb\times\mb{R}^+\). 
+Here \(\proj{\tree\pup{\numb}}{}(\evnt)\) is the restriction of \(\evnt\) to \(\mb{R}^+\times \alt{\S}^\numb\times\mb{R}^+\). 
 
 \ind Notice that this limit exists almost surely, because it is the limit of an almost surely monotonically increasing sequence. Let \(\poiss{\v}\) be random measures on \(\mb{R}^+\times\S\times\mb{R}^+\) with intensity \(d\t\times\Sm(d\s)\times d\r\). Define it by,
 
@@ -2020,7 +2020,7 @@ Let \(\{\poiss{\v},\alt{\poiss{\v}}:\v\in\V\}\) be constructed as above. Then \(
 \end{equation}
 \labe{subsec::ProofU:eqn::ExtendedSDE\_fixedPoisson}
 
-By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. By Lemma \ref{subsec::ProofU:Lem::extendedSDE}, \(\te{law}(\X{}{}{\numb}) = \mmm{}{}{\numb}\). By construction, \(\piV{\tree\pup{\numb}}{\T-}(\X{}{}) = \X{}{}{\numb}\) for all \(\numb\in\mb{N}\).
+By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. By Lemma \ref{subsec::ProofU:Lem::extendedSDE}, \(\te{law}(\X{}{}{\numb}) = \mmm{}{}{\numb}\). By construction, \(\proj{\tree\pup{\numb}}{\T-}(\X{}{}) = \X{}{}{\numb}\) for all \(\numb\in\mb{N}\).
 
 \ind Fix any \(\v\in\V\). Let \(\numb\in \mb{N}\) be any natural number such that \(\v\in \tree\pup{\numb-1}\). Then for any \(\t \in [0,\T)\),
 
@@ -2037,7 +2037,7 @@ Thus, \(\X{}{}\) is a solution to the coupled equation,
 \end{equation}
 \labe{subsec::ProofU:eqn::XSDE}
 
-However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m{}{}{}\). Thus, \(\mmm{}{}{} = \m{}{}{}\). We conclude that \(\mmm{}{}{1} = \piV{\tree\pup{1}}{\T-}(\m{}{}{})\).
+However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m{}{}{}\). Thus, \(\mmm{}{}{} = \m{}{}{}\). We conclude that \(\mmm{}{}{1} = \proj{\tree\pup{1}}{\T-}(\m{}{}{})\).
 
 \end{proof}
 \newpage
@@ -2908,7 +2908,7 @@ If there exists some \(\const{} < \infty\) such that
 
 then for all finite \(\U \subseteq \V\),
 
-\[\lim_{\delta \searrow 0} \sup_\numb \pr\left(\omega'_{\piV{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) = 0\]
+\[\lim_{\delta \searrow 0} \sup_\numb \pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) = 0\]
 
 for all \(\ep > 0\).
 \label{sec::TL:Lem::TightSupport}
@@ -2932,7 +2932,7 @@ for all \(\v\in \V\). Let
 
 \[\alt{\poiss{\v}}(\cdot) = \int_\S\,\poiss{\v}(\cdot\times \S).\]
 
-Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in \V\}\) are i.i.d., it follows that \(\{\alt{\poiss{\v}}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\piV{\U}{\T}(\X{}{}{\numb})\) experiences a jump, \(\rxvtts{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\rxvtts{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
+Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in \V\}\) are i.i.d., it follows that \(\{\alt{\poiss{\v}}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\proj{\U}{\T}(\X{}{}{\numb})\) experiences a jump, \(\rxvtts{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\rxvtts{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
 
 \begin{align*}
 |\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|&\leq M\left|\{\#\te{ of jumps in }\X{\v}{(\tt,\ttt]}{\numb}\}\right| \\
@@ -2948,22 +2948,22 @@ It follows that for any partition \(\{\t\pup{\it}\}\) of \([0,\T]\),
 Fix \(\delta > 0\). Taking the infimum over all partitions with minimum interval length \(\delta\) yields,
 
 \begin{align*}
-\omega'_{\piV{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) &= \inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|\\
+\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) &= \inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|\\
 &\leq \inf_{\{\t\pup{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\pup{\it-1},\t\pup{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|\\
 &= \omega'_{\rxvtts{}{}}(\delta).
 \end{align*}
 
 Thus,
 
-\[\pr\left(\omega'_{\piV{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
+\[\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
 
 By applying this same argument to arbitrary \(\numb\in \mb{N}\) and noticing that the distribution of \(\rxvtts{}{}\) does not vary with respect to our choice of coupling, we get,
 
-\[\sup_{\numb}\pr\left(\omega'_{\piV{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta)\geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
+\[\sup_{\numb}\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta)\geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
 
 However, \(\rxvtts{}{}\) is just a homogeneous Poisson point process, so the c\`adl\`ag modulus of continuity of \(\rxvtts{}{}\) converges to 0 in probability as \(\delta \ra 0\). Thus,
 
-\[\lim_{\delta \searrow 0}\sup_{\numb}\pr\left(\omega'_{\piV{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) \leq \lim_{\delta\searrow 0}\pr\left(\omega'_{\rxvtts{}{}}(\delta)\geq \ep\right) = 0.\]
+\[\lim_{\delta \searrow 0}\sup_{\numb}\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) \leq \lim_{\delta\searrow 0}\pr\left(\omega'_{\rxvtts{}{}}(\delta)\geq \ep\right) = 0.\]
 
 
 \end{proof}
