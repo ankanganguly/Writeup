@@ -65,7 +65,7 @@
 \newcommand{\s}{\sigma}							%elt of \S	
 \newcommand{\sv}{\vec{\s}}						%typ elt of \XState
 \renewcommand{\b}{b}							%inf dim norm coeffs
-\newcommand{\ev}{\ep}							%standard basis
+\newcommand{\ev}[1]{\ep^{#1}}					%standard basis
 \newcommand{\T}{T}								%time bound
 \newcommand{\x}{x}								%typical elt of Omega
 \renewcommand{\t}{t}							%typical time
@@ -75,14 +75,17 @@
 \newcommand{\omenorm}[1]{\|#1\|_{\b,\t}}		%norm on Omega
 \renewcommand{\tt}{s}							%typical time 2
 \newcommand{\ttt}{s'}							%typical time 3
+\newcommand{\F}{\mc{F}}							%Filtrations
+\newcommand{\FG}[2]{\mc{G}}						%Filtrations
+\newcommand{\FH}[2]{\mc{H}}						%Filtrations
+\newcommand{\X}{X}								%typ random process
 
 %Modifiers
 \newcommand{\cl}{\ov}							%closure
 \newcommand{\ve}[1]{_{#1}}						%Append vertex
-\renewcommand{\ss}[1]{^{#1}}					%vertex set bound
+\renewcommand{\ss}[1]{^{#1}}					%vertex set identifier
 \newcommand{\tp}[1]{(#1)}						%Time of process
 \newcommand{\ts}[1]{_{#1}}						%time bound of set
-
 
 
 
@@ -145,9 +148,7 @@
 \newcommand{\ratee}[1]{\Lambda_{#1}}				%general rate
 \newcommand{\crate}[2]{\alt{\lambda}_{#1}^{#2}}		%conditional rate
 \newcommand{\cratee}[2]{\alt{\Lambda}_{#1}^{#2}} 	%general conditional rate
-\newcommand{\F}[2]{\mc{F}_{#1}^{#2}}				%Filtrations
-\newcommand{\FF}[2]{\mc{G}_{#1}^{#2}}				%Filtrations
-\newcommand{\FFF}[2]{\mc{H}_{#1}^{#2}}				%Filtrations
+
 \newcommand{\dist}{d}								%general metric
 \newcommand{\gdist}{d_G}							%graph distance
 \newcommand{\cont}{\mc{C}}							%space of cont. fs
@@ -283,8 +284,8 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs cl&0&\(\cl{\cdot}\)			&closure (in the graph)\\
 \tbs root&0&\(\root\)				&root\\
 \tbs F&2&\(\F{\U}{\t}\)&Filtrations\\
-\tbs FF&2&\(\FF{\U}{\t}\)&Filtrations\\
-\tbs FFF&2&\(\FFF{\U}{\t}\)&Filtrations\\
+\tbs FF&2&\(\FG{\U}{\t}\)&Filtrations\\
+\tbs FFF&2&\(\FH{\U}{\t}\)&Filtrations\\
 \tbs dist&0& \(\dist\)				&general metric\\
 \tbs gdist &0& \(\gdist\)			&graph distance\\
 \tbs cont &0& \(\cont\)				&space of cont. \\
@@ -2615,7 +2616,7 @@ where \(\{\rxvt{\v}{0}\}_{\v \in \V}\) are i.i.d uniformly distributed over \(\S
 \pfsum The key is to express \(X\) in terms of a Marked point process. Then we can compute the intensities of the point process under \(\mu\) and \(\nu\) respectively and apply Proposition \ref{subsec::Prope:Prop::radnikder}.
 
 \begin{proof}
-Notice that \(\rxvts{}{} \mapsto (\rxvt{}{0},\pmap{\rxvts{}{}})\) is a one-to-one mapping from c\`adl\`ag processes on \(\S^\V\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F{}{\t}\)-adapted, where \(\F{}{\t} = \F{}{0}\vee \FFF{}{\t}\) and \(\FFF{}{\t}\) is the natural filtration of \(\rp{}\).
+Notice that \(\rxvts{}{} \mapsto (\rxvt{}{0},\pmap{\rxvts{}{}})\) is a one-to-one mapping from c\`adl\`ag processes on \(\S^\V\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F{}{\t}\)-adapted, where \(\F{}{\t} = \F{}{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp{}\).
 
 \ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp{}\) has predictable intensity \(\ratee{\t}(\cdot)\) with respect to \(\F{}{\t}\) and \(\m{}{}{}\). \(\rp{}\) has predictable intensity 1 with respect to \(\F{}{\t}\) and \(\mm{}{}{}\). This holds all of the information about the original process \(\rxvts{}{}\), so we can consider \(\frac{d\m{}{\t}{}}{d\mm{}{\t}{}}\) as a change of measure affecting \(\rp{}\) instead of \(\rxvts{}{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee{\t,\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
 \end{proof}
