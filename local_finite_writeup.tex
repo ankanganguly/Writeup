@@ -127,7 +127,6 @@
 \renewcommand{\it}{k}								%iterator
 \newcommand{\itt}{i}								%iterator 2
 \newcommand{\ittt}{j}								%iterator 3
-\newcommand{\numb}{n}								%# of prelim vars
 \newcommand{\XState}[1]{\S^{#1}}				%multidim state space
 
 \newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
@@ -243,12 +242,12 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs tt&0&\(\tt\)								&typical time 2\\
 \tbs ttt&0&\(\ttt\)							&typical time 3\\
 \tbs r&0&\(\r\)								&space var for poiss\\
-\tbs rt&1&\(\rt{\numb}\)					&typical rand time\\
-\tbs rtt&1&\(\rtt{\numb}\)					&typical rand time 2\\
+\tbs rt&1&\(\rt{n}\)					&typical rand time\\
+\tbs rtt&1&\(\rtt{n}\)					&typical rand time 2\\
 \tbs it&0& \(\it\)							&iterator\\
 \tbs itt&0&\(\itt\)							&iterator 2\\
 \tbs ittt&0&\(\ittt\)						&iterator 3\\
-\tbs numb&0&\(\numb\)						&numbering of prelimit vars\\
+\tbs numb&0&\(n\)						&numbering of prelimit vars\\
 \tbs XState&1&\(\XState{\U}\)				&multidim state space\\
 \tbs sv&2&\(\sv{\v}{\U}\)					&typ elt of \tbs XState\\
 \tbs ev&1&\(\ev{\v}\)						&standard basis\\
@@ -258,21 +257,21 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs xvtt&2&\(\xvtt{\v}{\t}\)					&typ path val2\\
 \tbs xvttt&2&\(\xvttt{\v}{\t}\)				&typ path val3\\
 \tbs rxvt&2&\(\X{\v}{\t}\)					&typ rand path val\\
-\tbs rxvtn&3&\(\X{\v}{\t}{\numb}\)		&typ rp val sublim\\
+\tbs rxvtn&3&\(\X{\v}{\t}{n}\)		&typ rp val sublim\\
 \tbs rxvtt&2&\(\rxvtt{\v}{\t}\)				&typ rand path val2\\
-\tbs rxvttn&3&\(\rxvttn{\v}{\t}{\numb}\)		&typ rp val sublim 2\\
+\tbs rxvttn&3&\(\rxvttn{\v}{\t}{n}\)		&typ rp val sublim 2\\
 \tbs rxvttt&2&\(\rxvttt{\v}{\t}\)				&typ rand path val3\\
 \tbs xvtts&2&\(\xvtts{\v}{[0,\t]}\)					&typ path 2\\
 \tbs xvttts&2&\(\xvttts{\v}{[0,\t]}\)					&typ path 3\\
 \tbs rxvts&2&\(\X{\v}{[0,\t]}\)					&typ rand path\\
-\tbs rxvtsn&3&\(\X{\v}{[0,\t]}{\numb}\)	&typ rpath sublim\\
+\tbs rxvtsn&3&\(\X{\v}{[0,\t]}{n}\)	&typ rpath sublim\\
 \tbs rxvtts&2&\(\rxvtts{\v}{[0,\t]}\)					&typ rand path 2\\
-\tbs rxvttsn&3&\(\rxvttsn{\v}{[0,\t]}{\numb}\)	&typ rpath sublim 2\\
-\tbs rxvttts&2&\(\rxvttts{\v}{[0,\t]}\)				&typ rand path 3\\\\tbs rxvtttsn&3&\(\rxvtttsn{\v}{[0,\t]}{\numb}\)	&typ rpath sublim 3\\
+\tbs rxvttsn&3&\(\rxvttsn{\v}{[0,\t]}{n}\)	&typ rpath sublim 2\\
+\tbs rxvttts&2&\(\rxvttts{\v}{[0,\t]}\)				&typ rand path 3\\\\tbs rxvtttsn&3&\(\rxvtttsn{\v}{[0,\t]}{n}\)	&typ rpath sublim 3\\
 \tbs rp&1& \(\rp{\t}\)						&typ point process\\
-\tbs m&3&\(\m{\U}{\t}{\numb}\)						&typ measure\\
-\tbs mm&3&\(\mm{\U}{\t}{\numb}\)						&typ measure 2\\
-\tbs mmm&3&\(\mmm{\U}{\t}{\numb}\)						&typ measure 3\\
+\tbs m&3&\(\m{\U}{\t}{n}\)						&typ measure\\
+\tbs mm&3&\(\mm{\U}{\t}{n}\)						&typ measure 2\\
+\tbs mmm&3&\(\mmm{\U}{\t}{n}\)						&typ measure 3\\
 \tbs cm&0&\(\cm\)							&conditional msr funct\\
 \tbs IGr&1&\(\IGr{\v}\)						&IG rate\\
 \tbs rate&1&\(\rate{\v}\)					&rate\\
@@ -287,7 +286,7 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs dist&0& \(\dist\)				&general metric\\
 \tbs gdist &0& \(\gdist\)			&graph distance\\
 \tbs cont &0& \(\cont\)				&space of cont. \\
-\tbs const &1& \(\const{\numb}\)	&Constant\\
+\tbs const &1& \(\const{n}\)	&Constant\\
 \tbs Sm&0&\(\Sm\)							&std msr on \(\S\)\\
 \tbs alt&0&\(\widetilde{\cdot}\)			&alternate val\\
 \tbs b&1& \(\b{\v}\)						&inf dim norm coeffs\\
@@ -299,9 +298,9 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs rv&0& \(\rv\)							&Typical random element\\
 \tbs evnt&0&\(\evnt\)						&Typical event\\
 \tbs typset&0&\(\typset\)					&Typical set\\
-\tbs mark&1&\(\mark{\numb}\)				&Typical mark\\
-\tbs dense&2& \(\dense{\numb}{\T}\)			&Typ density\\
-\tbs cdense&2&\(\cdense{\numb}{\T}\)		&cond density\\
+\tbs mark&1&\(\mark{n}\)				&Typical mark\\
+\tbs dense&2& \(\dense{n}{\T}\)			&Typ density\\
+\tbs cdense&2&\(\cdense{n}{\T}\)		&cond density\\
 \tbs ds&2& \(\ds{\v}{\t}\)					&mapping in density\\
 \tbs mtop &0& \(\mtop\)						&markov to point\\
 \tbs spce &0&\(\spce\)						&arbitrary space\\
@@ -440,7 +439,7 @@ There exists a fixed \(\degr\in \mb{N}\) such that:
 \end{equation}
 \labe{subsec::Assum:Eqn::Symmetry}
 
-\item \(G\) is a regular \(\degr\)-tree. In this case we call an arbitrary node \(\root\in  V\) the root. Let \(\gdist\) be the graph distance. Define \(\tree^\numb = \{\v \in  V: \gdist(\v,\root) \leq \numb\}\) for all \(\numb\in \mb{N}\).
+\item \(G\) is a regular \(\degr\)-tree. In this case we call an arbitrary node \(\root\in  V\) the root. Let \(\gdist\) be the graph distance. Define \(\tree^n = \{\v \in  V: \gdist(\v,\root) \leq n\}\) for all \(n\in \mb{N}\).
 \end{enumerate}
 \label{subsec::Assum:Assu::Local}\labe{subsec::Assum:Assu::Local}
 \end{assu}
@@ -449,7 +448,7 @@ There exists a fixed \(\degr\in \mb{N}\) such that:
 
 \usein Theorem \ref{sec::Main:Thm::Local SDE}, all of section \ref{sec::Proof2}.
 
-\ind \(\tree^\numb\) is the tree rooted at \(\root\) with \(\numb\) generations such that \(\root\) has \(\degr\) children and all other non-leaf nodes have \(\degr-1\) children.
+\ind \(\tree^n\) is the tree rooted at \(\root\) with \(n\) generations such that \(\root\) has \(\degr\) children and all other non-leaf nodes have \(\degr-1\) children.
 
 \lin
 
@@ -653,11 +652,11 @@ By Gronwall's inequality, \(\sup_{\v \in  V} \ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\
 
 To prove existence, we use Picard iterations. Define \(\X{}{\t}{0} \defeq \X{}{0}\) for all \(\t \in [0,\T]\). Define,
 
-\[\X{}{}{\numb+1} = F_\poisses(\X{}{}{\numb}).\]
+\[\X{}{}{n+1} = F_\poisses(\X{}{}{n}).\]
 
 Once again, by Lemma \ref{subsec::Well-:Lem::GronwallPrep},
 
-\[\sup_{\v \in  V} \ex{\|\X{\v}{}{\numb+1} - \X{\v}{}{\numb}\|_\t} \leq (\degr+1)\const{1} \int_0^\t \sup_{\v \in  V} \ex{\|\X{\v}{}{\numb} - \X{\v}{}{\numb-1}\|_\tt}\,d\tt\] 
+\[\sup_{\v \in  V} \ex{\|\X{\v}{}{n+1} - \X{\v}{}{n}\|_\t} \leq (\degr+1)\const{1} \int_0^\t \sup_{\v \in  V} \ex{\|\X{\v}{}{n} - \X{\v}{}{n-1}\|_\tt}\,d\tt\] 
 
 Furthermore, 
 
@@ -675,30 +674,30 @@ here we use the fact that \(\rate{\cdot}(\cdot,\cdot)\) is bounded by some \(\co
 
 Iterating yields
 
-\[\sup_{\v \in  V} \ex{\|\X{\v}{}{\numb+1} - \X{\v}{}{\numb}\|_\t} \leq \t\const{2}\frac{(\t(\degr+1)\const{1})^\numb}{(\numb+1)!}\]
+\[\sup_{\v \in  V} \ex{\|\X{\v}{}{n+1} - \X{\v}{}{n}\|_\t} \leq \t\const{2}\frac{(\t(\degr+1)\const{1})^n}{(n+1)!}\]
 
 Then,
 
 \begin{align*}
-\sum_{\numb=0}^\infty \sup_{\v \in  V} \ex{\|\X{\v}{}{\numb+1} - \X{\v}{}{\numb}\|_\T} &= \sum_{\numb=1}^\infty \frac{\const{2}}{(\degr+1)\const{1}}\frac{(\T(\degr+1)\const{1})^{\numb}}{\numb !}\\
+\sum_{n=0}^\infty \sup_{\v \in  V} \ex{\|\X{\v}{}{n+1} - \X{\v}{}{n}\|_\T} &= \sum_{n=1}^\infty \frac{\const{2}}{(\degr+1)\const{1}}\frac{(\T(\degr+1)\const{1})^{n}}{n !}\\
 & = \frac{\const{2}}{(\degr+1)\const{1}}(e^{\T(\degr+1)\const{1}} - 1) < \infty
 \end{align*}
 
 
-So \(\X{}{}{\numb} \ra \X{}{}\) for some \(\X{}{}\) componentwise almost surely (fast convergence in expectation implies almost sure convergence). Let 
+So \(\X{}{}{n} \ra \X{}{}\) for some \(\X{}{}\) componentwise almost surely (fast convergence in expectation implies almost sure convergence). Let 
 
 \[\alt{\X{}{}} = F_\poisses(\X{}{}).\]
 
-By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(\numb\in\mb{N}\),
+By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(n\in\mb{N}\),
 
 \begin{align*}
-\sup_{\v \in  V} \ex{\|\alt{\X{\v}{}} - \X{\v}{}{\numb+1}\|_\T} &\leq (\degr+1)\const{1}\int_0^\T \sup_{\v \in  V}\ex{\|\X{\v}{} - \X{\v}{}{\numb}\|_\tt}\,d\tt \\
-&\leq \T\const{1}(\degr+1)\sup_{\v\in  V} \ex{\|\X{\v}{} - \X{\v}{}{\numb}\|_\T}.
+\sup_{\v \in  V} \ex{\|\alt{\X{\v}{}} - \X{\v}{}{n+1}\|_\T} &\leq (\degr+1)\const{1}\int_0^\T \sup_{\v \in  V}\ex{\|\X{\v}{} - \X{\v}{}{n}\|_\tt}\,d\tt \\
+&\leq \T\const{1}(\degr+1)\sup_{\v\in  V} \ex{\|\X{\v}{} - \X{\v}{}{n}\|_\T}.
 \end{align*}
 
-Taking a limit as \(\numb\) goes to infinity on both sides yields
+Taking a limit as \(n\) goes to infinity on both sides yields
 
-\[\lim_{\numb\ra\infty} \sup_{\v \in  V} \ex{\|\alt{\X{\v}{}} - \X{\v}{}{\numb}\|_\T} = 0.\]
+\[\lim_{n\ra\infty} \sup_{\v \in  V} \ex{\|\alt{\X{\v}{}} - \X{\v}{}{n}\|_\T} = 0.\]
 
 So \(\X{}{}= F_\poisses(\X{}{})\) almost surely.
 \end{proof}
@@ -759,7 +758,7 @@ Let \(\alt{\X{}{}}\) be given by the unique solution to the following equation (
 
 Then \(\X{}{\t+\cdot}{\sv{}{ V}} \deq \alt{\X{}{\cdot}}\). By the definition of \(\X{}{}{\sv{}{ V}}\), \(\alt{\X{}{}} \deq \X{}{}{\X{}{\t}{\sv{}{ V}}}\) as desired.
 
-\item Let \(\root \in  V\). Define the sequence of sets \( V\sln{0}\subset  V\sln{1}\subset \cdots \subseteq  V\) as follows: let \( V\sln{0} = \{\root\}\). For \(\numb \geq 1\), let \( V\sln{\numb+1} = \cl{ V\sln{\numb}}\).
+\item Let \(\root \in  V\). Define the sequence of sets \( V\sln{0}\subset  V\sln{1}\subset \cdots \subseteq  V\) as follows: let \( V\sln{0} = \{\root\}\). For \(n \geq 1\), let \( V\sln{n+1} = \cl{ V\sln{n}}\).
 
 \ind Now suppose for \(\sv{}{ V},\alt{\sv{}{ V}}\in \S^ V\),
 
@@ -774,7 +773,7 @@ Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
 
 for all \(\t \in [0,\T]\).
 
-\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in  V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-\numb}\) if \(\v \in  V\sln{\numb}\setminus  V\sln{\numb-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(| V\sln{\numb}\setminus  V\sln{\numb-1}| \leq \degr^{\numb}\) for all \(\numb\in \mb{N}\). Then \(\sum_{\v \in  V} \b{\v} \leq \sum_{\numb=0}^\infty \left(\frac{\degr}{\b{}}\right)^{-\numb} < \infty\). Since \(\S\) is finite, the norm \(\|\sv{}{ V}\|_{\b{}} := \sum_{\v \in  V} \b{\v}|\sv{\v}{ V}|\) generates the topology of componentwise convergence on \(\S^ V\). We can now apply Gronwall's inequality:
+\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in  V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-n}\) if \(\v \in  V\sln{n}\setminus  V\sln{n-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(| V\sln{n}\setminus  V\sln{n-1}| \leq \degr^{n}\) for all \(n\in \mb{N}\). Then \(\sum_{\v \in  V} \b{\v} \leq \sum_{n=0}^\infty \left(\frac{\degr}{\b{}}\right)^{-n} < \infty\). Since \(\S\) is finite, the norm \(\|\sv{}{ V}\|_{\b{}} := \sum_{\v \in  V} \b{\v}|\sv{\v}{ V}|\) generates the topology of componentwise convergence on \(\S^ V\). We can now apply Gronwall's inequality:
 
 \begin{align*}
 \ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\t}} &= \sum_{\v \in  V} \b{\v}\ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\t}\\
@@ -824,15 +823,15 @@ By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X{}{}\) 
 \lin
 
 \begin{prop}
-Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in  V\) be some node. Let \( V\sln{0} = \{\root\}\) and \( V\sln{\numb+1} = \cl{ V\sln{\numb}}\) for all \(\numb \in \mb{N}\). For all \(\U \subseteq  V\) and \(\t \in [0,\T]\), let \(\Omega{\U}{\t}\) be embedded in \(\Omega{ V}{\t}\) in the standard way. Let \(\X{}{0}{\numb} = \proj{ V\sln{\numb}}{0}(\X{}{0})\). For each \(\numb\in\mb{N}\), let the \(\Omega{ V\sln{\numb}}{\T}\)-valued random element \(\X{}{}{\numb}\) be the unique Feller process with initial condition \(\X{}{0}{\numb}\) and infinitesimal generator,
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in  V\) be some node. Let \( V\sln{0} = \{\root\}\) and \( V\sln{n+1} = \cl{ V\sln{n}}\) for all \(n \in \mb{N}\). For all \(\U \subseteq  V\) and \(\t \in [0,\T]\), let \(\Omega{\U}{\t}\) be embedded in \(\Omega{ V}{\t}\) in the standard way. Let \(\X{}{0}{n} = \proj{ V\sln{n}}{0}(\X{}{0})\). For each \(n\in\mb{N}\), let the \(\Omega{ V\sln{n}}{\T}\)-valued random element \(\X{}{}{n}\) be the unique Feller process with initial condition \(\X{}{0}{n}\) and infinitesimal generator,
 
 \begin{equation}
-\IG\sln{\numb}f(\sv{}{ V\sln{\numb}}) = \sum_{\v\in  V\sln{\numb}}\sum_{\s\in \S} \IGr{\v}(\sv{}{ V\sln{\numb}}, \s)[f(\sv{}{ V\sln{\numb}} + \s\ev{\v}) - f(\sv{}{ V\sln{\numb}})]\te{ for all } \sv{}{ V\sln{\numb}} \in \S^{ V\sln{\numb}}.
+\IG\sln{n}f(\sv{}{ V\sln{n}}) = \sum_{\v\in  V\sln{n}}\sum_{\s\in \S} \IGr{\v}(\sv{}{ V\sln{n}}, \s)[f(\sv{}{ V\sln{n}} + \s\ev{\v}) - f(\sv{}{ V\sln{n}})]\te{ for all } \sv{}{ V\sln{n}} \in \S^{ V\sln{n}}.
 \label{subsec::Well-:eqn::FinIG}
 \end{equation}
 \labe{subsec::Well-:eqn::FinIG}
 
-(Here we use the embedding \(\sv{\v}{ V\sln{\numb}} = \mb{I}_{\v\in V\sln{\numb}} \sv{\v}{ V\sln{\numb}}\) for all \(\v \in  V\)) Then \(\X{}{}{\numb} \Rightarrow \X{}{}\).
+(Here we use the embedding \(\sv{\v}{ V\sln{n}} = \mb{I}_{\v\in V\sln{n}} \sv{\v}{ V\sln{n}}\) for all \(\v \in  V\)) Then \(\X{}{}{n} \Rightarrow \X{}{}\).
 \label{subsec::Well-:Prop::IGApprox}
 \end{prop}
 \labe{subsec::Well-:Prop::IGApprox}
@@ -846,9 +845,9 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in  V\) be s
 \app Assumption \ref{subsec::Assum:Assu::CI}, Proposition \ref{subsec::Well-:Prop::Welldef}, Definition \ref{sec::TL:Def::modulus}, Lemma \ref{sec::TL:Lem::TightSupport}, Theorem \ref{sec::TL:Thm::Tight} and Corollary \ref{sec::Infin:Cor::Convergence}.
 
 \begin{proof}
-First, for each \(\numb\in\mb{N}\), \(\X{}{}{\numb}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, so by Proposition \ref{subsec::Well-:Prop::Welldef}, \(\X{}{}{\numb}\) is uniquely defined by its initial condition \(\X{}{0}{\numb}\) and its infinitesimal generator \(\IG\sln{\numb}\).
+First, for each \(n\in\mb{N}\), \(\X{}{}{n}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, so by Proposition \ref{subsec::Well-:Prop::Welldef}, \(\X{}{}{n}\) is uniquely defined by its initial condition \(\X{}{0}{n}\) and its infinitesimal generator \(\IG\sln{n}\).
 
-\ind To prove weak convergence, we first begin by showing that \(\{\X{}{}{\numb}:\numb\in \mb{N}\}\) is tight. Note that \(\S^ V\) is compact, so \(\sup_{\sv{}{ V} \in \S^ V} \|\sv{}{ V}\|_{\b{}} < \infty\) (recall that \(\|\sv{}{ V}\|_{\b{}} = \sum_{\v \in  V} \b{\v} |\sv{\v}{ V}|\) where \(\b{\v} = \b{}^{-\numb}\) for some \(\b{} > \degr\) if \(\v \in  V\sln{\numb}\setminus  V\sln{\numb-1}\)).
+\ind To prove weak convergence, we first begin by showing that \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight. Note that \(\S^ V\) is compact, so \(\sup_{\sv{}{ V} \in \S^ V} \|\sv{}{ V}\|_{\b{}} < \infty\) (recall that \(\|\sv{}{ V}\|_{\b{}} = \sum_{\v \in  V} \b{\v} |\sv{\v}{ V}|\) where \(\b{\v} = \b{}^{-n}\) for some \(\b{} > \degr\) if \(\v \in  V\sln{n}\setminus  V\sln{n-1}\)).
 
 \ind Now fix \(\ep > 0\). Let \(M\) be large enough that
 
@@ -858,33 +857,33 @@ Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the
 
 \[\omega'_{\X{}{}}(\delta) = \inf_{\{\t\sln{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \|\X{}{\tt} - \X{}{\ttt}\|_{\b{}},\]
 
-where \(\{\t\sln{\it}\} := 0 \leq \t\sln{1} < \t\sln{2} < \cdots < \t\sln{\cdot} = \T\) and \(\min_\it|\t\sln{\it} - \t\sln{\it-1}| > \delta\). Note that \(\X{}{}{\numb}\) is \(\Omega{ V\sln{\numb}}{\T}\)-valued and can be embedded in \(\Omega{ V}{\T}\) the same way we embed \(\S^{ V\sln{\numb}}\) in \(\S^ V\): let \(\X{\v}{}{\numb} \equiv 0\) for \(\v \notin  V\sln{\numb}\). Recall also that \(\proj{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq  V\). Then for any \(\numb\in \mb{N}\),
+where \(\{\t\sln{\it}\} := 0 \leq \t\sln{1} < \t\sln{2} < \cdots < \t\sln{\cdot} = \T\) and \(\min_\it|\t\sln{\it} - \t\sln{\it-1}| > \delta\). Note that \(\X{}{}{n}\) is \(\Omega{ V\sln{n}}{\T}\)-valued and can be embedded in \(\Omega{ V}{\T}\) the same way we embed \(\S^{ V\sln{n}}\) in \(\S^ V\): let \(\X{\v}{}{n} \equiv 0\) for \(\v \notin  V\sln{n}\). Recall also that \(\proj{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq  V\). Then for any \(n\in \mb{N}\),
 
 \begin{align*}
-\pr\left(\sup_\numb \omega'_{\X{}{}{\numb}}(\delta) > \epsilon\right) &= \pr\left(\sup_\numb\inf_{\{\t\sln{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v \in  V} \b{\v}|(\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}| > \epsilon \right)\\
-&\leq \pr\left(\sup_\numb \left(\omega'_{\proj{ V\sln{M}}{\T}(\X{}{}{\numb})}(\delta) + \omega'_{\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{\numb})}(\delta)\right) > \ep\right)\\
-&\leq \pr\left(\sup_\numb \omega'_{\proj{ V\sln{M}}{\T}(\X{}{}{\numb})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
+\pr\left(\sup_n \omega'_{\X{}{}{n}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t\sln{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v \in  V} \b{\v}|(\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}| > \epsilon \right)\\
+&\leq \pr\left(\sup_n \left(\omega'_{\proj{ V\sln{M}}{\T}(\X{}{}{n})}(\delta) + \omega'_{\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{n})}(\delta)\right) > \ep\right)\\
+&\leq \pr\left(\sup_n \omega'_{\proj{ V\sln{M}}{\T}(\X{}{}{n})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
 \end{align*}
 
 The last inequality arises because
 
-\[\omega'_{\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{\numb})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{\numb})\right\|_{\b{}} \leq 2 \sup_{\sv{}{\left( V\sln{M}\right)^c} \in \S^{\left( V\sln{M}\right)^c}} \left\|\sv{}{\left( V\sln{M}\right)^c}\right\|_{\b{}} < \ep/2\]
+\[\omega'_{\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{n})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{n})\right\|_{\b{}} \leq 2 \sup_{\sv{}{\left( V\sln{M}\right)^c} \in \S^{\left( V\sln{M}\right)^c}} \left\|\sv{}{\left( V\sln{M}\right)^c}\right\|_{\b{}} < \ep/2\]
 
-Finally, the convergence to 0 at the end is the result of a direct application of Lemma \ref{sec::TL:Lem::TightSupport}. Thus, \(\{\X{}{}{\numb}:\numb\in \mb{N}\}\) is tight, and therefore relatively compact with respect to the topology of weak convergence (Theorem \ref{sec::TL:Thm::Tight}).
+Finally, the convergence to 0 at the end is the result of a direct application of Lemma \ref{sec::TL:Lem::TightSupport}. Thus, \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight, and therefore relatively compact with respect to the topology of weak convergence (Theorem \ref{sec::TL:Thm::Tight}).
 
 Now, suppose \(f\in \core\). Then for all \(\sv{}{ V} \in \S^ V\),
 
 \begin{align*}
-\big|\IG&\sln{\numb}f(\sv{}{ V}) - \IG f(\sv{}{ V})\big|\\
-&= \left|\sum_{\v \in  V\sln{\numb}} \sum_{\s \in \S} \IGr{\v}(\proj{ V\sln{\numb}}{}(\sv{}{ V}),\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})] - \sum_{\v \in  V}\sum_{\s \in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
-&\leq  \left|\sum_{\v \in  V\sln{\numb}} \sum_{\s \in \S} \IGr{\v}(\proj{ V\sln{\numb}}{}(\sv{}{ V}),\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})] - \sum_{\v \in  V\sln{\numb}}\sum_{\s \in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
-&\ind  +\left|\sum_{\v \notin  V\sln{\numb}} \sum_{\s\in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
-&\leq \sum_{\v \in  V\sln{\numb}}\sum_{\s \in \S} \left|\IGr{\v}(\proj{ V\sln{\numb}}{}(\sv{}{ V}),\s) - \IGr{\v}(\sv{}{ V},\s)\right|\triangle_f(\v) + \sum_{\v \in  V\setminus  V\sln{\numb}} \const{}\triangle_f(\v)\\
-&\os{Assump. \ref{subsec::Assum:Assu::CI}.2}{=} \sum_{\v \in  V\sln{\numb}\setminus V\sln{\numb-1}} |\S|\const{} \triangle_f(\v) + \sum_{\v \in  V\setminus  V\sln{\numb}} \const{}\triangle_f(\v)\\
-&\leq |\S|C\sum_{\v \in  V\setminus  V\sln{\numb-1}} \triangle_f(\v) \os{n\ra\infty}{\ra} 0.
+\big|\IG&\sln{n}f(\sv{}{ V}) - \IG f(\sv{}{ V})\big|\\
+&= \left|\sum_{\v \in  V\sln{n}} \sum_{\s \in \S} \IGr{\v}(\proj{ V\sln{n}}{}(\sv{}{ V}),\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})] - \sum_{\v \in  V}\sum_{\s \in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
+&\leq  \left|\sum_{\v \in  V\sln{n}} \sum_{\s \in \S} \IGr{\v}(\proj{ V\sln{n}}{}(\sv{}{ V}),\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})] - \sum_{\v \in  V\sln{n}}\sum_{\s \in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
+&\ind  +\left|\sum_{\v \notin  V\sln{n}} \sum_{\s\in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
+&\leq \sum_{\v \in  V\sln{n}}\sum_{\s \in \S} \left|\IGr{\v}(\proj{ V\sln{n}}{}(\sv{}{ V}),\s) - \IGr{\v}(\sv{}{ V},\s)\right|\triangle_f(\v) + \sum_{\v \in  V\setminus  V\sln{n}} \const{}\triangle_f(\v)\\
+&\os{Assump. \ref{subsec::Assum:Assu::CI}.2}{=} \sum_{\v \in  V\sln{n}\setminus V\sln{n-1}} |\S|\const{} \triangle_f(\v) + \sum_{\v \in  V\setminus  V\sln{n}} \const{}\triangle_f(\v)\\
+&\leq |\S|C\sum_{\v \in  V\setminus  V\sln{n-1}} \triangle_f(\v) \os{n\ra\infty}{\ra} 0.
 \end{align*}
 
-Here \(\triangle_f(\v) = \sup\left\{|f(\sv{}{ V}) - f(\sv{}{ V} + \s\ev{\v}): \sv{}{ V}\in \S^ V,\s \in \S\right\}\) as defined in equation \eqref{subsec::Well-:Eqn::fvar}. By Corollary \ref{sec::Infin:Cor::Convergence}, \(\X{}{}{\numb}\Rightarrow \X{}{}\).
+Here \(\triangle_f(\v) = \sup\left\{|f(\sv{}{ V}) - f(\sv{}{ V} + \s\ev{\v}): \sv{}{ V}\in \S^ V,\s \in \S\right\}\) as defined in equation \eqref{subsec::Well-:Eqn::fvar}. By Corollary \ref{sec::Infin:Cor::Convergence}, \(\X{}{}{n}\Rightarrow \X{}{}\).
 \end{proof}
 
 
@@ -1198,7 +1197,7 @@ In this proof, we will implicitly work in the equivalence class of events given 
 \pathsete{\it}{1} &= \bigcup_{\apath \in \pathset{\it}{1}} \apath = \{((1,1),\dots,(\it,1))\} = \bigcap_{\itt < \it} \{\rt{\itt} < \rtt{1}\} = \{\rt{\it-1} < \rtt{1}\} = \{\rt{\it} > \rtt{0},\rtt{1} > \rt{\it-1}\}
 \end{align*}
 
-Similarly, \(\pathsete{1}{\it} = \{\rt{1} > \rtt{\it-1}, \rtt{\it} > \rt{0}\}\). Suppose that there exists some \(\numb\geq 3\) such that
+Similarly, \(\pathsete{1}{\it} = \{\rt{1} > \rtt{\it-1}, \rtt{\it} > \rt{0}\}\). Suppose that there exists some \(n\geq 3\) such that
 
 \begin{equation}
 \pathsete{\itt}{\ittt} = \{\rt{\itt} > \rtt{\ittt-1},\rtt{\ittt} > \rt{\itt-1}\}
@@ -1206,7 +1205,7 @@ Similarly, \(\pathsete{1}{\it} = \{\rt{1} > \rtt{\it-1}, \rtt{\it} > \rt{0}\}\).
 \end{equation}
 \labe{sec::Proof1:eqn::Ckk'}
 
-for all \(\itt, \ittt\in \mb{N}\) such that \(\itt+\ittt = \numb\). Fix one such pair such that both \(\itt \geq 2\). We know that away from a set of probability zero, \(\{\rt{\cdot}\}\) and \(\{\rtt{\cdot}\}\) are strictly increasing sequences such that \(\rt{\it} \neq \rtt{\it'}\) for all \((\it,\it')\in \mb{N}^2\). By applying equation \eqref{sec::Proof1:eqn::extpath}, we get
+for all \(\itt, \ittt\in \mb{N}\) such that \(\itt+\ittt = n\). Fix one such pair such that both \(\itt \geq 2\). We know that away from a set of probability zero, \(\{\rt{\cdot}\}\) and \(\{\rtt{\cdot}\}\) are strictly increasing sequences such that \(\rt{\it} \neq \rtt{\it'}\) for all \((\it,\it')\in \mb{N}^2\). By applying equation \eqref{sec::Proof1:eqn::extpath}, we get
 
 \begin{align*}
 \pathsete{\itt}{\ittt+1} &= \left(\pathsete{\itt-1}{\ittt+1} \cap \{\rt{\itt - 1} < \rtt{\ittt+1}\}\right) \cup \left(\pathsete{\itt}{\ittt}\cap \{\rtt{\ittt} < \rt{\itt}\}\right)\\
@@ -1230,9 +1229,9 @@ Each set in the union above is an element of either \(\pathsete{\itt}{\ittt+1}'\
 
 \[\pathsete{\itt}{\ittt+1} = \{\rt{\itt} > \rtt{\ittt},\rtt{\ittt+1} > \rt{\itt-1}\}.\]
 
-By an identical argument, \(\pathsete{\itt+1}{\ittt} = \{\rtt{\ittt} > \rt{\itt},\rt{\itt+1} > \rtt{\ittt-1}\}\) when \(\itt + \ittt = \numb\) and \(\ittt \geq 2\).
+By an identical argument, \(\pathsete{\itt+1}{\ittt} = \{\rtt{\ittt} > \rt{\itt},\rt{\itt+1} > \rtt{\ittt-1}\}\) when \(\itt + \ittt = n\) and \(\ittt \geq 2\).
 
-Then we proved directly that equation \eqref{sec::Proof1:eqn::Ckk'} holds for \(\itt = \ittt=1\) in which case \(\numb = 2\). For any \(\numb > 2\) and any \(\itt,\ittt\in \mb{N}\) such that \(\itt + \ittt = \numb\), one of the following holds:
+Then we proved directly that equation \eqref{sec::Proof1:eqn::Ckk'} holds for \(\itt = \ittt=1\) in which case \(n = 2\). For any \(n > 2\) and any \(\itt,\ittt\in \mb{N}\) such that \(\itt + \ittt = n\), one of the following holds:
 
 \begin{itemize}
 \item \(\min\{\itt,\ittt\} = 1\). We've shown directly that equation \eqref{sec::Proof1:eqn::Ckk'} holds in this case.
@@ -1459,17 +1458,17 @@ By the monotone convergence theorem, equations \eqref{subsec::ProofE:eqn::expupc
 
 Then \(\rxvtts{}{}\) has left and right limits everywhere and it is almost surely left-continuous. Furthermore, if \(\alt{\rxvtts{}{}}\) is generated by \(\alt{T'}\), where \(\alt{T'}\) is the union of \(\alt{T}\) and a countable number of points, then \(\rxvtts{}{}\) and \(\alt{\rxvtts{}{}}\) are identical processes. 
 
-\ind For each \(\numb \in \mb{N}\), let \(\typset\sln{\numb} \subset [0,\T]\) be defined by,
+\ind For each \(n \in \mb{N}\), let \(\typset\sln{n} \subset [0,\T]\) be defined by,
 
-\[\typset\sln{\numb} := \left\{\t\in [0,\T]: \pr\left(|\X{}{\t} - \rxvtt{}{\t}| > 1/\numb\right) > 1/\numb\right\}.\] 
+\[\typset\sln{n} := \left\{\t\in [0,\T]: \pr\left(|\X{}{\t} - \rxvtt{}{\t}| > 1/n\right) > 1/n\right\}.\] 
 
-Suppose \(\typset\sln{\numb}\) is not finite. Then there exists an increasing or decreasing sequence \(\{\t\sln{\it}:\it\in \mb{N}\}\subseteq \typset\sln{\numb}\). Since this sequence is contained in the bounded interval \([0,\T]\), it is convergent. Without loss of generality, we can enlarge \(\alt{T}\) to contain this sequence so that
+Suppose \(\typset\sln{n}\) is not finite. Then there exists an increasing or decreasing sequence \(\{\t\sln{\it}:\it\in \mb{N}\}\subseteq \typset\sln{n}\). Since this sequence is contained in the bounded interval \([0,\T]\), it is convergent. Without loss of generality, we can enlarge \(\alt{T}\) to contain this sequence so that
 
 \[\lim_{\it \ra\infty} \X{}{\t\sln{\it}} = \lim_{\it\ra\infty} \rxvtt{}{\t\sln{\it}} \te{ almost surely.}\]
 
-Thus, \(\pr(|\X{}{\t\sln{\it}} - \rxvtt{}{\t\sln{\it}}| > 1/\numb) \ra 0\), which contradicts the fact that \(\t\sln{\it} \in \typset\sln{\numb}\) for all \(\it\in\mb{N}\). We can then conclude that,
+Thus, \(\pr(|\X{}{\t\sln{\it}} - \rxvtt{}{\t\sln{\it}}| > 1/n) \ra 0\), which contradicts the fact that \(\t\sln{\it} \in \typset\sln{n}\) for all \(\it\in\mb{N}\). We can then conclude that,
 
-\[\typset:= \{\t\in [0,\T]: \pr(\X{}{\t} \neq \rxvtt{}{\t}) > 0\} = \cap_{\numb = 1}^\infty \typset\sln{\numb}\]
+\[\typset:= \{\t\in [0,\T]: \pr(\X{}{\t} \neq \rxvtt{}{\t}) > 0\} = \cap_{n = 1}^\infty \typset\sln{n}\]
 
 is a finite set. Define,
 
@@ -1635,9 +1634,9 @@ Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\crate{\v}{\t}(
 \begin{proof}
 Any elementary set can be expressed in the form
 
-\[\typset = \bigcup_{\it = 1}^\numb [\tt^\it,\t^\it)\times \typset\sln{\it},\]
+\[\typset = \bigcup_{\it = 1}^n [\tt^\it,\t^\it)\times \typset\sln{\it},\]
 
-where \(\{[\tt^\it,\t^\it):\it=1,\dots,\numb\}\) are disjoint, if \(\tt^\it = \t^\it = 0\), then \([\tt^\it,\t^\it) = \{0\}\) and \(\typset\sln{\it}\) are all \(\sigma(\crate{\v}{\t}(\s):\s \in \S,\t\in [0,\tt^\it])\)-measurable. 
+where \(\{[\tt^\it,\t^\it):\it=1,\dots,n\}\) are disjoint, if \(\tt^\it = \t^\it = 0\), then \([\tt^\it,\t^\it) = \{0\}\) and \(\typset\sln{\it}\) are all \(\sigma(\crate{\v}{\t}(\s):\s \in \S,\t\in [0,\tt^\it])\)-measurable. 
 
 By Lemma \ref{subsec::ProofE:Lem::pleft}, there exists a \(\const{1} < \infty\) such that,
 
@@ -1647,15 +1646,15 @@ By Lemma \ref{subsec::ProofE:Lem::pleft}, there exists a \(\const{1} < \infty\) 
 \end{equation}
 \labe{subsec::ProofE:eqn::driftbound}
 
-Furthermore, since \(\crate{\v}{\t}(\s)\) is a \([0,\const{}]\)-valued process, jumps of \(\crate{\v}{\t}(\s)\) are bounded by \(\const{}\). Thus, for any \(\numb \in \mb{N}\),
+Furthermore, since \(\crate{\v}{\t}(\s)\) is a \([0,\const{}]\)-valued process, jumps of \(\crate{\v}{\t}(\s)\) are bounded by \(\const{}\). Thus, for any \(n \in \mb{N}\),
 
-\[\mb{I}_{\{\X{\{\v,\root\}}{}\te{ has }\numb\te{ jumps in } [\t-\tt,\t)\}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)|\leq C_1\tt + \numb \const{}.\]
+\[\mb{I}_{\{\X{\{\v,\root\}}{}\te{ has }n\te{ jumps in } [\t-\tt,\t)\}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)|\leq C_1\tt + n \const{}.\]
 
 \tr{This holds even with random times because inequality \eqref{subsec::ProofE:eqn::driftbound} holds for all \(\tt\) almost surely.} Then,
 
 \begin{align*}
-\ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} &= \sum_{\it = 1}^\numb \mb{I}_{\typset^\it}\ex{\left|\crate{\v}{\t^k}(\s) - \crate{\v}{\tt^k}(\s)\right|}\\
-&\leq \sum_{\it=1}^\numb \const{1}|\t^\it - \tt^\it| + \const{}\ex{\te{\# of jumps of }\X{\{\v,\root\}}{[\tt^\it,\t^\it)}}\\
+\ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} &= \sum_{\it = 1}^n \mb{I}_{\typset^\it}\ex{\left|\crate{\v}{\t^k}(\s) - \crate{\v}{\tt^k}(\s)\right|}\\
+&\leq \sum_{\it=1}^n \const{1}|\t^\it - \tt^\it| + \const{}\ex{\te{\# of jumps of }\X{\{\v,\root\}}{[\tt^\it,\t^\it)}}\\
 &\leq \const{1}\T + \const{}\ex{\te{\# of jumps in }\X{\{\v,\root\}}{[0,\T)}}\\
 &\leq \const{1}\T + 2\const{}^2\T < \infty.
 \end{align*}
@@ -1730,7 +1729,7 @@ Assume \(\mmm{}{}{1}\) is a probability measure on \(\Omega{\tree\sln{1}}{\T-}\)
 
 \[\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) = \exmu{\cm_\t(\X{\{\v,\root\}}{[0,\t)}{1},\mmm{}{}{1})}{\rate{}(\X{}{\t-}{1},\s)}.\]
 
-\ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m{}{}{}\), which is the law of \(\X{}{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X{}{}{\numb}:\numb\in\mb{N}\}\) on \(\Omega{\tree\sln{\numb}}{\T-}\) converging weakly to \(\X{}{}\). 
+\ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m{}{}{}\), which is the law of \(\X{}{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X{}{}{n}:n\in\mb{N}\}\) on \(\Omega{\tree\sln{n}}{\T-}\) converging weakly to \(\X{}{}\). 
 
 \lin
 
@@ -1747,7 +1746,7 @@ The marginal distribution of \(\mmm{}{}{1}\) on \(\Omega{\{\v,\root\}}{\T}\) for
 \end{lem}
 \labe{subsec::ProofU:Lem::Marginal}
 
-\purpose This allows us to derive the marginal density of the double neighborhood of \((\tree\sln{n})^c\) for all \(\numb\). With this marginal density, we can derive conditional intensities that can be used to extend \(\mmm{}{}{1}\) to more nodes.
+\purpose This allows us to derive the marginal density of the double neighborhood of \((\tree\sln{n})^c\) for all \(n\). With this marginal density, we can derive conditional intensities that can be used to extend \(\mmm{}{}{1}\) to more nodes.
 
 \pfsum By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{}{}\) has a left-continuous modification so we can directly apply Lemma \ref{subsec::ProofE:Lem::filtering}.
 
@@ -1796,18 +1795,18 @@ Finally, for any \(\t\in [0,\T)\), let \(\mm{\U}{\t,}{}\) be the projection of \
 \lin
 
 \begin{lem}
-For any \(\v \in  V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(\numb \in \mb{N}\). Let \(\mmm{}{}{\numb} \in \pmsr\left(\Omega{\tree\sln{\numb}}{\T-}\right)\) be the law of the unique solution to the following SDE:
+For any \(\v \in  V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(n \in \mb{N}\). Let \(\mmm{}{}{n} \in \pmsr\left(\Omega{\tree\sln{n}}{\T-}\right)\) be the law of the unique solution to the following SDE:
 
 \begin{equation}
 \X{\v}{\t} = \begin{cases}
-\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)},\s)\right]}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{\numb}\setminus \tree\sln{\numb-1}\\
-\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\rate{}(\X{\cl{\v}}{\tt-},\s\right)}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{\numb-1}
+\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)},\s)\right]}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n}\setminus \tree\sln{n-1}\\
+\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\rate{}(\X{\cl{\v}}{\tt-},\s\right)}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n-1}
 \end{cases}
 \label{subsec::ProofU:eqn::extendedSDE}
 \end{equation}
 \labe{subsec::ProofU:eqn::extendedSDE}
 
-Then for any \(\alt{\numb} < \numb\), \(\mmm{}{\t}{\alt{\numb}} = \proj{\tree\sln{\alt{\numb}}}{\t}(\mmm{}{\t}{\numb})\).
+Then for any \(\alt{n} < n\), \(\mmm{}{\t}{\alt{n}} = \proj{\tree\sln{\alt{n}}}{\t}(\mmm{}{\t}{n})\).
 \label{subsec::ProofU:Lem::extendedSDE}
 \end{lem}
 \labe{subsec::ProofU:Lem::extendedSDE}
@@ -1881,106 +1880,106 @@ The important thing is that this can be used to extend \(\X{}{}{1}\) to a proces
 
 \ind Let \(\v \in  V\setminus\{\root\}\). Let \(\c{}: V\setminus\{\root\} \ra  V^{\degr-1}\) be defined such that \(\c{\v} = (c^1(\v),\dots,c^{\degr-1}(\v))\) are the children of \(\v\). Let \(\p{}: V\setminus\{\root\}\ra V\) map nodes to their parents.
 
-\ind We can define the sequence of functions \(\dense{\numb}{\t}: \Omega{\tree\sln{\numb}}{\t-} \ra [0,\infty)\) by,
+\ind We can define the sequence of functions \(\dense{n}{\t}: \Omega{\tree\sln{n}}{\t-} \ra [0,\infty)\) by,
 
-\[\dense{\numb}{\t}(\X{}{}{\numb}) := \dense{\numb-1}{\t}(\X{\tree\sln{\numb-1}}{}{\numb})\prod_{\v\in \tree\sln{\numb-1}\setminus\tree\sln{\numb-2}} \cdense{}{\t}(\X{\c{\v}}{}{\numb};\X{\{\v,\root\}}{}{\numb})\]
+\[\dense{n}{\t}(\X{}{}{n}) := \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{\v,\root\}}{}{n})\]
 
-for \(\numb > 1\) (\(\tree\sln{0} = \{\root\}\)). We can show using induction,
+for \(n > 1\) (\(\tree\sln{0} = \{\root\}\)). We can show using induction,
 
-\ind Let \(\mm{\tree\sln{\numb}}{}{} = \mm{}{}{\numb}\) and assume for any \(\U \subseteq  V\), \(\mmm{\U}{0,}{} = \otimes_{\v\in\U}\mmm{\v}{0,}{}\) where \(\{\mmm{\v}{0,}{}:\v\in V\}\) describes a sequence of i.i.d. \(\S\)-valued random variables. We can show using induction that,
+\ind Let \(\mm{\tree\sln{n}}{}{} = \mm{}{}{n}\) and assume for any \(\U \subseteq  V\), \(\mmm{\U}{0,}{} = \otimes_{\v\in\U}\mmm{\v}{0,}{}\) where \(\{\mmm{\v}{0,}{}:\v\in V\}\) describes a sequence of i.i.d. \(\S\)-valued random variables. We can show using induction that,
 
 \begin{equation}
-\dense{\numb}{\t}(\X{}{}{\numb}) = \frac{d\mmm{}{\t}{\numb}}{d\mm{}{0}{\numb}}\exp\left(\sum_{\v\in\tree\sln{\numb-1}}\ds{\v}{\t}(\X{\cl{\v}}{}{\numb},\rate{}) + \sum_{\v\in\tree\sln{\numb}\setminus\tree\sln{\numb-1}} \ds{\v}{\t}(\X{\{v,\p{\v}\}}{}{\numb},\crate{}{})\right).
+\dense{n}{\t}(\X{}{}{n}) = \frac{d\mmm{}{\t}{n}}{d\mm{}{0}{n}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\rate{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X{\{v,\p{\v}\}}{}{n},\crate{}{})\right).
 \label{subsec::ProofU:eqn::densen}
 \end{equation}
 \labe{subsec::ProofU:eqn::densen}
 
-Assume equation \eqref{subsec::ProofU:eqn::densen} holds for \(\dense{\numb-1}{\t}\). Then,
+Assume equation \eqref{subsec::ProofU:eqn::densen} holds for \(\dense{n-1}{\t}\). Then,
 
 \begin{align*}
-\dense{\numb}{\t}(\X{}{}{\numb}) &= \dense{\numb-1}{\t}(\X{\tree\sln{\numb-1}}{}{\numb})\prod_{\v\in\tree\sln{\numb-1}\setminus\tree\sln{\numb-2}} \cdense{}{\t}(\X{\c{\v}}{}{2};\X{\{\v,\p{\v}\}}{}{2})\\
-&=\left(\frac{d\mmm{}{0}{\numb-1}}{d\mm{}{0}{\numb-1}}\prod_{\v\in\tree\sln{\numb-1}\setminus\tree\sln{\numb-2}}\frac{d\mmm{\c{\v}}{0,}{}}{d\mm{\c{\v}}{0,}{}}\right)\exp\Bigg(\sum_{\v\in\tree\sln{\numb-2}}\ds{\v}{\t}(\X{\cl{\v}}{}{\numb},\rate{}) + \sum_{\v\in\tree\sln{\numb-1}\setminus\tree\sln{\numb-2}} \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{\numb},\crate{}{})\\
-&\ind + \sum_{\v\in\tree\sln{\numb-1}\setminus\tree\sln{\numb-2}}\left(\sum_{\vv\in \c{\v}} \ds{\vv}{\t}(\X{\{\vv,\v\}}{}{\numb},\crate{}{}) + \ds{\v}{\t}(\X{\cl{\v}}{}{\numb},\rate{}) - \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{\numb},\crate{}{})\right)\Bigg)\\
-&=\frac{d\mmm{}{0}{\numb}}{d\mm{}{0}{\numb}}\exp\left(\sum_{\v\in\tree\sln{\numb-1}}\ds{\v}{\t}(\X{\cl{\v}}{}{\numb},\rate{}) + \sum_{\v\in\tree\sln{\numb}\setminus\tree\sln{\numb-1}} \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{\numb},\crate{}{})\right).
+\dense{n}{\t}(\X{}{}{n}) &= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{2};\X{\{\v,\p{\v}\}}{}{2})\\
+&=\left(\frac{d\mmm{}{0}{n-1}}{d\mm{}{0}{n-1}}\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\frac{d\mmm{\c{\v}}{0,}{}}{d\mm{\c{\v}}{0,}{}}\right)\exp\Bigg(\sum_{\v\in\tree\sln{n-2}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\rate{}) + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\\
+&\ind + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\left(\sum_{\vv\in \c{\v}} \ds{\vv}{\t}(\X{\{\vv,\v\}}{}{n},\crate{}{}) + \ds{\v}{\t}(\X{\cl{\v}}{}{n},\rate{}) - \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\right)\Bigg)\\
+&=\frac{d\mmm{}{0}{n}}{d\mm{}{0}{n}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\rate{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\right).
 \end{align*}
 
 By a simple calculation analogous to what we did earlier to show that \(\dense{1}{\t}\) was a Radon-Nykodim derivative, we can apply Proposition \ref{subsec::Prope:Prop::radnikder} to prove that this is the Radon-Nikodym derivative of a marked point process. 
 
-\ind For each \(\numb > 1\), define \(\mmm{}{}{\numb} \in \pmsr(\Omega{\tree\sln{\numb}}{\T-})\) by,
+\ind For each \(n > 1\), define \(\mmm{}{}{n} \in \pmsr(\Omega{\tree\sln{n}}{\T-})\) by,
 
-\[\frac{d\mmm{}{\t}{\numb}}{d\mm{}{\t}{\numb}} = \dense{\numb}{\t}(\X{}{}{\numb}).\]
+\[\frac{d\mmm{}{\t}{n}}{d\mm{}{\t}{n}} = \dense{n}{\t}(\X{}{}{n}).\]
 
 Then,
 
 \begin{align*}
-\frac{d\proj{\tree\sln{\numb-1}}{\t}(\mmm{}{\t}{\numb})}{d\mm{}{\t}{\numb-1}} &= \int_{\Omega{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{\t-}} \frac{d\mmm{}{\t}{\numb}}{d\mm{}{\t}{\numb}}\,\mm{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{\t,}{}(d\X{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{}{\numb})\\
-&=\int_{\Omega{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{\t-}} \dense{\numb}{\t}(\X{}{}{\numb})\,\mm{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{\t,}{}(d\X{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{}{\numb})\\
-&= \int_{\Omega{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{\t-}} \dense{\numb-1}{\t}(\X{\tree\sln{\numb-1}}{}{\numb})\prod_{\v\in \tree\sln{\numb-1}\setminus\tree\sln{\numb-2}} \cdense{}{\t}(\X{\c{\v}}{}{\numb};\X{\{v,\p{\v}\}}{}{\numb})\,\mm{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{\t,}{}(d\X{\tree\sln{\numb}\setminus\tree\sln{\numb-1}}{}{\numb})\\
-&= \dense{\numb-1}{\t}(\X{\tree\sln{\numb-1}}{}{\numb})\prod_{\v\in \tree\sln{\numb-1}\setminus\tree\sln{\numb-2}}\int_{\Omega{\c{\v}}{\t-}} \cdense{}{\t}(\X{\c{\v}}{}{\numb};\X{\{v,\p{\v}\}}{}{\numb})\,\mm{\c{\v}}{\t,}{}(d\X{\c{\v}}{}{\numb})\\
-&= \dense{\numb-1}{\t}(\X{\tree\sln{\numb-1}}{}{\numb})\prod_{\v\in \tree\sln{\numb-1}\setminus\tree\sln{\numb-2}}\exmu{\mm{\c{\v}}{\t,}{}}{\cdense{}{\t}(\X{\c{\v}}{}{\numb};\X{\{v,\p{\v}\}}{}{\numb})}\\
-&= \dense{\numb-1}{\t}(\X{\tree\sln{\numb-1}}{}{\numb}).
+\frac{d\proj{\tree\sln{n-1}}{\t}(\mmm{}{\t}{n})}{d\mm{}{\t}{n-1}} &= \int_{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \frac{d\mmm{}{\t}{n}}{d\mm{}{\t}{n}}\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&=\int_{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \dense{n}{\t}(\X{}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&= \int_{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\int_{\Omega{\c{\v}}{\t-}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\c{\v}}{\t,}{}(d\X{\c{\v}}{}{n})\\
+&= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\exmu{\mm{\c{\v}}{\t,}{}}{\cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})}\\
+&= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n}).
 \end{align*}
 
-This proves that \(\proj{\tree\sln{\numb-1}}{\t}(\mmm{}{\t}{\numb}) = \mmm{}{\t}{\numb-1}\). Furthermore, for any \(\alt{\numb} < \numb\),
+This proves that \(\proj{\tree\sln{n-1}}{\t}(\mmm{}{\t}{n}) = \mmm{}{\t}{n-1}\). Furthermore, for any \(\alt{n} < n\),
 
-\[\proj{\tree\sln{\alt{\numb}}}{\t}(\mmm{}{\t}{\numb}) = \proj{\tree\sln{\alt\numb}}{\t}\circ\proj{\tree\sln{\alt{\numb} + 1}}{\t} \circ\cdots\circ \proj{\tree\sln{\numb-1}}{\t}(\mmm{}{\t}{\numb}) = \proj{\tree\sln{\alt\numb}}{\t}\circ\proj{\tree\sln{\alt{\numb} + 1}}{\t} \circ\cdots\circ \proj{\tree\sln{\numb-2}}{\t}(\mmm{}{\t}{\numb-1}) = \cdots = \mmm{}{\t}{\alt{\numb}}.\]
+\[\proj{\tree\sln{\alt{n}}}{\t}(\mmm{}{\t}{n}) = \proj{\tree\sln{\alt{n}}}{\t}\circ\proj{\tree\sln{\alt{n} + 1}}{\t} \circ\cdots\circ \proj{\tree\sln{n-1}}{\t}(\mmm{}{\t}{n}) = \proj{\tree\sln{\alt{n}}}{\t}\circ\proj{\tree\sln{\alt{n} + 1}}{\t} \circ\cdots\circ \proj{\tree\sln{n-2}}{\t}(\mmm{}{\t}{n-1}) = \cdots = \mmm{}{\t}{\alt{n}}.\]
 
-\ind Fix \(\numb\in\mb{N}\). By Lemma \ref{subsec::Some:Lem::radnik}, \(\mmm{}{}{\numb}\) can be described as the law of the unique solution to equation \eqref{subsec::ProofU:eqn::extendedSDE}.
+\ind Fix \(n\in\mb{N}\). By Lemma \ref{subsec::Some:Lem::radnik}, \(\mmm{}{}{n}\) can be described as the law of the unique solution to equation \eqref{subsec::ProofU:eqn::extendedSDE}.
 \end{proof}
 
 \lin
 
 For any \(\U\subseteq  V\), we can consider the embedding \(\pmsr\left(\Omega{\U}{\t-}\right) = \pmsr\left((\Omega{\U}{\t-},\F{\U}{\t-})\right) \subseteq \pmsr\left((\Omega{ V}{\t-},\F{\U}{\t-})\right)\). That is, a measure \(\mmm{}{}{}\in \pmsr\left(\Omega{\U}{\t-}\right)\) can be considered as a \(\F{\U}{}\)-adapted measure on \(\Omega{ V}{\t-}\).
 
-\ind Let's summarize what we have so far. We have a sequence of measures \(\{\mmm{}{}{\numb}:\numb\in\mb{N}\} \subset \pmsr(\Omega{ V}{\T-})\) satisfying:
+\ind Let's summarize what we have so far. We have a sequence of measures \(\{\mmm{}{}{n}:n\in\mb{N}\} \subset \pmsr(\Omega{ V}{\T-})\) satisfying:
 
 \begin{enumerate}[(a)]
 \item \(\mmm{}{}{1}\) solves equation \eqref{sec::Main:eqn::Local SDE}.
 
-\item \(\mmm{}{}{\numb}(\X{\tree\sln{\alt{\numb}}}{}{\numb} \in \cdot) = \mmm{}{}{\alt{\numb}}(\X{\tree\sln{\alt{\numb}}}{}{\alt{\numb}}\in \cdot)\) for all \(\numb \geq \alt{\numb}\).
+\item \(\mmm{}{}{n}(\X{\tree\sln{\alt{n}}}{}{n} \in \cdot) = \mmm{}{}{\alt{n}}(\X{\tree\sln{\alt{n}}}{}{\alt{n}}\in \cdot)\) for all \(n \geq \alt{n}\).
 
-\item \(\frac{d\mmm{}{\t}{\numb}}{d\mm{}{\t}{\numb}} = \dense{\numb}{\t}(\X{}{}{\numb})\).
+\item \(\frac{d\mmm{}{\t}{n}}{d\mm{}{\t}{n}} = \dense{n}{\t}(\X{}{}{n})\).
 \end{enumerate}
 
 Let \(\{\mmm{\U}{\t,}{}:\t \leq \T\}_{\U\subset  V,\U\te{ finite}}\) be a collection of measures defined by
 
-\[\mmm{\U}{\t,}{}(\cdot) = \mmm{}{\t}{\numb}(\X{}{[0,\t)}{\numb} \in \cdot) \te{ for any }\numb\te{ s.t. }\U \subseteq \tree\sln{\numb}.\]
+\[\mmm{\U}{\t,}{}(\cdot) = \mmm{}{\t}{n}(\X{}{[0,\t)}{n} \in \cdot) \te{ for any }n\te{ s.t. }\U \subseteq \tree\sln{n}.\]
 
-By property (b) above, this is well-defined. Since each \(\mmm{\U}{}{}\) is a probability measure defined on the Borel sets of \(\Omega{\U}{\T-}\), they are all inner regular (\tr{citation?}). Now, fix some finite \(\U\subseteq  V\) and let \(\UU \subseteq \U\). Suppose \(\numb\) is such that \(\U \subseteq \tree\sln{\numb}\). Then \(\UU\subseteq \tree\sln{\numb}\), so
+By property (b) above, this is well-defined. Since each \(\mmm{\U}{}{}\) is a probability measure defined on the Borel sets of \(\Omega{\U}{\T-}\), they are all inner regular (\tr{citation?}). Now, fix some finite \(\U\subseteq  V\) and let \(\UU \subseteq \U\). Suppose \(n\) is such that \(\U \subseteq \tree\sln{n}\). Then \(\UU\subseteq \tree\sln{n}\), so
 
-\[\proj{\UU}{\t}(\mmm{\U}{\t,}{})(\cdot) = \mmm{\U}{\t,}{}\left(\proj{\UU}{\t}(\X{\U}{}{\numb}) \in \cdot\right) = \mmm{}{\t}{\numb}\left(\X{\UU}{}{\numb} \in \cdot\right) = \mmm{\UU}{\t,}{}(\cdot).\]
+\[\proj{\UU}{\t}(\mmm{\U}{\t,}{})(\cdot) = \mmm{\U}{\t,}{}\left(\proj{\UU}{\t}(\X{\U}{}{n}) \in \cdot\right) = \mmm{}{\t}{n}\left(\X{\UU}{}{n} \in \cdot\right) = \mmm{\UU}{\t,}{}(\cdot).\]
 
 Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied. Therefore, there exists a \(\mmm{}{}{}\in \ms{P}(\Omega{\U}{\T-})\) such that \(\proj{\U}{\T-}(\mmm{}{}{}) =\mmm{\U}{}{}\) for all finite \(\U\). \tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
 
-\ind In particular, there exists a probability space with canonical process \(\X{}{}\) such that \(\mmm{}{}{} = \law(\X{}{[0,\T)})\) and \(\mmm{\v}{}{} = \law(\X{\v}{[0,\T)})\) for all \(\v \in  V\). In particular, this means that \(\law(\X{\tree\sln{\numb}}{[0,\T)}) = \mmm{\tree\sln{\numb}}{}{} = \mmm{}{}{\numb}\). Since \(\X{\tree\sln{\numb}}{} \ra \X{}{}\) almost surely (we are in the topology of componentwise convergence), \(\mmm{}{}{\numb} \Rightarrow \mmm{}{}{}\). In order to characterize \(\X{}{}\) and \(\mmm{}{}{}\), we construct a stochastic differential equation on a probability space on which \(\X{}{}{\numb} \sim \mmm{}{}{\numb}\) and \(\X{}{}{\numb} = \X{\tree\sln{\numb}}{}\) almost surely. \tr{I don't know if it's clear, but we are taking \(\X{}{}{\numb}\) and \(\X{}{}\) as given in this probability space.}
+\ind In particular, there exists a probability space with canonical process \(\X{}{}\) such that \(\mmm{}{}{} = \law(\X{}{[0,\T)})\) and \(\mmm{\v}{}{} = \law(\X{\v}{[0,\T)})\) for all \(\v \in  V\). In particular, this means that \(\law(\X{\tree\sln{n}}{[0,\T)}) = \mmm{\tree\sln{n}}{}{} = \mmm{}{}{n}\). Since \(\X{\tree\sln{n}}{} \ra \X{}{}\) almost surely (we are in the topology of componentwise convergence), \(\mmm{}{}{n} \Rightarrow \mmm{}{}{}\). In order to characterize \(\X{}{}\) and \(\mmm{}{}{}\), we construct a stochastic differential equation on a probability space on which \(\X{}{}{n} \sim \mmm{}{}{n}\) and \(\X{}{}{n} = \X{\tree\sln{n}}{}\) almost surely. \tr{I don't know if it's clear, but we are taking \(\X{}{}{n}\) and \(\X{}{}\) as given in this probability space.}
 
 \ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. The result is given in \cite[Exercise 14.7.1]{DalVer08} \tr{TODO: rigorously solve this exercise myself}).
 
-\ind Let \(\alt{\S}^\numb = \{\s\ev{\v}: \s\in\S,\v \in \tree\sln{\numb}\}\). For each \(\numb\), consider \(\alt{\S}^\numb\) as embedded in \(\S^ V\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{\numb}\) be the measure on \(\alt{\S}^\numb\) defined by \(\alt{\Sm}\sln{\numb}(\{\s\ev{\v}\}) = \mb{I}_{\v \in \tree\sln{\numb}}\Sm(\s)\). Let \(\{\rt{\numb,\it}_\v,\mark{\numb,\it}_{\v}\}\) be the jump sizes and jump times of \(\X{\v}{}{\numb}\). Let \(\alt{\poiss{\numb}}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{S}^\numb\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^\numb\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{S}^{\numb-1}\times \mb{R}^+)\), then \(\alt{\poiss{\numb}}(\evnt) = \alt{\poiss{\numb-1}}(\evnt)\). Assume \(\{\alt{\poiss{\numb}}:\numb\in\mb{N}\}\) are independent of \(\{\X{}{},\X{}{}{\numb}:\numb\in\mb{N}\}\). Let \(\{\rv_{\v}^{\itt}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
+\ind Let \(\alt{\S}^n = \{\s\ev{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S^ V\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt{n,\it}_\v,\mark{n,\it}_{\v}\}\) be the jump sizes and jump times of \(\X{\v}{}{n}\). Let \(\alt{\poiss{n}}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss{n}}(\evnt) = \alt{\poiss{n-1}}(\evnt)\). Assume \(\{\alt{\poiss{n}}:n\in\mb{N}\}\) are independent of \(\{\X{}{},\X{}{}{n}:n\in\mb{N}\}\). Let \(\{\rv_{\v}^{\itt}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
 
-\ind Recall the mapping \(\pmap{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{\numb} = \pmap{}(\X{}{}{\numb})\). Then the intensity of \(\rp{\numb}\) is given by,
+\ind Recall the mapping \(\pmap{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{n} = \pmap{}(\X{}{}{n})\). Then the intensity of \(\rp{n}\) is given by,
 
-\[\rate{\numb}(\t,\sv{\tree\sln{\numb}}) = \begin{cases}
-\rate{}(\X{\cl{\v}}{\t-}{\numb},\s) &\te{ if } \sv{\tree\sln{\numb}} = \s\ev{\v},\s \in \S\setminus\{0\},\v\in\tree\sln{\numb-1}\\
-\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\t)}{\numb},\s) &\te{ if } \sv{\tree\sln{\numb}} = \s\ev{\v},\s\in\S\setminus\{0\},\v\in\tree\sln{\numb}\setminus\tree\sln{\numb-1}\\
+\[\rate{n}(\t,\sv{\tree\sln{n}}) = \begin{cases}
+\rate{}(\X{\cl{\v}}{\t-}{n},\s) &\te{ if } \sv{\tree\sln{n}} = \s\ev{\v},\s \in \S\setminus\{0\},\v\in\tree\sln{n-1}\\
+\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\t)}{n},\s) &\te{ if } \sv{\tree\sln{n}} = \s\ev{\v},\s\in\S\setminus\{0\},\v\in\tree\sln{n}\setminus\tree\sln{n-1}\\
 0 &\te{ otherwise.}
 \end{cases}\]
 
-For any \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^\numb\times\mb{R}^+)\), define
+For any \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^n\times\mb{R}^+)\), define
 
 \begin{equation}
-\poiss{\numb}(\evnt) = \alt{\poiss{\numb}}\left(\evnt\cap\{(t,\sv{\tree\sln{\numb}},\r):\r > \rate{\numb}(\t,\sv{\tree\sln{\numb}})\}\right) + \#\{(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v,\rv_{\v}^{\it}\rate{\numb}(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v) \in \evnt: \v\in \tree\sln{\numb}\}.
+\poiss{n}(\evnt) = \alt{\poiss{n}}\left(\evnt\cap\{(t,\sv{\tree\sln{n}},\r):\r > \rate{n}(\t,\sv{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}.
 \label{subsec::ProofU:eqn::Poissonexpl}
 \end{equation}
 \labe{subsec::ProofU:eqn::Poissonexpl}
 
-Then \(\poiss{\numb}\) is a Poisson random measure on \(\mb{R}^+\times\alt{\S}^\numb\times \mb{R}^+\) with intensity measure \(d\t\times \alt{\Sm}^\numb\times d\r\) (see proof of \cite[Theorem 14.7.1(b)]{DalVer08})
+Then \(\poiss{n}\) is a Poisson random measure on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times \alt{\Sm}^n\times d\r\) (see proof of \cite[Theorem 14.7.1(b)]{DalVer08})
 
-\ind Notice that for any \(\evnt \in \ms{B}(\mb{R}^+\times \alt{\S}^{\numb-2}\times \mb{R}^+)\), \(\poiss{\numb}(\evnt) = \poiss{\numb-1}(\evnt)\) almost surely. Define the random measure \(\poiss{}\) on \(\ms{B}(\mb{R}^+\times \{\s\ev{\v}:\s\in \S,\v \in  V\}\times \mb{R}^+)\) by,
+\ind Notice that for any \(\evnt \in \ms{B}(\mb{R}^+\times \alt{\S}^{n-2}\times \mb{R}^+)\), \(\poiss{n}(\evnt) = \poiss{n-1}(\evnt)\) almost surely. Define the random measure \(\poiss{}\) on \(\ms{B}(\mb{R}^+\times \{\s\ev{\v}:\s\in \S,\v \in  V\}\times \mb{R}^+)\) by,
 
-\[\poiss{}(\evnt) = \lim_{\numb \ra\infty}\poiss{\numb}\left(\proj{\tree\sln{\numb-1}}{}(\evnt)\right).\]
+\[\poiss{}(\evnt) = \lim_{n \ra\infty}\poiss{n}\left(\proj{\tree\sln{n-1}}{}(\evnt)\right).\]
 
-Here \(\proj{\tree\sln{\numb}}{}(\evnt)\) is the restriction of \(\evnt\) to \(\mb{R}^+\times \alt{\S}^\numb\times\mb{R}^+\). 
+Here \(\proj{\tree\sln{n}}{}(\evnt)\) is the restriction of \(\evnt\) to \(\mb{R}^+\times \alt{\S}^n\times\mb{R}^+\). 
 
 \ind Notice that this limit exists almost surely, because it is the limit of an almost surely monotonically increasing sequence. Let \(\poiss{\v}\) be random measures on \(\mb{R}^+\times\S\times\mb{R}^+\) with intensity \(d\t\times\Sm(d\s)\times d\r\). Define it by,
 
@@ -1988,47 +1987,47 @@ Here \(\proj{\tree\sln{\numb}}{}(\evnt)\) is the restriction of \(\evnt\) to \(\
 
 Similarly define,
 
-\[\alt{\poiss{\v}}(\evnt) = \poiss{\numb}\left(\{(\t,\s\ev{\v},\r):(\t,\s,\r)\in \evnt\}\right)\te{ for } \evnt \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+)\te{ and }\numb\te{ such that } \v\in \tree\sln{\numb}\setminus\tree\sln{\numb-1}.\]
+\[\alt{\poiss{\v}}(\evnt) = \poiss{n}\left(\{(\t,\s\ev{\v},\r):(\t,\s,\r)\in \evnt\}\right)\te{ for } \evnt \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+)\te{ and }n\te{ such that } \v\in \tree\sln{n}\setminus\tree\sln{n-1}.\]
 
-Then \(\{\poiss{\v}\}\) and \(\{\alt{\poiss{\v}}\}\) are both sequences of i.i.d. Poisson processes. Furthermore, for any \(\numb \in \mb{N}\), \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\sln{\numb-1},\vvv\in\tree\sln{\numb}\setminus\tree\sln{\numb-1}\}\) are i.i.d.
+Then \(\{\poiss{\v}\}\) and \(\{\alt{\poiss{\v}}\}\) are both sequences of i.i.d. Poisson processes. Furthermore, for any \(n \in \mb{N}\), \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d.
 
 \lin
 
 \begin{lem}
-The claims above are true. Namely, \(\poiss{\numb}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{\numb}}\times d\r\), \(\{\poiss{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\sln{\numb-1},\vvv\in\tree\sln{\numb}\setminus\tree\sln{\numb-1}\}\) are i.i.d. for any \(\numb \in \mb{N}\).
+The claims above are true. Namely, \(\poiss{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\).
 
 \label{subsec::ProofU:Lem::Poisson}
 \end{lem}
 \labe{subsec::ProofU:Lem::Poisson}
 \begin{proof}
 
-Fix \(\numb \in \mb{N}\). Notice that most of the assumptions of \cite[Proposition 14.7.I(b)]{DalVer08} are satisfied, except the filtration with respect to which \(\rate{\numb}\) is predictable is slightly larger (the proposition requires the filtration to only contain the jumps of \(\X{}{}{\numb}\), but not the initial state). However, the proof of the proposition does not fail when the initial state is included in the filtration (Lemma \ref{sec::TL:Lem::embedding}). Furthermore, \(\poiss{\numb}\) is the Poisson process constructed in the proof, so it is a Poisson process with intensity \(d\t\times \alt{\Sm^\numb}\times d\r\).
+Fix \(n \in \mb{N}\). Notice that most of the assumptions of \cite[Proposition 14.7.I(b)]{DalVer08} are satisfied, except the filtration with respect to which \(\rate{n}\) is predictable is slightly larger (the proposition requires the filtration to only contain the jumps of \(\X{}{}{n}\), but not the initial state). However, the proof of the proposition does not fail when the initial state is included in the filtration (Lemma \ref{sec::TL:Lem::embedding}). Furthermore, \(\poiss{n}\) is the Poisson process constructed in the proof, so it is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\).
 
-\ind By construction, \(\poiss{\v}\) is the restriction of \(\poiss{\numb}\) to \(\mb{R}^+ \times \{\s\ev{\v}: \s\in \S\}\times \mb{R}^+\) for all \(\v\in \tree\sln{\numb-1}\). Thus, for any finite \(\U \subset  V\), there exists a \(\numb\) such that \(\U \subseteq \tree\sln{\numb-1}\), so \(\{\poiss{\v}: \v\in \U\}\) are i.i.d. Thus, \(\{\poiss{\v}: \v\in  V\}\) are i.i.d.
+\ind By construction, \(\poiss{\v}\) is the restriction of \(\poiss{n}\) to \(\mb{R}^+ \times \{\s\ev{\v}: \s\in \S\}\times \mb{R}^+\) for all \(\v\in \tree\sln{n-1}\). Thus, for any finite \(\U \subset  V\), there exists a \(n\) such that \(\U \subseteq \tree\sln{n-1}\), so \(\{\poiss{\v}: \v\in \U\}\) are i.i.d. Thus, \(\{\poiss{\v}: \v\in  V\}\) are i.i.d.
 
-\ind Similarly, for any \(\numb \in \mb{N}\), \(\{\poiss{\v},\alt{\poiss{\vv}}: \v \in \tree\sln{\numb-1},\vv\in\tree\sln{\numb}\setminus\tree\sln{\numb-1}\}\) is just the set of restrictions of \(\poiss{\numb}\) to \(\mb{R}^+\times\{\s\ev{\v}\}\times\mb{R}^+\) for each \(\v\in \tree\sln{\numb}\), so they are i.i.d. Poisson processes with intensity measure \(d\t\times \Sm\times d\r\) because \(\poiss{\numb}\) is a Poisson process with intensity measure \(d\t\times\alt{\Sm^\numb}\times d\r\).
+\ind Similarly, for any \(n \in \mb{N}\), \(\{\poiss{\v},\alt{\poiss{\vv}}: \v \in \tree\sln{n-1},\vv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) is just the set of restrictions of \(\poiss{n}\) to \(\mb{R}^+\times\{\s\ev{\v}\}\times\mb{R}^+\) for each \(\v\in \tree\sln{n}\), so they are i.i.d. Poisson processes with intensity measure \(d\t\times \Sm\times d\r\) because \(\poiss{n}\) is a Poisson process with intensity measure \(d\t\times\alt{\Sm^n}\times d\r\).
 \end{proof}
 
 \lin
 
-Let \(\{\poiss{\v},\alt{\poiss{\v}}:\v\in V\}\) be constructed as above. Then \(\X{}{}{\numb}\) almost surely solves the equation,
+Let \(\{\poiss{\v},\alt{\poiss{\v}}:\v\in V\}\) be constructed as above. Then \(\X{}{}{n}\) almost surely solves the equation,
 
 \begin{equation}
-\X{\v}{\t}{\numb} = \begin{cases}
-\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)}{\numb},\s)]}\s\alt{\poiss{\v}}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{\numb}\setminus\tree\sln{\numb-1}\\
-\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{\numb},\s)]}\s\,\poiss{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{\numb-1}.
+\X{\v}{\t}{n} = \begin{cases}
+\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)}{n},\s)]}\s\alt{\poiss{\v}}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
+\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{n},\s)]}\s\,\poiss{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n-1}.
 \end{cases}
 \label{subsec::ProofU:eqn::ExtendedSDE_fixedPoisson}
 \end{equation}
 \labe{subsec::ProofU:eqn::ExtendedSDE\_fixedPoisson}
 
-By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. By Lemma \ref{subsec::ProofU:Lem::extendedSDE}, \(\te{law}(\X{}{}{\numb}) = \mmm{}{}{\numb}\). By construction, \(\proj{\tree\sln{\numb}}{\T-}(\X{}{}) = \X{}{}{\numb}\) for all \(\numb\in\mb{N}\).
+By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. By Lemma \ref{subsec::ProofU:Lem::extendedSDE}, \(\te{law}(\X{}{}{n}) = \mmm{}{}{n}\). By construction, \(\proj{\tree\sln{n}}{\T-}(\X{}{}) = \X{}{}{n}\) for all \(n\in\mb{N}\).
 
-\ind Fix any \(\v\in V\). Let \(\numb\in \mb{N}\) be any natural number such that \(\v\in \tree\sln{\numb-1}\). Then for any \(\t \in [0,\T)\),
+\ind Fix any \(\v\in V\). Let \(n\in \mb{N}\) be any natural number such that \(\v\in \tree\sln{n-1}\). Then for any \(\t \in [0,\T)\),
 
 \begin{align*}
-\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-},\s)]}\s\poiss{\v}(d\r,d\s,d\tt) &= \X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{\numb},\s)]}\s\poiss{\v}(d\r,d\s,d\tt)\\
-&=\X{\v}{\t}{\numb} = \X{\v}{\t}.
+\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-},\s)]}\s\poiss{\v}(d\r,d\s,d\tt) &= \X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{n},\s)]}\s\poiss{\v}(d\r,d\s,d\tt)\\
+&=\X{\v}{\t}{n} = \X{\v}{\t}.
 \end{align*}
 
 Thus, \(\X{}{}\) is a solution to the coupled equation,
@@ -2482,7 +2481,7 @@ Since \(\ratee{\tt,\v} \leq \const{}\), we can view \(\{\poiss{\v}:\v\in V\}\) a
 
 \[\ex{\sum_{\v\in V}\poiss{\v}([0,\T)\times\S\times[0,\const{}])} = \const{}\T| V|.\]
 
-Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T)\times \S\times [0,\const{}]\). Let \(\{(\rt{\it},\mark{\it},\r^\it,\v^\it):\it = 0,\dots,\numb, \numb\in \mb{N}\}\) be the set of events of \(\sum_{\v\in V}\) in \([0,\T)\times\S\times [0,\const{})\times  V\) ordered so that \(0=\rt{0} < \rt{1} < \cdots < \rt{\numb} < \T\). In each event, \(\rt{\it} \in [0,\T)\), \(\mark{\it}\in \S\setminus\{0\}, \r^\it \in [0,\const{}]\) and \(\v^\it \in  V\) denotes which process went off.
+Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T)\times \S\times [0,\const{}]\). Let \(\{(\rt{\it},\mark{\it},\r^\it,\v^\it):\it = 0,\dots,n, n\in \mb{N}\}\) be the set of events of \(\sum_{\v\in V}\) in \([0,\T)\times\S\times [0,\const{})\times  V\) ordered so that \(0=\rt{0} < \rt{1} < \cdots < \rt{n} < \T\). In each event, \(\rt{\it} \in [0,\T)\), \(\mark{\it}\in \S\setminus\{0\}, \r^\it \in [0,\const{}]\) and \(\v^\it \in  V\) denotes which process went off.
 
 \ind Let \(\X{}{}\) be the c\`adl\`ag process constructed below:
 
@@ -2499,7 +2498,7 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 \end{cases}
 \] 
 
-\item Continue on. In general, \(\X{}{\t} = \X{}{\rt{\it-1}}\) on \(\t \in [\rt{\it-1},\rt{\it})\) for \(\it= 1,\dots,\numb\).
+\item Continue on. In general, \(\X{}{\t} = \X{}{\rt{\it-1}}\) on \(\t \in [\rt{\it-1},\rt{\it})\) for \(\it= 1,\dots,n\).
 
 \item 
 
@@ -2508,7 +2507,7 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 \X{}{\rt{\it-1}} &\te{ otherwise.}
 \end{cases}\]
 
-\item Then \(\X{}{\t} = \X{}{\rt{\numb}}\) for \(\t\in [\rt{\numb},\T)\).
+\item Then \(\X{}{\t} = \X{}{\rt{n}}\) for \(\t\in [\rt{n},\T)\).
 \end{enumerate}
 
 \(\X{}{}\) solves equation \eqref{subsec::Some:eqn::genfiniteSDE} by construction. Furthermore, if \(\rxvtts{}{}\) also solves \eqref{subsec::Some:eqn::genfiniteSDE}, then 
@@ -2550,7 +2549,7 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 
 \item Then \(\rxvtt{}{\t} = \rxvtt{}{\rt{\it}} = \X{}{\rt{\it}} = \X{}{\t}\) for \(\t \in [\rt{\it},\rt{\it+1})\). Then, \(\rxvtt{}{\t} = \X{}{\t}\) for \(\t\in [0,\rt{\it+1})\).
 
-\item Finally, \(\rxvtt{}{\t} = \rxvtt{}{\rt{\numb}} = \X{}{\rt{\numb}} = \X{}{\t}\) for \(\t\in [\rt{\numb},\T)\), so \(\rxvtts{}{} = \X{}{}\) almost surely.
+\item Finally, \(\rxvtt{}{\t} = \rxvtt{}{\rt{n}} = \X{}{\rt{n}} = \X{}{\t}\) for \(\t\in [\rt{n},\T)\), so \(\rxvtts{}{} = \X{}{}\) almost surely.
 \end{enumerate}
 \end{proof}
 
@@ -2900,17 +2899,17 @@ This is simply a restatement of \cite[Theorem 13.2]{Bil99}.
 \lin
 
 \begin{lem}
-Let \(\{\X{}{}{\numb}\}\) be a sequence \(\Omega{ V}{\T}\)-valued Feller processes satisfying Assumption \ref{subsec::Assum:Assu::CI}. Let the infinitesimal generators of these processes be given by the equation:
+Let \(\{\X{}{}{n}\}\) be a sequence \(\Omega{ V}{\T}\)-valued Feller processes satisfying Assumption \ref{subsec::Assum:Assu::CI}. Let the infinitesimal generators of these processes be given by the equation:
 
-\[\IG\sln{\numb}f(\sv{}{ V}) = \sum_{\v\in  V}\sum_{\s \in \S} \IGr{\v}\sln{\numb}(\sv{}{ V},\s)[f(\sv{}{ V} + \s\ev{\v}) - f(\sv{}{ V})].\]
+\[\IG\sln{n}f(\sv{}{ V}) = \sum_{\v\in  V}\sum_{\s \in \S} \IGr{\v}\sln{n}(\sv{}{ V},\s)[f(\sv{}{ V} + \s\ev{\v}) - f(\sv{}{ V})].\]
 
 If there exists some \(\const{} < \infty\) such that
 
-\[\sup_{\numb}\sup_{\sv{}{ V}\in \S^ V}\sup_{\v\in V}\sup_{\s\in \S} \IGr{\v}\sln{\numb}(\sv{}{ V},\s) \leq \const{},\]
+\[\sup_{n}\sup_{\sv{}{ V}\in \S^ V}\sup_{\v\in V}\sup_{\s\in \S} \IGr{\v}\sln{n}(\sv{}{ V},\s) \leq \const{},\]
 
 then for all finite \(\U \subseteq  V\),
 
-\[\lim_{\delta \searrow 0} \sup_\numb \pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) = 0\]
+\[\lim_{\delta \searrow 0} \sup_n \pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta) \geq \ep\right) = 0\]
 
 for all \(\ep > 0\).
 \label{sec::TL:Lem::TightSupport}
@@ -2920,7 +2919,7 @@ for all \(\ep > 0\).
 \purpose This allows us to obtain the c\`adl\`ag version of the equicontinuity condition necessary for Theorem \ref{sec::TL:Thm::Tight}. Note: The first time this lemma is applied is in the proof of Proposition \ref{subsec::Well-:Prop::IGApprox}. The proof refers to Proposition \ref{subsec::Well-:Prop::SDE=IG}.
 
 \begin{proof}
-Fix any \(\numb \in \mb{N}\). Let \(M = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\rxvtts{}{}\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
+Fix any \(n \in \mb{N}\). Let \(M = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\rxvtts{}{}\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
 
 \[\rxvtt{}{\t} = \sum_{\v \in \U}M\ev{\v}\int_0^\t\int_0^{\const{}}\alt{\poiss{\v}}(d\r, d\tt)\]
 
@@ -2928,44 +2927,44 @@ where \(\{\alt{\poiss{\v}}:\v \in \U\}\) are a sequence of i.i.d. unit rate Pois
 
 \ind By Proposition \ref{subsec::Well-:Prop::SDE=IG}, there exists a sequence of i.i.d Poisson processes, \(\{\poiss{\v}:\v\in  V\}\), on \(\S\times\mb{R}^2\) with intensity measure \(\Sm\otimes \leb\) such that,
 
-\[\X{\v}{\t}{\numb} = \X{\v}{0}{\numb} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\X{}{\tt-}{\numb})],d\s)\]
+\[\X{\v}{\t}{n} = \X{\v}{0}{n} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\X{}{\tt-}{n})],d\s)\]
 
 for all \(\v\in  V\). Let
 
 \[\alt{\poiss{\v}}(\cdot) = \int_\S\,\poiss{\v}(\cdot\times \S).\]
 
-Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in  V\}\) are i.i.d., it follows that \(\{\alt{\poiss{\v}}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\proj{\U}{\T}(\X{}{}{\numb})\) experiences a jump, \(\rxvtts{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\rxvtts{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
+Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in  V\}\) are i.i.d., it follows that \(\{\alt{\poiss{\v}}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\proj{\U}{\T}(\X{}{}{n})\) experiences a jump, \(\rxvtts{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\rxvtts{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
 
 \begin{align*}
-|\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|&\leq M\left|\{\#\te{ of jumps in }\X{\v}{(\tt,\ttt]}{\numb}\}\right| \\
+|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|&\leq M\left|\{\#\te{ of jumps in }\X{\v}{(\tt,\ttt]}{n}\}\right| \\
 &\leq M\left|\{\#\te{ of jumps in }\rxvtts{\v}{(\tt,\ttt]}\}\right| = \left|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}\right|
 \end{align*}
 
 It follows that for any partition \(\{\t\sln{\it}\}\) of \([0,\T]\),
 
 \begin{align*}
-\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|\leq \sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|.
+\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|\leq \sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|.
 \end{align*}
 
 Fix \(\delta > 0\). Taking the infimum over all partitions with minimum interval length \(\delta\) yields,
 
 \begin{align*}
-\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) &= \inf_{\{\t\sln{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{\numb} - \X{\v}{\ttt}{\numb}|\\
+\omega'_{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta) &= \inf_{\{\t\sln{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|\\
 &\leq \inf_{\{\t\sln{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v\in \U} \b{\v}|\rxvtt{\v}{\tt} - \rxvtt{\v}{\ttt}|\\
 &= \omega'_{\rxvtts{}{}}(\delta).
 \end{align*}
 
 Thus,
 
-\[\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
+\[\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta) \geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
 
-By applying this same argument to arbitrary \(\numb\in \mb{N}\) and noticing that the distribution of \(\rxvtts{}{}\) does not vary with respect to our choice of coupling, we get,
+By applying this same argument to arbitrary \(n\in \mb{N}\) and noticing that the distribution of \(\rxvtts{}{}\) does not vary with respect to our choice of coupling, we get,
 
-\[\sup_{\numb}\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta)\geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
+\[\sup_{n}\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta)\geq \ep\right) \leq \pr\left(\omega'_{\rxvtts{}{}}(\delta) \geq \ep\right).\]
 
 However, \(\rxvtts{}{}\) is just a homogeneous Poisson point process, so the c\`adl\`ag modulus of continuity of \(\rxvtts{}{}\) converges to 0 in probability as \(\delta \ra 0\). Thus,
 
-\[\lim_{\delta \searrow 0}\sup_{\numb}\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{\numb}\right)}(\delta) \geq \ep\right) \leq \lim_{\delta\searrow 0}\pr\left(\omega'_{\rxvtts{}{}}(\delta)\geq \ep\right) = 0.\]
+\[\lim_{\delta \searrow 0}\sup_{n}\pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta) \geq \ep\right) \leq \lim_{\delta\searrow 0}\pr\left(\omega'_{\rxvtts{}{}}(\delta)\geq \ep\right) = 0.\]
 
 
 \end{proof}
@@ -2985,21 +2984,21 @@ I use the notation of section \ref{subsec::ProofU:sec::Proof2}. The assumptions 
 \item \(\poiss{}(\cdot,\cdot)\) has \(\mc{H}\)-predictable intensity \(\rate{}(\t,\kappa)\).
 \end{itemize}
 
-If we let \(\poiss{}(\cdot,\cdot) = \pmap{}(\X{}{}{\numb})\) (see Definition \ref{subsec::ProofE:Defn::pmap}), then the proof of \cite[Proposition 14.7.I(b)]{DalVer08} shows that the point process defined in equation \eqref{subsec::ProofU:eqn::Poissonexpl} is a Poisson point process with intensity \(d\t\times \alt{\Sm^\numb}\times d\r\) and adapted to a larger filtration.
+If we let \(\poiss{}(\cdot,\cdot) = \pmap{}(\X{}{}{n})\) (see Definition \ref{subsec::ProofE:Defn::pmap}), then the proof of \cite[Proposition 14.7.I(b)]{DalVer08} shows that the point process defined in equation \eqref{subsec::ProofU:eqn::Poissonexpl} is a Poisson point process with intensity \(d\t\times \alt{\Sm^n}\times d\r\) and adapted to a larger filtration.
 
-\ind However, our intensity is actually only predictable with respect to \(\mc{F} \supseteq \mc{H}\) which includes the value of \(\X{}{0}{\numb}\). This can be fixed simply. Let \(\rate{\v}^{\sv{}{\tree\sln{\numb}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X{}{0}{\numb} = \sv{}{\tree\sln{\numb}})\). Then \(\rate{\v}^{\sv{}{\tree\sln{\numb}}}(t,\kappa)\) satisfies the conditions above. Then,
+\ind However, our intensity is actually only predictable with respect to \(\mc{F} \supseteq \mc{H}\) which includes the value of \(\X{}{0}{n}\). This can be fixed simply. Let \(\rate{\v}^{\sv{}{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X{}{0}{n} = \sv{}{\tree\sln{n}})\). Then \(\rate{\v}^{\sv{}{\tree\sln{n}}}(t,\kappa)\) satisfies the conditions above. Then,
 
-\[\poiss{\numb}^{\sv{}{\tree\sln{\numb}}}(\evnt) = \alt{\poiss{\numb}}\left(\evnt\cap\{(t,\sv{}{\tree\sln{\numb}},\r):\r > \rate{\numb}^{\sv{}{\tree\sln{\numb}}}(\t,\sv{}{\tree\sln{\numb}})\}\right) + \#\{(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v,\rv_{\v}^{\it}\rate{\numb}^{\sv{}{\tree\sln{\numb}}}(\rt{\numb,\it}_\v,\mark{\numb,\it}_\v) \in \evnt: \v\in \tree\sln{\numb}\}\]
+\[\poiss{n}^{\sv{}{\tree\sln{n}}}(\evnt) = \alt{\poiss{n}}\left(\evnt\cap\{(t,\sv{}{\tree\sln{n}},\r):\r > \rate{n}^{\sv{}{\tree\sln{n}}}(\t,\sv{}{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}^{\sv{}{\tree\sln{n}}}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}\]
 
-is a Poisson process with intensity \(d\t\times \alt{\Sm^\numb}\times d\r\). Let \(R \subseteq \alt{\S^\numb}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
+is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\). Let \(R \subseteq \alt{\S^n}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
 
 \begin{align*}
-\pr\left(\poiss{\numb}\left(\inte\times R\times \alt{\inte}\right) = 0\right) &= \sum_{\sv{}{\tree\sln{\numb}} \in \alt{S}^\numb} \pr\left(\poiss{\numb}^{\sv{}{\tree\sln{\numb}}}\left(\inte\times R\times \alt{\inte}\right) = 0\right)\pr(\X{}{0}{\numb} = \sv{}{\tree\sln{\numb}})\\
-&= \exp\left(-|R| |\inte||\alt{\inte}|\right)\sum_{\sv{}{\tree\sln{\numb}} \in \alt{S^\numb}} \pr(\X{}{0}{\numb} = \sv{}{\tree\sln{\numb}})\\
+\pr\left(\poiss{n}\left(\inte\times R\times \alt{\inte}\right) = 0\right) &= \sum_{\sv{}{\tree\sln{n}} \in \alt{S}^n} \pr\left(\poiss{n}^{\sv{}{\tree\sln{n}}}\left(\inte\times R\times \alt{\inte}\right) = 0\right)\pr(\X{}{0}{n} = \sv{}{\tree\sln{n}})\\
+&= \exp\left(-|R| |\inte||\alt{\inte}|\right)\sum_{\sv{}{\tree\sln{n}} \in \alt{S^n}} \pr(\X{}{0}{n} = \sv{}{\tree\sln{n}})\\
 &=\exp\left(-|R| |\inte||\alt{\inte}|\right)
 \end{align*}
 
-Since this holds for every rectangle, \(\poiss{\numb}\) is a Poisson process on \([0,T]\times \alt{\S^\numb}\times [0,\const{}]\) by R\'enyi, M\"onch \cite[Theorem 9.2.XII]{DalVer08}.
+Since this holds for every rectangle, \(\poiss{n}\) is a Poisson process on \([0,T]\times \alt{\S^n}\times [0,\const{}]\) by R\'enyi, M\"onch \cite[Theorem 9.2.XII]{DalVer08}.
 
 
 
