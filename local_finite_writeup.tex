@@ -87,7 +87,7 @@
 %Modifiers
 \newcommand{\cl}{\ov}							%closure
 \newcommand{\ve}[1]{_{#1}}						%Append vertex
-\renewcommand{\ss}[1]{^{#1}}					%vertex set identifier
+\newcommand{\vsi}[1]{^{#1}}						%vertex set identifier
 \newcommand{\tp}[1]{(#1)}						%Time of process
 \newcommand{\ts}[1]{_{#1}}						%time bound of set
 \newcommand{\evv}[1]{^{#1}}						%distinguish std basis
@@ -106,17 +106,33 @@
 
 %Section 2.3
 %Base commands
-
-\newcommand{\poiss}[1]{N_{#1}}						%Poisson process
+\newcommand{\core}{\mc{D}}						%Core
+\newcommand{\cont}{\mc{C}}						%space of cont. fs
+\newcommand{\delt}{\triangle}					%change in f
+\renewcommand{\ss}{\tilde{\s}}					%2nd elt of \S
+\renewcommand{\SS}{\tilde{\S}}					%sub state space
 \newcommand{\poisses}{\mathbf{N}}				%all Poisson processes
+\newcommand{\poiss}{N}							%Poisson process
+\newcommand{\leb}{\te{Leb}}						%Lebesgue measure
+\newcommand{\Sm}{\ell}							%std msr on \S
+\newcommand{\rate}[1]{\lambda_{#1}}				%rate
+\newcommand{\Fpo}{F_{\poisses}}					%Picard mapping of SDE
+
+
+
+%Modifier
+\newcommand{\deltf}[1]{_{#1}}					%Specify delt function
+\newcommand{\alt}[1]{\widetilde{#1}}			%alternate val
+
+
 
 \newcommand{\law}{\te{Law}}							%Law of a process
-\newcommand{\leb}{\te{Leb}}							%Lebesgue measure
-\newcommand{\core}{\mc{D}}							%Core
 
-\renewcommand{\SS}{\tilde{\S}}						%sub state space
 
-%\renewcommand{\ss}{\tilde{\s}}					%2nd elt of \S
+
+
+
+
 
 
 
@@ -146,15 +162,15 @@
 \newcommand{\mm}[3]{\nu_{#2#1}^{#3}}						%typ measure 2
 \newcommand{\mmm}[3]{\eta_{#2#1}^{#3}}						%typ measure 3
 \newcommand{\cm}{\gamma}							%conditional msr funct
-\newcommand{\rate}[1]{\lambda_{#1}}					%rate
+
 \newcommand{\ratee}[1]{\Lambda_{#1}}				%general rate
 \newcommand{\crate}[2]{\alt{\lambda}_{#1}^{#2}}		%conditional rate
 \newcommand{\cratee}[2]{\alt{\Lambda}_{#1}^{#2}} 	%general conditional rate
 
 \newcommand{\dist}{d}								%general metric
-\newcommand{\cont}{\mc{C}}							%space of cont. fs
-\newcommand{\Sm}{\ell}								%std msr on \S
-\newcommand{\alt}{\widetilde}						%alternate val
+
+
+
 
 \newcommand{\mutex}{\|}								%Mutually exclusive
 \newcommand{\apath}{\Gamma}						%Given path for CI proof
@@ -461,7 +477,7 @@ There exists a fixed \(\degr\in \mb{N}\) such that:
 Suppose \(\X{}{}\) is the Feller process defined by equation \eqref{subsec::Notat:Eqn::IG}. If \(\X{}{}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, then there exists a domain \(\core(\IG)\) such that operator \(\IG\) defined in equation \eqref{subsec::Notat:Eqn::IG} on \(\mc{D}(\IG)\) is an infinitesimal generator with core \(\core\) defined by,
 
 \begin{equation}
-\core \defeq \left\{f \in \cont(\S^ V): \sum_{\v\in V} \triangle_f(\v) < \infty\right\},
+\core \defeq \left\{f \in \cont(\S^ V): \sum_{\v\in V} \delt\deltf{\f}{\v} < \infty\right\},
 \label{subsec::Well-:Eqn::core}
 \end{equation}
 \labe{subsec::Well-:Eqn::core}
@@ -469,7 +485,7 @@ Suppose \(\X{}{}\) is the Feller process defined by equation \eqref{subsec::Nota
 where we define,
 
 \begin{equation}
-\triangle_f(\v) \defeq \sup\left\{|f(\sv{}{ V}) - f(\sv{}{ V}+\s\ev{\v})|: \sv{}{ V} \in \S^ V,\s \in \S\right\}.
+\delt\deltf{\f}{\v} \defeq \sup\left\{|f(\sv{}{ V}) - f(\sv{}{ V}+\s\ev{\v})|: \sv{}{ V} \in \S^ V,\s \in \S\right\}.
 \label{subsec::Well-:Eqn::fvar}
 \end{equation}
 \labe{subsec::Well-:Eqn::fvar}
@@ -526,10 +542,10 @@ Finally, by statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, \(|\neigh{\v
 \lin
 
 \begin{prop}
-Let \(\poisses \defeq \{\poiss{\v}:\v\in  V\}\) be a sequence of i.i.d. Poisson processes on \(\mb{R}^2\times \S\) with intensity measure \(\leb\otimes \Sm\) where \(\leb\) is the Lebesgue measure on \(\mb{R}^2\) and \(\Sm\) is a probability measure on \(\S\) having 0 weight on 0 and nonzero weight on \(\S\setminus \{0\}\). Suppose \(\IGr{\v}\) and \(G\) satisfy Assumption \ref{subsec::Assum:Assu::CI} and suppose \(\rate{\v}(\sv{}{ V},\s) = \frac{\IGr{\v}(\sv{}{ V},\s)}{\Sm(\{\s\})}\) for \(\sv{}{ V} \in \S^ V\) and \(\s \in \S\). Then the coupled equation,
+Let \(\poisses \defeq \{\poiss{\v}:\v\in  V\}\) be a sequence of i.i.d. Poisson processes on \(\mb{R}^2\times \S\) with intensity measure \(\leb\otimes \Sm\) where \(\leb\) is the Lebesgue measure on \(\mb{R}^2\) and \(\Sm\) is a probability measure on \(\S\) having 0 weight on 0 and unit weight on \(\S\setminus \{0\}\). Suppose \(\IGr{\v}\) and \(G\) satisfy Assumption \ref{subsec::Assum:Assu::CI}. Then the coupled equation,
 
 \begin{equation}
-\X{\v}{\t} = \X{\v}{0} + \int_\S\int_0^\t \s\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{\tt-},\s)\right],d\s\right) \te{ for all }\v \in  V
+\X{\v}{\t} = \X{\v}{0} + \int_\S\int_0^\t \s\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{\tt-},\s)\right],d\s\right) \te{ for all }\v \in  V
 \label{subsec::Well-:Eqn::SDE}
 \end{equation}
 \labe{subsec::Well-:Eqn::SDE}
@@ -550,13 +566,13 @@ has a unique strong solution.
 \lin
 
 \begin{lem}
-Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(F_\poisses: \Omega{ V}{\T} \ra \Omega{ V}{\T}\) parameterized by a sequence of Poisson processes and defined by,
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(\Fpo: \Omega{ V}{\T} \ra \Omega{ V}{\T}\) parameterized by a sequence of Poisson processes and defined by,
 
-\[\left(F_\poisses(\x{}{})\right)_\v(\t) := \x{\v}{0} + \int_\S\int_0^\t \s \,\poiss{\v}(d\tt,(0,\rate{\v}(\x{}{\tt-},\s)],d\s) \te{ for all }\x{}{} \in \Omega{ V}{\T}, \v \in  V\te{ and }\t \in [0,\T].\]
+\[\left(\Fpo(\x{}{})\right)\ve{\v}\tp{\t} := \x{\v}{0} + \int_\S\int_0^\t \s \,\poiss{\v}(d\tt,(0,\IGr{\v}(\x{}{\tt-},\s)],d\s) \te{ for all }\x{}{} \in \Omega{ V}{\T}, \v \in  V\te{ and }\t \in [0,\T].\]
 
 Then for any pair of random processes \(\X{}{},\alt{\X{}{}}:\Omega{ V}{\T} \ra \Omega{ V}{\T}\), \(\v\in  V\) and \(\t \in [0,\T]\),
 
-\[\ex{\|F_\poisses(\X{}{})_\v - F_\poisses(\alt{\X{}{}})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\]
+\[\ex{\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X{}{}})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X}{\v}{0}}| +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\]
 
 for some constant \(\const{1} < \infty\).
 
@@ -571,15 +587,15 @@ for some constant \(\const{1} < \infty\).
 \app Assumption \ref{subsec::Assum:Assu::CI}.
 
 \begin{proof}
-Recall that \(\{\IGr{\v}:\v\in V\}\) is necessarily bounded from above by some \(\const{} < \infty\) (Statement 1 of Assumption \ref{subsec::Assum:Assu::CI}). By assumption, \(\Sm(\{\s\}) > 0\) for all \(\s \in \S\setminus \{0\}\). Since \(\S\) is finite, that means that \(\min_{\s \neq 0} \Sm(\{\s\}) > 0\), so \(\rate{\v}(\sv{}{ V},\s)\) is also bounded from above. Without loss of generality, suppose \(\rate{\v}(\sv{}{ V},\s) < \const{}\) for all \(\v\in  V,\sv{}{ V} \in \S^ V\te{ and } \s \in \S\).
+Recall that \(\{\IGr{\v}:\v\in V\}\) is necessarily bounded from above by some \(\const{} < \infty\) (Statement 1 of Assumption \ref{subsec::Assum:Assu::CI}). 
 
 \ind By statement 2 of Assumption \ref{subsec::Assum:Assu::CI}, 
 
-\[\inf_{\substack{\sv{}{ V},\alt{\sv{}{ V}} \in \S^ V, \s\in \S\\ \rate{\v}(\sv{}{ V},\s) \neq \rate{\v}(\alt{\sv{}{ V}},\s)}} \sum_{\vv \in \cl{\v}} |\sv{\vv}{ V} - \alt{\sv{\vv}{ V}}| \geq 1.\]
+\[\inf_{\substack{\sv{}{ V},\alt{\sv}{}{ V} \in \S^ V, \s\in \S\\ \IGr{\v}(\sv{}{ V},\s) \neq \IGr{\v}(\alt{\sv}{}{ V},\s)}} \sum_{\vv \in \cl{\v}} |\sv{\vv}{ V} - \alt{\sv}{\vv}{ V}| \geq 1.\]
 
 Then,
 
-\[\sup_{\v\in  V} \sup_{\substack{\sv{}{ V},\alt{\sv{}{ V}} \in \S^ V, \s\in \S\\ \rate{\v}(\sv{}{ V},\s) \neq \rate{\v}(\alt{\sv{}{ V}},\s)}} \frac{|\rate{\v}(\sv{}{ V},\s) - \rate{\v}(\alt{\sv{}{ V}},\s)|}{\sum_{\vv \in \cl{\v}} |\sv{\vv}{ V} - \alt{\sv{\vv}{ V}}|} \leq \const{}\]
+\[\sup_{\v\in  V} \sup_{\substack{\sv{}{ V},\alt{\sv}{}{ V} \in \S^ V, \s\in \S\\ \IGr{\v}(\sv{}{ V},\s) \neq \IGr{\v}(\alt{\sv}{}{ V},\s)}} \frac{|\IGr{\v}(\sv{}{ V},\s) - \IGr{\v}(\alt{\sv}{}{ V},\s)|}{\sum_{\vv \in \cl{\v}} |\sv{\vv}{ V} - \alt{\sv}{\vv}{ V}|} \leq \const{}\]
 
 So,
 
@@ -878,12 +894,12 @@ Now, suppose \(f\in \core\). Then for all \(\sv{}{ V} \in \S^ V\),
 &= \left|\sum_{\v \in  V\sln{n}} \sum_{\s \in \S} \IGr{\v}(\proj{ V\sln{n}}{}(\sv{}{ V}),\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})] - \sum_{\v \in  V}\sum_{\s \in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
 &\leq  \left|\sum_{\v \in  V\sln{n}} \sum_{\s \in \S} \IGr{\v}(\proj{ V\sln{n}}{}(\sv{}{ V}),\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})] - \sum_{\v \in  V\sln{n}}\sum_{\s \in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
 &\ind  +\left|\sum_{\v \notin  V\sln{n}} \sum_{\s\in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V}+\s\ev{\v}) - f(\sv{}{ V})]\right|\\
-&\leq \sum_{\v \in  V\sln{n}}\sum_{\s \in \S} \left|\IGr{\v}(\proj{ V\sln{n}}{}(\sv{}{ V}),\s) - \IGr{\v}(\sv{}{ V},\s)\right|\triangle_f(\v) + \sum_{\v \in  V\setminus  V\sln{n}} \const{}\triangle_f(\v)\\
-&\os{Assump. \ref{subsec::Assum:Assu::CI}.2}{=} \sum_{\v \in  V\sln{n}\setminus V\sln{n-1}} |\S|\const{} \triangle_f(\v) + \sum_{\v \in  V\setminus  V\sln{n}} \const{}\triangle_f(\v)\\
-&\leq |\S|C\sum_{\v \in  V\setminus  V\sln{n-1}} \triangle_f(\v) \os{n\ra\infty}{\ra} 0.
+&\leq \sum_{\v \in  V\sln{n}}\sum_{\s \in \S} \left|\IGr{\v}(\proj{ V\sln{n}}{}(\sv{}{ V}),\s) - \IGr{\v}(\sv{}{ V},\s)\right|\delt\deltf{\f}{\v} + \sum_{\v \in  V\setminus  V\sln{n}} \const{}\delt\deltf{\f}{\v}\\
+&\os{Assump. \ref{subsec::Assum:Assu::CI}.2}{=} \sum_{\v \in  V\sln{n}\setminus V\sln{n-1}} |\S|\const{} \delt\deltf{\f}{\v} + \sum_{\v \in  V\setminus  V\sln{n}} \const{}\delt\deltf{\f}{\v}\\
+&\leq |\S|C\sum_{\v \in  V\setminus  V\sln{n-1}} \delt\deltf{\f}{\v} \os{n\ra\infty}{\ra} 0.
 \end{align*}
 
-Here \(\triangle_f(\v) = \sup\left\{|f(\sv{}{ V}) - f(\sv{}{ V} + \s\ev{\v}): \sv{}{ V}\in \S^ V,\s \in \S\right\}\) as defined in equation \eqref{subsec::Well-:Eqn::fvar}. By Corollary \ref{sec::Infin:Cor::Convergence}, \(\X{}{}{n}\Rightarrow \X{}{}\).
+Here \(\delt\deltf{\f}{\v} = \sup\left\{|f(\sv{}{ V}) - f(\sv{}{ V} + \s\ev{\v}): \sv{}{ V}\in \S^ V,\s \in \S\right\}\) as defined in equation \eqref{subsec::Well-:Eqn::fvar}. By Corollary \ref{sec::Infin:Cor::Convergence}, \(\X{}{}{n}\Rightarrow \X{}{}\).
 \end{proof}
 
 
