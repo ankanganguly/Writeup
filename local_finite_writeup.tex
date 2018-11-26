@@ -572,7 +572,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(\F
 
 Then for any pair of random processes \(\X{}{},\alt{\X{}{}}:\Omega{ V}{\T} \ra \Omega{ V}{\T}\), \(\v\in  V\) and \(\t \in [0,\T]\),
 
-\[\ex{\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X{}{}})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X}{\v}{0}}| +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\]
+\[\ex{\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X}{}{})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X}{\v}{0}}| +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
 
 for some constant \(\const{1} < \infty\).
 
@@ -599,24 +599,24 @@ Then,
 
 So,
 
-\[|\rate{\v}(\sv{}{ V},\s) - \rate{\v}(\alt{\sv{}{ V}},\s)|\leq \const{}\sum_{\vv \in \cl{\v}} |\sv{\vv}{ V} - \alt{\sv{\vv}{ V}}| \te{ for all } \sv{}{ V},\alt{\sv{}{ V}}\in \S^ V,\s\in \S\te{ and }\v\in  V.\]
+\[|\IGr{\v}(\sv{}{ V},\s) - \IGr{\v}(\alt{\sv}{}{V},\s)|\leq \const{}\sum_{\vv \in \cl{\v}} |\sv{\vv}{ V} - \alt{\sv}{\vv}{V}| \te{ for all } \sv{}{ V},\alt{\sv}{}{V}\in \S^ V,\s\in \S\te{ and }\v\in  V.\]
 
-That is, \(\rate{\v}\) satisfies a Lipschitz-like condition with coefficient bounded from above by \(\const{}\). For any \(\v\in  V\),
+That is, \(\IGr{\v}\) satisfies a Lipschitz-like condition with coefficient bounded from above by \(\const{}\). For any \(\v\in  V\),
 
 \begin{align*}
-\mb{E}\bigg[&\|F_\poisses(\X{}{})_\v - F_\poisses(\alt{\X{}{}})_\v\|_\t\bigg] - \ex{|\X{\v}{0} - \alt{\X{\v}{0}}|}\\
-&= \ex{\sup_{\ttt \leq \t}\left|\int_\S\int_0^{\ttt} \s\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{\tt-},\s)\right],d\s\right) -  \int_\S\int_0^{\ttt} \s\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\alt{\X{}{\tt-}},\s)\right],d\s\right)\right|}\\
-&=\ex{\sup_{\ttt\leq \t} \left|\int_\S \int_0^{\const{}} \int_0^{\ttt} \s\left(\mb{I}_{\r < \rate{\v}(\X{}{\tt-},\s)} - \mb{I}_{\r < \rate{\v}(\alt{\X{}{\tt-}},\s)}\right)\,\poiss{\v}(d\tt\,d\r\,d\s)\right|}\\
-&\leq \ex{\int_\S\int_0^{\const{}}\int_0^\t \left|\s\left(\mb{I}_{\r < \rate{\v}(\X{}{\tt-},\s)} - \mb{I}_{\r < \rate{\v}(\alt{\X{}{\tt-}},\s)}\right)\right|\,\poiss{\v}(d\tt\,d\r\,d\s)}\\
-&=\int_\S\int_0^\t\int_0^{\const{}} |\s|\ex{\mb{I}_{\rate{\v}(\X{}{\tt-},\s) \leq \r < \rate{\v}(\alt{\X{}{\tt-}},\s)} + \mb{I}_{\rate{\v}(\alt{\X{}{\tt-}},\s) \leq \r < \rate{\v}(\X{}{\tt-},\s)}}\,d\r\,d\tt\,\Sm(d\s)\\
-&= \int_\S\int_0^\t|\s|\ex{\left|\rate{\v}(\X{}{\tt-},\s) - \rate{\v}(\alt{\X{}{\tt-}},\s)\right|}\,d\tt\,\Sm(d\s)\\
-&\leq \const{}\int_\S\int_0^\t |\s| \ex{\sum_{\vv \in \cl{\v}}|\X{\vv}{\tt-} - \alt{\X{\vv}{\tt-}}|}\,d\tt\,\Sm(d\s)\\
-&\leq \const{}|\S|\int_0^\t \sum_{\vv \in \cl{\v}}\ex{\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
+\mb{E}\bigg[&\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X})_\v\|_\t\bigg] - \ex{|\X{\v}{0} - \alt{\X}{\v}{0}|}\\
+&= \ex{\sup_{\ttt \leq \t}\left|\int_\S\int_0^{\ttt} \s\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{\tt-},\s)\right],d\s\right) -  \int_\S\int_0^{\ttt} \s\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\alt{\X}{}{\tt-},\s)\right],d\s\right)\right|}\\
+&=\ex{\sup_{\ttt\leq \t} \left|\int_\S \int_0^{\const{}} \int_0^{\ttt} \s\left(\mb{I}_{\r < \IGr{\v}(\X{}{\tt-},\s)} - \mb{I}_{\r < \IGr{\v}(\alt{\X}{}{\tt-},\s)}\right)\,\poiss{\v}(d\tt\,d\r\,d\s)\right|}\\
+&\leq \ex{\int_\S\int_0^{\const{}}\int_0^\t \left|\s\left(\mb{I}_{\r < \IGr{\v}(\X{}{\tt-},\s)} - \mb{I}_{\r < \IGr{\v}(\alt{\X}{}{\tt-},\s)}\right)\right|\,\poiss{\v}(d\tt\,d\r\,d\s)}\\
+&=\int_\S\int_0^\t\int_0^{\const{}} |\s|\ex{\mb{I}_{\IGr{\v}(\X{}{\tt-},\s) \leq \r < \IGr{\v}(\alt{\X}{}{\tt-},\s)} + \mb{I}_{\IGr{\v}(\alt{\X}{}{\tt-},\s) \leq \r < \IGr{\v}(\X{}{\tt-},\s)}}\,d\r\,d\tt\,\Sm(d\s)\\
+&= \int_\S\int_0^\t|\s|\ex{\left|\IGr{\v}(\X{}{\tt-},\s) - \IGr{\v}(\alt{\X}{}{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
+&\leq \const{}\int_\S\int_0^\t |\s| \ex{\sum_{\vv \in \cl{\v}}|\X{\vv}{\tt-} - \alt{\X}{\vv}{\tt-}|}\,d\tt\,\Sm(d\s)\\
+&\leq \const{}|\S|\int_0^\t \sum_{\vv \in \cl{\v}}\ex{\|\X{\vv}{} - \alt{\X}{\vv}\|_\tt}\,d\tt\\
 \end{align*}
 
 Then,
 
-\[\ex{\|F_\poisses(\X{}{})_\v - F_\poisses(\alt{\X{}{}})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt.\]
+\[\ex{\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{\vv}\|_\tt}\,d\tt.\]
 
 \end{proof}
 
@@ -625,7 +625,7 @@ Then,
 \begin{lem}
 Given the conditions and notation of Lemma \ref{subsec::Well-:Lem::SDEWP}, assume that \(\X{}{0} = \alt{\X{}{0}}\) almost surely. Then,
 
-\[\sup_{\v \in  V} \ex{\left\|F_\poisses(\X{}{})_\v - F_\poisses(\alt{\X{}{}})_\v\right\|_\t} \leq (\degr+1)\const{1}\int_0^\t \sup_{\v \in  V} \ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\tt}\,d\tt.\]
+\[\sup_{\v \in  V} \ex{\left\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X{}{}})_\v\right\|_\t} \leq (\degr+1)\const{1}\int_0^\t \sup_{\v \in  V} \ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\tt}\,d\tt.\]
 \label{subsec::Well-:Lem::GronwallPrep}
 \end{lem}
 \labe{subsec::Well-:Lem::GronwallPrep}
@@ -640,7 +640,7 @@ Given the conditions and notation of Lemma \ref{subsec::Well-:Lem::SDEWP}, assum
 By statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, every node \(v \in V\) has degree less than or equal to \(\degr\). By Lemma \ref{subsec::Well-:Lem::SDEWP},
 
 \begin{align*}
-\sup_{\v \in  V} \ex{\left\|F_\poisses(\X{}{})_\v - F_\poisses(\alt{\X{}{}})_\v\right\|_\t} &\leq \sup_{\v\in  V}\left(\ex{|\X{\v}{0} - \alt{\X{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\right)\\
+\sup_{\v \in  V} \ex{\left\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X{}{}})_\v\right\|_\t} &\leq \sup_{\v\in  V}\left(\ex{|\X{\v}{0} - \alt{\X{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\right)\\
 &=\sup_{\v \in  V} \const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\|\X{\vv} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
 &\leq \const{1}\int_0^\t \sup_{\v \in  V}\sum_{\vv \in \cl{\v}} \ex{\|\X{\vv} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
 &\leq \const{1}\int_0^\t \sup_{\v \in  V}\sum_{\vv \in \cl{\v}}\sup_{\vvv\in V} \ex{\|\X{\vvv} - \alt{\X{\vvv}{}}\|_\tt}\,d\tt\\
@@ -652,9 +652,9 @@ By statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, every node \(v \in V\
 
 \begin{proof}[Proof of Proposition \ref{subsec::Well-:Prop::SDEWP}]
 
-This proof is fairly standard. We begin by proving uniqueness. Suppose \(\X{}{}\) and \(\alt{\X{}{}}\) are both strong solutions to equation \ref{subsec::Well-:Eqn::SDE}. Let \(F_\poisses\) be the mapping introduced in Lemmas \ref{subsec::Well-:Lem::SDEWP} and \ref{subsec::Well-:Lem::GronwallPrep}. Then,
+This proof is fairly standard. We begin by proving uniqueness. Suppose \(\X{}{}\) and \(\alt{\X{}{}}\) are both strong solutions to equation \ref{subsec::Well-:Eqn::SDE}. Let \(\Fpo\) be the mapping introduced in Lemmas \ref{subsec::Well-:Lem::SDEWP} and \ref{subsec::Well-:Lem::GronwallPrep}. Then,
 
-\[\X{}{} = F_\poisses(\X{}{})\te{ and } \alt{\X{}{}} = F_\poisses(\alt{\X{}{}}),\]
+\[\X{}{} = \Fpo(\X{}{})\te{ and } \alt{\X{}{}} = \Fpo(\alt{\X{}{}}),\]
 
 and \(\X{}{0} = \alt{\X{}{0}}\) almost surely. By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(\t\in [0,\T]\),
 
@@ -668,7 +668,7 @@ By Gronwall's inequality, \(\sup_{\v \in  V} \ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\
 
 To prove existence, we use Picard iterations. Define \(\X{}{\t}{0} \defeq \X{}{0}\) for all \(\t \in [0,\T]\). Define,
 
-\[\X{}{}{n+1} = F_\poisses(\X{}{}{n}).\]
+\[\X{}{}{n+1} = \Fpo(\X{}{}{n}).\]
 
 Once again, by Lemma \ref{subsec::Well-:Lem::GronwallPrep},
 
@@ -702,7 +702,7 @@ Then,
 
 So \(\X{}{}{n} \ra \X{}{}\) for some \(\X{}{}\) componentwise almost surely (fast convergence in expectation implies almost sure convergence). Let 
 
-\[\alt{\X{}{}} = F_\poisses(\X{}{}).\]
+\[\alt{\X{}{}} = \Fpo(\X{}{}).\]
 
 By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(n\in\mb{N}\),
 
@@ -715,7 +715,7 @@ Taking a limit as \(n\) goes to infinity on both sides yields
 
 \[\lim_{n\ra\infty} \sup_{\v \in  V} \ex{\|\alt{\X{\v}{}} - \X{\v}{}{n}\|_\T} = 0.\]
 
-So \(\X{}{}= F_\poisses(\X{}{})\) almost surely.
+So \(\X{}{}= \Fpo(\X{}{})\) almost surely.
 \end{proof}
 
 \lin
@@ -776,16 +776,16 @@ Then \(\X{}{\t+\cdot}{\sv{}{ V}} \deq \alt{\X{}{\cdot}}\). By the definition of 
 
 \item Let \(\root \in  V\). Define the sequence of sets \( V\sln{0}\subset  V\sln{1}\subset \cdots \subseteq  V\) as follows: let \( V\sln{0} = \{\root\}\). For \(n \geq 1\), let \( V\sln{n+1} = \cl{ V\sln{n}}\).
 
-\ind Now suppose for \(\sv{}{ V},\alt{\sv{}{ V}}\in \S^ V\),
+\ind Now suppose for \(\sv{}{ V},\alt{\sv}{}{V}\in \S^ V\),
 
 \begin{align*}
 \X{\v}{\t} &= \sv{\v}{ V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\X{}{\tt-},\s)],d\s)&\te{ for all } \v \in  V\\
-\alt{\X{\v}{\t}} &= \alt{\sv{\v}{ V}} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\alt{\X{}{\tt-}},\s)],d\s)&\te{ for all } \v \in  V\\
+\alt{\X{\v}{\t}} &= \alt{\sv}{\v}{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\alt{\X{}{\tt-}},\s)],d\s)&\te{ for all } \v \in  V\\
 \end{align*}
 
 Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
 
-\[\ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\t} \leq |\sv{\v}{ V} - \alt{\sv{\v}{ V}}| + \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\]
+\[\ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\t} \leq |\sv{\v}{ V} - \alt{\sv}{\v}{V}| + \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\]
 
 for all \(\t \in [0,\T]\).
 
@@ -793,29 +793,29 @@ for all \(\t \in [0,\T]\).
 
 \begin{align*}
 \ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\t}} &= \sum_{\v \in  V} \b{\v}\ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\t}\\
-&\leq \|\sv{}{ V} - \alt{\sv{}{ V}}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
-&\os{\b{\v}\leq \b{}\b{\vv}}{\leq} \|\sv{}{ V} - \alt{\sv{}{ V}}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
-&= \|\sv{}{ V} - \alt{\sv{}{ V}}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in  V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
-&=\|\sv{}{ V} - \alt{\sv{}{ V}}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\tt}}\,d\tt\\
+&\leq \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
+&\os{\b{\v}\leq \b{}\b{\vv}}{\leq} \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
+&= \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in  V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
+&=\|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\tt}}\,d\tt\\
 \end{align*}
 
 Applying Gronwall's inequality:
 
-\[\ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\T}} \leq \|\sv{}{ V} - \alt{\sv{}{ V}}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\]
+\[\ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\T}} \leq \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\]
 
-Now, let \(f: \S^ V \ra \mb{R}\) be a continuous function. Since \(\S^ V\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv{}{ V}) - f(\alt{\sv{}{ V}})| \leq \phi(|\sv{}{ V} - \alt{\sv{}{ V}}|)\) for all \(\sv{}{ V},\alt{\sv{}{ V}}\in \S^ V\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
+Now, let \(f: \S^ V \ra \mb{R}\) be a continuous function. Since \(\S^ V\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv{}{ V}) - f(\alt{\sv}{}{V})| \leq \phi(|\sv{}{ V} - \alt{\sv}{}{V}|)\) for all \(\sv{}{ V},\alt{\sv}{}{V}\in \S^ V\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
 
 \ind Fix any \(\ep > 0\). Let \(\psi_\ep\) be a convex, monotonic, upper-bound of \(\phi\) such that \(\psi_\ep(0) = \ep\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
 
 \begin{align*}
 \ex{\|f(\X{}{}) - f(\alt{\X{}{}})\|_\T} &\leq \ex{\psi_\ep\left(\|\X{}{} - \alt{\X{}{}}\|_{\T,\b{}}\right)}\\
 &\leq \psi_\ep\left(\ex{\|\X{}{} - \alt{\X{}{}}\|_{\T,\b{}}}\right)\\
-&\leq \psi_\ep\left(\|\sv{}{ V} - \alt{\sv{}{ V}}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv{}{ V} \ra\alt{\sv{}{ V}}}{\ra} \ep.
+&\leq \psi_\ep\left(\|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv{}{ V} \ra\alt{\sv}{}{V}}{\ra} \ep.
 \end{align*}
 
 Since \(\ep > 0\) is arbitrary, we can conclude that 
 
-\[\ex{\|f(\X{}{}) - f(\alt{\X{}{}})\|_\T} \os{\sv{}{ V} \ra\alt{\sv{}{ V}}}{\ra} 0.\]
+\[\ex{\|f(\X{}{}) - f(\alt{\X{}{}})\|_\T} \os{\sv{}{ V} \ra\alt{\sv}{}{V}}{\ra} 0.\]
 
 This concludes the proof that \(\X{}{}\) is Feller.
 \end{enumerate}
