@@ -81,7 +81,7 @@
 \newcommand{\IGr}{c}							%IG rate
 \newcommand{\f}{f}								%generic function
 \newcommand{\neigh}{\mc{N}}						%neighbor
-
+\newcommand{\dneigh}{\mc{N}^2}					%double neighbor
 
 
 %Modifiers
@@ -91,19 +91,24 @@
 \newcommand{\tp}[1]{(#1)}						%Time of process
 \newcommand{\ts}[1]{_{#1}}						%time bound of set
 
+%Section 2.2
+%Base commands
+\newcommand{\const}{C}							%Constant
+\newcommand{\degr}{D}							%Max degree of graph
+\newcommand{\IGrg}{\ov{c}}						%Fixed rate function
+\newcommand{\gdist}{d_G}						%Graph distance
+\newcommand{\tree}{\mc{T}}						%Tree
+
+%Modifiers
+\newcommand{\sln}[1]{^{#1}}						%sublimit numbering
 
 
-
-
-\newcommand{\dneigh}{\mc{N}^2}				%double neighbor
-\newcommand{\degr}{D}								%max degree
 \newcommand{\poiss}[1]{N_{#1}}						%Poisson process
 \newcommand{\poisses}{\mathbf{N}}				%all Poisson processes
 
 \newcommand{\law}{\te{Law}}							%Law of a process
 \newcommand{\leb}{\te{Leb}}							%Lebesgue measure
 \newcommand{\pup}[1]{^{#1}}							%Scaling prelimit
-\newcommand{\tree}{\mc{T}}							%Tree Subgraph
 \newcommand{\core}{\mc{D}}							%Core
 
 %\renewcommand{\SS}{\tilde{\S}}						%sub state space
@@ -145,9 +150,7 @@
 \newcommand{\cratee}[2]{\alt{\Lambda}_{#1}^{#2}} 	%general conditional rate
 
 \newcommand{\dist}{d}								%general metric
-\newcommand{\gdist}{d_G}							%graph distance
 \newcommand{\cont}{\mc{C}}							%space of cont. fs
-\newcommand{\const}[1]{C_{#1}}						%Constant
 \newcommand{\Sm}{\ell}								%std msr on \S
 \newcommand{\alt}{\widetilde}						%alternate val
 
@@ -426,10 +429,10 @@ The following three conditions hold:
 There exists a fixed \(\degr\in \mb{N}\) such that:
 
 \begin{enumerate}
-\item There exists a mapping \(\IGr{}: \S^{d+1} \times \S \ra [0,\infty)\) such that:
+\item There exists a mapping \(\IGrg: \S^{\degr+1} \times \S \ra [0,\infty)\) such that:
 
 \begin{equation}
-\IGr{\v}(\sv{}{ V},\s) = \IGr{}(\sv{\cl{\v}}{ V},\s) \te{ for all } \v\in  V, \s\in \S\te{ and } \sv{}{ V} \in \S^ V
+\IGr{\v}(\sv{}{ V},\s) = \IGrg(\sv{\cl{\v}}{ V},\s) \te{ for all } \v\in  V, \s\in \S\te{ and } \sv{}{ V} \in \S^ V
 \label{subsec::Assum:Eqn::Symmetry}
 \end{equation}
 \labe{subsec::Assum:Eqn::Symmetry}
