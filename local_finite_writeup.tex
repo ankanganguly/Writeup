@@ -570,7 +570,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(\F
 
 \[\left(\Fpo(\x{}{})\right)\ve{\v}\tp{\t} := \x{\v}{0} + \int_\S\int_0^\t \s \,\poiss{\v}(d\tt,(0,\IGr{\v}(\x{}{\tt-},\s)],d\s) \te{ for all }\x{}{} \in \Omega{ V}{\T}, \v \in  V\te{ and }\t \in [0,\T].\]
 
-Then for any pair of random processes \(\X{}{},\alt{\X{}{}}:\Omega{ V}{\T} \ra \Omega{ V}{\T}\), \(\v\in  V\) and \(\t \in [0,\T]\),
+Then for any pair of random processes \(\X{}{},\alt{\X}{{}{}}:\Omega{ V}{\T} \ra \Omega{ V}{\T}\), \(\v\in  V\) and \(\t \in [0,\T]\),
 
 \[\ex{\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X}{}{})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X}{\v}{0}}| +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
 
@@ -623,9 +623,9 @@ Then,
 \lin
 
 \begin{lem}
-Given the conditions and notation of Lemma \ref{subsec::Well-:Lem::SDEWP}, assume that \(\X{}{0} = \alt{\X{}{0}}\) almost surely. Then,
+Given the conditions and notation of Lemma \ref{subsec::Well-:Lem::SDEWP}, assume that \(\X{}{0} = \alt{\X}{{}{0}}\) almost surely. Then,
 
-\[\sup_{\v \in  V} \ex{\left\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X{}{}})_\v\right\|_\t} \leq (\degr+1)\const{1}\int_0^\t \sup_{\v \in  V} \ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\tt}\,d\tt.\]
+\[\sup_{\v \in  V} \ex{\left\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X}{{}{}})_\v\right\|_\t} \leq (\degr+1)\const{1}\int_0^\t \sup_{\v \in  V} \ex{\|\X{\v}{} - \alt{\X}{{\v}{}}\|_\tt}\,d\tt.\]
 \label{subsec::Well-:Lem::GronwallPrep}
 \end{lem}
 \labe{subsec::Well-:Lem::GronwallPrep}
@@ -640,29 +640,29 @@ Given the conditions and notation of Lemma \ref{subsec::Well-:Lem::SDEWP}, assum
 By statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, every node \(v \in V\) has degree less than or equal to \(\degr\). By Lemma \ref{subsec::Well-:Lem::SDEWP},
 
 \begin{align*}
-\sup_{\v \in  V} \ex{\left\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X{}{}})_\v\right\|_\t} &\leq \sup_{\v\in  V}\left(\ex{|\X{\v}{0} - \alt{\X{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\right)\\
-&=\sup_{\v \in  V} \const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\|\X{\vv} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
-&\leq \const{1}\int_0^\t \sup_{\v \in  V}\sum_{\vv \in \cl{\v}} \ex{\|\X{\vv} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
-&\leq \const{1}\int_0^\t \sup_{\v \in  V}\sum_{\vv \in \cl{\v}}\sup_{\vvv\in V} \ex{\|\X{\vvv} - \alt{\X{\vvv}{}}\|_\tt}\,d\tt\\
-&= \const{1}\int_0^\t \sup_{\v \in  V}(\degr+1)\sup_{\vvv\in V} \ex{\|\X{\vvv} - \alt{\X{\vvv}{}}\|_\tt}\,d\tt\\
-&= (\degr+1)\const{1}\int_0^\t \sup_{\v\in V} \ex{\|\X{\v} - \alt{\X{\v}{}}\|_\tt}\,d\tt\\
+\sup_{\v \in  V} \ex{\left\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X}{{}{}})_\v\right\|_\t} &\leq \sup_{\v\in  V}\left(\ex{|\X{\v}{0} - \alt{\X}{{\v}{0}}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\right)\\
+&=\sup_{\v \in  V} \const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\|\X{\vv} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
+&\leq \const{1}\int_0^\t \sup_{\v \in  V}\sum_{\vv \in \cl{\v}} \ex{\|\X{\vv} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
+&\leq \const{1}\int_0^\t \sup_{\v \in  V}\sum_{\vv \in \cl{\v}}\sup_{\vvv\in V} \ex{\|\X{\vvv} - \alt{\X}{{\vvv}{}}\|_\tt}\,d\tt\\
+&= \const{1}\int_0^\t \sup_{\v \in  V}(\degr+1)\sup_{\vvv\in V} \ex{\|\X{\vvv} - \alt{\X}{{\vvv}{}}\|_\tt}\,d\tt\\
+&= (\degr+1)\const{1}\int_0^\t \sup_{\v\in V} \ex{\|\X{\v} - \alt{\X}{{\v}{}}\|_\tt}\,d\tt\\
 \end{align*}
 \end{proof}
 \lin
 
 \begin{proof}[Proof of Proposition \ref{subsec::Well-:Prop::SDEWP}]
 
-This proof is fairly standard. We begin by proving uniqueness. Suppose \(\X{}{}\) and \(\alt{\X{}{}}\) are both strong solutions to equation \ref{subsec::Well-:Eqn::SDE}. Let \(\Fpo\) be the mapping introduced in Lemmas \ref{subsec::Well-:Lem::SDEWP} and \ref{subsec::Well-:Lem::GronwallPrep}. Then,
+This proof is fairly standard. We begin by proving uniqueness. Suppose \(\X{}{}\) and \(\alt{\X}{{}{}}\) are both strong solutions to equation \ref{subsec::Well-:Eqn::SDE}. Let \(\Fpo\) be the mapping introduced in Lemmas \ref{subsec::Well-:Lem::SDEWP} and \ref{subsec::Well-:Lem::GronwallPrep}. Then,
 
-\[\X{}{} = \Fpo(\X{}{})\te{ and } \alt{\X{}{}} = \Fpo(\alt{\X{}{}}),\]
+\[\X{}{} = \Fpo(\X{}{})\te{ and } \alt{\X}{{}{}} = \Fpo(\alt{\X}{{}{}}),\]
 
-and \(\X{}{0} = \alt{\X{}{0}}\) almost surely. By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(\t\in [0,\T]\),
+and \(\X{}{0} = \alt{\X}{{}{0}}\) almost surely. By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(\t\in [0,\T]\),
 
 \begin{align*}
-\sup_{\v\in  V}\ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\t} \leq (\degr+1)\const{1}\int_0^\t\sup_{\v\in  V} \ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\tt}\,d\tt.
+\sup_{\v\in  V}\ex{\|\X{\v}{} - \alt{\X}{{\v}{}}\|_\t} \leq (\degr+1)\const{1}\int_0^\t\sup_{\v\in  V} \ex{\|\X{\v}{} - \alt{\X}{{\v}{}}\|_\tt}\,d\tt.
 \end{align*}
 
-By Gronwall's inequality, \(\sup_{\v \in  V} \ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\T} = 0\), so \(\X{}{} = \alt{\X{}{}}\) almost surely.
+By Gronwall's inequality, \(\sup_{\v \in  V} \ex{\|\X{\v}{} - \alt{\X}{{\v}{}}\|_\T} = 0\), so \(\X{}{} = \alt{\X}{{}{}}\) almost surely.
 
 \skipLine
 
@@ -702,18 +702,18 @@ Then,
 
 So \(\X{}{}{n} \ra \X{}{}\) for some \(\X{}{}\) componentwise almost surely (fast convergence in expectation implies almost sure convergence). Let 
 
-\[\alt{\X{}{}} = \Fpo(\X{}{}).\]
+\[\alt{\X}{{}{}} = \Fpo(\X{}{}).\]
 
 By Lemma \ref{subsec::Well-:Lem::GronwallPrep}, for any \(n\in\mb{N}\),
 
 \begin{align*}
-\sup_{\v \in  V} \ex{\|\alt{\X{\v}{}} - \X{\v}{}{n+1}\|_\T} &\leq (\degr+1)\const{1}\int_0^\T \sup_{\v \in  V}\ex{\|\X{\v}{} - \X{\v}{}{n}\|_\tt}\,d\tt \\
+\sup_{\v \in  V} \ex{\|\alt{\X}{{\v}{}} - \X{\v}{}{n+1}\|_\T} &\leq (\degr+1)\const{1}\int_0^\T \sup_{\v \in  V}\ex{\|\X{\v}{} - \X{\v}{}{n}\|_\tt}\,d\tt \\
 &\leq \T\const{1}(\degr+1)\sup_{\v\in  V} \ex{\|\X{\v}{} - \X{\v}{}{n}\|_\T}.
 \end{align*}
 
 Taking a limit as \(n\) goes to infinity on both sides yields
 
-\[\lim_{n\ra\infty} \sup_{\v \in  V} \ex{\|\alt{\X{\v}{}} - \X{\v}{}{n}\|_\T} = 0.\]
+\[\lim_{n\ra\infty} \sup_{\v \in  V} \ex{\|\alt{\X}{{\v}{}} - \X{\v}{}{n}\|_\T} = 0.\]
 
 So \(\X{}{}= \Fpo(\X{}{})\) almost surely.
 \end{proof}
@@ -768,11 +768,11 @@ The proof that \(\X{}{}{\sv{}{ V}}\) satisfies these properties is as follows:
 
 \[\X{\v}{\t+\cdot}{\sv{}{ V}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S\int_\t^{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\X{}{\tt-}{\sv{}{ V}},\s)],d\s).\]
 
-Let \(\alt{\X{}{}}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
+Let \(\alt{\X}{{}{}}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
 
-\[\alt{\X{\v}{\cdot}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\alt{\X{}{\tt-}},\s)],d\s).\]
+\[\alt{\X}{{\v}{\cdot}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\alt{\X}{{}{\tt-}},\s)],d\s).\]
 
-Then \(\X{}{\t+\cdot}{\sv{}{ V}} \deq \alt{\X{}{\cdot}}\). By the definition of \(\X{}{}{\sv{}{ V}}\), \(\alt{\X{}{}} \deq \X{}{}{\X{}{\t}{\sv{}{ V}}}\) as desired.
+Then \(\X{}{\t+\cdot}{\sv{}{ V}} \deq \alt{\X}{{}{\cdot}}\). By the definition of \(\X{}{}{\sv{}{ V}}\), \(\alt{\X}{{}{}} \deq \X{}{}{\X{}{\t}{\sv{}{ V}}}\) as desired.
 
 \item Let \(\root \in  V\). Define the sequence of sets \( V\sln{0}\subset  V\sln{1}\subset \cdots \subseteq  V\) as follows: let \( V\sln{0} = \{\root\}\). For \(n \geq 1\), let \( V\sln{n+1} = \cl{ V\sln{n}}\).
 
@@ -780,42 +780,42 @@ Then \(\X{}{\t+\cdot}{\sv{}{ V}} \deq \alt{\X{}{\cdot}}\). By the definition of 
 
 \begin{align*}
 \X{\v}{\t} &= \sv{\v}{ V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\X{}{\tt-},\s)],d\s)&\te{ for all } \v \in  V\\
-\alt{\X{\v}{\t}} &= \alt{\sv}{\v}{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\alt{\X{}{\tt-}},\s)],d\s)&\te{ for all } \v \in  V\\
+\alt{\X}{{\v}{\t}} &= \alt{\sv}{\v}{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\alt{\X}{{}{\tt-}},\s)],d\s)&\te{ for all } \v \in  V\\
 \end{align*}
 
 Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
 
-\[\ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\t} \leq |\sv{\v}{ V} - \alt{\sv}{\v}{V}| + \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\]
+\[\ex{\|\X{\v}{} - \alt{\X}{{\v}{}}\|_\t} \leq |\sv{\v}{ V} - \alt{\sv}{\v}{V}| + \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\]
 
 for all \(\t \in [0,\T]\).
 
 \ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in  V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-n}\) if \(\v \in  V\sln{n}\setminus  V\sln{n-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(| V\sln{n}\setminus  V\sln{n-1}| \leq \degr^{n}\) for all \(n\in \mb{N}\). Then \(\sum_{\v \in  V} \b{\v} \leq \sum_{n=0}^\infty \left(\frac{\degr}{\b{}}\right)^{-n} < \infty\). Since \(\S\) is finite, the norm \(\|\sv{}{ V}\|_{\b{}} := \sum_{\v \in  V} \b{\v}|\sv{\v}{ V}|\) generates the topology of componentwise convergence on \(\S^ V\). We can now apply Gronwall's inequality:
 
 \begin{align*}
-\ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\t}} &= \sum_{\v \in  V} \b{\v}\ex{\|\X{\v}{} - \alt{\X{\v}{}}\|_\t}\\
-&\leq \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
-&\os{\b{\v}\leq \b{}\b{\vv}}{\leq} \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
-&= \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in  V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\X{\vv}{} - \alt{\X{\vv}{}}\|_\tt}\,d\tt\\
-&=\|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\tt}}\,d\tt\\
+\ex{\|\X{}{} - \alt{\X}{{}{}}\|_{\b{},\t}} &= \sum_{\v \in  V} \b{\v}\ex{\|\X{\v}{} - \alt{\X}{{\v}{}}\|_\t}\\
+&\leq \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\X{\vv}{} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
+&\os{\b{\v}\leq \b{}\b{\vv}}{\leq} \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
+&= \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in  V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
+&=\|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X}{{}{}}\|_{\b{},\tt}}\,d\tt\\
 \end{align*}
 
 Applying Gronwall's inequality:
 
-\[\ex{\|\X{}{} - \alt{\X{}{}}\|_{\b{},\T}} \leq \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\]
+\[\ex{\|\X{}{} - \alt{\X}{{}{}}\|_{\b{},\T}} \leq \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\]
 
 Now, let \(f: \S^ V \ra \mb{R}\) be a continuous function. Since \(\S^ V\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv{}{ V}) - f(\alt{\sv}{}{V})| \leq \phi(|\sv{}{ V} - \alt{\sv}{}{V}|)\) for all \(\sv{}{ V},\alt{\sv}{}{V}\in \S^ V\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
 
 \ind Fix any \(\ep > 0\). Let \(\psi_\ep\) be a convex, monotonic, upper-bound of \(\phi\) such that \(\psi_\ep(0) = \ep\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
 
 \begin{align*}
-\ex{\|f(\X{}{}) - f(\alt{\X{}{}})\|_\T} &\leq \ex{\psi_\ep\left(\|\X{}{} - \alt{\X{}{}}\|_{\T,\b{}}\right)}\\
-&\leq \psi_\ep\left(\ex{\|\X{}{} - \alt{\X{}{}}\|_{\T,\b{}}}\right)\\
+\ex{\|f(\X{}{}) - f(\alt{\X}{{}{}})\|_\T} &\leq \ex{\psi_\ep\left(\|\X{}{} - \alt{\X}{{}{}}\|_{\T,\b{}}\right)}\\
+&\leq \psi_\ep\left(\ex{\|\X{}{} - \alt{\X}{{}{}}\|_{\T,\b{}}}\right)\\
 &\leq \psi_\ep\left(\|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv{}{ V} \ra\alt{\sv}{}{V}}{\ra} \ep.
 \end{align*}
 
 Since \(\ep > 0\) is arbitrary, we can conclude that 
 
-\[\ex{\|f(\X{}{}) - f(\alt{\X{}{}})\|_\T} \os{\sv{}{ V} \ra\alt{\sv}{}{V}}{\ra} 0.\]
+\[\ex{\|f(\X{}{}) - f(\alt{\X}{{}{}})\|_\T} \os{\sv{}{ V} \ra\alt{\sv}{}{V}}{\ra} 0.\]
 
 This concludes the proof that \(\X{}{}\) is Feller.
 \end{enumerate}
@@ -1063,7 +1063,7 @@ Consider the following coupled equations:
 \rxvtt{\vv}{\t} &= \X{\vv}{\rt{\itt}} + \int_\S\int_0^\t \s\alt{\poiss{\vv}}\left(d\tt,\left(0,\rate{\vv}(\rxvtt{}{\tt-},\s)\right],d\s\right)\te{ for } \vv \in \cl{\U} \te{ on } \rt{\itt} < \infty \label{sec::Proof1:eqn::alternate SDE}\\
 \rxvtts{\vv}{} &\equiv 0\te{ for } \vv\notin \cl{\U}\nonumber\\
 \alt{\poiss{\vv}}(d\tt,d\r,d\s) &= \poiss{\vv}(\rt{\itt} + d\tt,d\r,d\s) \te{ for all }\vv\in \cl{\U}\nonumber\\
-\alt{\X{\vv}{\t}} &= \begin{cases}
+\alt{\X}{{\vv}{\t}} &= \begin{cases}
 \X{\vv}{\t} &\te{ on } \t \leq \rt{\itt}\\
 \rxvtt{\vv}{\t - \rt{\itt}} &\te{ on } \t > \rt{\itt}
 \end{cases} \te{ for all } \vv\in \cl{\U} \nonumber
@@ -1074,17 +1074,17 @@ It's easy to see that \(\rt{\itt}\) is almost surely finite for every finite \(\
 
 \ind \tr{Originally I used the strong Markov property to reduce to the case of \(\itt = 0\). However, since \(\rt{\itt}\) is not an \(\X{}{}\)-stopping time, I need to show that \(\X{}{}\) is strong-Markov or Feller with respect to the larger filtration containing the driving Poisson processes. While this is not that difficult, the argument is tedious and long, so I chose not to use this reduction.}
 
-\ind By Proposition \ref{subsec::Well-:Prop::SDEWP}, equation \eqref{sec::Proof1:eqn::alternate SDE} has a unique solution, so \(\alt{\X{}{}}\) is well-defined. To prove this lemma, we first show that \(\X{\U}{[0,\rt{\itt+1})} = \alt{\X{\U}{}}{[0,\rt{\itt+1})}\) almost surely. 
+\ind By Proposition \ref{subsec::Well-:Prop::SDEWP}, equation \eqref{sec::Proof1:eqn::alternate SDE} has a unique solution, so \(\alt{\X}{{}{}}\) is well-defined. To prove this lemma, we first show that \(\X{\U}{[0,\rt{\itt+1})} = \alt{\X}{{\U}{}}{[0,\rt{\itt+1})}\) almost surely. 
 
 \ind Fix any \(\t > 0\). Let \(\evnt_\t = \{\t < \rt{\itt+1}\}\) and \(\alt{\evnt}_\t = \{\t\in [\rt{\itt},\rt{\itt+1})\}\). Notice that \(\evnt_\tt \supseteq \evnt_\t\) for all \(\tt\in [0,\t]\) when \(\t > 0\). 
 
-\ind Notice that \(\rt{\itt} \perp \poiss{\v}\) for all \(\v \in \U\). Thus, \(\poiss{\v}(d\tt+\rt{\itt},dr,d\s) \deq \poiss{\v}(d\tt,dr,d\s)\). Now, \(\alt{\X{\neigh{\U}}{}}[0,\rt{\itt}] = \X{\neigh{\U}}{[0,\rt{\itt}]}\) almost surely by definition. Furthermore,
+\ind Notice that \(\rt{\itt} \perp \poiss{\v}\) for all \(\v \in \U\). Thus, \(\poiss{\v}(d\tt+\rt{\itt},dr,d\s) \deq \poiss{\v}(d\tt,dr,d\s)\). Now, \(\alt{\X}{{\neigh{\U}}{}}[0,\rt{\itt}] = \X{\neigh{\U}}{[0,\rt{\itt}]}\) almost surely by definition. Furthermore,
 
-\[\alt{\X{\neigh{\U}}{\t}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \alt{\X{\neigh{\U}}{\rt{\itt}}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \X{\neigh{\U}}{\rt{\itt}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \X{\neigh{\U}}{\t}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}}\]
+\[\alt{\X}{{\neigh{\U}}{\t}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \alt{\X}{{\neigh{\U}}{\rt{\itt}}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \X{\neigh{\U}}{\rt{\itt}}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}} = \X{\neigh{\U}}{\t}\mb{I}_{\rt{\itt}\leq \t < \rt{\itt+1}}\]
 
 so
 
-\[\alt{\X{\neigh{\U}}{}}[0,\rt{\itt+1}) = \X{\neigh{\U}}{[0,\rt{\itt+1})} \te{ a.s.}\]
+\[\alt{\X}{{\neigh{\U}}{}}[0,\rt{\itt+1}) = \X{\neigh{\U}}{[0,\rt{\itt+1})} \te{ a.s.}\]
 
 Furthermore, by the same argument presented in the beginning of the proof of Lemma \ref{subsec::Well-:Lem::SDEWP}, we can assume without loss of generality that 
 
@@ -1093,26 +1093,26 @@ Furthermore, by the same argument presented in the beginning of the proof of Lem
 \tr{For any \(a,b\in \mb{R}\), I use the shorthand \((a,b]\) to denote the interval \((a\wedge b,a\vee b]\)}. Then for all \(v\in \U\) and \(\t > 0\),
 
 \begin{align*}
-&\ex{\left\|\alt{\X{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\t < \rt{\itt+1}}} = \ex{\left\|\alt{\X{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\evnt_\t}}\os{\alt{\X{\cl{\U}}{}}[0,\rt{\itt}] = \X{\cl{\U}}{[0,\rt{\itt}]}}{=} \ex{\left\|\alt{\X{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\alt{\evnt}_\t}}\\
-&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int_{(\rt{\itt},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt{\itt},\t]} \s\,\alt{\poiss{\v}}\left(d\tt,\left(0,\rate{\v}(\alt{\X{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
-&\ind \leq \ex{\int_\S\int_{\mb{R}}\int_{(\rt{\itt},\t]}|\s|\mb{I}_{\alt{\evnt}_\t}\mb{I}_{\r\in \left(\rate{\v}(\X{}{\tt-},\s), \rate{\v}(\alt{\X{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
-&\ind \os{\alt{\X{\cl{\U}}{}}[0,\rt{\itt}] = \X{\cl{\U}}{[0,\rt{\itt}]}}{=} \ex{\int_\S\int_{\mb{R}}\int_{(0,\t]}|\s|\mb{I}_{\evnt_\t}\mb{I}_{\r\in \left(\rate{\v}(\X{}{\tt-},\s), \rate{\v}(\alt{\X{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
-&\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt_\t}\mb{I}_{\r\in\left(\rate{\v}(\X{}{\tt-},\s),\rate{\v}(\alt{\X{}{\tt-}},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
-&\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt_t}\left|\rate{\v}(\alt{\X{}{\tt-}},\s) - \rate{\v}(\X{}{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
-&\ind \leq \const{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt_t}\sum_{\vv\in \cl{\v}}\left|\alt{\X{\vv}{\tt-}} - \X{\vv}{\tt-}\right|}\,d\tt\\
-&\ind \os{\mb{I}_{\evnt_\t}\|\alt{\X{\neigh{\U}}{}} - \X{\neigh{\U}}{}\|_t = 0}{\leq} \left(\int_\S|\s|\,\Sm(d\s)\right)\const{} \int_0^\t \sum_{\vv\in \cl{\v}\cap\U}\ex{\mb{I}_{\evnt_t}\|\alt{\X{\vv}{}} - \X{\vv}{}\|_\tt}\,d\tt\\
-&\ind \os{\evnt_\tt \supseteq \evnt_\t}{\leq} |S|\const{}(\degr+1) \int_0^\t \sup_{\v\in \U}\ex{\mb{I}_{\evnt_\tt}\|\alt{\X{\v}{}} - \X{\v}{}\|_\tt}\,d\tt.
+&\ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\t < \rt{\itt+1}}} = \ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\evnt_\t}}\os{\alt{\X}{{\cl{\U}}{}}[0,\rt{\itt}] = \X{\cl{\U}}{[0,\rt{\itt}]}}{=} \ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\alt{\evnt}_\t}}\\
+&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int_{(\rt{\itt},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt{\itt},\t]} \s\,\alt{\poiss{\v}}\left(d\tt,\left(0,\rate{\v}(\alt{\X}{{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
+&\ind \leq \ex{\int_\S\int_{\mb{R}}\int_{(\rt{\itt},\t]}|\s|\mb{I}_{\alt{\evnt}_\t}\mb{I}_{\r\in \left(\rate{\v}(\X{}{\tt-},\s), \rate{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind \os{\alt{\X}{{\cl{\U}}{}}[0,\rt{\itt}] = \X{\cl{\U}}{[0,\rt{\itt}]}}{=} \ex{\int_\S\int_{\mb{R}}\int_{(0,\t]}|\s|\mb{I}_{\evnt_\t}\mb{I}_{\r\in \left(\rate{\v}(\X{}{\tt-},\s), \rate{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt_\t}\mb{I}_{\r\in\left(\rate{\v}(\X{}{\tt-},\s),\rate{\v}(\alt{\X}{{}{\tt-}},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
+&\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt_t}\left|\rate{\v}(\alt{\X}{{}{\tt-}},\s) - \rate{\v}(\X{}{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
+&\ind \leq \const{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt_t}\sum_{\vv\in \cl{\v}}\left|\alt{\X}{{\vv}{\tt-}} - \X{\vv}{\tt-}\right|}\,d\tt\\
+&\ind \os{\mb{I}_{\evnt_\t}\|\alt{\X}{{\neigh{\U}}{}} - \X{\neigh{\U}}{}\|_t = 0}{\leq} \left(\int_\S|\s|\,\Sm(d\s)\right)\const{} \int_0^\t \sum_{\vv\in \cl{\v}\cap\U}\ex{\mb{I}_{\evnt_t}\|\alt{\X}{{\vv}{}} - \X{\vv}{}\|_\tt}\,d\tt\\
+&\ind \os{\evnt_\tt \supseteq \evnt_\t}{\leq} |S|\const{}(\degr+1) \int_0^\t \sup_{\v\in \U}\ex{\mb{I}_{\evnt_\tt}\|\alt{\X}{{\v}{}} - \X{\v}{}\|_\tt}\,d\tt.
 \end{align*}
 
 We can conclude that
 
-\[\sup_{\v\in \U}\ex{\left\|\alt{\X{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{t <\rt{\itt+1}}} \leq |\S|\const{}(\degr+1)\int_0^\t\sup_{v\in\U}\ex{\left\|\alt{\X{\v}{}} - \X{\v}{}\right\|_\tt\mb{I}_{\tt < \rt{\itt+1}}}\,d\tt.\]
+\[\sup_{\v\in \U}\ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{t <\rt{\itt+1}}} \leq |\S|\const{}(\degr+1)\int_0^\t\sup_{v\in\U}\ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_\tt\mb{I}_{\tt < \rt{\itt+1}}}\,d\tt.\]
 
 By Gronwall's inequality,
 
-\[\sup_{v\in \U}\ex{\left\|\alt{\X{\v}{}} - \X{\v}{}\right\|_\t\mb{I}_{\t < \rt{\itt+1}}} = 0 \te{ for all } \t > 0,\]
+\[\sup_{v\in \U}\ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_\t\mb{I}_{\t < \rt{\itt+1}}} = 0 \te{ for all } \t > 0,\]
 
-so \(\alt{\X{\U}{}}[0,\rt{\itt+1}) = \X{\U}{[0,\rt{\itt+1})}\) almost surely. However, \(\alt{\X{\U}{}}[0,\rt{\itt+1})\) is uniquely defined by \(\X{\cl{\U}}{[0,\rt{\itt}]}\) and \(\poiss{\cl{\U}}\left((\rt{\itt},\rt{\itt+1}]\times \mb{R}\times \S\right)\).
+so \(\alt{\X}{{\U}{}}[0,\rt{\itt+1}) = \X{\U}{[0,\rt{\itt+1})}\) almost surely. However, \(\alt{\X}{{\U}{}}[0,\rt{\itt+1})\) is uniquely defined by \(\X{\cl{\U}}{[0,\rt{\itt}]}\) and \(\poiss{\cl{\U}}\left((\rt{\itt},\rt{\itt+1}]\times \mb{R}\times \S\right)\).
 \end{proof}
 
 \lin
