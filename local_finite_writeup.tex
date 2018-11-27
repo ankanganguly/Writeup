@@ -122,8 +122,6 @@
 \newcommand{\modu}{\omega}						%modulus of continuity
 \newcommand{\cmodu}{\omega'}					%cadlag moc
 
-
-
 %Modifier
 \newcommand{\deltf}[1]{_{#1}}					%Specify delt function
 \newcommand{\alt}[1]{\widetilde{#1}}			%alternate val
@@ -165,8 +163,13 @@
 \newcommand{\ratee}{\Lambda}					%general rate
 \newcommand{\crate}{\alt{\lambda}}				%conditional rate
 
-
-
+%Section 5.2
+%Base commands
+\newcommand{\dense}{L}							%Typ density
+\newcommand{\cdense}{M}							%Cond density
+\newcommand{\ds}{\Upsilon}						%mapping in density
+\renewcommand{\c}{c}							%child function
+\newcommand{\p}{p}								%parent function
 
 \newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
 \newcommand{\xvttt}[2]{z_{#1}{(#2)}}				%typ path val3
@@ -191,13 +194,11 @@
 
 
 
-\newcommand{\dense}[2]{L_{#1}^{#2}}				%Typ density
-\newcommand{\cdense}[2]{M_{#1}^{#2}}			%Cond density
-\newcommand{\ds}[2]{\Upsilon_{#1}^{#2}}			%mapping in density
+
+
 \newcommand{\mtop}{\Lambda}						%Markov to point
 \newcommand{\spce}{\mc{X}}						%arbitrary space
-\renewcommand{\c}[1]{c(#1)}						%child function
-\newcommand{\p}[1]{p(#1)}						%parent function
+
 
 \newcommand{\inte}{I}							%Interval
 
@@ -946,7 +947,7 @@ Let \(\X{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu
 Then there exists a unique solution, \(\alt{\m{}{}{}} \in \pmsr(\Omega{\tree\sln{1}}{\T})\), to the following equation:
 
 \begin{align}
-\X{\v}{\t} &= \X{\v}{0} + \int_0^\t\int_\S \s\,\poiss{\v}(d\s,(0,\rate{}(\X{\{\v,\root\}}{[0,\tt)},\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\}\nonumber\\
+\X{\v}{\t} &= \X{\v}{0} + \int_0^\t\int_\S \s\,\poiss{\v}(d\s,(0,\crate{}(\X{\{\v,\root\}}{[0,\tt)},\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\}\nonumber\\
 \X{\root}{\t} &= \X{\root}{0} + \int_0^\t\int_\S \s\,\poiss{\root}(d\s,(0,\IGr{\root}(\X{}{\tt-},\s)],d\tt)\nonumber\\
 \alt{\m{}{}{}} &= \law(\X{}{})
 \label{sec::Main:eqn::Local SDE}
@@ -955,7 +956,7 @@ Then there exists a unique solution, \(\alt{\m{}{}{}} \in \pmsr(\Omega{\tree\sln
 
 where
 
-\[\alt{\rate{}}(\X{\{\v,\root\}}{[0,\t)},\s) = \exmu{\cm_t(\X{\{\v,\root\}}{[0,\t)},\alt{\m{}{}{}})}{\IGr{\root}(\X{}{\t-},\s)}\]
+\[\crate{}(\X{\{\v,\root\}}{[0,\t)},\s) = \exmu{\cm_t(\X{\{\v,\root\}}{[0,\t)},\alt{\m{}{}{}})}{\IGr{\root}(\X{}{\t-},\s)}\]
 
 for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \proj{\tree\sln{1}}{\T}(\m{}{}{})\).
 \label{sec::Main:Thm::Local SDE}
@@ -1099,7 +1100,7 @@ Furthermore, by the same argument presented in the beginning of the proof of Lem
 
 \begin{align*}
 &\ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\t < \rt{i+1}}} = \ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\evnt_\t}}\os{\alt{\X}{{\cl{\U}}{}}[0,\rt{i}] = \X{\cl{\U}}{[0,\rt{i}]}}{=} \ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\alt{\evnt}_\t}}\\
-&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int_{(\rt{i},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt{i},\t]} \s\,\alt{\poiss{\v}}\left(d\tt,\left(0,\IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
+&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int_{(\rt{i},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt{i},\t]} \s\,\alt{\poiss}{\v}\left(d\tt,\left(0,\IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
 &\ind \leq \ex{\int_\S\int_{\mb{R}}\int_{(\rt{i},\t]}|\s|\mb{I}_{\alt{\evnt}_\t}\mb{I}_{\r\in \left(\IGr{\v}(\X{}{\tt-},\s), \IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
 &\ind \os{\alt{\X}{{\cl{\U}}{}}[0,\rt{i}] = \X{\cl{\U}}{[0,\rt{i}]}}{=} \ex{\int_\S\int_{\mb{R}}\int_{(0,\t]}|\s|\mb{I}_{\evnt_\t}\mb{I}_{\r\in \left(\IGr{\v}(\X{}{\tt-},\s), \IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
 &\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt_\t}\mb{I}_{\r\in\left(\IGr{\v}(\X{}{\tt-},\s),\IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
@@ -1752,7 +1753,7 @@ Assume \(\mmm{}{}{1}\) is a probability measure on \(\Omega{\tree\sln{1}}{\T-}\)
 
 \ind Let \(\X{}{}{1}\) be a process with law \(\mmm{}{}{1}\) embedded in \(\Omega{ V}{\T-}\). That is, \(\X{\v}{}{1} \equiv 0\) for \(\v \notin \tree\sln{1}\). Recall that, for \(\v \in \tree\sln{1}\setminus\{\root\}\),
 
-\[\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) = \exmu{\cm_\t(\X{\{\v,\root\}}{[0,\t)}{1},\mmm{}{}{1})}{\rate{}(\X{}{\t-}{1},\s)}.\]
+\[\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) = \exmu{\cm_\t(\X{\{\v,\root\}}{[0,\t)}{1},\mmm{}{}{1})}{\IGrg{}(\X{}{\t-}{1},\s)}.\]
 
 \ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m{}{}{}\), which is the law of \(\X{}{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X{}{}{n}:n\in\mb{N}\}\) on \(\Omega{\tree\sln{n}}{\T-}\) converging weakly to \(\X{}{}\). 
 
@@ -1778,20 +1779,20 @@ The marginal distribution of \(\mmm{}{}{1}\) on \(\Omega{\{\v,\root\}}{\T}\) for
 \begin{proof}
 Let \(\rp{} = \pmap{\tree\sln{1}}(\X{}{}{1})\) be defined as in Definition \ref{subsec::ProofE:Defn::pmap}. Then \(\rp{}\) has \(\F{\tree\sln{1}}{}\)-predictable intensity,
 
-\[\crate{\rp{}}{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\v\in \tree\sln{1}\setminus\{\root\}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in\S}\mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s).\]
+\[\crate{\rp{}}{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\v\in \tree\sln{1}\setminus\{\root\}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in\S}\mb{I}_{\mark{} = \s\ev{\root}}\IGr{\root}(\X{}{\t-}{1},\s).\]
 
 Then \(\proj{\{\v,\root\}}{\T}(\rp{})\defeq \pmap{\{\v,\root\}}(\X{}{}{1})\) \tr{notation?} has \(\F{\tree\sln{1}}{}\)-predictable intensity,
 
-\[\rate{\proj{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\mark{}) = \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S^{\{\v,\root\}}.\]
+\[\rate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}(\X{}{[0,\t)}{1},\mark{}) \defeq \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\IGr{\root}(\X{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S^{\{\v,\root\}}.\]
 
 Consider the candidate rate \(\crate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}\) defined in the following manner:
 
 \begin{align*}
 \crate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}(\kappa) &= \exmu{\m{}{}{1}}{\rate{\proj{\{\v,\root\}}{\T}(\rp{})}^{\t}(\X{}{[0,\t)}{1},\kappa)\middle|\F{\{\v,\root\}}{\t-}}\\
-&=\exmu{\m{}{}{1}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\rate{\root}(\X{}{\t-}{1},\s)\right)\middle|\F{\{\v,\root\}}{\t-}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\m{}{}{1}}{\rate{\root}(\X{}{\t-}{1},\s)\middle|\F{\{\v,\root\}}{\t-}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\XXX{}{} \sim \m{}{}{1}}{\rate{}(\XXX{\tree\sln{1}}{\t-},\s)\middle|\XXX{\{\root,\v\}}{[0,\t)} = \X{\{\root,\v\}}{[0,\t)}{1}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\cm_t(\X{\{\root,\v\}}{[0,\t)}{1},\m{}{}{1})}{\rate{}(\X{\tree\sln{1}}{\t-}{1},\s)}\\
+&=\exmu{\m{}{}{1}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\IGr{\root}(\X{}{\t-}{1},\s)\right)\middle|\F{\{\v,\root\}}{\t-}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\m{}{}{1}}{\IGr{\root}(\X{}{\t-}{1},\s)\middle|\F{\{\v,\root\}}{\t-}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\XXX{}{} \sim \m{}{}{1}}{\IGrg{}(\XXX{\tree\sln{1}}{\t-},\s)\middle|\XXX{\{\root,\v\}}{[0,\t)} = \X{\{\root,\v\}}{[0,\t)}{1}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev{\root}}\exmu{\cm_t(\X{\{\root,\v\}}{[0,\t)}{1},\m{}{}{1})}{\IGrg{}(\X{\tree\sln{1}}{\t-}{1},\s)}\\
 &=\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev{\v}} \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\kappa = \s\ev{\root}}\crate{}{}(\X{\{\root,\v\}}{[0,\t)}{1},\s)\right)\\
 \end{align*}
 
@@ -1812,7 +1813,7 @@ Let \(\mm{}{}{} = \law(\XX{}{})\). Suppose \(\mmm{\v}{0,}{1}\ll\mm{}{0}{}\) for 
 
 \[\mm{\U}{}{} = \otimes_{\v\in\U} \mm{\v}{}{}.\]
 
-Finally, for any \(\t\in [0,\T)\), let \(\mm{\U}{\t,}{}\) be the projection of \(\mm{\U}{}{}\) to \(\pmsr(\Omega{\U}{\t-})\). Use a similar system for all measures.
+Finally, for any \(\t\in [0,\T)\), let \(\mm{\U}{\t,}{}\) be the restriction of \(\mm{\U}{}{}\) to \(\pmsr(\Omega{\U}{\t-})\). Use a similar system for all measures.
 \label{subsec::ProofU:Defn::nu}
 \end{defn}
 \labe{subsec::ProofU:Defn::nu}
@@ -1849,7 +1850,7 @@ Let \(\mm{}{}{} \in \pmsr(\Omega{ V}{\T-})\) be as defined in Definition \ref{su
 
 \[\ratee{}(\rp{}[0,\t),\mark{}) = \begin{cases}
 \crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) &\te{ if } \v\in \tree\sln{1}\setminus\{\root\}\te{ and } \mark{} = \s\ev{\v}\\
-\rate{}(\X{\tree\sln{1}}{\t-}{1},\s) &\te{ if } \mark{} = \s\ev{\root}\\
+\IGrg{}(\X{\tree\sln{1}}{\t-}{1},\s) &\te{ if } \mark{} = \s\ev{\root}\\
 0 &\te{ otherwise}.
 \end{cases}\]
 
@@ -1869,15 +1870,15 @@ Let \(\{(\rt{\it},\mark{\it})\}\) be the events of \(\pmap{}(\X{}{}{1})\). By Le
 \dense{1}{\t}(\X{\tree\sln{1}}{})&\defeq \frac{d\mmm{}{\t}{1}}{d\mm{}{\t}{1}}\nonumber\\
 &= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\left(\sum_{0< \rt{\it} \leq \t} \log{\ratee{}(\X{}{[0,\rt{\it})}{1},\mark{\it})} - \int_{(0,\t]\times\S} [\ratee{}(\X{}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
 &= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\Bigg(\sum_{\v\in\tree\sln{1}\setminus\{\root\}}\left(\sum_{0< \rt{\it}_\v \leq \t} \log{\crate{}{}(\X{\{\v,\root\}}{[0,\rt{\it}_\v)}{1},\mark{\it})} - \int_{(0,\t]\times\S} [\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
-&\hspace{24pt} + \left(\sum_{0 < \rt{\it}_\root \leq \t} \log{\rate{}(\X{\tree\sln{1}}{\rt{\it}_\root-}{1},\mark{\it}_\root)} - \int_{(0,\t]\times\S} [\rate{}(\X{\tree\sln{1}}{\tt-}{1},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
-&= \frac{d\mmm{}{0}{1}}{d\mm{}{0}{1}}\exp\left(\sum_{\v\in\tree\sln{1}\setminus\{\root\}} \ds{\v}{\t}(\X{\{\v,\root\}}{}{1},\crate{}{}) + \ds{\root}{\t}(\X{\tree\sln{1}}{}{1},\rate{})\right).
+&\hspace{24pt} + \left(\sum_{0 < \rt{\it}_\root \leq \t} \log{\IGrg{}(\X{\tree\sln{1}}{\rt{\it}_\root-}{1},\mark{\it}_\root)} - \int_{(0,\t]\times\S} [\IGrg{}(\X{\tree\sln{1}}{\tt-}{1},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
+&= \frac{d\mmm{}{0}{1}}{d\mm{}{0}{1}}\exp\left(\sum_{\v\in\tree\sln{1}\setminus\{\root\}} \ds{\v}{\t}(\X{\{\v,\root\}}{}{1},\crate{}{}) + \ds{\root}{\t}(\X{\tree\sln{1}}{}{1},\IGrg{})\right).
 \label{subsec::ProofU:eqn::L1 density}
 \end{align}
 
 By a similar calculation, we can apply Lemmas \ref{subsec::Some:Lem::radnik} and \ref{subsec::ProofU:Lem::Marginal} to get,
 
 \begin{equation}
-\alt{\dense{}{\t}}(\X{\{\v,\root\}}{}{1}) \defeq \frac{d\mmm{\{\v,\root\}}{\t,}{}}{d\mm{\{\v,\root\}}{\t,}{}} = \frac{d\mmm{\{\v,\root\}}{0,}{}}{d\mm{\{\v,\root\}}{0,}{}}\exp\left(\ds{\v}{\t}(\X{\{\v,\root\}}{}{1},\crate{}{}) + \ds{\root}{\t}(\X{\{\root,\v\}}{}{1},\crate{}{})\right).
+\alt{\dense}{}{\t}(\X{\{\v,\root\}}{}{1}) \defeq \frac{d\mmm{\{\v,\root\}}{\t,}{}}{d\mm{\{\v,\root\}}{\t,}{}} = \frac{d\mmm{\{\v,\root\}}{0,}{}}{d\mm{\{\v,\root\}}{0,}{}}\exp\left(\ds{\v}{\t}(\X{\{\v,\root\}}{}{1},\crate{}{}) + \ds{\root}{\t}(\X{\{\root,\v\}}{}{1},\crate{}{})\right).
 \label{subsec::ProofU:eqn::Margdense}
 \end{equation}
 \labe{subsec::ProofU:eqn::Margdense}
@@ -1886,7 +1887,7 @@ Define,
 
 \begin{align*}
 \cdense{}{\t}&(\X{\{\tree\sln{1}\setminus\{\root\}\}}{}{1};\x{\{\root,1\}}{})\\
-& \defeq\frac{d\mmm{\tree\sln{1}\setminus\{\root,1\}}{0,}{}}{d\mm{\tree\sln{1}\setminus\{\root,1\}}{0,}{}}\exp\left(\sum_{\v\in \tree\sln{1}\setminus\{\root,1\}} \ds{\v}{\t}([\X{\{v\}}{}{1},\x{\root}{}],\crate{}{}) + \ds{\root}{\t}([\X{\tree\sln{1}\setminus\{\root,1\}}{}{1},\x{\{\root,1\}}{}],\rate{}) - \ds{\root}{\t}(\x{\{\root,1\}}{},\crate{}{})\right)\\
+& \defeq\frac{d\mmm{\tree\sln{1}\setminus\{\root,1\}}{0,}{}}{d\mm{\tree\sln{1}\setminus\{\root,1\}}{0,}{}}\exp\left(\sum_{\v\in \tree\sln{1}\setminus\{\root,1\}} \ds{\v}{\t}([\X{\{v\}}{}{1},\x{\root}{}],\crate{}{}) + \ds{\root}{\t}([\X{\tree\sln{1}\setminus\{\root,1\}}{}{1},\x{\{\root,1\}}{}],\IGrg{}) - \ds{\root}{\t}(\x{\{\root,1\}}{},\crate{}{})\right)\\
 \end{align*}
 
 Then,
@@ -1895,7 +1896,7 @@ Then,
 
 By definition,
 
-\[\alt{\dense{}{\t}}(\X{\{1,\root\}}{}{1}) = \exmu{\mm{\tree\sln{1}\setminus\{1,\root\}}{\t,}{}(\X{\tree\sln{1}\setminus\{1,\root\}}{}{1})}{\dense{1}{\t}([\X{\tree\sln{1}\setminus\{\root\}}{}{1},\x{\{\root,1\}}{}])}.\]
+\[\alt{\dense}{}{\t}(\X{\{1,\root\}}{}{1}) = \exmu{\mm{\tree\sln{1}\setminus\{1,\root\}}{\t,}{}(\X{\tree\sln{1}\setminus\{1,\root\}}{}{1})}{\dense{1}{\t}([\X{\tree\sln{1}\setminus\{\root\}}{}{1},\x{\{\root,1\}}{}])}.\]
 
 So,
 
@@ -1903,18 +1904,18 @@ So,
 
 The important thing is that this can be used to extend \(\X{}{}{1}\) to a process with nodes in \(\tree\sln{2}\) whose marginal distribution with respect to the nodes on \(\tree\sln{1}\) is equal to \(\X{}{}{1}\). To do that, consider the following notation:
 
-\ind Let \(\v \in  V\setminus\{\root\}\). Let \(\c{}: V\setminus\{\root\} \ra  V^{\degr-1}\) be defined such that \(\c{\v} = (c^1(\v),\dots,c^{\degr-1}(\v))\) are the children of \(\v\). Let \(\p{}: V\setminus\{\root\}\ra V\) map nodes to their parents.
+\ind Let \(\v \in  V\setminus\{\root\}\). Let \(\c{}: V\setminus\{\root\} \ra  V^{\degr-1}\) be defined such that \(\c{\v} = (\c{1}(\v),\dots,\c{\degr-1}(\v))\) are the children of \(\v\). Let \(\p{}: V\setminus\{\root\}\ra V\) map nodes to their parent.
 
 \ind We can define the sequence of functions \(\dense{n}{\t}: \Omega{\tree\sln{n}}{\t-} \ra [0,\infty)\) by,
 
 \[\dense{n}{\t}(\X{}{}{n}) := \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{\v,\root\}}{}{n})\]
 
-for \(n > 1\) (\(\tree\sln{0} = \{\root\}\)). We can show using induction,
+for \(n > 1\) (\(\tree\sln{0} = \{\root\}\)). 
 
-\ind Let \(\mm{\tree\sln{n}}{}{} = \mm{}{}{n}\) and assume for any \(\U \subseteq  V\), \(\mmm{\U}{0,}{} = \otimes_{\v\in\U}\mmm{\v}{0,}{}\) where \(\{\mmm{\v}{0,}{}:\v\in V\}\) describes a sequence of i.i.d. \(\S\)-valued random variables. We can show using induction that,
+\ind Let \(\mm{}{}{n}\defeq \mm{\tree\sln{n}}{}{}\) and assume for any \(\U \subseteq  V\), \(\mmm{\U}{0,}{} = \otimes_{\v\in\U}\mmm{\v}{0,}{}\) where \(\{\mmm{\v}{0,}{}:\v\in V\}\) describes a sequence of i.i.d. \(\S\)-valued random variables. We can show using induction that,
 
 \begin{equation}
-\dense{n}{\t}(\X{}{}{n}) = \frac{d\mmm{}{\t}{n}}{d\mm{}{0}{n}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\rate{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X{\{v,\p{\v}\}}{}{n},\crate{}{})\right).
+\dense{n}{\t}(\X{}{}{n}) = \frac{d\mmm{}{\t}{n}}{d\mm{}{0}{n}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X{\{v,\p{\v}\}}{}{n},\crate{}{})\right).
 \label{subsec::ProofU:eqn::densen}
 \end{equation}
 \labe{subsec::ProofU:eqn::densen}
@@ -1923,9 +1924,9 @@ Assume equation \eqref{subsec::ProofU:eqn::densen} holds for \(\dense{n-1}{\t}\)
 
 \begin{align*}
 \dense{n}{\t}(\X{}{}{n}) &= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{2};\X{\{\v,\p{\v}\}}{}{2})\\
-&=\left(\frac{d\mmm{}{0}{n-1}}{d\mm{}{0}{n-1}}\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\frac{d\mmm{\c{\v}}{0,}{}}{d\mm{\c{\v}}{0,}{}}\right)\exp\Bigg(\sum_{\v\in\tree\sln{n-2}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\rate{}) + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\\
-&\ind + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\left(\sum_{\vv\in \c{\v}} \ds{\vv}{\t}(\X{\{\vv,\v\}}{}{n},\crate{}{}) + \ds{\v}{\t}(\X{\cl{\v}}{}{n},\rate{}) - \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\right)\Bigg)\\
-&=\frac{d\mmm{}{0}{n}}{d\mm{}{0}{n}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\rate{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\right).
+&=\left(\frac{d\mmm{}{0}{n-1}}{d\mm{}{0}{n-1}}\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\frac{d\mmm{\c{\v}}{0,}{}}{d\mm{\c{\v}}{0,}{}}\right)\exp\Bigg(\sum_{\v\in\tree\sln{n-2}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\IGrg{}) + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\\
+&\ind + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\left(\sum_{\vv\in \c{\v}} \ds{\vv}{\t}(\X{\{\vv,\v\}}{}{n},\crate{}{}) + \ds{\v}{\t}(\X{\cl{\v}}{}{n},\IGrg{}) - \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\right)\Bigg)\\
+&=\frac{d\mmm{}{0}{n}}{d\mm{}{0}{n}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X{\cl{\v}}{}{n},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X{\{\v,\p{\v}\}}{}{n},\crate{}{})\right).
 \end{align*}
 
 By a simple calculation analogous to what we did earlier to show that \(\dense{1}{\t}\) was a Radon-Nykodim derivative, we can apply Proposition \ref{subsec::Prope:Prop::radnikder} to prove that this is the Radon-Nikodym derivative of a marked point process. 
@@ -1980,7 +1981,7 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 
 \ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. The result is given in \cite[Exercise 14.7.1]{DalVer08} \tr{TODO: rigorously solve this exercise myself}).
 
-\ind Let \(\alt{\S}^n = \{\s\ev{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S^ V\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt{n,\it}_\v,\mark{n,\it}_{\v}\}\) be the jump sizes and jump times of \(\X{\v}{}{n}\). Let \(\alt{\poiss{n}}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss{n}}(\evnt) = \alt{\poiss{n-1}}(\evnt)\). Assume \(\{\alt{\poiss{n}}:n\in\mb{N}\}\) are independent of \(\{\X{}{},\X{}{}{n}:n\in\mb{N}\}\). Let \(\{\rv_{\v}^{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
+\ind Let \(\alt{\S}^n = \{\s\ev{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S^ V\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt{n,\it}_\v,\mark{n,\it}_{\v}\}\) be the jump sizes and jump times of \(\X{\v}{}{n}\). Let \(\alt{\poiss}{n}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss}{n}(\evnt) = \alt{\poiss}{n-1}(\evnt)\). Assume \(\{\alt{\poiss}{n}:n\in\mb{N}\}\) are independent of \(\{\X{}{},\X{}{}{n}:n\in\mb{N}\}\). Let \(\{\rv_{\v}^{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
 
 \ind Recall the mapping \(\pmap{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{n} = \pmap{}(\X{}{}{n})\). Then the intensity of \(\rp{n}\) is given by,
 
@@ -1993,7 +1994,7 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 For any \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^n\times\mb{R}^+)\), define
 
 \begin{equation}
-\poiss{n}(\evnt) = \alt{\poiss{n}}\left(\evnt\cap\{(t,\sv{\tree\sln{n}},\r):\r > \rate{n}(\t,\sv{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}.
+\poiss{n}(\evnt) = \alt{\poiss}{n}\left(\evnt\cap\{(t,\sv{\tree\sln{n}},\r):\r > \rate{n}(\t,\sv{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}.
 \label{subsec::ProofU:eqn::Poissonexpl}
 \end{equation}
 \labe{subsec::ProofU:eqn::Poissonexpl}
@@ -2012,14 +2013,14 @@ Here \(\proj{\tree\sln{n}}{}(\evnt)\) is the restriction of \(\evnt\) to \(\mb{R
 
 Similarly define,
 
-\[\alt{\poiss{\v}}(\evnt) = \poiss{n}\left(\{(\t,\s\ev{\v},\r):(\t,\s,\r)\in \evnt\}\right)\te{ for } \evnt \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+)\te{ and }n\te{ such that } \v\in \tree\sln{n}\setminus\tree\sln{n-1}.\]
+\[\alt{\poiss}{\v}(\evnt) = \poiss{n}\left(\{(\t,\s\ev{\v},\r):(\t,\s,\r)\in \evnt\}\right)\te{ for } \evnt \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+)\te{ and }n\te{ such that } \v\in \tree\sln{n}\setminus\tree\sln{n-1}.\]
 
-Then \(\{\poiss{\v}\}\) and \(\{\alt{\poiss{\v}}\}\) are both sequences of i.i.d. Poisson processes. Furthermore, for any \(n \in \mb{N}\), \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d.
+Then \(\{\poiss{\v}\}\) and \(\{\alt{\poiss}{\v}\}\) are both sequences of i.i.d. Poisson processes. Furthermore, for any \(n \in \mb{N}\), \(\{\poiss{\vv},\alt{\poiss}{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d.
 
 \lin
 
 \begin{lem}
-The claims above are true. Namely, \(\poiss{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss{\vv},\alt{\poiss{\vvv}}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\).
+The claims above are true. Namely, \(\poiss{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss{\vv},\alt{\poiss}{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\).
 
 \label{subsec::ProofU:Lem::Poisson}
 \end{lem}
@@ -2030,16 +2031,16 @@ Fix \(n \in \mb{N}\). Notice that most of the assumptions of \cite[Proposition 1
 
 \ind By construction, \(\poiss{\v}\) is the restriction of \(\poiss{n}\) to \(\mb{R}^+ \times \{\s\ev{\v}: \s\in \S\}\times \mb{R}^+\) for all \(\v\in \tree\sln{n-1}\). Thus, for any finite \(\U \subset  V\), there exists a \(n\) such that \(\U \subseteq \tree\sln{n-1}\), so \(\{\poiss{\v}: \v\in \U\}\) are i.i.d. Thus, \(\{\poiss{\v}: \v\in  V\}\) are i.i.d.
 
-\ind Similarly, for any \(n \in \mb{N}\), \(\{\poiss{\v},\alt{\poiss{\vv}}: \v \in \tree\sln{n-1},\vv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) is just the set of restrictions of \(\poiss{n}\) to \(\mb{R}^+\times\{\s\ev{\v}\}\times\mb{R}^+\) for each \(\v\in \tree\sln{n}\), so they are i.i.d. Poisson processes with intensity measure \(d\t\times \Sm\times d\r\) because \(\poiss{n}\) is a Poisson process with intensity measure \(d\t\times\alt{\Sm^n}\times d\r\).
+\ind Similarly, for any \(n \in \mb{N}\), \(\{\poiss{\v},\alt{\poiss}{\vv}: \v \in \tree\sln{n-1},\vv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) is just the set of restrictions of \(\poiss{n}\) to \(\mb{R}^+\times\{\s\ev{\v}\}\times\mb{R}^+\) for each \(\v\in \tree\sln{n}\), so they are i.i.d. Poisson processes with intensity measure \(d\t\times \Sm\times d\r\) because \(\poiss{n}\) is a Poisson process with intensity measure \(d\t\times\alt{\Sm^n}\times d\r\).
 \end{proof}
 
 \lin
 
-Let \(\{\poiss{\v},\alt{\poiss{\v}}:\v\in V\}\) be constructed as above. Then \(\X{}{}{n}\) almost surely solves the equation,
+Let \(\{\poiss{\v},\alt{\poiss}{\v}:\v\in V\}\) be constructed as above. Then \(\X{}{}{n}\) almost surely solves the equation,
 
 \begin{equation}
 \X{\v}{\t}{n} = \begin{cases}
-\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)}{n},\s)]}\s\alt{\poiss{\v}}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
+\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)}{n},\s)]}\s\alt{\poiss}{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
 \X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{n},\s)]}\s\,\poiss{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n-1}.
 \end{cases}
 \label{subsec::ProofU:eqn::ExtendedSDE_fixedPoisson}
@@ -2958,9 +2959,9 @@ for all \(\ep > 0\).
 \begin{proof}
 Fix any \(n \in \mb{N}\). Let \(M = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\XX{}{}\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
 
-\[\XX{}{\t} = \sum_{\v \in \U}M\ev{\v}\int_0^\t\int_0^{\const{}}\alt{\poiss{\v}}(d\r, d\tt)\]
+\[\XX{}{\t} = \sum_{\v \in \U}M\ev{\v}\int_0^\t\int_0^{\const{}}\alt{\poiss}{\v}(d\r, d\tt)\]
 
-where \(\{\alt{\poiss{\v}}:\v \in \U\}\) are a sequence of i.i.d. unit rate Poisson processes on \(\mb{R}^2\). 
+where \(\{\alt{\poiss}{\v}:\v \in \U\}\) are a sequence of i.i.d. unit rate Poisson processes on \(\mb{R}^2\). 
 
 \ind By Proposition \ref{subsec::Well-:Prop::SDE=IG}, there exists a sequence of i.i.d Poisson processes, \(\{\poiss{\v}:\v\in  V\}\), on \(\S\times\mb{R}^2\) with intensity measure \(\Sm\otimes \leb\) such that,
 
@@ -2968,9 +2969,9 @@ where \(\{\alt{\poiss{\v}}:\v \in \U\}\) are a sequence of i.i.d. unit rate Pois
 
 for all \(\v\in  V\). Let
 
-\[\alt{\poiss{\v}}(\cdot) = \int_\S\,\poiss{\v}(\cdot\times \S).\]
+\[\alt{\poiss}{\v}(\cdot) = \int_\S\,\poiss{\v}(\cdot\times \S).\]
 
-Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in  V\}\) are i.i.d., it follows that \(\{\alt{\poiss{\v}}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\proj{\U}{\T}(\X{}{}{n})\) experiences a jump, \(\XX{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\XX{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
+Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in  V\}\) are i.i.d., it follows that \(\{\alt{\poiss}{\v}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\proj{\U}{\T}(\X{}{}{n})\) experiences a jump, \(\XX{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\XX{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
 
 \begin{align*}
 |\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|&\leq M\left|\{\#\te{ of jumps in }\X{\v}{(\tt,\ttt]}{n}\}\right| \\
@@ -3025,7 +3026,7 @@ If we let \(\poiss{}(\cdot,\cdot) = \pmap{}(\X{}{}{n})\) (see Definition \ref{su
 
 \ind However, our intensity is actually only predictable with respect to \(\mc{F} \supseteq \mc{H}\) which includes the value of \(\X{}{0}{n}\). This can be fixed simply. Let \(\rate{\v}^{\sv{}{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X{}{0}{n} = \sv{}{\tree\sln{n}})\). Then \(\rate{\v}^{\sv{}{\tree\sln{n}}}(t,\kappa)\) satisfies the conditions above. Then,
 
-\[\poiss{n}^{\sv{}{\tree\sln{n}}}(\evnt) = \alt{\poiss{n}}\left(\evnt\cap\{(t,\sv{}{\tree\sln{n}},\r):\r > \rate{n}^{\sv{}{\tree\sln{n}}}(\t,\sv{}{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}^{\sv{}{\tree\sln{n}}}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}\]
+\[\poiss{n}^{\sv{}{\tree\sln{n}}}(\evnt) = \alt{\poiss}{n}\left(\evnt\cap\{(t,\sv{}{\tree\sln{n}},\r):\r > \rate{n}^{\sv{}{\tree\sln{n}}}(\t,\sv{}{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}^{\sv{}{\tree\sln{n}}}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}\]
 
 is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\). Let \(R \subseteq \alt{\S^n}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
 
