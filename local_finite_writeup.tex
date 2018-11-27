@@ -63,14 +63,14 @@
 \newcommand{\s}{\sigma}							%elt of \S	
 \newcommand{\sv}{\vec{\s}}						%typ elt of \XState
 \renewcommand{\b}{b}							%inf dim norm coeffs
-\newcommand{\ev}[1]{\ep^{#1}}					%standard basis
+\newcommand{\ev}{\ep}							%standard basis
 \newcommand{\T}{T}								%time bound
 \newcommand{\x}{x}								%typical elt of Omega
 \renewcommand{\t}{t}							%typical time
 \newcommand{\sset}{\Omega}						%sample set
 \newcommand{\proj}{\pi}							%projection operator
-\newcommand{\svnorm}[1]{\|#1\|_{\b}}			%norm of S^V
-\newcommand{\omenorm}[1]{\|#1\|_{\b,\t}}		%norm on Omega
+%\newcommand{\svnorm}[1]{\|#1\|_{\b}}			%norm of S^V
+%\newcommand{\omenorm}[1]{\|#1\|_{\b,\t}}		%norm on Omega
 \renewcommand{\tt}{s}							%typical time 2
 \newcommand{\ttt}{s'}							%typical time 3
 \newcommand{\F}{\mc{F}}							%Filtrations
@@ -117,13 +117,17 @@
 \newcommand{\Sm}{\ell}							%std msr on \S
 \newcommand{\rate}[1]{\lambda_{#1}}				%rate
 \newcommand{\Fpo}{F_{\poisses}}					%Picard mapping of SDE
+\renewcommand{\r}{r}							%space var for poiss
+\newcommand{\cconst}{M}							%second constant
+\newcommand{\modu}{\omega}						%modulus of continuity
+\newcommand{\cmodu}{\omega'}					%cadlag moc
 
 
 
 %Modifier
 \newcommand{\deltf}[1]{_{#1}}					%Specify delt function
 \newcommand{\alt}[1]{\widetilde{#1}}			%alternate val
-
+\newcommand{\pra}[1]{_{#1}}						%Append process
 
 
 \newcommand{\law}{\te{Law}}							%Law of a process
@@ -137,7 +141,7 @@
 
 
 
-\renewcommand{\r}{r}								%space var for poiss
+
 \newcommand{\rt}[1]{\tau^{#1}}						%typical rand time
 \newcommand{\rtt}[1]{\theta^{#1}}					%typical rand time 2
 \renewcommand{\it}{k}								%iterator
@@ -572,7 +576,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(\F
 
 Then for any pair of random processes \(\X{}{},\alt{\X}{{}{}}:\Omega{ V}{\T} \ra \Omega{ V}{\T}\), \(\v\in  V\) and \(\t \in [0,\T]\),
 
-\[\ex{\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X}{}{})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X}{\v}{0}}| +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
+\[\ex{\|\Fpo(\X{}{})_\v - \Fpo(\alt{\X}{}{})_\v\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
 
 for some constant \(\const{1} < \infty\).
 
@@ -677,14 +681,14 @@ Once again, by Lemma \ref{subsec::Well-:Lem::GronwallPrep},
 Furthermore, 
 
 \begin{align*}
-\ex{\|\X{\v}{}{1} - \X{\v}{}{0}\|_\t} &\leq \ex{\int_\S\int_0^\t |\s|\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{0},\s)\right],d\s\right)}\\
+\ex{\|\X{\v}{}{1} - \X{\v}{}{0}\|_\t} &\leq \ex{\int_\S\int_0^\t |\s|\,\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{0},\s)\right],d\s\right)}\\
 &\leq \ex{\int_\S\int_0^\t |\s|\,\poiss{\v}\left(d\tt,\left(0,\const{}\right],d\s\right)}\\
 &= \const{}\int_\S\int_0^\t |\s|\,d\tt\,\Sm(d\s)\\
 &=\const{}\t\int_\S |\s|\,\Sm(\s)\\
 &\leq \const{}\t|\S|
 \end{align*}
 
-here we use the fact that \(\rate{\cdot}(\cdot,\cdot)\) is bounded by some \(\const{} < \infty\) which does not depend on \(\v\), and the fact that \(\S\) is finite and \(\Sm\) is a probability measure. This gives us,
+here we use the fact that \(\IGr{\cdot}(\cdot,\cdot)\) is bounded by some \(\const{} < \infty\) which does not depend on \(\v\), and the fact that \(\S\) is finite and \(\Sm\) is a probability measure. This gives us,
 
 \[\sup_{\v \in  V}\ex{\|\X{\v}{}{1} - \X{\v}{}{0}\|_\t} \leq \t\const{2} \defeq \t\const{}|\S|\]
 
@@ -740,7 +744,7 @@ Let \(\X{}{}\) be defined as in Proposition \ref{subsec::Well-:Prop::SDEWP}. Sup
 First, we show that \(\X{}{}\) is a Feller process. Notice that \(\X{}{}\) conditioned on the event \(\X{}{0} = \sv{}{ V}\) is given by the law of the unique solution (Proposition \ref{subsec::Well-:Prop::SDEWP}) to the equation
 
 \begin{equation}
-\X{\v}{\t} = \sv{\v}{ V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\X{}{\tt-},\s)],d\s).
+\X{\v}{\t} = \sv{\v}{ V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s).
 \label{subsec::Well-:Eqn::condSDE}
 \end{equation}
 \labe{subsec::Well-:Eqn::condSDE}
@@ -766,11 +770,11 @@ The proof that \(\X{}{}{\sv{}{ V}}\) satisfies these properties is as follows:
 
 \item Notice that we can write,
 
-\[\X{\v}{\t+\cdot}{\sv{}{ V}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S\int_\t^{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\X{}{\tt-}{\sv{}{ V}},\s)],d\s).\]
+\[\X{\v}{\t+\cdot}{\sv{}{ V}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S\int_\t^{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\X{}{\tt-}{\sv{}{ V}},\s)],d\s).\]
 
 Let \(\alt{\X}{{}{}}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
 
-\[\alt{\X}{{\v}{\cdot}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\rate{\v}(\alt{\X}{{}{\tt-}},\s)],d\s).\]
+\[\alt{\X}{{\v}{\cdot}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\alt{\X}{{}{\tt-}},\s)],d\s).\]
 
 Then \(\X{}{\t+\cdot}{\sv{}{ V}} \deq \alt{\X}{{}{\cdot}}\). By the definition of \(\X{}{}{\sv{}{ V}}\), \(\alt{\X}{{}{}} \deq \X{}{}{\X{}{\t}{\sv{}{ V}}}\) as desired.
 
@@ -779,8 +783,8 @@ Then \(\X{}{\t+\cdot}{\sv{}{ V}} \deq \alt{\X}{{}{\cdot}}\). By the definition o
 \ind Now suppose for \(\sv{}{ V},\alt{\sv}{}{V}\in \S^ V\),
 
 \begin{align*}
-\X{\v}{\t} &= \sv{\v}{ V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\X{}{\tt-},\s)],d\s)&\te{ for all } \v \in  V\\
-\alt{\X}{{\v}{\t}} &= \alt{\sv}{\v}{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\rate{\v}(\alt{\X}{{}{\tt-}},\s)],d\s)&\te{ for all } \v \in  V\\
+\X{\v}{\t} &= \sv{\v}{ V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s)&\te{ for all } \v \in  V\\
+\alt{\X}{{\v}{\t}} &= \alt{\sv}{\v}{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\IGr{\v}(\alt{\X}{{}{\tt-}},\s)],d\s)&\te{ for all } \v \in  V\\
 \end{align*}
 
 Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
@@ -789,12 +793,12 @@ Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
 
 for all \(\t \in [0,\T]\).
 
-\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in  V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-n}\) if \(\v \in  V\sln{n}\setminus  V\sln{n-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(| V\sln{n}\setminus  V\sln{n-1}| \leq \degr^{n}\) for all \(n\in \mb{N}\). Then \(\sum_{\v \in  V} \b{\v} \leq \sum_{n=0}^\infty \left(\frac{\degr}{\b{}}\right)^{-n} < \infty\). Since \(\S\) is finite, the norm \(\|\sv{}{ V}\|_{\b{}} := \sum_{\v \in  V} \b{\v}|\sv{\v}{ V}|\) generates the topology of componentwise convergence on \(\S^ V\). We can now apply Gronwall's inequality:
+\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in  V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-n}\) if \(\v \in  V\sln{n}\setminus  V\sln{n-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(| V\sln{n}\setminus  V\sln{n-1}| \leq \degr^{n}\) for all \(n\in \mb{N}\). Then \(\sum_{\v \in  V} \b{\v} \leq \sum_{n=0}^\infty \left(\frac{\degr}{\b{}}\right)^{n} < \infty\). Since \(\S\) is finite, the norm \(\|\sv{}{ V}\|_{\b{}} := \sum_{\v \in  V} \b{\v}|\sv{\v}{ V}|\) generates the topology of componentwise convergence on \(\S^ V\). We can now apply Gronwall's inequality:
 
 \begin{align*}
 \ex{\|\X{}{} - \alt{\X}{{}{}}\|_{\b{},\t}} &= \sum_{\v \in  V} \b{\v}\ex{\|\X{\v}{} - \alt{\X}{{\v}{}}\|_\t}\\
 &\leq \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\X{\vv}{} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
-&\os{\b{\v}\leq \b{}\b{\vv}}{\leq} \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
+&\os{\b{\v}\leq \b{}(\b{\vv})}{\leq} \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in  V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
 &= \|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in  V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{{\vv}{}}\|_\tt}\,d\tt\\
 &=\|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X}{{}{}}\|_{\b{},\tt}}\,d\tt\\
 \end{align*}
@@ -805,33 +809,29 @@ Applying Gronwall's inequality:
 
 Now, let \(f: \S^ V \ra \mb{R}\) be a continuous function. Since \(\S^ V\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv{}{ V}) - f(\alt{\sv}{}{V})| \leq \phi(|\sv{}{ V} - \alt{\sv}{}{V}|)\) for all \(\sv{}{ V},\alt{\sv}{}{V}\in \S^ V\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
 
-\ind Fix any \(\ep > 0\). Let \(\psi_\ep\) be a convex, monotonic, upper-bound of \(\phi\) such that \(\psi_\ep(0) = \ep\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
+\ind Fix any \(\ep > 0\). Let \(\psi\) be a concave, monotonic, upper-bound of \(\phi\) such that \(\psi(0) = 0\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
 
 \begin{align*}
-\ex{\|f(\X{}{}) - f(\alt{\X}{{}{}})\|_\T} &\leq \ex{\psi_\ep\left(\|\X{}{} - \alt{\X}{{}{}}\|_{\T,\b{}}\right)}\\
-&\leq \psi_\ep\left(\ex{\|\X{}{} - \alt{\X}{{}{}}\|_{\T,\b{}}}\right)\\
-&\leq \psi_\ep\left(\|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv{}{ V} \ra\alt{\sv}{}{V}}{\ra} \ep.
+\ex{\|f(\X{}{}) - f(\alt{\X}{{}{}})\|_\T} &\leq \ex{\psi\left(\|\X{}{} - \alt{\X}{{}{}}\|_{\T,\b{}}\right)}\\
+&\leq \psi\left(\ex{\|\X{}{} - \alt{\X}{{}{}}\|_{\T,\b{}}}\right)\\
+&\leq \psi\left(\|\sv{}{ V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv{}{ V} \ra\alt{\sv}{}{V}}{\ra} \ep.
 \end{align*}
-
-Since \(\ep > 0\) is arbitrary, we can conclude that 
-
-\[\ex{\|f(\X{}{}) - f(\alt{\X}{{}{}})\|_\T} \os{\sv{}{ V} \ra\alt{\sv}{}{V}}{\ra} 0.\]
 
 This concludes the proof that \(\X{}{}\) is Feller.
 \end{enumerate}
 
 Let \(f \in \core\). Recall that \(\core\) is the core of \(\IG\). Then \(f\) can be represented by the SDE
 
-\[f(\X{}{\t}) = f(\X{}{0}) + \sum_{\v \in  V} \int_\S\int_0^\t [f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})]\,\poiss{\v}\left(d\tt,(0,\rate{\v}(\X{}{\tt-},\s)],d\s\right)\]
+\[f(\X{}{\t}) = f(\X{}{0}) + \sum_{\v \in  V} \int_\S\int_0^\t [f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})]\,\poiss{\v}\left(d\tt,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s\right)\]
 
 
 By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X{}{}\) applied to \(f\) is given by 
 
 \begin{align*}
 \IG f(\sv{}{ V}) &= \lim_{\t \searrow 0} \frac{1}{\t} \ex{f(\X{}{\t}) - f(\sv{}{ V})|\X{}{0} = \sv{}{ V}}\\
-&= \lim_{\t \searrow 0} \ex{\sum_{\v \in  V} \frac{1}{\t}\int_\S\int_0^\t \left[f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})\right]\,\poiss{\v}\left(d\tt,(0,\rate{\v}(\X{}{\tt-},\s)],d\s\right)\middle|\X{}{0} = \sv{}{ V}}\\
-&\os{f \in \mc{D}}{=} \lim_{\t \searrow 0}\sum_{\v \in  V} \frac{1}{\t}\int_\S\int_0^\t \ex{\left[f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})\right]\rate{\v}(\X{}{\tt-},\s)\middle|\X{}{0} = \sv{}{ V}}d\tt\,\Sm(d\s)\\
-&\os{\te{Lebesgue Differentiation}}{=} \sum_{\v \in  V} \int_\S \rate{\v}(\sv{}{ V},\s)[f(\sv{}{ V} + \s\ev{\v}) - f(\sv{}{ V})]\,\Sm(d\s)\\
+&= \lim_{\t \searrow 0} \ex{\sum_{\v \in  V} \frac{1}{\t}\int_\S\int_0^\t \left[f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})\right]\,\poiss{\v}\left(d\tt,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s\right)\middle|\X{}{0} = \sv{}{ V}}\\
+&\os{f \in \mc{D}}{=} \lim_{\t \searrow 0}\sum_{\v \in  V} \frac{1}{\t}\int_\S\int_0^\t \ex{\left[f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})\right]\IGr{\v}(\X{}{\tt-},\s)\middle|\X{}{0} = \sv{}{ V}}d\tt\,\Sm(d\s)\\
+&\os{\te{Lebesgue Differentiation}}{=} \sum_{\v \in  V} \int_\S \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V} + \s\ev{\v}) - f(\sv{}{ V})]\,\Sm(d\s)\\
 &= \sum_{\v \in  V} \sum_{\s \in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V} + \s\ev{\v}) - f(\sv{}{ V})]
 \end{align*}
 \end{proof}
@@ -865,25 +865,25 @@ First, for each \(n\in\mb{N}\), \(\X{}{}{n}\) satisfies Assumption \ref{subsec::
 
 \ind To prove weak convergence, we first begin by showing that \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight. Note that \(\S^ V\) is compact, so \(\sup_{\sv{}{ V} \in \S^ V} \|\sv{}{ V}\|_{\b{}} < \infty\) (recall that \(\|\sv{}{ V}\|_{\b{}} = \sum_{\v \in  V} \b{\v} |\sv{\v}{ V}|\) where \(\b{\v} = \b{}^{-n}\) for some \(\b{} > \degr\) if \(\v \in  V\sln{n}\setminus  V\sln{n-1}\)).
 
-\ind Now fix \(\ep > 0\). Let \(M\) be large enough that
+\ind Now fix \(\ep > 0\). Let \(\cconst\) be large enough that
 
-\[\sup_{\sv{}{\left( V\sln{M}\right)^c} \in \S^{\left( V\sln{M}\right)^c}} \left\|\sv{}{\left( V\sln{M}\right)^c}\right\|_{\b{}} \leq |\S|\sum_{\v \notin  V\sln{M}} \b{\v} < \ep/4.\]
+\[\sup_{\sv{}{\left( V\sln{\cconst}\right)^c} \in \S^{\left( V\sln{\cconst}\right)^c}} \left\|\sv{}{\left( V\sln{\cconst}\right)^c}\right\|_{\b{}} \leq |\S|\sum_{\v \notin  V\sln{\cconst}} \b{\v} < \ep/4.\]
 
 Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the modulus of continuity is given by,
 
-\[\omega'_{\X{}{}}(\delta) = \inf_{\{\t\sln{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \|\X{}{\tt} - \X{}{\ttt}\|_{\b{}},\]
+\[\cmodu_{\X{}{}}(\delta) = \inf_{\{\t\sln{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \|\X{}{\tt} - \X{}{\ttt}\|_{\b{}},\]
 
 where \(\{\t\sln{\it}\} := 0 \leq \t\sln{1} < \t\sln{2} < \cdots < \t\sln{\cdot} = \T\) and \(\min_\it|\t\sln{\it} - \t\sln{\it-1}| > \delta\). Note that \(\X{}{}{n}\) is \(\Omega{ V\sln{n}}{\T}\)-valued and can be embedded in \(\Omega{ V}{\T}\) the same way we embed \(\S^{ V\sln{n}}\) in \(\S^ V\): let \(\X{\v}{}{n} \equiv 0\) for \(\v \notin  V\sln{n}\). Recall also that \(\proj{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq  V\). Then for any \(n\in \mb{N}\),
 
 \begin{align*}
-\pr\left(\sup_n \omega'_{\X{}{}{n}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t\sln{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v \in  V} \b{\v}|(\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}| > \epsilon \right)\\
-&\leq \pr\left(\sup_n \left(\omega'_{\proj{ V\sln{M}}{\T}(\X{}{}{n})}(\delta) + \omega'_{\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{n})}(\delta)\right) > \ep\right)\\
-&\leq \pr\left(\sup_n \omega'_{\proj{ V\sln{M}}{\T}(\X{}{}{n})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
+\pr\left(\sup_n \cmodu_{\X{}{}{n}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t\sln{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\sln{\it-1},\t\sln{\it})} \sum_{\v \in  V} \b{\v}|(\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}| > \epsilon \right)\\
+&\leq \pr\left(\sup_n \left(\cmodu_{\proj{ V\sln{\cconst}}{\T}(\X{}{}{n})}(\delta) + \cmodu_{\proj{\left( V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})}(\delta)\right) > \ep\right)\\
+&\leq \pr\left(\sup_n \cmodu_{\proj{ V\sln{\cconst}}{\T}(\X{}{}{n})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
 \end{align*}
 
 The last inequality arises because
 
-\[\omega'_{\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{n})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left( V\sln{M}\right)^c}{\T}(\X{}{}{n})\right\|_{\b{}} \leq 2 \sup_{\sv{}{\left( V\sln{M}\right)^c} \in \S^{\left( V\sln{M}\right)^c}} \left\|\sv{}{\left( V\sln{M}\right)^c}\right\|_{\b{}} < \ep/2\]
+\[\cmodu_{\proj{\left( V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left( V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})\right\|_{\b{}} \leq 2 \sup_{\sv{}{\left( V\sln{\cconst}\right)^c} \in \S^{\left( V\sln{\cconst}\right)^c}} \left\|\sv{}{\left( V\sln{\cconst}\right)^c}\right\|_{\b{}} < \ep/2\]
 
 Finally, the convergence to 0 at the end is the result of a direct application of Lemma \ref{sec::TL:Lem::TightSupport}. Thus, \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight, and therefore relatively compact with respect to the topology of weak convergence (Theorem \ref{sec::TL:Thm::Tight}).
 
@@ -2857,7 +2857,7 @@ So \(\ex{f(X\mb{I}_A|Z\mb{I}_A} = \ex{f(X\mb{I}_A|Z\mb{I}_A,U\mb{I}_A}\). Then
 \lin
 
 \begin{lem}
-Let \(\phi: \mb{R}^+ \ra \mb{R}^+\) be a monotonic function such that \(\phi(0+) = 0\). Suppose also that \(\phi \leq C\) for some constant \(C\). Then for every \(\ep > 0\), there exists a continuous monotonic concave function \(\psi_\ep:\mb{R}^+\ra \mb{R}^+\) such that \(\psi_\ep(0) = \ep\) and \(\phi \leq \psi_\ep\leq C\). \tr{Take an infimum and I get a continuous monotonic concave function \(\psi\) such that \(\psi(0) = 0\)?}
+Let \(\phi: \mb{R}^+ \ra \mb{R}^+\) be a monotonic function such that \(\phi(0+) = 0\). Suppose also that \(\phi \leq C\) for some constant \(C\). Then there exists a continuous monotonic concave function \(\psi:\mb{R}^+\ra \mb{R}^+\) such that \(\psi(0) = 0\) and \(\phi \leq \psi\leq C\).
 \label{sec::TL:Lem::concbd}
 \end{lem}
 \labe{sec::TL:Lem::concbd}
@@ -2865,11 +2865,23 @@ Let \(\phi: \mb{R}^+ \ra \mb{R}^+\) be a monotonic function such that \(\phi(0+)
 \purpose This is used in Proposition \ref{subsec::Well-:Prop::SDE=IG} for a technical result.
 
 \begin{proof}
-Since \(\phi(0+) = 0\), there exists a \(\delta > 0\) such that \(\phi(\delta) < \ep/2\). Let \(\ov{\phi} = \min\{\phi+\ep/2, C\}\).
+Fix \(\ep > 0\). Since \(\phi(0+) = 0\), there exists a \(\delta > 0\) such that \(\phi(\delta) < \ep/2\). Let \(\ov{\phi} = \min\{\phi+\ep/2, C\}\).
 
 \ind Let \(a_1 = \inf\{a \geq 0: ax + \ep \geq \ov{\phi}_1(x)\te{ for all } x\geq 0\}\). Note that \(0\leq a \leq C/\delta\). 
 
-Then \(\psi_\ep(x) = \min\{ax+\ep,C\}\) is continuous, concave and \(\psi_\ep \geq \phi\).
+\ind Define \(\psi_\ep(x) = \min\{ax+\ep,C\}\). Then \(\psi_\ep\) is continuous, concave and \(\psi_\ep \geq \phi\).
+
+\ind Let \(\psi(x) = \inf_{\ep > 0} \psi_\ep(x)\). Then \(\psi\) is trivially concave and non-decreasing. Furthermore, since it is non-decreasing, it can only have jump discontinuities, and left and right limits exist at each point. Suppose \(x\) is a discontinuity point of \(\psi\). Let \(\triangle\psi(x) = \psi(x+) - \psi(x-)\).
+
+For any small \(\delta > 0\), notice that
+
+\[\lim_{\delta \ra 0} \frac{\psi(x-\delta) + \psi(x+\delta)}{2} = \psi(x-) + \frac{\triangle\psi(x)}{2} > \psi(x-).\]
+
+Thus, there exists some \(\delta\) and some \(1>\lambda>1/2\) such that
+
+\[\lambda\psi(x-\delta) + (1 -\lambda)\psi(x+\delta) \geq \psi(x-) \geq \psi(x + (1 - 2\lambda)\delta) = \psi\left(\lambda(x-\delta) + (1 - \lambda)(x+\delta)\right).\]
+
+This contradicts concavity of \(\psi\). Thus, \(\psi\) is continuous.
 \end{proof}
 
 \lin
