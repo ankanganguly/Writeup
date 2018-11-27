@@ -135,9 +135,11 @@
 \newcommand{\mm}{\nu}							%typ measure 2
 \newcommand{\mmm}{\eta}							%typ measure 3
 \newcommand{\cm}{\gamma}						%conditional msr funct
+\newcommand{\law}{\te{Law}}						%Law of a process
 
 %Modifiers
-\newcommand{\law}{\te{Law}}						%Law of a process
+\newcommand{\me}[1]{^{#1}}						%Append measure
+
 
 %Section 4
 \newcommand{\XX}{Y}								%second random element
@@ -146,14 +148,13 @@
 \newcommand{\rtt}{\theta}						%typical rand time 2
 \renewcommand{\it}{k}							%iterator
 \newcommand{\mutex}{\|}							%Mutually exclusive
+\newcommand{\apath}{\Gamma}						%path for CI proof
+\newcommand{\pathset}[2]{\Lambda_{#1,#2}}		%A space of paths
+\newcommand{\pathsete}[2]{C_{#1,#2}}			%union over pathset
+\newcommand{\pathseted}[2]{H_{#1,#2}}			%pathsete with \t
 
 
 
-
-
-
-
-\newcommand{\XState}[1]{\S^{#1}}				%multidim state space
 
 \newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
 \newcommand{\xvttt}[2]{z_{#1}{(#2)}}				%typ path val3
@@ -175,10 +176,7 @@
 
 
 
-\newcommand{\apath}{\Gamma}						%Given path for CI proof
-\newcommand{\pathset}[2]{\Lambda_{#1,#2}}			%A space of paths
-\newcommand{\pathsete}[2]{C_{#1,#2}}			%union over pathset
-\newcommand{\pathseted}[2]{H_{#1,#2}}			%pathsete with \t
+
 \newcommand{\rv}{A}								%Typical random element
 \newcommand{\evnt}{\mc{E}}						%Typical event
 \newcommand{\typset}{A}							%Typical set
@@ -266,7 +264,6 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs itt&0&\(i\)							&iterator 2\\
 \tbs ittt&0&\(j\)						&iterator 3\\
 \tbs numb&0&\(n\)						&numbering of prelimit vars\\
-\tbs XState&1&\(\XState{\U}\)				&multidim state space\\
 \tbs sv&2&\(\sv{\v}{\U}\)					&typ elt of \tbs XState\\
 \tbs ev&1&\(\ev{\v}\)						&standard basis\\
 \tbs cad&0&\(\cad\)							&Cadlag space\\
@@ -986,12 +983,12 @@ Here \(\const{}\) is as defined in Assumption \ref{subsec::Assum:Assu::CI}. We a
 
 \begin{align}
 \pathset{i}{j} = \{\apath \in (\mb{N}^2)^{i+j-1}: &\apath(1) = (1,1)\te{, } \apath(i+j-1) = (i,j)\te{, and } \nonumber\\
-&\Gamma(\it+1) - \Gamma(\it)\in \{\ev{1},\ev{2}\}\te{ for }\it\in \{1,\dots, i+j-2\}\}.
+&\apath(\it+1) - \apath(\it)\in \{\ev{1},\ev{2}\}\te{ for }\it\in \{1,\dots, i+j-2\}\}.
 \label{sec::Proof1:eqn::Lambda}
 \end{align}
 \labe{sec::Proof1:eqn::Lambda}
 
-\(\ev{1},\ev{2}\) are assumed to be the standard basis vectors on \(\mb{N}^2\). We can equivalently define a path \(\apath \in \pathset{i}{j}\) as an event:
+\(\ev{1},\ev{2}\) are assumed to be the standard basis vectors on \(\mb{N}^2\). We equivalently define a path \(\apath \in \pathset{i}{j}\) as an event:
 
 \begin{align}
 \apath(\it) &= \begin{cases}
@@ -1053,12 +1050,12 @@ and
 \begin{proof}
 By symmetry, it suffices to prove that equation \ref{sec::Proof1:eqn::XU forward map} holds (if we proof equation \eqref{sec::Proof1:eqn::XU forward map} holds for all \(\U \subseteq  V\), then we can proof equation \eqref{sec::Proof1:eqn::XW forward map} holds by swapping the definitions of \(\U\) and \(\UU\)). By Proposition \ref{subsec::Well-:Prop::SDEWP}, for any sequence of i.i.d. Poisson processes, \(\poisses\), on \(\mb{R}^2\times \S\) with intensity measure \(\leb\times\Sm\) we can write,
 
-\[\X{\v}{\t} = \X{\v}{0} + \int_\S\int_0^\t \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{\tt-},\s)\right],d\s\right)\te{ for all } \v\in  V.\]
+\[\X{\v}{\t} = \X{\v}{0} + \int_\S\int_0^\t \s\,\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{\tt-},\s)\right],d\s\right)\te{ for all } \v\in  V.\]
 
 Consider the following coupled equations:
 
 \begin{align}
-\XX{\vv}{\t} &= \X{\vv}{\rt{i}} + \int_\S\int_0^\t \s\alt{\poiss{\vv}}\left(d\tt,\left(0,\rate{\vv}(\XX{}{\tt-},\s)\right],d\s\right)\te{ for } \vv \in \cl{\U} \te{ on } \rt{i} < \infty \label{sec::Proof1:eqn::alternate SDE}\\
+\XX{\vv}{\t} &= \X{\vv}{\rt{i}} + \int_\S\int_0^\t \s\alt{\poiss{\vv}}\left(d\tt,\left(0,\IGr{\vv}(\XX{}{\tt-},\s)\right],d\s\right)\te{ for } \vv \in \cl{\U} \te{ on } \rt{i} < \infty \label{sec::Proof1:eqn::alternate SDE}\\
 \XX{\vv}{} &\equiv 0\te{ for } \vv\notin \cl{\U}\nonumber\\
 \alt{\poiss{\vv}}(d\tt,d\r,d\s) &= \poiss{\vv}(\rt{i} + d\tt,d\r,d\s) \te{ for all }\vv\in \cl{\U}\nonumber\\
 \alt{\X}{{\vv}{\t}} &= \begin{cases}
@@ -1086,17 +1083,17 @@ so
 
 Furthermore, by the same argument presented in the beginning of the proof of Lemma \ref{subsec::Well-:Lem::SDEWP}, we can assume without loss of generality that 
 
-\[|\rate{\v}(\sv{ V}{},\s) - \rate{\v}(\alt{\sv{ V}{}},\s)| \leq \const{}\sum_{\vv\in \cl{\v}} |\sv{ V}{\vv} - \alt{\sv{ V}{\vv}}|\te{ for all } \sv{ V}{},\alt{\sv{ V}{}}\in \S^ V,\s \in \S \te{ and } \v \in  V.\]
+\[|\IGr{\v}(\sv{ V}{},\s) - \IGr{\v}(\alt{\sv{ V}{}},\s)| \leq \const{}\sum_{\vv\in \cl{\v}} |\sv{ V}{\vv} - \alt{\sv{ V}{\vv}}|\te{ for all } \sv{ V}{},\alt{\sv{ V}{}}\in \S^ V,\s \in \S \te{ and } \v \in  V.\]
 
 \tr{For any \(a,b\in \mb{R}\), I use the shorthand \((a,b]\) to denote the interval \((a\wedge b,a\vee b]\)}. Then for all \(v\in \U\) and \(\t > 0\),
 
 \begin{align*}
 &\ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\t < \rt{i+1}}} = \ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\evnt_\t}}\os{\alt{\X}{{\cl{\U}}{}}[0,\rt{i}] = \X{\cl{\U}}{[0,\rt{i}]}}{=} \ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\alt{\evnt}_\t}}\\
-&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int_{(\rt{i},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\rate{\v}(\X{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt{i},\t]} \s\,\alt{\poiss{\v}}\left(d\tt,\left(0,\rate{\v}(\alt{\X}{{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
-&\ind \leq \ex{\int_\S\int_{\mb{R}}\int_{(\rt{i},\t]}|\s|\mb{I}_{\alt{\evnt}_\t}\mb{I}_{\r\in \left(\rate{\v}(\X{}{\tt-},\s), \rate{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
-&\ind \os{\alt{\X}{{\cl{\U}}{}}[0,\rt{i}] = \X{\cl{\U}}{[0,\rt{i}]}}{=} \ex{\int_\S\int_{\mb{R}}\int_{(0,\t]}|\s|\mb{I}_{\evnt_\t}\mb{I}_{\r\in \left(\rate{\v}(\X{}{\tt-},\s), \rate{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
-&\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt_\t}\mb{I}_{\r\in\left(\rate{\v}(\X{}{\tt-},\s),\rate{\v}(\alt{\X}{{}{\tt-}},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
-&\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt_t}\left|\rate{\v}(\alt{\X}{{}{\tt-}},\s) - \rate{\v}(\X{}{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
+&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int_{(\rt{i},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt{i},\t]} \s\,\alt{\poiss{\v}}\left(d\tt,\left(0,\IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
+&\ind \leq \ex{\int_\S\int_{\mb{R}}\int_{(\rt{i},\t]}|\s|\mb{I}_{\alt{\evnt}_\t}\mb{I}_{\r\in \left(\IGr{\v}(\X{}{\tt-},\s), \IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind \os{\alt{\X}{{\cl{\U}}{}}[0,\rt{i}] = \X{\cl{\U}}{[0,\rt{i}]}}{=} \ex{\int_\S\int_{\mb{R}}\int_{(0,\t]}|\s|\mb{I}_{\evnt_\t}\mb{I}_{\r\in \left(\IGr{\v}(\X{}{\tt-},\s), \IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt_\t}\mb{I}_{\r\in\left(\IGr{\v}(\X{}{\tt-},\s),\IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
+&\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt_t}\left|\IGr{\v}(\alt{\X}{{}{\tt-}},\s) - \IGr{\v}(\X{}{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
 &\ind \leq \const{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt_t}\sum_{\vv\in \cl{\v}}\left|\alt{\X}{{\vv}{\tt-}} - \X{\vv}{\tt-}\right|}\,d\tt\\
 &\ind \os{\mb{I}_{\evnt_\t}\|\alt{\X}{{\neigh{\U}}{}} - \X{\neigh{\U}}{}\|_t = 0}{\leq} \left(\int_\S|\s|\,\Sm(d\s)\right)\const{} \int_0^\t \sum_{\vv\in \cl{\v}\cap\U}\ex{\mb{I}_{\evnt_t}\|\alt{\X}{{\vv}{}} - \X{\vv}{}\|_\tt}\,d\tt\\
 &\ind \os{\evnt_\tt \supseteq \evnt_\t}{\leq} |S|\const{}(\degr+1) \int_0^\t \sup_{\v\in \U}\ex{\mb{I}_{\evnt_\tt}\|\alt{\X}{{\v}{}} - \X{\v}{}\|_\tt}\,d\tt.
