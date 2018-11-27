@@ -129,8 +129,24 @@
 \newcommand{\alt}[1]{\widetilde{#1}}			%alternate val
 \newcommand{\pra}[1]{_{#1}}						%Append process
 
+%Section 3
+%Base commands
+\newcommand{\m}{\mu}							%typ measure
+\newcommand{\mm}{\nu}							%typ measure 2
+\newcommand{\mmm}{\eta}							%typ measure 3
+\newcommand{\cm}{\gamma}						%conditional msr funct
 
-\newcommand{\law}{\te{Law}}							%Law of a process
+%Modifiers
+\newcommand{\law}{\te{Law}}						%Law of a process
+
+%Section 4
+\newcommand{\XX}{Y}								%second random element
+\newcommand{\XXX}{Z}							%third random elt
+\newcommand{\rt}{\tau}							%typical rand time
+\newcommand{\rtt}{\theta}						%typical rand time 2
+\renewcommand{\it}{k}							%iterator
+\newcommand{\itt}{i}							%iterator 2
+\newcommand{\ittt}{j}							%iterator 3
 
 
 
@@ -139,14 +155,6 @@
 
 
 
-
-
-
-\newcommand{\rt}[1]{\tau^{#1}}						%typical rand time
-\newcommand{\rtt}[1]{\theta^{#1}}					%typical rand time 2
-\renewcommand{\it}{k}								%iterator
-\newcommand{\itt}{i}								%iterator 2
-\newcommand{\ittt}{j}								%iterator 3
 \newcommand{\XState}[1]{\S^{#1}}				%multidim state space
 
 \newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
@@ -162,10 +170,8 @@
 \newcommand{\rxvttts}[2]{Z_{#1}{#2}}				%typ rand path 3
 \newcommand{\rxvtttsn}[3]{Z_{#1}^{#3}{#2}}			%typ rpath sublim 3
 \newcommand{\rp}[1]{P^{#1}}							%typ point process
-\newcommand{\m}[3]{\mu_{#2#1}^{#3}}						%typ measure
-\newcommand{\mm}[3]{\nu_{#2#1}^{#3}}						%typ measure 2
-\newcommand{\mmm}[3]{\eta_{#2#1}^{#3}}						%typ measure 3
-\newcommand{\cm}{\gamma}							%conditional msr funct
+
+
 
 \newcommand{\ratee}[1]{\Lambda_{#1}}				%general rate
 \newcommand{\crate}[2]{\alt{\lambda}_{#1}^{#2}}		%conditional rate
@@ -930,7 +936,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset  V\)
 \lin
 
 \begin{thms}
-Let \(\X{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m{}{}{} = \law(\X{}{})\). Let the sequence \(\{\rate{\v},\poiss{\v}:\v\in  V\}\) be defined as in Proposition \ref{subsec::Well-:Prop::SDEWP}. Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\Omega \supseteq\Omega{\tree\sln{1}}{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\Omega)\), define \(\cm_\t:\Omega{\{\root,1\}}{\t-}\times \pmsr(\Omega) \ra \pmsr(\Omega{\{2,\dots,\degr\}}{\t-})\) by,
+Let \(\X{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m{}{}{} = \law(\X{}{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\Omega \supseteq\Omega{\tree\sln{1}}{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\Omega)\), define \(\cm_\t:\Omega{\{\root,1\}}{\t-}\times \pmsr(\Omega) \ra \pmsr(\Omega{\{2,\dots,\degr\}}{\t-})\) by,
 
 \begin{equation}
 \cm_\t(\x{\{\root,1\}}{[0,\t)},\mmm{}{}{})(\cdot) = \pr^{\mmm{}{}{}}\left(\X{\{2,\dots,\degr\}}{[0,\t)} \in \cdot|\X{\{\root,1\}}{[0,\t)} = \x{\{\root,1\}}{[0,\t)}\right).
@@ -941,8 +947,8 @@ Let \(\X{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu
 Then there exists a unique solution, \(\alt{\m{}{}{}} \in \pmsr(\Omega{\tree\sln{1}}{\T})\), to the following equation:
 
 \begin{align}
-\X{\v}{\t} &= \X{\v}{0} + \int_0^\t\int_\S \s\,\poiss{\v}(d\s,(0,\alt{\rate{}}(\X{\{\v,\root\}}{[0,\tt)},\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\}\nonumber\\
-\X{\root}{\t} &= \X{\root}{0} + \int_0^\t\int_\S \s\,\poiss{\root}(d\s,(0,\rate{\root}(\X{}{\tt-},\s)],d\tt)\nonumber\\
+\X{\v}{\t} &= \X{\v}{0} + \int_0^\t\int_\S \s\,\poiss{\v}(d\s,(0,\rate{}(\X{\{\v,\root\}}{[0,\tt)},\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\}\nonumber\\
+\X{\root}{\t} &= \X{\root}{0} + \int_0^\t\int_\S \s\,\poiss{\root}(d\s,(0,\IGr{\root}(\X{}{\tt-},\s)],d\tt)\nonumber\\
 \alt{\m{}{}{}} &= \law(\X{}{})
 \label{sec::Main:eqn::Local SDE}
 \end{align}
@@ -950,7 +956,7 @@ Then there exists a unique solution, \(\alt{\m{}{}{}} \in \pmsr(\Omega{\tree\sln
 
 where
 
-\[\alt{\rate{}}(\X{\{\v,\root\}}{[0,\t)},\s) = \exmu{\cm_t(\X{\{\v,\root\}}{[0,\t)},\alt{\m{}{}{}})}{\rate{\root}(\X{}{\t-},\s)}\]
+\[\alt{\rate{}}(\X{\{\v,\root\}}{[0,\t)},\s) = \exmu{\cm_t(\X{\{\v,\root\}}{[0,\t)},\alt{\m{}{}{}})}{\IGr{\root}(\X{}{\t-},\s)}\]
 
 for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \proj{\tree\sln{1}}{\T}(\m{}{}{})\).
 \label{sec::Main:Thm::Local SDE}
