@@ -781,7 +781,7 @@ The proof that \(\X{}{}{\sv{}{ V}}\) satisfies these properties is as follows:
 
 \item Notice that we can write,
 
-\[\X{\v}{\t+\cdot}{\sv{}{ V}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S\int_\t^{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\X{}{\tt-}{\sv{}{ V}},\s)],d\s).\]
+\[\X{\v}{\t+\cdot}{\sv{}{ V}} = \X{\v}{\t}{\sv{}{ V}} + \int_\S\int_\t{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\X{}{\tt-}{\sv{}{ V}},\s)],d\s).\]
 
 Let \(\alt{\X}{{}{}}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
 
@@ -1105,9 +1105,9 @@ Furthermore, by the same argument presented in the beginning of the proof of Lem
 
 \begin{align*}
 &\ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\t < \rt{i+1}}} = \ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\evnt_\t}}\os{\alt{\X}{{\cl{\U}}{}}[0,\rt{i}] = \X{\cl{\U}}{[0,\rt{i}]}}{=} \ex{\left\|\alt{\X}{{\v}{}} - \X{\v}{}\right\|_{\t}\mb{I}_{\alt{\evnt}_\t}}\\
-&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int_{(\rt{i},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt{i},\t]} \s\,\alt{\poiss}{\v}\left(d\tt,\left(0,\IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
-&\ind \leq \ex{\int_\S\int_{\mb{R}}\int_{(\rt{i},\t]}|\s|\mb{I}_{\alt{\evnt}_\t}\mb{I}_{\r\in \left(\IGr{\v}(\X{}{\tt-},\s), \IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
-&\ind \os{\alt{\X}{{\cl{\U}}{}}[0,\rt{i}] = \X{\cl{\U}}{[0,\rt{i}]}}{=} \ex{\int_\S\int_{\mb{R}}\int_{(0,\t]}|\s|\mb{I}_{\evnt_\t}\mb{I}_{\r\in \left(\IGr{\v}(\X{}{\tt-},\s), \IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind\leq \ex{\mb{I}_{\alt{\evnt}_\t}\left|\int_\S\int{(\rt{i},t]} \s\,\poiss{\v}\left(d\tt,\left(0,\IGr{\v}(\X{}{\tt-},\s)\right]\,d\s\right) - \int_\S\int{(\rt{i},\t]} \s\,\alt{\poiss}{\v}\left(d\tt,\left(0,\IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]\,d\s\right)\right|}\\
+&\ind \leq \ex{\int_\S\int{\mb{R}}\int{(\rt{i},\t]}|\s|\mb{I}_{\alt{\evnt}_\t}\mb{I}_{\r\in \left(\IGr{\v}(\X{}{\tt-},\s), \IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind \os{\alt{\X}{{\cl{\U}}{}}[0,\rt{i}] = \X{\cl{\U}}{[0,\rt{i}]}}{=} \ex{\int_\S\int{\mb{R}}\int{(0,\t]}|\s|\mb{I}_{\evnt_\t}\mb{I}_{\r\in \left(\IGr{\v}(\X{}{\tt-},\s), \IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}\,\poiss{\v}\left(d\tt,d\r,d\s\right)}\\
 &\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt_\t}\mb{I}_{\r\in\left(\IGr{\v}(\X{}{\tt-},\s),\IGr{\v}(\alt{\X}{{}{\tt-}},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
 &\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt_t}\left|\IGr{\v}(\alt{\X}{{}{\tt-}},\s) - \IGr{\v}(\X{}{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
 &\ind \leq \const{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt_t}\sum_{\vv\in \cl{\v}}\left|\alt{\X}{{\vv}{\tt-}} - \X{\vv}{\tt-}\right|}\,d\tt\\
@@ -1665,9 +1665,9 @@ Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\crate{\v}{\t}(
 \begin{proof}
 Any elementary set can be expressed in the form
 
-\[\typset = \bigcup_{\it = 1}^n [\tt^\it,\t^\it)\times \typset\sln{\it},\]
+\[\typset = \bigcup_{\it = 1}^n [\tt{\it},\t{\it})\times \typset\sln{\it},\]
 
-where \(\{[\tt^\it,\t^\it):\it=1,\dots,n\}\) are disjoint, if \(\tt^\it = \t^\it = 0\), then \([\tt^\it,\t^\it) = \{0\}\) and \(\typset\sln{\it}\) are all \(\sigma(\crate{\v}{\t}(\s):\s \in \S,\t\in [0,\tt^\it])\)-measurable. 
+where \(\{[\tt{\it},\t{\it}):\it=1,\dots,n\}\) are disjoint, if \(\tt{\it} = \t{\it} = 0\), then \([\tt{\it},\t{\it}) = \{0\}\) and \(\typset\sln{\it}\) are all \(\sigma(\crate{\v}{\t}(\s):\s \in \S,\t\in [0,\tt{\it}])\)-measurable. 
 
 By Lemma \ref{subsec::ProofE:Lem::pleft}, there exists a \(\const{1} < \infty\) such that,
 
@@ -1684,8 +1684,8 @@ Furthermore, since \(\crate{\v}{\t}(\s)\) is a \([0,\const{}]\)-valued process, 
 \tr{This holds even with random times because inequality \eqref{subsec::ProofE:eqn::driftbound} holds for all \(\tt\) almost surely.} Then,
 
 \begin{align*}
-\ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} &= \sum_{\it = 1}^n \mb{I}_{\typset^\it}\ex{\left|\crate{\v}{\t^k}(\s) - \crate{\v}{\tt^k}(\s)\right|}\\
-&\leq \sum_{\it=1}^n \const{1}|\t^\it - \tt^\it| + \const{}\ex{\te{\# of jumps of }\X{\{\v,\root\}}{[\tt^\it,\t^\it)}}\\
+\ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} &= \sum_{\it = 1}^n \mb{I}_{\typset^\it}\ex{\left|\crate{\v}{\t{k}}(\s) - \crate{\v}{\tt{\it}}(\s)\right|}\\
+&\leq \sum_{\it=1}^n \const{1}|\t{\it} - \tt{\it}| + \const{}\ex{\te{\# of jumps of }\X{\{\v,\root\}}{[\tt{\it},\t{\it})}}\\
 &\leq \const{1}\T + \const{}\ex{\te{\# of jumps in }\X{\{\v,\root\}}{[0,\T)}}\\
 &\leq \const{1}\T + 2\const{}^2\T < \infty.
 \end{align*}
@@ -1768,8 +1768,8 @@ Assume \(\mmm{}{}{1}\) is a probability measure on \(\Omega{\tree\sln{1}}{\T-}\)
 The marginal distribution of \(\mmm{}{}{1}\) on \(\Omega{\{\v,\root\}}{\T}\) for \(\v \in \tree\sln{1}\setminus\{\root\}\) is the law of the unique solution to the following SDE:
 
 \begin{align}
-\X{\{\v,\root\}}{\t}{1} = \X{\{\v,\root\}}{0}{1} &+ \ev{\v}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s)]}\int_{(0,t]}\s\,\poiss{\v}(d\tt,d\r,d\s)\nonumber\\
-&+ \ev{\root}\int_\S\int_{(0,\crate{}{}(\X{\{\root,\v\}}{[0,\tt)}{1},\s)]}\int_{(0,t]}\s\,\poiss{\root}(d\tt,d\r,d\s)
+\X{\{\v,\root\}}{\t}{1} = \X{\{\v,\root\}}{0}{1} &+ \ev{\v}\int_\S\int{(0,\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s)]}\int{(0,t]}\s\,\poiss{\v}(d\tt,d\r,d\s)\nonumber\\
+&+ \ev{\root}\int_\S\int{(0,\crate{}{}(\X{\{\root,\v\}}{[0,\tt)}{1},\s)]}\int{(0,t]}\s\,\poiss{\root}(d\tt,d\r,d\s)
 \label{subsec::ProofU:eqn::Marginal}
 \end{align}
 \labe{subsec::ProofU:eqn::Marginal}
@@ -1812,7 +1812,7 @@ Notice that \(\X{}{}{1}\) and \(\rate{}\) satisfy Assumption \ref{subsec::ProofE
 \begin{defn}
 Suppose \(\{\poiss{}\}\) is Poisson process with intensity \(\leb\otimes \Sm\) on \(\mb{R}^2\times \S\). Define,
 
-\[\XX{}{\t} = \XX{}{0} + \int_{(0,\t]}\int_{(0,1]}\int_\S\s\,\poiss{}(d\s,d\r,d\tt).\]
+\[\XX{}{\t} = \XX{}{0} + \int{(0,\t]}\int{(0,1]}\int_\S\s\,\poiss{}(d\s,d\r,d\tt).\]
 
 Let \(\mm{}{}{} = \law(\XX{}{})\). Suppose \(\mmm{\v}{0,}{1}\ll\mm{}{0}{}\) for all \(\v\in\tree\sln{1}\). Let \(\{\mm{\v}{}{}:\v\in V\}\) be the distributions of a sequence of i.i.d. \(\S^{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq  V\), let 
 
@@ -1830,8 +1830,8 @@ For any \(\v \in  V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(
 
 \begin{equation}
 \X{\v}{\t} = \begin{cases}
-\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)},\s)\right]}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n}\setminus \tree\sln{n-1}\\
-\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\rate{}(\X{\cl{\v}}{\tt-},\s\right)}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n-1}
+\X{\v}{0} + \int{(0,\t]}\int_\S\int{\left(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)},\s)\right]}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n}\setminus \tree\sln{n-1}\\
+\X{\v}{0} + \int{(0,\t]}\int_\S\int{\left(0,\rate{}(\X{\cl{\v}}{\tt-},\s\right)}\s\,\poiss{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n-1}
 \end{cases}
 \label{subsec::ProofU:eqn::extendedSDE}
 \end{equation}
@@ -1864,7 +1864,7 @@ Let \(\mm{}{}{1} \defeq \mm{\tree\sln{1}}{}{}\). Then \(\pmap{}(\mm{}{}{1})\) ha
 \ind Define the following mapping,
 
 \begin{align}
-\ds{\v}{\t}(\XXX{}{},f) &\defeq \sum_{0 < \rt{\it}_\v \leq \t} \log{f(\XXX{}{[0,\rt{\it}_\v)},\mark{\it}_\v)} - \int_{(0,\t]\times \S} [f(\XXX{}{[0,\tt)},\s) - 1]\,ds\,\Sm(d\s) \label{subsec::ProofU:eqn::shortdense}\\
+\ds{\v}{\t}(\XXX{}{},f) &\defeq \sum_{0 < \rt{\it}_\v \leq \t} \log{f(\XXX{}{[0,\rt{\it}_\v)},\mark{\it}_\v)} - \int{(0,\t]\times \S} [f(\XXX{}{[0,\tt)},\s) - 1]\,ds\,\Sm(d\s) \label{subsec::ProofU:eqn::shortdense}\\
 f&\te{ is a }[0,\const{}] \te{-valued mapping and } \pmap{\v}(\XXX{}{}) = \{(\rt{\it}_\v,\mark{\it}_\v):\it\in\mb{N}\}.\nonumber
 \end{align} 
 \labe{subsec::ProofU:eqn::shortdense}
@@ -1873,9 +1873,9 @@ Let \(\{(\rt{\it},\mark{\it})\}\) be the events of \(\pmap{}(\X{}{}{1})\). By Le
 
 \begin{align}
 \dense{1}{\t}(\X{\tree\sln{1}}{})&\defeq \frac{d\mmm{}{\t}{1}}{d\mm{}{\t}{1}}\nonumber\\
-&= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\left(\sum_{0< \rt{\it} \leq \t} \log{\ratee{}(\X{}{[0,\rt{\it})}{1},\mark{\it})} - \int_{(0,\t]\times\S} [\ratee{}(\X{}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
-&= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\Bigg(\sum_{\v\in\tree\sln{1}\setminus\{\root\}}\left(\sum_{0< \rt{\it}_\v \leq \t} \log{\crate{}{}(\X{\{\v,\root\}}{[0,\rt{\it}_\v)}{1},\mark{\it})} - \int_{(0,\t]\times\S} [\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
-&\hspace{24pt} + \left(\sum_{0 < \rt{\it}_\root \leq \t} \log{\IGrg{}(\X{\tree\sln{1}}{\rt{\it}_\root-}{1},\mark{\it}_\root)} - \int_{(0,\t]\times\S} [\IGrg{}(\X{\tree\sln{1}}{\tt-}{1},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
+&= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\left(\sum_{0< \rt{\it} \leq \t} \log{\ratee{}(\X{}{[0,\rt{\it})}{1},\mark{\it})} - \int{(0,\t]\times\S} [\ratee{}(\X{}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+&= \frac{d\mmm{}{0}{1}}{d\mm{}{0,}{1}}\exp\Bigg(\sum_{\v\in\tree\sln{1}\setminus\{\root\}}\left(\sum_{0< \rt{\it}_\v \leq \t} \log{\crate{}{}(\X{\{\v,\root\}}{[0,\rt{\it}_\v)}{1},\mark{\it})} - \int{(0,\t]\times\S} [\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+&\hspace{24pt} + \left(\sum_{0 < \rt{\it}_\root \leq \t} \log{\IGrg{}(\X{\tree\sln{1}}{\rt{\it}_\root-}{1},\mark{\it}_\root)} - \int{(0,\t]\times\S} [\IGrg{}(\X{\tree\sln{1}}{\tt-}{1},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
 &= \frac{d\mmm{}{0}{1}}{d\mm{}{0}{1}}\exp\left(\sum_{\v\in\tree\sln{1}\setminus\{\root\}} \ds{\v}{\t}(\X{\{\v,\root\}}{}{1},\crate{}{}) + \ds{\root}{\t}(\X{\tree\sln{1}}{}{1},\IGrg{})\right).
 \label{subsec::ProofU:eqn::L1 density}
 \end{align}
@@ -1943,10 +1943,10 @@ By a simple calculation analogous to what we did earlier to show that \(\dense{1
 Then,
 
 \begin{align*}
-\frac{d\proj{\tree\sln{n-1}}{\t}(\mmm{}{\t}{n})}{d\mm{}{\t}{n-1}} &= \int_{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \frac{d\mmm{}{\t}{n}}{d\mm{}{\t}{n}}\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
-&=\int_{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \dense{n}{\t}(\X{}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
-&= \int_{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
-&= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\int_{\Omega{\c{\v}}{\t-}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\c{\v}}{\t,}{}(d\X{\c{\v}}{}{n})\\
+\frac{d\proj{\tree\sln{n-1}}{\t}(\mmm{}{\t}{n})}{d\mm{}{\t}{n-1}} &= \int{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \frac{d\mmm{}{\t}{n}}{d\mm{}{\t}{n}}\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&=\int{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \dense{n}{\t}(\X{}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&= \int{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\int{\Omega{\c{\v}}{\t-}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\c{\v}}{\t,}{}(d\X{\c{\v}}{}{n})\\
 &= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\exmu{\mm{\c{\v}}{\t,}{}}{\cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})}\\
 &= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n}).
 \end{align*}
@@ -2045,8 +2045,8 @@ Let \(\{\poiss{\v},\alt{\poiss}{\v}:\v\in V\}\) be constructed as above. Then \(
 
 \begin{equation}
 \X{\v}{\t}{n} = \begin{cases}
-\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)}{n},\s)]}\s\alt{\poiss}{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
-\X{\v}{0}{} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{n},\s)]}\s\,\poiss{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n-1}.
+\X{\v}{0}{} + \int{(0,\t]}\int_\S\int{(0,\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\tt)}{n},\s)]}\s\alt{\poiss}{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
+\X{\v}{0}{} + \int{(0,\t]}\int_\S\int{(0,\rate{}(\X{\cl{\v}}{\tt-}{n},\s)]}\s\,\poiss{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n-1}.
 \end{cases}
 \label{subsec::ProofU:eqn::ExtendedSDE_fixedPoisson}
 \end{equation}
@@ -2057,14 +2057,14 @@ By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. B
 \ind Fix any \(\v\in V\). Let \(n\in \mb{N}\) be any natural number such that \(\v\in \tree\sln{n-1}\). Then for any \(\t \in [0,\T)\),
 
 \begin{align*}
-\X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-},\s)]}\s\poiss{\v}(d\r,d\s,d\tt) &= \X{\v}{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate{}(\X{\cl{\v}}{\tt-}{n},\s)]}\s\poiss{\v}(d\r,d\s,d\tt)\\
+\X{\v}{0} + \int{(0,\t]}\int_\S\int{(0,\rate{}(\X{\cl{\v}}{\tt-},\s)]}\s\poiss{\v}(d\r,d\s,d\tt) &= \X{\v}{0} + \int{(0,\t]}\int_\S\int{(0,\rate{}(\X{\cl{\v}}{\tt-}{n},\s)]}\s\poiss{\v}(d\r,d\s,d\tt)\\
 &=\X{\v}{\t}{n} = \X{\v}{\t}.
 \end{align*}
 
 Thus, \(\X{}{}\) is a solution to the coupled equation,
 
 \begin{equation}
-\X{\v}{\t} = \X{\v}{0} + \int_{(0,\t]}\int_\S \int_{(0,\rate{}(\X{}{\tt-},\s)]}\s\,\poiss{\v}(d\r,d\s,d\tt).
+\X{\v}{\t} = \X{\v}{0} + \int{(0,\t]}\int_\S \int{(0,\rate{}(\X{}{\tt-},\s)]}\s\,\poiss{\v}(d\r,d\s,d\tt).
 \label{subsec::ProofU:eqn::XSDE}
 \end{equation}
 \labe{subsec::ProofU:eqn::XSDE}
@@ -2128,7 +2128,7 @@ A Feller process on \(\spce\) is a collection of probability measures \(\{\pr^\x
 
 \item There exists a probability measure \(\mm\in \mc{P}(\spce)\) and a Feller process \(\{\alt{\m}^\x:\x \in \spce\}\) such that 
 
-\[\alt{\m}(\cdot) = \int_{\spce} \alt{\m}^\x(\cdot)\,d\mm(\x).\]
+\[\alt{\m}(\cdot) = \int{\spce} \alt{\m}^\x(\cdot)\,d\mm(\x).\]
 \end{enumerate}
 
 \textbf{Another Remark: } Given a c\`adl\`ag \(\spce\)-valued random process \(\X{}{}\), we say \(\X{}{}\) is Feller if,
@@ -2230,15 +2230,15 @@ By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimens
 
 Thus all of the one-dimensional distributions converge. Assume that,
 
-\[\exmu{\alt{\m}{n}}{g(\XX{t_1},\dots,\XX{t_{k-1}})|\XX{0}=z} \ra \exmu{\alt{\m}}{g(\XX{t_1},\dots,\XX{t_{k-1}})|\XX{0}=z}\]
+\[\exmu{\alt{\m}{n}}{g(\XX{t{1}},\dots,\XX{t{k-1}})|\XX{0}=z} \ra \exmu{\alt{\m}}{g(\XX{t{1}},\dots,\XX{t{k-1}})|\XX{0}=z}\]
 
-\noindent for any continuous function \(g\) and for any \(\{t_1,\dots,t_{k-1}\} \subset [0,T]\). Fix \(0\leq t_1 <t_2 <\cdots < t_k\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
+\noindent for any continuous function \(g\) and for any \(\{t{1},\dots,t{k-1}\} \subset [0,T]\). Fix \(0\leq t{1} <t{2} <\cdots < t{\it}\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
 
 \begin{align}
-\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})|\XX{0} = z}&= \exmu{\alt{\m}{n}}{f_1(\XX{0})f_2(\XX{t_2},\dots,\XX{t_{k}})|\XX{0}=z}\nonumber\\
-&= f_1(z)\exmu{\alt{\m}{n}}{f_2(\XX{t_2},\dots,\XX{t_{k}})|\XX{0}=z}\nonumber\\
-&\os{\te{Induction}}{\ra} f_1(z)\exmu{\alt{\m}}{f_2(\XX{t_2},\dots,\XX{t_{k}})|\XX{0}=z}\nonumber\\
-&= \exmu{\alt{\m}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})|\XX{0}=z}
+\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t{2}},\dots,\XX{t{\it}})|\XX{0} = z}&= \exmu{\alt{\m}{n}}{f_1(\XX{0})f_2(\XX{t{2}},\dots,\XX{t{k}})|\XX{0}=z}\nonumber\\
+&= f_1(z)\exmu{\alt{\m}{n}}{f_2(\XX{t{2}},\dots,\XX{t{k}})|\XX{0}=z}\nonumber\\
+&\os{\te{Induction}}{\ra} f_1(z)\exmu{\alt{\m}}{f_2(\XX{t{2}},\dots,\XX{t{k}})|\XX{0}=z}\nonumber\\
+&= \exmu{\alt{\m}}{f(\XX{0},\XX{t{2}},\dots,\XX{t{\it}})|\XX{0}=z}
 \label{sec::Infin:eqn::zerocase}
 \end{align}
 \labe{sec::Infin:eqn::zerocase}
@@ -2246,27 +2246,27 @@ Thus all of the one-dimensional distributions converge. Assume that,
 So,
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})} &= \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})|\XX{0}}}\\
-&\ra \exmu{\alt{\mm}}{\exmu{\alt{\m}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})|\XX{0}}}\\
-&= \exmu{\alt{\m}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})}
+\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t{2}},\dots,\XX{t{\it}})} &= \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t{2}},\dots,\XX{t{\it}})|\XX{0}}}\\
+&\ra \exmu{\alt{\mm}}{\exmu{\alt{\m}}{f(\XX{0},\XX{t{2}},\dots,\XX{t{\it}})|\XX{0}}}\\
+&= \exmu{\alt{\m}}{f(\XX{0},\XX{t{2}},\dots,\XX{t{\it}})}
 \end{align*}
 
 then,
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{t_1},\dots,\XX{t_k})|\XX{0}=z}&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}{n}}{f(Y_{t_1},\dots,Y_{t_k})|Y_{t_1}=\XX{t_1},Y_0=z}|\XX{0}=z}\\
-&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}{n}}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=\XX{t_1}}|\XX{0}=z}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=\XX{t_1}}|\XX{0}=z}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\alt{\m}}{\exmu{Y\sim \alt{\m}}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=\XX{t_1}}|\XX{0}=z}\\
-&=\exmu{\alt{\m}}{f(\XX{t_1},\dots,\XX{t_k})|\XX{0}=z}
+\exmu{\alt{\m}{n}}{f(\XX{t{1}},\dots,\XX{t{\it}})|\XX{0}=z}&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}{n}}{f(Y_{t{1}},\dots,Y_{t{\it}})|Y_{t{1}}=\XX{t{1}},Y_0=z}|\XX{0}=z}\\
+&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}{n}}{f(Y_{0},\dots,Y_{t{\it}-t{1}})|Y_{0}=\XX{t{1}}}|\XX{0}=z}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}}{f(Y_{0},\dots,Y_{t{\it}-t{1}})|Y_{0}=\XX{t{1}}}|\XX{0}=z}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\alt{\m}}{\exmu{Y\sim \alt{\m}}{f(Y_{0},\dots,Y_{t{\it}-t{1}})|Y_{0}=\XX{t{1}}}|\XX{0}=z}\\
+&=\exmu{\alt{\m}}{f(\XX{t{1}},\dots,\XX{t{\it}})|\XX{0}=z}
 \end{align*}
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{t_1},\dots,\XX{t_k})}&= \exmu{Y\sim \XX{t_1}}{\exmu{\alt{\m}{n}}{f(\XX{t_1},\dots,\XX{t_k})|\XX{t_1}=Y}}\\
-&=\exmu{Y\sim \alt{\m}{n}|_{t_1}}{\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t_2-t_1},\dots,\XX{t_k-t_1})|\XX{0}=Y}}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{Y\sim \alt{\m}{n}|_{t_1}}{\exmu{\m}{f(\XX{0},\XX{t_2-t_1},\dots,\XX{t_k-t_1})|\XX{0}=Y}}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{Y\sim \alt{\m}|_{t_1}}{\exmu{\m}{f(\XX{0},\XX{t_2-t_1},\dots,\XX{t_k-t_1})|\XX{0}=Y}}\\
-&=\exmu{\alt{\m}}{f(\XX{t_1},\dots,\XX{t_k})}
+\exmu{\alt{\m}{n}}{f(\XX{t{1}},\dots,\XX{t{\it}})}&= \exmu{Y\sim \XX{t{1}}}{\exmu{\alt{\m}{n}}{f(\XX{t{1}},\dots,\XX{t{\it}})|\XX{t{1}}=Y}}\\
+&=\exmu{Y\sim \alt{\m}{n}|_{t{1}}}{\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t{2}-t{1}},\dots,\XX{t{\it}-t{1}})|\XX{0}=Y}}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{Y\sim \alt{\m}{n}|_{t{1}}}{\exmu{\m}{f(\XX{0},\XX{t{2}-t{1}},\dots,\XX{t{\it}-t{1}})|\XX{0}=Y}}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{Y\sim \alt{\m}|_{t{1}}}{\exmu{\m}{f(\XX{0},\XX{t{2}-t{1}},\dots,\XX{t{\it}-t{1}})|\XX{0}=Y}}\\
+&=\exmu{\alt{\m}}{f(\XX{t{1}},\dots,\XX{t{\it}})}
 \end{align*}
 
 It follows by induction that the finite-dimensional distributions of \(\alt{\m}{n}\) converge weakly. Note: this proof is similar to the proof of \cite[Theorem 4.2]{Kur81}, but with the details filled in.
@@ -2345,7 +2345,7 @@ Assume that \(\law((\rt{n},\mark{n})|\F{\rt{n-1}})\) is a regular distribution f
 
 \ind Fix \(n\). Suppose \(\XX\) is a \(\spce\)-valued random variable. Let \(\m\) be the law of \(\rp\). Then \(\left([0,\infty)\times \mspce\right)^{n-1}\times\spce\) and \([0,\infty)\times \mspce\) are both Polish spaces, and \(\alt{\m}\) defined by 
 
-\[\alt{\m}((t_n,k_n),(t_i,k_i)_{i=1}^{n-1},z) = \m\left((\rt{i},\mark{i}) = (t_i,k_i)\te{ for } i=1,\dots,n, \XX = z\right)\]
+\[\alt{\m}((t{n},k_n),(t_i,k_i)_{i=1}^{n-1},z) = \m\left((\rt{i},\mark{i}) = (t_i,k_i)\te{ for } i=1,\dots,n, \XX = z\right)\]
 
 is a Borel measure. Therefore, by \cite[Proposition A1.5.III]{DalVer03}, the regular conditional distribution \(\ms{L}((\rt{n},\mark{n})|\F{\rt{n-1}})\) exists.
 \end{proof}
@@ -2410,27 +2410,27 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 %\labe{subsec::Prope:Prop::voidprob}
 %
 %\begin{proof}
-%The proof is similar to the proof of \cite[Lemma 1]{BreMas96}. By Lemma \ref{Subsec::Prope:Lem::easier}, \(M(t) = \rp{}([0,\t]\times \typset) - \int_0^\t \int_{\typset} \ratee{\tt}(\mark{})\,\Sm{}(d\mark{})\,d\tt\) is a Martingale. Then,
+%The proof is similar to the proof of \cite[Lemma 1]{BreMas96}. By Lemma \ref{Subsec::Prope:Lem::easier}, \(M(t) = \rp{}([0,\t]\times \typset) - \int_0^\t \int{\typset} \ratee{\tt}(\mark{})\,\Sm{}(d\mark{})\,d\tt\) is a Martingale. Then,
 %
 %\[\ex{\rp{}(I\times\typset)} = \ex{\int_I\int_\typset \ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t} \os{\te{Tonelli}}{=} \int_I\int_\typset \ex{\ratee{\t}(\mark{})}\,\Sm(d\mark{})\,d\t.\]
 %
 %Let \(\rp{\typset}(\t) \defeq \rp{}([0,\t]\times \typset)\). Since \(\ratee{}\) is bounded, we can assume without loss of generality that \(I = (a,b]\) for some \(0 \leq a < b < \T\). Then,
 %
-%\[\mb{I}_{\rp{}{(a,b]\times \typset} = 0} = 1 - \int_{(a,b]} \mb{I}_{\rp{}((a,\t)\times \typset) = 0}\,\rp{\typset}(d\t).\]
+%\[\mb{I}_{\rp{}{(a,b]\times \typset} = 0} = 1 - \int{(a,b]} \mb{I}_{\rp{}((a,\t)\times \typset) = 0}\,\rp{\typset}(d\t).\]
 %
 %
 %Taking an expectation,
 %
-%\[\pr\left(\rp{}(I\times\typset)=0\right) = 1 - \ex{\int_{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\,\rp{\typset}(d\t)}.\]
+%\[\pr\left(\rp{}(I\times\typset)=0\right) = 1 - \ex{\int{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\,\rp{\typset}(d\t)}.\]
 %
 %\tr{for me: Since \(\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\) is \(\F{}{\t}\)-predictable, we can replace the integral with respect to \(\rp{\typset}\) with an integral with density \(\ratee{}\). To prove this fact, it suffices to show it for elementary predictable functions and then extend to all predictable processes.}
 %
 %\ind Then,
 %
 %\begin{align*}
-%\pr\left(\rp{}(I\times\typset)=0\right) &= 1 - \ex{\int_{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\int_\typset\ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\\
-%& = 1 - \int_{I\times \typset} \pr\left(\rp{}((a,\t)\times\typset) = 0\right)\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.\\
-%& = 1 - \int_{I\times \typset} \pr\left(\rp{}((a,\t]\times\typset) = 0\right)\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.
+%\pr\left(\rp{}(I\times\typset)=0\right) &= 1 - \ex{\int{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\int_\typset\ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\\
+%& = 1 - \int{I\times \typset} \pr\left(\rp{}((a,\t)\times\typset) = 0\right)\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.\\
+%& = 1 - \int{I\times \typset} \pr\left(\rp{}((a,\t]\times\typset) = 0\right)\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.
 %\end{align*}
 %
 %Letting \(f(\t) = \pr(\rp{}((a,\t]\times \typset) = 0)\) and \(g(\t) = \int_A\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times \typset) = 0}\Sm(d\mark{})\), this simplifies to
@@ -2443,7 +2443,7 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 %
 %That is,
 %
-%\[\pr\left(\rp{}(I\times\typset) = 0\right) = \exp\left(-\int_{I\times\typset} \ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t\right).\]
+%\[\pr\left(\rp{}(I\times\typset) = 0\right) = \exp\left(-\int{I\times\typset} \ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t\right).\]
 %
 %\end{proof}
 
@@ -2454,7 +2454,7 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 Let \(\rp\) be a marked process adapted to the filtration \(\F{t} := \F{0}\wedge \FH{t}\) where \(\FH\) is its natural filtration. Let the events and marks of \(\rp\) be given by \(\{(\rt{j},\mark{j})\}\) such that \(\{\rt{j}\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr^i\) be probability measures on the probability space such that \(\rp\) is non-explosive and simple with respect to both probability measures. Let \(\pr^i_t\) be the restriction of \(\pr^i\) to \(\F{t}\). Suppose \(\F{0}\) describes a random variable, \(X\), with law \(\mm^i\) under \(\pr^i\). If \(\rp\) has a strictly positive \(\pr^1,\F\)-predictable intensity \(\rate^1\), then \(\pr^2_t \ll \pr^1_t\) for all \(t \in [0,T]\) if and only if there exists a non-negative, \(\F\)-predictable process \(\m\) such that \(\rp\) admits the \(\F\)-intensity \(\rate^2 = \m\rate^1\) under \(\pr^2\) and \(\mm^2 \ll \mm^1\). When this is satisfied, the likelihood ratio is the \(\pr^1\)-a.s. c\`adl\`ag process defined by 
 
 \begin{equation}
-L_t:= \frac{d\pr^2_t}{d\pr^1_t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\rt^i\leq t} \m(\rt^i,\mark^i)\right)\exp\left(-\int_{(0,t]\times \mspce}[\m(t,\mark) - 1]\rate^1(t,\mark)\,ds\,\ell(d\mark)\right)
+L_t:= \frac{d\pr^2_t}{d\pr^1_t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\rt^i\leq t} \m(\rt^i,\mark^i)\right)\exp\left(-\int{(0,t]\times \mspce}[\m(t,\mark) - 1]\rate^1(t,\mark)\,ds\,\ell(d\mark)\right)
 \label{subsec::Prope:eqn::Lnat}
 \end{equation}
 \labe{subsec::Prope:eqn::Lnat}
@@ -2477,14 +2477,14 @@ Note that for any fixed \(x \in \te{supp}(X)\) and any \(i \in \{1,2\}\), there 
 
 Note that for any fixed \(x\), \(\pr^i_x\) and \(\rp\) satisfy the conditions of \cite[Theorem 14.4.I]{DalVer08}. So,
 
-\[L_t(\rp,x):=\frac{d\pr^2_{t,x}}{d\pr^1_{t,x}}(\rp) = \left(\prod_{0<\rt^i\leq t} \m(\rt^i,\mark^i;\rp,x)\right)\exp\left(-\int_{(0,t]\times\mspce} [\m(s,k;\rp,x) - 1]\rate^1(s,k;\rp,x)\,ds\,\ell(dk)\right)\]
+\[L_t(\rp,x):=\frac{d\pr^2_{t,x}}{d\pr^1_{t,x}}(\rp) = \left(\prod_{0<\rt^i\leq t} \m(\rt^i,\mark^i;\rp,x)\right)\exp\left(-\int{(0,t]\times\mspce} [\m(s,k;\rp,x) - 1]\rate^1(s,k;\rp,x)\,ds\,\ell(dk)\right)\]
 
 Giving us,
 
 \begin{align*}
 \mb{E}^2\left[f(X,\rp[0,t])\right] &= \int_\spce \mb{E}^2_x[f(x,\rp[0,t])]\,d\mm^2(x)\\
-&=\int_{\spce} \mb{E}^1_x[f(x,\rp[0,t])L_t(\rp,x)]\,d\mm^2(x)\\
-&= \int_{\spce} \frac{d\mm^2}{d\mm^1}(x) \mb{E}^1_x[f(x,\rp[0,t])L_t(\rp,x)]\,d\mm^1(x)\\
+&=\int{\spce} \mb{E}^1_x[f(x,\rp[0,t])L_t(\rp,x)]\,d\mm^2(x)\\
+&= \int{\spce} \frac{d\mm^2}{d\mm^1}(x) \mb{E}^1_x[f(x,\rp[0,t])L_t(\rp,x)]\,d\mm^1(x)\\
 &= \mb{E}^1\left[f(X,\rp[0,t])L_t(\rp,X)\frac{d\mm^2}{d\mm^1}\right]
 \end{align*}
 \end{proof}
@@ -2502,7 +2502,7 @@ Let \(G = ( V,E)\) be a finite graph and let \(0 < \const{}< \infty\). Let \(\X{
 \ind Then given any \(\S^ V\)-valued random variable, \(\X{}{0}\), the following SDE has a unique strong solution:
 
 \begin{equation}
-\X{\v}{\t} = \X{0}{\v} + \int_{(0,\t]}\int_\S\int_{(0,\ratee{\tt,\v}(\X{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt)
+\X{\v}{\t} = \X{0}{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee{\tt,\v}(\X{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt)
 \label{subsec::Some:eqn::genfiniteSDE}
 \end{equation}
 \labe{subsec::Some:eqn::genfiniteSDE}
@@ -2615,7 +2615,7 @@ and such that \(\t\mapsto \ratee{\t,\v}(\XX{}{[0,\t)},\sv{}{ V})\) is almost-sur
 
 We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \Omega{}{\t-}\) such that \(\pr(\XX{}{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in  V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
 
-\[\X{\v}{\t} = \X{0}{\v} + \int_{(0,\t]}\int_\S\int_{(0,\ratee{\tt,\v}(\X{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt).\]
+\[\X{\v}{\t} = \X{0}{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee{\tt,\v}(\X{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt).\]
 
 By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap{\v}(\X{}{})\) has \(\X{}{}\)-predictable intensity \(\ratee{\t,\v}(\X{}{[0,\t)},\s)\) for \(\s \in \S\). Then \(\alt{\rp{}} \defeq \pmap{}(\X{}{})\) has \(\X{}{}\)-predictable intensity,
 
@@ -2631,14 +2631,14 @@ By assumption, \(\X{}{0} \deq \XX{}{0}\). Thus, \(\rp{}\) and \(\alt{\rp{}}\) ha
 \begin{lem}
 Assume the notation and assumptions from Lemmas \ref{subsec::Some:Lem::genfiniteSDE} and \ref{subsec::Some:Lem::PPtoSDE} hold under the probability measure \(\m{}{}{}\). Suppose under \(\mm{}{}{}\), \(\X{}{}\) solves,
 
-\[\X{\v}{\t} = \X{\v}{0} +\int_{(0,\t]}\int_\S\int_{(0,1]} \s \poiss{\v}(d\r,d\s,d\tt),\]
+\[\X{\v}{\t} = \X{\v}{0} +\int{(0,\t]}\int_\S\int{(0,1]} \s \poiss{\v}(d\r,d\s,d\tt),\]
 
 where \(\{\X{\v}{0}\}_{\v \in  V}\) are i.i.d uniformly distributed over \(\S\). Let \(\rp{} \defeq \pmap{}(\X{}{}) = \{(\rt{\it},\mark{\it}):\it\in \mb{N}\}\).
 
 \ind Let \(\ov{\ell}\) be the extension of \(\Sm\) to \(\alt{\S} = \{\s\ev{\v}: \s \in \S, \v \in  V\}\) given by \(\alt{\Sm}(\typset\ev{\v}) = \Sm(\typset)\) for any \(\typset \subseteq \S\). Then,
 
 \begin{equation}
-\frac{d\m{}{\t}{}}{d\mm{}{\t}{}}= \frac{d\m{}{0}{}}{d\mm{}{0}{}}\left(\prod_{0< \rt{\it}\leq t} \ratee{\t}(\mark{\it})\right)\exp\left(-\int_{(0,\t]\times \S} (\ratee{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
+\frac{d\m{}{\t}{}}{d\mm{}{\t}{}}= \frac{d\m{}{0}{}}{d\mm{}{0}{}}\left(\prod_{0< \rt{\it}\leq t} \ratee{\t}(\mark{\it})\right)\exp\left(-\int{(0,\t]\times \S} (\ratee{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
 \label{subsec::Some:eqn::radnik}
 \end{equation}
 \labe{subsec::Some:eqn::radnik}
@@ -2784,19 +2784,19 @@ which completes the proof.
 &= \ex{f(\X,\XXX,U)g(\XX,\XXX,V)h(\XXX)}
 \end{align*}
 
-\item First, if \(I\) is finite, then it suffices to prove conditional independence for \(I =\{1,2\}\). Notice that any set \(B \in \sigma(\XXX\mb{I}_{\typset_1\sqcup \typset_2})\) can be expressed as \(B = C\sqcup D\sqcup\{(\typset_1\sqcup \typset_2)^c\}\) or \(B = C\sqcup D\) where \(C\in \sigma(\XXX\mb{I}_{\typset_1})\), \(D \in \sigma(\XXX\mb{I}_{\typset_2})\), \(C \subseteq \typset_1\) and \(D \subseteq \typset_2\). Notice also that the unions defining \(B\) are disjoint unions. Let \(B = C\sqcup D\sqcup \{(\typset_1\sqcup \typset_2)^c\}\).
+\item First, if \(I\) is finite, then it suffices to prove conditional independence for \(I =\{1,2\}\). Notice that any set \(B \in \sigma(\XXX\mb{I}_{\typset{1}\sqcup \typset{2}})\) can be expressed as \(B = C\sqcup D\sqcup\{(\typset{1}\sqcup \typset{2})^c\}\) or \(B = C\sqcup D\) where \(C\in \sigma(\XXX\mb{I}_{\typset{1}})\), \(D \in \sigma(\XXX\mb{I}_{\typset{2}})\), \(C \subseteq \typset{1}\) and \(D \subseteq \typset{2}\). Notice also that the unions defining \(B\) are disjoint unions. Let \(B = C\sqcup D\sqcup \{(\typset{1}\sqcup \typset{2})^c\}\).
 
 \begin{align*}
-\mb{E}\bigg[\ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})|\XXX\mb{I}_{\typset_1\sqcup \typset_2}}&\mb{I}_B\bigg]= \ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})\mb{I}_B}\\
-&= \ex{\mb{I}_Cf(\X\mb{I}_{\typset_1\sqcup \typset_2})} + \ex{\mb{I}_Df(\X\mb{I}_{\typset_1\sqcup \typset_2})} + \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(\X\mb{I}_{\typset_1\sqcup \typset_2})}\\
-&= \ex{\mb{I}_C f(\X\mb{I}_{\typset_1})} + \ex{\mb{I}_D f(\X\mb{I}_{\typset_2})} + \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)}\\
-&= \ex{\mb{I}_{C}\ex{f(\X\mb{I}_{\typset_1})|\XXX\mb{I}_{\typset_1}}} + \ex{\mb{I}_{D}\ex{f(\X\mb{I}_{\typset_2})|\XXX\mb{I}_{\typset_2}}} + \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)}
+\mb{E}\bigg[\ex{f(\X\mb{I}_{\typset{1}\sqcup \typset{2}})|\XXX\mb{I}_{\typset{1}\sqcup \typset{2}}}&\mb{I}_B\bigg]= \ex{f(\X\mb{I}_{\typset{1}\sqcup \typset{2}})\mb{I}_B}\\
+&= \ex{\mb{I}_Cf(\X\mb{I}_{\typset{1}\sqcup \typset{2}})} + \ex{\mb{I}_Df(\X\mb{I}_{\typset{1}\sqcup \typset{2}})} + \ex{\mb{I}_{(\typset{1}\sqcup \typset{2})^c}f(\X\mb{I}_{\typset{1}\sqcup \typset{2}})}\\
+&= \ex{\mb{I}_C f(\X\mb{I}_{\typset{1}})} + \ex{\mb{I}_D f(\X\mb{I}_{\typset{2}})} + \ex{\mb{I}_{(\typset{1}\sqcup \typset{2})^c}f(0)}\\
+&= \ex{\mb{I}_{C}\ex{f(\X\mb{I}_{\typset{1}})|\XXX\mb{I}_{\typset{1}}}} + \ex{\mb{I}_{D}\ex{f(\X\mb{I}_{\typset{2}})|\XXX\mb{I}_{\typset{2}}}} + \ex{\mb{I}_{(\typset{1}\sqcup \typset{2})^c}f(0)}
 \end{align*}
 
 In particular, we can write
 
 \begin{equation}
-\ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})|\XXX\mb{I}_{\typset_1\sqcup \typset_2}} = \mb{I}_{\typset_1}\ex{f(\X\mb{I}_{\typset_1})|\XXX\mb{I}_{\typset_1}} + \mb{I}_{\typset_2}\ex{f(\X\mb{I}_{\typset_2})|\XXX\mb{I}_{\typset_2}} + \mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)
+\ex{f(\X\mb{I}_{\typset{1}\sqcup \typset{2}})|\XXX\mb{I}_{\typset{1}\sqcup \typset{2}}} = \mb{I}_{\typset{1}}\ex{f(\X\mb{I}_{\typset{1}})|\XXX\mb{I}_{\typset{1}}} + \mb{I}_{\typset{2}}\ex{f(\X\mb{I}_{\typset{2}})|\XXX\mb{I}_{\typset{2}}} + \mb{I}_{(\typset{1}\sqcup \typset{2})^c}f(0)
 \label{sec::TL:eqn::disjoint sum CE}
 \end{equation}
 \labe{sec::TL:eqn::disjoint sum CE}
@@ -2804,13 +2804,13 @@ In particular, we can write
 Then,
 
 \begin{align*}
-\mb{E}\bigg[\ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})|\XXX\mb{I}_{\typset_1\sqcup \typset_2}}&g(\XX\mb{I}_{\typset_1\sqcup \typset_2})h(\XXX\mb{I}_{\typset_1\sqcup \typset_2})\bigg]\\
-&= \ex{\mb{I}_{\typset_1}\ex{f(\X\mb{I}_{\typset_1})|\XXX\mb{I}_{\typset_1}}g(\XX\mb{I}_{\typset_1})h(\XXX\mb{I}_{\typset_1})} +\\
-&\hspace{1 cm} \ex{\mb{I}_{\typset_2}\ex{f(\X\mb{I}_{\typset_2})|\XXX\mb{I}_{\typset_2}}g(\XX\mb{I}_{\typset_2})h(\XXX\mb{I}_{\typset_2})} + \\
-&\hspace{1 cm} \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)g(0)h(0)}\\
-&= \ex{\mb{I}_{\typset_1}f(\X\mb{I}_{\typset_1})g(\XX\mb{I}_{\typset_1})h(\XXX\mb{I}_{\typset_1})} + \ex{\mb{I}_{\typset_2}f(\X\mb{I}_{\typset_2})g(\XX\mb{I}_{\typset_2})h(\XXX\mb{I}_{\typset_2})} +\\
-&\hspace{1 cm} \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)g(0)h(0)}\\
-&= \ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})g(\XX\mb{I}_{\typset_1\sqcup \typset_2})h(\XXX\mb{I}_{\typset_1\sqcup \typset_2})}
+\mb{E}\bigg[\ex{f(\X\mb{I}_{\typset{1}\sqcup \typset{2}})|\XXX\mb{I}_{\typset{1}\sqcup \typset{2}}}&g(\XX\mb{I}_{\typset{1}\sqcup \typset{2}})h(\XXX\mb{I}_{\typset{1}\sqcup \typset{2}})\bigg]\\
+&= \ex{\mb{I}_{\typset{1}}\ex{f(\X\mb{I}_{\typset{1}})|\XXX\mb{I}_{\typset{1}}}g(\XX\mb{I}_{\typset{1}})h(\XXX\mb{I}_{\typset{1}})} +\\
+&\hspace{1 cm} \ex{\mb{I}_{\typset{2}}\ex{f(\X\mb{I}_{\typset{2}})|\XXX\mb{I}_{\typset{2}}}g(\XX\mb{I}_{\typset{2}})h(\XXX\mb{I}_{\typset{2}})} + \\
+&\hspace{1 cm} \ex{\mb{I}_{(\typset{1}\sqcup \typset{2})^c}f(0)g(0)h(0)}\\
+&= \ex{\mb{I}_{\typset{1}}f(\X\mb{I}_{\typset{1}})g(\XX\mb{I}_{\typset{1}})h(\XXX\mb{I}_{\typset{1}})} + \ex{\mb{I}_{\typset{2}}f(\X\mb{I}_{\typset{2}})g(\XX\mb{I}_{\typset{2}})h(\XXX\mb{I}_{\typset{2}})} +\\
+&\hspace{1 cm} \ex{\mb{I}_{(\typset{1}\sqcup \typset{2})^c}f(0)g(0)h(0)}\\
+&= \ex{f(\X\mb{I}_{\typset{1}\sqcup \typset{2}})g(\XX\mb{I}_{\typset{1}\sqcup \typset{2}})h(\XXX\mb{I}_{\typset{1}\sqcup \typset{2}})}
 \end{align*}
 
 Now suppose \(I\) is countably infinite. Without loss of generality, assume \(I = \mb{N}\). Furthermore, assume \(f(0) = g(0) = h(0) = 0\).
@@ -2909,13 +2909,13 @@ This contradicts concavity of \(\psi\). Thus, \(\psi\) is continuous.
 \lin
 
 \begin{defn}
-Let \(\{t_i\}\) be denote a finite set of times \(0=t_0 <t_1 <\cdots < t_n=1\). Let \(\X\in \cad([0,T],\spce)\) where \(\spce\) is a separable and complete space with respect to the metric \(d\). Define,
+Let \(\{t_i\}\) be denote a finite set of times \(0=t_0 <t{1} <\cdots < t{n}=1\). Let \(\X\in \cad([0,T],\spce)\) where \(\spce\) is a separable and complete space with respect to the metric \(d\). Define,
 
-\[\modu{\X}([t_{i-1},t_i)) = \sup_{\tt,\t\in [t_{i-1},t_i)} d(\X{t},\X{\tt}).\]
+\[\modu{\X}([t{i-1},t_i)) = \sup_{\tt,\t\in [t{i-1},t_i)} d(\X{t},\X{\tt}).\]
 
 Then for all \(\delta \in (0,T)\),
 
-\[\cmodu{\X}(\delta) = \inf_{\{t_i\}: \min_i |t_i - t_{i-1}| > \delta} \max_{i} \modu{\X}([t_{i-1},t_i))\]
+\[\cmodu{\X}(\delta) = \inf_{\{t_i\}: \min_i |t_i - t{i-1}| > \delta} \max_{i} \modu{\X}([t{i-1},t_i))\]
 
 is called the c\`adl\`ag modulus of continuity.
 \label{sec::TL:Def::modulus}
