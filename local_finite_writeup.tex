@@ -74,8 +74,8 @@
 \renewcommand{\tt}{s}							%typical time 2
 \newcommand{\ttt}{s'}							%typical time 3
 \newcommand{\F}{\mc{F}}							%Filtrations
-\newcommand{\FG}[2]{\mc{G}}						%Filtrations
-\newcommand{\FH}[2]{\mc{H}}						%Filtrations
+\newcommand{\FG}{\mc{G}}						%Filtrations
+\newcommand{\FH}{\mc{H}}						%Filtrations
 \newcommand{\X}{X}								%typ random process
 \newcommand{\IG}{\mc{A}}						%Infinitesimal gens
 \newcommand{\IGr}{c}							%IG rate
@@ -155,7 +155,7 @@
 
 %Section 5.1
 %Base commands
-\newcommand{\pmap}[1]{\Gamma_{#1}}				%Markov to MPP	
+\newcommand{\pmap}{\Gamma}				%Markov to MPP	
 \renewcommand{\mark}{\kappa}					%Typical mark
 \newcommand{\rp}{P}								%typ point process
 \newcommand{\Tset}{\alt{T}}						%finite time subset
@@ -171,20 +171,26 @@
 \renewcommand{\c}{c}							%child function
 \newcommand{\p}{p}								%parent function
 
-\newcommand{\xvtt}[2]{y_{#1}{(#2)}}					%typ path val2
-\newcommand{\xvttt}[2]{z_{#1}{(#2)}}				%typ path val3
+%Appendix A
+%Base Commands
+\newcommand{\spce}{\mc{X}}						%arbitrary space
+\newcommand{\xx}{y}								%typ path val2
+\newcommand{\xxx}{z}							%typ path val3
 
-\newcommand{\xvtts}[2]{y_{#1}{#2}}					%typ path 2
-\newcommand{\xvttts}[2]{z_{#1}{#2}}					%typ path 3
+%Appendix B
+%Base Commands
+\newcommand{\evs}{E}							%Set of events
+\newcommand{\mspce}{\mc{K}}						%Mark space
+\newcommand{\rpg}{\rp_g}						%ground process
 
-
-
-
+%Appendix C
+%Base commands
+\newcommand{\dist}{d}							%general metric
 
 
 \newcommand{\cratee}[2]{\alt{\Lambda}_{#1}^{#2}} 	%general conditional rate
 
-\newcommand{\dist}{d}								%general metric
+
 
 
 
@@ -197,7 +203,6 @@
 
 
 \newcommand{\mtop}{\Lambda}						%Markov to point
-\newcommand{\spce}{\mc{X}}						%arbitrary space
 
 
 \newcommand{\inte}{I}							%Interval
@@ -280,15 +285,15 @@ Macro Command & Arguments & Symbol & Meaning\\\hline
 \tbs cad&0&\(\cad\)							&Cadlag space\\
 \tbs OmegaV&2&\(\Omega{\v}{\t}\)			&Path space\\
 \tbs piV&2&\(\proj{\U}{t}\)					&projection\\
-\tbs xvtt&2&\(\xvtt{\v}{\t}\)					&typ path val2\\
-\tbs xvttt&2&\(\xvttt{\v}{\t}\)				&typ path val3\\
+\tbs xvtt&2&\(\xx{\v}{\t}\)					&typ path val2\\
+\tbs xvttt&2&\(\xxx{\v}{\t}\)				&typ path val3\\
 \tbs rxvt&2&\(\X{\v}{\t}\)					&typ rand path val\\
 \tbs rxvtn&3&\(\X{\v}{\t}{n}\)		&typ rp val sublim\\
 \tbs rxvtt&2&\(\XX{\v}{\t}\)				&typ rand path val2\\
 \tbs rxvttn&3&\(\XX{\v}{\t}{n}\)		&typ rp val sublim 2\\
 \tbs rxvttt&2&\(\XXX{\v}{\t}\)				&typ rand path val3\\
-\tbs xvtts&2&\(\xvtts{\v}{[0,\t]}\)					&typ path 2\\
-\tbs xvttts&2&\(\xvttts{\v}{[0,\t]}\)					&typ path 3\\
+\tbs xvtts&2&\(\xx{\v}{[0,\t]}\)					&typ path 2\\
+\tbs xvttts&2&\(\xxx{\v}{[0,\t]}\)					&typ path 3\\
 \tbs rxvts&2&\(\X{\v}{[0,\t]}\)					&typ rand path\\
 \tbs rxvtsn&3&\(\X{\v}{[0,\t]}{n}\)	&typ rpath sublim\\
 \tbs rxvtts&2&\(\XX{\v}{[0,\t]}\)					&typ rand path 2\\
@@ -2067,29 +2072,48 @@ Thus, \(\X{}{}\) is a solution to the coupled equation,
 However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m{}{}{}\). Thus, \(\mmm{}{}{} = \m{}{}{}\). We conclude that \(\mmm{}{}{1} = \proj{\tree\sln{1}}{\T-}(\m{}{}{})\).
 
 \end{proof}
+
+\section{Analysis of Assumptions}
+
+\begin{description}
+\item[Graphs: ] Graph is assumed to be an infinite regular tree
+
+I have a method to expand the class of graphs to which this applies a bit. Unfortunately, there are some problems with the proof of uniqueness once the tree structure disappears. It may also be possible to extend to random graph structure.
+
+\item[Sublimit graphs: ] Sublimit graphs are assumed to be trees which grow in a regular fashion to the entire graph. This is not a good assumption. Try to extend more generally. Use local weak convergence.
+
+\item[Full process: ] The full process is assumed to be Feller with infinitesimal generator of the form,
+
+\[\IG f(\sv{}{ V}) = \sum_{\v \in  V}\sum_{\s \in \S} \IGr{\v}(\sv{}{ V},\s)[f(\sv{}{ V} + \s \ev{\v}) - f(\sv{}{ V})].\]
+
+This is somewhat restrictive and fails in certain load balancing schemes where jobs move between queues (so 2 nodes change simultaneously). Consider general jumps. Also, the state-space \(\S\) is assumed to be finite. Consider making it countable (for load balancing). Finally, consider the case when the full process is not Markov or the initial conditions are not i.i.d.
+
+\item[Conditional Independence: ] We assume the graph has bounded degree. We assume the double neighborhood is finite. This works well in trees but may fail in general, especially for other applications which look at the conditional independence of infinite sets.
+\end{description}
+
 \newpage
 \appendix
 
 \section{Infinitesimal Generators}
 \label{sec::Infin}\labe{sec::Infin}
 
-Let \(\mc{X}\) be a compact and countable set. \tr{For most of the paper, \(\mc{X} = S^V\) which is compact with respect to the topology of componentwise convergence.}
+Let \(\spce\) be a compact and countable set. \tr{For most of the paper, \(\spce = S^V\) which is compact with respect to the topology of componentwise convergence.}
 
-Let \(\mc{C}(\mc{X})= \{f:\mc{X} \ra \mb{R} \te{ continuous}\}\).
+Let \(\cont(\spce)= \{f:\spce \ra \mb{R} \te{ continuous}\}\).
 
 \lin
 
 \begin{defn}
-A Feller process on \(\mc{X}\) is a collection of probability measures \(\{\pr^x:x \in \mc{X}\}\) on \(\cad([0,\infty),\mc{X})\) with canonical process \(X\) such that
+A Feller process on \(\spce\) is a collection of probability measures \(\{\pr^\x:\x \in \spce\}\) on \(\cad([0,\infty),\spce)\) with canonical process \(\X\) such that
 
 \begin{enumerate}[(a)]
-\item \(\pr^x(X_0 = x) = 1\) for all \(x \in \mc{X}\).
+\item \(\pr^\x(\X{0} = \x) = 1\) for all \(\x \in \spce\).
 
-\item The mapping \(x \mapsto \pr^x(A)\) is measurable for every \(\sigma(X)\)-measurable set \(A\).
+\item The mapping \(\x \mapsto \pr^\x(\typset)\) is measurable for every \(\sigma(\X)\)-measurable set \(\typset\).
 
-\item \(\pr^x(X_{s+\cdot} \in A|X_r:r \in [0,s]) = \pr^{X_s}(A)\) for all \(A \in \sigma(X)\) and \(x \in \mc{X}\).
+\item \(\pr^\x(\X{\tt+\cdot} \in \typset|\X{\ttt}:\ttt \in [0,\tt]) = \pr{\X{\tt}}(\typset)\) for all \(\typset \in \sigma(\X)\) and \(\x \in \spce\).
 
-\item For all \(f\in \mc{C}(\mc{X})\), the mapping \(x\mapsto \mb{E}^x[f(X_t)]\) is also continuous.
+\item For all \(\f\in \cont(\spce)\), the mapping \(\x\mapsto \exmu{\x}{\f(\X_{\t})}\) is also continuous.
 \end{enumerate}
 \label{sec::Infin:Def::Feller}
 \end{defn}
@@ -2097,19 +2121,19 @@ A Feller process on \(\mc{X}\) is a collection of probability measures \(\{\pr^x
 
 \textbf{Source: } This definition is adapted from \cite[Definition 1.1,1.2]{Lig85}.
 
-\textbf{Remark: } We will also refer to a probability measure \(\mu \in \mc{P}(\cad([0,T],\mc{X}))\) as Feller if
+\textbf{Remark: } We will also refer to a probability measure \(\m \in \mc{P}(\cad([0,\T],\spce))\) as Feller if
 
 \begin{enumerate}[(a)]
-\item There exists an measure \(\ov{\mu}\in \mc{P}(\cad([0,\infty),\mc{X}))\) such that \(\ov{\mu}|_{\cad([0,T],\mc{X})} = \mu\).
+\item There exists an measure \(\alt{\m}\in \mc{P}(\cad([0,\infty),\spce))\) such that \(\alt{\m}|_{\cad([0,T],\spce)} = \m\).
 
-\item There exists a probability measure \(\nu\in \mc{P}(\mc{X})\) and a Feller process \(\{\ov{\mu}^x:x \in \mc{X}\}\) such that 
+\item There exists a probability measure \(\mm\in \mc{P}(\spce)\) and a Feller process \(\{\alt{\m}^\x:\x \in \spce\}\) such that 
 
-\[\ov{\mu}(\cdot) = \int_{\mc{X}} \ov{\mu}^x(\cdot)\,d\nu(x).\]
+\[\alt{\m}(\cdot) = \int_{\spce} \alt{\m}^\x(\cdot)\,d\mm(\x).\]
 \end{enumerate}
 
-\textbf{Another Remark: } Given a c\`adl\`ag \(\mc{X}\)-valued random process \(\X{}{}\), we say \(\X{}{}\) is Feller if,
+\textbf{Another Remark: } Given a c\`adl\`ag \(\spce\)-valued random process \(\X{}{}\), we say \(\X{}{}\) is Feller if,
 
-\[\left\{\law\left(\X{}{}\middle|\X{}{0} = \x{}{}\right): \x{}{} \in \mc{X}\right\}\]
+\[\left\{\law\left(\X{}{}\middle|\X{}{0} = \x{}{}\right): \x{}{} \in \spce\right\}\]
 
 satisfies Definition \ref{sec::Infin:Def::Feller}.
 
@@ -2118,18 +2142,18 @@ satisfies Definition \ref{sec::Infin:Def::Feller}.
 \lin
 
 \begin{defn}
-An infinitesimal generator is a (possibly unbounded) linear operator \(\IG{}\) on the space of continuous functions \(\mc{C}(\mc{X})\) paired with a dense domain \(\mc{D}(\IG{}) \subseteq \mc{C}(\mc{X})\) satisfying the following properties:
+An infinitesimal generator is a (possibly unbounded) linear operator \(\IG{}\) on the space of continuous functions \(\cont(\spce)\) paired with a dense domain \(\core(\IG{}) \subseteq \cont(\spce)\) satisfying the following properties:
 
 \begin{enumerate}
 \item If \(f \in \mc{D}(\IG{})\), \(a \geq 0\) and \(g:= f - a\IG{} f\), then 
 
-\[\inf_{x \in S} f(x) \geq \inf_{x \in S} g(x)\]
+\[\inf_{\x \in \spce} f(\x) \geq \inf_{\x \in \spce} g(\x)\]
 
 \noindent In particular, this implies that \(\|f\| \leq \|f - a\IG{} f\|\).
 
-\item For all sufficiently small \(a > 0\), \(I - a\IG{}\) is surjective as a mapping from \(\mc{D}(\IG{})\) to \(\mc{C}(\mc{X})\).
+\item For all sufficiently small \(a > 0\), \(I - a\IG{}\) is surjective as a mapping from \(\mc{D}(\IG{})\) to \(\cont(\spce)\).
 
-\item \(1 \in \mc{D}(\IG{})\) and \(\IG{} 1 = 0\).
+\item \(1 \in \core(\IG{})\) and \(\IG{} 1 = 0\).
 \end{enumerate}
 \label{sec::Infin:Def::IG}
 \end{defn}
@@ -2142,10 +2166,10 @@ An infinitesimal generator is a (possibly unbounded) linear operator \(\IG{}\) o
 \lin
 
 \begin{thms}
-There is a bijection between infinitesimal generators and Feller processes. Furthermore, the infinitesimal generator \(\IG{}\) can be obtained from the Feller process \(\mu\) by the following relation:
+There is a bijection between infinitesimal generators and Feller processes. Furthermore, the infinitesimal generator \(\IG{}\) can be obtained from the Feller process \(\m\) by the following relation:
 
 \begin{equation}
-\mc{A}f(x) = \lim_{t\searrow 0} \frac{1}{t}\left(\mb{E}^\mu[f(X_t)|X_0=x] - f(x)\right)
+\IG f(\x) = \lim_{\t\searrow 0} \frac{1}{\t}\left(\exmu{\m}{f(\X{t})|\X{0}=\x} - f(\x)\right)
 \label{sec::Infin:eqn::FellerIG}
 \end{equation}
 \labe{sec::Infin:eqn::FellerIG}
@@ -2172,11 +2196,11 @@ Let \(\IG{}\) be an infinitesimal generator. A dense subset \(\core\subset \core
 \lin
 
 \begin{thms}[Trotter-Kurtz]
-Suppose \(\IG{n}\) and \(\IG{}\) are generators of Feller processes \(\mu_n\) and \(\mu\) respectively. If there is a core \(\core\) for \(\IG{}\) such that \(\core \subset \mc{D}(\IG{n})\) for all \(n\) and \(\IG{n} f \ra \IG{} f\) for all \(f \in \core\), then 
+Suppose \(\IG{n}\) and \(\IG{}\) are generators of Feller processes \(\m{n}\) and \(\m\) respectively. If there is a core \(\core\) for \(\IG{}\) such that \(\core \subset \mc{D}(\IG{n})\) for all \(n\) and \(\IG{n} f \ra \IG{} f\) for all \(f \in \core\), then 
 
-\[\exmu{\mu_n}{f(Z_t)|Z_0=\cdot} \ra \exmu{\mu}{f(Z_t)|Z_0=\cdot}\]
+\[\exmu{\m{n}}{f(\XX{}{t})|\XX{0}=\cdot} \ra \exmu{\mu}{f(\XX{t})|\XX{0}=\cdot}\]
 
-uniformly in \(t\) for all \(f \in \mc{C}(\mc{X})\).
+uniformly in \(t\) for all \(f \in \cont(\spce)\).
 \label{sec::Infin:Thm::TrotterKurtz}
 \end{thms}
 \labe{sec::Infin:Thm::TrotterKurtz}
@@ -2188,7 +2212,7 @@ uniformly in \(t\) for all \(f \in \mc{C}(\mc{X})\).
 \lin
 
 \begin{coro}
-In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, suppose that \(\{\mu_n\}\) are tight and that \((\mu_n)_0 \Rightarrow \mu_0\). Then \(\mu_n \Rightarrow \mu'\).
+In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, suppose that \(\{\m{n}\}\) are tight and that \((\m{n}){0} \Rightarrow \m{0}\). Then \(\m{n} \Rightarrow \alt{\m}\).
 \label{sec::Infin:Cor::Convergence}
 \end{coro}
 \labe{sec::Infin:Cor::Convergence}
@@ -2198,23 +2222,23 @@ In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, sup
 \pfsum Use the same methods as in the proof of \cite[Theorem 4.2]{Kur81} to show weak convergence of the finite dimensional distributions. Apply \cite[Theorem 13.1]{Bil99} to get weak convergence.
 
 \begin{proof}
-By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\mu'_n\). Let the initial conditions (i.e. restriction to time 0) of \(\mu'_n\) be denoted \(\nu'_n\) and let \(\nu'\) denote the initial condition of \(\mu'\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(S'\) is compact) function from \((S')^k\ra\mb{R}\). Since \(\mu'_n\) are Feller, \(\exmu{\mu'_n}{f(Z_t)|Z_0 = \cdot}\) is continuous for all \(t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f_i(z_1)g_i(z_2,\dots,z_k)\). By monotone convergence, we can assume without loss of generality that \(f(z_1,\dots,z_k) = f_1(z_1)f_2(z_2,\dots,z_k)\).
+By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\alt{\m}{n}\). Let the initial conditions (i.e. restriction to time 0) of \(\alt{\m}{n}\) be denoted \(\alt{\mm}{n}\) and let \(\alt{\mm}\) denote the initial condition of \(\alt{\m}\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(\spce\) is compact) function from \(\spce^k\ra\mb{R}\). Since \(\alt{\m}{n}\) are Feller, \(\exmu{\alt{\m}{n}}{f(\XX{t})|\XX{0} = \cdot}\) is continuous for all \(t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f_i(\xx{1})g_i(\xx{2},\dots,\xx{\it})\). By monotone convergence, we can assume without loss of generality that \(f(\xx{1},\dots,\xx{\it}) = f_1(\xx{1})f_2(\xx{2},\dots,\xx{\it})\).
 
-\ind By Theorem \ref{sec::Infin:Thm::TrotterKurtz}, \(\exmu{\mu'_n}{f(Z_t)|Z_0} \ra \exmu{\mu'}{f(Z_t)|Z_0}\). Then, by bounded convergence and convergence of the initial condition,
+\ind By Theorem \ref{sec::Infin:Thm::TrotterKurtz}, \(\exmu{\alt{\m}{n}}{f(\XX{t})|\XX{0}} \ra \exmu{\alt{\m}}{f(\XX{t})|\XX{0}}\). Then, by bounded convergence and convergence of the initial condition,
 
-\[\exmu{\mu'_n}{f(Z_t)}  = \exmu{\nu'_n}{\exmu{\mu'_n}{f(Z_t)|Z_0}} \ra \exmu{\nu'_n}{\exmu{\mu'}{f(Z_t)|Z_0}} \ra \exmu{\nu'}{\exmu{\mu'}{f(Z_t)|Z_0}} = \exmu{\mu'}{f(Z_t)}\]
+\[\exmu{\alt{\m}{n}}{f(\XX{t})}  = \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}{n}}{f(\XX{t})|\XX{0}}} \ra \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}}{f(\XX{t})|\XX{0}}} \ra \exmu{\alt{\mm}}{\exmu{\alt{\m}}{f(\XX{t})|\XX{0}}} = \exmu{\alt{\m}}{f(\XX{t})}\]
 
 Thus all of the one-dimensional distributions converge. Assume that,
 
-\[\exmu{\mu'_n}{g(Z_{t_1},\dots,Z_{t_{k-1}})|Z_0=z} \ra \exmu{\mu'}{g(Z_{t_1},\dots,Z_{t_{k-1}})|Z_0=z}\]
+\[\exmu{\alt{\m}{n}}{g(\XX{t_1},\dots,\XX{t_{k-1}})|\XX{0}=z} \ra \exmu{\alt{\m}}{g(\XX{t_1},\dots,\XX{t_{k-1}})|\XX{0}=z}\]
 
 \noindent for any continuous function \(g\) and for any \(\{t_1,\dots,t_{k-1}\} \subset [0,T]\). Fix \(0\leq t_1 <t_2 <\cdots < t_k\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
 
 \begin{align}
-\exmu{\mu'_n}{f(Z_{0},Z_{t_2},\dots,Z_{t_k})|Z_0 = z}&= \exmu{\mu'_n}{f_1(Z_{0})f_2(Z_{t_2},\dots,Z_{t_{k}})|Z_0=z}\nonumber\\
-&= f_1(z)\exmu{\mu'_n}{f_2(Z_{t_2},\dots,Z_{t_{k}})|Z_0=z}\nonumber\\
-&\os{\te{Induction}}{\ra} f_1(z)\exmu{\mu'}{f_2(Z_{t_2},\dots,Z_{t_{k}})|Z_0=z}\nonumber\\
-&= \exmu{\mu'}{f(Z_0,Z_{t_2},\dots,Z_{t_k})|Z_0=z}
+\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})|\XX{0} = z}&= \exmu{\alt{\m}{n}}{f_1(\XX{0})f_2(\XX{t_2},\dots,\XX{t_{k}})|\XX{0}=z}\nonumber\\
+&= f_1(z)\exmu{\alt{\m}{n}}{f_2(\XX{t_2},\dots,\XX{t_{k}})|\XX{0}=z}\nonumber\\
+&\os{\te{Induction}}{\ra} f_1(z)\exmu{\alt{\m}}{f_2(\XX{t_2},\dots,\XX{t_{k}})|\XX{0}=z}\nonumber\\
+&= \exmu{\alt{\m}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})|\XX{0}=z}
 \label{sec::Infin:eqn::zerocase}
 \end{align}
 \labe{sec::Infin:eqn::zerocase}
@@ -2222,30 +2246,30 @@ Thus all of the one-dimensional distributions converge. Assume that,
 So,
 
 \begin{align*}
-\exmu{\mu'_n}{f(Z_0,Z_{t_2},\dots,Z_{t_k})} &= \exmu{\nu'_n}{\exmu{\mu'_n}{f(Z_0,Z_{t_2},\dots,Z_{t_k})|Z_0}}\\
-&\ra \exmu{\nu'}{\exmu{\mu'}{f(Z_0,Z_{t_2},\dots,Z_{t_k})|Z_0}}\\
-&= \exmu{\mu'}{f(Z_0,Z_{t_2},\dots,Z_{t_k})}
+\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})} &= \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})|\XX{0}}}\\
+&\ra \exmu{\alt{\mm}}{\exmu{\alt{\m}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})|\XX{0}}}\\
+&= \exmu{\alt{\m}}{f(\XX{0},\XX{t_2},\dots,\XX{t_k})}
 \end{align*}
 
 then,
 
 \begin{align*}
-\exmu{\mu'_n}{f(Z_{t_1},\dots,Z_{t_k})|Z_0=z}&=\exmu{Z\sim\mu'_n}{\exmu{Y\sim \mu'_n}{f(Y_{t_1},\dots,Y_{t_k})|Y_{t_1}=Z_{t_1},Y_0=z}|Z_0=z}\\
-&=\exmu{Z\sim\mu'_n}{\exmu{Y\sim \mu'_n}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=Z_{t_1}}|Z_0=z}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{Z\sim\mu'_n}{\exmu{Y\sim \mu'}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=Z_{t_1}}|Z_0=z}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{Z\sim\mu'}{\exmu{Y\sim \mu'}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=Z_{t_1}}|Z_0=z}\\
-&=\exmu{\mu'}{f(Z_{t_1},\dots,Z_{t_k})|Z_0=z}
+\exmu{\alt{\m}{n}}{f(\XX{t_1},\dots,\XX{t_k})|\XX{0}=z}&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}{n}}{f(Y_{t_1},\dots,Y_{t_k})|Y_{t_1}=\XX{t_1},Y_0=z}|\XX{0}=z}\\
+&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}{n}}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=\XX{t_1}}|\XX{0}=z}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\alt{\m}{n}}{\exmu{Y\sim \alt{\m}}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=\XX{t_1}}|\XX{0}=z}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\alt{\m}}{\exmu{Y\sim \alt{\m}}{f(Y_{0},\dots,Y_{t_k-t_1})|Y_{0}=\XX{t_1}}|\XX{0}=z}\\
+&=\exmu{\alt{\m}}{f(\XX{t_1},\dots,\XX{t_k})|\XX{0}=z}
 \end{align*}
 
 \begin{align*}
-\exmu{\mu'_n}{f(Z_{t_1},\dots,Z_{t_k})}&= \exmu{Y\sim Z_{t_1}}{\exmu{\mu'_n}{f(Z_{t_1},\dots,Z_{t_k})|Z_{t_1}=Y}}\\
-&=\exmu{Y\sim \mu'_n|_{t_1}}{\exmu{\mu'_n}{f(Z_{0},Z_{t_2-t_1},\dots,Z_{t_k-t_1})|Z_0=Y}}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{Y\sim \mu'_n|_{t_1}}{\exmu{\mu}{f(Z_{0},Z_{t_2-t_1},\dots,Z_{t_k-t_1})|Z_0=Y}}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{Y\sim \mu'|_{t_1}}{\exmu{\mu}{f(Z_{0},Z_{t_2-t_1},\dots,Z_{t_k-t_1})|Z_0=Y}}\\
-&=\exmu{\mu'}{f(Z_{t_1},\dots,Z_{t_k})}
+\exmu{\alt{\m}{n}}{f(\XX{t_1},\dots,\XX{t_k})}&= \exmu{Y\sim \XX{t_1}}{\exmu{\alt{\m}{n}}{f(\XX{t_1},\dots,\XX{t_k})|\XX{t_1}=Y}}\\
+&=\exmu{Y\sim \alt{\m}{n}|_{t_1}}{\exmu{\alt{\m}{n}}{f(\XX{0},\XX{t_2-t_1},\dots,\XX{t_k-t_1})|\XX{0}=Y}}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{Y\sim \alt{\m}{n}|_{t_1}}{\exmu{\m}{f(\XX{0},\XX{t_2-t_1},\dots,\XX{t_k-t_1})|\XX{0}=Y}}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{Y\sim \alt{\m}|_{t_1}}{\exmu{\m}{f(\XX{0},\XX{t_2-t_1},\dots,\XX{t_k-t_1})|\XX{0}=Y}}\\
+&=\exmu{\alt{\m}}{f(\XX{t_1},\dots,\XX{t_k})}
 \end{align*}
 
-It follows by induction that the finite-dimensional distributions of \(\mu'_n\) converge weakly. Note: this proof is similar to the proof of \cite[Theorem 4.2]{Kur81}, but with the details filled in.
+It follows by induction that the finite-dimensional distributions of \(\alt{\m}{n}\) converge weakly. Note: this proof is similar to the proof of \cite[Theorem 4.2]{Kur81}, but with the details filled in.
 \end{proof}
 
 \lin 
@@ -2259,7 +2283,7 @@ It follows by induction that the finite-dimensional distributions of \(\mu'_n\) 
 \lin
 
 \begin{defn}
-Let \(\mc{X}\) be a Polish space. Let \(Y\) be a random non-negative integer valued measure on \(\mc{X}\) such that \(\sup_{x \in \mc{X}} Y(\{x\})\leq 1\) almost surely. Then \(Y\) is called a simple point process on \(\mc{X}\) and the random set \(E = \{x \in \mc{X}: Y(\{x\}) = 1\}\) is the set of events in \(\mc{X}\). In the case where \(\mc{X} \subseteq [0,\infty)\), we use the notation \(Y_t := Y([0,t])\). We also use the notation \(E = \{\tau_i\}_{i=1}^{\infty}\) where \(\tau_i < \tau_{i+1}\) almost surely for all \(i\). We will use \(E = \{t_i\}\) to denote a sample from \(\{\tau_i\}\).
+Let \(\spce\) be a Polish space. Let \(\rp\) be a random non-negative integer valued measure on \(\spce\) such that \(\sup_{\x \in \spce} \rp(\{\x\})\leq 1\) almost surely. Then \(\rp\) is called a simple point process on \(\spce\) and the random set \(E = \{\x \in \spce: \rp(\{\x\}) = 1\}\) is the set of events in \(\spce\). In the case where \(\spce \subseteq [0,\infty)\), we use the notation \(\rp{t} := \rp([0,t])\). We also use the notation \(\evs = \{\rt{i}\}_{i=1}^{\infty}\) where \(\rt{i} < \rt{i+1}\) almost surely for all \(i\). We will use \(\evs = \{t_i\}\) to denote a sample from \(\{\rt{i}\}\).
 \label{subsec::Prope:Def::SPP}
 \end{defn}
 \labe{subsec::Prope:Def::SPP}
@@ -2271,7 +2295,7 @@ Let \(\mc{X}\) be a Polish space. Let \(Y\) be a random non-negative integer val
 \lin
 
 \begin{defn}
-Let \(\mc{K}\) be a Polish space. Let \(Y\) be a simple point process on \([0,\infty)\times \mc{K}\). Define \(Y_g\) by \(Y_g(A) = Y(A\times \mc{K})\) for all \(A \in \ms{B}([0,\infty))\). If \(Y_g\) is a simple point process on \([0,\infty)\), then \(Y\) is a simple marked point process on \([0,\infty)\times \mc{K}\). If \((t,k) \in E\), then we call \(t\) an event of \(Y\) and \(k\) is the corresponding mark. We will generally write \(E = \{(\tau_i,\kappa_i)\}_{i=1}^{\infty}\) where \(\tau_i < \tau_{i+1}\) almost surely for all \(i\). Sample events are written as \(E = \{(t_i,k_i)\}\). 
+Let \(\mspce\) be a Polish space. Let \(\rp\) be a simple point process on \([0,\infty)\times \mspce\). Define \(\rpg\) by \(\rpg((\typset) = \rp(\typset\times \mspce)\) for all \((\typset \in \ms{B}([0,\infty))\). If \(\rpg\) is a simple point process on \([0,\infty)\), then \(\rp\) is a simple marked point process on \([0,\infty)\times \mspce\). If \((t,k) \in \evs\), then we call \(t\) an event of \(\rp\) and \(k\) is the corresponding mark. We will generally write \(\evs = \{(\rt{i},\mark{i})\}_{i=1}^{\infty}\) where \(\rt{i} < \rt{i+1}\) almost surely for all \(i\). Sample events are written as \(\evs = \{(t_i,k_i)\}\). 
 \label{subsec::Prope:Def::MPP}
 \end{defn}
 \labe{subsec::Prope:Def::MPP}
@@ -2283,7 +2307,7 @@ Let \(\mc{K}\) be a Polish space. Let \(Y\) be a simple point process on \([0,\i
 \lin
 
 \begin{defn}
-A marked point process \(Y\) is called non-explosive if \(\ex{(Y_g)_T} < \infty\). (Based on boundedly finite measures \cite[Definition 9.1.I]{DalVer08}.
+A marked point process \(\rp\) is called non-explosive if \(\ex{(\rpg)_T} < \infty\). (Based on boundedly finite measures \cite[Definition 9.1.I]{DalVer08}.
 \label{subsec::Prope:Def::non-explosive}
 \end{defn}
 \labe{subsec::Prope:Def::non-explosive}
@@ -2295,19 +2319,7 @@ A marked point process \(Y\) is called non-explosive if \(\ex{(Y_g)_T} < \infty\
 \lin
 
 \begin{defn}
-A non-explosive simple point process \(Y\) on \([0,\infty)\) adapted to some filtration \(\{\mc{F}_t\}\) is said to have intensity \(\lambda_t\) if \(\lambda_t\) is \(\mc{F}_t\)-predictable and \(Y_{t\wedge \tau_n} - \int_0^{t\wedge \tau_n} \lambda_s\,ds\) is a Martingale for all \(n\) where \(\tau_n = \sup\{t \in \mb{R}_+: Y_t < n\}\). 
-\label{subsec::Prope:Def::SI defn}
-\end{defn}
-\labe{subsec::Prope:Def::SI defn}
-
-\textbf{Source: } \cite[Definitions 14.3.I,14.1.I]{DalVer08}
-
-\purpose See Definition \ref{subsec::Prope:Def::MI defn}.
-
-\lin
-
-\begin{defn}
-Let \(Y\) be a non-explosive marked point process on the Polish space \([0,\infty)\times \mc{K}\) adapted to some filtration \(\mc{F}_t\). Let \(\ell\) be some fixed non-negative measure on \(\mc{K}\) which we will call the reference measure on \(\mc{K}\). Then \(Y\) is said to have \(\mc{F}_t\)-predictable intensity \(\lambda(t,k)\) if for all \(K \in \ms{B}(\mc{K})\), \(\int_K \lambda(t,k)\ell(dk)\) is the \(\mc{F}_t\)-predictable intensity of \(Y([0,t]\times K)\). 
+Let \(\rp\) be a non-explosive marked point process on the Polish space \([0,\infty)\times \mspce\) adapted to some filtration \(\F{t}\). Let \(\ell\) be some fixed non-negative measure on \(\mspce\) which we will call the reference measure on \(\mspce\). Then \(\rp\) is said to have \(\F{t}\)-predictable intensity \(\rate(t,k)\) if for all \(K \in \ms{B}(\mspce)\), \(\int_K \rate(t,k)\ell(dk)\) is the \(\F{t}\)-predictable intensity of \(\rp([0,t]\times K)\). 
 \label{subsec::Prope:Def::MI defn}
 \end{defn}
 \labe{subsec::Prope:Def::MI defn}
@@ -2319,7 +2331,7 @@ Let \(Y\) be a non-explosive marked point process on the Polish space \([0,\inft
 \lin
 
 \begin{prop}
-Suppose \(Y\) is a \(\mc{F}\)-adapted non-explosive marked point process on \([0,\infty)\times \mc{K}\) with \(\mc{F}\)-predictable intensity \(\lambda\). Suppose \(\mc{F}_t\) can be expressed in the form \(\mc{F}_t = \mc{F}_0\wedge \mc{H}_t\) where \(\mc{H}_t\) is the natural history of \(Y\) and \(\mc{F}_0 = \sigma(X_0)\) for some random variable \(X_0\). Let \(E = \{(\tau_n,\kappa_n)\}\) be the sequence of events of \(Y\) increasing in \(\tau\). Then \(\lambda\) uniquely characterizes \(Y\).
+Suppose \(\rp\) is a \(\F\)-adapted non-explosive marked point process on \([0,\infty)\times \mspce\) with \(\F\)-predictable intensity \(\rate\). Suppose \(\F{t}\) can be expressed in the form \(\F{t} = \F{0}\wedge \FH{t}\) where \(\FH{t}\) is the natural history of \(\rp\) and \(\F{0} = \sigma(\X{0})\) for some random variable \(\X{0}\). Let \(E = \{(\rt{n},\mark{n})\}\) be the sequence of events of \(\rp\) increasing in \(\rt\). Then \(\rate\) uniquely characterizes \(\rp\).
 \label{subsec::Prope:Prop::intense char}
 \end{prop}
 \labe{subsec::Prope:Prop::intense char}
@@ -2329,42 +2341,42 @@ Suppose \(Y\) is a \(\mc{F}\)-adapted non-explosive marked point process on \([0
 \pfsum Apply \cite[Propositions 14.3.II(b),14.2.IV(c) and 9.2.III]{DalVer08}. There is one extra technical condition that we have to proof holds which we can show using \cite[Proposition A1.5.III]{DalVer03}.
 
 \begin{proof}
-Assume that \(\law((\tau_n,\kappa_n)|\mc{F}_{\tau_{n-1}})\) is a regular distribution for all \(n\). Then uniqueness of the intensity is given by \cite[Proposition 14.3.II (b)]{DalVer08}. By \cite[Proposition 14.2.IV (c)]{DalVer08}, the compensator of \(Y\) uniquely defines the finite dimensional distributions of \(Y\), which uniquely define \(Y\) in distribution \cite[Proposition 9.2.III]{DalVer08}. However, the intensity of \(Y\) uniquely defines its compensator, so all that remains is to prove that the regular conditional distribution above exists.
+Assume that \(\law((\rt{n},\mark{n})|\F{\rt{n-1}})\) is a regular distribution for all \(n\). Then uniqueness of the intensity is given by \cite[Proposition 14.3.II (b)]{DalVer08}. By \cite[Proposition 14.2.IV (c)]{DalVer08}, the compensator of \(\rp\) uniquely defines the finite dimensional distributions of \(\rp\), which uniquely define \(\rp\) in distribution \cite[Proposition 9.2.III]{DalVer08}. However, the intensity of \(\rp\) uniquely defines its compensator, so all that remains is to prove that the regular conditional distribution above exists.
 
-\ind Fix \(n\). Suppose \(Z\) is a \(\mc{X}\)-valued random variable. Let \(\mu\) be the law of \(Y\). Then \(\left([0,\infty)\times \mc{K}\right)^{n-1}\times\mc{X}\) and \([0,\infty)\times \mc{K}\) are both Polish spaces, and \(\tilde{\mu}\) defined by 
+\ind Fix \(n\). Suppose \(\XX\) is a \(\spce\)-valued random variable. Let \(\m\) be the law of \(\rp\). Then \(\left([0,\infty)\times \mspce\right)^{n-1}\times\spce\) and \([0,\infty)\times \mspce\) are both Polish spaces, and \(\alt{\m}\) defined by 
 
-\[\tilde{\mu}((t_n,k_n),(t_i,k_i)_{i=1}^{n-1},z) = \mu\left((\tau_i,\kappa_i) = (t_i,k_i)\te{ for } i=1,\dots,n, Z = z\right)\]
+\[\alt{\m}((t_n,k_n),(t_i,k_i)_{i=1}^{n-1},z) = \m\left((\rt{i},\mark{i}) = (t_i,k_i)\te{ for } i=1,\dots,n, \XX = z\right)\]
 
-is a Borel measure. Therefore, by \cite[Proposition A1.5.III]{DalVer03}, the regular conditional distribution \(\ms{L}((\tau_n,\kappa_n)|\mc{F}'_{\tau_{n-1}})\) exists.
+is a Borel measure. Therefore, by \cite[Proposition A1.5.III]{DalVer03}, the regular conditional distribution \(\ms{L}((\rt{n},\mark{n})|\F{\rt{n-1}})\) exists.
 \end{proof}
 
 
 \lin
 
 \begin{lem}
-Suppose \(Y\) is a marked process with \(\mc{F}'_t\)-predictable ground intensity \(\lambda_t\) bounded by some \(B < \infty\). Assume \(Y\) has marks in \(K\) and \(\lambda\) is defined with respect to the reference measure \(\ell\) on \(K\). Then for all \(K \in \ms{B}(\mc{K})\), \(Y([0,t]\times K) - \int_0^t\int_K \lambda(s,\kappa)\,\ell(d\kappa)\,ds\) is a Martingale.
+Suppose \(\rp\) is a marked process with \(\F{t}\)-predictable ground intensity \(\rate{t}\) bounded by some \(\const < \infty\). Assume \(\rp\) has marks in \(\mspce\) and \(\rate\) is defined with respect to the reference measure \(\Sm\) on \(\mspce\). Then for all \(K \in \ms{B}(\mspce)\), \(\rp([0,t]\times K) - \int_0^t\int_K \rate(s,\mark)\,\ell(d\mark)\,ds\) is a Martingale.
 \label{Subsec::Prope:Lem::easier}
 \end{lem}
 \labe{Subsec::Prope:Lem::easier}
 
 \begin{proof}
-Fix some \(K \in \ms{B}(\mc{K})\). Let \(\lambda_K(t) = \lambda(t,K)\). Let \(Y_K(\cdot) = Y(\cdot\times K)\). Then \(\lambda_K(t) \leq \lambda(t,\mc{K}) \leq B\). Therefore \(Y_K\) is a simple point process with bounded intensity. Reduce to the case of a simple point process (\(\mc{K} = \{0\}, K = \mc{K}, Y = Y_K,\lambda(t) = \lambda_K(t)\)).
+Fix some \(K \in \ms{B}(\mspce)\). Let \(\rate{K}(t) = \rate(t,K)\). Let \(\rp{K}(\cdot) = \rp(\cdot\times K)\). Then \(\rate{K}(t) \leq \rate(t,\mspce) \leq \const\). Therefore \(\rp{K}\) is a simple point process with bounded intensity. Reduce to the case of a simple point process (\(\mspce = \{0\}, K = \mspce, \rp = \rp{K},\rate(t) = \rate{K}(t)\)).
 
-Let \(M(t) = Y(t) - \int_0^t \lambda(s)\,ds\). Let \(\tau_n\) be as in definition \ref{subsec::Prope:Def::SI defn}. Notice for all \(n\),
+Let \(M(t) = \rp(t) - \int_0^t \rate(s)\,ds\). Let \(\rt{n}\) be a localizing sequence of \(M(t)\). Notice for all \(n\),
 
-\[|M(t\wedge \tau_n)| \leq \max\{Y(t\wedge \tau_n),tB\}\leq \max\{Y(t),tB\}\]
+\[|M(t\wedge \rt{n})| \leq \max\{\rp(t\wedge \rt{n}),t\const\}\leq \max\{\rp(t),t\const\}\]
 
-So \(M(t\wedge\tau_n)\) is dominated by \(\max\{Y(t),tB\}\), and \(\ex{\max\{Y(t),tB\}} \leq \ex{Y(t) + tB} \leq 2tB < \infty\). By dominated convergence,
+So \(M(t\wedge\rt{n})\) is dominated by \(\max\{\rp(t),t\const\}\), and \(\ex{\max\{\rp(t),t\const\}} \leq \ex{\rp(t) + t\const} \leq 2t\const < \infty\). By dominated convergence,
 
-\[\ex{M(t)|\mc{F}'_s} = \ex{\lim_{n\ra\infty} M(t\wedge \tau_n)\middle|\mc{F}'_s} = \lim_{n\ra\infty}\ex{M(t\wedge \tau_n)|\mc{F}'_s} = \lim_{n\ra\infty} M(s\wedge \tau_n) = M(s)\]
+\[\ex{M(t)|\F{\tt}} = \ex{\lim_{n\ra\infty} M(t\wedge \rt{n})\middle|\F{\tt}} = \lim_{n\ra\infty}\ex{M(t\wedge \rt{n})|\F{\tt}} = \lim_{n\ra\infty} M(\tt\wedge \rt{n}) = M(\tt)\]
 \end{proof}
 
 \lin
 
 \begin{lem}
-Let \(Y\) be a marked point process with bounded \(\mc{F}'_t\)-predictable ground intensity \(\lambda_g\leq B\). Suppose that for any \(K \subseteq \mc{K}\), \(\lambda(t,K)\) is almost surely left-continuous. Then for any \(K \subseteq \mc{K}\),
+Let \(\rp\) be a marked point process with bounded \(\F{t}\)-predictable ground intensity \(\rate_g\leq B\). Suppose that for any \(K \subseteq \mspce\), \(\rate(t,K)\) is almost surely left-continuous. Then for any \(K \subseteq \mspce\),
 
-\[\lambda(t,K) = \lim_{s\searrow 0}\frac{1}{s}\ex{Y((t,t+s]\times K)|\mc{F}'_{t-}}\]
+\[\rate(t,K) = \lim_{s\searrow 0}\frac{1}{s}\ex{\rp((t,t+s]\times K)|\F{t-}}\]
 
 \tb{There is a slight subtlety here. We need to know that the intensity exists and that it is left-continuous and uniformly bounded for this lemma to hold. Otherwise, this can fail in a number of ways. Proving existence of the intensity is fine, but left-continuity can be tedious.}
 
@@ -2376,11 +2388,11 @@ Let \(Y\) be a marked point process with bounded \(\mc{F}'_t\)-predictable groun
 By Lemma \ref{Subsec::Prope:Lem::easier}, we can use the Martingale definition of intensity.
 
 \begin{align*}
-\lim_{s\searrow 0}\frac{1}{s}\ex{Y((t,t+s]\times K)|\mc{F}'_{t-}}& = \lim_{s\searrow 0}\frac{1}{s}\ex{\ex{Y((t,t+s]\times K)|\mc{F}'_t}\middle|\mc{F}'_{t-}}\\
-&= \lim_{s\searrow 0}\frac{1}{s}\ex{\ex{\int_t^{t+s} \lambda(r,K)\,dr\middle|\mc{F}'_t}\middle|\mc{F}'_{t-}}\\
-&= \ex{\ex{\lim_{s \searrow 0} \frac{1}{s}\int_t^{t+s} \lambda(r,K)\,dr\middle|\mc{F}'_t}\middle|\mc{F}'_{t-}}\\
-&=\ex{\ex{\lambda(t+,K)|\mc{F}'_t}\middle|\mc{F}'_{t-}}\\
-&=\lambda(t,K)
+\lim_{\tt\searrow 0}\frac{1}{\tt}\ex{\rp((t,t+\tt]\times K)|\F{t-}}& = \lim_{\tt\searrow 0}\frac{1}{\tt}\ex{\ex{\rp((t,t+\tt]\times K)|\F{t}}\middle|\F{t-}}\\
+&= \lim_{\tt\searrow 0}\frac{1}{\tt}\ex{\ex{\int_t^{t+\tt} \rate(r,K)\,dr\middle|\F{t}}\middle|\F{t-}}\\
+&= \ex{\ex{\lim_{\tt \searrow 0} \frac{1}{\tt}\int_t^{t+\tt} \rate(r,K)\,dr\middle|\F{t}}\middle|\F{t-}}\\
+&=\ex{\ex{\rate(t+,K)|\F{t}}\middle|\F{t-}}\\
+&=\rate(t,K)
 \end{align*}
 
 We were able to move the limit inside the expectation by bounded convergence. Then we apply Lebesgue differentiation getting a right-continuous modification by virtue of the integral chosen in the prelimit.
@@ -2439,10 +2451,10 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 \lin
 
 \begin{prop}
-Let \(Y\) be a marked process adapted to the filtration \(\mc{F}_t := \mc{F}_0\wedge \mc{H}_t\) where \(\mc{H}\) is its natural filtration on the sample space \((\Omega,\mc{F})\). Let the events and marks of \(Y\) be given by \(\{(\tau_j,\kappa_j)\}\) such that \(\{\tau_j\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr^i\) be probability measures on the probability space such that \(Y\) is non-explosive and simple with respect to both probability measures. Let \(\pr^i_t\) be the restriction of \(\pr^i\) to \(\mc{F}_t\). Suppose \(\mc{F}_0\) describes a random variable, \(X\), with law \(\nu^i\) under \(\pr^i\). If \(Y\) has a strictly positive \(\pr^1,\mc{F}\)-predictable intensity \(\lambda^1\), then \(\pr^2_t \ll \pr^1_t\) for all \(t \in [0,T]\) if and only if there exists a non-negative, \(\mc{F}\)-predictable process \(\mu\) such that \(Y\) admits the \(\mc{F}\)-intensity \(\lambda^2 = \mu\lambda^1\) under \(\pr^2\) and \(\nu^2 \ll \nu^1\). When this is satisfied, the likelihood ratio is the \(\pr^1\)-a.s. c\`adl\`ag process defined by 
+Let \(\rp\) be a marked process adapted to the filtration \(\F{t} := \F{0}\wedge \FH{t}\) where \(\FH\) is its natural filtration. Let the events and marks of \(\rp\) be given by \(\{(\rt{j},\mark{j})\}\) such that \(\{\rt{j}\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr^i\) be probability measures on the probability space such that \(\rp\) is non-explosive and simple with respect to both probability measures. Let \(\pr^i_t\) be the restriction of \(\pr^i\) to \(\F{t}\). Suppose \(\F{0}\) describes a random variable, \(X\), with law \(\mm^i\) under \(\pr^i\). If \(\rp\) has a strictly positive \(\pr^1,\F\)-predictable intensity \(\rate^1\), then \(\pr^2_t \ll \pr^1_t\) for all \(t \in [0,T]\) if and only if there exists a non-negative, \(\F\)-predictable process \(\m\) such that \(\rp\) admits the \(\F\)-intensity \(\rate^2 = \m\rate^1\) under \(\pr^2\) and \(\mm^2 \ll \mm^1\). When this is satisfied, the likelihood ratio is the \(\pr^1\)-a.s. c\`adl\`ag process defined by 
 
 \begin{equation}
-L_t:= \frac{d\pr^2_t}{d\pr^1_t}(Y) = \frac{d\nu^2}{d\nu^1}\left(\prod_{0<\tau^i\leq t} \mu(\tau^i,\kappa^i)\right)\exp\left(-\int_{(0,t]\times \mc{K}}[\mu(t,\kappa) - 1]\lambda^1(t,\kappa)\,ds\,\ell(d\kappa)\right)
+L_t:= \frac{d\pr^2_t}{d\pr^1_t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\rt^i\leq t} \m(\rt^i,\mark^i)\right)\exp\left(-\int_{(0,t]\times \mspce}[\m(t,\mark) - 1]\rate^1(t,\mark)\,ds\,\ell(d\mark)\right)
 \label{subsec::Prope:eqn::Lnat}
 \end{equation}
 \labe{subsec::Prope:eqn::Lnat}
@@ -2450,30 +2462,30 @@ L_t:= \frac{d\pr^2_t}{d\pr^1_t}(Y) = \frac{d\nu^2}{d\nu^1}\left(\prod_{0<\tau^i\
 \end{prop}
 \labe{subsec::Prope:Prop::radnikder}
 
-\purpose We can define a standard process by choosing some fixed intensity \(\lambda^1\) and use it to completely characterize Markov processes. In fact, a large portion of section \ref{subsec::ProofU:sec::Proof2} involves manipulations of such Radon-Nykodim derivatives to construct various processes.
+\purpose We can define a standard process by choosing some fixed intensity \(\rate^1\) and use it to completely characterize Markov processes. In fact, a large portion of section \ref{subsec::ProofU:sec::Proof2} involves manipulations of such Radon-Nykodim derivatives to construct various processes.
 
-\pfsum In the case where \(\mc{F}_0\) is trivial, we can directly apply \cite[Theorem 14.4.I]{DalVer08}. To extend, we define \(\pr^i\) as an integral of a class of regular conditional probabilities and apply \cite[Theorem 14.4.I]{DalVer08} accordingly.
+\pfsum In the case where \(\F{0}\) is trivial, we can directly apply \cite[Theorem 14.4.I]{DalVer08}. To extend, we define \(\pr^i\) as an integral of a class of regular conditional probabilities and apply \cite[Theorem 14.4.I]{DalVer08} accordingly.
 
 \begin{proof}
-Let \(f\) be a bounded, \(\mc{F}'_t\) measurable function to the real numbers. Let \(\mu(t,k;y,x)\) be the value \(\mu\) takes when \(Y[0,t)=y[0,t)\) and \(\{X=x\}\). Since \(\mu\) is \(\mc{F}'\)-predictable, this is deterministic for any \(y,x\).
+Let \(f\) be a bounded, \(\alt{\F}{t}\) measurable function to the real numbers. Let \(\m(t,k;y,x)\) be the value \(\m\) takes when \(\rp[0,t)=y[0,t)\) and \(\{X=x\}\). Since \(\m\) is \(\alt{\F}\)-predictable, this is deterministic for any \(y,x\).
 
-\[\mb{E}^2[f(X,Y[0,t])] = \int_\mc{X} \mb{E}^2[f(x,Y[0,t])|X=x]\,d\nu^2(x)\]
+\[\mb{E}^2[f(X,\rp[0,t])] = \int_\spce \mb{E}^2[f(x,\rp[0,t])|X=x]\,d\mm^2(x)\]
 
-Note that for any fixed \(x \in \te{supp}(X)\) and any \(i \in \{1,2\}\), there exists a regular conditional distribution \(\pr^i_x\) which describes the law of \(Y\) conditioned on \(X = x\).
+Note that for any fixed \(x \in \te{supp}(X)\) and any \(i \in \{1,2\}\), there exists a regular conditional distribution \(\pr^i_x\) which describes the law of \(\rp\) conditioned on \(X = x\).
 
-\[\mb{E}^2[f(X,Y[0,t])] = \int_\mc{X} \mb{E}^2_x[f(x,Y[0,t])]\,d\nu^2(x)\]
+\[\mb{E}^2[f(X,\rp[0,t])] = \int_\spce \mb{E}^2_x[f(x,\rp[0,t])]\,d\mm^2(x)\]
 
-Note that for any fixed \(x\), \(\pr^i_x\) and \(Y\) satisfy the conditions of \cite[Theorem 14.4.I]{DalVer08}. So,
+Note that for any fixed \(x\), \(\pr^i_x\) and \(\rp\) satisfy the conditions of \cite[Theorem 14.4.I]{DalVer08}. So,
 
-\[L_t(Y,x):=\frac{d\pr^2_{t,x}}{d\pr^1_{t,x}}(Y) = \left(\prod_{0<\tau^i\leq t} \mu(\tau^i,\kappa^i;Y,x)\right)\exp\left(-\int_{(0,t]\times\mc{K}} [\mu(s,k;Y,x) - 1]\lambda^1(s,k;Y,x)\,ds\,\ell(dk)\right)\]
+\[L_t(\rp,x):=\frac{d\pr^2_{t,x}}{d\pr^1_{t,x}}(\rp) = \left(\prod_{0<\rt^i\leq t} \m(\rt^i,\mark^i;\rp,x)\right)\exp\left(-\int_{(0,t]\times\mspce} [\m(s,k;\rp,x) - 1]\rate^1(s,k;\rp,x)\,ds\,\ell(dk)\right)\]
 
 Giving us,
 
 \begin{align*}
-\mb{E}^2\left[f(X,Y[0,t])\right] &= \int_\mc{X} \mb{E}^2_x[f(x,Y[0,t])]\,d\nu^2(x)\\
-&=\int_{\mc{X}} \mb{E}^1_x[f(x,Y[0,t])L_t(Y,x)]\,d\nu^2(x)\\
-&= \int_{\mc{X}} \frac{d\nu^2}{d\nu^1}(x) \mb{E}^1_x[f(x,Y[0,t])L_t(Y,x)]\,d\nu^1(x)\\
-&= \mb{E}^1\left[f(X,Y[0,t])L_t(Y,X)\frac{d\nu^2}{d\nu^1}\right]
+\mb{E}^2\left[f(X,\rp[0,t])\right] &= \int_\spce \mb{E}^2_x[f(x,\rp[0,t])]\,d\mm^2(x)\\
+&=\int_{\spce} \mb{E}^1_x[f(x,\rp[0,t])L_t(\rp,x)]\,d\mm^2(x)\\
+&= \int_{\spce} \frac{d\mm^2}{d\mm^1}(x) \mb{E}^1_x[f(x,\rp[0,t])L_t(\rp,x)]\,d\mm^1(x)\\
+&= \mb{E}^1\left[f(X,\rp[0,t])L_t(\rp,X)\frac{d\mm^2}{d\mm^1}\right]
 \end{align*}
 \end{proof}
 
@@ -2507,7 +2519,7 @@ Since \(\ratee{\tt,\v} \leq \const{}\), we can view \(\{\poiss{\v}:\v\in V\}\) a
 
 \[\ex{\sum_{\v\in V}\poiss{\v}([0,\T)\times\S\times[0,\const{}])} = \const{}\T| V|.\]
 
-Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T)\times \S\times [0,\const{}]\). Let \(\{(\rt{\it},\mark{\it},\r^\it,\v^\it):\it = 0,\dots,n, n\in \mb{N}\}\) be the set of events of \(\sum_{\v\in V}\) in \([0,\T)\times\S\times [0,\const{})\times  V\) ordered so that \(0=\rt{0} < \rt{1} < \cdots < \rt{n} < \T\). In each event, \(\rt{\it} \in [0,\T)\), \(\mark{\it}\in \S\setminus\{0\}, \r^\it \in [0,\const{}]\) and \(\v^\it \in  V\) denotes which process went off.
+Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T)\times \S\times [0,\const{}]\). Let \(\{(\rt{\it},\mark{\it},\r{\it},\v{\it}):\it = 0,\dots,n, n\in \mb{N}\}\) be the set of events of \(\sum_{\v\in V}\) in \([0,\T)\times\S\times [0,\const{})\times  V\) ordered so that \(0=\rt{0} < \rt{1} < \cdots < \rt{n} < \T\). In each event, \(\rt{\it} \in [0,\T)\), \(\mark{\it}\in \S\setminus\{0\}, \r{\it} \in [0,\const{}]\) and \(\v{\it} \in  V\) denotes which process went off.
 
 \ind Let \(\X{}{}\) be the c\`adl\`ag process constructed below:
 
@@ -2519,7 +2531,7 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 \item 
 
 \[\X{}{\rt{1}} = \begin{cases}
-\X{}{0} + \mark{1}\ev{\v^1} &\te{ if } \r^1 \leq \ratee{\rt{1},\v^1}(\X{}{[0,\rt{1})},\mark{1})\\
+\X{}{0} + \mark{1}\ev{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt{1},\v{1}}(\X{}{[0,\rt{1})},\mark{1})\\
 \X{}{0} &\te{ otherwise.}
 \end{cases}
 \] 
@@ -2529,7 +2541,7 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 \item 
 
 \[\X{}{\rt{\it}} = \begin{cases}
-\X{}{\rt{\it-1}} + \mark{\it}\ev{\v^\it} &\te{ if } \r^\it \leq \ratee{\rt{\it},\v^\it}(\X{}{[0,\rt{\it})},\mark{\it})\\
+\X{}{\rt{\it-1}} + \mark{\it}\ev{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt{\it},\v{\it}}(\X{}{[0,\rt{\it})},\mark{\it})\\
 \X{}{\rt{\it-1}} &\te{ otherwise.}
 \end{cases}\]
 
@@ -2547,11 +2559,11 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 
 \begin{align*}
 \XX{}{\rt{1}} &= \begin{cases}
-\XX{}{0} + \mark{1}\ev{\v^1} &\te{ if } \r^1 \leq \ratee{\rt{1},\v^1}(\XX{}{[0,\rt{1})},\mark{1})\\
+\XX{}{0} + \mark{1}\ev{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt{1},\v{1}}(\XX{}{[0,\rt{1})},\mark{1})\\
 \XX{}{0} &\te{ otherwise.}
 \end{cases}\\
 &= \begin{cases}
-\X{}{0} + \mark{1}\ev{\v^1} &\te{ if } \r^1 \leq \ratee{\rt{1},\v^1}(\X{}{[0,\rt{1})},\mark{1})\\
+\X{}{0} + \mark{1}\ev{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt{1},\v{1}}(\X{}{[0,\rt{1})},\mark{1})\\
 \X{}{0} &\te{ otherwise.}
 \end{cases}\\
 &= \X{}{\rt{1}}.
@@ -2563,11 +2575,11 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 
 \begin{align*}
 \XX{}{\rt{\it}} &= \begin{cases}
-\XX{}{\rt{\it-1}} + \mark{\it}\ev{\v^\it} &\te{ if } \r^\it \leq \ratee{\rt{\it},\v^\it}(\XX{}{[0,\rt{\it})},\mark{\it})\\
+\XX{}{\rt{\it-1}} + \mark{\it}\ev{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt{\it},\v{\it}}(\XX{}{[0,\rt{\it})},\mark{\it})\\
 \XX{}{\rt{\it-1}} &\te{ otherwise.}
 \end{cases}\\
 &= \begin{cases}
-\X{}{\rt{\it-1}} + \mark{\it}\ev{\v^\it} &\te{ if } \r^\it \leq \ratee{\rt{\it},\v^\it}(\X{}{[0,\rt{\it})},\mark{\it})\\
+\X{}{\rt{\it-1}} + \mark{\it}\ev{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt{\it},\v{\it}}(\X{}{[0,\rt{\it})},\mark{\it})\\
 \X{}{\rt{\it-1}} &\te{ otherwise.}
 \end{cases}\\
 &= \X{}{\rt{\it}}.
@@ -2601,7 +2613,7 @@ and such that \(\t\mapsto \ratee{\t,\v}(\XX{}{[0,\t)},\sv{}{ V})\) is almost-sur
 
 \begin{proof}
 
-We can assume without loss of generality that \(\ratee{\t,\v}(\xvtts{}{[0,\t)},\s) = 0\) for all \(\xvtts{}{[0,\t)}\in \Omega{}{\t-}\) such that \(\pr(\XX{}{[0,\t)} = \xvtts{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in  V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
+We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \Omega{}{\t-}\) such that \(\pr(\XX{}{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in  V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
 
 \[\X{\v}{\t} = \X{0}{\v} + \int_{(0,\t]}\int_\S\int_{(0,\ratee{\tt,\v}(\X{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt).\]
 
@@ -2636,7 +2648,7 @@ where \(\{\X{\v}{0}\}_{\v \in  V}\) are i.i.d uniformly distributed over \(\S\).
 
 \purpose This lemma combined with Lemma \ref{subsec::Some:Lem::genfiniteSDE} allow us to freely alternate between SDE and density formulations of finite node Markov processes.
 
-\pfsum The key is to express \(X\) in terms of a Marked point process. Then we can compute the intensities of the point process under \(\mu\) and \(\nu\) respectively and apply Proposition \ref{subsec::Prope:Prop::radnikder}.
+\pfsum The key is to express \(X\) in terms of a Marked point process. Then we can compute the intensities of the point process under \(\m\) and \(\mm\) respectively and apply Proposition \ref{subsec::Prope:Prop::radnikder}.
 
 \begin{proof}
 Notice that \(\X{}{} \mapsto (\X{}{0},\pmap{\X{}{}})\) is a one-to-one mapping from c\`adl\`ag processes on \(\S^ V\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F{}{\t}\)-adapted, where \(\F{}{\t} = \F{}{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp{}\).
@@ -2649,36 +2661,36 @@ Notice that \(\X{}{} \mapsto (\X{}{0},\pmap{\X{}{}})\) is a one-to-one mapping f
 \label{sec::TL}\labe{sec::TL}
 
 \begin{lem}
-Assume \(X,Y\) and \(Z\) are random elements such that \(X\perp Y|Z\). Assume also that \(\pr(X=0) = \pr(Y=0) = \pr(Z=0) = 0\).
+Assume \(\X,\XX\) and \(\XXX\) are random elements such that \(\X\perp \XX|\XXX\). Assume also that \(\pr(\X=0) = \pr(\XX=0) = \pr(\XXX=0) = 0\).
 
 \begin{enumerate}[(a)]
-\item If \(\phi,\psi\) are measurable functions and \(\theta\) is a 1-to-1 function, then \(\phi(X)\perp \psi(Y)|\theta(Z)\).
+\item If \(\phi,\psi\) are measurable functions and \(\theta\) is a 1-to-1 function, then \(\phi(\X)\perp \psi(\XX)|\theta(\XXX)\).
 
-\item If \(T\perp(X,Y,Z)\), then \(X\perp Y|(Z,T)\), \((X,T)\perp Y|Z\) and \(X\perp (Y,T)|Z\).
+\item If \(T\perp(\X,\XX,\XXX)\), then \(\X\perp \XX|(\XXX,T)\), \((\X,T)\perp \XX|\XXX\) and \(\X\perp (\XX,T)|\XXX\).
 
-\item If \(T\perp (X,Y,Z)\) and \(\phi\) is a measurable function, then
+\item If \(T\perp (\X,\XX,\XXX)\) and \(\phi\) is a measurable function, then
 
-\[X\perp Y|(Z,\phi(X,Z,T))\]
+\[\X\perp \XX|(\XXX,\phi(\X,\XXX,T))\]
 
-\item If \(A\) is \(\sigma(Z)\) measurable, then 
+\item If \(\typset\) is \(\sigma(\XXX)\) measurable, then 
 
-\[X\mb{I}_A\perp Y\mb{I}_A|Z\mb{I}_A\]
+\[\X\mb{I}_\typset\perp \XX\mb{I}_\typset|\XXX\mb{I}_\typset\]
 
-\item If \(U\perp V\) and \((U,V)\perp(X,Y,Z)\), then 
+\item If \(U\perp V\) and \((U,V)\perp(\X,\XX,\XXX)\), then 
 
-\[(X,Z,U)\perp (Y,Z,V)|Z\]
+\[(\X,\XXX,U)\perp (\XX,\XXX,V)|\XXX\]
 
-\item Suppose \(X\mb{I}_{A_i}\perp Y\mb{I}_{A_i}|Z\mb{I}_{A_i}\) for all \(i\in I\) where \(I\) is a finite or countably infinite set and \(\{A_i\}\) is a family of disjoint sets. Then,
+\item Suppose \(\X\mb{I}_{\typset_i}\perp \XX\mb{I}_{\typset_i}|\XXX\mb{I}_{\typset_i}\) for all \(i\in I\) where \(I\) is a finite or countably infinite set and \(\{\typset_i\}\) is a family of disjoint sets. Then,
 
-\[X\mb{I}_{\cup_i A_i}\perp Y\mb{I}_{\cup_i A_i}|Z\mb{I}_{\cup_i A_i}\]
+\[\X\mb{I}_{\cup_i \typset_i}\perp \XX\mb{I}_{\cup_i \typset_i}|\XXX\mb{I}_{\cup_i \typset_i}\]
 
-\item Let \(A\) be any event such that \(\pr(A) > 0\). Suppose \(U\mb{I}_A\perp \mb{I}_A(X,Y,Z)|\mb{I}_A\). Suppose also that \(X\mb{I}_A\perp Y\mb{I}_A|\mb{I}_A(Z,U)\), but do not necessarily assume \(X\perp Y|Z\). Then 
+\item Let \(\typset\) be any event such that \(\pr(\typset) > 0\). Suppose \(U\mb{I}_\typset\perp \mb{I}_\typset(\X,\XX,\XXX)|\mb{I}_\typset\). Suppose also that \(\X\mb{I}_\typset\perp \XX\mb{I}_\typset|\mb{I}_\typset(\XXX,U)\), but do not necessarily assume \(\X\perp \XX|\XXX\). Then 
 
-\[X\mb{I}_A\perp Y\mb{I}_A|Z\mb{I}_A\]
+\[\X\mb{I}_\typset\perp \XX\mb{I}_\typset|\XXX\mb{I}_\typset\]
 
-\item If \(A\) is an event that happens with probability 1, and \(X\mb{I}_A \perp Y\mb{I}_A |Z\mb{I}_A\), then 
+\item If \(\typset\) is an event that happens with probability 1, and \(\X\mb{I}_\typset \perp \XX\mb{I}_\typset |\XXX\mb{I}_\typset\), then 
 
-\[X\perp Y |Z\]
+\[\X\perp \XX |\XXX\]
 \end{enumerate}
 \label{sec::TL:Lem::Props}
 \end{lem}
@@ -2688,9 +2700,9 @@ Assume \(X,Y\) and \(Z\) are random elements such that \(X\perp Y|Z\). Assume al
 For all parts of this lemma, I use the following two results:
 
 \begin{itemize}
-\item \(X\perp Y|Z\) if and only if
+\item \(\X\perp \XX|\XXX\) if and only if
 
-\[\ex{\ex{f(X)|Z}g(Y)h(Z)} = \ex{f(X)g(Y)h(Z)}\]
+\[\ex{\ex{f(\X)|\XXX}g(\XX)h(\XXX)} = \ex{f(\X)g(\XX)h(\XXX)}\]
 
 for all bounded non-negative measurable functions \(f,g\) and \(h\).
 
@@ -2702,51 +2714,51 @@ Within this lemma, I will assume without loss of generality that all functions o
 \end{itemize}
 
 \begin{enumerate}[(a)]
-\item \(\tilde{f}(X):=f(\phi(X))\) and \(\tilde{g}(Y):=g(\psi(Y))\) are non-negative, bounded measurable functions, and \(\sigma(\theta(Z)) = \sigma(Z)\) because \(\theta\) is 1-to-1. Let \(\tilde{h}(Z):= h(\theta(Z))\). Then,
+\item \(\tilde{f}(\X):=f(\phi(\X))\) and \(\tilde{g}(\XX):=g(\psi(\XX))\) are non-negative, bounded measurable functions, and \(\sigma(\theta(\XXX)) = \sigma(\XXX)\) because \(\theta\) is 1-to-1. Let \(\tilde{h}(\XXX):= h(\theta(\XXX))\). Then,
 
 \begin{align*}
-\ex{\ex{f(\phi(X))|\theta(Z)}g(\psi(Y))h(\theta(Z))} &= \ex{\ex{\tilde{f}(X)|Z}\tilde{g}(Y)\tilde{h}(Z)}\\
-& = \ex{\tilde{f}(X)\tilde{g}(Y)\tilde{h}(X)}\\
-& = \ex{f(\phi(X))g(\psi(Y))h(\theta(Z))}
+\ex{\ex{f(\phi(\X))|\theta(\XXX)}g(\psi(\XX))h(\theta(\XXX))} &= \ex{\ex{\tilde{f}(\X)|\XXX}\tilde{g}(\XX)\tilde{h}(\XXX)}\\
+& = \ex{\tilde{f}(\X)\tilde{g}(\XX)\tilde{h}(\X)}\\
+& = \ex{f(\phi(\X))g(\psi(\XX))h(\theta(\XXX))}
 \end{align*}
 
-\item Since \(T\perp (X,Y,Z)\), notice that by the tower property,
+\item Since \(T\perp (\X,\XX,\XXX)\), notice that by the tower property,
 
-\[\ex{\ex{f_1(X)f_2(Y)|Z}g(Z)h(T)} = \ex{f_1(X)f_2(Y)g(Z)}\ex{h(T)} = \ex{f_1(X)f_2(Y)g(Z)h(T)}\]
+\[\ex{\ex{f_1(\X)f_2(\XX)|\XXX}g(\XXX)h(T)} = \ex{f_1(\X)f_2(\XX)g(\XXX)}\ex{h(T)} = \ex{f_1(\X)f_2(\XX)g(\XXX)h(T)}\]
 
-So \((X,Y)\perp T|Z\). In particular, that means that 
+So \((\X,\XX)\perp T|\XXX\). In particular, that means that 
 
-\[\ex{\ex{f(X)|Z,T}g(Y)h(Z,T)} = \ex{\ex{f(X)|Z}g(Y)h_1(Z)}\ex{h_2(T)} = \ex{f(X)g(Y)h(Z,T)}\]
+\[\ex{\ex{f(\X)|\XXX,T}g(\XX)h(\XXX,T)} = \ex{\ex{f(\X)|\XXX}g(\XX)h_1(\XXX)}\ex{h_2(T)} = \ex{f(\X)g(\XX)h(\XXX,T)}\]
 
-which proves that \(X\perp Y|Z,T\).
+which proves that \(\X\perp \XX|\XXX,T\).
 
-\[\ex{\ex{f_1(X)f_2(T)|Z}g(Y)h(Z)} = \ex{f_2(T)}\ex{\ex{f_1(X)|Z}g(Y)h(Z)} = \ex{f(X,T)g(Y)h(Z)}\]
+\[\ex{\ex{f_1(\X)f_2(T)|\XXX}g(\XX)h(\XXX)} = \ex{f_2(T)}\ex{\ex{f_1(\X)|\XXX}g(\XX)h(\XXX)} = \ex{f(\X,T)g(\XX)h(\XXX)}\]
 
-So \((X,T)\perp Y|Z\). Then \(X\perp (Y,T)|Z\) by symmetry.
+So \((\X,T)\perp \XX|\XXX\). Then \(\X\perp (\XX,T)|\XXX\) by symmetry.
 
 \item By part (b), 
 
-\[(X,T)\perp Y|Z.\]
+\[(\X,T)\perp \XX|\XXX.\]
 
 By \cite[Lemma 2.10]{RamCur} \tr{See if this has changed}, 
 
-\[(X,T)\perp Y|(Z,\phi(Z,X,T)).\]
+\[(\X,T)\perp \XX|(\XXX,\phi(\XXX,\X,T)).\]
 
 By part (a),
 
-\[X\perp Y|(Z,\phi(Z,X,T))\]
+\[\X\perp \XX|(\XXX,\phi(\XXX,\X,T))\]
 
-\item Notice that the event \(A^c\) is an atom in \(\sigma(Z\mb{I}_A)\). For any \(B \in \sigma(Z)\) such that \(B\subset A\), \(B \in \sigma(Z\mb{I}_A)\). Therefore, we can represent all sets \(C \in \sigma(Z\mb{I}_A)\) by \(C = B\) or \(C = B\sqcup A^c\) where \(\{B\subset A\}\te{ and } B \in \sigma(Z)\). Suppose \(C = B\sqcup A^c\). Then,
+\item Notice that the event \(\typset^c\) is an atom in \(\sigma(\XXX\mb{I}_\typset)\). For any \(B \in \sigma(\XXX)\) such that \(B\subset \typset\), \(B \in \sigma(\XXX\mb{I}_\typset)\). Therefore, we can represent all sets \(C \in \sigma(\XXX\mb{I}_\typset)\) by \(C = B\) or \(C = B\sqcup \typset^c\) where \(\{B\subset \typset\}\te{ and } B \in \sigma(\XXX)\). Suppose \(C = B\sqcup \typset^c\). Then,
 
 \begin{align*}
-\ex{\ex{f(X\mb{I}_A)|Z\mb{I}_A}\mb{I}_C} &= \ex{f(X\mb{I}_A)\mb{I}_A}+\ex{f(X\mb{I}_A)\mb{I}_B} = \ex{f(0)\mb{I}_A} + \ex{\ex{f(X)|Z}\mb{I}_B}\\
+\ex{\ex{f(\X\mb{I}_\typset)|\XXX\mb{I}_\typset}\mb{I}_C} &= \ex{f(\X\mb{I}_\typset)\mb{I}_\typset}+\ex{f(\X\mb{I}_\typset)\mb{I}_B} = \ex{f(0)\mb{I}_\typset} + \ex{\ex{f(\X)|\XXX}\mb{I}_B}\\
 \end{align*}
 
 So we can write
 
 \begin{equation}
-\ex{f(X\mb{I}_A)|Z\mb{I}_A}(\omega) = \begin{cases}
-\ex{f(X)|Z}(\omega) &\te{ if } \omega \in A\\
+\ex{f(\X\mb{I}_\typset)|\XXX\mb{I}_\typset}(\omega) = \begin{cases}
+\ex{f(\X)|\XXX}(\omega) &\te{ if } \omega \in \typset\\
 f(0) &\te{ otherwise}
 \end{cases}
 \label{sec::TL:eqn::disjoint CE}
@@ -2756,9 +2768,9 @@ f(0) &\te{ otherwise}
 Then
 
 \begin{align*}
-\ex{\ex{f(X\mb{I}_A)|Z\mb{I}_A}g(Y\mb{I}_A)h(Z\mb{I}_A)} &= \ex{\mb{I}_A\ex{f(X)|Z}g(Y)h(Z)} + \ex{\mb{I}_{A^c}f(0)g(0)h(0)}\\
-&=\ex{\mb{I}_Af(X)g(Y)h(Z)}+\ex{\mb{I}_{A^c}f(0)g(0)h(0)}\\
-&= \ex{f(X\mb{I}_A)g(\mb{I}_A)h(\mb{I}_A)}
+\ex{\ex{f(\X\mb{I}_\typset)|\XXX\mb{I}_\typset}g(\XX\mb{I}_\typset)h(\XXX\mb{I}_\typset)} &= \ex{\mb{I}_\typset\ex{f(\X)|\XXX}g(\XX)h(\XXX)} + \ex{\mb{I}_{\typset^c}f(0)g(0)h(0)}\\
+&=\ex{\mb{I}_\typset f(\X)g(\XX)h(\XXX)}+\ex{\mb{I}_{\typset^c}f(0)g(0)h(0)}\\
+&= \ex{f(\X\mb{I}_\typset)g(\mb{I}_\typset)h(\mb{I}_\typset)}
 \end{align*}
 
 which completes the proof.
@@ -2766,25 +2778,25 @@ which completes the proof.
 \item We can show this directly:
 
 \begin{align*}
-\mb{E}\bigg[\ex{f_1(X)f_2(Z)f_3(U)|Z}g_1(Y)&g_2(Z)g_3(V)h(Z)\bigg]\\
-&= \ex{f_3(U)g_3(V)}\ex{\ex{f_1(X)|Z}g_1(Y)(f_2(Z)g_2(Z)h(Z))}\\
-&= \ex{f_3(U)g_3(V)}\ex{f_1(X)g_1(Y)f_2(Z)g_2(Z)h(Z)}\\
-&= \ex{f(X,Z,U)g(Y,Z,V)h(Z)}
+\mb{E}\bigg[\ex{f_1(\X)f_2(\XXX)f_3(U)|\XXX}g_1(\XX)&g_2(\XXX)g_3(V)h(\XXX)\bigg]\\
+&= \ex{f_3(U)g_3(V)}\ex{\ex{f_1(\X)|\XXX}g_1(\XX)(f_2(\XXX)g_2(\XXX)h(\XXX))}\\
+&= \ex{f_3(U)g_3(V)}\ex{f_1(\X)g_1(\XX)f_2(\XXX)g_2(\XXX)h(\XXX)}\\
+&= \ex{f(\X,\XXX,U)g(\XX,\XXX,V)h(\XXX)}
 \end{align*}
 
-\item First, if \(I\) is finite, then it suffices to prove conditional independence for \(I =\{1,2\}\). Notice that any set \(B \in \sigma(Z\mb{I}_{A_1\sqcup A_2})\) can be expressed as \(B = C\sqcup D\sqcup\{(A_1\sqcup A_2)^c\}\) or \(B = C\sqcup D\) where \(C\in \sigma(Z\mb{I}_{A_1})\), \(D \in \sigma(Z\mb{I}_{A_2})\), \(C \subseteq A_1\) and \(D \subseteq A_2\). Notice also that the unions defining \(B\) are disjoint unions. Let \(B = C\sqcup D\sqcup \{(A_1\sqcup A_2)^c\}\).
+\item First, if \(I\) is finite, then it suffices to prove conditional independence for \(I =\{1,2\}\). Notice that any set \(B \in \sigma(\XXX\mb{I}_{\typset_1\sqcup \typset_2})\) can be expressed as \(B = C\sqcup D\sqcup\{(\typset_1\sqcup \typset_2)^c\}\) or \(B = C\sqcup D\) where \(C\in \sigma(\XXX\mb{I}_{\typset_1})\), \(D \in \sigma(\XXX\mb{I}_{\typset_2})\), \(C \subseteq \typset_1\) and \(D \subseteq \typset_2\). Notice also that the unions defining \(B\) are disjoint unions. Let \(B = C\sqcup D\sqcup \{(\typset_1\sqcup \typset_2)^c\}\).
 
 \begin{align*}
-\mb{E}\bigg[\ex{f(X\mb{I}_{A_1\sqcup A_2})|Z\mb{I}_{A_1\sqcup A_2}}&\mb{I}_B\bigg]= \ex{f(X\mb{I}_{A_1\sqcup A_2})\mb{I}_B}\\
-&= \ex{\mb{I}_Cf(X\mb{I}_{A_1\sqcup A_2})} + \ex{\mb{I}_Df(X\mb{I}_{A_1\sqcup A_2})} + \ex{\mb{I}_{(A_1\sqcup A_2)^c}f(X\mb{I}_{A_1\sqcup A_2})}\\
-&= \ex{\mb{I}_C f(X\mb{I}_{A_1})} + \ex{\mb{I}_D f(X\mb{I}_{A_2})} + \ex{\mb{I}_{(A_1\sqcup A_2)^c}f(0)}\\
-&= \ex{\mb{I}_{C}\ex{f(X\mb{I}_{A_1})|Z\mb{I}_{A_1}}} + \ex{\mb{I}_{D}\ex{f(X\mb{I}_{A_2})|Z\mb{I}_{A_2}}} + \ex{\mb{I}_{(A_1\sqcup A_2)^c}f(0)}
+\mb{E}\bigg[\ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})|\XXX\mb{I}_{\typset_1\sqcup \typset_2}}&\mb{I}_B\bigg]= \ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})\mb{I}_B}\\
+&= \ex{\mb{I}_Cf(\X\mb{I}_{\typset_1\sqcup \typset_2})} + \ex{\mb{I}_Df(\X\mb{I}_{\typset_1\sqcup \typset_2})} + \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(\X\mb{I}_{\typset_1\sqcup \typset_2})}\\
+&= \ex{\mb{I}_C f(\X\mb{I}_{\typset_1})} + \ex{\mb{I}_D f(\X\mb{I}_{\typset_2})} + \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)}\\
+&= \ex{\mb{I}_{C}\ex{f(\X\mb{I}_{\typset_1})|\XXX\mb{I}_{\typset_1}}} + \ex{\mb{I}_{D}\ex{f(\X\mb{I}_{\typset_2})|\XXX\mb{I}_{\typset_2}}} + \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)}
 \end{align*}
 
 In particular, we can write
 
 \begin{equation}
-\ex{f(X\mb{I}_{A_1\sqcup A_2})|Z\mb{I}_{A_1\sqcup A_2}} = \mb{I}_{A_1}\ex{f(X\mb{I}_{A_1})|Z\mb{I}_{A_1}} + \mb{I}_{A_2}\ex{f(X\mb{I}_{A_2})|Z\mb{I}_{A_2}} + \mb{I}_{(A_1\sqcup A_2)^c}f(0)
+\ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})|\XXX\mb{I}_{\typset_1\sqcup \typset_2}} = \mb{I}_{\typset_1}\ex{f(\X\mb{I}_{\typset_1})|\XXX\mb{I}_{\typset_1}} + \mb{I}_{\typset_2}\ex{f(\X\mb{I}_{\typset_2})|\XXX\mb{I}_{\typset_2}} + \mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)
 \label{sec::TL:eqn::disjoint sum CE}
 \end{equation}
 \labe{sec::TL:eqn::disjoint sum CE}
@@ -2792,49 +2804,49 @@ In particular, we can write
 Then,
 
 \begin{align*}
-\mb{E}\bigg[\ex{f(X\mb{I}_{A_1\sqcup A_2})|Z\mb{I}_{A_1\sqcup A_2}}&g(Y\mb{I}_{A_1\sqcup A_2})h(Z\mb{I}_{A_1\sqcup A_2})\bigg]\\
-&= \ex{\mb{I}_{A_1}\ex{f(X\mb{I}_{A_1})|Z\mb{I}_{A_1}}g(Y\mb{I}_{A_1})h(Z\mb{I}_{A_1})} +\\
-&\hspace{1 cm} \ex{\mb{I}_{A_2}\ex{f(X\mb{I}_{A_2})|Z\mb{I}_{A_2}}g(Y\mb{I}_{A_2})h(Z\mb{I}_{A_2})} + \\
-&\hspace{1 cm} \ex{\mb{I}_{(A_1\sqcup A_2)^c}f(0)g(0)h(0)}\\
-&= \ex{\mb{I}_{A_1}f(X\mb{I}_{A_1})g(Y\mb{I}_{A_1})h(Z\mb{I}_{A_1})} + \ex{\mb{I}_{A_2}f(X\mb{I}_{A_2})g(Y\mb{I}_{A_2})h(Z\mb{I}_{A_2})} +\\
-&\hspace{1 cm} \ex{\mb{I}_{(A_1\sqcup A_2)^c}f(0)g(0)h(0)}\\
-&= \ex{f(X\mb{I}_{A_1\sqcup A_2})g(Y\mb{I}_{A_1\sqcup A_2})h(Z\mb{I}_{A_1\sqcup A_2})}
+\mb{E}\bigg[\ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})|\XXX\mb{I}_{\typset_1\sqcup \typset_2}}&g(\XX\mb{I}_{\typset_1\sqcup \typset_2})h(\XXX\mb{I}_{\typset_1\sqcup \typset_2})\bigg]\\
+&= \ex{\mb{I}_{\typset_1}\ex{f(\X\mb{I}_{\typset_1})|\XXX\mb{I}_{\typset_1}}g(\XX\mb{I}_{\typset_1})h(\XXX\mb{I}_{\typset_1})} +\\
+&\hspace{1 cm} \ex{\mb{I}_{\typset_2}\ex{f(\X\mb{I}_{\typset_2})|\XXX\mb{I}_{\typset_2}}g(\XX\mb{I}_{\typset_2})h(\XXX\mb{I}_{\typset_2})} + \\
+&\hspace{1 cm} \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)g(0)h(0)}\\
+&= \ex{\mb{I}_{\typset_1}f(\X\mb{I}_{\typset_1})g(\XX\mb{I}_{\typset_1})h(\XXX\mb{I}_{\typset_1})} + \ex{\mb{I}_{\typset_2}f(\X\mb{I}_{\typset_2})g(\XX\mb{I}_{\typset_2})h(\XXX\mb{I}_{\typset_2})} +\\
+&\hspace{1 cm} \ex{\mb{I}_{(\typset_1\sqcup \typset_2)^c}f(0)g(0)h(0)}\\
+&= \ex{f(\X\mb{I}_{\typset_1\sqcup \typset_2})g(\XX\mb{I}_{\typset_1\sqcup \typset_2})h(\XXX\mb{I}_{\typset_1\sqcup \typset_2})}
 \end{align*}
 
 Now suppose \(I\) is countably infinite. Without loss of generality, assume \(I = \mb{N}\). Furthermore, assume \(f(0) = g(0) = h(0) = 0\).
 
 Then for any \(n \in \mb{N}\),
 
-\[\ex{f(X\mb{I}_{\sqcup_{i=1}^n A_i})|Z\mb{I}_{\sqcup_{i=1}^n A_i}} = \sum_{i=1}^n \mb{I}_{A_i}\ex{f(X\mb{I}_{A_i})|Z\mb{I}_{A_i}} + \mb{I}_{\left(\sqcup_{i=1}^n A_i\right)^c} f(0)\]
+\[\ex{f(\X\mb{I}_{\sqcup_{i=1}^n \typset_i})|\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i}} = \sum_{i=1}^n \mb{I}_{\typset_i}\ex{f(\X\mb{I}_{\typset_i})|\XXX\mb{I}_{\typset_i}} + \mb{I}_{\left(\sqcup_{i=1}^n \typset_i\right)^c} f(0)\]
 
 Therefore,
 
-\[\ex{f(X\mb{I}_{\sqcup_{i=1}^n A_i})|Z\mb{I}_{\sqcup_{i=1}^n A_i}} \nearrow \ex{f(X\mb{I}_{\sqcup_{i=1}^\infty A_i})|Z\mb{I}_{\sqcup_{i=1}^\infty A_i}} \te{ almost surely}\]
+\[\ex{f(\X\mb{I}_{\sqcup_{i=1}^n \typset_i})|\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i}} \nearrow \ex{f(\X\mb{I}_{\sqcup_{i=1}^\infty \typset_i})|\XXX\mb{I}_{\sqcup_{i=1}^\infty \typset_i}} \te{ almost surely}\]
 
 furthermore, 
 
-\[(g(Y\mb{I}_{\sqcup_{i=1}^n A_i}),h(Z\mb{I}_{\sqcup_{i=1}^n A_i})) \nearrow (g(Y\mb{I}_{\sqcup_{i=1}^\infty A_i}),h(Z\mb{I}_{\sqcup_{i=1}^\infty  A_i})) \te{ almost surely}\]
+\[(g(\XX\mb{I}_{\sqcup_{i=1}^n \typset_i}),h(\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i})) \nearrow (g(\XX\mb{I}_{\sqcup_{i=1}^\infty \typset_i}),h(\XXX\mb{I}_{\sqcup_{i=1}^\infty  \typset_i})) \te{ almost surely}\]
 
 By the monotone convergence theorem,
 
 \begin{align*}
-\lim_{n\ra\infty} \mb{E}\bigg[\ex{f(X\mb{I}_{\sqcup_{i=1}^n A_i})|Z\mb{I}_{\sqcup_{i=1}^n A_i}}&g(Y\mb{I}_{\sqcup_{i=1}^n A_i})h(Z\mb{I}_{\sqcup_{i=1}^n A_i})\bigg]\\
-& = \ex{\ex{f(X\mb{I}_{\sqcup_{i=1}^\infty A_i})|Z\mb{I}_{\sqcup_{i=1}^\infty A_i}}g(Y\mb{I}_{\sqcup_{i=1}^\infty A_i})h(Z\mb{I}_{\sqcup_{i=1}^\infty A_i})}
+\lim_{n\ra\infty} \mb{E}\bigg[\ex{f(\X\mb{I}_{\sqcup_{i=1}^n \typset_i})|\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i}}&g(\XX\mb{I}_{\sqcup_{i=1}^n \typset_i})h(\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i})\bigg]\\
+& = \ex{\ex{f(\X\mb{I}_{\sqcup_{i=1}^\infty \typset_i})|\XXX\mb{I}_{\sqcup_{i=1}^\infty \typset_i}}g(\XX\mb{I}_{\sqcup_{i=1}^\infty \typset_i})h(\XXX\mb{I}_{\sqcup_{i=1}^\infty \typset_i})}
 \end{align*}
 
 Similarly by monotone convergence,
 
 \begin{align*}
-\lim_{n\ra\infty} \mb{E}\bigg[f(X\mb{I}_{\sqcup_{i=1}^n A_i})&g(Y\mb{I}_{\sqcup_{i=1}^n A_i})h(Z\mb{I}_{\sqcup_{i=1}^n A_i})\bigg] = \ex{f(X\mb{I}_{\sqcup_{i=1}^\infty A_i})g(Y\mb{I}_{\sqcup_{i=1}^\infty A_i})h(Z\mb{I}_{\sqcup_{i=1}^\infty A_i})}
+\lim_{n\ra\infty} \mb{E}\bigg[f(\X\mb{I}_{\sqcup_{i=1}^n \typset_i})&g(\XX\mb{I}_{\sqcup_{i=1}^n \typset_i})h(\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i})\bigg] = \ex{f(\X\mb{I}_{\sqcup_{i=1}^\infty \typset_i})g(\XX\mb{I}_{\sqcup_{i=1}^\infty \typset_i})h(\XXX\mb{I}_{\sqcup_{i=1}^\infty \typset_i})}
 \end{align*}
 
 So,
 
 \begin{align*}
-\mb{E}\bigg[\ex{f(X\mb{I}_{\sqcup_{i=1}^\infty A_i})|Z\mb{I}_{\sqcup_{i=1}^\infty A_i}}&g(Y\mb{I}_{\sqcup_{i=1}^\infty A_i})h(Z\mb{I}_{\sqcup_{i=1}^\infty A_i})\bigg]\\
-&= \lim_{n\ra\infty} \ex{\ex{f(X\mb{I}_{\sqcup_{i=1}^n A_i})|Z\mb{I}_{\sqcup_{i=1}^n A_i}}g(Y\mb{I}_{\sqcup_{i=1}^n A_i})h(Z\mb{I}_{\sqcup_{i=1}^n A_i})}\\
-&= \lim_{n\ra\infty} \ex{f(X\mb{I}_{\sqcup_{i=1}^n A_i})g(Y\mb{I}_{\sqcup_{i=1}^n A_i})h(Z\mb{I}_{\sqcup_{i=1}^n A_i})}\\
-&= \ex{f(X\mb{I}_{\sqcup_{i=1}^\infty A_i})g(Y\mb{I}_{\sqcup_{i=1}^\infty A_i})h(Z\mb{I}_{\sqcup_{i=1}^\infty A_i})}
+\mb{E}\bigg[\ex{f(\X\mb{I}_{\sqcup_{i=1}^\infty \typset_i})|\XXX\mb{I}_{\sqcup_{i=1}^\infty \typset_i}}&g(\XX\mb{I}_{\sqcup_{i=1}^\infty \typset_i})h(\XXX\mb{I}_{\sqcup_{i=1}^\infty \typset_i})\bigg]\\
+&= \lim_{n\ra\infty} \ex{\ex{f(\X\mb{I}_{\sqcup_{i=1}^n \typset_i})|\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i}}g(\XX\mb{I}_{\sqcup_{i=1}^n \typset_i})h(\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i})}\\
+&= \lim_{n\ra\infty} \ex{f(\X\mb{I}_{\sqcup_{i=1}^n \typset_i})g(\XX\mb{I}_{\sqcup_{i=1}^n \typset_i})h(\XXX\mb{I}_{\sqcup_{i=1}^n \typset_i})}\\
+&= \ex{f(\X\mb{I}_{\sqcup_{i=1}^\infty \typset_i})g(\XX\mb{I}_{\sqcup_{i=1}^\infty \typset_i})h(\XXX\mb{I}_{\sqcup_{i=1}^\infty \typset_i})}
 \end{align*}
 
 By linearity, this also holds for all bounded and measurable \(f,g\) and \(h\) with no restrictions on \(f(0),g(0),h(0)\), so the proof is complete.
@@ -2842,24 +2854,24 @@ By linearity, this also holds for all bounded and measurable \(f,g\) and \(h\) w
 \item 
 
 \begin{align*}
-\mb{E}\bigg[\ex{f(X\mb{I}_A)| Z\mb{I}_A}g(\mb{I}_AZ)&h(\mb{I}_AU)\bigg] = \ex{\mb{I}_A\ex{f(X\mb{I}_A)|Z\mb{I}_A}g(Z\mb{I}_A)h(\mb{I}_A)} + f(0)g(0)h(0)\pr(A^c)\\
-&=\frac{\ex{\mb{I}_A\ex{f(X\mb{I}_A)|Z\mb{I}_A}g(Z\mb{I}_A)}\ex{\mb{I}_Ah(U\mb{I}_A)}}{\pr(A)} + f(0)g(0)h(0)\pr(A^c)\\
-&=\frac{\ex{\mb{I}_Af(X\mb{I}_A)g(Z\mb{I}_A)}\ex{\mb{I}_Ah(U\mb{I}_A)}}{\pr(A)} + f(0)g(0)h(0)\pr(A^c)\\
-&=\ex{\mb{I}_Af(X\mb{I}_A)g(Z\mb{I}_A)h(U\mb{I}_A)} + f(0)g(0)h(0)\pr(A^c)\\
-&= \ex{f(X\mb{I}_A)g(Z\mb{I}_A)h(U\mb{I}_A)}
+\mb{E}\bigg[\ex{f(\X\mb{I}_\typset)| \XXX\mb{I}_\typset}g(\mb{I}_\typset\XXX)&h(\mb{I}_\typset U)\bigg] = \ex{\mb{I}_\typset\ex{f(\X\mb{I}_\typset)|\XXX\mb{I}_\typset}g(\XXX\mb{I}_\typset)h(\mb{I}_\typset)} + f(0)g(0)h(0)\pr(\typset^c)\\
+&=\frac{\ex{\mb{I}_\typset\ex{f(\X\mb{I}_\typset)|\XXX\mb{I}_\typset}g(\XXX\mb{I}_\typset)}\ex{\mb{I}_\typset h(U\mb{I}_\typset)}}{\pr(\typset)} + f(0)g(0)h(0)\pr(\typset^c)\\
+&=\frac{\ex{\mb{I}_\typset f(\X\mb{I}_\typset)g(\XXX\mb{I}_\typset)}\ex{\mb{I}_\typset h(U\mb{I}_\typset)}}{\pr(\typset)} + f(0)g(0)h(0)\pr(\typset^c)\\
+&=\ex{\mb{I}_\typset f(\X\mb{I}_\typset)g(\XXX\mb{I}_\typset)h(U\mb{I}_\typset)} + f(0)g(0)h(0)\pr(\typset^c)\\
+&= \ex{f(\X\mb{I}_\typset)g(\XXX\mb{I}_\typset)h(U\mb{I}_\typset)}
 \end{align*}
 
-So \(\ex{f(X\mb{I}_A|Z\mb{I}_A} = \ex{f(X\mb{I}_A|Z\mb{I}_A,U\mb{I}_A}\). Then 
+So \(\ex{f(\X\mb{I}_\typset|\XXX\mb{I}_\typset} = \ex{f(\X\mb{I}_\typset|\XXX\mb{I}_\typset,U\mb{I}_\typset}\). Then 
 
 \begin{align*}
-\ex{\ex{f(X\mb{I}_A)|Z\mb{I}_A}g(Y\mb{I}_A)h(Z\mb{I}_A)} &= \ex{\ex{f(X\mb{I}_A)|\mb{I}_A(Z,U)}g(Y\mb{I}_A)h(Z\mb{I}_A)}\\
-&=\ex{f(X\mb{I}_A)g(Y\mb{I}_A)h(Z\mb{I}_A)}
+\ex{\ex{f(\X\mb{I}_\typset)|\XXX\mb{I}_\typset}g(\XX\mb{I}_\typset)h(\XXX\mb{I}_\typset)} &= \ex{\ex{f(\X\mb{I}_\typset)|\mb{I}_\typset(\XXX,U)}g(\XX\mb{I}_\typset)h(\XXX\mb{I}_\typset)}\\
+&=\ex{f(\X\mb{I}_\typset)g(\XX\mb{I}_\typset)h(\XXX\mb{I}_\typset)}
 \end{align*}
 
 \item 
 \begin{align*}
-\ex{\ex{f(X)|Z}g(Y)h(Z)} &= \ex{\ex{f(X\mb{I}_A)|Z\mb{I}_A}g(Y\mb{I}_A)h(Z\mb{I}_A)}\\
-&= \ex{f(X\mb{I}_A)g(Y\mb{I}_A)h(Z\mb{I}_A)} = \ex{f(X)g(Y)h(Z)}
+\ex{\ex{f(\X)|\XXX}g(\XX)h(\XXX)} &= \ex{\ex{f(\X\mb{I}_\typset)|\XXX\mb{I}_\typset}g(\XX\mb{I}_\typset)h(\XXX\mb{I}_\typset)}\\
+&= \ex{f(\X\mb{I}_\typset)g(\XX\mb{I}_\typset)h(\XXX\mb{I}_\typset)} = \ex{f(\X)g(\XX)h(\XXX)}
 \end{align*}
 \end{enumerate}
 \end{proof}
@@ -2877,19 +2889,19 @@ Let \(\phi: \mb{R}^+ \ra \mb{R}^+\) be a monotonic function such that \(\phi(0+)
 \begin{proof}
 Fix \(\ep > 0\). Since \(\phi(0+) = 0\), there exists a \(\delta > 0\) such that \(\phi(\delta) < \ep/2\). Let \(\ov{\phi} = \min\{\phi+\ep/2, C\}\).
 
-\ind Let \(a_1 = \inf\{a \geq 0: ax + \ep \geq \ov{\phi}_1(x)\te{ for all } x\geq 0\}\). Note that \(0\leq a \leq C/\delta\). 
+\ind Let \(a_\ep = \inf\{a \geq 0: a\x + \ep \geq \phi(\x)\te{ for all } \x\geq 0\}\). Note that \(0\leq a_\ep \leq C/\delta\). 
 
-\ind Define \(\psi_\ep(x) = \min\{ax+\ep,C\}\). Then \(\psi_\ep\) is continuous, concave and \(\psi_\ep \geq \phi\).
+\ind Define \(\psi_\ep(\x) = \min\{a\x+\ep,C\}\). Then \(\psi_\ep\) is continuous, concave, non-decreasing, \(\psi_\ep(0) = \ep\) and \(\psi_\ep \geq \phi\).
 
-\ind Let \(\psi(x) = \inf_{\ep > 0} \psi_\ep(x)\). Then \(\psi\) is trivially concave and non-decreasing. Furthermore, since it is non-decreasing, it can only have jump discontinuities, and left and right limits exist at each point. Suppose \(x\) is a discontinuity point of \(\psi\). Let \(\triangle\psi(x) = \psi(x+) - \psi(x-)\).
+\ind Let \(\psi(\x) = \inf_{\ep > 0} \psi_\ep(\x)\). Then \(\psi\) is trivially concave, bounded and non-decreasing. Furthermore, since it is non-decreasing, it can only have jump discontinuities, and left and right limits exist at each point. Suppose \(\x\) is a discontinuity point of \(\psi\). Let \(\triangle\psi(\x) = \psi(\x+) - \psi(\x-)\).
 
 For any small \(\delta > 0\), notice that
 
-\[\lim_{\delta \ra 0} \frac{\psi(x-\delta) + \psi(x+\delta)}{2} = \psi(x-) + \frac{\triangle\psi(x)}{2} > \psi(x-).\]
+\[\lim_{\delta \ra 0} \frac{\psi(\x-\delta) + \psi(\x+\delta)}{2} = \psi(\x-) + \frac{\triangle\psi(\x)}{2} > \psi(\x-).\]
 
-Thus, there exists some \(\delta\) and some \(1>\lambda>1/2\) such that
+Thus, there exists some \(\delta\) and some \(1>\rate>1/2\) such that
 
-\[\lambda\psi(x-\delta) + (1 -\lambda)\psi(x+\delta) \geq \psi(x-) \geq \psi(x + (1 - 2\lambda)\delta) = \psi\left(\lambda(x-\delta) + (1 - \lambda)(x+\delta)\right).\]
+\[\rate\psi(\x-\delta) + (1 -\rate)\psi(\x+\delta) > \psi(\x-) > \psi(\x + (1 - 2\rate)\delta) = \psi\left(\rate(\x-\delta) + (1 - \rate)(\x+\delta)\right).\]
 
 This contradicts concavity of \(\psi\). Thus, \(\psi\) is continuous.
 \end{proof}
@@ -2897,13 +2909,13 @@ This contradicts concavity of \(\psi\). Thus, \(\psi\) is continuous.
 \lin
 
 \begin{defn}
-Let \(\{t_i\}\) be denote a finite set of times \(0=t_0 <t_1 <\cdots < t_n=1\). Let \(X\in \cad([0,T],\mc{X})\) where \(\mc{X}\) is a separable and complete space with respect to the metric \(d\). Define,
+Let \(\{t_i\}\) be denote a finite set of times \(0=t_0 <t_1 <\cdots < t_n=1\). Let \(\X\in \cad([0,T],\spce)\) where \(\spce\) is a separable and complete space with respect to the metric \(d\). Define,
 
-\[\omega_X([t_{i-1},t_i)) = \sup_{s,t\in [t_{i-1},t_i)} d(X(t),X(s)).\]
+\[\modu{\X}([t_{i-1},t_i)) = \sup_{\tt,\t\in [t_{i-1},t_i)} d(\X{t},\X{\tt}).\]
 
 Then for all \(\delta \in (0,T)\),
 
-\[\omega_X'(\delta) = \inf_{\{t_i\}: \max_i |t_i - t_{i-1}| > \delta} \min_{i} \omega_X([t_{i-1},t_i))\]
+\[\cmodu{\X}(\delta) = \inf_{\{t_i\}: \min_i |t_i - t_{i-1}| > \delta} \max_{i} \modu{\X}([t_{i-1},t_i))\]
 
 is called the c\`adl\`ag modulus of continuity.
 \label{sec::TL:Def::modulus}
@@ -2915,16 +2927,16 @@ is called the c\`adl\`ag modulus of continuity.
 \lin
 
 \begin{thms}
-Let \(\{\mu^i\}\subseteq \mc{P}\left(\cad([0,T],\mc{X})\right)\) where \(\mc{X}\) is a separable and complete normed space. Assume \(X^i\) is a random process with law \(\mu^i\) for each \(i\). Then \(\{\mu_i\}\) is tight if and only if:
+Let \(\{\m^i\}\subseteq \mc{P}\left(\cad([0,T],\spce)\right)\) where \(\spce\) is a separable and complete normed space. Assume \(\X^i\) is a random process with law \(\m^i\) for each \(i\). Then \(\{\m_i\}\) is tight if and only if:
 
 \begin{enumerate}[(1)]
 \item 
 
-\[\lim_{a \ra \infty}\limsup_{n \ra\infty} \pr\left(\sup_{t \in [0,T]} |X^i_t| \geq a\right) = 0.\]
+\[\lim_{a \ra \infty}\limsup_{n \ra\infty} \pr\left(\sup_{t \in [0,T]} |\X^i_t| \geq a\right) = 0.\]
 
 \item For all \(\ep > 0\),
 
-\[\lim_{\delta \searrow 0}\limsup_{n\ra\infty} \pr\left(\omega'_{X^i}(\delta) \geq \ep\right) = 0.\]
+\[\lim_{\delta \searrow 0}\limsup_{n\ra\infty} \pr\left(\cmodu{\X^i}(\delta) \geq \ep\right) = 0.\]
 \end{enumerate}
 \label{sec::TL:Thm::Tight}
 \end{thms}
@@ -2939,15 +2951,15 @@ This is simply a restatement of \cite[Theorem 13.2]{Bil99}.
 \begin{lem}
 Let \(\{\X{}{}{n}\}\) be a sequence \(\Omega{ V}{\T}\)-valued Feller processes satisfying Assumption \ref{subsec::Assum:Assu::CI}. Let the infinitesimal generators of these processes be given by the equation:
 
-\[\IG\sln{n}f(\sv{}{ V}) = \sum_{\v\in  V}\sum_{\s \in \S} \IGr{\v}\sln{n}(\sv{}{ V},\s)[f(\sv{}{ V} + \s\ev{\v}) - f(\sv{}{ V})].\]
+\[\IG\sln{n}f(\sv{}{ V}) = \sum_{\v\in  V}\sum_{\s \in \S} \IGr\sln{n}{\v}(\sv{}{ V},\s)[f(\sv{}{ V} + \s\ev{\v}) - f(\sv{}{ V})].\]
 
 If there exists some \(\const{} < \infty\) such that
 
-\[\sup_{n}\sup_{\sv{}{ V}\in \S^ V}\sup_{\v\in V}\sup_{\s\in \S} \IGr{\v}\sln{n}(\sv{}{ V},\s) \leq \const{},\]
+\[\sup_{n}\sup_{\sv{}{ V}\in \S^ V}\sup_{\v\in V}\sup_{\s\in \S} \IGr\sln{n}{\v}(\sv{}{ V},\s) \leq \const{},\]
 
 then for all finite \(\U \subseteq  V\),
 
-\[\lim_{\delta \searrow 0} \sup_n \pr\left(\omega'_{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta) \geq \ep\right) = 0\]
+\[\lim_{\delta \searrow 0} \sup_n \pr\left(\cmodu{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta) \geq \ep\right) = 0\]
 
 for all \(\ep > 0\).
 \label{sec::TL:Lem::TightSupport}
@@ -2957,9 +2969,9 @@ for all \(\ep > 0\).
 \purpose This allows us to obtain the c\`adl\`ag version of the equicontinuity condition necessary for Theorem \ref{sec::TL:Thm::Tight}. Note: The first time this lemma is applied is in the proof of Proposition \ref{subsec::Well-:Prop::IGApprox}. The proof refers to Proposition \ref{subsec::Well-:Prop::SDE=IG}.
 
 \begin{proof}
-Fix any \(n \in \mb{N}\). Let \(M = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\XX{}{}\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
+Fix any \(n \in \mb{N}\). Let \(\cconst = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\XX{}{}\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
 
-\[\XX{}{\t} = \sum_{\v \in \U}M\ev{\v}\int_0^\t\int_0^{\const{}}\alt{\poiss}{\v}(d\r, d\tt)\]
+\[\XX{}{\t} = \sum_{\v \in \U}\cconst\ev{\v}\int_0^\t\int_0^{\const{}}\alt{\poiss}{\v}(d\r, d\tt)\]
 
 where \(\{\alt{\poiss}{\v}:\v \in \U\}\) are a sequence of i.i.d. unit rate Poisson processes on \(\mb{R}^2\). 
 
@@ -2974,8 +2986,8 @@ for all \(\v\in  V\). Let
 Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in  V\}\) are i.i.d., it follows that \(\{\alt{\poiss}{\v}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\proj{\U}{\T}(\X{}{}{n})\) experiences a jump, \(\XX{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\XX{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
 
 \begin{align*}
-|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|&\leq M\left|\{\#\te{ of jumps in }\X{\v}{(\tt,\ttt]}{n}\}\right| \\
-&\leq M\left|\{\#\te{ of jumps in }\XX{\v}{(\tt,\ttt]}\}\right| = \left|\XX{\v}{\tt} - \XX{\v}{\ttt}\right|
+|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|&\leq \cconst\left|\{\#\te{ of jumps in }\X{\v}{(\tt,\ttt]}{n}\}\right| \\
+&\leq \cconst\left|\{\#\te{ of jumps in }\XX{\v}{(\tt,\ttt]}\}\right| = \left|\XX{\v}{\tt} - \XX{\v}{\ttt}\right|
 \end{align*}
 
 It follows that for any partition \(\{\t\sln{\it}\}\) of \([0,\T]\),
@@ -3017,14 +3029,14 @@ We can apply \cite[Proposition 14.7.I(b)]{DalVer08} to the proof of Lemma \ref{s
 I use the notation of section \ref{subsec::ProofU:sec::Proof2}. The assumptions of \cite[Proposition 14.7.I(b)]{DalVer08} are as follows:
 
 \begin{itemize}
-\item \(\poiss{}(\cdot,\cdot)\) is a marked point process with internal history \(\mc{H}\).
+\item \(\poiss{}(\cdot,\cdot)\) is a marked point process with internal history \(\FH\).
 
-\item \(\poiss{}(\cdot,\cdot)\) has \(\mc{H}\)-predictable intensity \(\rate{}(\t,\kappa)\).
+\item \(\poiss{}(\cdot,\cdot)\) has \(\FH\)-predictable intensity \(\rate{}(\t,\mark)\).
 \end{itemize}
 
 If we let \(\poiss{}(\cdot,\cdot) = \pmap{}(\X{}{}{n})\) (see Definition \ref{subsec::ProofE:Defn::pmap}), then the proof of \cite[Proposition 14.7.I(b)]{DalVer08} shows that the point process defined in equation \eqref{subsec::ProofU:eqn::Poissonexpl} is a Poisson point process with intensity \(d\t\times \alt{\Sm^n}\times d\r\) and adapted to a larger filtration.
 
-\ind However, our intensity is actually only predictable with respect to \(\mc{F} \supseteq \mc{H}\) which includes the value of \(\X{}{0}{n}\). This can be fixed simply. Let \(\rate{\v}^{\sv{}{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X{}{0}{n} = \sv{}{\tree\sln{n}})\). Then \(\rate{\v}^{\sv{}{\tree\sln{n}}}(t,\kappa)\) satisfies the conditions above. Then,
+\ind However, our intensity is actually only predictable with respect to \(\F \supseteq \FH\) which includes the value of \(\X{}{0}{n}\). This can be fixed simply. Let \(\rate{\v}^{\sv{}{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X{}{0}{n} = \sv{}{\tree\sln{n}})\). Then \(\rate{\v}^{\sv{}{\tree\sln{n}}}(t,\mark)\) satisfies the conditions above. Then,
 
 \[\poiss{n}^{\sv{}{\tree\sln{n}}}(\evnt) = \alt{\poiss}{n}\left(\evnt\cap\{(t,\sv{}{\tree\sln{n}},\r):\r > \rate{n}^{\sv{}{\tree\sln{n}}}(\t,\sv{}{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}^{\sv{}{\tree\sln{n}}}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}\]
 
