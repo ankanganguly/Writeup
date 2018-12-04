@@ -831,7 +831,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset V\).
 Let \(\X{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m{}{}{} = \law(\X{}{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\Omega \supseteq\Omega{\tree\sln{1}}{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\Omega)\), define \(\cm{\t}:\Omega{\{\root,1\}}{\t-}\times \pmsr(\Omega) \ra \pmsr(\Omega{\{2,\dots,\degr\}}{\t-})\) by,
 
 \begin{equation}
-\cm{\t}(\x{\{\root,1\}}{[0,\t)},\mmm{}{}{})(\cdot) = \pr^{\mmm{}{}{}}\left(\X{\{2,\dots,\degr\}}{[0,\t)} \in \cdot|\X{\{\root,1\}}{[0,\t)} = \x{\{\root,1\}}{[0,\t)}\right).
+\cm{\t}(\x{\{\root,1\}}{[0,\t)},\mmm{}{}{})(\cdot) = \pr{\mmm{}{}{}}\left(\X{\{2,\dots,\degr\}}{[0,\t)} \in \cdot|\X{\{\root,1\}}{[0,\t)} = \x{\{\root,1\}}{[0,\t)}\right).
 \label{sec::Main:eqn::gamma}
 \end{equation}
 \labe{sec::Main:eqn::gamma}
@@ -1991,14 +1991,14 @@ Let \(\cont(\spce)= \{f:\spce \ra \mb{R} \te{ continuous}\}\).
 \lin
 
 \begin{defn}
-A Feller process on \(\spce\) is a collection of probability measures \(\{\pr^\x:\x \in \spce\}\) on \(\cad([0,\infty),\spce)\) with canonical process \(\X\) such that
+A Feller process on \(\spce\) is a collection of probability measures \(\{\pr{\x}:\x \in \spce\}\) on \(\cad([0,\infty),\spce)\) with canonical process \(\X\) such that
 
 \begin{enumerate}[(a)]
-\item \(\pr^\x(\X{}{0} = \x) = 1\) for all \(\x \in \spce\).
+\item \(\pr{\x}(\X{}{0} = \x) = 1\) for all \(\x \in \spce\).
 
-\item The mapping \(\x \mapsto \pr^\x(\typset)\) is measurable for every \(\sigma(\X)\)-measurable set \(\typset\).
+\item The mapping \(\x \mapsto \pr{\x}(\typset)\) is measurable for every \(\sigma(\X)\)-measurable set \(\typset\).
 
-\item \(\pr^\x(\X{}{\tt+\cdot} \in \typset|\X{}{\ttt}:\ttt \in [0,\tt]) = \pr{\X{}{\tt}}(\typset)\) for all \(\typset \in \sigma(\X)\) and \(\x \in \spce\).
+\item \(\pr{\x}(\X{}{\tt+\cdot} \in \typset|\X{}{\ttt}:\ttt \in [0,\tt]) = \pr{\X{}{\tt}}(\typset)\) for all \(\typset \in \sigma(\X)\) and \(\x \in \spce\).
 
 \item For all \(\f\in \cont(\spce)\), the mapping \(\x\mapsto \exmu{\x}{\f(\X_{\t})}\) is also continuous.
 \end{enumerate}
@@ -2338,10 +2338,10 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 \lin
 
 \begin{prop}
-Let \(\rp\) be a marked process adapted to the filtration \(\F{\t} := \F{0}\wedge \FH{\t}\) where \(\FH\) is its natural filtration. Let the events and marks of \(\rp\) be given by \(\{(\rt{j},\mark{j})\}\) such that \(\{\rt{j}\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr^i\) be probability measures on the probability space such that \(\rp\) is non-explosive and simple with respect to both probability measures. Let \(\pr^i_\t\) be the restriction of \(\pr^i\) to \(\F{\t}\). Suppose \(\F{0}\) describes a random variable, \(X\), with law \(\mm^i\) under \(\pr^i\). If \(\rp\) has a strictly positive \(\pr^1,\F\)-predictable intensity \(\rate^1\), then \(\pr^2_\t \ll \pr^1_\t\) for all \(\t \in [0,T]\) if and only if there exists a non-negative, \(\F\)-predictable process \(\m\) such that \(\rp\) admits the \(\F\)-intensity \(\rate^2 = \m\rate^1\) under \(\pr^2\) and \(\mm^2 \ll \mm^1\). When this is satisfied, the likelihood ratio is the \(\pr^1\)-a.t. c\`adl\`ag process defined by 
+Let \(\rp\) be a marked process adapted to the filtration \(\F{\t} := \F{0}\wedge \FH{\t}\) where \(\FH\) is its natural filtration. Let the events and marks of \(\rp\) be given by \(\{(\rt{j},\mark{j})\}\) such that \(\{\rt{j}\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr{i}\) be probability measures on the probability space such that \(\rp\) is non-explosive and simple with respect to both probability measures. Let \(\pr{i}_\t\) be the restriction of \(\pr{i}\) to \(\F{\t}\). Suppose \(\F{0}\) describes a random variable, \(X\), with law \(\mm^i\) under \(\pr{i}\). If \(\rp\) has a strictly positive \(\pr{1},\F\)-predictable intensity \(\rate^1\), then \(\pr{2}_\t \ll \pr{1}_\t\) for all \(\t \in [0,T]\) if and only if there exists a non-negative, \(\F\)-predictable process \(\m\) such that \(\rp\) admits the \(\F\)-intensity \(\rate^2 = \m\rate^1\) under \(\pr{2}\) and \(\mm^2 \ll \mm^1\). When this is satisfied, the likelihood ratio is the \(\pr{1}\)-a.t. c\`adl\`ag process defined by 
 
 \begin{equation}
-L_\t:= \frac{d\pr^2_\t}{d\pr^1_\t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i})\right)\exp\left(-\int{(0,\t]\times \mspce}[\m(\t,\mark) - 1]\rate^1(\t,\mark)\,ds\,\ell(d\mark)\right)
+L_\t:= \frac{d\pr{2}_\t}{d\pr{1}_\t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i})\right)\exp\left(-\int{(0,\t]\times \mspce}[\m(\t,\mark) - 1]\rate^1(\t,\mark)\,ds\,\ell(d\mark)\right)
 \label{subsec::Prope:eqn::Lnat}
 \end{equation}
 \labe{subsec::Prope:eqn::Lnat}
@@ -2351,20 +2351,20 @@ L_\t:= \frac{d\pr^2_\t}{d\pr^1_\t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\r
 
 \purpose We can define a standard process by choosing some fixed intensity \(\rate^1\) and use it to completely characterize Markov processes. In fact, a large portion of section \ref{subsec::ProofU:sec::Proof2} involves manipulations of such Radon-Nykodim derivatives to construct various processes.
 
-\pfsum In the case where \(\F{0}\) is trivial, we can directly apply \cite[Theorem 14.4.I]{DalVer08}. To extend, we define \(\pr^i\) as an integral of a class of regular conditional probabilities and apply \cite[Theorem 14.4.I]{DalVer08} accordingly.
+\pfsum In the case where \(\F{0}\) is trivial, we can directly apply \cite[Theorem 14.4.I]{DalVer08}. To extend, we define \(\pr{i}\) as an integral of a class of regular conditional probabilities and apply \cite[Theorem 14.4.I]{DalVer08} accordingly.
 
 \begin{proof}
 Let \(f\) be a bounded, \(\alt{\F}{\t}\) measurable function to the real numbers. Let \(\m(\t,k;y,x)\) be the value \(\m\) takes when \(\rp[0,\t)=y[0,\t)\) and \(\{X=x\}\). Since \(\m\) is \(\alt{\F}\)-predictable, this is deterministic for any \(y,x\).
 
 \[\mb{E}^2[f(X,\rp[0,\t])] = \int_\spce \mb{E}^2[f(x,\rp[0,\t])|X=x]\,d\mm^2(x)\]
 
-Note that for any fixed \(x \in \te{supp}(X)\) and any \(i \in \{1,2\}\), there exists a regular conditional distribution \(\pr^i_x\) which describes the law of \(\rp\) conditioned on \(X = x\).
+Note that for any fixed \(x \in \te{supp}(X)\) and any \(i \in \{1,2\}\), there exists a regular conditional distribution \(\pr{i}_x\) which describes the law of \(\rp\) conditioned on \(X = x\).
 
 \[\mb{E}^2[f(X,\rp[0,\t])] = \int_\spce \mb{E}^2_x[f(x,\rp[0,\t])]\,d\mm^2(x)\]
 
-Note that for any fixed \(x\), \(\pr^i_x\) and \(\rp\) satisfy the conditions of \cite[Theorem 14.4.I]{DalVer08}. So,
+Note that for any fixed \(x\), \(\pr{i}_x\) and \(\rp\) satisfy the conditions of \cite[Theorem 14.4.I]{DalVer08}. So,
 
-\[L_\t(\rp,x):=\frac{d\pr^2_{\t,x}}{d\pr^1_{\t,x}}(\rp) = \left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i};\rp,x)\right)\exp\left(-\int{(0,\t]\times\mspce} [\m(\tt,k;\rp,x) - 1]\rate^1(\tt,k;\rp,x)\,ds\,\ell(dk)\right)\]
+\[L_\t(\rp,x):=\frac{d\pr{2}_{\t,x}}{d\pr{1}_{\t,x}}(\rp) = \left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i};\rp,x)\right)\exp\left(-\int{(0,\t]\times\mspce} [\m(\tt,k;\rp,x) - 1]\rate^1(\tt,k;\rp,x)\,ds\,\ell(dk)\right)\]
 
 Giving us,
 
