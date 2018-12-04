@@ -69,7 +69,7 @@
 \renewcommand{\t}{t}							%typical time
 \newcommand{\sset}{\Omega}						%sample set
 \newcommand{\proj}{\pi}							%projection operator
-%\newcommand{\svnorm}[1]{\|#1\|_{\b}}			%norm of \S{V}
+%\newcommand{\svnorm}[1]{\|#1\|_{\b}}			%norm of \S\carp{V}
 %\newcommand{\omenorm}[1]{\|#1\|_{\b,\t}}		%norm on Omega
 \renewcommand{\tt}{s}							%typical time 2
 \newcommand{\ttt}{s'}							%typical time 3
@@ -85,10 +85,13 @@
 
 
 %Modifiers
-\newcommand{\vind}{^}							%indexed by v,V,U etc.
-\newcommand{\cl}{\ov}							%closure
-\newcommand{\ve}[1]{_{#1}}						%Append vertex
+\newcommand{\vind}[1]{^{#1}}					%indexed by v,V,U etc.
+\newcommand{\carp}[1]{^{#1}}					%Cartesian power
 \newcommand{\vsi}[1]{^{#1}}						%vertex set identifier
+\newcommand{\cind}[1]{_{#1}}					%component index
+\newcommand{\cl}{\ov}							%closure
+
+
 \newcommand{\tp}[1]{(#1)}						%Time of process
 \newcommand{\ts}[1]{_{#1}}						%time bound of set
 \newcommand{\evv}[1]{^{#1}}						%distinguish std basis
@@ -296,16 +299,16 @@ Alternatives:
 \subsection{Notation}
 \label{subsec::Notat:sec::Preli}\labe{subsec::Notat:sec::Preli}
 
-Let \(G = (V,E)\) be a graph with bounded degree with rooted node \(\root \in V\). For any \(\v \in V\), let \(\neigh{\v}\) be the set of nodes adjacent to \(\v\). Similarly, for any \(\U \subseteq V\), let \(\neigh{\U}\) be the set of nodes adjacent to \(\U\) but not in \(\U\). Let \(\cl{\v} = \{\v\}\cup\neigh{\v}\) and \(\cl{\U} = \U\cup \neigh{\U}\). 
+Let \(G = (V,E)\) be a graph with bounded degree with rooted node \(\root \in V\). For any \(\v \in V\), let \(\neigh\vind{\v}\) be the set of nodes adjacent to \(\v\). Similarly, for any \(\U \subseteq V\), let \(\neigh\vind{\U}\) be the set of nodes adjacent to \(\U\) but not in \(\U\). Let \(\cl{\v} = \{\v\}\cup\neigh\vind{\v}\) and \(\cl{\U} = \U\cup \neigh\vind{\U}\). 
 
 \ind Let \(\S\) be a finite set. Without loss of generality, let \(\S\) be a finite abelian group with group operation \(+\) and equipped with the norm \(|\cdot|\). 
 
-\ind Let \(\S{V}\) be the set of vectors, \(\sv{}{V}\) with components \(\sv{\v}{V} \in \S\) indexed by \(\v\in V\). Let \(\{\ev{\v}: \v\in V\}\) be the standard basis vectors of \(\S{V}\). Let \(\{\b{\v}:\v\in V\}\) be a sequence of positive numbers such that \(\sum_{\v\in V} \b{\v} < \infty\). Then let \(\|\cdot\|_{\b{}}\) be a norm on \(\S{V}\) defined by \(\|\sv{}{V}\|_{\b{}} = \sum_{\v\in V} \b{\v}|\sv{\v}{V}|\). For any \(\U\subseteq V\), we will generally assume \(\S{\U}\) is embedded in \(\S{V}\). That is, for \(\sv{}{\U}\in \S{\U}\), \(\sv{\v}{\U} = 0\) for all \(\v\notin\U\). Thus, we can also define the norm \(\|\sv{}{\U}\|_{\b{}} = \sum_{\v\in\U} \b{\v}|\sv{\v}{\U}|\). \(\S{V}\) acts as the state space of an interacting particle system on \(G\) whose nodes have state space \(\S\).
+\ind Let \(\S\carp{V}\) be the set of vectors, \(\sv\cind{}\vsi{V}\) with components \(\sv\cind{\v}\vsi{V} \in \S\) indexed by \(\v\in V\). Let \(\{\ev{\v}: \v\in V\}\) be the standard basis vectors of \(\S\carp{V}\). Let \(\{\b{\v}:\v\in V\}\) be a sequence of positive numbers such that \(\sum_{\v\in V} \b{\v} < \infty\). Then let \(\|\cdot\|_{\b{}}\) be a norm on \(\S\carp{V}\) defined by \(\|\sv\cind{}\vsi{V}\|_{\b{}} = \sum_{\v\in V} \b{\v}|\sv\cind{\v}\vsi{V}|\). For any \(\U\subseteq V\), we will generally assume \(\S\carp{\U}\) is embedded in \(\S\carp{V}\). That is, for \(\sv\cind{}\vsi{\U}\in \S\carp{\U}\), \(\sv\cind{\v}\vsi{\U} = 0\) for all \(\v\notin\U\). Thus, we can also define the norm \(\|\sv\cind{}\vsi{\U}\|_{\b{}} = \sum_{\v\in\U} \b{\v}|\sv\cind{\v}\vsi{\U}|\). \(\S\carp{V}\) acts as the state space of an interacting particle system on \(G\) whose nodes have state space \(\S\).
 
-\ind Fix some \(\T < \infty\). For any \(\U\subseteq V\) and \(\t\in [0,\T]\), let \(\Omega{\U}{\t} = \cad([0,\t],\S{\U})\) and \(\Omega{\U}{\t-} = \cad([0,\t),\S{\U})\). For any \(\x{}{} \in \Omega{V}{\T}\), \(\v\in V\) and  \(\t \in [0,\T]\), let \(\x{\v}{\t}\) be the value of the \(\v\)-node of \(\x{}{}\) at time \(\t\). For any \(\U\subseteq V\), let \(\proj{\U}{\t}\) be the standard projection/embedding into the space \(\Omega{\U}{\t}\). In a slight misuse of notation, we will make the domain clear from context. Let \(\proj{\U}{} \defeq \proj{\U}{0}\) be the projection to \(\S{\U}\). For any \(\U\subseteq V\), define the norm on \(\Omega{\t}{\U}\) by \(\|\x{\U}{}\|_{\b{},\t} \defeq \sup_{\tt \leq \t} \|\x{\U}{\tt}\|_{\b{}}\). Let \(\F{\U}{\t}\) be the Borel \(\sigma\)-algebra of \(\Omega{\U}{\t}\) with respect to the Skorokhod topology. Let \(\X{}{}\) be an \(\Omega{V}{\t}\)-valued random variable. We say that \(\X{\v}{\t}\) is the state of the \(\v\)-component of \(\X{}{}\) at time \(\t\). Assume \(\X{}{}\) is a Feller process with infinitesimal generator \(\IG\) given by,
+\ind Fix some \(\T < \infty\). For any \(\U\subseteq V\) and \(\t\in [0,\T]\), let \(\Omega{\U}{\t} = \cad([0,\t],\S\carp{\U})\) and \(\Omega{\U}{\t-} = \cad([0,\t),\S\carp{\U})\). For any \(\x{}{} \in \Omega{V}{\T}\), \(\v\in V\) and  \(\t \in [0,\T]\), let \(\x{\v}{\t}\) be the value of the \(\v\)-node of \(\x{}{}\) at time \(\t\). For any \(\U\subseteq V\), let \(\proj{\U}{\t}\) be the standard projection/embedding into the space \(\Omega{\U}{\t}\). In a slight misuse of notation, we will make the domain clear from context. Let \(\proj{\U}{} \defeq \proj{\U}{0}\) be the projection to \(\S\carp{\U}\). For any \(\U\subseteq V\), define the norm on \(\Omega{\t}{\U}\) by \(\|\x{\U}{}\|_{\b{},\t} \defeq \sup_{\tt \leq \t} \|\x{\U}{\tt}\|_{\b{}}\). Let \(\F{\U}{\t}\) be the Borel \(\sigma\)-algebra of \(\Omega{\U}{\t}\) with respect to the Skorokhod topology. Let \(\X{}{}\) be an \(\Omega{V}{\t}\)-valued random variable. We say that \(\X{\v}{\t}\) is the state of the \(\v\)-component of \(\X{}{}\) at time \(\t\). Assume \(\X{}{}\) is a Feller process with infinitesimal generator \(\IG\) given by,
 
 \begin{equation}
-\IG f(\sv{}{V}) = \sum_{\v \in V}\sum_{\s \in \S} \IGr{\v}(\sv{}{V},\s)[f(\sv{}{V} + \s \ev{\v}) - f(\sv{}{V})],
+\IG f(\sv\cind{}\vsi{V}) = \sum_{\v \in V}\sum_{\s \in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s \ev{\v}) - f(\sv\cind{}\vsi{V})],
 \label{subsec::Notat:Eqn::IG}
 \end{equation}
 \labe{subsec::Notat:Eqn::IG}
@@ -327,14 +330,14 @@ The following three conditions hold:
 \item \(\IGr{\v}\) as defined in equation \eqref{subsec::Notat:Eqn::IG} is uniformly bounded. That is, there exists a constant \(\const{}\) such that,
 
 \begin{equation}
-\sup_{\v\in V,\s \in \S,\sv{}{V}\in \S{V}} \IGr{\v}(\sv{}{V},\s) = \const{} < \infty.
+\sup_{\v\in V,\s \in \S,\sv\cind{}\vsi{V}\in \S\carp{V}} \IGr{\v}(\sv\cind{}\vsi{V},\s) = \const{} < \infty.
 \label{subsec::Assum:Eqn::bddcv}
 \end{equation}
 \labe{subsec::Assum:Eqn::bddcv}
 
-\item \(\IGr{\v}\) only depends on \(\sv{\cl{\v}}{V}\). That is, for any \(\v\in V\), \(\s\in \S\) and \(\sv{}{V},\ov{\sv{}{V}} \in \S{V}\) such that \(\sv{\cl{\v}}{V} = \ov{\sv{\cl{\v}}{V}}\), \(\IGr{\v}(\sv{}{V},\s) = \IGr{\v}(\ov{\sv{}{V}},\s)\).
+\item \(\IGr{\v}\) only depends on \(\sv\cind{\cl{\v}}\vsi{V}\). That is, for any \(\v\in V\), \(\s\in \S\) and \(\sv\cind{}\vsi{V},\ov{\sv\cind{}\vsi{V}} \in \S\carp{V}\) such that \(\sv\cind{\cl{\v}}\vsi{V} = \ov{\sv\cind{\cl{\v}}\vsi{V}}\), \(\IGr{\v}(\sv\cind{}\vsi{V},\s) = \IGr{\v}(\ov{\sv\cind{}\vsi{V}},\s)\).
 
-\item \(G\) has bounded degree. That is, \(\degr \defeq \sup_\v |\neigh{\v}| < \infty\).
+\item \(G\) has bounded degree. That is, \(\degr \defeq \sup_\v |\neigh\vind{\v}| < \infty\).
 \end{enumerate}
 \label{subsec::Assum:Assu::CI}\labe{subsec::Assum:Assu::CI}
 \end{assu}
@@ -349,10 +352,10 @@ The following three conditions hold:
 There exists a fixed \(\degr\in \mb{N}\) such that:
 
 \begin{enumerate}
-\item There exists a mapping \(\IGrg: \S{\degr+1} \times \S \ra [0,\infty)\) such that:
+\item There exists a mapping \(\IGrg: \S\carp{\degr+1} \times \S \ra [0,\infty)\) such that:
 
 \begin{equation}
-\IGr{\v}(\sv{}{V},\s) = \IGrg(\sv{\cl{\v}}{V},\s) \te{ for all } \v\in V, \s\in \S\te{ and } \sv{}{V} \in \S{V}
+\IGr{\v}(\sv\cind{}\vsi{V},\s) = \IGrg(\sv\cind{\cl{\v}}\vsi{V},\s) \te{ for all } \v\in V, \s\in \S\te{ and } \sv\cind{}\vsi{V} \in \S\carp{V}
 \label{subsec::Assum:Eqn::Symmetry}
 \end{equation}
 \labe{subsec::Assum:Eqn::Symmetry}
@@ -379,7 +382,7 @@ There exists a fixed \(\degr\in \mb{N}\) such that:
 Suppose \(\X{}{}\) is the Feller process defined by equation \eqref{subsec::Notat:Eqn::IG}. If \(\X{}{}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, then there exists a domain \(\core(\IG)\) such that operator \(\IG\) defined in equation \eqref{subsec::Notat:Eqn::IG} on \(\mc{D}(\IG)\) is an infinitesimal generator with core \(\core\) defined by,
 
 \begin{equation}
-\core \defeq \left\{f \in \cont(\S{V}): \sum_{\v\in V} \delt\deltf{\f}{\v} < \infty\right\},
+\core \defeq \left\{f \in \cont(\S\carp{V}): \sum_{\v\in V} \delt\deltf{\f}{\v} < \infty\right\},
 \label{subsec::Well-:Eqn::core}
 \end{equation}
 \labe{subsec::Well-:Eqn::core}
@@ -387,7 +390,7 @@ Suppose \(\X{}{}\) is the Feller process defined by equation \eqref{subsec::Nota
 where we define,
 
 \begin{equation}
-\delt\deltf{\f}{\v} \defeq \sup\left\{|f(\sv{}{V}) - f(\sv{}{V}+\s\ev{\v})|: \sv{}{V} \in \S{V},\s \in \S\right\}.
+\delt\deltf{\f}{\v} \defeq \sup\left\{|f(\sv\cind{}\vsi{V}) - f(\sv\cind{}\vsi{V}+\s\ev{\v})|: \sv\cind{}\vsi{V} \in \S\carp{V},\s \in \S\right\}.
 \label{subsec::Well-:Eqn::fvar}
 \end{equation}
 \labe{subsec::Well-:Eqn::fvar}
@@ -408,11 +411,11 @@ By \cite[Theorem 3.9 (a) and (b)]{Lig85}, it suffices to show that:
 \begin{enumerate}[i)]
 \item 
 
-\[\sup_{\v \in V,\sv{}{V} \in \S{V}} \sum_{\s \in \S} \IGr{\v}(\sv{}{V},\s) < \infty.\]
+\[\sup_{\v \in V,\sv\cind{}\vsi{V} \in \S\carp{V}} \sum_{\s \in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s) < \infty.\]
 
 \item 
 
-\[\sup_{\v\in V}\sum_{\vv\neq \v} \sup_{\substack{\sv{}{V} \in \S{V}\\ \s\in \S\\ \SS \subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{V},\ss) - \IGr{\v}(\sv{}{V}+\s \ev{\vv},\ss))\right| < \infty.\]
+\[\sup_{\v\in V}\sum_{\vv\neq \v} \sup_{\substack{\sv\cind{}\vsi{V} \in \S\carp{V}\\ \s\in \S\\ \SS \subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv\cind{}\vsi{V},\ss) - \IGr{\v}(\sv\cind{}\vsi{V}+\s \ev{\vv},\ss))\right| < \infty.\]
 \end{enumerate}
 
 We have,
@@ -422,18 +425,18 @@ We have,
 
 \item By statement 2 of Assumption \ref{subsec::Assum:Assu::CI}, 
 
-\[\sup_{\substack{\sv{}{V} \in \S{V}\\ \s\in \S\\ \SS\subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{V},\ss) - \IGr{\v}(\sv{}{V}+\s \ev{\vv},\ss))\right| = 0 \te{ for all } \vv \notin \cl{\v}\]
+\[\sup_{\substack{\sv\cind{}\vsi{V} \in \S\carp{V}\\ \s\in \S\\ \SS\subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv\cind{}\vsi{V},\ss) - \IGr{\v}(\sv\cind{}\vsi{V}+\s \ev{\vv},\ss))\right| = 0 \te{ for all } \vv \notin \cl{\v}\]
 
 Furthermore, \(\IGr{\v}\) is non-negative and bounded from above by some \(\const{} < \infty\) (statement 1 of Assumption \ref{subsec::Assum:Assu::CI}). Therefore, 
 
-\[\left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{V},\ss) - \IGr{\v}(\sv{}{V}+\s\ev{\vv},\ss))\right| \leq \const{}|\S| \te{ for all } \sv{}{V} \in \S{V},\v \in V, \vv \in \cl{\v}, \s \in \S \te{ and } \SS\subseteq \S\]
+\[\left|\sum_{\ss \in \SS} (\IGr{\v}(\sv\cind{}\vsi{V},\ss) - \IGr{\v}(\sv\cind{}\vsi{V}+\s\ev{\vv},\ss))\right| \leq \const{}|\S| \te{ for all } \sv\cind{}\vsi{V} \in \S\carp{V},\v \in V, \vv \in \cl{\v}, \s \in \S \te{ and } \SS\subseteq \S\]
 
-Finally, by statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, \(|\neigh{\v}| \leq \degr\) for all \(\v \in V\). Thus,
+Finally, by statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, \(|\neigh\vind{\v}| \leq \degr\) for all \(\v \in V\). Thus,
 
 \begin{align*}
-\sup_{\v\in V}\sum_{\vv \neq \v} \sup_{\substack{\sv{}{V} \in \S{V}\\ \s\in \S\\ \SS\subseteq \S}}& \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{V},\ss) - \IGr{\v}(\sv{}{V}+\s\ev{\vv},\ss))\right|\\
-&  = \sup_{\v\in V}\sum_{\vv\in \neigh{\v}} \sup_{\substack{\sv{}{V} \in \S{V}\\ \s\in \S\\ \SS\subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv{}{V},\ss) - \IGr{\v}(\sv{}{V}+\s\ev{\vv},\ss))\right|\\
-&\leq \sup_{\v\in V} \sum_{\vv \in \neigh{\v}} \const{}|\S|\\
+\sup_{\v\in V}\sum_{\vv \neq \v} \sup_{\substack{\sv\cind{}\vsi{V} \in \S\carp{V}\\ \s\in \S\\ \SS\subseteq \S}}& \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv\cind{}\vsi{V},\ss) - \IGr{\v}(\sv\cind{}\vsi{V}+\s\ev{\vv},\ss))\right|\\
+&  = \sup_{\v\in V}\sum_{\vv\in \neigh\vind{\v}} \sup_{\substack{\sv\cind{}\vsi{V} \in \S\carp{V}\\ \s\in \S\\ \SS\subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr{\v}(\sv\cind{}\vsi{V},\ss) - \IGr{\v}(\sv\cind{}\vsi{V}+\s\ev{\vv},\ss))\right|\\
+&\leq \sup_{\v\in V} \sum_{\vv \in \neigh\vind{\v}} \const{}|\S|\\
 &\leq \degr \const{}|\S| < \infty.
 \end{align*}
 
@@ -470,7 +473,7 @@ has a unique strong solution.
 \begin{lem}
 Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(\Fpo: \Omega{V}{\T} \ra \Omega{V}{\T}\) parameterized by a sequence of Poisson processes and defined by,
 
-\[\left(\Fpo(\x{}{})\right)\ve{\v}\tp{\t} := \x{\v}{0} + \int_\S\int_0^\t \s \,\poiss{\v}(d\tt,(0,\IGr{\v}(\x{}{\tt-},\s)],d\s) \te{ for all }\x{}{} \in \Omega{V}{\T}, \v \in V\te{ and }\t \in [0,\T].\]
+\[\left(\Fpo(\x{}{})\right)\cind{\v}\tp{\t} := \x{\v}{0} + \int_\S\int_0^\t \s \,\poiss{\v}(d\tt,(0,\IGr{\v}(\x{}{\tt-},\s)],d\s) \te{ for all }\x{}{} \in \Omega{V}{\T}, \v \in V\te{ and }\t \in [0,\T].\]
 
 Then for any pair of random processes \(\X{}{},\alt{\X}{}{}:\Omega{V}{\T} \ra \Omega{V}{\T}\), \(\v\in V\) and \(\t \in [0,\T]\),
 
@@ -493,15 +496,15 @@ Recall that \(\{\IGr{\v}:\v\in V\}\) is necessarily bounded from above by some \
 
 \ind By statement 2 of Assumption \ref{subsec::Assum:Assu::CI}, 
 
-\[\inf_{\substack{\sv{}{V},\alt{\sv}{}{V} \in \S{V}, \s\in \S\\ \IGr{\v}(\sv{}{V},\s) \neq \IGr{\v}(\alt{\sv}{}{V},\s)}} \sum_{\vv \in \cl{\v}} |\sv{\vv}{V} - \alt{\sv}{\vv}{V}| \geq 1.\]
+\[\inf_{\substack{\sv\cind{}\vsi{V},\alt{\sv}{}{V} \in \S\carp{V}, \s\in \S\\ \IGr{\v}(\sv\cind{}\vsi{V},\s) \neq \IGr{\v}(\alt{\sv}{}{V},\s)}} \sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}{\vv}{V}| \geq 1.\]
 
 Then,
 
-\[\sup_{\v\in V} \sup_{\substack{\sv{}{V},\alt{\sv}{}{V} \in \S{V}, \s\in \S\\ \IGr{\v}(\sv{}{V},\s) \neq \IGr{\v}(\alt{\sv}{}{V},\s)}} \frac{|\IGr{\v}(\sv{}{V},\s) - \IGr{\v}(\alt{\sv}{}{V},\s)|}{\sum_{\vv \in \cl{\v}} |\sv{\vv}{V} - \alt{\sv}{\vv}{V}|} \leq \const{}\]
+\[\sup_{\v\in V} \sup_{\substack{\sv\cind{}\vsi{V},\alt{\sv}{}{V} \in \S\carp{V}, \s\in \S\\ \IGr{\v}(\sv\cind{}\vsi{V},\s) \neq \IGr{\v}(\alt{\sv}{}{V},\s)}} \frac{|\IGr{\v}(\sv\cind{}\vsi{V},\s) - \IGr{\v}(\alt{\sv}{}{V},\s)|}{\sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}{\vv}{V}|} \leq \const{}\]
 
 So,
 
-\[|\IGr{\v}(\sv{}{V},\s) - \IGr{\v}(\alt{\sv}{}{V},\s)|\leq \const{}\sum_{\vv \in \cl{\v}} |\sv{\vv}{V} - \alt{\sv}{\vv}{V}| \te{ for all } \sv{}{V},\alt{\sv}{}{V}\in \S{V},\s\in \S\te{ and }\v\in V.\]
+\[|\IGr{\v}(\sv\cind{}\vsi{V},\s) - \IGr{\v}(\alt{\sv}{}{V},\s)|\leq \const{}\sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}{\vv}{V}| \te{ for all } \sv\cind{}\vsi{V},\alt{\sv}{}{V}\in \S\carp{V},\s\in \S\te{ and }\v\in V.\]
 
 That is, \(\IGr{\v}\) satisfies a Lipschitz-like condition with coefficient bounded from above by \(\const{}\). For any \(\v\in V\),
 
@@ -625,7 +628,7 @@ So \(\X{}{}= \Fpo(\X{}{})\) almost surely.
 \begin{prop}
 Let \(\X{}{}\) be defined as in Proposition \ref{subsec::Well-:Prop::SDEWP}. Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Then \(\X{}{}\) is the unique Feller process with initial condition \(\X{}{0}\) and infinitesimal generator given by \eqref{subsec::Notat:Eqn::IG}:
 
-\[\IG f(\sv{}{V}) = \sum_{\v\in V}\sum_{\s \in \S} \IGr{\v}(\sv{}{V},\s)[f(\sv{}{V} + \ev{\v}\s) - f(\sv{}{V})].\]
+\[\IG f(\sv\cind{}\vsi{V}) = \sum_{\v\in V}\sum_{\s \in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \ev{\v}\s) - f(\sv\cind{}\vsi{V})].\]
 \label{subsec::Well-:Prop::SDE=IG}
 \end{prop}
 \labe{subsec::Well-:Prop::SDE=IG}
@@ -639,80 +642,80 @@ Let \(\X{}{}\) be defined as in Proposition \ref{subsec::Well-:Prop::SDEWP}. Sup
 \app Assumption \ref{subsec::Assum:Assu::CI}, Proposition \ref{subsec::Well-:Prop::SDEWP}, Definition \ref{sec::Infin:Def::Feller}, Lemma \ref{subsec::Well-:Lem::SDEWP}, Lemma \ref{sec::TL:Lem::concbd} and Theorem \ref{sec::Infin:Thm::Bij}.
 
 \begin{proof}
-First, we show that \(\X{}{}\) is a Feller process. Notice that \(\X{}{}\) conditioned on the event \(\X{}{0} = \sv{}{V}\) is given by the law of the unique solution (Proposition \ref{subsec::Well-:Prop::SDEWP}) to the equation
+First, we show that \(\X{}{}\) is a Feller process. Notice that \(\X{}{}\) conditioned on the event \(\X{}{0} = \sv\cind{}\vsi{V}\) is given by the law of the unique solution (Proposition \ref{subsec::Well-:Prop::SDEWP}) to the equation
 
 \begin{equation}
-\X{\v}{\t} = \sv{\v}{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s).
+\X{\v}{\t} = \sv\cind{\v}\vsi{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s).
 \label{subsec::Well-:Eqn::condSDE}
 \end{equation}
 \labe{subsec::Well-:Eqn::condSDE}
 
-For all \(\sv{}{V}\in\S{V}\), suppose \(\X{}{0}{\sv{}{V}}\) is the unique strong solution to equation \eqref{subsec::Well-:Eqn::condSDE}. By Definition \ref{sec::Infin:Def::Feller}, we need to prove that for all \(\sv{}{V}\in \S{V}\),
+For all \(\sv\cind{}\vsi{V}\in\S\carp{V}\), suppose \(\X{}{0}{\sv\cind{}\vsi{V}}\) is the unique strong solution to equation \eqref{subsec::Well-:Eqn::condSDE}. By Definition \ref{sec::Infin:Def::Feller}, we need to prove that for all \(\sv\cind{}\vsi{V}\in \S\carp{V}\),
 
 \begin{enumerate}[(a)]
-\item \(\X{}{0}{\sv{}{V}} = \sv{}{V}\) almost surely.
+\item \(\X{}{0}{\sv\cind{}\vsi{V}} = \sv\cind{}\vsi{V}\) almost surely.
 
-\item The mapping \(\sv{}{V}\mapsto \pr\left(\X{}{0}{\sv{}{V}}\in A\right)\) is measurable for all \(A\in \F{\U}{\T}\).
+\item The mapping \(\sv\cind{}\vsi{V}\mapsto \pr\left(\X{}{0}{\sv\cind{}\vsi{V}}\in A\right)\) is measurable for all \(A\in \F{\U}{\T}\).
 
-\item \(\pr\left(\X{}{\t+\cdot}{\sv{}{V}}\in A\middle|\X{}{\tt}{\sv{}{V}}:\tt \in [0,\t]\right) = \pr\left(\X{}{\cdot}{\X{}{\t}{\sv{}{V}}} \in A\middle| \X{}{\t}{\sv{}{V}} \right)\) for all \(A \in \F{\U}{\T}\).
+\item \(\pr\left(\X{}{\t+\cdot}{\sv\cind{}\vsi{V}}\in A\middle|\X{}{\tt}{\sv\cind{}\vsi{V}}:\tt \in [0,\t]\right) = \pr\left(\X{}{\cdot}{\X{}{\t}{\sv\cind{}\vsi{V}}} \in A\middle| \X{}{\t}{\sv\cind{}\vsi{V}} \right)\) for all \(A \in \F{\U}{\T}\).
 
-\item For all \(f \in \cont(\S{V})\) (that is, for all continuous \(f\)), the mapping \(\sv{}{V}\mapsto \ex{f(\X{}{\t}{\sv{}{V}})}\) is also continuous for all \(\t\geq 0\).
+\item For all \(f \in \cont(\S\carp{V})\) (that is, for all continuous \(f\)), the mapping \(\sv\cind{}\vsi{V}\mapsto \ex{f(\X{}{\t}{\sv\cind{}\vsi{V}})}\) is also continuous for all \(\t\geq 0\).
 \end{enumerate}
 
-The proof that \(\X{}{}{\sv{}{V}}\) satisfies these properties is as follows:
+The proof that \(\X{}{}{\sv\cind{}\vsi{V}}\) satisfies these properties is as follows:
 
 \begin{enumerate}[(a)]
 \item This is trivially true.
 
-\item Since \(\S\) is finite, \(\S{V}\) is countably infinite. Thus \(\ms{B}(\S{V})\) is the set of subsets of \(\S{V}\). But then for any \(A \in \F{\U}{\T}\) and \(E \in \ms{B}([0,1])\), we have \(\S{V} \supseteq \left\{\sv{}{V}: \pr\left(\X{}{}{\sv{}{V}} \in A\right) \in E\right\}\), so the mapping is measurable.
+\item Since \(\S\) is finite, \(\S\carp{V}\) is countably infinite. Thus \(\ms{B}(\S\carp{V})\) is the set of subsets of \(\S\carp{V}\). But then for any \(A \in \F{\U}{\T}\) and \(E \in \ms{B}([0,1])\), we have \(\S\carp{V} \supseteq \left\{\sv\cind{}\vsi{V}: \pr\left(\X{}{}{\sv\cind{}\vsi{V}} \in A\right) \in E\right\}\), so the mapping is measurable.
 
 \item Notice that we can write,
 
-\[\X{\v}{\t+\cdot}{\sv{}{V}} = \X{\v}{\t}{\sv{}{V}} + \int_\S\int_\t{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\X{}{\tt-}{\sv{}{V}},\s)],d\s).\]
+\[\X{\v}{\t+\cdot}{\sv\cind{}\vsi{V}} = \X{\v}{\t}{\sv\cind{}\vsi{V}} + \int_\S\int_\t{\t+\cdot} \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\X{}{\tt-}{\sv\cind{}\vsi{V}},\s)],d\s).\]
 
 Let \(\alt{\X}{}{}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
 
-\[\alt{\X}{\v}{\cdot} = \X{\v}{\t}{\sv{}{V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\alt{\X}{}{\tt-},\s)],d\s).\]
+\[\alt{\X}{\v}{\cdot} = \X{\v}{\t}{\sv\cind{}\vsi{V}} + \int_\S \int_0^\cdot \s\,\poiss{\v}(d\tt,(0,\IGr{\v}(\alt{\X}{}{\tt-},\s)],d\s).\]
 
-Then \(\X{}{\t+\cdot}{\sv{}{V}} \deq \alt{\X}{}{\cdot}\). By the definition of \(\X{}{}{\sv{}{V}}\), \(\alt{\X}{}{} \deq \X{}{}{\X{}{\t}{\sv{}{V}}}\) as desired.
+Then \(\X{}{\t+\cdot}{\sv\cind{}\vsi{V}} \deq \alt{\X}{}{\cdot}\). By the definition of \(\X{}{}{\sv\cind{}\vsi{V}}\), \(\alt{\X}{}{} \deq \X{}{}{\X{}{\t}{\sv\cind{}\vsi{V}}}\) as desired.
 
 \item Let \(\root \in V\). Define the sequence of sets \(V\sln{0}\subset V\sln{1}\subset \cdots \subseteq V\) as follows: let \(V\sln{0} = \{\root\}\). For \(n \geq 1\), let \(V\sln{n+1} = \cl{V\sln{n}}\).
 
-\ind Now suppose for \(\sv{}{V},\alt{\sv}{}{V}\in \S{V}\),
+\ind Now suppose for \(\sv\cind{}\vsi{V},\alt{\sv}{}{V}\in \S\carp{V}\),
 
 \begin{align*}
-\X{\v}{\t} &= \sv{\v}{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s)&\te{ for all } \v \in V\\
+\X{\v}{\t} &= \sv\cind{\v}\vsi{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s)&\te{ for all } \v \in V\\
 \alt{\X}{\v}{\t} &= \alt{\sv}{\v}{V} + \int_\S\int_0^\t \s\,\poiss{\v}(d\tt\,(0,\IGr{\v}(\alt{\X}{}{\tt-},\s)],d\s)&\te{ for all } \v \in V\\
 \end{align*}
 
 Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
 
-\[\ex{\|\X{\v}{} - \alt{\X}{\v}{}\|_\t} \leq |\sv{\v}{V} - \alt{\sv}{\v}{V}| + \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
+\[\ex{\|\X{\v}{} - \alt{\X}{\v}{}\|_\t} \leq |\sv\cind{\v}\vsi{V} - \alt{\sv}{\v}{V}| + \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
 
 for all \(\t \in [0,\T]\).
 
-\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-n}\) if \(\v \in V\sln{n}\setminus V\sln{n-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(|V\sln{n}\setminus V\sln{n-1}| \leq \degr^{n}\) for all \(n\in \mb{N}\). Then \(\sum_{\v \in V} \b{\v} \leq \sum_{n=0}^\infty \left(\frac{\degr}{\b{}}\right)^{n} < \infty\). Since \(\S\) is finite, the norm \(\|\sv{}{V}\|_{\b{}} := \sum_{\v \in V} \b{\v}|\sv{\v}{V}|\) generates the topology of componentwise convergence on \(\S{V}\). We can now apply Gronwall's inequality:
+\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-n}\) if \(\v \in V\sln{n}\setminus V\sln{n-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(|V\sln{n}\setminus V\sln{n-1}| \leq \degr^{n}\) for all \(n\in \mb{N}\). Then \(\sum_{\v \in V} \b{\v} \leq \sum_{n=0}^\infty \left(\frac{\degr}{\b{}}\right)^{n} < \infty\). Since \(\S\) is finite, the norm \(\|\sv\cind{}\vsi{V}\|_{\b{}} := \sum_{\v \in V} \b{\v}|\sv\cind{\v}\vsi{V}|\) generates the topology of componentwise convergence on \(\S\carp{V}\). We can now apply Gronwall's inequality:
 
 \begin{align*}
 \ex{\|\X{}{} - \alt{\X}{}{}\|_{\b{},\t}} &= \sum_{\v \in V} \b{\v}\ex{\|\X{\v}{} - \alt{\X}{\v}{}\|_\t}\\
-&\leq \|\sv{}{V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
-&\os{\b{\v}\leq \b{}(\b{\vv})}{\leq} \|\sv{}{V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
-&= \|\sv{}{V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
-&=\|\sv{}{V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X}{}{}\|_{\b{},\tt}}\,d\tt\\
+&\leq \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
+&\os{\b{\v}\leq \b{}(\b{\vv})}{\leq} \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
+&= \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
+&=\|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X}{}{}\|_{\b{},\tt}}\,d\tt\\
 \end{align*}
 
 Applying Gronwall's inequality:
 
-\[\ex{\|\X{}{} - \alt{\X}{}{}\|_{\b{},\T}} \leq \|\sv{}{V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\]
+\[\ex{\|\X{}{} - \alt{\X}{}{}\|_{\b{},\T}} \leq \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\]
 
-Now, let \(f: \S{V} \ra \mb{R}\) be a continuous function. Since \(\S{V}\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv{}{V}) - f(\alt{\sv}{}{V})| \leq \phi(|\sv{}{V} - \alt{\sv}{}{V}|)\) for all \(\sv{}{V},\alt{\sv}{}{V}\in \S{V}\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
+Now, let \(f: \S\carp{V} \ra \mb{R}\) be a continuous function. Since \(\S\carp{V}\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv\cind{}\vsi{V}) - f(\alt{\sv}{}{V})| \leq \phi(|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}|)\) for all \(\sv\cind{}\vsi{V},\alt{\sv}{}{V}\in \S\carp{V}\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
 
 \ind Fix any \(\ep > 0\). Let \(\psi\) be a concave, monotonic, upper-bound of \(\phi\) such that \(\psi(0) = 0\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
 
 \begin{align*}
 \ex{\|f(\X{}{}) - f(\alt{\X}{}{})\|_\T} &\leq \ex{\psi\left(\|\X{}{} - \alt{\X}{}{}\|_{\T,\b{}}\right)}\\
 &\leq \psi\left(\ex{\|\X{}{} - \alt{\X}{}{}\|_{\T,\b{}}}\right)\\
-&\leq \psi\left(\|\sv{}{V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv{}{V} \ra\alt{\sv}{}{V}}{\ra} \ep.
+&\leq \psi\left(\|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv\cind{}\vsi{V} \ra\alt{\sv}{}{V}}{\ra} \ep.
 \end{align*}
 
 This concludes the proof that \(\X{}{}\) is Feller.
@@ -726,11 +729,11 @@ Let \(f \in \core\). Recall that \(\core\) is the core of \(\IG\). Then \(f\) ca
 By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X{}{}\) applied to \(f\) is given by 
 
 \begin{align*}
-\IG f(\sv{}{V}) &= \lim_{\t \searrow 0} \frac{1}{\t} \ex{f(\X{}{\t}) - f(\sv{}{V})|\X{}{0} = \sv{}{V}}\\
-&= \lim_{\t \searrow 0} \ex{\sum_{\v \in V} \frac{1}{\t}\int_\S\int_0^\t \left[f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})\right]\,\poiss{\v}\left(d\tt,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s\right)\middle|\X{}{0} = \sv{}{V}}\\
-&\os{f \in \mc{D}}{=} \lim_{\t \searrow 0}\sum_{\v \in V} \frac{1}{\t}\int_\S\int_0^\t \ex{\left[f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})\right]\IGr{\v}(\X{}{\tt-},\s)\middle|\X{}{0} = \sv{}{V}}d\tt\,\Sm(d\s)\\
-&\os{\te{Lebesgue Differentiation}}{=} \sum_{\v \in V} \int_\S \IGr{\v}(\sv{}{V},\s)[f(\sv{}{V} + \s\ev{\v}) - f(\sv{}{V})]\,\Sm(d\s)\\
-&= \sum_{\v \in V} \sum_{\s \in \S} \IGr{\v}(\sv{}{V},\s)[f(\sv{}{V} + \s\ev{\v}) - f(\sv{}{V})]
+\IG f(\sv\cind{}\vsi{V}) &= \lim_{\t \searrow 0} \frac{1}{\t} \ex{f(\X{}{\t}) - f(\sv\cind{}\vsi{V})|\X{}{0} = \sv\cind{}\vsi{V}}\\
+&= \lim_{\t \searrow 0} \ex{\sum_{\v \in V} \frac{1}{\t}\int_\S\int_0^\t \left[f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})\right]\,\poiss{\v}\left(d\tt,(0,\IGr{\v}(\X{}{\tt-},\s)],d\s\right)\middle|\X{}{0} = \sv\cind{}\vsi{V}}\\
+&\os{f \in \mc{D}}{=} \lim_{\t \searrow 0}\sum_{\v \in V} \frac{1}{\t}\int_\S\int_0^\t \ex{\left[f(\X{}{\tt-} + \s\ev{\v}) - f(\X{}{\tt-})\right]\IGr{\v}(\X{}{\tt-},\s)\middle|\X{}{0} = \sv\cind{}\vsi{V}}d\tt\,\Sm(d\s)\\
+&\os{\te{Lebesgue Differentiation}}{=} \sum_{\v \in V} \int_\S \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s\ev{\v}) - f(\sv\cind{}\vsi{V})]\,\Sm(d\s)\\
+&= \sum_{\v \in V} \sum_{\s \in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s\ev{\v}) - f(\sv\cind{}\vsi{V})]
 \end{align*}
 \end{proof}
 
@@ -740,12 +743,12 @@ By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X{}{}\) 
 Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in V\) be some node. Let \(V\sln{0} = \{\root\}\) and \(V\sln{n+1} = \cl{V\sln{n}}\) for all \(n \in \mb{N}\). For all \(\U \subseteq V\) and \(\t \in [0,\T]\), let \(\Omega{\U}{\t}\) be embedded in \(\Omega{V}{\t}\) in the standard way. Let \(\X{}{0}{n} = \proj{V\sln{n}}{0}(\X{}{0})\). For each \(n\in\mb{N}\), let the \(\Omega{V\sln{n}}{\T}\)-valued random element \(\X{}{}{n}\) be the unique Feller process with initial condition \(\X{}{0}{n}\) and infinitesimal generator,
 
 \begin{equation}
-\IG\sln{n}f(\sv{}{V\sln{n}}) = \sum_{\v\in V\sln{n}}\sum_{\s\in \S} \IGr{\v}(\sv{}{V\sln{n}}, \s)[f(\sv{}{V\sln{n}} + \s\ev{\v}) - f(\sv{}{V\sln{n}})]\te{ for all } \sv{}{V\sln{n}} \in \S{V\sln{n}}.
+\IG\sln{n}f(\sv\cind{}\vsi{V\sln{n}}) = \sum_{\v\in V\sln{n}}\sum_{\s\in \S} \IGr{\v}(\sv\cind{}\vsi{V\sln{n}}, \s)[f(\sv\cind{}\vsi{V\sln{n}} + \s\ev{\v}) - f(\sv\cind{}\vsi{V\sln{n}})]\te{ for all } \sv\cind{}\vsi{V\sln{n}} \in \S\carp{V\sln{n}}.
 \label{subsec::Well-:eqn::FinIG}
 \end{equation}
 \labe{subsec::Well-:eqn::FinIG}
 
-(Here we use the embedding \(\sv{\v}{V\sln{n}} = \mb{I}_{\v\in V\sln{n}} \sv{\v}{V\sln{n}}\) for all \(\v \in V\)) Then \(\X{}{}{n} \Rightarrow \X{}{}\).
+(Here we use the embedding \(\sv\cind{\v}\vsi{V\sln{n}} = \mb{I}_{\v\in V\sln{n}} \sv\cind{\v}\vsi{V\sln{n}}\) for all \(\v \in V\)) Then \(\X{}{}{n} \Rightarrow \X{}{}\).
 \label{subsec::Well-:Prop::IGApprox}
 \end{prop}
 \labe{subsec::Well-:Prop::IGApprox}
@@ -761,17 +764,17 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in V\) be so
 \begin{proof}
 First, for each \(n\in\mb{N}\), \(\X{}{}{n}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, so by Proposition \ref{subsec::Well-:Prop::Welldef}, \(\X{}{}{n}\) is uniquely defined by its initial condition \(\X{}{0}{n}\) and its infinitesimal generator \(\IG\sln{n}\).
 
-\ind To prove weak convergence, we first begin by showing that \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight. Note that \(\S{V}\) is compact, so \(\sup_{\sv{}{V} \in \S{V}} \|\sv{}{V}\|_{\b{}} < \infty\) (recall that \(\|\sv{}{V}\|_{\b{}} = \sum_{\v \in V} \b{\v} |\sv{\v}{V}|\) where \(\b{\v} = \b{}^{-n}\) for some \(\b{} > \degr\) if \(\v \in V\sln{n}\setminus V\sln{n-1}\)).
+\ind To prove weak convergence, we first begin by showing that \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight. Note that \(\S\carp{V}\) is compact, so \(\sup_{\sv\cind{}\vsi{V} \in \S\carp{V}} \|\sv\cind{}\vsi{V}\|_{\b{}} < \infty\) (recall that \(\|\sv\cind{}\vsi{V}\|_{\b{}} = \sum_{\v \in V} \b{\v} |\sv\cind{\v}\vsi{V}|\) where \(\b{\v} = \b{}^{-n}\) for some \(\b{} > \degr\) if \(\v \in V\sln{n}\setminus V\sln{n-1}\)).
 
 \ind Now fix \(\ep > 0\). Let \(\cconst\) be large enough that
 
-\[\sup_{\sv{}{\left(V\sln{\cconst}\right)^c} \in \S{\left(V\sln{\cconst}\right)^c}} \left\|\sv{}{\left(V\sln{\cconst}\right)^c}\right\|_{\b{}} \leq |\S|\sum_{\v \notin V\sln{\cconst}} \b{\v} < \ep/4.\]
+\[\sup_{\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c} \in \S\carp{\left(V\sln{\cconst}\right)^c}} \left\|\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c}\right\|_{\b{}} \leq |\S|\sum_{\v \notin V\sln{\cconst}} \b{\v} < \ep/4.\]
 
 Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the modulus of continuity is given by,
 
 \[\cmodu{\X{}{}}(\delta) = \inf_{\{\t{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \|\X{}{\tt} - \X{}{\ttt}\|_{\b{}},\]
 
-where \(\{\t{\it}\} := 0 \leq \t{1} < \t{2} < \cdots < \t{\cdot} = \T\) and \(\min_\it|\t{\it} - \t{\it-1}| > \delta\). Note that \(\X{}{}{n}\) is \(\Omega{V\sln{n}}{\T}\)-valued and can be embedded in \(\Omega{V}{\T}\) the same way we embed \(\S{V\sln{n}}\) in \(\S{V}\): let \(\X{\v}{}{n} \equiv 0\) for \(\v \notin V\sln{n}\). Recall also that \(\proj{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq V\). Then for any \(n\in \mb{N}\),
+where \(\{\t{\it}\} := 0 \leq \t{1} < \t{2} < \cdots < \t{\cdot} = \T\) and \(\min_\it|\t{\it} - \t{\it-1}| > \delta\). Note that \(\X{}{}{n}\) is \(\Omega{V\sln{n}}{\T}\)-valued and can be embedded in \(\Omega{V}{\T}\) the same way we embed \(\S\carp{V\sln{n}}\) in \(\S\carp{V}\): let \(\X{\v}{}{n} \equiv 0\) for \(\v \notin V\sln{n}\). Recall also that \(\proj{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq V\). Then for any \(n\in \mb{N}\),
 
 \begin{align*}
 \pr\left(\sup_n \cmodu{\X{}{}{n}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v \in V} \b{\v}|(\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}| > \epsilon \right)\\
@@ -781,23 +784,23 @@ where \(\{\t{\it}\} := 0 \leq \t{1} < \t{2} < \cdots < \t{\cdot} = \T\) and \(\m
 
 The last inequality arises because
 
-\[\cmodu{\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})\right\|_{\b{}} \leq 2 \sup_{\sv{}{\left(V\sln{\cconst}\right)^c} \in \S{\left(V\sln{\cconst}\right)^c}} \left\|\sv{}{\left(V\sln{\cconst}\right)^c}\right\|_{\b{}} < \ep/2\]
+\[\cmodu{\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})\right\|_{\b{}} \leq 2 \sup_{\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c} \in \S\carp{\left(V\sln{\cconst}\right)^c}} \left\|\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c}\right\|_{\b{}} < \ep/2\]
 
 Finally, the convergence to 0 at the end is the result of a direct application of Lemma \ref{sec::TL:Lem::TightSupport}. Thus, \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight, and therefore relatively compact with respect to the topology of weak convergence (Theorem \ref{sec::TL:Thm::Tight}).
 
-Now, suppose \(f\in \core\). Then for all \(\sv{}{V} \in \S{V}\),
+Now, suppose \(f\in \core\). Then for all \(\sv\cind{}\vsi{V} \in \S\carp{V}\),
 
 \begin{align*}
-\big|\IG&\sln{n}f(\sv{}{V}) - \IG f(\sv{}{V})\big|\\
-&= \left|\sum_{\v \in V\sln{n}} \sum_{\s \in \S} \IGr{\v}(\proj{V\sln{n}}{}(\sv{}{V}),\s)[f(\sv{}{V}+\s\ev{\v}) - f(\sv{}{V})] - \sum_{\v \in V}\sum_{\s \in \S} \IGr{\v}(\sv{}{V},\s)[f(\sv{}{V}+\s\ev{\v}) - f(\sv{}{V})]\right|\\
-&\leq  \left|\sum_{\v \in V\sln{n}} \sum_{\s \in \S} \IGr{\v}(\proj{V\sln{n}}{}(\sv{}{V}),\s)[f(\sv{}{V}+\s\ev{\v}) - f(\sv{}{V})] - \sum_{\v \in V\sln{n}}\sum_{\s \in \S} \IGr{\v}(\sv{}{V},\s)[f(\sv{}{V}+\s\ev{\v}) - f(\sv{}{V})]\right|\\
-&\ind  +\left|\sum_{\v \notin V\sln{n}} \sum_{\s\in \S} \IGr{\v}(\sv{}{V},\s)[f(\sv{}{V}+\s\ev{\v}) - f(\sv{}{V})]\right|\\
-&\leq \sum_{\v \in V\sln{n}}\sum_{\s \in \S} \left|\IGr{\v}(\proj{V\sln{n}}{}(\sv{}{V}),\s) - \IGr{\v}(\sv{}{V},\s)\right|\delt\deltf{\f}{\v} + \sum_{\v \in V\setminus V\sln{n}} \const{}\delt\deltf{\f}{\v}\\
+\big|\IG&\sln{n}f(\sv\cind{}\vsi{V}) - \IG f(\sv\cind{}\vsi{V})\big|\\
+&= \left|\sum_{\v \in V\sln{n}} \sum_{\s \in \S} \IGr{\v}(\proj{V\sln{n}}{}(\sv\cind{}\vsi{V}),\s)[f(\sv\cind{}\vsi{V}+\s\ev{\v}) - f(\sv\cind{}\vsi{V})] - \sum_{\v \in V}\sum_{\s \in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V}+\s\ev{\v}) - f(\sv\cind{}\vsi{V})]\right|\\
+&\leq  \left|\sum_{\v \in V\sln{n}} \sum_{\s \in \S} \IGr{\v}(\proj{V\sln{n}}{}(\sv\cind{}\vsi{V}),\s)[f(\sv\cind{}\vsi{V}+\s\ev{\v}) - f(\sv\cind{}\vsi{V})] - \sum_{\v \in V\sln{n}}\sum_{\s \in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V}+\s\ev{\v}) - f(\sv\cind{}\vsi{V})]\right|\\
+&\ind  +\left|\sum_{\v \notin V\sln{n}} \sum_{\s\in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V}+\s\ev{\v}) - f(\sv\cind{}\vsi{V})]\right|\\
+&\leq \sum_{\v \in V\sln{n}}\sum_{\s \in \S} \left|\IGr{\v}(\proj{V\sln{n}}{}(\sv\cind{}\vsi{V}),\s) - \IGr{\v}(\sv\cind{}\vsi{V},\s)\right|\delt\deltf{\f}{\v} + \sum_{\v \in V\setminus V\sln{n}} \const{}\delt\deltf{\f}{\v}\\
 &\os{Assump. \ref{subsec::Assum:Assu::CI}.2}{=} \sum_{\v \in V\sln{n}\setminus V\sln{n-1}} |\S|\const{} \delt\deltf{\f}{\v} + \sum_{\v \in V\setminus V\sln{n}} \const{}\delt\deltf{\f}{\v}\\
 &\leq |\S|C\sum_{\v \in V\setminus V\sln{n-1}} \delt\deltf{\f}{\v} \os{n\ra\infty}{\ra} 0.
 \end{align*}
 
-Here \(\delt\deltf{\f}{\v} = \sup\left\{|f(\sv{}{V}) - f(\sv{}{V} + \s\ev{\v}): \sv{}{V}\in \S{V},\s \in \S\right\}\) as defined in equation \eqref{subsec::Well-:Eqn::fvar}. By Corollary \ref{sec::Infin:Cor::Convergence}, \(\X{}{}{n}\Rightarrow \X{}{}\).
+Here \(\delt\deltf{\f}{\v} = \sup\left\{|f(\sv\cind{}\vsi{V}) - f(\sv\cind{}\vsi{V} + \s\ev{\v}): \sv\cind{}\vsi{V}\in \S\carp{V},\s \in \S\right\}\) as defined in equation \eqref{subsec::Well-:Eqn::fvar}. By Corollary \ref{sec::Infin:Cor::Convergence}, \(\X{}{}{n}\Rightarrow \X{}{}\).
 \end{proof}
 
 
@@ -807,7 +810,7 @@ Here \(\delt\deltf{\f}{\v} = \sup\left\{|f(\sv{}{V}) - f(\sv{}{V} + \s\ev{\v}): 
 
 Some further notation. Let \(\X{}{[0,\t]}\) denote the trajectory of \(\X{}{}\) on the time interval \([0,\t]\). Similarly, \(\X{}{[0,\t)}\) is \(\X{}{}\) on the interval \([0,\t)\) and so on.
 
-\ind For \(\U \subseteq V\), let \(\dneigh{\U} = \neigh{\U} \cup \neigh{\ov{\U}}\). 
+\ind For \(\U \subseteq V\), let \(\dneigh{\U} = \neigh\vind{\U} \cup \neigh\vind{\ov{\U}}\). 
 
 \ind For random elements \(\X{}{},\XX{}{}\) and \(\XXX{}{}\), we say that \(\X{}{}\) is conditionally independent of \(\XX{}{}\) given \(\XXX{}{}\) if \(\X{}{}\perp\XX{}{}|\XXX{}{}\).
 
@@ -864,7 +867,7 @@ for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \proj{\tree\sln{1}}{\T}(\m
 \section{Proof of Theorem \ref{sec::Main:Thm::CI}}
 \label{sec::Proof1}\labe{sec::Proof1}
 
-\pfsum We consider two sets of stopping times. The events driving \(\X{}{}^{\neigh{\U}}\) and the events driving \(\X{}{}^{\neigh{\UU}}\). Because \(|\UUU| < \infty\), these are well behaved. We apply induction by iterating over one of the stopping times along a path in \(\mb{N}^2\). At each inductive step, we combine various properties of conditional independence with a breakdown of each path into its component random elements to prove the result. By combining all possible paths, we change from stopping times to deterministic times. There is a minor adaptation we have to make at the end to change from closed intervals to half-open intervals.
+\pfsum We consider two sets of stopping times. The events driving \(\X{}{}^{\neigh\vind{\U}}\) and the events driving \(\X{}{}^{\neigh\vind{\UU}}\). Because \(|\UUU| < \infty\), these are well behaved. We apply induction by iterating over one of the stopping times along a path in \(\mb{N}^2\). At each inductive step, we combine various properties of conditional independence with a breakdown of each path into its component random elements to prove the result. By combining all possible paths, we change from stopping times to deterministic times. There is a minor adaptation we have to make at the end to change from closed intervals to half-open intervals.
 
 \skipLine
 
@@ -878,8 +881,8 @@ for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \proj{\tree\sln{1}}{\T}(\m
 We define the pair of sequences of stopping times:
 
 \begin{align*}
-\rt{i} &= \inf \left\{\t > 0: \poiss{\neigh{\U}}\left([0,\t],(0,\const{}],\S\right) = i\right\}\\
-\rtt{j} &= \inf \left\{\t > 0: \poiss{\neigh{\UU}}\left([0,\t],(0,\const{}],\S\right) = j\right\}.
+\rt{i} &= \inf \left\{\t > 0: \poiss{\neigh\vind{\U}}\left([0,\t],(0,\const{}],\S\right) = i\right\}\\
+\rtt{j} &= \inf \left\{\t > 0: \poiss{\neigh\vind{\UU}}\left([0,\t],(0,\const{}],\S\right) = j\right\}.
 \end{align*}
 
 Here \(\const{}\) is as defined in Assumption \ref{subsec::Assum:Assu::CI}. We also define the set of paths along \(\mb{N}^2\) by,
@@ -913,7 +916,7 @@ Here \(\const{}\) is as defined in Assumption \ref{subsec::Assum:Assu::CI}. We a
 \begin{lem}
 For all \((i,j)\in \mb{N}_0^2\) and \(\apath{} \in \pathset{i}{j}\),
 
-\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh{\U}}{[0,\rt{\it})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}\]
+\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh\vind{\U}}{[0,\rt{\it})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}\]
 \label{sec::Proof1:Lem::Induction}
 \end{lem}
 \labe{sec::Proof1:Lem::Induction}
@@ -968,7 +971,7 @@ Consider the following coupled equations:
 \end{align}
 \labe{sec::Proof1:eqn::alternate SDE}
 
-It's easy to see that \(\rt{i}\) is almost surely finite for every finite \(i\) \(\left(\ex{\rt{i}} = \frac{i}{\const{}|\neigh{\U}|} < \infty\right)\). 
+It's easy to see that \(\rt{i}\) is almost surely finite for every finite \(i\) \(\left(\ex{\rt{i}} = \frac{i}{\const{}|\neigh\vind{\U}|} < \infty\right)\). 
 
 \ind \tr{Originally I used the strong Markov property to reduce to the case of \(i = 0\). However, since \(\rt{i}\) is not an \(\X{}{}\)-stopping time, I need to show that \(\X{}{}\) is strong-Markov or Feller with respect to the larger filtration containing the driving Poisson processes. While this is not that difficult, the argument is tedious and long, so I chose not to use this reduction.}
 
@@ -976,17 +979,17 @@ It's easy to see that \(\rt{i}\) is almost surely finite for every finite \(i\) 
 
 \ind Fix any \(\t > 0\). Let \(\evnt{\t} = \{\t < \rt{i+1}\}\) and \(\alt{\evnt}{	} = \{\t\in [\rt{i},\rt{i+1})\}\). Notice that \(\evnt{\tt} \supseteq \evnt{\t}\) for all \(\tt\in [0,\t]\) when \(\t > 0\). 
 
-\ind Notice that \(\rt{i} \perp \poiss{\v}\) for all \(\v \in \U\). Thus, \(\poiss{\v}(d\tt+\rt{i},dr,d\s) \deq \poiss{\v}(d\tt,dr,d\s)\). Now, \(\alt{\X}{\neigh{\U}}{}[0,\rt{i}] = \X{\neigh{\U}}{[0,\rt{i}]}\) almost surely by definition. Furthermore,
+\ind Notice that \(\rt{i} \perp \poiss{\v}\) for all \(\v \in \U\). Thus, \(\poiss{\v}(d\tt+\rt{i},dr,d\s) \deq \poiss{\v}(d\tt,dr,d\s)\). Now, \(\alt{\X}{\neigh\vind{\U}}{}[0,\rt{i}] = \X{\neigh\vind{\U}}{[0,\rt{i}]}\) almost surely by definition. Furthermore,
 
-\[\alt{\X}{\neigh{\U}}{\t}\mb{I}_{\rt{i}\leq \t < \rt{i+1}} = \alt{\X}{\neigh{\U}}{\rt{i}}\mb{I}_{\rt{i}\leq \t < \rt{i+1}} = \X{\neigh{\U}}{\rt{i}}\mb{I}_{\rt{i}\leq \t < \rt{i+1}} = \X{\neigh{\U}}{\t}\mb{I}_{\rt{i}\leq \t < \rt{i+1}}\]
+\[\alt{\X}{\neigh\vind{\U}}{\t}\mb{I}_{\rt{i}\leq \t < \rt{i+1}} = \alt{\X}{\neigh\vind{\U}}{\rt{i}}\mb{I}_{\rt{i}\leq \t < \rt{i+1}} = \X{\neigh\vind{\U}}{\rt{i}}\mb{I}_{\rt{i}\leq \t < \rt{i+1}} = \X{\neigh\vind{\U}}{\t}\mb{I}_{\rt{i}\leq \t < \rt{i+1}}\]
 
 so
 
-\[\alt{\X}{\neigh{\U}}{}[0,\rt{i+1}) = \X{\neigh{\U}}{[0,\rt{i+1})} \te{ a.t.}\]
+\[\alt{\X}{\neigh\vind{\U}}{}[0,\rt{i+1}) = \X{\neigh\vind{\U}}{[0,\rt{i+1})} \te{ a.t.}\]
 
 Furthermore, by the same argument presented in the beginning of the proof of Lemma \ref{subsec::Well-:Lem::SDEWP}, we can assume without loss of generality that 
 
-\[|\IGr{\v}(\sv{V}{},\s) - \IGr{\v}(\alt{\sv}{V}{},\s)| \leq \const{}\sum_{\vv\in \cl{\v}} |\sv{V}{\vv} - \alt{\sv}{V}{\vv}|\te{ for all } \sv{V}{},\alt{\sv}{V}{}\in \S{V},\s \in \S \te{ and } \v \in V.\]
+\[|\IGr{\v}(\sv\cind{V}\vsi{},\s) - \IGr{\v}(\alt{\sv}{V}{},\s)| \leq \const{}\sum_{\vv\in \cl{\v}} |\sv\cind{V}\vsi{\vv} - \alt{\sv}{V}{\vv}|\te{ for all } \sv\cind{V}\vsi{},\alt{\sv}{V}{}\in \S\carp{V},\s \in \S \te{ and } \v \in V.\]
 
 \tr{For any \(a,b\in \mb{R}\), I use the shorthand \((a,b]\) to denote the interval \((a\wedge b,a\vee b]\)}. Then for all \(v\in \U\) and \(\t > 0\),
 
@@ -998,7 +1001,7 @@ Furthermore, by the same argument presented in the beginning of the proof of Lem
 &\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt{\t}}\mb{I}_{\r\in\left(\IGr{\v}(\X{}{\tt-},\s),\IGr{\v}(\alt{\X}{}{\tt-},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
 &\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt{\t}}\left|\IGr{\v}(\alt{\X}{}{\tt-},\s) - \IGr{\v}(\X{}{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
 &\ind \leq \const{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt{\t}}\sum_{\vv\in \cl{\v}}\left|\alt{\X}{\vv}{\tt-} - \X{\vv}{\tt-}\right|}\,d\tt\\
-&\ind \os{\mb{I}_{\evnt{\t}}\|\alt{\X}{\neigh{\U}}{} - \X{\neigh{\U}}{}\|_\t = 0}{\leq} \left(\int_\S|\s|\,\Sm(d\s)\right)\const{} \int_0^\t \sum_{\vv\in \cl{\v}\cap\U}\ex{\mb{I}_{\evnt{\t}}\|\alt{\X}{\vv}{} - \X{\vv}{}\|_\tt}\,d\tt\\
+&\ind \os{\mb{I}_{\evnt{\t}}\|\alt{\X}{\neigh\vind{\U}}{} - \X{\neigh\vind{\U}}{}\|_\t = 0}{\leq} \left(\int_\S|\s|\,\Sm(d\s)\right)\const{} \int_0^\t \sum_{\vv\in \cl{\v}\cap\U}\ex{\mb{I}_{\evnt{\t}}\|\alt{\X}{\vv}{} - \X{\vv}{}\|_\tt}\,d\tt\\
 &\ind \os{\evnt{\tt} \supseteq \evnt{\t}}{\leq} |\S|\const{}(\degr+1) \int_0^\t \sup_{\v\in \U}\ex{\mb{I}_{\evnt{\tt}}\|\alt{\X}{\v}{} - \X{\v}{}\|_\tt}\,d\tt.
 \end{align*}
 
@@ -1022,21 +1025,21 @@ By independence of initial conditions,
 
 \[\X{\U}{0}\perp \X{\UU}{0}|\X{\dneigh{\U}}{0}.\]
 
-\(\rt{1}\) is \(\sigma\left(\poiss{\vv}:\vv\in \neigh{\U}\right)\) measurable and \(\rtt{1}\) is \(\sigma\left(\poiss{\vv}:\vv\in \neigh{\UU}\right)\) measurable. Therefore, both stopping times are independent of each other and of the initial conditions. By Lemma \ref{sec::TL:Lem::Props}(b), 
+\(\rt{1}\) is \(\sigma\left(\poiss{\vv}:\vv\in \neigh\vind{\U}\right)\) measurable and \(\rtt{1}\) is \(\sigma\left(\poiss{\vv}:\vv\in \neigh\vind{\UU}\right)\) measurable. Therefore, both stopping times are independent of each other and of the initial conditions. By Lemma \ref{sec::TL:Lem::Props}(b), 
 
-\[\X{\U}{0}\perp \X{\UU}{0}|\left(\X{\neigh{\U}}{0},\X{\neigh{\UU}}{0},\rt{1},\rtt{1}\right).\]
+\[\X{\U}{0}\perp \X{\UU}{0}|\left(\X{\neigh\vind{\U}}{0},\X{\neigh\vind{\UU}}{0},\rt{1},\rtt{1}\right).\]
 
-Since \(\X{\neigh{\U}}{}\) is constant on \([0,\rt{1})\) and \(\X{\neigh{\UU}}{}\) is constant on \([0,\rtt{1})\), the mapping \((\X{\dneigh{\U}}{0},\rt{1},\rtt{1}) \mapsto (\X{\neigh{\U}}{[0,\rt{1})},\X{\neigh{\UU}}{[0,\rtt{1})})\) is 1-to-1. By Lemma \ref{sec::TL:Lem::Props}(a),
+Since \(\X{\neigh\vind{\U}}{}\) is constant on \([0,\rt{1})\) and \(\X{\neigh\vind{\UU}}{}\) is constant on \([0,\rtt{1})\), the mapping \((\X{\dneigh{\U}}{0},\rt{1},\rtt{1}) \mapsto (\X{\neigh\vind{\U}}{[0,\rt{1})},\X{\neigh\vind{\UU}}{[0,\rtt{1})})\) is 1-to-1. By Lemma \ref{sec::TL:Lem::Props}(a),
 
 \begin{equation}
-\X{\U}{0}\perp \XX{\U}{0}|\left(\X{\neigh{\U}}{[0,\rt{1})},\X{\neigh{\UU}}{[0,\rtt{1})}\right).
+\X{\U}{0}\perp \XX{\U}{0}|\left(\X{\neigh\vind{\U}}{[0,\rt{1})},\X{\neigh\vind{\UU}}{[0,\rtt{1})}\right).
 \label{sec::Proof1:eqn::induction_intermediate_1}
 \end{equation}
 \labe{sec::Proof1:eqn::induction\_intermediate\_1}
 
-By Lemma \ref{sec::Proof1:Lem::Decomposition}, we can express \(\X{\U}{[0,\rt{1})}\) in terms of \(\X{\cl{\U}}{0}\) and \(\poiss{\U}([0,\rt{1})\times\mb{R}\times\S)\). We can equivalently describe \(\X{\U}{[0,\rt{1})}\) in terms of \(\X{\U}{0}\), \(\X{\neigh{\U}}{[0,\rt{1})}\) and \(\poiss{\U}([0,\rt{1})\times \mb{R}\times \S)\) which is independent of all terms in expression \eqref{sec::Proof1:eqn::induction_intermediate_1}. Applying a similar argument for \(\X{\UU}{}\), we can apply Lemmas \ref{sec::TL:Lem::Props}(a) and (e) to get
+By Lemma \ref{sec::Proof1:Lem::Decomposition}, we can express \(\X{\U}{[0,\rt{1})}\) in terms of \(\X{\cl{\U}}{0}\) and \(\poiss{\U}([0,\rt{1})\times\mb{R}\times\S)\). We can equivalently describe \(\X{\U}{[0,\rt{1})}\) in terms of \(\X{\U}{0}\), \(\X{\neigh\vind{\U}}{[0,\rt{1})}\) and \(\poiss{\U}([0,\rt{1})\times \mb{R}\times \S)\) which is independent of all terms in expression \eqref{sec::Proof1:eqn::induction_intermediate_1}. Applying a similar argument for \(\X{\UU}{}\), we can apply Lemmas \ref{sec::TL:Lem::Props}(a) and (e) to get
 
-\[\X{\U}{[0,\rt{1})}\perp \X{\UU}{[0,\rtt{1})}|\left(\X{\neigh{\U}}{[0,\rt{1})},\X{\neigh{\UU}}{[0,\rtt{1})}\right)\]
+\[\X{\U}{[0,\rt{1})}\perp \X{\UU}{[0,\rtt{1})}|\left(\X{\neigh\vind{\U}}{[0,\rt{1})},\X{\neigh\vind{\UU}}{[0,\rtt{1})}\right)\]
 
 This proves that Lemma \ref{sec::Proof1:Lem::Induction} holds in the base case where \(i = j = 1\).
 
@@ -1050,38 +1053,38 @@ This proves that Lemma \ref{sec::Proof1:Lem::Induction} holds in the base case w
 
 By assumption,
 
-\[\X{\U}{[0,\rt{i})}\mb{I}_{\alt{\apath{}}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\alt{\apath{}}}|\left(\X{\neigh{\U}}{[0,\rt{i})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\alt{\apath{}}}\]
+\[\X{\U}{[0,\rt{i})}\mb{I}_{\alt{\apath{}}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\alt{\apath{}}}|\left(\X{\neigh\vind{\U}}{[0,\rt{i})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\alt{\apath{}}}\]
 
 By Lemma \ref{sec::TL:Lem::Props}(d), we can multiply everything by \(\mb{I}_{\rt{i} \leq \rtt{j}}\):
 
-\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh{\U}}{[0,\rt{i})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh\vind{\U}}{[0,\rt{i})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
 
-By definition of \(\rt{i}\), there is an event in \(\poiss{\neigh{\U}}\) at time \(\rt{i}\) for every \(i \in \mb{ N}\). Let \(\rv\) be the random vector signifying in which node of \(\neigh{\U}\) the event is located as well as the height and mark of the event. Because Poisson processes are simple, \(\rv\) is well-defined. Furthermore, \(\rv\) is independent of all terms in the equation above. We can specifically describe the distribution of \(\rv\). Let \(\rv^1\) be uniform over \(\neigh{\U}\). Let \(\rv^2\) be an \(\S\)-valued random variable with distribution \(\Sm\). Finally, let \(\rv^3\) be a uniform \([0,\const{}]\) random variable. Then, if \(\rv=(\rv^1,\rv^2,\rv^3)\),
+By definition of \(\rt{i}\), there is an event in \(\poiss{\neigh\vind{\U}}\) at time \(\rt{i}\) for every \(i \in \mb{ N}\). Let \(\rv\) be the random vector signifying in which node of \(\neigh\vind{\U}\) the event is located as well as the height and mark of the event. Because Poisson processes are simple, \(\rv\) is well-defined. Furthermore, \(\rv\) is independent of all terms in the equation above. We can specifically describe the distribution of \(\rv\). Let \(\rv^1\) be uniform over \(\neigh\vind{\U}\). Let \(\rv^2\) be an \(\S\)-valued random variable with distribution \(\Sm\). Finally, let \(\rv^3\) be a uniform \([0,\const{}]\) random variable. Then, if \(\rv=(\rv^1,\rv^2,\rv^3)\),
 
-\[\X{\neigh{\U}}{\rt{i}} = \begin{cases}
-\X{\neigh{\U}}{\rt{i}-} + \rv^2\ev{\rv^1} &\te{ if } \rv^3< \rate{\rv^1}(\X{}{\rt{i}-}, \rv^2)\\
-\X{\neigh{\U}}{\rt{i}-} &\te{ otherwise}
+\[\X{\neigh\vind{\U}}{\rt{i}} = \begin{cases}
+\X{\neigh\vind{\U}}{\rt{i}-} + \rv^2\ev{\rv^1} &\te{ if } \rv^3< \rate{\rv^1}(\X{}{\rt{i}-}, \rv^2)\\
+\X{\neigh\vind{\U}}{\rt{i}-} &\te{ otherwise}
 \end{cases}\]
 
-Note, because \(\X{}{}\) satisfies assumption \ref{subsec::Assum:Assu::CI}, \(\X{\neigh{\U}}{\rt{i}}\) only depends on \(\X{\cl{\cl{\U}}}{\rt{i}-}\) and \(\rv\). By Lemma \ref{sec::TL:Lem::Props}(c), 
+Note, because \(\X{}{}\) satisfies assumption \ref{subsec::Assum:Assu::CI}, \(\X{\neigh\vind{\U}}{\rt{i}}\) only depends on \(\X{\cl{\cl{\U}}}{\rt{i}-}\) and \(\rv\). By Lemma \ref{sec::TL:Lem::Props}(c), 
 
-\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh{\U}}{[0,\rt{i}]},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh\vind{\U}}{[0,\rt{i}]},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
 
-\(\rt{i+1} - \rt{i}\) is \(\sigma(\poiss{\neigh{\U}}(\rt{i},\infty))\) measurable, so it is independent of all terms above. Therefore, by Lemma \ref{sec::TL:Lem::Props}(b),
+\(\rt{i+1} - \rt{i}\) is \(\sigma(\poiss{\neigh\vind{\U}}(\rt{i},\infty))\) measurable, so it is independent of all terms above. Therefore, by Lemma \ref{sec::TL:Lem::Props}(b),
 
-\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh{\U}}{[0,\rt{i}]},\X{\neigh{\UU}}{[0,\rtt{j})},\rt{i+1} - \rt{i}\right)\mb{I}_{\apath{}}.\]
+\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh\vind{\U}}{[0,\rt{i}]},\X{\neigh\vind{\UU}}{[0,\rtt{j})},\rt{i+1} - \rt{i}\right)\mb{I}_{\apath{}}.\]
 
-\(\X{\neigh{\U}}{}\) is constant on \([\rt{i},\rt{i+1})\), so we can use a 1-to-1 function and Lemma \ref{sec::TL:Lem::Props}(a) to reduce the above statement to
+\(\X{\neigh\vind{\U}}{}\) is constant on \([\rt{i},\rt{i+1})\), so we can use a 1-to-1 function and Lemma \ref{sec::TL:Lem::Props}(a) to reduce the above statement to
 
-\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh{\U}}{[0,\rt{i+1})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh\vind{\U}}{[0,\rt{i+1})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
 
-Now, \(\X{\U}{\rt{i}}\) is \(\left(\X{\U}{[0,\rt{i})}, \X{\neigh{\U}}{[0,\rt{i})}, \poiss{\U}(\{\rt{i}\}\times [0,\const{}]\times\S)\right)\) measurable. Applying lemmas \ref{sec::TL:Lem::Props} (a) and (e), we get
+Now, \(\X{\U}{\rt{i}}\) is \(\left(\X{\U}{[0,\rt{i})}, \X{\neigh\vind{\U}}{[0,\rt{i})}, \poiss{\U}(\{\rt{i}\}\times [0,\const{}]\times\S)\right)\) measurable. Applying lemmas \ref{sec::TL:Lem::Props} (a) and (e), we get
 
-\[\X{\U}{[0,\rt{i}]}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh{\U}}{[0,\rt{i+1})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X{\U}{[0,\rt{i}]}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh\vind{\U}}{[0,\rt{i+1})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
 
 Combining Lemmas \ref{sec::Proof1:Lem::Decomposition}, \ref{sec::TL:Lem::Props}(a) and \ref{sec::TL:Lem::Props}(e) as in the base case, we get
 
-\[\X{\U}{[0,\rt{i+1})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh{\U}}{[0,\rt{i+1})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X{\U}{[0,\rt{i+1})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}|\left(\X{\neigh\vind{\U}}{[0,\rt{i+1})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}.\]
 
 which completes the proof.
 \end{proof}
@@ -1162,16 +1165,16 @@ So by induction, equation \eqref{sec::Proof1:eqn::Ckk'} holds for all \(i,j\in \
 
 Fix \((i,j) \in \mb{N}^2\). By Lemma \ref{sec::Proof1:Lem::Induction}, 
 
-\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}\big|\left(\X{\neigh{\U}}{[0,\rt{i})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}\te{ for all }\apath{} \in \pathset{i}{j}.\]
+\[\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}\big|\left(\X{\neigh\vind{\U}}{[0,\rt{i})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}\te{ for all }\apath{} \in \pathset{i}{j}.\]
 
 Notice that all terms have disjoint support for different \(\apath{}\). By Lemma \ref{sec::TL:Lem::Props}(f), 
 
-\[\sum_{\apath{}\in\pathset{i}{j}}\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \sum_{\apath{}\in\pathset{i}{j}}\X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}\bigg|\sum_{\apath{}\in\pathset{i}{j}}\left(\X{\neigh{\U}}{[0,\rt{i})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}\te{ for all }\apath{} \in \pathset{i}{j}.\]
+\[\sum_{\apath{}\in\pathset{i}{j}}\X{\U}{[0,\rt{i})}\mb{I}_{\apath{}}\perp \sum_{\apath{}\in\pathset{i}{j}}\X{\UU}{[0,\rtt{j})}\mb{I}_{\apath{}}\bigg|\sum_{\apath{}\in\pathset{i}{j}}\left(\X{\neigh\vind{\U}}{[0,\rt{i})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\apath{}}\te{ for all }\apath{} \in \pathset{i}{j}.\]
 
 By Lemma \ref{sec::Proof1:Lem::Ckk'}, this simplifies to 
 
 \begin{equation}
-\X{\U}{[0,\rt{i})}\mb{I}_{\pathsete{i}{j}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\pathsete{i}{j}}\big|\left(\X{\neigh{\U}}{[0,\rt{i})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\pathsete{i}{j}}.
+\X{\U}{[0,\rt{i})}\mb{I}_{\pathsete{i}{j}}\perp \X{\UU}{[0,\rtt{j})}\mb{I}_{\pathsete{i}{j}}\big|\left(\X{\neigh\vind{\U}}{[0,\rt{i})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\pathsete{i}{j}}.
 \label{sec::Proof1:eqn::thmint1}
 \end{equation}
 \labe{sec::Proof1:eqn::thmint1}
@@ -1189,10 +1192,10 @@ It should be clear that for any \(\t > 0\), \(\{\pathseted{i}{j}(\t)\}_{(i,j)\in
 
 \ind Fix \(\t \geq 0\) and apply Lemma \ref{sec::TL:Lem::Props}(d) by multiplying equation\eqref{sec::Proof1:eqn::thmint1} by \(\mb{I}_{\pathseted{i}{j}}\) to get
 
-\[\X{\U}{[0,\rt{i})}\mb{I}_{\pathseted{i}{j}(\t)}\perp\X{\UU}{[0,\rtt{j})}\mb{I}_{\pathseted{i}{j}(\t)}\big|\left(\X{\neigh{\U}}{[0,\rt{i})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\pathseted{i}{j}(\t)}.\]
+\[\X{\U}{[0,\rt{i})}\mb{I}_{\pathseted{i}{j}(\t)}\perp\X{\UU}{[0,\rtt{j})}\mb{I}_{\pathseted{i}{j}(\t)}\big|\left(\X{\neigh\vind{\U}}{[0,\rt{i})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\pathseted{i}{j}(\t)}.\]
 
 
-Notice by definition of \(\mb{I}_{\pathseted{i}{j}(\t)}\), \(\X{\U}{[0,\rt{i})}\mb{I}_{\pathseted{i}{j}(\t)} \mapsto \X{\U}{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\) is measurable. We can map \(\X{\UU}{}\) similarly. Finally, \(\left(\X{\neigh{\U}}{[0,\rt{i})},\X{\neigh{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\pathseted{i}{j}(\t)}\mapsto (\X{\dneigh{\U}}{[0,\t]}, \rt{i},\rtt{j})\mb{I}_{\pathseted{i}{j}(\t)}\) is a 1-to-1 mapping. By Lemma \ref{sec::TL:Lem::Props}(a),
+Notice by definition of \(\mb{I}_{\pathseted{i}{j}(\t)}\), \(\X{\U}{[0,\rt{i})}\mb{I}_{\pathseted{i}{j}(\t)} \mapsto \X{\U}{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\) is measurable. We can map \(\X{\UU}{}\) similarly. Finally, \(\left(\X{\neigh\vind{\U}}{[0,\rt{i})},\X{\neigh\vind{\UU}}{[0,\rtt{j})}\right)\mb{I}_{\pathseted{i}{j}(\t)}\mapsto (\X{\dneigh{\U}}{[0,\t]}, \rt{i},\rtt{j})\mb{I}_{\pathseted{i}{j}(\t)}\) is a 1-to-1 mapping. By Lemma \ref{sec::TL:Lem::Props}(a),
 
 \[\X{\U}{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\perp\X{\UU}{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\big|\left(\X{\dneigh{\U}}{[0,\t]},\rt{i},\rtt{j}\right)\mb{I}_{\pathseted{i}{j}(\t)}.\]
 
@@ -1238,7 +1241,7 @@ Finally, by Lemma \ref{sec::TL:Lem::Props}(h),
 \lin
 
 \begin{defn}
-Let \(\U\subseteq V\) and suppose \(\X{}{} \in \Omega{\U}{\T-}\) is a stochastic process adapted to its own natural filtration. Then define the marked point process \(\pmap{}(\X{}{})\) as a random measure on \((0,\T) \times \S{\U}\) defined by,
+Let \(\U\subseteq V\) and suppose \(\X{}{} \in \Omega{\U}{\T-}\) is a stochastic process adapted to its own natural filtration. Then define the marked point process \(\pmap{}(\X{}{})\) as a random measure on \((0,\T) \times \S\carp{\U}\) defined by,
 
 \[\pmap{}(\X{}{})(\{(\rt{},\mark{})\}) = \begin{cases}
 1 &\te{ if } \X{}{\rt{}} - \X{}{\rt{}-} = \mark{}\\
@@ -1262,7 +1265,7 @@ and
 \lin
 
 \begin{assu}
-Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X{}{}\in \Omega{\U}{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap{\v}(\X{}{})\) has an \(\X{}{}\)-predictable intensity, \(\ratee{\v}\), and there exists a constant \(\const{} < \infty\) such that \(\sup_{\v\in\U} \ratee{\v} \leq \const{}\). Furthermore, \(\lambda: \S{\degr+1}\times \S\ra[0,\const{}]\) is some function.
+Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X{}{}\in \Omega{\U}{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap{\v}(\X{}{})\) has an \(\X{}{}\)-predictable intensity, \(\ratee{\v}\), and there exists a constant \(\const{} < \infty\) such that \(\sup_{\v\in\U} \ratee{\v} \leq \const{}\). Furthermore, \(\lambda: \S\carp{\degr+1}\times \S\ra[0,\const{}]\) is some function.
 \label{subsec::ProofE:Assu::Eassu}
 \end{assu}
 \labe{subsec::ProofE:Assu::Eassu}
@@ -1275,7 +1278,7 @@ Let \(\rp{}\) be an \(\F{}{}\)-adapted marked point process with \(\F{}{}\)-pred
 \end{lem}
 \labe{subsec::ProofE:Lem::filtering}
 
-\purpose This allows us to derive a new intensity on the cruder filtration that arises once we project to \(\S{\tree{1}}\).
+\purpose This allows us to derive a new intensity on the cruder filtration that arises once we project to \(\S\carp{\tree{1}}\).
 
 \begin{proof}
 This is a restatement of \cite[Theorem 14.3.III]{DalVer08}.
@@ -1452,23 +1455,23 @@ Then,
 
 \begin{align*}
 \crate{\v}{\t}(\x{}{},\s) &= \ex{\rate{}(\X{\tree\sln{1}}{\t-},\s)|\alt{\evnt}{	}}\\
-&= \sum_{\sv{}{\tree\sln{1}} \in \S{\tree\sln{1}}} \rate{}(\sv{}{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{\t-} = \sv{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
-&= \sum_{\sv{}{\tree\sln{1}} \in \S{\tree\sln{1}}} \rate{}(\sv{}{\tree\sln{1}},\s) \sum_{\alt{\sv}{}{\tree\sln{1}} \in \S{\tree\sln{1}}} \pr\left(\X{\tree\sln{1}}{\t-} = \sv{}{\tree\sln{1}},\X{\tree\sln{1}}{(\t-\tt)-} = \alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
-&= \sum_{\sv{}{\tree\sln{1}},\alt{\sv}{}{\tree\sln{1}} \in \S{\tree\sln{1}}} \rate{}(\sv{}{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{\t-} = \sv{}{\tree\sln{1}}|\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
+&= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
+&= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s) \sum_{\alt{\sv}{}{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \pr\left(\X{\tree\sln{1}}{\t-} = \sv\cind{}\vsi{\tree\sln{1}},\X{\tree\sln{1}}{(\t-\tt)-} = \alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
+&= \sum_{\sv\cind{}\vsi{\tree\sln{1}},\alt{\sv}{}{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
 \end{align*}
 
-Because the jump rate of \(\pmap{\v}(\X{}{})\) is bounded from above by \(\const{}\) for any \(\v\in\tree\sln{1}\),  when \(\sv{}{\tree\sln{1}}\neq\alt{\sv}{}{\tree\sln{1}}\), 
+Because the jump rate of \(\pmap{\v}(\X{}{})\) is bounded from above by \(\const{}\) for any \(\v\in\tree\sln{1}\),  when \(\sv\cind{}\vsi{\tree\sln{1}}\neq\alt{\sv}{}{\tree\sln{1}}\), 
 
-\[\pr\left(\X{\tree\sln{1}}{\t-} = \sv{}{\tree\sln{1}}|\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right) \leq 1-e^{-\tt(\degr+1)\const{}}\]
+\[\pr\left(\X{\tree\sln{1}}{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right) \leq 1-e^{-\tt(\degr+1)\const{}}\]
 
-and when \(\sv{}{\tree\sln{1}}=\alt{\sv}{}{\tree\sln{1}}\),
+and when \(\sv\cind{}\vsi{\tree\sln{1}}=\alt{\sv}{}{\tree\sln{1}}\),
 
-\[\pr\left(\X{\tree\sln{1}}{\t-} = \sv{}{\tree\sln{1}}|\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right) \geq e^{-\tt(\degr+1)\const{}}.\]
+\[\pr\left(\X{\tree\sln{1}}{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right) \geq e^{-\tt(\degr+1)\const{}}.\]
 
 So,
 
 \begin{equation}
-e^{-\tt(\degr+1)\const{}}\sum_{\sv{}{\tree\sln{1}}\in \S{\tree\sln{1}}} \rate{}(\sv{}{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{	}\right) \leq \crate{\v}{\t}(\x{}{},\s),
+e^{-\tt(\degr+1)\const{}}\sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right) \leq \crate{\v}{\t}(\x{}{},\s),
 \label{subsec::ProofE:eqn::partlowbd}
 \end{equation}
 \labe{subsec::ProofE:eqn::partlowbd}
@@ -1476,20 +1479,20 @@ e^{-\tt(\degr+1)\const{}}\sum_{\sv{}{\tree\sln{1}}\in \S{\tree\sln{1}}} \rate{}(
 and
 
 \begin{align}
-\crate{\v}{\t}(\x{}{},\s)&\leq (1 - e^{-\tt(\degr+1)\const{}})\sum_{\sv{}{\tree\sln{1}}\neq \alt{\sv}{}{\tree\sln{1}} \in \S{\tree\sln{1}}} \rate{}(\sv{}{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\nonumber\\
-&\hspace{24 pt} +\sum_{\sv{}{\tree\sln{1}} \in \S{\tree\sln{1}}} \rate{}(\sv{}{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\nonumber\\
-&\leq \const{}(1 - e^{-\tt(\degr+1)\const{}})|\S|^{\degr(\degr+1)/2} + \sum_{\sv{}{\tree\sln{1}} \in \S{\tree\sln{1}}} \rate{}(\sv{}{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{	}\right)
+\crate{\v}{\t}(\x{}{},\s)&\leq (1 - e^{-\tt(\degr+1)\const{}})\sum_{\sv\cind{}\vsi{\tree\sln{1}}\neq \alt{\sv}{}{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\nonumber\\
+&\hspace{24 pt} +\sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)\nonumber\\
+&\leq \const{}(1 - e^{-\tt(\degr+1)\const{}})|\S|^{\degr(\degr+1)/2} + \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)
 \label{subsec::ProofE:eqn::partupbd}
 \end{align}
 \labe{subsec::ProofE:eqn::partupbd}
 
-So we simply need to understand \(\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\). Recalling that \(\x{}{} \in \evnt{}^{\{\v,\root\}}_{\tt,\t}\), notice that
+So we simply need to understand \(\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)\). Recalling that \(\x{}{} \in \evnt{}^{\{\v,\root\}}_{\tt,\t}\), notice that
 
 \[\alt{\evnt}{	} = \alt{\evnt}{\t-\tt}\cap \evnt{}^{\{\root,1\}}_{\tt,\t}.\]
 
 \begin{align*}
-\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{	}\right) &= \pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{\t-\tt},\evnt{}^{\{\root,1\}}_{\tt,\t}\right)\\
-&=\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right)\frac{\pr\left(\evnt{}^{\{\root,1\}}_{\tt,\t}|\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}},\alt{\evnt}{\t-\tt}\right)}{\pr\left(\evnt{}^{\{\root,1\}}_{\tt,\t}|\alt{\evnt}{\t-\tt}\right)}
+\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right) &= \pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt},\evnt{}^{\{\root,1\}}_{\tt,\t}\right)\\
+&=\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right)\frac{\pr\left(\evnt{}^{\{\root,1\}}_{\tt,\t}|\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}},\alt{\evnt}{\t-\tt}\right)}{\pr\left(\evnt{}^{\{\root,1\}}_{\tt,\t}|\alt{\evnt}{\t-\tt}\right)}
 \end{align*}
 
 Notice that for any non-null \(\X{\tree\sln{1}}{[0,\t-\tt)}\)-measurable set \(\typset\), 
@@ -1499,19 +1502,19 @@ Notice that for any non-null \(\X{\tree\sln{1}}{[0,\t-\tt)}\)-measurable set \(\
 Then,
 
 \begin{align}
-e^{-2\tt\const{}}\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right) &\leq \pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{\t}\right)\nonumber\\
-&\leq e^{2\tt\const{}}\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv{}{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right).
+e^{-2\tt\const{}}\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right) &\leq \pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t}\right)\nonumber\\
+&\leq e^{2\tt\const{}}\pr\left(\X{\tree\sln{1}}{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right).
 \label{subsec::ProofE:eqn::secpartbd}
 \end{align}
 \labe{subsec::ProofE:eqn::secpartbd}
 
 Now
 
-\[\crate{\v}{\t-\tt}(\x{\tree\sln{1}}{},\s) = \ex{\rate{}(\X{\tree\sln{1}}{(\t-\tt)-},\s)|\alt{\evnt}{\t-\tt}} = \sum_{\sv{}{\tree\sln{1}}\in \S{\tree\sln{1}}}\rate{}(\sv{}{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-} = \sv{}{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right)\]
+\[\crate{\v}{\t-\tt}(\x{\tree\sln{1}}{},\s) = \ex{\rate{}(\X{\tree\sln{1}}{(\t-\tt)-},\s)|\alt{\evnt}{\t-\tt}} = \sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}}\rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X{\tree\sln{1}}{(\t-\tt)-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right)\]
 
 Applying equation \eqref{subsec::ProofE:eqn::secpartbd},
 
-\[e^{-2\tt\const{}}\crate{\v}{\t-\tt}(\x{\tree\sln{1}}{},\s) \leq \sum_{\sv{}{\tree\sln{1}}\in \S{\tree\sln{1}}} \lambda(\sv{}{\tree\sln{1}},\s)\pr(\X{\tree\sln{1}}{(\t-\tt)-} = \sv{}{\tree\sln{1}}|\alt{\evnt}{	})\leq e^{2\tt\const{}}\crate{\v}{\t-\tt}(\x{\tree\sln{1}}{},\s)\]
+\[e^{-2\tt\const{}}\crate{\v}{\t-\tt}(\x{\tree\sln{1}}{},\s) \leq \sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}} \lambda(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr(\X{\tree\sln{1}}{(\t-\tt)-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	})\leq e^{2\tt\const{}}\crate{\v}{\t-\tt}(\x{\tree\sln{1}}{},\s)\]
 
 Additionally, we can apply equations \eqref{subsec::ProofE:eqn::partlowbd} and  \eqref{subsec::ProofE:eqn::partupbd} to get,
 
@@ -1675,7 +1678,7 @@ Let \(\rp{} = \pmap{\tree\sln{1}}(\X{}{}{1})\) be defined as in Definition \ref{
 
 Then \(\proj{\{\v,\root\}}{\T}(\rp{})\defeq \pmap{\{\v,\root\}}(\X{}{}{1})\) \tr{notation?} has \(\F{\tree\sln{1}}{}\)-predictable intensity,
 
-\[\rate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}(\X{}{[0,\t)}{1},\mark{}) \defeq \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\IGr{\root}(\X{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S{\{\v,\root\}}.\]
+\[\rate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}(\X{}{[0,\t)}{1},\mark{}) \defeq \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev{\v}}\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) + \mb{I}_{\mark{} = \s\ev{\root}}\IGr{\root}(\X{}{\t-}{1},\s)\right)\te{ for } \kappa \in \S\carp{\{\v,\root\}}.\]
 
 Consider the candidate rate \(\crate{\proj{\{\v,\root\}}{\T}(\rp{})}{\t}\) defined in the following manner:
 
@@ -1701,7 +1704,7 @@ Suppose \(\{\poiss{}\}\) is Poisson process with intensity \(\leb\otimes \Sm\) o
 
 \[\XX{}{\t} = \XX{}{0} + \int{(0,\t]}\int{(0,1]}\int_\S\s\,\poiss{}(d\s,d\r,d\tt).\]
 
-Let \(\mm{}{}{} = \law(\XX{}{})\). Suppose \(\mmm{\v}{0,}{1}\ll\mm{}{0}{}\) for all \(\v\in\tree\sln{1}\). Let \(\{\mm{\v}{}{}:\v\in V\}\) be the distributions of a sequence of i.i.d. \(\S{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq V\), let 
+Let \(\mm{}{}{} = \law(\XX{}{})\). Suppose \(\mmm{\v}{0,}{1}\ll\mm{}{0}{}\) for all \(\v\in\tree\sln{1}\). Let \(\{\mm{\v}{}{}:\v\in V\}\) be the distributions of a sequence of i.i.d. \(\S\carp{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq V\), let 
 
 \[\mm{\U}{}{} = \otimes_{\v\in\U} \mm{\v}{}{}.\]
 
@@ -1873,20 +1876,20 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 
 \ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. The result is given in \cite[Exercise 14.7.1]{DalVer08} \tr{TODO: rigorously solve this exercise myself}).
 
-\ind Let \(\alt{\S}^n = \{\s\ev{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S{V}\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt{n,\it}_\v,\mark{n,\it}_{\v}\}\) be the jump sizes and jump times of \(\X{\v}{}{n}\). Let \(\alt{\poiss}{n}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt{} \in \ms{B}(\mb{R}^+\times\alt{\S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss}{n}(\evnt{}) = \alt{\poiss}{n-1}(\evnt{})\). Assume \(\{\alt{\poiss}{n}:n\in\mb{N}\}\) are independent of \(\{\X{}{},\X{}{}{n}:n\in\mb{N}\}\). Let \(\{\rv_{\v}^{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
+\ind Let \(\alt{\S}^n = \{\s\ev{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S\carp{V}\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt{n,\it}_\v,\mark{n,\it}_{\v}\}\) be the jump sizes and jump times of \(\X{\v}{}{n}\). Let \(\alt{\poiss}{n}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt{} \in \ms{B}(\mb{R}^+\times\alt{\S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss}{n}(\evnt{}) = \alt{\poiss}{n-1}(\evnt{})\). Assume \(\{\alt{\poiss}{n}:n\in\mb{N}\}\) are independent of \(\{\X{}{},\X{}{}{n}:n\in\mb{N}\}\). Let \(\{\rv_{\v}^{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
 
 \ind Recall the mapping \(\pmap{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{n} = \pmap{}(\X{}{}{n})\). Then the intensity of \(\rp{n}\) is given by,
 
-\[\rate{n}(\t,\sv{\tree\sln{n}}) = \begin{cases}
-\rate{}(\X{\cl{\v}}{\t-}{n},\s) &\te{ if } \sv{\tree\sln{n}} = \s\ev{\v},\s \in \S\setminus\{0\},\v\in\tree\sln{n-1}\\
-\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\t)}{n},\s) &\te{ if } \sv{\tree\sln{n}} = \s\ev{\v},\s\in\S\setminus\{0\},\v\in\tree\sln{n}\setminus\tree\sln{n-1}\\
+\[\rate{n}(\t,\sv\cind{}\vsi{\tree\sln{n}}) = \begin{cases}
+\rate{}(\X{\cl{\v}}{\t-}{n},\s) &\te{ if } \sv\cind{}\vsi{\tree\sln{n}} = \s\ev{\v},\s \in \S\setminus\{0\},\v\in\tree\sln{n-1}\\
+\crate{}{}(\X{\{\v,\p{\v}\}}{[0,\t)}{n},\s) &\te{ if } \sv\cind{}\vsi{\tree\sln{n}} = \s\ev{\v},\s\in\S\setminus\{0\},\v\in\tree\sln{n}\setminus\tree\sln{n-1}\\
 0 &\te{ otherwise.}
 \end{cases}\]
 
 For any \(\evnt{} \in \ms{B}(\mb{R}^+\times\alt{\S}^n\times\mb{R}^+)\), define
 
 \begin{equation}
-\poiss{n}(\evnt{}) = \alt{\poiss}{n}\left(\evnt{}\cap\{(\t,\sv{\tree\sln{n}},\r):\r > \rate{n}(\t,\sv{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt{}: \v\in \tree\sln{n}\}.
+\poiss{n}(\evnt{}) = \alt{\poiss}{n}\left(\evnt{}\cap\{(\t,\sv\cind{}\vsi{\tree\sln{n}},\r):\r > \rate{n}(\t,\sv\cind{}\vsi{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt{}: \v\in \tree\sln{n}\}.
 \label{subsec::ProofU:eqn::Poissonexpl}
 \end{equation}
 \labe{subsec::ProofU:eqn::Poissonexpl}
@@ -1971,7 +1974,7 @@ I have a method to expand the class of graphs to which this applies a bit. Unfor
 
 \item[Full process: ] The full process is assumed to be Feller with infinitesimal generator of the form,
 
-\[\IG f(\sv{}{V}) = \sum_{\v \in V}\sum_{\s \in \S} \IGr{\v}(\sv{}{V},\s)[f(\sv{}{V} + \s \ev{\v}) - f(\sv{}{V})].\]
+\[\IG f(\sv\cind{}\vsi{V}) = \sum_{\v \in V}\sum_{\s \in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s \ev{\v}) - f(\sv\cind{}\vsi{V})].\]
 
 This is somewhat restrictive and fails in certain load balancing schemes where jobs move between queues (so 2 nodes change simultaneously). Consider general jumps. Also, the state-space \(\S\) is assumed to be finite. Consider making it countable (for load balancing). Finally, consider the case when the full process is not Markov or the initial conditions are not i.i.d.
 
@@ -1984,7 +1987,7 @@ This is somewhat restrictive and fails in certain load balancing schemes where j
 \section{Infinitesimal Generators}
 \label{sec::Infin}\labe{sec::Infin}
 
-Let \(\spce\) be a compact and countable set. \tr{For most of the paper, \(\spce = \S{V}\) which is compact with respect to the topology of componentwise convergence.}
+Let \(\spce\) be a compact and countable set. \tr{For most of the paper, \(\spce = \S\carp{V}\) which is compact with respect to the topology of componentwise convergence.}
 
 Let \(\cont(\spce)= \{f:\spce \ra \mb{R} \te{ continuous}\}\).
 
@@ -2384,9 +2387,9 @@ Giving us,
 \lin
 
 \begin{lem}
-Let \(G = (V,E)\) be a finite graph and let \(0 < \const{}< \infty\). Let \(\X{}{0}\) be an \(\S{V}\)-valued random variable. Let \(\Sm\) be a probability measure over \(\S\) with positive weight on all elements in \(\S\setminus\{0\}\) and 0 weight on \(\{0\}\). Let \(\{\ratee{\t,\v}\}_{\v \in V,\t\in [0,\T]}\) be a set of measurable mappings from \(\Omega{V}{\t-} \times \S\) to \([0,\const{}]\) such that if \(h \in \Omega{V}{\t-}\), then \(\t\mapsto \ratee{\t,\v}(h[0,\t),\s)\) is left-continuous for all \(\v \in V\) and \(\s \in \S\). Let \(\{\poiss{\v}\}_{\v \in V}\) be i.i.d. Poisson processes on \(\mb{R}^+\times \S\times\mb{R}^+\) with intensity measure \(\leb\otimes\Sm\otimes\leb\) where \(\leb\) is the Lebesgue measure on \(\mb{R}\).
+Let \(G = (V,E)\) be a finite graph and let \(0 < \const{}< \infty\). Let \(\X{}{0}\) be an \(\S\carp{V}\)-valued random variable. Let \(\Sm\) be a probability measure over \(\S\) with positive weight on all elements in \(\S\setminus\{0\}\) and 0 weight on \(\{0\}\). Let \(\{\ratee{\t,\v}\}_{\v \in V,\t\in [0,\T]}\) be a set of measurable mappings from \(\Omega{V}{\t-} \times \S\) to \([0,\const{}]\) such that if \(h \in \Omega{V}{\t-}\), then \(\t\mapsto \ratee{\t,\v}(h[0,\t),\s)\) is left-continuous for all \(\v \in V\) and \(\s \in \S\). Let \(\{\poiss{\v}\}_{\v \in V}\) be i.i.d. Poisson processes on \(\mb{R}^+\times \S\times\mb{R}^+\) with intensity measure \(\leb\otimes\Sm\otimes\leb\) where \(\leb\) is the Lebesgue measure on \(\mb{R}\).
 
-\ind Then given any \(\S{V}\)-valued random variable, \(\X{}{0}\), the following SDE has a unique strong solution:
+\ind Then given any \(\S\carp{V}\)-valued random variable, \(\X{}{0}\), the following SDE has a unique strong solution:
 
 \begin{equation}
 \X{\v}{\t} = \X{0}{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee{\tt,\v}(\X{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt)
@@ -2484,15 +2487,15 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 Suppose that \(V\) is finite. Recall that \(\pmap{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap{}(\XX{}{})\) for some \(\Omega{V}{\T-}\)-valued stochastic process, \(\XX{}{}\). Suppose also that \(\rp{}\) has \(\XX{}{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\Omega{}{\t-}\times \S \ra [0,\const{}]\}_{\t\in[0,\T),\v\in V}\) such that 
 
 \begin{equation}
-\ratee{\t}(\sv{}{V}) := \begin{cases}
-\ratee{\t,\v}(\XX{}{[0,\t)},\s) &\te{ if } \sv{}{V} = \s\ev{\v}\\
+\ratee{\t}(\sv\cind{}\vsi{V}) := \begin{cases}
+\ratee{\t,\v}(\XX{}{[0,\t)},\s) &\te{ if } \sv\cind{}\vsi{V} = \s\ev{\v}\\
 0 &\te{ otherwise,}
 \end{cases}
 \label{subsec::Some:eqn::intense}
 \end{equation}
 \labe{subsec::Some:eqn::intense}
 
-and such that \(\t\mapsto \ratee{\t,\v}(\XX{}{[0,\t)},\sv{}{V})\) is almost-surely left continuous on \([0,\T)\) for all \(\v\in V,\sv{}{V}\in \S{V}\). Then there is a unique solution, \(\X{}{}\), to equation \eqref{subsec::Some:eqn::genfiniteSDE}, and if \(\X{}{0} \deq \XX{}{0}\), then \(\X{}{} \deq \XX{}{}\).
+and such that \(\t\mapsto \ratee{\t,\v}(\XX{}{[0,\t)},\sv\cind{}\vsi{V})\) is almost-surely left continuous on \([0,\T)\) for all \(\v\in V,\sv\cind{}\vsi{V}\in \S\carp{V}\). Then there is a unique solution, \(\X{}{}\), to equation \eqref{subsec::Some:eqn::genfiniteSDE}, and if \(\X{}{0} \deq \XX{}{0}\), then \(\X{}{} \deq \XX{}{}\).
 
 \label{subsec::Some:Lem::PPtoSDE}
 \end{lem}
@@ -2506,8 +2509,8 @@ We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) 
 
 By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap{\v}(\X{}{})\) has \(\X{}{}\)-predictable intensity \(\ratee{\t,\v}(\X{}{[0,\t)},\s)\) for \(\s \in \S\). Then \(\alt{\rp{}} \defeq \pmap{}(\X{}{})\) has \(\X{}{}\)-predictable intensity,
 
-\[\ratee{\t}(\X{}{[0,\t)},\sv{}{V}) = \begin{cases}
-\ratee{\t,\v}(\X{}{[0,\t)},\sv{}{V}) &\te{ if } \sv{}{V} = \s\ev{\v}\\
+\[\ratee{\t}(\X{}{[0,\t)},\sv\cind{}\vsi{V}) = \begin{cases}
+\ratee{\t,\v}(\X{}{[0,\t)},\sv\cind{}\vsi{V}) &\te{ if } \sv\cind{}\vsi{V} = \s\ev{\v}\\
 0&\te{ otherwise.}
 \end{cases}\]
 
@@ -2538,7 +2541,7 @@ where \(\{\X{\v}{0}\}_{\v \in V}\) are i.i.d uniformly distributed over \(\S\). 
 \pfsum The key is to express \(X\) in terms of a Marked point process. Then we can compute the intensities of the point process under \(\m\) and \(\mm\) respectively and apply Proposition \ref{subsec::Prope:Prop::radnikder}.
 
 \begin{proof}
-Notice that \(\X{}{} \mapsto (\X{}{0},\pmap{\X{}{}})\) is a one-to-one mapping from c\`adl\`ag processes on \(\S{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F{}{\t}\)-adapted, where \(\F{}{\t} = \F{}{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp{}\).
+Notice that \(\X{}{} \mapsto (\X{}{0},\pmap{\X{}{}})\) is a one-to-one mapping from c\`adl\`ag processes on \(\S\carp{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F{}{\t}\)-adapted, where \(\F{}{\t} = \F{}{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp{}\).
 
 \ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp{}\) has predictable intensity \(\ratee{\t}(\cdot)\) with respect to \(\F{}{\t}\) and \(\m{}{}{}\). \(\rp{}\) has predictable intensity 1 with respect to \(\F{}{\t}\) and \(\mm{}{}{}\). This holds all of the information about the original process \(\X{}{}\), so we can consider \(\frac{d\m{}{\t}{}}{d\mm{}{\t}{}}\) as a change of measure affecting \(\rp{}\) instead of \(\X{}{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee{\t,\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
 \end{proof}
@@ -2838,11 +2841,11 @@ This is simply a restatement of \cite[Theorem 13.2]{Bil99}.
 \begin{lem}
 Let \(\{\X{}{}{n}\}\) be a sequence \(\Omega{V}{\T}\)-valued Feller processes satisfying Assumption \ref{subsec::Assum:Assu::CI}. Let the infinitesimal generators of these processes be given by the equation:
 
-\[\IG\sln{n}f(\sv{}{V}) = \sum_{\v\in V}\sum_{\s \in \S} \IGr\sln{n}{\v}(\sv{}{V},\s)[f(\sv{}{V} + \s\ev{\v}) - f(\sv{}{V})].\]
+\[\IG\sln{n}f(\sv\cind{}\vsi{V}) = \sum_{\v\in V}\sum_{\s \in \S} \IGr\sln{n}{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s\ev{\v}) - f(\sv\cind{}\vsi{V})].\]
 
 If there exists some \(\const{} < \infty\) such that
 
-\[\sup_{n}\sup_{\sv{}{V}\in \S{V}}\sup_{\v\in V}\sup_{\s\in \S} \IGr\sln{n}{\v}(\sv{}{V},\s) \leq \const{},\]
+\[\sup_{n}\sup_{\sv\cind{}\vsi{V}\in \S\carp{V}}\sup_{\v\in V}\sup_{\s\in \S} \IGr\sln{n}{\v}(\sv\cind{}\vsi{V},\s) \leq \const{},\]
 
 then for all finite \(\U \subseteq V\),
 
@@ -2923,19 +2926,19 @@ I use the notation of section \ref{subsec::ProofU:sec::Proof2}. The assumptions 
 
 If we let \(\poiss{}(\cdot,\cdot) = \pmap{}(\X{}{}{n})\) (see Definition \ref{subsec::ProofE:Defn::pmap}), then the proof of \cite[Proposition 14.7.I(b)]{DalVer08} shows that the point process defined in equation \eqref{subsec::ProofU:eqn::Poissonexpl} is a Poisson point process with intensity \(d\t\times \alt{\Sm^n}\times d\r\) and adapted to a larger filtration.
 
-\ind However, our intensity is actually only predictable with respect to \(\F \supseteq \FH\) which includes the value of \(\X{}{0}{n}\). This can be fixed simply. Let \(\rate{\v}^{\sv{}{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X{}{0}{n} = \sv{}{\tree\sln{n}})\). Then \(\rate{\v}^{\sv{}{\tree\sln{n}}}(\t,\mark)\) satisfies the conditions above. Then,
+\ind However, our intensity is actually only predictable with respect to \(\F \supseteq \FH\) which includes the value of \(\X{}{0}{n}\). This can be fixed simply. Let \(\rate{\v}^{\sv\cind{}\vsi{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X{}{0}{n} = \sv\cind{}\vsi{\tree\sln{n}})\). Then \(\rate{\v}^{\sv\cind{}\vsi{\tree\sln{n}}}(\t,\mark)\) satisfies the conditions above. Then,
 
-\[\poiss{n}^{\sv{}{\tree\sln{n}}}(\evnt{}) = \alt{\poiss}{n}\left(\evnt{}\cap\{(\t,\sv{}{\tree\sln{n}},\r):\r > \rate{n}^{\sv{}{\tree\sln{n}}}(\t,\sv{}{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}^{\sv{}{\tree\sln{n}}}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt{}: \v\in \tree\sln{n}\}\]
+\[\poiss{n}^{\sv\cind{}\vsi{\tree\sln{n}}}(\evnt{}) = \alt{\poiss}{n}\left(\evnt{}\cap\{(\t,\sv\cind{}\vsi{\tree\sln{n}},\r):\r > \rate{n}^{\sv\cind{}\vsi{\tree\sln{n}}}(\t,\sv\cind{}\vsi{\tree\sln{n}})\}\right) + \#\{(\rt{n,\it}_\v,\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}^{\sv\cind{}\vsi{\tree\sln{n}}}(\rt{n,\it}_\v,\mark{n,\it}_\v) \in \evnt{}: \v\in \tree\sln{n}\}\]
 
-is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\). Let \(R \subseteq \alt{\S{n}}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
+is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\). Let \(R \subseteq \alt{\S\carp{n}}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
 
 \begin{align*}
-\pr\left(\poiss{n}\left(\inte\times R\times \alt{\inte}\right) = 0\right) &= \sum_{\sv{}{\tree\sln{n}} \in \alt{\S}^n} \pr\left(\poiss{n}^{\sv{}{\tree\sln{n}}}\left(\inte\times R\times \alt{\inte}\right) = 0\right)\pr(\X{}{0}{n} = \sv{}{\tree\sln{n}})\\
-&= \exp\left(-|R| |\inte||\alt{\inte}|\right)\sum_{\sv{}{\tree\sln{n}} \in \alt{\S{n}}} \pr(\X{}{0}{n} = \sv{}{\tree\sln{n}})\\
+\pr\left(\poiss{n}\left(\inte\times R\times \alt{\inte}\right) = 0\right) &= \sum_{\sv\cind{}\vsi{\tree\sln{n}} \in \alt{\S}^n} \pr\left(\poiss{n}^{\sv\cind{}\vsi{\tree\sln{n}}}\left(\inte\times R\times \alt{\inte}\right) = 0\right)\pr(\X{}{0}{n} = \sv\cind{}\vsi{\tree\sln{n}})\\
+&= \exp\left(-|R| |\inte||\alt{\inte}|\right)\sum_{\sv\cind{}\vsi{\tree\sln{n}} \in \alt{\S\carp{n}}} \pr(\X{}{0}{n} = \sv\cind{}\vsi{\tree\sln{n}})\\
 &=\exp\left(-|R| |\inte||\alt{\inte}|\right)
 \end{align*}
 
-Since this holds for every rectangle, \(\poiss{n}\) is a Poisson process on \([0,T]\times \alt{\S{n}}\times [0,\const{}]\) by R\'enyi, M\"onch \cite[Theorem 9.2.XII]{DalVer08}.
+Since this holds for every rectangle, \(\poiss{n}\) is a Poisson process on \([0,T]\times \alt{\S\carp{n}}\times [0,\const{}]\) by R\'enyi, M\"onch \cite[Theorem 9.2.XII]{DalVer08}.
 
 
 
