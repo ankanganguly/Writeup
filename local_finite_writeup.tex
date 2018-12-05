@@ -616,7 +616,7 @@ Then,
 \end{align*}
 
 
-So \(\X\sln{n}\cind{}\tip{} \ra \X\cind{}\tip{}\) for some \(\X\cind{}\tip{}\) componentwise almost surely (fast convergence in expectation implies almost sure convergence). Let 
+So \(\X\sln{n}\cind{}\tip{} \ra \X\cind{}\tip{}\) for some \(\X\cind{}\tip{}\) almost surely and uniformly componentwise (fast convergence in expectation implies almost sure convergence) \tr{(This convergence is stronger than convergence with respect to \(\|\cdot\|_{\b,\T}\))}. Let 
 
 \[\alt{\X}\cind{}\tip{} = \Fpo(\X\cind{}\tip{}).\]
 
@@ -783,19 +783,19 @@ First, for each \(n\in\mb{N}\), \(\X\sln{n}\cind{}\tip{}\) satisfies Assumption 
 
 Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the modulus of continuity is given by,
 
-\[\cmodu{\X\cind{}\tip{}}(\delta) = \inf_{\{\t{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \|\X\cind{}\tp{\tt} - \X\cind{}\tp{\ttt}\|_{\b},\]
+\[\cmodu\pra{\X\cind{}\tip{}}(\delta) = \inf_{\{\t{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \|\X\cind{}\tp{\tt} - \X\cind{}\tp{\ttt}\|_{\b},\]
 
 where \(\{\t{\it}\} := 0 \leq \t{1} < \t{2} < \cdots < \t{\cdot} = \T\) and \(\min_\it|\t{\it} - \t{\it-1}| > \delta\). Note that \(\X\sln{n}\cind{}\tip{}\) is \(\sset\vsi{V\sln{n}}\ts{\T}\)-valued and can be embedded in \(\sset\vsi{V}\ts{\T}\) the same way we embed \(\S\carp{V\sln{n}}\) in \(\S\carp{V}\): let \(\X\sln{n}\cind{\v}\tip{} \equiv 0\) for \(\v \notin V\sln{n}\). Recall also that \(\proj\vsi{\U}\ts{\T}\) is the projection to \(\sset\vsi{\U}\ts{\T}\) for all \(\U\subseteq V\). Then for any \(n\in \mb{N}\),
 
 \begin{align*}
-\pr\left(\sup_n \cmodu{\X\sln{n}\cind{}\tip{}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v \in V} \b\cind{\v}|(\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}| > \epsilon \right)\\
-&\leq \pr\left(\sup_n \left(\cmodu{\proj\vsi{V\sln{\cconst}}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta) + \cmodu{\proj\vsi{\left(V\sln{\cconst}\right)^c}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta)\right) > \ep\right)\\
-&\leq \pr\left(\sup_n \cmodu{\proj\vsi{V\sln{\cconst}}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
+\pr\left(\sup_n \cmodu\pra{\X\sln{n}\cind{}\tip{}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v \in V} \b\cind{\v}|(\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}| > \epsilon \right)\\
+&\leq \pr\left(\sup_n \left(\cmodu\pra{\proj\vsi{V\sln{\cconst}}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta) + \cmodu\pra{\proj\vsi{\left(V\sln{\cconst}\right)^c}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta)\right) > \ep\right)\\
+&\leq \pr\left(\sup_n \cmodu\pra{\proj\vsi{V\sln{\cconst}}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
 \end{align*}
 
 The last inequality arises because
 
-\[\cmodu{\proj\vsi{\left(V\sln{\cconst}\right)^c}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj\vsi{\left(V\sln{\cconst}\right)^c}\ts{\T}(\X\sln{n}\cind{}\tip{})\right\|_{\b} \leq 2 \sup_{\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c} \in \S\carp{\left(V\sln{\cconst}\right)^c}} \left\|\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c}\right\|_{\b} < \ep/2\]
+\[\cmodu\pra{\proj\vsi{\left(V\sln{\cconst}\right)^c}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj\vsi{\left(V\sln{\cconst}\right)^c}\ts{\T}(\X\sln{n}\cind{}\tip{})\right\|_{\b} \leq 2 \sup_{\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c} \in \S\carp{\left(V\sln{\cconst}\right)^c}} \left\|\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c}\right\|_{\b} < \ep/2\]
 
 Finally, the convergence to 0 at the end is the result of a direct application of Lemma \ref{sec::TL:Lem::TightSupport}. Thus, \(\{\X\sln{n}\cind{}\tip{}:n\in \mb{N}\}\) is tight, and therefore relatively compact with respect to the topology of weak convergence (Theorem \ref{sec::TL:Thm::Tight}).
 
@@ -1444,7 +1444,7 @@ Then there exists an \(O(\tt)\) function, \(f:[0,\infty)\ra[0,\infty)\), such th
 
 \purpose This is one of the conditions of Lemma \ref{subsec::ProofE:Lem::leftmodgen}.
 
-\pfsum Use the fact that over any small interval \([\t-\tt,\t)\), \(\X^U\) is constant with high probability for all finite \(U\). Thus \(\crate{v}{\t-\tt}\) will vary by only a tiny amount from \(\crate{v}{\t}\) with very high probability. We can actually estimate how quickly this probability converges to 1 as a function of \(s\).
+\pfsum Use the fact that over any small interval \([\t-\tt,\t)\), \(\X\cind{U}\) is constant with high probability for all finite \(U\). Thus \(\crate{v}{\t-\tt}\) will vary by only a tiny amount from \(\crate{v}{\t}\) with very high probability. We can actually estimate how quickly this probability converges to 1 as a function of \(s\).
 
 \begin{proof}
 Fix \(\v\in V\). By Assumption \ref{subsec::ProofE:Assu::Eassu}, \(\pmap{}(\X\cind{\{\v,\root\}}\tip{})\) has intensity bounded from above by \(2\const\indx{}\). Therefore, for every \(\t > 0\) there almost surely exists an \(\tt\) small enough such that \(\evnt{}^{\{\v,\root\}}_{\tt,\t}\) holds. Fix \(\tt < \t\). Let \(\const\indx{}\) be the upper bound of \(\rate{}\). Fix any \(\s\in \S\). We begin by computing
@@ -2816,7 +2816,7 @@ Let \(\{	{i}\}\) be denote a finite set of times \(0=	{0} <\t{1} <\cdots < \t{n}
 
 Then for all \(\delta \in (0,T)\),
 
-\[\cmodu{\X}(\delta) = \inf_{\{	{i}\}: \min_i |	{i} - \t{i-1}| > \delta} \max_{i} \modu{\X}([\t{i-1},	{i}))\]
+\[\cmodu\pra{\X}(\delta) = \inf_{\{	{i}\}: \min_i |	{i} - \t{i-1}| > \delta} \max_{i} \modu{\X}([\t{i-1},	{i}))\]
 
 is called the c\`adl\`ag modulus of continuity.
 \label{sec::TL:Def::modulus}
@@ -2828,16 +2828,16 @@ is called the c\`adl\`ag modulus of continuity.
 \lin
 
 \begin{thms}
-Let \(\{\m^i\}\subseteq \mc{P}\left(\cad([0,T],\spce)\right)\) where \(\spce\) is a separable and complete normed space. Assume \(\X^i\) is a random process with law \(\m^i\) for each \(i\). Then \(\{\m_i\}\) is tight if and only if:
+Let \(\{\m\sln{i}\}\subseteq \mc{P}\left(\cad([0,T],\spce)\right)\) where \(\spce\) is a separable and complete normed space. Assume \(\X\sln{i}\) is a random process with law \(\m\sln{i}\) for each \(i\). Then \(\{\m\sln{i}\}\) is tight if and only if:
 
 \begin{enumerate}[(1)]
 \item 
 
-\[\lim_{a \ra \infty}\limsup_{n \ra\infty} \pr\left(\sup_{\t \in [0,T]} |\X^i_\t| \geq a\right) = 0.\]
+\[\lim_{a \ra \infty}\limsup_{n \ra\infty} \pr\left(\sup_{\t \in [0,T]} |\X\sln{i}\tp{\t}| \geq a\right) = 0.\]
 
 \item For all \(\ep > 0\),
 
-\[\lim_{\delta \searrow 0}\limsup_{n\ra\infty} \pr\left(\cmodu{\X^i}(\delta) \geq \ep\right) = 0.\]
+\[\lim_{\delta \searrow 0}\limsup_{n\ra\infty} \pr\left(\cmodu\pra{\X\sln{i}}(\delta) \geq \ep\right) = 0.\]
 \end{enumerate}
 \label{sec::TL:Thm::Tight}
 \end{thms}
@@ -2860,7 +2860,7 @@ If there exists some \(\const\indx{} < \infty\) such that
 
 then for all finite \(\U \subseteq V\),
 
-\[\lim_{\delta \searrow 0} \sup_n \pr\left(\cmodu{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) \geq \ep\right) = 0\]
+\[\lim_{\delta \searrow 0} \sup_n \pr\left(\cmodu\pra{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) \geq \ep\right) = 0\]
 
 for all \(\ep > 0\).
 \label{sec::TL:Lem::TightSupport}
