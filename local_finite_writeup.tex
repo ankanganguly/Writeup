@@ -93,7 +93,7 @@
 \newcommand{\tp}[1]{(#1)}						%Time of process
 \newcommand{\tip}[1]{#1}						%time interval process	
 \newcommand{\ts}[1]{_{#1}}						%time bound of set
-\newcommand{\vindsln}[2]{^{#1,#2}}				%vindsln combine
+\newcommand{\slnvind}[2]{^{#1,#2}}				%vindsln combine
 
 %Section 2.2
 %Base commands
@@ -506,15 +506,15 @@ Recall that \(\{\IGr\vind{\v}:\v\in V\}\) is necessarily bounded from above by s
 
 \ind By statement 2 of Assumption \ref{subsec::Assum:Assu::CI}, 
 
-\[\inf_{\substack{\sv\cind{}\vsi{V},\alt{\sv}{}{V} \in \S\carp{V}, \s\in \S\\ \IGr\vind{\v}(\sv\cind{}\vsi{V},\s) \neq \IGr\vind{\v}(\alt{\sv}{}{V},\s)}} \sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}{\vv}{V}| \geq 1.\]
+\[\inf_{\substack{\sv\cind{}\vsi{V},\alt{\sv}\cind{}\vsi{V} \in \S\carp{V}, \s\in \S\\ \IGr\vind{\v}(\sv\cind{}\vsi{V},\s) \neq \IGr\vind{\v}(\alt{\sv}\cind{}\vsi{V},\s)}} \sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}\cind{\vv}\vsi{V}| \geq 1.\]
 
 Then,
 
-\[\sup_{\v\in V} \sup_{\substack{\sv\cind{}\vsi{V},\alt{\sv}{}{V} \in \S\carp{V}, \s\in \S\\ \IGr\vind{\v}(\sv\cind{}\vsi{V},\s) \neq \IGr\vind{\v}(\alt{\sv}{}{V},\s)}} \frac{|\IGr\vind{\v}(\sv\cind{}\vsi{V},\s) - \IGr\vind{\v}(\alt{\sv}{}{V},\s)|}{\sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}{\vv}{V}|} \leq \const\indx{}\]
+\[\sup_{\v\in V} \sup_{\substack{\sv\cind{}\vsi{V},\alt{\sv}\cind{}\vsi{V} \in \S\carp{V}, \s\in \S\\ \IGr\vind{\v}(\sv\cind{}\vsi{V},\s) \neq \IGr\vind{\v}(\alt{\sv}\cind{}\vsi{V},\s)}} \frac{|\IGr\vind{\v}(\sv\cind{}\vsi{V},\s) - \IGr\vind{\v}(\alt{\sv}\cind{}\vsi{V},\s)|}{\sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}\cind{\vv}\vsi{V}|} \leq \const\indx{}\]
 
 So,
 
-\[|\IGr\vind{\v}(\sv\cind{}\vsi{V},\s) - \IGr\vind{\v}(\alt{\sv}{}{V},\s)|\leq \const\indx{}\sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}{\vv}{V}| \te{ for all } \sv\cind{}\vsi{V},\alt{\sv}{}{V}\in \S\carp{V},\s\in \S\te{ and }\v\in V.\]
+\[|\IGr\vind{\v}(\sv\cind{}\vsi{V},\s) - \IGr\vind{\v}(\alt{\sv}\cind{}\vsi{V},\s)|\leq \const\indx{}\sum_{\vv \in \cl{\v}} |\sv\cind{\vv}\vsi{V} - \alt{\sv}\cind{\vv}\vsi{V}| \te{ for all } \sv\cind{}\vsi{V},\alt{\sv}\cind{}\vsi{V}\in \S\carp{V},\s\in \S\te{ and }\v\in V.\]
 
 That is, \(\IGr\vind{\v}\) satisfies a Lipschitz-like condition with coefficient bounded from above by \(\const\indx{}\). For any \(\v\in V\),
 
@@ -691,16 +691,16 @@ Then \(\X\cind{}\tp{\t+\cdot}{\sv\cind{}\vsi{V}} \deq \alt{\X}\cind{}\tp{\cdot}\
 
 \item Let \(\root \in V\). Define the sequence of sets \(V\sln{0}\subset V\sln{1}\subset \cdots \subseteq V\) as follows: let \(V\sln{0} = \{\root\}\). For \(n \geq 1\), let \(V\sln{n+1} = \cl{V\sln{n}}\).
 
-\ind Now suppose for \(\sv\cind{}\vsi{V},\alt{\sv}{}{V}\in \S\carp{V}\),
+\ind Now suppose for \(\sv\cind{}\vsi{V},\alt{\sv}\cind{}\vsi{V}\in \S\carp{V}\),
 
 \begin{align*}
 \X\cind{\v}\tp{\t} &= \sv\cind{\v}\vsi{V} + \int_\S\int_0^\t \s\,\poiss\vind{\v}(d\tt\,(0,\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)],d\s)&\te{ for all } \v \in V\\
-\alt{\X}\cind{\v}\tp{\t} &= \alt{\sv}{\v}{V} + \int_\S\int_0^\t \s\,\poiss\vind{\v}(d\tt\,(0,\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)],d\s)&\te{ for all } \v \in V\\
+\alt{\X}\cind{\v}\tp{\t} &= \alt{\sv}\cind{\v}\vsi{V} + \int_\S\int_0^\t \s\,\poiss\vind{\v}(d\tt\,(0,\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)],d\s)&\te{ for all } \v \in V\\
 \end{align*}
 
 Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
 
-\[\ex{\|\X\cind{\v}\tip{} - \alt{\X}\cind{\v}\tip{}\|_\t} \leq |\sv\cind{\v}\vsi{V} - \alt{\sv}{\v}{V}| + \const\indx{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}\cind{\vv}\tip{}\|_\tt}\,d\tt\]
+\[\ex{\|\X\cind{\v}\tip{} - \alt{\X}\cind{\v}\tip{}\|_\t} \leq |\sv\cind{\v}\vsi{V} - \alt{\sv}\cind{\v}\vsi{V}| + \const\indx{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}\cind{\vv}\tip{}\|_\tt}\,d\tt\]
 
 for all \(\t \in [0,\T]\).
 
@@ -708,24 +708,24 @@ for all \(\t \in [0,\T]\).
 
 \begin{align*}
 \ex{\|\X\cind{}\tip{} - \alt{\X}\cind{}\tip{}\|_{\b,\t}} &= \sum_{\v \in V} \b\cind{\v}\ex{\|\X\cind{\v}\tip{} - \alt{\X}\cind{\v}\tip{}\|_\t}\\
-&\leq \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b} + \sum_{\v \in V}\const\indx{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b\cind{\v}\|\X\cind{\vv}\tip{} - \alt{\X}\cind{\vv}\tip{}\|_\tt}\,d\tt\\
-&\os{\b\cind{\v}\leq \b(\b\cind{\vv})}{\leq} \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b} + \sum_{\v \in V}\const\indx{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b\ex{\b\cind{\vv}\|\X\cind{\vv}\tip{} - \alt{\X}\cind{\vv}\tip{}\|_\tt}\,d\tt\\
-&= \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b} + \b\const\indx{1}\int_0^\t \sum_{\v \in V}\sum_{\vv \in \cl{\v}} \ex{\b\cind{\vv}\|\X\cind{\vv}\tip{} - \alt{\X}\cind{\vv}\tip{}\|_\tt}\,d\tt\\
-&=\|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b} + \b(\degr+1)\const\indx{1}\int_0^\t \ex{\|\X\cind{}\tip{} - \alt{\X}\cind{}\tip{}\|_{\b,\tt}}\,d\tt\\
+&\leq \|\sv\cind{}\vsi{V} - \alt{\sv}\cind{}\vsi{V}\|_{\b} + \sum_{\v \in V}\const\indx{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b\cind{\v}\|\X\cind{\vv}\tip{} - \alt{\X}\cind{\vv}\tip{}\|_\tt}\,d\tt\\
+&\os{\b\cind{\v}\leq \b(\b\cind{\vv})}{\leq} \|\sv\cind{}\vsi{V} - \alt{\sv}\cind{}\vsi{V}\|_{\b} + \sum_{\v \in V}\const\indx{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b\ex{\b\cind{\vv}\|\X\cind{\vv}\tip{} - \alt{\X}\cind{\vv}\tip{}\|_\tt}\,d\tt\\
+&= \|\sv\cind{}\vsi{V} - \alt{\sv}\cind{}\vsi{V}\|_{\b} + \b\const\indx{1}\int_0^\t \sum_{\v \in V}\sum_{\vv \in \cl{\v}} \ex{\b\cind{\vv}\|\X\cind{\vv}\tip{} - \alt{\X}\cind{\vv}\tip{}\|_\tt}\,d\tt\\
+&=\|\sv\cind{}\vsi{V} - \alt{\sv}\cind{}\vsi{V}\|_{\b} + \b(\degr+1)\const\indx{1}\int_0^\t \ex{\|\X\cind{}\tip{} - \alt{\X}\cind{}\tip{}\|_{\b,\tt}}\,d\tt\\
 \end{align*}
 
 Applying Gronwall's inequality:
 
-\[\ex{\|\X\cind{}\tip{} - \alt{\X}\cind{}\tip{}\|_{\b,\T}} \leq \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b}e^{\T\b(\degr+1)\const\indx{1}}\]
+\[\ex{\|\X\cind{}\tip{} - \alt{\X}\cind{}\tip{}\|_{\b,\T}} \leq \|\sv\cind{}\vsi{V} - \alt{\sv}\cind{}\vsi{V}\|_{\b}e^{\T\b(\degr+1)\const\indx{1}}\]
 
-Now, let \(f: \S\carp{V} \ra \mb{R}\) be a continuous function. Since \(\S\carp{V}\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv\cind{}\vsi{V}) - f(\alt{\sv}{}{V})| \leq \phi(|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}|)\) for all \(\sv\cind{}\vsi{V},\alt{\sv}{}{V}\in \S\carp{V}\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
+Now, let \(f: \S\carp{V} \ra \mb{R}\) be a continuous function. Since \(\S\carp{V}\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv\cind{}\vsi{V}) - f(\alt{\sv}\cind{}\vsi{V})| \leq \phi(|\sv\cind{}\vsi{V} - \alt{\sv}\cind{}\vsi{V}|)\) for all \(\sv\cind{}\vsi{V},\alt{\sv}\cind{}\vsi{V}\in \S\carp{V}\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
 
 \ind Fix any \(\ep > 0\). Let \(\psi\) be a concave, monotonic, upper-bound of \(\phi\) such that \(\psi(0) = 0\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
 
 \begin{align*}
 \ex{\|f(\X\cind{}\tip{}) - f(\alt{\X}\cind{}\tip{})\|_\T} &\leq \ex{\psi\left(\|\X\cind{}\tip{} - \alt{\X}\cind{}\tip{}\|_{\T,\b}\right)}\\
 &\leq \psi\left(\ex{\|\X\cind{}\tip{} - \alt{\X}\cind{}\tip{}\|_{\T,\b}}\right)\\
-&\leq \psi\left(\|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b}e^{\T\b(\degr+1)\const\indx{1}}\right) \os{\sv\cind{}\vsi{V} \ra\alt{\sv}{}{V}}{\ra} \ep.
+&\leq \psi\left(\|\sv\cind{}\vsi{V} - \alt{\sv}\cind{}\vsi{V}\|_{\b}e^{\T\b(\degr+1)\const\indx{1}}\right) \os{\sv\cind{}\vsi{V} \ra\alt{\sv}\cind{}\vsi{V}}{\ra} \ep.
 \end{align*}
 
 This concludes the proof that \(\X\cind{}\tip{}\) is Feller.
@@ -999,7 +999,7 @@ so
 
 Furthermore, by the same argument presented in the beginning of the proof of Lemma \ref{subsec::Well-:Lem::SDEWP}, we can assume without loss of generality that 
 
-\[|\IGr\vind{\v}(\sv\cind{V}\vsi{},\s) - \IGr\vind{\v}(\alt{\sv}{V}{},\s)| \leq \const\indx{}\sum_{\vv\in \cl{\v}} |\sv\cind{V}\vsi{\vv} - \alt{\sv}{V}{\vv}|\te{ for all } \sv\cind{V}\vsi{},\alt{\sv}{V}{}\in \S\carp{V},\s \in \S \te{ and } \v \in V.\]
+\[|\IGr\vind{\v}(\sv\cind{V}\vsi{},\s) - \IGr\vind{\v}(\alt{\sv}\cind{V}\vsi{},\s)| \leq \const\indx{}\sum_{\vv\in \cl{\v}} |\sv\cind{V}\vsi{\vv} - \alt{\sv}\cind{V}\vsi{\vv}|\te{ for all } \sv\cind{V}\vsi{},\alt{\sv}\cind{V}\vsi{}\in \S\carp{V},\s \in \S \te{ and } \v \in V.\]
 
 \tr{For any \(a,b\in \mb{R}\), I use the shorthand \((a,b]\) to denote the interval \((a\wedge b,a\vee b]\)}. Then for all \(v\in \U\) and \(\t > 0\),
 
@@ -1466,17 +1466,17 @@ Then,
 \begin{align*}
 \crate{\v}{\t}(\x\cind{}\tip{},\s) &= \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)|\alt{\evnt}{	}}\\
 &= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
-&= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s) \sum_{\alt{\sv}{}{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}},\X\cind{\tree\sln{1}}\tp{(\t-\tt)-} = \alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
-&= \sum_{\sv\cind{}\vsi{\tree\sln{1}},\alt{\sv}{}{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
+&= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s) \sum_{\alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}},\X\cind{\tree\sln{1}}\tp{(\t-\tt)-} = \alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
+&= \sum_{\sv\cind{}\vsi{\tree\sln{1}},\alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt{\evnt}{	}\right)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)\\
 \end{align*}
 
-Because the jump rate of \(\pmap{\v}(\X\cind{}\tip{})\) is bounded from above by \(\const\indx{}\) for any \(\v\in\tree\sln{1}\),  when \(\sv\cind{}\vsi{\tree\sln{1}}\neq\alt{\sv}{}{\tree\sln{1}}\), 
+Because the jump rate of \(\pmap{\v}(\X\cind{}\tip{})\) is bounded from above by \(\const\indx{}\) for any \(\v\in\tree\sln{1}\),  when \(\sv\cind{}\vsi{\tree\sln{1}}\neq\alt{\sv}\cind{}\vsi{\tree\sln{1}}\), 
 
-\[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right) \leq 1-e^{-\tt(\degr+1)\const\indx{}}\]
+\[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt{\evnt}{	}\right) \leq 1-e^{-\tt(\degr+1)\const\indx{}}\]
 
-and when \(\sv\cind{}\vsi{\tree\sln{1}}=\alt{\sv}{}{\tree\sln{1}}\),
+and when \(\sv\cind{}\vsi{\tree\sln{1}}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}\),
 
-\[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}},\alt{\evnt}{	}\right) \geq e^{-\tt(\degr+1)\const\indx{}}.\]
+\[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt{\evnt}{	}\right) \geq e^{-\tt(\degr+1)\const\indx{}}.\]
 
 So,
 
@@ -1489,7 +1489,7 @@ e^{-\tt(\degr+1)\const\indx{}}\sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tre
 and
 
 \begin{align}
-\crate{\v}{\t}(\x\cind{}\tip{},\s)&\leq (1 - e^{-\tt(\degr+1)\const\indx{}})\sum_{\sv\cind{}\vsi{\tree\sln{1}}\neq \alt{\sv}{}{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}{}{\tree\sln{1}}|\alt{\evnt}{	}\right)\nonumber\\
+\crate{\v}{\t}(\x\cind{}\tip{},\s)&\leq (1 - e^{-\tt(\degr+1)\const\indx{}})\sum_{\sv\cind{}\vsi{\tree\sln{1}}\neq \alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)\nonumber\\
 &\hspace{24 pt} +\sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)\nonumber\\
 &\leq \const\indx{}(1 - e^{-\tt(\degr+1)\const\indx{}})|\S|^{\degr(\degr+1)/2} + \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{	}\right)
 \label{subsec::ProofE:eqn::partupbd}
@@ -2851,11 +2851,11 @@ This is simply a restatement of \cite[Theorem 13.2]{Bil99}.
 \begin{lem}
 Let \(\{\X\cind{}\tip{}{n}\}\) be a sequence \(\sset\vsi{V}\ts{\T}\)-valued Feller processes satisfying Assumption \ref{subsec::Assum:Assu::CI}. Let the infinitesimal generators of these processes be given by the equation:
 
-\[\IG\sln{n}f(\sv\cind{}\vsi{V}) = \sum_{\v\in V}\sum_{\s \in \S} \IGr\vindsln{n}{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s\ev\vind{\v}) - f(\sv\cind{}\vsi{V})].\]
+\[\IG\sln{n}f(\sv\cind{}\vsi{V}) = \sum_{\v\in V}\sum_{\s \in \S} \IGr\slnvind{n}{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s\ev\vind{\v}) - f(\sv\cind{}\vsi{V})].\]
 
 If there exists some \(\const\indx{} < \infty\) such that
 
-\[\sup_{n}\sup_{\sv\cind{}\vsi{V}\in \S\carp{V}}\sup_{\v\in V}\sup_{\s\in \S} \IGr\vindsln{n}{\v}(\sv\cind{}\vsi{V},\s) \leq \const\indx{},\]
+\[\sup_{n}\sup_{\sv\cind{}\vsi{V}\in \S\carp{V}}\sup_{\v\in V}\sup_{\s\in \S} \IGr\slnvind{n}{\v}(\sv\cind{}\vsi{V},\s) \leq \const\indx{},\]
 
 then for all finite \(\U \subseteq V\),
 
