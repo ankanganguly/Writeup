@@ -2119,15 +2119,15 @@ By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimens
 
 Thus all of the one-dimensional distributions converge. Assume that,
 
-\[\exmu{\alt{\m}{n}}{g(\XX{}{\t{1}},\dots,\XX{}{\t{k-1}})|\XX{}{0}=z} \ra \exmu{\alt{\m}}{g(\XX{}{\t{1}},\dots,\XX{}{\t{k-1}})|\XX{}{0}=z}\]
+\[\exmu{\alt{\m}{n}}{g(\XX{}{\t{1}},\dots,\XX{}{\t{k-1}})|\XX{}{0}=\xxx} \ra \exmu{\alt{\m}}{g(\XX{}{\t{1}},\dots,\XX{}{\t{k-1}})|\XX{}{0}=\xxx}\]
 
 \noindent for any continuous function \(g\) and for any \(\{\t{1},\dots,\t{k-1}\} \subset [0,T]\). Fix \(0\leq \t{1} <\t{2} <\cdots < \t{\it}\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
 
 \begin{align}
-\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})|\XX{}{0} = z}&= \exmu{\alt{\m}{n}}{f{1}(\XX{}{0})f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=z}\nonumber\\
-&= f{1}(z)\exmu{\alt{\m}{n}}{f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=z}\nonumber\\
-&\os{\te{Induction}}{\ra} f{1}(z)\exmu{\alt{\m}}{f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=z}\nonumber\\
-&= \exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})|\XX{}{0}=z}
+\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})|\XX{}{0} = \xxx}&= \exmu{\alt{\m}{n}}{f{1}(\XX{}{0})f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=\xxx}\nonumber\\
+&= f{1}(\xxx)\exmu{\alt{\m}{n}}{f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=\xxx}\nonumber\\
+&\os{\te{Induction}}{\ra} f{1}(\xxx)\exmu{\alt{\m}}{f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=\xxx}\nonumber\\
+&= \exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})|\XX{}{0}=\xxx}
 \label{sec::Infin:eqn::zerocase}
 \end{align}
 \labe{sec::Infin:eqn::zerocase}
@@ -2143,11 +2143,11 @@ So,
 then,
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})|\XX{}{0}=z}&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{\t{1}},\dots,\XX{\t{\it}})|\XX{\t{1}}=\XX{}{\t{1}},\XX{0}=z}|\XX{}{0}=z}\\
-&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=z}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=z}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\alt{\m}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=z}\\
-&=\exmu{\alt{\m}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})|\XX{}{0}=z}
+\exmu{\alt{\m}{n}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})|\XX{}{0}=\xxx}&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{\t{1}},\dots,\XX{\t{\it}})|\XX{\t{1}}=\XX{}{\t{1}},\XX{0}=\xxx}|\XX{}{0}=\xxx}\\
+&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=\xxx}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=\xxx}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\alt{\m}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=\xxx}\\
+&=\exmu{\alt{\m}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})|\XX{}{0}=\xxx}
 \end{align*}
 
 \begin{align*}
@@ -2234,7 +2234,7 @@ Assume that \(\law((\rt{n},\mark{n})|\F{\rt{n-1}})\) is a regular distribution f
 
 \ind Fix \(n\). Suppose \(\XX\) is a \(\spce\)-valued random variable. Let \(\m\) be the law of \(\rp\). Then \(\left([0,\infty)\times \mspce\right)^{n-1}\times\spce\) and \([0,\infty)\times \mspce\) are both Polish spaces, and \(\alt{\m}\) defined by 
 
-\[\alt{\m}((\t{n},k{n}),(	{i},k{i})_{i=1}^{n-1},z) = \m\left((\rt{i},\mark{i}) = (	{i},k{i})\te{ for } i=1,\dots,n, \XX = z\right)\]
+\[\alt{\m}((\t{n},k{n}),(	{i},k{i})_{i=1}^{n-1},\xxx) = \m\left((\rt{i},\mark{i}) = (	{i},k{i})\te{ for } i=1,\dots,n, \XX = \xxx\right)\]
 
 is a Borel measure. Therefore, by \cite[Proposition A1.5.III]{DalVer03}, the regular conditional distribution \(\ms{L}((\rt{n},\mark{n})|\F{\rt{n-1}})\) exists.
 \end{proof}
@@ -2356,24 +2356,24 @@ L_\t:= \frac{d\pr{2}_\t}{d\pr{1}_\t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<
 \pfsum In the case where \(\F{0}\) is trivial, we can directly apply \cite[Theorem 14.4.I]{DalVer08}. To extend, we define \(\pr{i}\) as an integral of a class of regular conditional probabilities and apply \cite[Theorem 14.4.I]{DalVer08} accordingly.
 
 \begin{proof}
-Let \(f\) be a bounded, \(\alt{\F}{\t}\) measurable function to the real numbers. Let \(\m(\t,k;y,x)\) be the value \(\m\) takes when \(\rp[0,\t)=y[0,\t)\) and \(\{X=x\}\). Since \(\m\) is \(\alt{\F}\)-predictable, this is deterministic for any \(y,x\).
+Let \(f\) be a bounded, \(\alt{\F}{\t}\) measurable function to the real numbers. Let \(\m(\t,k;\xx,\x)\) be the value \(\m\) takes when \(\rp[0,\t)=\xx[0,\t)\) and \(\{X=\x\}\). Since \(\m\) is \(\alt{\F}\)-predictable, this is deterministic for any \(\xx,\x\).
 
-\[\mb{E}^2[f(X,\rp[0,\t])] = \int_\spce \mb{E}^2[f(x,\rp[0,\t])|X=x]\,d\mm^2(x)\]
+\[\mb{E}^2[f(X,\rp[0,\t])] = \int_\spce \mb{E}^2[f(\x,\rp[0,\t])|X=\x]\,d\mm^2(\x)\]
 
-Note that for any fixed \(x \in \te{supp}(X)\) and any \(i \in \{1,2\}\), there exists a regular conditional distribution \(\pr{i}_x\) which describes the law of \(\rp\) conditioned on \(X = x\).
+Note that for any fixed \(\x \in \te{supp}(X)\) and any \(i \in \{1,2\}\), there exists a regular conditional distribution \(\pr{i}_\x\) which describes the law of \(\rp\) conditioned on \(X = \x\).
 
-\[\mb{E}^2[f(X,\rp[0,\t])] = \int_\spce \mb{E}^2_x[f(x,\rp[0,\t])]\,d\mm^2(x)\]
+\[\mb{E}^2[f(X,\rp[0,\t])] = \int_\spce \mb{E}^2_\x[f(\x,\rp[0,\t])]\,d\mm^2(\x)\]
 
-Note that for any fixed \(x\), \(\pr{i}_x\) and \(\rp\) satisfy the conditions of \cite[Theorem 14.4.I]{DalVer08}. So,
+Note that for any fixed \(\x\), \(\pr{i}_\x\) and \(\rp\) satisfy the conditions of \cite[Theorem 14.4.I]{DalVer08}. So,
 
-\[L_\t(\rp,x):=\frac{d\pr{2}_{\t,x}}{d\pr{1}_{\t,x}}(\rp) = \left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i};\rp,x)\right)\exp\left(-\int{(0,\t]\times\mspce} [\m(\tt,k;\rp,x) - 1]\rate^1(\tt,k;\rp,x)\,ds\,\ell(dk)\right)\]
+\[L_\t(\rp,\x):=\frac{d\pr{2}_{\t,\x}}{d\pr{1}_{\t,\x}}(\rp) = \left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i};\rp,\x)\right)\exp\left(-\int{(0,\t]\times\mspce} [\m(\tt,k;\rp,\x) - 1]\rate^1(\tt,k;\rp,\x)\,ds\,\ell(dk)\right)\]
 
 Giving us,
 
 \begin{align*}
-\mb{E}^2\left[f(X,\rp[0,\t])\right] &= \int_\spce \mb{E}^2_x[f(x,\rp[0,\t])]\,d\mm^2(x)\\
-&=\int{\spce} \mb{E}^1_x[f(x,\rp[0,\t])L_\t(\rp,x)]\,d\mm^2(x)\\
-&= \int{\spce} \frac{d\mm^2}{d\mm^1}(x) \mb{E}^1_x[f(x,\rp[0,\t])L_\t(\rp,x)]\,d\mm^1(x)\\
+\mb{E}^2\left[f(X,\rp[0,\t])\right] &= \int_\spce \mb{E}^2_\x[f(\x,\rp[0,\t])]\,d\mm^2(\x)\\
+&=\int{\spce} \mb{E}^1_\x[f(\x,\rp[0,\t])L_\t(\rp,\x)]\,d\mm^2(\x)\\
+&= \int{\spce} \frac{d\mm^2}{d\mm^1}(\x) \mb{E}^1_\x[f(\x,\rp[0,\t])L_\t(\rp,\x)]\,d\mm^1(\x)\\
 &= \mb{E}^1\left[f(X,\rp[0,\t])L_\t(\rp,X)\frac{d\mm^2}{d\mm^1}\right]
 \end{align*}
 \end{proof}
@@ -2595,11 +2595,11 @@ For all parts of this lemma, I use the following two results:
 
 for all bounded non-negative measurable functions \(f,g\) and \(h\).
 
-\item Any bounded non-negative measurable function in two variables \(f(x,y)\) can be approximated by a sum of a product of two bounded non-negative measurable functions in one variable:
+\item Any bounded non-negative measurable function in two variables \(f(\x,\xx)\) can be approximated by a sum of a product of two bounded non-negative measurable functions in one variable:
 
-\[f(x,y) = \sum_{k=1}^\infty f^k{1}(x)f^k{2}(y)\]
+\[f(\x,\xx) = \sum_{k=1}^\infty f^k{1}(\x)f^k{2}(\xx)\]
 
-Within this lemma, I will assume without loss of generality that all functions of the form \(f(x,y)\) can be written as a product: \(f(x,y) = f{1}(x)f{2}(y)\).
+Within this lemma, I will assume without loss of generality that all functions of the form \(f(\x,\xx)\) can be written as a product: \(f(\x,\xx) = f{1}(\x)f{2}(\xx)\).
 \end{itemize}
 
 \begin{enumerate}[(a)]
