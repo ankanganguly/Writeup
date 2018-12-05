@@ -302,9 +302,9 @@ Let \(G = (V,E)\) be a graph with bounded degree with rooted node \(\root \in V\
 
 \ind Let \(\S\) be a finite set. Without loss of generality, let \(\S\) be a finite abelian group with group operation \(+\) and equipped with the norm \(|\cdot|\). 
 
-\ind Let \(\S\carp{V}\) be the set of vectors, \(\sv\cind{}\vsi{V}\) with components \(\sv\cind{\v}\vsi{V} \in \S\) indexed by \(\v\in V\). Let \(\{\ev\vind{\v}: \v\in V\}\) be the standard basis vectors of \(\S\carp{V}\). Let \(\{\b{\v}:\v\in V\}\) be a sequence of positive numbers such that \(\sum_{\v\in V} \b{\v} < \infty\). Then let \(\|\cdot\|_{\b{}}\) be a norm on \(\S\carp{V}\) defined by \(\|\sv\cind{}\vsi{V}\|_{\b{}} = \sum_{\v\in V} \b{\v}|\sv\cind{\v}\vsi{V}|\). For any \(\U\subseteq V\), we will generally assume \(\S\carp{\U}\) is embedded in \(\S\carp{V}\). That is, for \(\sv\cind{}\vsi{\U}\in \S\carp{\U}\), \(\sv\cind{\v}\vsi{\U} = 0\) for all \(\v\notin\U\). Thus, we can also define the norm \(\|\sv\cind{}\vsi{\U}\|_{\b{}} = \sum_{\v\in\U} \b{\v}|\sv\cind{\v}\vsi{\U}|\). \(\S\carp{V}\) acts as the state space of an interacting particle system on \(G\) whose nodes have state space \(\S\).
+\ind Let \(\S\carp{V}\) be the set of vectors, \(\sv\cind{}\vsi{V}\) with components \(\sv\cind{\v}\vsi{V} \in \S\) indexed by \(\v\in V\). Let \(\{\ev\vind{\v}: \v\in V\}\) be the standard basis vectors of \(\S\carp{V}\). Let \(\{\b\cind{\v}:\v\in V\}\) be a sequence of positive numbers such that \(\sum_{\v\in V} \b\cind{\v} < \infty\). Then let \(\|\cdot\|_{\b}\) be a norm on \(\S\carp{V}\) defined by \(\|\sv\cind{}\vsi{V}\|_{\b} = \sum_{\v\in V} \b\cind{\v}|\sv\cind{\v}\vsi{V}|\). For any \(\U\subseteq V\), we will generally assume \(\S\carp{\U}\) is embedded in \(\S\carp{V}\). That is, for \(\sv\cind{}\vsi{\U}\in \S\carp{\U}\), \(\sv\cind{\v}\vsi{\U} = 0\) for all \(\v\notin\U\). Thus, we can also define the norm \(\|\sv\cind{}\vsi{\U}\|_{\b} = \sum_{\v\in\U} \b\cind{\v}|\sv\cind{\v}\vsi{\U}|\). \(\S\carp{V}\) acts as the state space of an interacting particle system on \(G\) whose nodes have state space \(\S\).
 
-\ind Fix some \(\T < \infty\). For any \(\U\subseteq V\) and \(\t\in [0,\T]\), let \(\Omega{\U}{\t} = \cad([0,\t],\S\carp{\U})\) and \(\Omega{\U}{\t-} = \cad([0,\t),\S\carp{\U})\). For any \(\x{}{} \in \Omega{V}{\T}\), \(\v\in V\) and  \(\t \in [0,\T]\), let \(\x{\v}{\t}\) be the value of the \(\v\)-node of \(\x{}{}\) at time \(\t\). For any \(\U\subseteq V\), let \(\proj{\U}{\t}\) be the standard projection/embedding into the space \(\Omega{\U}{\t}\). In a slight misuse of notation, we will make the domain clear from context. Let \(\proj{\U}{} \defeq \proj{\U}{0}\) be the projection to \(\S\carp{\U}\). For any \(\U\subseteq V\), define the norm on \(\Omega{\t}{\U}\) by \(\|\x{\U}{}\|_{\b{},\t} \defeq \sup_{\tt \leq \t} \|\x{\U}{\tt}\|_{\b{}}\). Let \(\F{\U}{\t}\) be the Borel \(\sigma\)-algebra of \(\Omega{\U}{\t}\) with respect to the Skorokhod topology. Let \(\X{}{}\) be an \(\Omega{V}{\t}\)-valued random variable. We say that \(\X{\v}{\t}\) is the state of the \(\v\)-component of \(\X{}{}\) at time \(\t\). Assume \(\X{}{}\) is a Feller process with infinitesimal generator \(\IG\) given by,
+\ind Fix some \(\T < \infty\). For any \(\U\subseteq V\) and \(\t\in [0,\T]\), let \(\sset\vsi{\U}\ts{\t} = \cad([0,\t],\S\carp{\U})\) and \(\sset\vsi{\U}\ts{\t-} = \cad([0,\t),\S\carp{\U})\). For any \(\x{}{} \in \sset\vsi{V}\ts{\T}\), \(\v\in V\) and  \(\t \in [0,\T]\), let \(\x{\v}{\t}\) be the value of the \(\v\)-node of \(\x{}{}\) at time \(\t\). For any \(\U\subseteq V\), let \(\proj{\U}{\t}\) be the standard projection/embedding into the space \(\sset\vsi{\U}\ts{\t}\). In a slight misuse of notation, we will make the domain clear from context. Let \(\proj{\U}{} \defeq \proj{\U}{0}\) be the projection to \(\S\carp{\U}\). For any \(\U\subseteq V\), define the norm on \(\sset\vsi{\t}\ts{\U}\) by \(\|\x{\U}{}\|_{\b,\t} \defeq \sup_{\tt \leq \t} \|\x{\U}{\tt}\|_{\b}\). Let \(\F{\U}{\t}\) be the Borel \(\sigma\)-algebra of \(\sset\vsi{\U}\ts{\t}\) with respect to the Skorokhod topology. Let \(\X{}{}\) be an \(\sset\vsi{V}\ts{\t}\)-valued random variable. We say that \(\X{\v}{\t}\) is the state of the \(\v\)-component of \(\X{}{}\) at time \(\t\). Assume \(\X{}{}\) is a Feller process with infinitesimal generator \(\IG\) given by,
 
 \begin{equation}
 \IG f(\sv\cind{}\vsi{V}) = \sum_{\v \in V}\sum_{\s \in \S} \IGr{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s \ev\vind{\v}) - f(\sv\cind{}\vsi{V})],
@@ -470,11 +470,11 @@ has a unique strong solution.
 \lin
 
 \begin{lem}
-Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(\Fpo: \Omega{V}{\T} \ra \Omega{V}{\T}\) parameterized by a sequence of Poisson processes and defined by,
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(\Fpo: \sset\vsi{V}\ts{\T} \ra \sset\vsi{V}\ts{\T}\) parameterized by a sequence of Poisson processes and defined by,
 
-\[\left(\Fpo(\x{}{})\right)\cind{\v}\tp{\t} := \x{\v}{0} + \int_\S\int_0^\t \s \,\poiss{\v}(d\tt,(0,\IGr{\v}(\x{}{\tt-},\s)],d\s) \te{ for all }\x{}{} \in \Omega{V}{\T}, \v \in V\te{ and }\t \in [0,\T].\]
+\[\left(\Fpo(\x{}{})\right)\cind{\v}\tp{\t} := \x{\v}{0} + \int_\S\int_0^\t \s \,\poiss{\v}(d\tt,(0,\IGr{\v}(\x{}{\tt-},\s)],d\s) \te{ for all }\x{}{} \in \sset\vsi{V}\ts{\T}, \v \in V\te{ and }\t \in [0,\T].\]
 
-Then for any pair of random processes \(\X{}{},\alt{\X}{}{}:\Omega{V}{\T} \ra \Omega{V}{\T}\), \(\v\in V\) and \(\t \in [0,\T]\),
+Then for any pair of random processes \(\X{}{},\alt{\X}{}{}:\sset\vsi{V}\ts{\T} \ra \sset\vsi{V}\ts{\T}\), \(\v\in V\) and \(\t \in [0,\T]\),
 
 \[\ex{\|\Fpo(\X{}{}){\v} - \Fpo(\alt{\X}{}{}){\v}\|_\t} \leq \ex{|\X{\v}{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
 
@@ -693,28 +693,28 @@ Then by Lemma \ref{subsec::Well-:Lem::SDEWP},
 
 for all \(\t \in [0,\T]\).
 
-\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b{} > \degr\) and let \(\{\b{\v}\}_{\v \in V}\) be a sequence of positive real numbers defined by \(\b{\v} = \b{}^{-n}\) if \(\v \in V\sln{n}\setminus V\sln{n-1}\) and \(\b{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(|V\sln{n}\setminus V\sln{n-1}| \leq \degr^{n}\) for all \(n\in \mb{N}\). Then \(\sum_{\v \in V} \b{\v} \leq \sum_{n=0}^\infty \left(\frac{\degr}{\b{}}\right)^{n} < \infty\). Since \(\S\) is finite, the norm \(\|\sv\cind{}\vsi{V}\|_{\b{}} := \sum_{\v \in V} \b{\v}|\sv\cind{\v}\vsi{V}|\) generates the topology of componentwise convergence on \(\S\carp{V}\). We can now apply Gronwall's inequality:
+\ind Unfortunately, we cannot just directly apply Gronwall's inequality to the supremum of the above expression. This is because we are trying to prove continuity with respect to the topology of pointwise convergence. Instead, let \(\b > \degr\) and let \(\{\b\cind{\v}\}_{\v \in V}\) be a sequence of positive real numbers defined by \(\b\cind{\v} = \b^{-n}\) if \(\v \in V\sln{n}\setminus V\sln{n-1}\) and \(\b\cind{\root} = 1\). Because the degree of each node in \(G\) is bounded by \(\degr\), we know that \(|V\sln{n}\setminus V\sln{n-1}| \leq \degr^{n}\) for all \(n\in \mb{N}\). Then \(\sum_{\v \in V} \b\cind{\v} \leq \sum_{n=0}^\infty \left(\frac{\degr}{\b}\right)^{n} < \infty\). Since \(\S\) is finite, the norm \(\|\sv\cind{}\vsi{V}\|_{\b} := \sum_{\v \in V} \b\cind{\v}|\sv\cind{\v}\vsi{V}|\) generates the topology of componentwise convergence on \(\S\carp{V}\). We can now apply Gronwall's inequality:
 
 \begin{align*}
-\ex{\|\X{}{} - \alt{\X}{}{}\|_{\b{},\t}} &= \sum_{\v \in V} \b{\v}\ex{\|\X{\v}{} - \alt{\X}{\v}{}\|_\t}\\
-&\leq \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b{\v}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
-&\os{\b{\v}\leq \b{}(\b{\vv})}{\leq} \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}} + \sum_{\v \in V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b{}\ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
-&= \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}\const{1}\int_0^\t \sum_{\v \in V}\sum_{\vv \in \cl{\v}} \ex{\b{\vv}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
-&=\|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}} + \b{}(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X}{}{}\|_{\b{},\tt}}\,d\tt\\
+\ex{\|\X{}{} - \alt{\X}{}{}\|_{\b,\t}} &= \sum_{\v \in V} \b\cind{\v}\ex{\|\X{\v}{} - \alt{\X}{\v}{}\|_\t}\\
+&\leq \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b} + \sum_{\v \in V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\b\cind{\v}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
+&\os{\b\cind{\v}\leq \b(\b\cind{\vv})}{\leq} \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b} + \sum_{\v \in V}\const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \b\ex{\b\cind{\vv}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
+&= \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b} + \b\const{1}\int_0^\t \sum_{\v \in V}\sum_{\vv \in \cl{\v}} \ex{\b\cind{\vv}\|\X{\vv}{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
+&=\|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b} + \b(\degr+1)\const{1}\int_0^\t \ex{\|\X{}{} - \alt{\X}{}{}\|_{\b,\tt}}\,d\tt\\
 \end{align*}
 
 Applying Gronwall's inequality:
 
-\[\ex{\|\X{}{} - \alt{\X}{}{}\|_{\b{},\T}} \leq \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\]
+\[\ex{\|\X{}{} - \alt{\X}{}{}\|_{\b,\T}} \leq \|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b}e^{\T\b(\degr+1)\const{1}}\]
 
 Now, let \(f: \S\carp{V} \ra \mb{R}\) be a continuous function. Since \(\S\carp{V}\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv\cind{}\vsi{V}) - f(\alt{\sv}{}{V})| \leq \phi(|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}|)\) for all \(\sv\cind{}\vsi{V},\alt{\sv}{}{V}\in \S\carp{V}\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
 
 \ind Fix any \(\ep > 0\). Let \(\psi\) be a concave, monotonic, upper-bound of \(\phi\) such that \(\psi(0) = 0\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
 
 \begin{align*}
-\ex{\|f(\X{}{}) - f(\alt{\X}{}{})\|_\T} &\leq \ex{\psi\left(\|\X{}{} - \alt{\X}{}{}\|_{\T,\b{}}\right)}\\
-&\leq \psi\left(\ex{\|\X{}{} - \alt{\X}{}{}\|_{\T,\b{}}}\right)\\
-&\leq \psi\left(\|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b{}}e^{\T\b{}(\degr+1)\const{1}}\right) \os{\sv\cind{}\vsi{V} \ra\alt{\sv}{}{V}}{\ra} \ep.
+\ex{\|f(\X{}{}) - f(\alt{\X}{}{})\|_\T} &\leq \ex{\psi\left(\|\X{}{} - \alt{\X}{}{}\|_{\T,\b}\right)}\\
+&\leq \psi\left(\ex{\|\X{}{} - \alt{\X}{}{}\|_{\T,\b}}\right)\\
+&\leq \psi\left(\|\sv\cind{}\vsi{V} - \alt{\sv}{}{V}\|_{\b}e^{\T\b(\degr+1)\const{1}}\right) \os{\sv\cind{}\vsi{V} \ra\alt{\sv}{}{V}}{\ra} \ep.
 \end{align*}
 
 This concludes the proof that \(\X{}{}\) is Feller.
@@ -739,7 +739,7 @@ By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X{}{}\) 
 \lin
 
 \begin{prop}
-Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in V\) be some node. Let \(V\sln{0} = \{\root\}\) and \(V\sln{n+1} = \cl{V\sln{n}}\) for all \(n \in \mb{N}\). For all \(\U \subseteq V\) and \(\t \in [0,\T]\), let \(\Omega{\U}{\t}\) be embedded in \(\Omega{V}{\t}\) in the standard way. Let \(\X{}{0}{n} = \proj{V\sln{n}}{0}(\X{}{0})\). For each \(n\in\mb{N}\), let the \(\Omega{V\sln{n}}{\T}\)-valued random element \(\X{}{}{n}\) be the unique Feller process with initial condition \(\X{}{0}{n}\) and infinitesimal generator,
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in V\) be some node. Let \(V\sln{0} = \{\root\}\) and \(V\sln{n+1} = \cl{V\sln{n}}\) for all \(n \in \mb{N}\). For all \(\U \subseteq V\) and \(\t \in [0,\T]\), let \(\sset\vsi{\U}\ts{\t}\) be embedded in \(\sset\vsi{V}\ts{\t}\) in the standard way. Let \(\X{}{0}{n} = \proj{V\sln{n}}{0}(\X{}{0})\). For each \(n\in\mb{N}\), let the \(\sset\vsi{V\sln{n}}\ts{\T}\)-valued random element \(\X{}{}{n}\) be the unique Feller process with initial condition \(\X{}{0}{n}\) and infinitesimal generator,
 
 \begin{equation}
 \IG\sln{n}f(\sv\cind{}\vsi{V\sln{n}}) = \sum_{\v\in V\sln{n}}\sum_{\s\in \S} \IGr{\v}(\sv\cind{}\vsi{V\sln{n}}, \s)[f(\sv\cind{}\vsi{V\sln{n}} + \s\ev\vind{\v}) - f(\sv\cind{}\vsi{V\sln{n}})]\te{ for all } \sv\cind{}\vsi{V\sln{n}} \in \S\carp{V\sln{n}}.
@@ -763,27 +763,27 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in V\) be so
 \begin{proof}
 First, for each \(n\in\mb{N}\), \(\X{}{}{n}\) satisfies Assumption \ref{subsec::Assum:Assu::CI}, so by Proposition \ref{subsec::Well-:Prop::Welldef}, \(\X{}{}{n}\) is uniquely defined by its initial condition \(\X{}{0}{n}\) and its infinitesimal generator \(\IG\sln{n}\).
 
-\ind To prove weak convergence, we first begin by showing that \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight. Note that \(\S\carp{V}\) is compact, so \(\sup_{\sv\cind{}\vsi{V} \in \S\carp{V}} \|\sv\cind{}\vsi{V}\|_{\b{}} < \infty\) (recall that \(\|\sv\cind{}\vsi{V}\|_{\b{}} = \sum_{\v \in V} \b{\v} |\sv\cind{\v}\vsi{V}|\) where \(\b{\v} = \b{}^{-n}\) for some \(\b{} > \degr\) if \(\v \in V\sln{n}\setminus V\sln{n-1}\)).
+\ind To prove weak convergence, we first begin by showing that \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight. Note that \(\S\carp{V}\) is compact, so \(\sup_{\sv\cind{}\vsi{V} \in \S\carp{V}} \|\sv\cind{}\vsi{V}\|_{\b} < \infty\) (recall that \(\|\sv\cind{}\vsi{V}\|_{\b} = \sum_{\v \in V} \b\cind{\v} |\sv\cind{\v}\vsi{V}|\) where \(\b\cind{\v} = \b^{-n}\) for some \(\b > \degr\) if \(\v \in V\sln{n}\setminus V\sln{n-1}\)).
 
 \ind Now fix \(\ep > 0\). Let \(\cconst\) be large enough that
 
-\[\sup_{\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c} \in \S\carp{\left(V\sln{\cconst}\right)^c}} \left\|\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c}\right\|_{\b{}} \leq |\S|\sum_{\v \notin V\sln{\cconst}} \b{\v} < \ep/4.\]
+\[\sup_{\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c} \in \S\carp{\left(V\sln{\cconst}\right)^c}} \left\|\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c}\right\|_{\b} \leq |\S|\sum_{\v \notin V\sln{\cconst}} \b\cind{\v} < \ep/4.\]
 
 Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the modulus of continuity is given by,
 
-\[\cmodu{\X{}{}}(\delta) = \inf_{\{\t{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \|\X{}{\tt} - \X{}{\ttt}\|_{\b{}},\]
+\[\cmodu{\X{}{}}(\delta) = \inf_{\{\t{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \|\X{}{\tt} - \X{}{\ttt}\|_{\b},\]
 
-where \(\{\t{\it}\} := 0 \leq \t{1} < \t{2} < \cdots < \t{\cdot} = \T\) and \(\min_\it|\t{\it} - \t{\it-1}| > \delta\). Note that \(\X{}{}{n}\) is \(\Omega{V\sln{n}}{\T}\)-valued and can be embedded in \(\Omega{V}{\T}\) the same way we embed \(\S\carp{V\sln{n}}\) in \(\S\carp{V}\): let \(\X{\v}{}{n} \equiv 0\) for \(\v \notin V\sln{n}\). Recall also that \(\proj{\U}{\T}\) is the projection to \(\Omega{\U}{\T}\) for all \(\U\subseteq V\). Then for any \(n\in \mb{N}\),
+where \(\{\t{\it}\} := 0 \leq \t{1} < \t{2} < \cdots < \t{\cdot} = \T\) and \(\min_\it|\t{\it} - \t{\it-1}| > \delta\). Note that \(\X{}{}{n}\) is \(\sset\vsi{V\sln{n}}\ts{\T}\)-valued and can be embedded in \(\sset\vsi{V}\ts{\T}\) the same way we embed \(\S\carp{V\sln{n}}\) in \(\S\carp{V}\): let \(\X{\v}{}{n} \equiv 0\) for \(\v \notin V\sln{n}\). Recall also that \(\proj{\U}{\T}\) is the projection to \(\sset\vsi{\U}\ts{\T}\) for all \(\U\subseteq V\). Then for any \(n\in \mb{N}\),
 
 \begin{align*}
-\pr\left(\sup_n \cmodu{\X{}{}{n}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v \in V} \b{\v}|(\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}| > \epsilon \right)\\
+\pr\left(\sup_n \cmodu{\X{}{}{n}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v \in V} \b\cind{\v}|(\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}| > \epsilon \right)\\
 &\leq \pr\left(\sup_n \left(\cmodu{\proj{V\sln{\cconst}}{\T}(\X{}{}{n})}(\delta) + \cmodu{\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})}(\delta)\right) > \ep\right)\\
 &\leq \pr\left(\sup_n \cmodu{\proj{V\sln{\cconst}}{\T}(\X{}{}{n})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
 \end{align*}
 
 The last inequality arises because
 
-\[\cmodu{\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})\right\|_{\b{}} \leq 2 \sup_{\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c} \in \S\carp{\left(V\sln{\cconst}\right)^c}} \left\|\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c}\right\|_{\b{}} < \ep/2\]
+\[\cmodu{\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})}(\delta) \leq 2 \sup_{\t\in [0,\T]} \left\|\proj{\left(V\sln{\cconst}\right)^c}{\T}(\X{}{}{n})\right\|_{\b} \leq 2 \sup_{\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c} \in \S\carp{\left(V\sln{\cconst}\right)^c}} \left\|\sv\cind{}\vsi{\left(V\sln{\cconst}\right)^c}\right\|_{\b} < \ep/2\]
 
 Finally, the convergence to 0 at the end is the result of a direct application of Lemma \ref{sec::TL:Lem::TightSupport}. Thus, \(\{\X{}{}{n}:n\in \mb{N}\}\) is tight, and therefore relatively compact with respect to the topology of weak convergence (Theorem \ref{sec::TL:Thm::Tight}).
 
@@ -830,7 +830,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset V\).
 \lin
 
 \begin{thms}
-Let \(\X{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m{}{}{} = \law(\X{}{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\Omega \supseteq\Omega{\tree\sln{1}}{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\Omega)\), define \(\cm{\t}:\Omega{\{\root,1\}}{\t-}\times \pmsr(\Omega) \ra \pmsr(\Omega{\{2,\dots,\degr\}}{\t-})\) by,
+Let \(\X{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m{}{}{} = \law(\X{}{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\sset\vsi{}\ts{} \supseteq\sset\vsi{\tree\sln{1}}\ts{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\sset\vsi{}\ts{})\), define \(\cm{\t}:\sset\vsi{\{\root,1\}}\ts{\t-}\times \pmsr(\sset\vsi{}\ts{}) \ra \pmsr(\sset\vsi{\{2,\dots,\degr\}}\ts{\t-})\) by,
 
 \begin{equation}
 \cm{\t}(\x{\{\root,1\}}{[0,\t)},\mmm{}{}{})(\cdot) = \pr{\mmm{}{}{}}\left(\X{\{2,\dots,\degr\}}{[0,\t)} \in \cdot|\X{\{\root,1\}}{[0,\t)} = \x{\{\root,1\}}{[0,\t)}\right).
@@ -838,7 +838,7 @@ Let \(\X{}{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu
 \end{equation}
 \labe{sec::Main:eqn::gamma}
 
-Then there exists a unique solution, \(\alt{\m{}{}{}} \in \pmsr(\Omega{\tree\sln{1}}{\T})\), to the following equation:
+Then there exists a unique solution, \(\alt{\m{}{}{}} \in \pmsr(\sset\vsi{\tree\sln{1}}\ts{\T})\), to the following equation:
 
 \begin{align}
 \X{\v}{\t} &= \X{\v}{0} + \int_0^\t\int_\S \s\,\poiss{\v}(d\s,(0,\crate{}(\X{\{\v,\root\}}{[0,\tt)},\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\}\nonumber\\
@@ -870,7 +870,7 @@ for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \proj{\tree\sln{1}}{\T}(\m
 
 \skipLine
 
-\textbf{Remark:} In this section we will distinguish between the events \(\{\X{}{[0,\t]} = 0\}\) and \(\{\X{}{[0,\t]}\equiv 0\}\). The first event is an event of probability 0 when \(\X{}{}\) is a \(\Omega{\U}{\t}\) or \(\Omega{\U}{\t-}\)-valued random variable for some \(\U\subseteq V\) and \(\t \in [0,\T]\) (because 0 is not a path) while the second event is the event that \(\X{}{\tt} = 0\) for all \(\tt \in [0,\t]\).
+\textbf{Remark:} In this section we will distinguish between the events \(\{\X{}{[0,\t]} = 0\}\) and \(\{\X{}{[0,\t]}\equiv 0\}\). The first event is an event of probability 0 when \(\X{}{}\) is a \(\sset\vsi{\U}\ts{\t}\) or \(\sset\vsi{\U}\ts{\t-}\)-valued random variable for some \(\U\subseteq V\) and \(\t \in [0,\T]\) (because 0 is not a path) while the second event is the event that \(\X{}{\tt} = 0\) for all \(\tt \in [0,\t]\).
 
 \ind Given three random elements \(\X{}{},\XX{}{} \te{ and } \XXX{}{}\), we say \(\X{}{}\perp \XX{}{}\) if \(\X{}{}\) and \(\XX{}{}\) are independent. We say \(\X{}{}\mutex \XX{}{}\) if the events \(\{\X{}{}\neq 0\}\) and \(\{\XX{}{} \neq 0\}\) are mutually exclusive. We say \(\X{}{}\perp \XX{}{}|\XXX{}{}\) if \(\X{}{}\) and \(\XX{}{}\) are conditionally independent given \(\XXX{}{}\).
 
@@ -1240,7 +1240,7 @@ Finally, by Lemma \ref{sec::TL:Lem::Props}(h),
 \lin
 
 \begin{defn}
-Let \(\U\subseteq V\) and suppose \(\X{}{} \in \Omega{\U}{\T-}\) is a stochastic process adapted to its own natural filtration. Then define the marked point process \(\pmap{}(\X{}{})\) as a random measure on \((0,\T) \times \S\carp{\U}\) defined by,
+Let \(\U\subseteq V\) and suppose \(\X{}{} \in \sset\vsi{\U}\ts{\T-}\) is a stochastic process adapted to its own natural filtration. Then define the marked point process \(\pmap{}(\X{}{})\) as a random measure on \((0,\T) \times \S\carp{\U}\) defined by,
 
 \[\pmap{}(\X{}{})(\{(\rt{},\mark{})\}) = \begin{cases}
 1 &\te{ if } \X{}{\rt{}} - \X{}{\rt{}-} = \mark{}\\
@@ -1264,7 +1264,7 @@ and
 \lin
 
 \begin{assu}
-Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X{}{}\in \Omega{\U}{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap{\v}(\X{}{})\) has an \(\X{}{}\)-predictable intensity, \(\ratee{\v}\), and there exists a constant \(\const{} < \infty\) such that \(\sup_{\v\in\U} \ratee{\v} \leq \const{}\). Furthermore, \(\lambda: \S\carp{\degr+1}\times \S\ra[0,\const{}]\) is some function.
+Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X{}{}\in \sset\vsi{\U}\ts{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap{\v}(\X{}{})\) has an \(\X{}{}\)-predictable intensity, \(\ratee{\v}\), and there exists a constant \(\const{} < \infty\) such that \(\sup_{\v\in\U} \ratee{\v} \leq \const{}\). Furthermore, \(\lambda: \S\carp{\degr+1}\times \S\ra[0,\const{}]\) is some function.
 \label{subsec::ProofE:Assu::Eassu}
 \end{assu}
 \labe{subsec::ProofE:Assu::Eassu}
@@ -1643,18 +1643,18 @@ By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{\v}{\t}(\s)\) has a left-co
 
 \begin{proof}[Proof of Theorem \ref{sec::Main:Thm::Local SDE}]
 
-Assume \(\mmm{}{}{1}\) is a probability measure on \(\Omega{\tree\sln{1}}{\T-}\) and suppose that \(\mmm{}{}{1}\) is a solution to equation \eqref{sec::Main:eqn::Local SDE}.
+Assume \(\mmm{}{}{1}\) is a probability measure on \(\sset\vsi{\tree\sln{1}}\ts{\T-}\) and suppose that \(\mmm{}{}{1}\) is a solution to equation \eqref{sec::Main:eqn::Local SDE}.
 
-\ind Let \(\X{}{}{1}\) be a process with law \(\mmm{}{}{1}\) embedded in \(\Omega{V}{\T-}\). That is, \(\X{\v}{}{1} \equiv 0\) for \(\v \notin \tree\sln{1}\). Recall that, for \(\v \in \tree\sln{1}\setminus\{\root\}\),
+\ind Let \(\X{}{}{1}\) be a process with law \(\mmm{}{}{1}\) embedded in \(\sset\vsi{V}\ts{\T-}\). That is, \(\X{\v}{}{1} \equiv 0\) for \(\v \notin \tree\sln{1}\). Recall that, for \(\v \in \tree\sln{1}\setminus\{\root\}\),
 
 \[\crate{}{}(\X{\{\v,\root\}}{[0,\t)}{1},\s) = \exmu{\cm{\t}(\X{\{\v,\root\}}{[0,\t)}{1},\mmm{}{}{1})}{\IGrg{}(\X{}{\t-}{1},\s)}.\]
 
-\ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m{}{}{}\), which is the law of \(\X{}{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X{}{}{n}:n\in\mb{N}\}\) on \(\Omega{\tree\sln{n}}{\T-}\) converging weakly to \(\X{}{}\). 
+\ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m{}{}{}\), which is the law of \(\X{}{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X{}{}{n}:n\in\mb{N}\}\) on \(\sset\vsi{\tree\sln{n}}\ts{\T-}\) converging weakly to \(\X{}{}\). 
 
 \lin
 
 \begin{lem}
-The marginal distribution of \(\mmm{}{}{1}\) on \(\Omega{\{\v,\root\}}{\T}\) for \(\v \in \tree\sln{1}\setminus\{\root\}\) is the law of the unique solution to the following SDE:
+The marginal distribution of \(\mmm{}{}{1}\) on \(\sset\vsi{\{\v,\root\}}\ts{\T}\) for \(\v \in \tree\sln{1}\setminus\{\root\}\) is the law of the unique solution to the following SDE:
 
 \begin{align}
 \X{\{\v,\root\}}{\t}{1} = \X{\{\v,\root\}}{0}{1} &+ \ev\vind{\v}\int_\S\int{(0,\crate{}{}(\X{\{\v,\root\}}{[0,\tt)}{1},\s)]}\int{(0,\t]}\s\,\poiss{\v}(d\tt,d\r,d\s)\nonumber\\
@@ -1707,7 +1707,7 @@ Let \(\mm{}{}{} = \law(\XX{}{})\). Suppose \(\mmm{\v}{0,}{1}\ll\mm{}{0}{}\) for 
 
 \[\mm{\U}{}{} = \otimes_{\v\in\U} \mm{\v}{}{}.\]
 
-Finally, for any \(\t\in [0,\T)\), let \(\mm{\U}{\t,}{}\) be the restriction of \(\mm{\U}{}{}\) to \(\pmsr(\Omega{\U}{\t-})\). Use a similar system for all measures.
+Finally, for any \(\t\in [0,\T)\), let \(\mm{\U}{\t,}{}\) be the restriction of \(\mm{\U}{}{}\) to \(\pmsr(\sset\vsi{\U}\ts{\t-})\). Use a similar system for all measures.
 \label{subsec::ProofU:Defn::nu}
 \end{defn}
 \labe{subsec::ProofU:Defn::nu}
@@ -1715,7 +1715,7 @@ Finally, for any \(\t\in [0,\T)\), let \(\mm{\U}{\t,}{}\) be the restriction of 
 \lin
 
 \begin{lem}
-For any \(\v \in V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(n \in \mb{N}\). Let \(\mmm{}{}{n} \in \pmsr\left(\Omega{\tree\sln{n}}{\T-}\right)\) be the law of the unique solution to the following SDE:
+For any \(\v \in V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(n \in \mb{N}\). Let \(\mmm{}{}{n} \in \pmsr\left(\sset\vsi{\tree\sln{n}}\ts{\T-}\right)\) be the law of the unique solution to the following SDE:
 
 \begin{equation}
 \X{\v}{\t} = \begin{cases}
@@ -1738,7 +1738,7 @@ Then for any \(\alt{n} < n\), \(\mmm{}{\t}{\alt{n}} = \proj{\tree\sln{\alt{n}}}{
 \begin{proof}
 \tr{I'm not being consistent about the intervals I am using. Everything is in half open intervals. I should make the final result the same.}
 
-Let \(\mm{}{}{} \in \pmsr(\Omega{V}{\T-})\) be as defined in Definition \ref{subsec::ProofU:Defn::nu}.
+Let \(\mm{}{}{} \in \pmsr(\sset\vsi{V}\ts{\T-})\) be as defined in Definition \ref{subsec::ProofU:Defn::nu}.
 
 \ind Recall that \(\rp{} \defeq \pmap{}(\X{}{}{1})\) maps \(\X{}{}{1}\) to the point process coinciding with the jumps of \(\X{}{}{1}\). This point process has intensity,
 
@@ -1800,7 +1800,7 @@ The important thing is that this can be used to extend \(\X{}{}{1}\) to a proces
 
 \ind Let \(\v \in V\setminus\{\root\}\). Let \(\c{}:V\setminus\{\root\} \ra V^{\degr-1}\) be defined such that \(\c{\v} = (\c{1}(\v),\dots,\c{\degr-1}(\v))\) are the children of \(\v\). Let \(\p{}:V\setminus\{\root\}\ra V\) map nodes to their parent.
 
-\ind We can define the sequence of functions \(\dense{n}{\t}: \Omega{\tree\sln{n}}{\t-} \ra [0,\infty)\) by,
+\ind We can define the sequence of functions \(\dense{n}{\t}: \sset\vsi{\tree\sln{n}}\ts{\t-} \ra [0,\infty)\) by,
 
 \[\dense{n}{\t}(\X{}{}{n}) := \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{\v,\root\}}{}{n})\]
 
@@ -1825,17 +1825,17 @@ Assume equation \eqref{subsec::ProofU:eqn::densen} holds for \(\dense{n-1}{\t}\)
 
 By a simple calculation analogous to what we did earlier to show that \(\dense{1}{\t}\) was a Radon-Nykodim derivative, we can apply Proposition \ref{subsec::Prope:Prop::radnikder} to prove that this is the Radon-Nikodym derivative of a marked point process. 
 
-\ind For each \(n > 1\), define \(\mmm{}{}{n} \in \pmsr(\Omega{\tree\sln{n}}{\T-})\) by,
+\ind For each \(n > 1\), define \(\mmm{}{}{n} \in \pmsr(\sset\vsi{\tree\sln{n}}\ts{\T-})\) by,
 
 \[\frac{d\mmm{}{\t}{n}}{d\mm{}{\t}{n}} = \dense{n}{\t}(\X{}{}{n}).\]
 
 Then,
 
 \begin{align*}
-\frac{d\proj{\tree\sln{n-1}}{\t}(\mmm{}{\t}{n})}{d\mm{}{\t}{n-1}} &= \int{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \frac{d\mmm{}{\t}{n}}{d\mm{}{\t}{n}}\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
-&=\int{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \dense{n}{\t}(\X{}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
-&= \int{\Omega{\tree\sln{n}\setminus\tree\sln{n-1}}{\t-}} \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
-&= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\int{\Omega{\c{\v}}{\t-}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\c{\v}}{\t,}{}(d\X{\c{\v}}{}{n})\\
+\frac{d\proj{\tree\sln{n-1}}{\t}(\mmm{}{\t}{n})}{d\mm{}{\t}{n-1}} &= \int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \frac{d\mmm{}{\t}{n}}{d\mm{}{\t}{n}}\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&=\int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \dense{n}{\t}(\X{}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&= \int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\tree\sln{n}\setminus\tree\sln{n-1}}{\t,}{}(d\X{\tree\sln{n}\setminus\tree\sln{n-1}}{}{n})\\
+&= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\int{\sset\vsi{\c{\v}}\ts{\t-}} \cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})\,\mm{\c{\v}}{\t,}{}(d\X{\c{\v}}{}{n})\\
 &= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\exmu{\mm{\c{\v}}{\t,}{}}{\cdense{}{\t}(\X{\c{\v}}{}{n};\X{\{v,\p{\v}\}}{}{n})}\\
 &= \dense{n-1}{\t}(\X{\tree\sln{n-1}}{}{n}).
 \end{align*}
@@ -1849,9 +1849,9 @@ This proves that \(\proj{\tree\sln{n-1}}{\t}(\mmm{}{\t}{n}) = \mmm{}{\t}{n-1}\).
 
 \lin
 
-For any \(\U\subseteq V\), we can consider the embedding \(\pmsr\left(\Omega{\U}{\t-}\right) = \pmsr\left((\Omega{\U}{\t-},\F{\U}{\t-})\right) \subseteq \pmsr\left((\Omega{V}{\t-},\F{\U}{\t-})\right)\). That is, a measure \(\mmm{}{}{}\in \pmsr\left(\Omega{\U}{\t-}\right)\) can be considered as a \(\F{\U}{}\)-adapted measure on \(\Omega{V}{\t-}\).
+For any \(\U\subseteq V\), we can consider the embedding \(\pmsr\left(\sset\vsi{\U}\ts{\t-}\right) = \pmsr\left((\sset\vsi{\U}\ts{\t-},\F{\U}{\t-})\right) \subseteq \pmsr\left((\sset\vsi{V}\ts{\t-},\F{\U}{\t-})\right)\). That is, a measure \(\mmm{}{}{}\in \pmsr\left(\sset\vsi{\U}\ts{\t-}\right)\) can be considered as a \(\F{\U}{}\)-adapted measure on \(\sset\vsi{V}\ts{\t-}\).
 
-\ind Let's summarize what we have so far. We have a sequence of measures \(\{\mmm{}{}{n}:n\in\mb{N}\} \subset \pmsr(\Omega{V}{\T-})\) satisfying:
+\ind Let's summarize what we have so far. We have a sequence of measures \(\{\mmm{}{}{n}:n\in\mb{N}\} \subset \pmsr(\sset\vsi{V}\ts{\T-})\) satisfying:
 
 \begin{enumerate}[(a)]
 \item \(\mmm{}{}{1}\) solves equation \eqref{sec::Main:eqn::Local SDE}.
@@ -1865,11 +1865,11 @@ Let \(\{\mmm{\U}{\t,}{}:\t \leq \T\}_{\U\subset V,\U\te{ finite}}\) be a collect
 
 \[\mmm{\U}{\t,}{}(\cdot) = \mmm{}{\t}{n}(\X{}{[0,\t)}{n} \in \cdot) \te{ for any }n\te{ \tt.\t. }\U \subseteq \tree\sln{n}.\]
 
-By property (b) above, this is well-defined. Since each \(\mmm{\U}{}{}\) is a probability measure defined on the Borel sets of \(\Omega{\U}{\T-}\), they are all inner regular (\tr{citation?}). Now, fix some finite \(\U\subseteq V\) and let \(\UU \subseteq \U\). Suppose \(n\) is such that \(\U \subseteq \tree\sln{n}\). Then \(\UU\subseteq \tree\sln{n}\), so
+By property (b) above, this is well-defined. Since each \(\mmm{\U}{}{}\) is a probability measure defined on the Borel sets of \(\sset\vsi{\U}\ts{\T-}\), they are all inner regular (\tr{citation?}). Now, fix some finite \(\U\subseteq V\) and let \(\UU \subseteq \U\). Suppose \(n\) is such that \(\U \subseteq \tree\sln{n}\). Then \(\UU\subseteq \tree\sln{n}\), so
 
 \[\proj{\UU}{\t}(\mmm{\U}{\t,}{})(\cdot) = \mmm{\U}{\t,}{}\left(\proj{\UU}{\t}(\X{\U}{}{n}) \in \cdot\right) = \mmm{}{\t}{n}\left(\X{\UU}{}{n} \in \cdot\right) = \mmm{\UU}{\t,}{}(\cdot).\]
 
-Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied. Therefore, there exists a \(\mmm{}{}{}\in \ms{P}(\Omega{\U}{\T-})\) such that \(\proj{\U}{\T-}(\mmm{}{}{}) =\mmm{\U}{}{}\) for all finite \(\U\). \tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
+Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied. Therefore, there exists a \(\mmm{}{}{}\in \ms{P}(\sset\vsi{\U}\ts{\T-})\) such that \(\proj{\U}{\T-}(\mmm{}{}{}) =\mmm{\U}{}{}\) for all finite \(\U\). \tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
 
 \ind In particular, there exists a probability space with canonical process \(\X{}{}\) such that \(\mmm{}{}{} = \law(\X{}{[0,\T)})\) and \(\mmm{\v}{}{} = \law(\X{\v}{[0,\T)})\) for all \(\v \in V\). In particular, this means that \(\law(\X{\tree\sln{n}}{[0,\T)}) = \mmm{\tree\sln{n}}{}{} = \mmm{}{}{n}\). Since \(\X{\tree\sln{n}}{} \ra \X{}{}\) almost surely (we are in the topology of componentwise convergence), \(\mmm{}{}{n} \Rightarrow \mmm{}{}{}\). In order to characterize \(\X{}{}\) and \(\mmm{}{}{}\), we construct a stochastic differential equation on a probability space on which \(\X{}{}{n} \sim \mmm{}{}{n}\) and \(\X{}{}{n} = \X{\tree\sln{n}}{}\) almost surely. \tr{I don'\t know if it's clear, but we are taking \(\X{}{}{n}\) and \(\X{}{}\) as given in this probability space.}
 
@@ -2386,7 +2386,7 @@ Giving us,
 \lin
 
 \begin{lem}
-Let \(G = (V,E)\) be a finite graph and let \(0 < \const{}< \infty\). Let \(\X{}{0}\) be an \(\S\carp{V}\)-valued random variable. Let \(\Sm\) be a probability measure over \(\S\) with positive weight on all elements in \(\S\setminus\{0\}\) and 0 weight on \(\{0\}\). Let \(\{\ratee{\t,\v}\}_{\v \in V,\t\in [0,\T]}\) be a set of measurable mappings from \(\Omega{V}{\t-} \times \S\) to \([0,\const{}]\) such that if \(h \in \Omega{V}{\t-}\), then \(\t\mapsto \ratee{\t,\v}(h[0,\t),\s)\) is left-continuous for all \(\v \in V\) and \(\s \in \S\). Let \(\{\poiss{\v}\}_{\v \in V}\) be i.i.d. Poisson processes on \(\mb{R}^+\times \S\times\mb{R}^+\) with intensity measure \(\leb\otimes\Sm\otimes\leb\) where \(\leb\) is the Lebesgue measure on \(\mb{R}\).
+Let \(G = (V,E)\) be a finite graph and let \(0 < \const{}< \infty\). Let \(\X{}{0}\) be an \(\S\carp{V}\)-valued random variable. Let \(\Sm\) be a probability measure over \(\S\) with positive weight on all elements in \(\S\setminus\{0\}\) and 0 weight on \(\{0\}\). Let \(\{\ratee{\t,\v}\}_{\v \in V,\t\in [0,\T]}\) be a set of measurable mappings from \(\sset\vsi{V}\ts{\t-} \times \S\) to \([0,\const{}]\) such that if \(h \in \sset\vsi{V}\ts{\t-}\), then \(\t\mapsto \ratee{\t,\v}(h[0,\t),\s)\) is left-continuous for all \(\v \in V\) and \(\s \in \S\). Let \(\{\poiss{\v}\}_{\v \in V}\) be i.i.d. Poisson processes on \(\mb{R}^+\times \S\times\mb{R}^+\) with intensity measure \(\leb\otimes\Sm\otimes\leb\) where \(\leb\) is the Lebesgue measure on \(\mb{R}\).
 
 \ind Then given any \(\S\carp{V}\)-valued random variable, \(\X{}{0}\), the following SDE has a unique strong solution:
 
@@ -2483,7 +2483,7 @@ Thus, \(\sum_{\v\in V}\poiss{\v}\) is an almost surely finite measure on \([0,\T
 \lin
 
 \begin{lem}
-Suppose that \(V\) is finite. Recall that \(\pmap{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap{}(\XX{}{})\) for some \(\Omega{V}{\T-}\)-valued stochastic process, \(\XX{}{}\). Suppose also that \(\rp{}\) has \(\XX{}{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\Omega{}{\t-}\times \S \ra [0,\const{}]\}_{\t\in[0,\T),\v\in V}\) such that 
+Suppose that \(V\) is finite. Recall that \(\pmap{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap{}(\XX{}{})\) for some \(\sset\vsi{V}\ts{\T-}\)-valued stochastic process, \(\XX{}{}\). Suppose also that \(\rp{}\) has \(\XX{}{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\sset\vsi{}\ts{\t-}\times \S \ra [0,\const{}]\}_{\t\in[0,\T),\v\in V}\) such that 
 
 \begin{equation}
 \ratee{\t}(\sv\cind{}\vsi{V}) := \begin{cases}
@@ -2502,7 +2502,7 @@ and such that \(\t\mapsto \ratee{\t,\v}(\XX{}{[0,\t)},\sv\cind{}\vsi{V})\) is al
 
 \begin{proof}
 
-We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \Omega{}{\t-}\) such that \(\pr(\XX{}{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
+We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \sset\vsi{}\ts{\t-}\) such that \(\pr(\XX{}{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
 
 \[\X{\v}{\t} = \X{0}{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee{\tt,\v}(\X{}{[0,\tt)},\s)]}  \s\,\poiss{\v}(d\r,d\s,d\tt).\]
 
@@ -2838,7 +2838,7 @@ This is simply a restatement of \cite[Theorem 13.2]{Bil99}.
 \lin
 
 \begin{lem}
-Let \(\{\X{}{}{n}\}\) be a sequence \(\Omega{V}{\T}\)-valued Feller processes satisfying Assumption \ref{subsec::Assum:Assu::CI}. Let the infinitesimal generators of these processes be given by the equation:
+Let \(\{\X{}{}{n}\}\) be a sequence \(\sset\vsi{V}\ts{\T}\)-valued Feller processes satisfying Assumption \ref{subsec::Assum:Assu::CI}. Let the infinitesimal generators of these processes be given by the equation:
 
 \[\IG\sln{n}f(\sv\cind{}\vsi{V}) = \sum_{\v\in V}\sum_{\s \in \S} \IGr\sln{n}{\v}(\sv\cind{}\vsi{V},\s)[f(\sv\cind{}\vsi{V} + \s\ev\vind{\v}) - f(\sv\cind{}\vsi{V})].\]
 
@@ -2882,14 +2882,14 @@ Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss{\v}:\v\in V\}\) 
 It follows that for any partition \(\{\t{\it}\}\) of \([0,\T]\),
 
 \begin{align*}
-\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|\leq \sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|.
+\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b\cind{\v}|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|\leq \sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|.
 \end{align*}
 
 Fix \(\delta > 0\). Taking the infimum over all partitions with minimum interval length \(\delta\) yields,
 
 \begin{align*}
-\omega'_{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta) &= \inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b{\v}|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|\\
-&\leq \inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|\\
+\omega'_{\proj{\U}{\T}\left(\X{}{}{n}\right)}(\delta) &= \inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b\cind{\v}|\X{\v}{\tt}{n} - \X{\v}{\ttt}{n}|\\
+&\leq \inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|\\
 &= \omega'_{\XX{}{}}(\delta).
 \end{align*}
 
