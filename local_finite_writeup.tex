@@ -141,7 +141,7 @@
 
 %Modifiers
 \newcommand{\me}[1]{^{#1}}						%Append measure
-
+\newcommand{\dnvind}[1]{_{#1}}				%vind for \dneigh
 
 %Section 4
 \newcommand{\XX}{Y}								%second random element
@@ -682,7 +682,7 @@ The proof that \(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tip{}\) satisfies these proper
 
 \item Notice that we can write,
 
-\[\X\pst{\sv\cind{}\vsi{V}}\cind{\v}\tp{\t+\cdot} = \X\pst{\sv\cind{}\vsi{V}}\cind{\v}\tp{\t} + \int_\S\int_\t{\t+\cdot} \s\,\poiss\vind{\v}(d\tt,(0,\IGr\vind{\v}(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\tt-},\s)],d\s).\]
+\[\X\pst{\sv\cind{}\vsi{V}}\cind{\v}\tp{\t+\cdot} = \X\pst{\sv\cind{}\vsi{V}}\cind{\v}\tp{\t} + \int_\S\int_{\t}^{\t+\cdot} \s\,\poiss\vind{\v}(d\tt,(0,\IGr\vind{\v}(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\tt-},\s)],d\s).\]
 
 Let \(\alt{\X}\cind{}\tip{}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
 
@@ -783,12 +783,12 @@ First, for each \(n\in\mb{N}\), \(\X\sln{n}\cind{}\tip{}\) satisfies Assumption 
 
 Recall from Definition \ref{sec::TL:Def::modulus}, the c\`adl\`ag version of the modulus of continuity is given by,
 
-\[\cmodu\pra{\X\cind{}\tip{}}(\delta) = \inf_{\{\t{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \|\X\cind{}\tp{\tt} - \X\cind{}\tp{\ttt}\|_{\b},\]
+\[\cmodu\pra{\X\cind{}\tip{}}(\delta) = \inf_{\{\t\indx{\it}\}} \sup_\it \sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \|\X\cind{}\tp{\tt} - \X\cind{}\tp{\ttt}\|_{\b},\]
 
-where \(\{\t{\it}\} := 0 \leq \t{1} < \t{2} < \cdots < \t{\cdot} = \T\) and \(\min_\it|\t{\it} - \t{\it-1}| > \delta\). Note that \(\X\sln{n}\cind{}\tip{}\) is \(\sset\vsi{V\sln{n}}\ts{\T}\)-valued and can be embedded in \(\sset\vsi{V}\ts{\T}\) the same way we embed \(\S\carp{V\sln{n}}\) in \(\S\carp{V}\): let \(\X\sln{n}\cind{\v}\tip{} \equiv 0\) for \(\v \notin V\sln{n}\). Recall also that \(\proj\vsi{\U}\ts{\T}\) is the projection to \(\sset\vsi{\U}\ts{\T}\) for all \(\U\subseteq V\). Then for any \(n\in \mb{N}\),
+where \(\{\t\indx{\it}\} := 0 \leq \t\indx{1} < \t\indx{2} < \cdots < \t\indx{\cdot} = \T\) and \(\min_\it|\t\indx{\it} - \t\indx{\it-1}| > \delta\). Note that \(\X\sln{n}\cind{}\tip{}\) is \(\sset\vsi{V\sln{n}}\ts{\T}\)-valued and can be embedded in \(\sset\vsi{V}\ts{\T}\) the same way we embed \(\S\carp{V\sln{n}}\) in \(\S\carp{V}\): let \(\X\sln{n}\cind{\v}\tip{} \equiv 0\) for \(\v \notin V\sln{n}\). Recall also that \(\proj\vsi{\U}\ts{\T}\) is the projection to \(\sset\vsi{\U}\ts{\T}\) for all \(\U\subseteq V\). Then for any \(n\in \mb{N}\),
 
 \begin{align*}
-\pr\left(\sup_n \cmodu\pra{\X\sln{n}\cind{}\tip{}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v \in V} \b\cind{\v}|(\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}| > \epsilon \right)\\
+\pr\left(\sup_n \cmodu\pra{\X\sln{n}\cind{}\tip{}}(\delta) > \epsilon\right) &= \pr\left(\sup_n\inf_{\{\t\indx{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v \in V} \b\cind{\v}|(\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}| > \epsilon \right)\\
 &\leq \pr\left(\sup_n \left(\cmodu\pra{\proj\vsi{V\sln{\cconst}}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta) + \cmodu\pra{\proj\vsi{\left(V\sln{\cconst}\right)^c}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta)\right) > \ep\right)\\
 &\leq \pr\left(\sup_n \cmodu\pra{\proj\vsi{V\sln{\cconst}}\ts{\T}(\X\sln{n}\cind{}\tip{})}(\delta) > \ep/2\right) \os{\delta\searrow 0}{\ra} 0.
 \end{align*}
@@ -821,14 +821,14 @@ Here \(\delt\deltf{\f}\vind{\v} = \sup\left\{|f(\sv\cind{}\vsi{V}) - f(\sv\cind{
 
 Some further notation. Let \(\X\cind{}\tip{[0,\t]}\) denote the trajectory of \(\X\cind{}\tip{}\) on the time interval \([0,\t]\). Similarly, \(\X\cind{}\tip{[0,\t)}\) is \(\X\cind{}\tip{}\) on the interval \([0,\t)\) and so on.
 
-\ind For \(\U \subseteq V\), let \(\dneigh{\U} = \neigh\vind{\U} \cup \neigh\vind{\ov{\U}}\). 
+\ind For \(\U \subseteq V\), let \(\dneigh\dnvind{\U} = \neigh\vind{\U} \cup \neigh\vind{\ov{\U}}\). 
 
 \ind For random elements \(\X\cind{}\tip{},\XX{}{}\) and \(\XXX{}{}\), we say that \(\X\cind{}\tip{}\) is conditionally independent of \(\XX{}{}\) given \(\XXX{}{}\) if \(\X\cind{}\tip{}\perp\XX{}{}|\XXX{}{}\).
 
 \lin
 
 \begin{thms}
-Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset V\). Let \(\UU =V\setminus \ov{\ov{\U}}\). Let \(\UUU= \dneigh{U}\) and suppose that \(|\UUU| < \infty\). Then for all \(\t < \infty\),
+Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset V\). Let \(\UU =V\setminus \ov{\ov{\U}}\). Let \(\UUU= \dneigh\dnvind{U}\) and suppose that \(|\UUU| < \infty\). Then for all \(\t < \infty\),
 
 \[\X\cind{\U}\tip{[0,\t)}\perp \X\cind{\UU}\tip{[0,\t)}|\X\cind{\UUU}\tip{[0,\t)}\]
 \label{sec::Main:Thm::CI}
@@ -1034,13 +1034,13 @@ Begin the proof with the base case of \(i=j =1\). \(\pathset{1}{1}\) contains a 
 
 By independence of initial conditions,
 
-\[\X\cind{\U}\tp{0}\perp \X\cind{\UU}\tp{0}|\X\cind{\dneigh{\U}}\tp{0}.\]
+\[\X\cind{\U}\tp{0}\perp \X\cind{\UU}\tp{0}|\X\cind{\dneigh\dnvind{\U}}\tp{0}.\]
 
 \(\rt{1}\) is \(\sigma\left(\poiss\vind{\vv}:\vv\in \neigh\vind{\U}\right)\) measurable and \(\rtt{1}\) is \(\sigma\left(\poiss\vind{\vv}:\vv\in \neigh\vind{\UU}\right)\) measurable. Therefore, both stopping times are independent of each other and of the initial conditions. By Lemma \ref{sec::TL:Lem::Props}(b), 
 
 \[\X\cind{\U}\tp{0}\perp \X\cind{\UU}\tp{0}|\left(\X\cind{\neigh\vind{\U}}\tp{0},\X\cind{\neigh\vind{\UU}}\tp{0},\rt{1},\rtt{1}\right).\]
 
-Since \(\X\cind{\neigh\vind{\U}}\tip{}\) is constant on \([0,\rt{1})\) and \(\X\cind{\neigh\vind{\UU}}\tip{}\) is constant on \([0,\rtt{1})\), the mapping \((\X\cind{\dneigh{\U}}\tp{0},\rt{1},\rtt{1}) \mapsto (\X\cind{\neigh\vind{\U}}\tip{[0,\rt{1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt{1})})\) is 1-to-1. By Lemma \ref{sec::TL:Lem::Props}(a),
+Since \(\X\cind{\neigh\vind{\U}}\tip{}\) is constant on \([0,\rt{1})\) and \(\X\cind{\neigh\vind{\UU}}\tip{}\) is constant on \([0,\rtt{1})\), the mapping \((\X\cind{\dneigh\dnvind{\U}}\tp{0},\rt{1},\rtt{1}) \mapsto (\X\cind{\neigh\vind{\U}}\tip{[0,\rt{1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt{1})})\) is 1-to-1. By Lemma \ref{sec::TL:Lem::Props}(a),
 
 \begin{equation}
 \X\cind{\U}\tp{0}\perp \XX{\U}{0}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt{1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt{1})}\right).
@@ -1206,37 +1206,37 @@ It should be clear that for any \(\t > 0\), \(\{\pathseted{i}{j}(\t)\}_{(i,j)\in
 \[\X\cind{\U}\tip{[0,\rt{i})}\mb{I}_{\pathseted{i}{j}(\t)}\perp\X\cind{\UU}\tip{[0,\rtt{j})}\mb{I}_{\pathseted{i}{j}(\t)}\big|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt{j})}\right)\mb{I}_{\pathseted{i}{j}(\t)}.\]
 
 
-Notice by definition of \(\mb{I}_{\pathseted{i}{j}(\t)}\), \(\X\cind{\U}\tip{[0,\rt{i})}\mb{I}_{\pathseted{i}{j}(\t)} \mapsto \X\cind{\U}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\) is measurable. We can map \(\X\cind{\UU}\tip{}\) similarly. Finally, \(\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt{j})}\right)\mb{I}_{\pathseted{i}{j}(\t)}\mapsto (\X\cind{\dneigh{\U}}\tip{[0,\t]}, \rt{i},\rtt{j})\mb{I}_{\pathseted{i}{j}(\t)}\) is a 1-to-1 mapping. By Lemma \ref{sec::TL:Lem::Props}(a),
+Notice by definition of \(\mb{I}_{\pathseted{i}{j}(\t)}\), \(\X\cind{\U}\tip{[0,\rt{i})}\mb{I}_{\pathseted{i}{j}(\t)} \mapsto \X\cind{\U}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\) is measurable. We can map \(\X\cind{\UU}\tip{}\) similarly. Finally, \(\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt{j})}\right)\mb{I}_{\pathseted{i}{j}(\t)}\mapsto (\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t]}, \rt{i},\rtt{j})\mb{I}_{\pathseted{i}{j}(\t)}\) is a 1-to-1 mapping. By Lemma \ref{sec::TL:Lem::Props}(a),
 
-\[\X\cind{\U}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\perp\X\cind{\UU}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\big|\left(\X\cind{\dneigh{\U}}\tip{[0,\t]},\rt{i},\rtt{j}\right)\mb{I}_{\pathseted{i}{j}(\t)}.\]
+\[\X\cind{\U}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\perp\X\cind{\UU}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\big|\left(\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t]},\rt{i},\rtt{j}\right)\mb{I}_{\pathseted{i}{j}(\t)}.\]
 
-But \(\poiss\vind{\dneigh{\U}}\) is a strong Markov process, so 
+But \(\poiss\vind{\dneigh\dnvind{\U}}\) is a strong Markov process, so 
 
 \[(\rt{i},\rtt{j})\mb{I}_{\pathseted{i}{j}(\t)}\perp \X\cind{}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}|\mb{I}_{\pathseted{i}{j}(\t)}.\]
 
 By Lemma \ref{sec::TL:Lem::Props}(g), this gives us
 
-\[\X\cind{\U}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\perp\X\cind{\UU}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\big|\X\cind{\dneigh{\U}}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}.\]
+\[\X\cind{\U}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\perp\X\cind{\UU}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\big|\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}.\]
 
 Applying Lemma \ref{sec::TL:Lem::Props}(f),
 
-\[\sum_{(i,j)\in\mb{N}^2}\X\cind{\U}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\perp\sum_{(i,j)\in\mb{N}^2}\X\cind{\UU}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\bigg|\sum_{(i,j)\in\mb{N}^2}\X\cind{\dneigh{\U}}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)},\]
+\[\sum_{(i,j)\in\mb{N}^2}\X\cind{\U}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\perp\sum_{(i,j)\in\mb{N}^2}\X\cind{\UU}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)}\bigg|\sum_{(i,j)\in\mb{N}^2}\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t]}\mb{I}_{\pathseted{i}{j}(\t)},\]
 
 which simplifies to 
 
-\[\X\cind{\U}\tip{[0,\t]}\perp\X\cind{\UU}\tip{[0,\t]}\big|\X\cind{\dneigh{\U}}\tip{[0,\t]}.\]
+\[\X\cind{\U}\tip{[0,\t]}\perp\X\cind{\UU}\tip{[0,\t]}\big|\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t]}.\]
 
-Because \(|\dneigh{\U}| < \infty\), the event \(\{\X\cind{\dneigh{\U}}\tp{\t} = \X\cind{\dneigh{\U}}\tp{\t-}\}\) occurs with probability 1 for all \(\t \in [0,\T]\). It is also \(\X\cind{\dneigh{\U}}\tip{[0,\t]}\)-measurable. By Lemma \ref{sec::TL:Lem::Props}(d),
+Because \(|\dneigh\dnvind{\U}| < \infty\), the event \(\{\X\cind{\dneigh\dnvind{\U}}\tp{\t} = \X\cind{\dneigh\dnvind{\U}}\tp{\t-}\}\) occurs with probability 1 for all \(\t \in [0,\T]\). It is also \(\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t]}\)-measurable. By Lemma \ref{sec::TL:Lem::Props}(d),
 
-\[\X\cind{\U}\tip{[0,\t]}\mb{I}_{\X\cind{\dneigh{\U}}\tp{\t} = \X\cind{\dneigh{\U}}\tp{\t-}}\perp\X\cind{\UU}\tip{[0,\t]}\mb{I}_{\X\cind{\dneigh{\U}}\tp{\t} = \X\cind{\dneigh{\U}}\tp{\t-}}\big|\X\cind{\dneigh{\U}}\tip{[0,\t]}\mb{I}_{\X\cind{\dneigh{\U}}\tp{\t} = \X\cind{\dneigh{\U}}\tp{\t-}}.\]
+\[\X\cind{\U}\tip{[0,\t]}\mb{I}_{\X\cind{\dneigh\dnvind{\U}}\tp{\t} = \X\cind{\dneigh\dnvind{\U}}\tp{\t-}}\perp\X\cind{\UU}\tip{[0,\t]}\mb{I}_{\X\cind{\dneigh\dnvind{\U}}\tp{\t} = \X\cind{\dneigh\dnvind{\U}}\tp{\t-}}\big|\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t]}\mb{I}_{\X\cind{\dneigh\dnvind{\U}}\tp{\t} = \X\cind{\dneigh\dnvind{\U}}\tp{\t-}}.\]
 
 Applying Lemma \ref{sec::TL:Lem::Props}(a),
 
-\[\X\cind{\U}\tip{[0,\t)}\mb{I}_{\X\cind{\dneigh{\U}}\tp{\t} = \X\cind{\dneigh{\U}}\tp{\t-}}\perp\X\cind{\UU}\tip{[0,\t)}\mb{I}_{\X\cind{\dneigh{\U}}\tp{\t} = \X\cind{\dneigh{\U}}\tp{\t-}}\big|\X\cind{\dneigh{\U}}\tip{[0,\t)}\mb{I}_{\X\cind{\dneigh{\U}}\tp{\t} = \X\cind{\dneigh{\U}}\tp{\t-}}.\]
+\[\X\cind{\U}\tip{[0,\t)}\mb{I}_{\X\cind{\dneigh\dnvind{\U}}\tp{\t} = \X\cind{\dneigh\dnvind{\U}}\tp{\t-}}\perp\X\cind{\UU}\tip{[0,\t)}\mb{I}_{\X\cind{\dneigh\dnvind{\U}}\tp{\t} = \X\cind{\dneigh\dnvind{\U}}\tp{\t-}}\big|\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t)}\mb{I}_{\X\cind{\dneigh\dnvind{\U}}\tp{\t} = \X\cind{\dneigh\dnvind{\U}}\tp{\t-}}.\]
 
 Finally, by Lemma \ref{sec::TL:Lem::Props}(h),
 
-\[\X\cind{\U}\tip{[0,\t)}\perp\X\cind{\UU}\tip{[0,\t)}\big|\X\cind{\dneigh{\U}}\tip{[0,\t)}.\]
+\[\X\cind{\U}\tip{[0,\t)}\perp\X\cind{\UU}\tip{[0,\t)}\big|\X\cind{\dneigh\dnvind{\U}}\tip{[0,\t)}.\]
 \end{proof}
 
 \lin
@@ -1394,11 +1394,11 @@ Then \(\XX{}{}\) has left and right limits everywhere and it is almost surely le
 
 \[\typset\sln{n} := \left\{\t\in [0,\T]: \pr\left(|\X\cind{}\tp{\t} - \XX{}{\t}| > 1/n\right) > 1/n\right\}.\] 
 
-Suppose \(\typset\sln{n}\) is not finite. Then there exists an increasing or decreasing sequence \(\{\t{\it}:\it\in \mb{N}\}\subseteq \typset\sln{n}\). Since this sequence is contained in the compact interval \([0,\T]\), it is convergent. Without loss of generality, we can enlarge \(\Tset\) to contain this sequence so that
+Suppose \(\typset\sln{n}\) is not finite. Then there exists an increasing or decreasing sequence \(\{\t\indx{\it}:\it\in \mb{N}\}\subseteq \typset\sln{n}\). Since this sequence is contained in the compact interval \([0,\T]\), it is convergent. Without loss of generality, we can enlarge \(\Tset\) to contain this sequence so that
 
-\[\lim_{\it \ra\infty} \X\cind{}\tp{\t{\it}} = \lim_{\it\ra\infty} \XX{}{\t{\it}} \te{ almost surely.}\]
+\[\lim_{\it \ra\infty} \X\cind{}\tp{\t\indx{\it}} = \lim_{\it\ra\infty} \XX{}{\t\indx{\it}} \te{ almost surely.}\]
 
-Thus, \(\pr(|\X\cind{}\tp{\t{\it}} - \XX{}{\t{\it}}| > 1/n) \ra 0\), which contradicts the fact that \(\t{\it} \in \typset\sln{n}\) for all \(\it\in\mb{N}\). We can then conclude that,
+Thus, \(\pr(|\X\cind{}\tp{\t\indx{\it}} - \XX{}{\t\indx{\it}}| > 1/n) \ra 0\), which contradicts the fact that \(\t\indx{\it} \in \typset\sln{n}\) for all \(\it\in\mb{N}\). We can then conclude that,
 
 \[\typset:= \{\t\in [0,\T]: \pr(\X\cind{}\tp{\t} \neq \XX{}{\t}) > 0\} = \cap_{n = 1}^\infty \typset\sln{n}\]
 
@@ -1566,9 +1566,9 @@ Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\crate{\v}{\t}(
 \begin{proof}
 Any elementary set can be expressed in the form
 
-\[\typset = \bigcup_{\it = 1}^n [\tt{\it},\t{\it})\times \typset\sln{\it},\]
+\[\typset = \bigcup_{\it = 1}^n [\tt{\it},\t\indx{\it})\times \typset\sln{\it},\]
 
-where \(\{[\tt{\it},\t{\it}):\it=1,\dots,n\}\) are disjoint, if \(\tt{\it} = \t{\it} = 0\), then \([\tt{\it},\t{\it}) = \{0\}\) and \(\typset\sln{\it}\) are all \(\sigma(\crate{\v}{\t}(\s):\s \in \S,\t\in [0,\tt{\it}])\)-measurable. 
+where \(\{[\tt{\it},\t\indx{\it}):\it=1,\dots,n\}\) are disjoint, if \(\tt{\it} = \t\indx{\it} = 0\), then \([\tt{\it},\t\indx{\it}) = \{0\}\) and \(\typset\sln{\it}\) are all \(\sigma(\crate{\v}{\t}(\s):\s \in \S,\t\in [0,\tt{\it}])\)-measurable. 
 
 By Lemma \ref{subsec::ProofE:Lem::pleft}, there exists a \(\const\indx{1} < \infty\) such that,
 
@@ -1585,8 +1585,8 @@ Furthermore, since \(\crate{\v}{\t}(\s)\) is a \([0,\const\indx{}]\)-valued proc
 \tr{This holds even with random times because inequality \eqref{subsec::ProofE:eqn::driftbound} holds for all \(\tt\) almost surely.} Then,
 
 \begin{align*}
-\ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} &= \sum_{\it = 1}^n \mb{I}_{	ypset{\it}}\ex{\left|\crate{\v}{\t{k}}(\s) - \crate{\v}{\tt{\it}}(\s)\right|}\\
-&\leq \sum_{\it=1}^n \const\indx{1}|\t{\it} - \tt{\it}| + \const\indx{}\ex{\te{\# of jumps of }\X\cind{\{\v,\root\}}\tip{[\tt{\it},\t{\it})}}\\
+\ex{\int_0^\T \mb{I}_\typset\,d\crate{\v}{\t}(\s)} &= \sum_{\it = 1}^n \mb{I}_{	ypset{\it}}\ex{\left|\crate{\v}{\t\indx{k}}(\s) - \crate{\v}{\tt{\it}}(\s)\right|}\\
+&\leq \sum_{\it=1}^n \const\indx{1}|\t\indx{\it} - \tt{\it}| + \const\indx{}\ex{\te{\# of jumps of }\X\cind{\{\v,\root\}}\tip{[\tt{\it},\t\indx{\it})}}\\
 &\leq \const\indx{1}\T + \const\indx{}\ex{\te{\# of jumps in }\X\cind{\{\v,\root\}}\tip{[0,\T)}}\\
 &\leq \const\indx{1}\T + 2\const\indx{}^2\T < \infty.
 \end{align*}
@@ -2131,15 +2131,15 @@ By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimens
 
 Thus all of the one-dimensional distributions converge. Assume that,
 
-\[\exmu{\alt{\m}{n}}{g(\XX{}{\t{1}},\dots,\XX{}{\t{k-1}})|\XX{}{0}=\xxx} \ra \exmu{\alt{\m}}{g(\XX{}{\t{1}},\dots,\XX{}{\t{k-1}})|\XX{}{0}=\xxx}\]
+\[\exmu{\alt{\m}{n}}{g(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{k-1}})|\XX{}{0}=\xxx} \ra \exmu{\alt{\m}}{g(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{k-1}})|\XX{}{0}=\xxx}\]
 
-\noindent for any continuous function \(g\) and for any \(\{\t{1},\dots,\t{k-1}\} \subset [0,T]\). Fix \(0\leq \t{1} <\t{2} <\cdots < \t{\it}\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
+\noindent for any continuous function \(g\) and for any \(\{\t\indx{1},\dots,\t\indx{k-1}\} \subset [0,T]\). Fix \(0\leq \t\indx{1} <\t\indx{2} <\cdots < \t\indx{\it}\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
 
 \begin{align}
-\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})|\XX{}{0} = \xxx}&= \exmu{\alt{\m}{n}}{f{1}(\XX{}{0})f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=\xxx}\nonumber\\
-&= f{1}(\xxx)\exmu{\alt{\m}{n}}{f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=\xxx}\nonumber\\
-&\os{\te{Induction}}{\ra} f{1}(\xxx)\exmu{\alt{\m}}{f{2}(\XX{}{\t{2}},\dots,\XX{}{\t{k}})|\XX{}{0}=\xxx}\nonumber\\
-&= \exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})|\XX{}{0}=\xxx}
+\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0} = \xxx}&= \exmu{\alt{\m}{n}}{f{1}(\XX{}{0})f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
+&= f{1}(\xxx)\exmu{\alt{\m}{n}}{f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
+&\os{\te{Induction}}{\ra} f{1}(\xxx)\exmu{\alt{\m}}{f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
+&= \exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}
 \label{sec::Infin:eqn::zerocase}
 \end{align}
 \labe{sec::Infin:eqn::zerocase}
@@ -2147,27 +2147,27 @@ Thus all of the one-dimensional distributions converge. Assume that,
 So,
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})} &= \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})|\XX{}{0}}}\\
-&\ra \exmu{\alt{\mm}}{\exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})|\XX{}{0}}}\\
-&= \exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t{2}},\dots,\XX{}{\t{\it}})}
+\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})} &= \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}}}\\
+&\ra \exmu{\alt{\mm}}{\exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}}}\\
+&= \exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})}
 \end{align*}
 
 then,
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})|\XX{}{0}=\xxx}&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{\t{1}},\dots,\XX{\t{\it}})|\XX{\t{1}}=\XX{}{\t{1}},\XX{0}=\xxx}|\XX{}{0}=\xxx}\\
-&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=\xxx}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=\xxx}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\alt{\m}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t{\it}-\t{1}})|\XX{0}=\XX{}{\t{1}}}|\XX{}{0}=\xxx}\\
-&=\exmu{\alt{\m}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})|\XX{}{0}=\xxx}
+\exmu{\alt{\m}{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{\t\indx{1}},\dots,\XX{\t\indx{\it}})|\XX{\t\indx{1}}=\XX{}{\t\indx{1}},\XX{0}=\xxx}|\XX{}{0}=\xxx}\\
+&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\alt{\m}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
+&=\exmu{\alt{\m}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}
 \end{align*}
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})}&= \exmu{\XX\sim \XX{}{\t{1}}}{\exmu{\alt{\m}{n}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})|\XX{}{\t{1}}=\XX}}\\
-&=\exmu{\XX\sim \alt{\m}{n}|_{\t{1}}}{\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{\t{2}-\t{1}},\dots,\XX{\t{\it}-\t{1}})|\XX{}{0}=\XX}}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim \alt{\m}{n}|_{\t{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t{2}-\t{1}},\dots,\XX{\t{\it}-\t{1}})|\XX{}{0}=\XX}}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim \alt{\m}|_{\t{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t{2}-\t{1}},\dots,\XX{\t{\it}-\t{1}})|\XX{}{0}=\XX}}\\
-&=\exmu{\alt{\m}}{f(\XX{}{\t{1}},\dots,\XX{}{\t{\it}})}
+\exmu{\alt{\m}{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})}&= \exmu{\XX\sim \XX{}{\t\indx{1}}}{\exmu{\alt{\m}{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{\t\indx{1}}=\XX}}\\
+&=\exmu{\XX\sim \alt{\m}{n}|_{\t\indx{1}}}{\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim \alt{\m}{n}|_{\t\indx{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim \alt{\m}|_{\t\indx{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
+&=\exmu{\alt{\m}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})}
 \end{align*}
 
 It follows by induction that the finite-dimensional distributions of \(\alt{\m}{n}\) converge weakly. Note: this proof is similar to the proof of \cite[Theorem 4.2]{Kur81}, but with the details filled in.
@@ -2246,7 +2246,7 @@ Assume that \(\law((\rt{n},\mark{n})|\F\ts{\rt{n-1}})\) is a regular distributio
 
 \ind Fix \(n\). Suppose \(\XX\) is a \(\spce\)-valued random variable. Let \(\m\) be the law of \(\rp\). Then \(\left([0,\infty)\times \mspce\right)^{n-1}\times\spce\) and \([0,\infty)\times \mspce\) are both Polish spaces, and \(\alt{\m}\) defined by 
 
-\[\alt{\m}((\t{n},k{n}),(	{i},k{i})_{i=1}^{n-1},\xxx) = \m\left((\rt{i},\mark{i}) = (	{i},k{i})\te{ for } i=1,\dots,n, \XX = \xxx\right)\]
+\[\alt{\m}((\t\indx{n},k{n}),(	{i},k{i})_{i=1}^{n-1},\xxx) = \m\left((\rt{i},\mark{i}) = (	{i},k{i})\te{ for } i=1,\dots,n, \XX = \xxx\right)\]
 
 is a Borel measure. Therefore, by \cite[Proposition A1.5.III]{DalVer03}, the regular conditional distribution \(\ms{L}((\rt{n},\mark{n})|\F\ts{\rt{n-1}})\) exists.
 \end{proof}
@@ -2290,8 +2290,8 @@ By Lemma \ref{Subsec::Prope:Lem::easier}, we can use the Martingale definition o
 
 \begin{align*}
 \lim_{\tt\searrow 0}\frac{1}{\tt}\ex{\rp((\t,\t+\tt]\times K)|\F\ts{\t-}}& = \lim_{\tt\searrow 0}\frac{1}{\tt}\ex{\ex{\rp((\t,\t+\tt]\times K)|\F\ts{\t}}\middle|\F\ts{\t-}}\\
-&= \lim_{\tt\searrow 0}\frac{1}{\tt}\ex{\ex{\int_\t^{\t+\tt} \rate(r,K)\,dr\middle|\F\ts{\t}}\middle|\F\ts{\t-}}\\
-&= \ex{\ex{\lim_{\tt \searrow 0} \frac{1}{\tt}\int_\t^{\t+\tt} \rate(r,K)\,dr\middle|\F\ts{\t}}\middle|\F\ts{\t-}}\\
+&= \lim_{\tt\searrow 0}\frac{1}{\tt}\ex{\ex{\int_{\t}^{\t+\tt} \rate(r,K)\,dr\middle|\F\ts{\t}}\middle|\F\ts{\t-}}\\
+&= \ex{\ex{\lim_{\tt \searrow 0} \frac{1}{\tt}\int_{\t}^{\t+\tt} \rate(r,K)\,dr\middle|\F\ts{\t}}\middle|\F\ts{\t-}}\\
 &=\ex{\ex{\rate(\t+,K)|\F\ts{\t}}\middle|\F\ts{\t-}}\\
 &=\rate(\t,K)
 \end{align*}
@@ -2810,13 +2810,13 @@ This contradicts concavity of \(\psi\). Thus, \(\psi\) is continuous.
 \lin
 
 \begin{defn}
-Let \(\{	{i}\}\) be denote a finite set of times \(0=	{0} <\t{1} <\cdots < \t{n}=1\). Let \(\X\in \cad([0,T],\spce)\) where \(\spce\) is a separable and complete space with respect to the metric \(d\). Define,
+Let \(\{	{i}\}\) be denote a finite set of times \(0=	{0} <\t\indx{1} <\cdots < \t\indx{n}=1\). Let \(\X\in \cad([0,T],\spce)\) where \(\spce\) is a separable and complete space with respect to the metric \(d\). Define,
 
-\[\modu{\X}([\t{i-1},	{i})) = \sup_{\tt,\t\in [\t{i-1},	{i})} d(\X\cind{}\tp{\t},\X\cind{}\tp{\tt}).\]
+\[\modu{\X}([\t\indx{i-1},	{i})) = \sup_{\tt,\t\in [\t\indx{i-1},	{i})} d(\X\cind{}\tp{\t},\X\cind{}\tp{\tt}).\]
 
 Then for all \(\delta \in (0,T)\),
 
-\[\cmodu\pra{\X}(\delta) = \inf_{\{	{i}\}: \min_i |	{i} - \t{i-1}| > \delta} \max_{i} \modu{\X}([\t{i-1},	{i}))\]
+\[\cmodu\pra{\X}(\delta) = \inf_{\{	{i}\}: \min_i |	{i} - \t\indx{i-1}| > \delta} \max_{i} \modu{\X}([\t\indx{i-1},	{i}))\]
 
 is called the c\`adl\`ag modulus of continuity.
 \label{sec::TL:Def::modulus}
@@ -2891,17 +2891,17 @@ Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss\vind{\v}:\v\in V
 &\leq \cconst\left|\{\#\te{ of jumps in }\XX{\v}{(\tt,\ttt]}\}\right| = \left|\XX{\v}{\tt} - \XX{\v}{\ttt}\right|
 \end{align*}
 
-It follows that for any partition \(\{\t{\it}\}\) of \([0,\T]\),
+It follows that for any partition \(\{\t\indx{\it}\}\) of \([0,\T]\),
 
 \begin{align*}
-\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b\cind{\v}|\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}|\leq \sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|.
+\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}|\leq \sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|.
 \end{align*}
 
 Fix \(\delta > 0\). Taking the infimum over all partitions with minimum interval length \(\delta\) yields,
 
 \begin{align*}
-\omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) &= \inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b\cind{\v}|\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}|\\
-&\leq \inf_{\{\t{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t{\it-1},\t{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|\\
+\omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) &= \inf_{\{\t\indx{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}|\\
+&\leq \inf_{\{\t\indx{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|\\
 &= \omega'_{\XX{}{}}(\delta).
 \end{align*}
 
