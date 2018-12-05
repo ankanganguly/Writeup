@@ -104,7 +104,7 @@
 \newcommand{\tree}{\mc{T}}						%Tree
 
 %Modifiers
-\newcommand{\sln}[1]{^{#1}}						%sublimit numbering
+\newcommand{\sln}[1]{^{(#1)}}						%sublimit numbering
 
 %Section 2.3
 %Base commands
@@ -129,6 +129,7 @@
 \newcommand{\alt}[1]{\widetilde{#1}}			%alternate val
 \newcommand{\pra}[1]{_{#1}}						%Append process
 \newcommand{\indx}[1]{_{#1}}					%index
+\newcommand{\pst}[1]{^{#1}}						%Start of process
 
 %Section 3
 %Base commands
@@ -311,7 +312,7 @@ Let \(G = (V,E)\) be an at most countably infinite simple, connected graph with 
 0 &\te{ otherwise}
 \end{cases}.\]
 
-We will at times interpret \(\proj\vsi{\U}\ts{\t}\) as a mapping from \(\sset\vsi{\alt{\U}}\ts{\t}\) to \(\sset\vsi{\U}\ts{\t}\) for \(\alt{\U}\subset V\) by embedding \(\sset\vsi{\alt{U}}\ts{\t}\) in \(\sset\vsi{V}\ts{\t}\). This will not be indicated in the notation if \(\alt{\U}\) is clear from context. Let \(\proj\vsi{\U}\ts{} \defeq \proj\vsi{\U}\ts{0}\) be the corresponding projection mapping to \(\S\carp{\U}\). For any \(\U\subseteq V\), define the norm on \(\sset\vsi{\t}\ts{\U}\) by \(\|\x\cind{\U}\tip{}\|_{\b,\t} \defeq \sup_{\tt \leq \t} \|\x\cind{\U}\tp{\tt}\|_{\b}\). Let \(\F\vsi{\U}\ts{\t}\) be the Borel \(\sigma\)-algebra of \(\sset\vsi{\U}\ts{\t}\) with respect to the Skorokhod topology. 
+We will at times interpret \(\proj\vsi{\U}\ts{\t}\) as a mapping from \(\sset\vsi{\alt{\U}}\ts{\t}\) to \(\sset\vsi{\U}\ts{\t}\) for \(\alt{\U}\subset V\) by embedding \(\sset\vsi{\alt{U}}\ts{\t}\) in \(\sset\vsi{V}\ts{\t}\). This will not be indicated in the notation if \(\alt{\U}\) is clear from context. Let \(\proj\vsi{\U}\ts{} \defeq \proj\vsi{\U}\ts{0}\) be the corresponding projection mapping to \(\S\carp{\U}\). For any \(\U\subseteq V\), define the norm on \(\sset\vsi{\t}\ts{\U}\) by \(\|\x\cind{\U}\tip{}\|_{\b,\t} \defeq \sup_{\tt \leq \t} \|\x\cind{\U}\tp{\tt}\|_{\b}\). Finally, for any \(\v\in V\), we will equip the norm \(\|\x\cind{\v}\|_\t \defeq \sup_{\tt\leq \t} |x\cind{\v}\tp{\tt}|\) on the space \(\sset\vsi{\{\v\}}\ts{\t}\) \tr{This is slightly inconsistent with the other norms, but it's off by a constant factor, so the norms are equivalent. Still, it might confuse some readers when I switch between norms suddenly}. Let \(\F\vsi{\U}\ts{\t}\) be the Borel \(\sigma\)-algebra of \(\sset\vsi{\U}\ts{\t}\) with respect to the Skorokhod topology. 
 
 \ind Let \(\X = \{\X\cind{\v}\tp{\t}:\v\in V,\t\in [0,\infty)\}\) be a c\`adl\`ag, \(\S\carp{V}\)-valued pure jump process. Assume \(\X\cind{}\tip{}\) is a Feller process with infinitesimal generator \(\IG\) given by,
 
@@ -660,34 +661,34 @@ First, we show that \(\X\cind{}\tip{}\) is a Feller process. Notice that \(\X\ci
 \end{equation}
 \labe{subsec::Well-:Eqn::condSDE}
 
-For all \(\sv\cind{}\vsi{V}\in\S\carp{V}\), suppose \(\X\cind{}\tp{0}{\sv\cind{}\vsi{V}}\) is the unique strong solution to equation \eqref{subsec::Well-:Eqn::condSDE}. By Definition \ref{sec::Infin:Def::Feller}, we need to prove that for all \(\sv\cind{}\vsi{V}\in \S\carp{V}\),
+For all \(\sv\cind{}\vsi{V}\in\S\carp{V}\), suppose \(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{0}\) is the unique strong solution to equation \eqref{subsec::Well-:Eqn::condSDE}. By Definition \ref{sec::Infin:Def::Feller}, we need to prove that for all \(\sv\cind{}\vsi{V}\in \S\carp{V}\),
 
 \begin{enumerate}[(a)]
-\item \(\X\cind{}\tp{0}{\sv\cind{}\vsi{V}} = \sv\cind{}\vsi{V}\) almost surely.
+\item \(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{0} = \sv\cind{}\vsi{V}\) almost surely.
 
-\item The mapping \(\sv\cind{}\vsi{V}\mapsto \pr\left(\X\cind{}\tp{0}{\sv\cind{}\vsi{V}}\in A\right)\) is measurable for all \(A\in \F\vsi{\U}\ts{\T}\).
+\item The mapping \(\sv\cind{}\vsi{V}\mapsto \pr\left(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{0}\in A\right)\) is measurable for all \(A\in \F\vsi{\U}\ts{\T}\).
 
-\item \(\pr\left(\X\cind{}\tp{\t+\cdot}{\sv\cind{}\vsi{V}}\in A\middle|\X\cind{}\tp{\tt}{\sv\cind{}\vsi{V}}:\tt \in [0,\t]\right) = \pr\left(\X\cind{}\tp{\cdot}{\X\cind{}\tp{\t}{\sv\cind{}\vsi{V}}} \in A\middle| \X\cind{}\tp{\t}{\sv\cind{}\vsi{V}} \right)\) for all \(A \in \F\vsi{\U}\ts{\T}\).
+\item \(\pr\left(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\t+\cdot}\in A\middle|\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\tt}:\tt \in [0,\t]\right) = \pr\left(\X\pst{\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\t}}\cind{}\tp{\cdot} \in A\middle| \X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\t} \right)\) for all \(A \in \F\vsi{\U}\ts{\T}\).
 
-\item For all \(f \in \cont(\S\carp{V})\) (that is, for all continuous \(f\)), the mapping \(\sv\cind{}\vsi{V}\mapsto \ex{f(\X\cind{}\tp{\t}{\sv\cind{}\vsi{V}})}\) is also continuous for all \(\t\geq 0\).
+\item For all \(f \in \cont(\S\carp{V})\) (that is, for all continuous \(f\)), the mapping \(\sv\cind{}\vsi{V}\mapsto \ex{f(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\t})}\) is also continuous for all \(\t\geq 0\).
 \end{enumerate}
 
-The proof that \(\X\cind{}\tip{}{\sv\cind{}\vsi{V}}\) satisfies these properties is as follows:
+The proof that \(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tip{}\) satisfies these properties is as follows:
 
 \begin{enumerate}[(a)]
 \item This is trivially true.
 
-\item Since \(\S\) is finite, \(\S\carp{V}\) is countably infinite. Thus \(\ms{B}(\S\carp{V})\) is the set of subsets of \(\S\carp{V}\). But then for any \(A \in \F\vsi{\U}\ts{\T}\) and \(E \in \ms{B}([0,1])\), we have \(\S\carp{V} \supseteq \left\{\sv\cind{}\vsi{V}: \pr\left(\X\cind{}\tip{}{\sv\cind{}\vsi{V}} \in A\right) \in E\right\}\), so the mapping is measurable.
+\item Since \(\S\) is finite, \(\S\carp{V}\) is countably infinite. Thus \(\ms{B}(\S\carp{V})\) is the set of subsets of \(\S\carp{V}\). But then for any \(A \in \F\vsi{\U}\ts{\T}\) and \(E \in \ms{B}([0,1])\), we have \(\S\carp{V} \supseteq \left\{\sv\cind{}\vsi{V}: \pr\left(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tip{} \in A\right) \in E\right\}\), so the mapping is measurable.
 
 \item Notice that we can write,
 
-\[\X\cind{\v}\tp{\t+\cdot}{\sv\cind{}\vsi{V}} = \X\cind{\v}\tp{\t}{\sv\cind{}\vsi{V}} + \int_\S\int_\t{\t+\cdot} \s\,\poiss\vind{\v}(d\tt,(0,\IGr\vind{\v}(\X\cind{}\tp{\tt-}{\sv\cind{}\vsi{V}},\s)],d\s).\]
+\[\X\pst{\sv\cind{}\vsi{V}}\cind{\v}\tp{\t+\cdot} = \X\pst{\sv\cind{}\vsi{V}}\cind{\v}\tp{\t} + \int_\S\int_\t{\t+\cdot} \s\,\poiss\vind{\v}(d\tt,(0,\IGr\vind{\v}(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\tt-},\s)],d\s).\]
 
 Let \(\alt{\X}\cind{}\tip{}\) be given by the unique solution to the following equation (Proposition \ref{subsec::Well-:Prop::SDEWP}),
 
-\[\alt{\X}\cind{\v}\tp{\cdot} = \X\cind{\v}\tp{\t}{\sv\cind{}\vsi{V}} + \int_\S \int_0^\cdot \s\,\poiss\vind{\v}(d\tt,(0,\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)],d\s).\]
+\[\alt{\X}\cind{\v}\tp{\cdot} = \X\pst{\sv\cind{}\vsi{V}}\cind{\v}\tp{\t} + \int_\S \int_0^\cdot \s\,\poiss\vind{\v}(d\tt,(0,\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)],d\s).\]
 
-Then \(\X\cind{}\tp{\t+\cdot}{\sv\cind{}\vsi{V}} \deq \alt{\X}\cind{}\tp{\cdot}\). By the definition of \(\X\cind{}\tip{}{\sv\cind{}\vsi{V}}\), \(\alt{\X}\cind{}\tip{} \deq \X\cind{}\tip{}{\X\cind{}\tp{\t}{\sv\cind{}\vsi{V}}}\) as desired.
+Then \(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\t+\cdot} \deq \alt{\X}\cind{}\tp{\cdot}\). By the definition of \(\X\pst{\sv\cind{}\vsi{V}}\cind{}\tip{}\), \(\alt{\X}\cind{}\tip{} \deq \X\pst{\X\pst{\sv\cind{}\vsi{V}}\cind{}\tp{\t}}\cind{}\tip{}\) as desired.
 
 \item Let \(\root \in V\). Define the sequence of sets \(V\sln{0}\subset V\sln{1}\subset \cdots \subseteq V\) as follows: let \(V\sln{0} = \{\root\}\). For \(n \geq 1\), let \(V\sln{n+1} = \cl{V\sln{n}}\).
 
