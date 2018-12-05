@@ -486,7 +486,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Consider the mapping \(\F
 
 Then for any pair of random processes \(\X\cind{}\tip{},\alt{\X}{}{}:\sset\vsi{V}\ts{\T} \ra \sset\vsi{V}\ts{\T}\), \(\v\in V\) and \(\t \in [0,\T]\),
 
-\[\ex{\|\Fpo(\X\cind{}\tip{}){\v} - \Fpo(\alt{\X}{}{}){\v}\|_\t} \leq \ex{|\X\cind{\v}\tp{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
+\[\ex{\|\Fpo(\X\cind{}\tip{})\cind{\v} - \Fpo(\alt{\X}{}{})\cind{\v}\|_\t} \leq \ex{|\X\cind{\v}\tp{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\]
 
 for some constant \(\const{1} < \infty\).
 
@@ -518,7 +518,7 @@ So,
 That is, \(\IGr\vind{\v}\) satisfies a Lipschitz-like condition with coefficient bounded from above by \(\const{}\). For any \(\v\in V\),
 
 \begin{align*}
-\mb{E}\bigg[&\|\Fpo(\X\cind{}\tip{}){\v} - \Fpo(\alt{\X}){\v}\|_\t\bigg] - \ex{|\X\cind{\v}\tp{0} - \alt{\X}{\v}{0}|}\\
+\mb{E}\bigg[&\|\Fpo(\X\cind{}\tip{})\cind{\v} - \Fpo(\alt{\X})\cind{\v}\|_\t\bigg] - \ex{|\X\cind{\v}\tp{0} - \alt{\X}{\v}{0}|}\\
 &= \ex{\sup_{\ttt \leq \t}\left|\int_\S\int_0^{\ttt} \s\poiss\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right],d\s\right) -  \int_\S\int_0^{\ttt} \s\poiss\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\alt{\X}{}{\tt-},\s)\right],d\s\right)\right|}\\
 &=\ex{\sup_{\ttt\leq \t} \left|\int_\S \int_0^{\const{}} \int_0^{\ttt} \s\left(\mb{I}_{\r < \IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)} - \mb{I}_{\r < \IGr\vind{\v}(\alt{\X}{}{\tt-},\s)}\right)\,\poiss\vind{\v}(d\tt\,d\r\,d\s)\right|}\\
 &\leq \ex{\int_\S\int_0^{\const{}}\int_0^\t \left|\s\left(\mb{I}_{\r < \IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)} - \mb{I}_{\r < \IGr\vind{\v}(\alt{\X}{}{\tt-},\s)}\right)\right|\,\poiss\vind{\v}(d\tt\,d\r\,d\s)}\\
@@ -530,7 +530,7 @@ That is, \(\IGr\vind{\v}\) satisfies a Lipschitz-like condition with coefficient
 
 Then,
 
-\[\ex{\|\Fpo(\X\cind{}\tip{}){\v} - \Fpo(\alt{\X}){\v}\|_\t} \leq \ex{|\X\cind{\v}\tp{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt.\]
+\[\ex{\|\Fpo(\X\cind{}\tip{})\cind{\v} - \Fpo(\alt{\X})\cind{\v}\|_\t} \leq \ex{|\X\cind{\v}\tp{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt.\]
 
 \end{proof}
 
@@ -539,7 +539,7 @@ Then,
 \begin{lem}
 Given the conditions and notation of Lemma \ref{subsec::Well-:Lem::SDEWP}, assume that \(\X\cind{}\tp{0} = \alt{\X}{}{0}\) almost surely. Then,
 
-\[\sup_{\v \in V} \ex{\left\|\Fpo(\X\cind{}\tip{}){\v} - \Fpo(\alt{\X}{}{}){\v}\right\|_\t} \leq (\degr+1)\const{1}\int_0^\t \sup_{\v \in V} \ex{\|\X\cind{\v}\tip{} - \alt{\X}{\v}{}\|_\tt}\,d\tt.\]
+\[\sup_{\v \in V} \ex{\left\|\Fpo(\X\cind{}\tip{})\cind{\v} - \Fpo(\alt{\X}{}{})\cind{\v}\right\|_\t} \leq (\degr+1)\const{1}\int_0^\t \sup_{\v \in V} \ex{\|\X\cind{\v}\tip{} - \alt{\X}{\v}{}\|_\tt}\,d\tt.\]
 \label{subsec::Well-:Lem::GronwallPrep}
 \end{lem}
 \labe{subsec::Well-:Lem::GronwallPrep}
@@ -554,7 +554,7 @@ Given the conditions and notation of Lemma \ref{subsec::Well-:Lem::SDEWP}, assum
 By statement 3 of Assumption \ref{subsec::Assum:Assu::CI}, every node \(v \in V\) has degree less than or equal to \(\degr\). By Lemma \ref{subsec::Well-:Lem::SDEWP},
 
 \begin{align*}
-\sup_{\v \in V} \ex{\left\|\Fpo(\X\cind{}\tip{}){\v} - \Fpo(\alt{\X}{}{}){\v}\right\|_\t} &\leq \sup_{\v\in V}\left(\ex{|\X\cind{\v}\tp{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\right)\\
+\sup_{\v \in V} \ex{\left\|\Fpo(\X\cind{}\tip{})\cind{\v} - \Fpo(\alt{\X}{}{})\cind{\v}\right\|_\t} &\leq \sup_{\v\in V}\left(\ex{|\X\cind{\v}\tp{0} - \alt{\X}{\v}{0}|} +  \const{1}\int_0^\t \sum_{\vv\in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\right)\\
 &=\sup_{\v \in V} \const{1}\int_0^\t \sum_{\vv \in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
 &\leq \const{1}\int_0^\t \sup_{\v \in V}\sum_{\vv \in \cl{\v}} \ex{\|\X\cind{\vv}\tip{} - \alt{\X}{\vv}{}\|_\tt}\,d\tt\\
 &\leq \const{1}\int_0^\t \sup_{\v \in V}\sum_{\vv \in \cl{\v}}\sup_{\vvv\in V} \ex{\|\X\cind{\vvv}\tip{} - \alt{\X}{\vvv}{}\|_\tt}\,d\tt\\
