@@ -376,7 +376,7 @@ There exists a fixed \(\degr\in \mb{N}\) such that:
 \label{subsec::Assum:Assu::Local}\labe{subsec::Assum:Assu::Local}
 \end{assu}
 
-\purpose Assumption \ref{subsec::Assum:Assu::Local} implies Assumption \ref{subsec::Assum:Assu::CI}, so all results for Assumption \ref{subsec::Assum:Assu::CI} hold for Assumption \ref{subsec::Assum:Assu::Local}. This assumption adds an additional symmetry assumption. We also work on trees so we do not have to deal with cycles (which add extra dependencies making the problem harder to analyze). Furthermore, this assumption is sufficient for Theorem \ref{sec::Main:Thm::Local SDE} (existence and uniqueness of a local representation of \(\m{}{}{} \defeq \law(\X\cind{}\tip{})\)).
+\purpose Assumption \ref{subsec::Assum:Assu::Local} implies Assumption \ref{subsec::Assum:Assu::CI}, so all results for Assumption \ref{subsec::Assum:Assu::CI} hold for Assumption \ref{subsec::Assum:Assu::Local}. This assumption adds an additional symmetry assumption. We also work on trees so we do not have to deal with cycles (which add extra dependencies making the problem harder to analyze). Furthermore, this assumption is sufficient for Theorem \ref{sec::Main:Thm::Local SDE} (existence and uniqueness of a local representation of \(\m\sln{}\ts{} \defeq \law(\X\cind{}\tip{})\)).
 
 \usein Theorem \ref{sec::Main:Thm::Local SDE}, all of section \ref{sec::Proof2}.
 
@@ -842,7 +842,7 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset V\).
 \lin
 
 \begin{thms}
-Let \(\X\cind{}\tip{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m{}{}{} = \law(\X\cind{}\tip{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\sset\vsi{}\ts{} \supseteq\sset\vsi{\tree\sln{1}}\ts{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\sset\vsi{}\ts{})\), define \(\cm{\t}:\sset\vsi{\{\root,1\}}\ts{\t-}\times \pmsr(\sset\vsi{}\ts{}) \ra \pmsr(\sset\vsi{\{2,\dots,\degr\}}\ts{\t-})\) by,
+Let \(\X\cind{}\tip{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m\sln{}\ts{} = \law(\X\cind{}\tip{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\sset\vsi{}\ts{} \supseteq\sset\vsi{\tree\sln{1}}\ts{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\sset\vsi{}\ts{})\), define \(\cm{\t}:\sset\vsi{\{\root,1\}}\ts{\t-}\times \pmsr(\sset\vsi{}\ts{}) \ra \pmsr(\sset\vsi{\{2,\dots,\degr\}}\ts{\t-})\) by,
 
 \begin{equation}
 \cm{\t}(\x\cind{\{\root,1\}}\tip{[0,\t)},\mmm{}{}{})(\cdot) = \pr{\mmm{}{}{}}\left(\X\cind{\{2,\dots,\degr\}}\tip{[0,\t)} \in \cdot|\X\cind{\{\root,1\}}\tip{[0,\t)} = \x\cind{\{\root,1\}}\tip{[0,\t)}\right).
@@ -850,21 +850,21 @@ Let \(\X\cind{}\tip{}\) be a Feller process satisfying Assumption \ref{subsec::A
 \end{equation}
 \labe{sec::Main:eqn::gamma}
 
-Then there exists a unique solution, \(\alt{\m{}{}{}} \in \pmsr(\sset\vsi{\tree\sln{1}}\ts{\T})\), to the following equation:
+Then there exists a unique solution, \(\alt{\m\sln{}\ts{}} \in \pmsr(\sset\vsi{\tree\sln{1}}\ts{\T})\), to the following equation:
 
 \begin{align}
 \X\cind{\v}\tp{\t} &= \X\cind{\v}\tp{0} + \int_0^\t\int_\S \s\,\poiss\vind{\v}(d\s,(0,\crate{}(\X\cind{\{\v,\root\}}\tip{[0,\tt)},\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\}\nonumber\\
 \X\cind{\root}\tp{\t} &= \X\cind{\root}\tp{0} + \int_0^\t\int_\S \s\,\poiss\vind{\root}(d\s,(0,\IGr\vind{\root}(\X\cind{}\tp{\tt-},\s)],d\tt)\nonumber\\
-\alt{\m{}{}{}} &= \law(\X\cind{}\tip{})
+\alt{\m\sln{}\ts{}} &= \law(\X\cind{}\tip{})
 \label{sec::Main:eqn::Local SDE}
 \end{align}
 \labe{sec::Main:eqn::Local SDE}
 
 where
 
-\[\crate{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\alt{\m{}{}{}})}{\IGr\vind{\root}(\X\cind{}\tp{\t-},\s)}\]
+\[\crate{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\alt{\m\sln{}\ts{}})}{\IGr\vind{\root}(\X\cind{}\tp{\t-},\s)}\]
 
-for all \(\s\in \S\). Furthermore, \(\alt{\m{}{}{}} = \proj\vsi{\tree\sln{1}}\ts{\T}(\m{}{}{})\).
+for all \(\s\in \S\). Furthermore, \(\alt{\m\sln{}\ts{}} = \proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})\).
 \label{sec::Main:Thm::Local SDE}
 \end{thms}
 \labe{sec::Main:Thm::Local SDE}
@@ -1298,9 +1298,9 @@ This is a restatement of \cite[Theorem 14.3.III]{DalVer08}.
 \lin
 
 \begin{lem}
-Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\m{}{}{} = \law(\X\cind{}\tip{})\). Suppose,
+Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\m\sln{}\ts{} = \law(\X\cind{}\tip{})\). Suppose,
 
-\[\crate{\v}{\t}(\s) := \crate{}{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\m{}{}{})}{\IGrg(\X\cind{\tree\sln{1}}\tp{\t-},\s)}.\]
+\[\crate{\v}{\t}(\s) := \crate{}{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\m\sln{}\ts{})}{\IGrg(\X\cind{\tree\sln{1}}\tp{\t-},\s)}.\]
 
 
 Then \(\crate{\v}{\t}(\s)\) has an almost surely left-continuous modification on \([0,\T)\) with respect to \(\t\) for every \(\v \in \tree\sln{1}\setminus\{\root\}\) and \(\s \in \S\).
@@ -1623,24 +1623,24 @@ However, this is not \(\F\vsi{\tree\sln{1}}\ts{\t}\)-adapted. Let \(\rp{} = \{(\
 
 \[\left(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\right)^\t = \left(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\right)^0 + \sum_{0 < \rt{\it} \leq \t}\mark{\it}\]
 
-Therefore it suffices to derive the \(\F\vsi{\tree\sln{1}}\ts{\t}\)-intensity of \(\rp{}\). \(\rp{}\) has \(\F\vsi{V}\ts{\t}\)-intensity \(\rate{\rp{}}(\X\cind{}\tp{\t-},\mark{}) := \sum_{\v \in \tree\sln{1}}\sum_{\s\in \S}\mb{I}_{\mark{} = \s\ev\vind{\v}}\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)\). Each \(\IGr\vind{\v}\) is clearly left-continuous in time, so \(\rate{\rp{}}\) is also left-continuous in time. Recall that \(\m{}{}{}\) is the law of \(\X\cind{}\tip{}\). Then,
+Therefore it suffices to derive the \(\F\vsi{\tree\sln{1}}\ts{\t}\)-intensity of \(\rp{}\). \(\rp{}\) has \(\F\vsi{V}\ts{\t}\)-intensity \(\rate{\rp{}}(\X\cind{}\tp{\t-},\mark{}) := \sum_{\v \in \tree\sln{1}}\sum_{\s\in \S}\mb{I}_{\mark{} = \s\ev\vind{\v}}\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)\). Each \(\IGr\vind{\v}\) is clearly left-continuous in time, so \(\rate{\rp{}}\) is also left-continuous in time. Recall that \(\m\sln{}\ts{}\) is the law of \(\X\cind{}\tip{}\). Then,
 
-\[\exmu{\m{}{}{}}{\rate{\rp{}}(\X\cind{}\tp{\t-},\mark{})|\F\vsi{\tree\sln{1}}\ts{\t-}} = \sum_{\v \in \tree\sln{1}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev\vind{\v}}\exmu{\m{}{}{}}{\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)|\F\vsi{\tree\sln{1}}\ts{\t-}}.\]
+\[\exmu{\m\sln{}\ts{}}{\rate{\rp{}}(\X\cind{}\tp{\t-},\mark{})|\F\vsi{\tree\sln{1}}\ts{\t-}} = \sum_{\v \in \tree\sln{1}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev\vind{\v}}\exmu{\m\sln{}\ts{}}{\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)|\F\vsi{\tree\sln{1}}\ts{\t-}}.\]
 
-Applying Theorem \ref{sec::Main:Thm::CI} and symmetry of \(\m{}{}{}\) yields,
+Applying Theorem \ref{sec::Main:Thm::CI} and symmetry of \(\m\sln{}\ts{}\) yields,
 
 \begin{align*}
-\exmu{\m{}{}{}}{\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)|\F\vsi{\tree\sln{1}}\ts{\t-}} &= \exmu{\m{}{}{}}{\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)|\X\cind{\tree\sln{1}}\tip{[0,\t)}}\\
-&\os{\te{Thm \ref{sec::Main:Thm::CI}}}{=} \exmu{\m{}{}{}}{\IGrg{}(\X\cind{\cl{\v}}\tp{\t-},\s)|\X\cind{\{\v,\root\}}\tip{[0,\t)}} \\
-&\os{\te{Sym}}{=} \exmu{\XX{}{}\sim \m{}{}{}}{\IGrg{}(\XX{\tree\sln{1}}{\t-},\s)|\XX{\{\root,1\}}{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
-&= \exmu{\XX{}{}\sim \proj\vsi{\tree\sln{1}}\ts{\T}(\m{}{}{})}{\IGrg{}(\XX{\tree\sln{1}}{\t-},\s)|\XX{\{\root,1\}}{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
-&= \exmu{\cm{\t}\left(\X\cind{\{\v,\root\}}\tip{[0,\t)},\proj\vsi{\tree\sln{1}}\ts{\T}(\m{}{}{})\right)}{\IGrg{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)}\\
+\exmu{\m\sln{}\ts{}}{\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)|\F\vsi{\tree\sln{1}}\ts{\t-}} &= \exmu{\m\sln{}\ts{}}{\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)|\X\cind{\tree\sln{1}}\tip{[0,\t)}}\\
+&\os{\te{Thm \ref{sec::Main:Thm::CI}}}{=} \exmu{\m\sln{}\ts{}}{\IGrg{}(\X\cind{\cl{\v}}\tp{\t-},\s)|\X\cind{\{\v,\root\}}\tip{[0,\t)}} \\
+&\os{\te{Sym}}{=} \exmu{\XX{}{}\sim \m\sln{}\ts{}}{\IGrg{}(\XX{\tree\sln{1}}{\t-},\s)|\XX{\{\root,1\}}{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
+&= \exmu{\XX{}{}\sim \proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})}{\IGrg{}(\XX{\tree\sln{1}}{\t-},\s)|\XX{\{\root,1\}}{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
+&= \exmu{\cm{\t}\left(\X\cind{\{\v,\root\}}\tip{[0,\t)},\proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})\right)}{\IGrg{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)}\\
 &=\crate{}{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \crate{\v}{\t}(\s).
 \end{align*}
 
 By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{\v}{\t}(\s)\) has a left-continuous modification. Then, by Lemma \ref{subsec::ProofE:Lem::filtering}, \(\crate{\v}{\t}(\s)\) is a \(\F\vsi{\tree\sln{1}}\ts{}\)-predictable filtration of \(\XX{}{}\).
 
-\ind By lemma \ref{subsec::Some:Lem::PPtoSDE}, we can characterize the law of \(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\) as the law of the unique solution (given \(\proj\vsi{\tree\sln{1}}\ts{\T}(\m{}{}{})\)) to the SDE
+\ind By lemma \ref{subsec::Some:Lem::PPtoSDE}, we can characterize the law of \(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\) as the law of the unique solution (given \(\proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})\)) to the SDE
 
 \begin{align*}
 \X\cind{\v}\tp{\t} &= \X\cind{\v}\tp{0} + \int_0^\t\int_\S \s\,\poiss\vind{\v}(d\s,(0,\crate{\v}{\tt}(\s)],d\tt) \te{ for } \v \in \{1,\dots,\degr\},\\
@@ -1651,7 +1651,7 @@ By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{\v}{\t}(\s)\) has a left-co
 \subsection{Proof of Uniqueness}
 \label{subsec::ProofU:sec::Proof2}\labe{subsec::ProofU:sec::Proof2}
 
-\pfsum We start with an arbitrary measure \(\mmm{}{}{1}\) satisfying the characterization provided in Theorem \ref{sec::Main:Thm::Local SDE}. We characterize the density of this measure with respect to a simple process. Using these densities, we extend the process to an infinite dimensional process whose marginal distribution is \(\mmm{}{}{1}\). We then prove this infinite dimensional process is precisely \(\m{}{}{}\).
+\pfsum We start with an arbitrary measure \(\mmm{}{}{1}\) satisfying the characterization provided in Theorem \ref{sec::Main:Thm::Local SDE}. We characterize the density of this measure with respect to a simple process. Using these densities, we extend the process to an infinite dimensional process whose marginal distribution is \(\mmm{}{}{1}\). We then prove this infinite dimensional process is precisely \(\m\sln{}\ts{}\).
 
 \begin{proof}[Proof of Theorem \ref{sec::Main:Thm::Local SDE}]
 
@@ -1661,7 +1661,7 @@ Assume \(\mmm{}{}{1}\) is a probability measure on \(\sset\vsi{\tree\sln{1}}\ts{
 
 \[\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\mmm{}{}{1})}{\IGrg{}(\X\sln{1}\cind{}\tp{\t-},\s)}.\]
 
-\ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m{}{}{}\), which is the law of \(\X\cind{}\tip{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X\sln{n}\cind{}\tip{}:n\in\mb{N}\}\) on \(\sset\vsi{\tree\sln{n}}\ts{\T-}\) converging weakly to \(\X\cind{}\tip{}\). 
+\ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m\sln{}\ts{}\), which is the law of \(\X\cind{}\tip{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X\sln{n}\cind{}\tip{}:n\in\mb{N}\}\) on \(\sset\vsi{\tree\sln{n}}\ts{\T-}\) converging weakly to \(\X\cind{}\tip{}\). 
 
 \lin
 
@@ -1694,11 +1694,11 @@ Then \(\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})\defeq \pmap{\{\v,\root\}}(\X\sln{1}
 Consider the candidate rate \(\crate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}{\t}\) defined in the following manner:
 
 \begin{align*}
-\crate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}{\t}(\kappa) &= \exmu{\m{}{}{1}}{\rate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}^{\t}(\X\sln{1}\cind{}\tip{[0,\t)},\kappa)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
-&=\exmu{\m{}{}{1}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \mb{I}_{\kappa = \s\ev\vind{\root}}\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\right)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\m{}{}{1}}{\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\XXX{}{} \sim \m{}{}{1}}{\IGrg{}(\XXX{\tree\sln{1}}{\t-},\s)\middle|\XXX{\{\root,\v\}}{[0,\t)} = \X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\cm{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)},\m{}{}{1})}{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\t-},\s)}\\
+\crate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}{\t}(\kappa) &= \exmu{\m\sln{1}\ts{}}{\rate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}^{\t}(\X\sln{1}\cind{}\tip{[0,\t)},\kappa)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
+&=\exmu{\m\sln{1}\ts{}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \mb{I}_{\kappa = \s\ev\vind{\root}}\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\right)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\m\sln{1}\ts{}}{\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\XXX{}{} \sim \m\sln{1}\ts{}}{\IGrg{}(\XXX{\tree\sln{1}}{\t-},\s)\middle|\XXX{\{\root,\v\}}{[0,\t)} = \X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\cm{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)},\m\sln{1}\ts{})}{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\t-},\s)}\\
 &=\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \mb{I}_{\kappa = \s\ev\vind{\root}}\crate{}{}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)},\s)\right)\\
 \end{align*}
 
@@ -1743,7 +1743,7 @@ Then for any \(\alt{n} < n\), \(\mmm{}{\t}{\alt{n}} = \proj\vsi{\tree\sln{\alt{n
 \end{lem}
 \labe{subsec::ProofU:Lem::extendedSDE}
 
-\purpose By constructing larger processes with the whose marginal distribution is \(\mmm{}{}{1}\), we can, in the limit, construct an interacting particle system on \(V\) that projects down to \(\mmm{}{}{}\). All that will remain will be to prove that this process is equal in distribution to \(\m{}{}{}\).
+\purpose By constructing larger processes with the whose marginal distribution is \(\mmm{}{}{1}\), we can, in the limit, construct an interacting particle system on \(V\) that projects down to \(\mmm{}{}{}\). All that will remain will be to prove that this process is equal in distribution to \(\m\sln{}\ts{}\).
 
 \pfsum Using Lemmas \ref{subsec::ProofU:Lem::Marginal} and \ref{subsec::Some:Lem::radnik} \tr{rrewrite}, we can construct a conditional density which can be used to extend \(\mu\sln{1}\). We can use simple density arguments to prove the marginal properties we can use Lemma \ref{subsec::Some:Lem::radnik} \tr{rrewrite} to get the SDE formulation.
 
@@ -1970,7 +1970,7 @@ Thus, \(\X\cind{}\tip{}\) is a solution to the coupled equation,
 \end{equation}
 \labe{subsec::ProofU:eqn::XSDE}
 
-However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m{}{}{}\). Thus, \(\mmm{}{}{} = \m{}{}{}\). We conclude that \(\mmm{}{}{1} = \proj\vsi{\tree\sln{1}}\ts{\T-}(\m{}{}{})\).
+However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m\sln{}\ts{}\). Thus, \(\mmm{}{}{} = \m\sln{}\ts{}\). We conclude that \(\mmm{}{}{1} = \proj\vsi{\tree\sln{1}}\ts{\T-}(\m\sln{}\ts{})\).
 
 \end{proof}
 
@@ -2097,9 +2097,9 @@ Let \(\IG{}\) be an infinitesimal generator. A dense subset \(\core\subset \core
 \lin
 
 \begin{thms}[Trotter-Kurtz]
-Suppose \(\IG{n}\) and \(\IG{}\) are generators of Feller processes \(\m{n}\) and \(\m\) respectively. If there is a core \(\core\) for \(\IG{}\) such that \(\core \subset \mc{D}(\IG{n})\) for all \(n\) and \(\IG{n} f \ra \IG{} f\) for all \(f \in \core\), then 
+Suppose \(\IG{n}\) and \(\IG{}\) are generators of Feller processes \(\m\sln{n}\) and \(\m\) respectively. If there is a core \(\core\) for \(\IG{}\) such that \(\core \subset \mc{D}(\IG{n})\) for all \(n\) and \(\IG{n} f \ra \IG{} f\) for all \(f \in \core\), then 
 
-\[\exmu{\m{n}}{f(\XX{}{\t})|\XX{}{0}=\cdot} \ra \exmu{\mu}{f(\XX{}{\t})|\XX{}{0}=\cdot}\]
+\[\exmu{\m\sln{n}}{f(\XX{}{\t})|\XX{}{0}=\cdot} \ra \exmu{\mu}{f(\XX{}{\t})|\XX{}{0}=\cdot}\]
 
 uniformly in \(\t\) for all \(f \in \cont(\spce)\).
 \label{sec::Infin:Thm::TrotterKurtz}
@@ -2113,7 +2113,7 @@ uniformly in \(\t\) for all \(f \in \cont(\spce)\).
 \lin
 
 \begin{coro}
-In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, suppose that \(\{\m{n}\}\) are tight and that \((\m{n}){0} \Rightarrow \m{0}\). Then \(\m{n} \Rightarrow \alt{\m}\).
+In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, suppose that \(\{\m\sln{n}\}\) are tight and that \((\m\sln{n})\ts{0} \Rightarrow \m\ts{0}\). Then \(\m\sln{n} \Rightarrow \m\).
 \label{sec::Infin:Cor::Convergence}
 \end{coro}
 \labe{sec::Infin:Cor::Convergence}
@@ -2123,23 +2123,23 @@ In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, sup
 \pfsum Use the same methods as in the proof of \cite[Theorem 4.2]{Kur81} to show weak convergence of the finite dimensional distributions. Apply \cite[Theorem 13.1]{Bil99} to get weak convergence.
 
 \begin{proof}
-By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\alt{\m}{n}\). Let the initial conditions (i.e. restriction to time 0) of \(\alt{\m}{n}\) be denoted \(\alt{\mm}{n}\) and let \(\alt{\mm}\) denote the initial condition of \(\alt{\m}\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(\spce\) is compact) function from \(\spce^k\ra\mb{R}\). Since \(\alt{\m}{n}\) are Feller, \(\exmu{\alt{\m}{n}}{f(\XX{}{\t})|\XX{}{0} = \cdot}\) is continuous for all \(\t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f{i}(\xx{1})g{i}(\xx{2},\dots,\xx{\it})\). By monotone convergence, we can assume without loss of generality that \(f(\xx{1},\dots,\xx{\it}) = f{1}(\xx{1})f{2}(\xx{2},\dots,\xx{\it})\).
+By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\m\sln{n}\). Let the initial conditions (i.e. restriction to time 0) of \(\m\sln{n}\) be denoted \(\mm{n}\) and let \(\mm\) denote the initial condition of \(\m\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(\spce\) is compact) function from \(\spce^k\ra\mb{R}\). Since \(\m\sln{n}\) are Feller, \(\exmu{\m\sln{n}}{f(\XX{}{\t})|\XX{}{0} = \cdot}\) is continuous for all \(\t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f{i}(\xx{1})g{i}(\xx{2},\dots,\xx{\it})\). By monotone convergence, we can assume without loss of generality that \(f(\xx{1},\dots,\xx{\it}) = f{1}(\xx{1})f{2}(\xx{2},\dots,\xx{\it})\).
 
-\ind By Theorem \ref{sec::Infin:Thm::TrotterKurtz}, \(\exmu{\alt{\m}{n}}{f(\XX{}{\t})|\XX{}{0}} \ra \exmu{\alt{\m}}{f(\XX{}{\t})|\XX{}{0}}\). Then, by bounded convergence and convergence of the initial condition,
+\ind By Theorem \ref{sec::Infin:Thm::TrotterKurtz}, \(\exmu{\m\sln{n}}{f(\XX{}{\t})|\XX{}{0}} \ra \exmu{\m}{f(\XX{}{\t})|\XX{}{0}}\). Then, by bounded convergence and convergence of the initial condition,
 
-\[\exmu{\alt{\m}{n}}{f(\XX{}{\t})}  = \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}{n}}{f(\XX{}{\t})|\XX{}{0}}} \ra \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}}{f(\XX{}{\t})|\XX{}{0}}} \ra \exmu{\alt{\mm}}{\exmu{\alt{\m}}{f(\XX{}{\t})|\XX{}{0}}} = \exmu{\alt{\m}}{f(\XX{}{\t})}\]
+\[\exmu{\m\sln{n}}{f(\XX{}{\t})}  = \exmu{\mm{n}}{\exmu{\m\sln{n}}{f(\XX{}{\t})|\XX{}{0}}} \ra \exmu{\mm{n}}{\exmu{\m}{f(\XX{}{\t})|\XX{}{0}}} \ra \exmu{\mm}{\exmu{\m}{f(\XX{}{\t})|\XX{}{0}}} = \exmu{\m}{f(\XX{}{\t})}\]
 
 Thus all of the one-dimensional distributions converge. Assume that,
 
-\[\exmu{\alt{\m}{n}}{g(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{k-1}})|\XX{}{0}=\xxx} \ra \exmu{\alt{\m}}{g(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{k-1}})|\XX{}{0}=\xxx}\]
+\[\exmu{\m\sln{n}}{g(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{k-1}})|\XX{}{0}=\xxx} \ra \exmu{\m}{g(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{k-1}})|\XX{}{0}=\xxx}\]
 
 \noindent for any continuous function \(g\) and for any \(\{\t\indx{1},\dots,\t\indx{k-1}\} \subset [0,T]\). Fix \(0\leq \t\indx{1} <\t\indx{2} <\cdots < \t\indx{\it}\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
 
 \begin{align}
-\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0} = \xxx}&= \exmu{\alt{\m}{n}}{f{1}(\XX{}{0})f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
-&= f{1}(\xxx)\exmu{\alt{\m}{n}}{f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
-&\os{\te{Induction}}{\ra} f{1}(\xxx)\exmu{\alt{\m}}{f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
-&= \exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}
+\exmu{\m\sln{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0} = \xxx}&= \exmu{\m\sln{n}}{f{1}(\XX{}{0})f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
+&= f{1}(\xxx)\exmu{\m\sln{n}}{f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
+&\os{\te{Induction}}{\ra} f{1}(\xxx)\exmu{\m}{f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
+&= \exmu{\m}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}
 \label{sec::Infin:eqn::zerocase}
 \end{align}
 \labe{sec::Infin:eqn::zerocase}
@@ -2147,30 +2147,30 @@ Thus all of the one-dimensional distributions converge. Assume that,
 So,
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})} &= \exmu{\alt{\mm}{n}}{\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}}}\\
-&\ra \exmu{\alt{\mm}}{\exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}}}\\
-&= \exmu{\alt{\m}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})}
+\exmu{\m\sln{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})} &= \exmu{\mm{n}}{\exmu{\m\sln{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}}}\\
+&\ra \exmu{\mm}{\exmu{\m}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}}}\\
+&= \exmu{\m}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})}
 \end{align*}
 
 then,
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{\t\indx{1}},\dots,\XX{\t\indx{\it}})|\XX{\t\indx{1}}=\XX{}{\t\indx{1}},\XX{0}=\xxx}|\XX{}{0}=\xxx}\\
-&=\exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}{n}}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\alt{\m}{n}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\alt{\m}}{\exmu{\XX\sim \alt{\m}}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
-&=\exmu{\alt{\m}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}
+\exmu{\m\sln{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}&=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX{\t\indx{1}},\dots,\XX{\t\indx{\it}})|\XX{\t\indx{1}}=\XX{}{\t\indx{1}},\XX{0}=\xxx}|\XX{}{0}=\xxx}\\
+&=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\m}{\exmu{\XX\sim \m}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
+&=\exmu{\m}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}
 \end{align*}
 
 \begin{align*}
-\exmu{\alt{\m}{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})}&= \exmu{\XX\sim \XX{}{\t\indx{1}}}{\exmu{\alt{\m}{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{\t\indx{1}}=\XX}}\\
-&=\exmu{\XX\sim \alt{\m}{n}|_{\t\indx{1}}}{\exmu{\alt{\m}{n}}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim \alt{\m}{n}|_{\t\indx{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim \alt{\m}|_{\t\indx{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
-&=\exmu{\alt{\m}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})}
+\exmu{\m\sln{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})}&= \exmu{\XX\sim \XX{}{\t\indx{1}}}{\exmu{\m\sln{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{\t\indx{1}}=\XX}}\\
+&=\exmu{\XX\sim \m\sln{n}|_{\t\indx{1}}}{\exmu{\m\sln{n}}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim \m\sln{n}|_{\t\indx{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim \m|_{\t\indx{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
+&=\exmu{\m}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})}
 \end{align*}
 
-It follows by induction that the finite-dimensional distributions of \(\alt{\m}{n}\) converge weakly. Note: this proof is similar to the proof of \cite[Theorem 4.2]{Kur81}, but with the details filled in.
+It follows by induction that the finite-dimensional distributions of \(\m\sln{n}\) converge weakly. Note: this proof is similar to the proof of \cite[Theorem 4.2]{Kur81}, but with the details filled in.
 \end{proof}
 
 \lin 
@@ -2530,7 +2530,7 @@ By assumption, \(\X\cind{}\tp{0} \deq \XX{}{0}\). Thus, \(\rp{}\) and \(\alt{\rp
 \lin
 
 \begin{lem}
-Assume the notation and assumptions from Lemmas \ref{subsec::Some:Lem::genfiniteSDE} and \ref{subsec::Some:Lem::PPtoSDE} hold under the probability measure \(\m{}{}{}\). Suppose under \(\mm{}{}{}\), \(\X\cind{}\tip{}\) solves,
+Assume the notation and assumptions from Lemmas \ref{subsec::Some:Lem::genfiniteSDE} and \ref{subsec::Some:Lem::PPtoSDE} hold under the probability measure \(\m\sln{}\ts{}\). Suppose under \(\mm{}{}{}\), \(\X\cind{}\tip{}\) solves,
 
 \[\X\cind{\v}\tp{\t} = \X\cind{\v}\tp{0} +\int{(0,\t]}\int_\S\int{(0,1]} \s \poiss\vind{\v}(d\r,d\s,d\tt),\]
 
@@ -2539,7 +2539,7 @@ where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over 
 \ind Let \(\ov{\ell}\) be the extension of \(\Sm\) to \(\alt{\S} = \{\s\ev\vind{\v}: \s \in \S, \v \in V\}\) given by \(\alt{\Sm}(\typset\ev\vind{\v}) = \Sm(\typset)\) for any \(\typset \subseteq \S\). Then,
 
 \begin{equation}
-\frac{d\m{}{\t}{}}{d\mm{}{\t}{}}= \frac{d\m{}{0}{}}{d\mm{}{0}{}}\left(\prod_{0< \rt{\it}\leq \t} \ratee{\t}(\mark{\it})\right)\exp\left(-\int{(0,\t]\times \S} (\ratee{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
+\frac{d\m\sln{}\ts{\t}}{d\mm{}{\t}{}}= \frac{d\m\sln{}\ts{0}}{d\mm{}{0}{}}\left(\prod_{0< \rt{\it}\leq \t} \ratee{\t}(\mark{\it})\right)\exp\left(-\int{(0,\t]\times \S} (\ratee{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
 \label{subsec::Some:eqn::radnik}
 \end{equation}
 \labe{subsec::Some:eqn::radnik}
@@ -2554,7 +2554,7 @@ where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over 
 \begin{proof}
 Notice that \(\X\cind{}\tip{} \mapsto (\X\cind{}\tp{0},\pmap{\X\cind{}\tip{}})\) is a one-to-one mapping from c\`adl\`ag processes on \(\S\carp{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F\vsi{}\ts{\t}\)-adapted, where \(\F\vsi{}\ts{\t} = \F\vsi{}\ts{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp{}\).
 
-\ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp{}\) has predictable intensity \(\ratee{\t}(\cdot)\) with respect to \(\F\vsi{}\ts{\t}\) and \(\m{}{}{}\). \(\rp{}\) has predictable intensity 1 with respect to \(\F\vsi{}\ts{\t}\) and \(\mm{}{}{}\). This holds all of the information about the original process \(\X\cind{}\tip{}\), so we can consider \(\frac{d\m{}{\t}{}}{d\mm{}{\t}{}}\) as a change of measure affecting \(\rp{}\) instead of \(\X\cind{}\tip{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee{\t,\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
+\ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp{}\) has predictable intensity \(\ratee{\t}(\cdot)\) with respect to \(\F\vsi{}\ts{\t}\) and \(\m\sln{}\ts{}\). \(\rp{}\) has predictable intensity 1 with respect to \(\F\vsi{}\ts{\t}\) and \(\mm{}{}{}\). This holds all of the information about the original process \(\X\cind{}\tip{}\), so we can consider \(\frac{d\m\sln{}\ts{\t}}{d\mm{}{\t}{}}\) as a change of measure affecting \(\rp{}\) instead of \(\X\cind{}\tip{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee{\t,\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
 \end{proof}
 
 \lin
