@@ -842,10 +842,10 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset V\).
 \lin
 
 \begin{thms}
-Let \(\X\cind{}\tip{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m\sln{}\ts{} = \law(\X\cind{}\tip{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\sset\vsi{}\ts{} \supseteq\sset\vsi{\tree\sln{1}}\ts{\T}\), \(\t\in (0,\T]\) and \(\mmm{}{}{} \in \pmsr(\sset\vsi{}\ts{})\), define \(\cm{\t}:\sset\vsi{\{\root,1\}}\ts{\t-}\times \pmsr(\sset\vsi{}\ts{}) \ra \pmsr(\sset\vsi{\{2,\dots,\degr\}}\ts{\t-})\) by,
+Let \(\X\cind{}\tip{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m\sln{}\ts{} = \law(\X\cind{}\tip{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\sset\vsi{}\ts{} \supseteq\sset\vsi{\tree\sln{1}}\ts{\T}\), \(\t\in (0,\T]\) and \(\mmm\sln{}\ts{} \in \pmsr(\sset\vsi{}\ts{})\), define \(\cm{\t}:\sset\vsi{\{\root,1\}}\ts{\t-}\times \pmsr(\sset\vsi{}\ts{}) \ra \pmsr(\sset\vsi{\{2,\dots,\degr\}}\ts{\t-})\) by,
 
 \begin{equation}
-\cm{\t}(\x\cind{\{\root,1\}}\tip{[0,\t)},\mmm{}{}{})(\cdot) = \pr{\mmm{}{}{}}\left(\X\cind{\{2,\dots,\degr\}}\tip{[0,\t)} \in \cdot|\X\cind{\{\root,1\}}\tip{[0,\t)} = \x\cind{\{\root,1\}}\tip{[0,\t)}\right).
+\cm{\t}(\x\cind{\{\root,1\}}\tip{[0,\t)},\mmm\sln{}\ts{})(\cdot) = \pr{\mmm\sln{}\ts{}}\left(\X\cind{\{2,\dots,\degr\}}\tip{[0,\t)} \in \cdot|\X\cind{\{\root,1\}}\tip{[0,\t)} = \x\cind{\{\root,1\}}\tip{[0,\t)}\right).
 \label{sec::Main:eqn::gamma}
 \end{equation}
 \labe{sec::Main:eqn::gamma}
@@ -1651,22 +1651,22 @@ By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{\v}{\t}(\s)\) has a left-co
 \subsection{Proof of Uniqueness}
 \label{subsec::ProofU:sec::Proof2}\labe{subsec::ProofU:sec::Proof2}
 
-\pfsum We start with an arbitrary measure \(\mmm{}{}{1}\) satisfying the characterization provided in Theorem \ref{sec::Main:Thm::Local SDE}. We characterize the density of this measure with respect to a simple process. Using these densities, we extend the process to an infinite dimensional process whose marginal distribution is \(\mmm{}{}{1}\). We then prove this infinite dimensional process is precisely \(\m\sln{}\ts{}\).
+\pfsum We start with an arbitrary measure \(\mmm\sln{1}\ts{}\) satisfying the characterization provided in Theorem \ref{sec::Main:Thm::Local SDE}. We characterize the density of this measure with respect to a simple process. Using these densities, we extend the process to an infinite dimensional process whose marginal distribution is \(\mmm\sln{1}\ts{}\). We then prove this infinite dimensional process is precisely \(\m\sln{}\ts{}\).
 
 \begin{proof}[Proof of Theorem \ref{sec::Main:Thm::Local SDE}]
 
-Assume \(\mmm{}{}{1}\) is a probability measure on \(\sset\vsi{\tree\sln{1}}\ts{\T-}\) and suppose that \(\mmm{}{}{1}\) is a solution to equation \eqref{sec::Main:eqn::Local SDE}.
+Assume \(\mmm\sln{1}\ts{}\) is a probability measure on \(\sset\vsi{\tree\sln{1}}\ts{\T-}\) and suppose that \(\mmm\sln{1}\ts{}\) is a solution to equation \eqref{sec::Main:eqn::Local SDE}.
 
-\ind Let \(\X\sln{1}\cind{}\tip{}\) be a process with law \(\mmm{}{}{1}\) embedded in \(\sset\vsi{V}\ts{\T-}\). That is, \(\X\sln{1}\cind{\v}\tip{} \equiv 0\) for \(\v \notin \tree\sln{1}\). Recall that, for \(\v \in \tree\sln{1}\setminus\{\root\}\),
+\ind Let \(\X\sln{1}\cind{}\tip{}\) be a process with law \(\mmm\sln{1}\ts{}\) embedded in \(\sset\vsi{V}\ts{\T-}\). That is, \(\X\sln{1}\cind{\v}\tip{} \equiv 0\) for \(\v \notin \tree\sln{1}\). Recall that, for \(\v \in \tree\sln{1}\setminus\{\root\}\),
 
-\[\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\mmm{}{}{1})}{\IGrg{}(\X\sln{1}\cind{}\tp{\t-},\s)}.\]
+\[\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\mmm\sln{1}\ts{})}{\IGrg{}(\X\sln{1}\cind{}\tp{\t-},\s)}.\]
 
-\ind We will prove uniqueness of the local SDE by showing that \(\mmm{}{}{1}\) is the marginal distribution of \(\m\sln{}\ts{}\), which is the law of \(\X\cind{}\tip{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X\sln{n}\cind{}\tip{}:n\in\mb{N}\}\) on \(\sset\vsi{\tree\sln{n}}\ts{\T-}\) converging weakly to \(\X\cind{}\tip{}\). 
+\ind We will prove uniqueness of the local SDE by showing that \(\mmm\sln{1}\ts{}\) is the marginal distribution of \(\m\sln{}\ts{}\), which is the law of \(\X\cind{}\tip{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X\sln{n}\cind{}\tip{}:n\in\mb{N}\}\) on \(\sset\vsi{\tree\sln{n}}\ts{\T-}\) converging weakly to \(\X\cind{}\tip{}\). 
 
 \lin
 
 \begin{lem}
-The marginal distribution of \(\mmm{}{}{1}\) on \(\sset\vsi{\{\v,\root\}}\ts{\T}\) for \(\v \in \tree\sln{1}\setminus\{\root\}\) is the law of the unique solution to the following SDE:
+The marginal distribution of \(\mmm\sln{1}\ts{}\) on \(\sset\vsi{\{\v,\root\}}\ts{\T}\) for \(\v \in \tree\sln{1}\setminus\{\root\}\) is the law of the unique solution to the following SDE:
 
 \begin{align}
 \X\sln{1}\cind{\{\v,\root\}}\tp{\t} = \X\sln{1}\cind{\{\v,\root\}}\tp{0} &+ \ev\vind{\v}\int_\S\int{(0,\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\tt)},\s)]}\int{(0,\t]}\s\,\poiss\vind{\v}(d\tt,d\r,d\s)\nonumber\\
@@ -1678,7 +1678,7 @@ The marginal distribution of \(\mmm{}{}{1}\) on \(\sset\vsi{\{\v,\root\}}\ts{\T}
 \end{lem}
 \labe{subsec::ProofU:Lem::Marginal}
 
-\purpose This allows us to derive the marginal density of the double neighborhood of \((\tree\sln{n})^c\) for all \(n\). With this marginal density, we can derive conditional intensities that can be used to extend \(\mmm{}{}{1}\) to more nodes.
+\purpose This allows us to derive the marginal density of the double neighborhood of \((\tree\sln{n})^c\) for all \(n\). With this marginal density, we can derive conditional intensities that can be used to extend \(\mmm\sln{1}\ts{}\) to more nodes.
 
 \pfsum By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{}{}\) has a left-continuous modification so we can directly apply Lemma \ref{subsec::ProofE:Lem::filtering}.
 
@@ -1715,7 +1715,7 @@ Suppose \(\{\poiss\vind{}\}\) is Poisson process with intensity \(\leb\otimes \S
 
 \[\XX{}{\t} = \XX{}{0} + \int{(0,\t]}\int{(0,1]}\int_\S\s\,\poiss\vind{}(d\s,d\r,d\tt).\]
 
-Let \(\mm\vind{}\ts{} = \law(\XX{}{})\). Suppose \(\mmm{\v}{0,}{1}\ll\mm\vind{}\ts{0}\) for all \(\v\in\tree\sln{1}\). Let \(\{\mm\vind{\v}\ts{}:\v\in V\}\) be the distributions of a sequence of i.i.d. \(\S\carp{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq V\), let 
+Let \(\mm\vind{}\ts{} = \law(\XX{}{})\). Suppose \(\mmm\slnvind{1}{\v}\ts{0,}\ll\mm\vind{}\ts{0}\) for all \(\v\in\tree\sln{1}\). Let \(\{\mm\vind{\v}\ts{}:\v\in V\}\) be the distributions of a sequence of i.i.d. \(\S\carp{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq V\), let 
 
 \[\mm\vind{\U}\ts{} = \otimes_{\v\in\U} \mm\vind{\v}\ts{}.\]
 
@@ -1727,7 +1727,7 @@ Finally, for any \(\t\in [0,\T)\), let \(\mm\vind{\U}\ts{\t,}\) be the restricti
 \lin
 
 \begin{lem}
-For any \(\v \in V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(n \in \mb{N}\). Let \(\mmm{}{}{n} \in \pmsr\left(\sset\vsi{\tree\sln{n}}\ts{\T-}\right)\) be the law of the unique solution to the following SDE:
+For any \(\v \in V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(n \in \mb{N}\). Let \(\mmm\sln{n}\ts{} \in \pmsr\left(\sset\vsi{\tree\sln{n}}\ts{\T-}\right)\) be the law of the unique solution to the following SDE:
 
 \begin{equation}
 \X\cind{\v}\tp{\t} = \begin{cases}
@@ -1738,12 +1738,12 @@ For any \(\v \in V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\
 \end{equation}
 \labe{subsec::ProofU:eqn::extendedSDE}
 
-Then for any \(\alt{n} < n\), \(\mmm{}{\t}{\alt{n}} = \proj\vsi{\tree\sln{\alt{n}}}\ts{\t}(\mmm{}{\t}{n})\).
+Then for any \(\alt{n} < n\), \(\mmm\sln{\alt{n}}\ts{\t} = \proj\vsi{\tree\sln{\alt{n}}}\ts{\t}(\mmm\sln{n}\ts{\t})\).
 \label{subsec::ProofU:Lem::extendedSDE}
 \end{lem}
 \labe{subsec::ProofU:Lem::extendedSDE}
 
-\purpose By constructing larger processes with the whose marginal distribution is \(\mmm{}{}{1}\), we can, in the limit, construct an interacting particle system on \(V\) that projects down to \(\mmm{}{}{}\). All that will remain will be to prove that this process is equal in distribution to \(\m\sln{}\ts{}\).
+\purpose By constructing larger processes with the whose marginal distribution is \(\mmm\sln{1}\ts{}\), we can, in the limit, construct an interacting particle system on \(V\) that projects down to \(\mmm\sln{}\ts{}\). All that will remain will be to prove that this process is equal in distribution to \(\m\sln{}\ts{}\).
 
 \pfsum Using Lemmas \ref{subsec::ProofU:Lem::Marginal} and \ref{subsec::Some:Lem::radnik} \tr{rrewrite}, we can construct a conditional density which can be used to extend \(\mu\sln{1}\). We can use simple density arguments to prove the marginal properties we can use Lemma \ref{subsec::Some:Lem::radnik} \tr{rrewrite} to get the SDE formulation.
 
@@ -1773,18 +1773,18 @@ f&\te{ is a }[0,\const\indx{}] \te{-valued mapping and } \pmap{\v}(\XXX{}{}) = \
 Let \(\{(\rt{\it},\mark{\it})\}\) be the events of \(\pmap{}(\X\sln{1}\cind{}\tip{})\). By Lemma \ref{subsec::Some:Lem::radnik},
 
 \begin{align}
-\dense{1}{\t}(\X\cind{\tree\sln{1}}\tip{})&\defeq \frac{d\mmm{}{\t}{1}}{d\mm\sln{1}\ts{\t}}\nonumber\\
-&= \frac{d\mmm{}{0}{1}}{d\mm\sln{1}\ts{0,}}\exp\left(\sum_{0< \rt{\it} \leq \t} \log{\ratee{}(\X\sln{1}\cind{}\tip{[0,\rt{\it})},\mark{\it})} - \int{(0,\t]\times\S} [\ratee{}(\X\sln{1}\cind{}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
-&= \frac{d\mmm{}{0}{1}}{d\mm\sln{1}\ts{0,}}\exp\Bigg(\sum_{\v\in\tree\sln{1}\setminus\{\root\}}\left(\sum_{0< \rt{\it}_\v \leq \t} \log{\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\rt{\it}_\v)},\mark{\it})} - \int{(0,\t]\times\S} [\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+\dense{1}{\t}(\X\cind{\tree\sln{1}}\tip{})&\defeq \frac{d\mmm\sln{1}\ts{\t}}{d\mm\sln{1}\ts{\t}}\nonumber\\
+&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0,}}\exp\left(\sum_{0< \rt{\it} \leq \t} \log{\ratee{}(\X\sln{1}\cind{}\tip{[0,\rt{\it})},\mark{\it})} - \int{(0,\t]\times\S} [\ratee{}(\X\sln{1}\cind{}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0,}}\exp\Bigg(\sum_{\v\in\tree\sln{1}\setminus\{\root\}}\left(\sum_{0< \rt{\it}_\v \leq \t} \log{\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\rt{\it}_\v)},\mark{\it})} - \int{(0,\t]\times\S} [\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
 &\hspace{24pt} + \left(\sum_{0 < \rt{\it}_\root \leq \t} \log{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\rt{\it}_\root-},\mark{\it}_\root)} - \int{(0,\t]\times\S} [\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\tt-},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
-&= \frac{d\mmm{}{0}{1}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{1}\setminus\{\root\}} \ds{\v}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate{}{}) + \ds{\root}{\t}(\X\sln{1}\cind{\tree\sln{1}}\tip{},\IGrg{})\right).
+&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{1}\setminus\{\root\}} \ds{\v}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate{}{}) + \ds{\root}{\t}(\X\sln{1}\cind{\tree\sln{1}}\tip{},\IGrg{})\right).
 \label{subsec::ProofU:eqn::L1 density}
 \end{align}
 
 By a similar calculation, we can apply Lemmas \ref{subsec::Some:Lem::radnik} and \ref{subsec::ProofU:Lem::Marginal} to get,
 
 \begin{equation}
-\alt{\dense}{}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{}) \defeq \frac{d\mmm{\{\v,\root\}}{\t,}{}}{d\mm\vind{\{\v,\root\}}\ts{\t,}} = \frac{d\mmm{\{\v,\root\}}{0,}{}}{d\mm\vind{\{\v,\root\}}\ts{0,}}\exp\left(\ds{\v}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate{}{}) + \ds{\root}{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{},\crate{}{})\right).
+\alt{\dense}{}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{}) \defeq \frac{d\mmm\vind{\{\v,\root\}}\ts{\t,}}{d\mm\vind{\{\v,\root\}}\ts{\t,}} = \frac{d\mmm\vind{\{\v,\root\}}\ts{0,}}{d\mm\vind{\{\v,\root\}}\ts{0,}}\exp\left(\ds{\v}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate{}{}) + \ds{\root}{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{},\crate{}{})\right).
 \label{subsec::ProofU:eqn::Margdense}
 \end{equation}
 \labe{subsec::ProofU:eqn::Margdense}
@@ -1793,7 +1793,7 @@ Define,
 
 \begin{align*}
 \cdense{}{\t}&(\X\sln{1}\cind{\{\tree\sln{1}\setminus\{\root\}\}}\tip{};\x\cind{\{\root,1\}}\tip{})\\
-& \defeq\frac{d\mmm{\tree\sln{1}\setminus\{\root,1\}}{0,}{}}{d\mm\vind{\tree\sln{1}\setminus\{\root,1\}}\ts{0,}}\exp\left(\sum_{\v\in \tree\sln{1}\setminus\{\root,1\}} \ds{\v}{\t}([\X\sln{1}\cind{\{v\}}\tip{},\x\cind{\root}\tip{}],\crate{}{}) + \ds{\root}{\t}([\X\sln{1}\cind{\tree\sln{1}\setminus\{\root,1\}}\tip{},\x\cind{\{\root,1\}}\tip{}],\IGrg{}) - \ds{\root}{\t}(\x\cind{\{\root,1\}}\tip{},\crate{}{})\right)\\
+& \defeq\frac{d\mmm\vind{\tree\sln{1}\setminus\{\root,1\}}\ts{0,}}{d\mm\vind{\tree\sln{1}\setminus\{\root,1\}}\ts{0,}}\exp\left(\sum_{\v\in \tree\sln{1}\setminus\{\root,1\}} \ds{\v}{\t}([\X\sln{1}\cind{\{v\}}\tip{},\x\cind{\root}\tip{}],\crate{}{}) + \ds{\root}{\t}([\X\sln{1}\cind{\tree\sln{1}\setminus\{\root,1\}}\tip{},\x\cind{\{\root,1\}}\tip{}],\IGrg{}) - \ds{\root}{\t}(\x\cind{\{\root,1\}}\tip{},\crate{}{})\right)\\
 \end{align*}
 
 Then,
@@ -1818,10 +1818,10 @@ The important thing is that this can be used to extend \(\X\sln{1}\cind{}\tip{}\
 
 for \(n > 1\) (\(\tree\sln{0} = \{\root\}\)). 
 
-\ind Let \(\mm\sln{n}\ts{}\defeq \mm\vind{\tree\sln{n}}\ts{}\) and assume for any \(\U \subseteq V\), \(\mmm{\U}{0,}{} = \otimes_{\v\in\U}\mmm{\v}{0,}{}\) where \(\{\mmm{\v}{0,}{}:\v\in V\}\) describes a sequence of i.i.d. \(\S\)-valued random variables. We can show using induction that,
+\ind Let \(\mm\sln{n}\ts{}\defeq \mm\vind{\tree\sln{n}}\ts{}\) and assume for any \(\U \subseteq V\), \(\mmm\vind{\U}\ts{0,} = \otimes_{\v\in\U}\mmm\vind{\v}\ts{0,}\) where \(\{\mmm\vind{\v}\ts{0,}:\v\in V\}\) describes a sequence of i.i.d. \(\S\)-valued random variables. We can show using induction that,
 
 \begin{equation}
-\dense{n}{\t}(\X\sln{n}\cind{}\tip{}) = \frac{d\mmm{}{\t}{n}}{d\mm\sln{n}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X\sln{n}\cind{\{v,\p{\v}\}}\tip{},\crate{}{})\right).
+\dense{n}{\t}(\X\sln{n}\cind{}\tip{}) = \frac{d\mmm\sln{n}\ts{\t}}{d\mm\sln{n}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X\sln{n}\cind{\{v,\p{\v}\}}\tip{},\crate{}{})\right).
 \label{subsec::ProofU:eqn::densen}
 \end{equation}
 \labe{subsec::ProofU:eqn::densen}
@@ -1830,21 +1830,21 @@ Assume equation \eqref{subsec::ProofU:eqn::densen} holds for \(\dense{n-1}{\t}\)
 
 \begin{align*}
 \dense{n}{\t}(\X\sln{n}\cind{}\tip{}) &= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X\sln{2}\cind{\c{\v}}\tip{};\X\sln{2}\cind{\{\v,\p{\v}\}}\tip{})\\
-&=\left(\frac{d\mmm{}{0}{n-1}}{d\mm\sln{n-1}\ts{0}}\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\frac{d\mmm{\c{\v}}{0,}{}}{d\mm\vind{\c{\v}}\ts{0,}}\right)\exp\Bigg(\sum_{\v\in\tree\sln{n-2}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \ds{\v}{\t}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{},\crate{}{})\\
+&=\left(\frac{d\mmm\sln{n-1}\ts{0}}{d\mm\sln{n-1}\ts{0}}\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\frac{d\mmm\vind{\c{\v}}\ts{0,}}{d\mm\vind{\c{\v}}\ts{0,}}\right)\exp\Bigg(\sum_{\v\in\tree\sln{n-2}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \ds{\v}{\t}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{},\crate{}{})\\
 &\ind + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\left(\sum_{\vv\in \c{\v}} \ds{\vv}{\t}(\X\sln{n}\cind{\{\vv,\v\}}\tip{},\crate{}{}) + \ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) - \ds{\v}{\t}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{},\crate{}{})\right)\Bigg)\\
-&=\frac{d\mmm{}{0}{n}}{d\mm\sln{n}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{},\crate{}{})\right).
+&=\frac{d\mmm\sln{n}\ts{0}}{d\mm\sln{n}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{},\crate{}{})\right).
 \end{align*}
 
 By a simple calculation analogous to what we did earlier to show that \(\dense{1}{\t}\) was a Radon-Nykodim derivative, we can apply Proposition \ref{subsec::Prope:Prop::radnikder} to prove that this is the Radon-Nikodym derivative of a marked point process. 
 
-\ind For each \(n > 1\), define \(\mmm{}{}{n} \in \pmsr(\sset\vsi{\tree\sln{n}}\ts{\T-})\) by,
+\ind For each \(n > 1\), define \(\mmm\sln{n}\ts{} \in \pmsr(\sset\vsi{\tree\sln{n}}\ts{\T-})\) by,
 
-\[\frac{d\mmm{}{\t}{n}}{d\mm\sln{n}\ts{\t}} = \dense{n}{\t}(\X\sln{n}\cind{}\tip{}).\]
+\[\frac{d\mmm\sln{n}\ts{\t}}{d\mm\sln{n}\ts{\t}} = \dense{n}{\t}(\X\sln{n}\cind{}\tip{}).\]
 
 Then,
 
 \begin{align*}
-\frac{d\proj\vsi{\tree\sln{n-1}}\ts{\t}(\mmm{}{\t}{n})}{d\mm\sln{n-1}\ts{\t}} &= \int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \frac{d\mmm{}{\t}{n}}{d\mm\sln{n}\ts{\t}}\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t,}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
+\frac{d\proj\vsi{\tree\sln{n-1}}\ts{\t}(\mmm\sln{n}\ts{\t})}{d\mm\sln{n-1}\ts{\t}} &= \int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \frac{d\mmm\sln{n}\ts{\t}}{d\mm\sln{n}\ts{\t}}\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t,}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
 &=\int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \dense{n}{\t}(\X\sln{n}\cind{}\tip{})\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t,}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
 &= \int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X\sln{n}\cind{\c{\v}}\tip{};\X\sln{n}\cind{\{v,\p{\v}\}}\tip{})\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t,}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
 &= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\int{\sset\vsi{\c{\v}}\ts{\t-}} \cdense{}{\t}(\X\sln{n}\cind{\c{\v}}\tip{};\X\sln{n}\cind{\{v,\p{\v}\}}\tip{})\,\mm\vind{\c{\v}}\ts{\t,}(d\X\sln{n}\cind{\c{\v}}\tip{})\\
@@ -1852,38 +1852,38 @@ Then,
 &= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{}).
 \end{align*}
 
-This proves that \(\proj\vsi{\tree\sln{n-1}}\ts{\t}(\mmm{}{\t}{n}) = \mmm{}{\t}{n-1}\). Furthermore, for any \(\alt{n} < n\),
+This proves that \(\proj\vsi{\tree\sln{n-1}}\ts{\t}(\mmm\sln{n}\ts{\t}) = \mmm\sln{n-1}\ts{\t}\). Furthermore, for any \(\alt{n} < n\),
 
-\[\proj\vsi{\tree\sln{\alt{n}}}\ts{\t}(\mmm{}{\t}{n}) = \proj\vsi{\tree\sln{\alt{n}}}\ts{\t}\circ\proj\vsi{\tree\sln{\alt{n} + 1}}\ts{\t} \circ\cdots\circ \proj\vsi{\tree\sln{n-1}}\ts{\t}(\mmm{}{\t}{n}) = \proj\vsi{\tree\sln{\alt{n}}}\ts{\t}\circ\proj\vsi{\tree\sln{\alt{n} + 1}}\ts{\t} \circ\cdots\circ \proj\vsi{\tree\sln{n-2}}\ts{\t}(\mmm{}{\t}{n-1}) = \cdots = \mmm{}{\t}{\alt{n}}.\]
+\[\proj\vsi{\tree\sln{\alt{n}}}\ts{\t}(\mmm\sln{n}\ts{\t}) = \proj\vsi{\tree\sln{\alt{n}}}\ts{\t}\circ\proj\vsi{\tree\sln{\alt{n} + 1}}\ts{\t} \circ\cdots\circ \proj\vsi{\tree\sln{n-1}}\ts{\t}(\mmm\sln{n}\ts{\t}) = \proj\vsi{\tree\sln{\alt{n}}}\ts{\t}\circ\proj\vsi{\tree\sln{\alt{n} + 1}}\ts{\t} \circ\cdots\circ \proj\vsi{\tree\sln{n-2}}\ts{\t}(\mmm\sln{n-1}\ts{\t}) = \cdots = \mmm\sln{\alt{n}}\ts{\t}.\]
 
-\ind Fix \(n\in\mb{N}\). By Lemma \ref{subsec::Some:Lem::radnik}, \(\mmm{}{}{n}\) can be described as the law of the unique solution to equation \eqref{subsec::ProofU:eqn::extendedSDE}.
+\ind Fix \(n\in\mb{N}\). By Lemma \ref{subsec::Some:Lem::radnik}, \(\mmm\sln{n}\ts{}\) can be described as the law of the unique solution to equation \eqref{subsec::ProofU:eqn::extendedSDE}.
 \end{proof}
 
 \lin
 
-For any \(\U\subseteq V\), we can consider the embedding \(\pmsr\left(\sset\vsi{\U}\ts{\t-}\right) = \pmsr\left((\sset\vsi{\U}\ts{\t-},\F\vsi{\U}\ts{\t-})\right) \subseteq \pmsr\left((\sset\vsi{V}\ts{\t-},\F\vsi{\U}\ts{\t-})\right)\). That is, a measure \(\mmm{}{}{}\in \pmsr\left(\sset\vsi{\U}\ts{\t-}\right)\) can be considered as a \(\F\vsi{\U}\ts{}\)-adapted measure on \(\sset\vsi{V}\ts{\t-}\).
+For any \(\U\subseteq V\), we can consider the embedding \(\pmsr\left(\sset\vsi{\U}\ts{\t-}\right) = \pmsr\left((\sset\vsi{\U}\ts{\t-},\F\vsi{\U}\ts{\t-})\right) \subseteq \pmsr\left((\sset\vsi{V}\ts{\t-},\F\vsi{\U}\ts{\t-})\right)\). That is, a measure \(\mmm\sln{}\ts{}\in \pmsr\left(\sset\vsi{\U}\ts{\t-}\right)\) can be considered as a \(\F\vsi{\U}\ts{}\)-adapted measure on \(\sset\vsi{V}\ts{\t-}\).
 
-\ind Let's summarize what we have so far. We have a sequence of measures \(\{\mmm{}{}{n}:n\in\mb{N}\} \subset \pmsr(\sset\vsi{V}\ts{\T-})\) satisfying:
+\ind Let's summarize what we have so far. We have a sequence of measures \(\{\mmm\sln{n}\ts{}:n\in\mb{N}\} \subset \pmsr(\sset\vsi{V}\ts{\T-})\) satisfying:
 
 \begin{enumerate}[(a)]
-\item \(\mmm{}{}{1}\) solves equation \eqref{sec::Main:eqn::Local SDE}.
+\item \(\mmm\sln{1}\ts{}\) solves equation \eqref{sec::Main:eqn::Local SDE}.
 
-\item \(\mmm{}{}{n}(\X\sln{n}\cind{\tree\sln{\alt{n}}}\tip{} \in \cdot) = \mmm{}{}{\alt{n}}(\X\sln{\alt{n}}\cind{\tree\sln{\alt{n}}}\tip{}\in \cdot)\) for all \(n \geq \alt{n}\).
+\item \(\mmm\sln{n}\ts{}(\X\sln{n}\cind{\tree\sln{\alt{n}}}\tip{} \in \cdot) = \mmm\sln{\alt{n}}\ts{}(\X\sln{\alt{n}}\cind{\tree\sln{\alt{n}}}\tip{}\in \cdot)\) for all \(n \geq \alt{n}\).
 
-\item \(\frac{d\mmm{}{\t}{n}}{d\mm\sln{n}\ts{\t}} = \dense{n}{\t}(\X\sln{n}\cind{}\tip{})\).
+\item \(\frac{d\mmm\sln{n}\ts{\t}}{d\mm\sln{n}\ts{\t}} = \dense{n}{\t}(\X\sln{n}\cind{}\tip{})\).
 \end{enumerate}
 
-Let \(\{\mmm{\U}{\t,}{}:\t \leq \T\}_{\U\subset V,\U\te{ finite}}\) be a collection of measures defined by
+Let \(\{\mmm\vind{\U}\ts{\t,}:\t \leq \T\}_{\U\subset V,\U\te{ finite}}\) be a collection of measures defined by
 
-\[\mmm{\U}{\t,}{}(\cdot) = \mmm{}{\t}{n}(\X\sln{n}\cind{}\tip{[0,\t)} \in \cdot) \te{ for any }n\te{ \tt.\t. }\U \subseteq \tree\sln{n}.\]
+\[\mmm\vind{\U}\ts{\t,}(\cdot) = \mmm\sln{n}\ts{\t}(\X\sln{n}\cind{}\tip{[0,\t)} \in \cdot) \te{ for any }n\te{ \tt.\t. }\U \subseteq \tree\sln{n}.\]
 
-By property (b) above, this is well-defined. Since each \(\mmm{\U}{}{}\) is a probability measure defined on the Borel sets of \(\sset\vsi{\U}\ts{\T-}\), they are all inner regular (\tr{citation?}). Now, fix some finite \(\U\subseteq V\) and let \(\UU \subseteq \U\). Suppose \(n\) is such that \(\U \subseteq \tree\sln{n}\). Then \(\UU\subseteq \tree\sln{n}\), so
+By property (b) above, this is well-defined. Since each \(\mmm\vind{\U}\ts{}\) is a probability measure defined on the Borel sets of \(\sset\vsi{\U}\ts{\T-}\), they are all inner regular (\tr{citation?}). Now, fix some finite \(\U\subseteq V\) and let \(\UU \subseteq \U\). Suppose \(n\) is such that \(\U \subseteq \tree\sln{n}\). Then \(\UU\subseteq \tree\sln{n}\), so
 
-\[\proj\vsi{\UU}\ts{\t}(\mmm{\U}{\t,}{})(\cdot) = \mmm{\U}{\t,}{}\left(\proj\vsi{\UU}\ts{\t}(\X\sln{n}\cind{\U}\tip{}) \in \cdot\right) = \mmm{}{\t}{n}\left(\X\sln{n}\cind{\UU}\tip{} \in \cdot\right) = \mmm{\UU}{\t,}{}(\cdot).\]
+\[\proj\vsi{\UU}\ts{\t}(\mmm\vind{\U}\ts{\t,})(\cdot) = \mmm\vind{\U}\ts{\t,}\left(\proj\vsi{\UU}\ts{\t}(\X\sln{n}\cind{\U}\tip{}) \in \cdot\right) = \mmm\sln{n}\ts{\t}\left(\X\sln{n}\cind{\UU}\tip{} \in \cdot\right) = \mmm\vind{\UU}\ts{\t,}(\cdot).\]
 
-Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied. Therefore, there exists a \(\mmm{}{}{}\in \ms{P}(\sset\vsi{\U}\ts{\T-})\) such that \(\proj\vsi{\U}\ts{\T-}(\mmm{}{}{}) =\mmm{\U}{}{}\) for all finite \(\U\). \tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
+Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied. Therefore, there exists a \(\mmm\sln{}\ts{}\in \ms{P}(\sset\vsi{\U}\ts{\T-})\) such that \(\proj\vsi{\U}\ts{\T-}(\mmm\sln{}\ts{}) =\mmm\vind{\U}\ts{}\) for all finite \(\U\). \tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
 
-\ind In particular, there exists a probability space with canonical process \(\X\cind{}\tip{}\) such that \(\mmm{}{}{} = \law(\X\cind{}\tip{[0,\T)})\) and \(\mmm{\v}{}{} = \law(\X\cind{\v}\tip{[0,\T)})\) for all \(\v \in V\). In particular, this means that \(\law(\X\cind{\tree\sln{n}}\tip{[0,\T)}) = \mmm{\tree\sln{n}}{}{} = \mmm{}{}{n}\). Since \(\X\cind{\tree\sln{n}}\tip{} \ra \X\cind{}\tip{}\) almost surely (we are in the topology of componentwise convergence), \(\mmm{}{}{n} \Rightarrow \mmm{}{}{}\). In order to characterize \(\X\cind{}\tip{}\) and \(\mmm{}{}{}\), we construct a stochastic differential equation on a probability space on which \(\X\sln{n}\cind{}\tip{} \sim \mmm{}{}{n}\) and \(\X\sln{n}\cind{}\tip{} = \X\cind{\tree\sln{n}}\tip{}\) almost surely. \tr{I don'\t know if it's clear, but we are taking \(\X\sln{n}\cind{}\tip{}\) and \(\X\cind{}\tip{}\) as given in this probability space.}
+\ind In particular, there exists a probability space with canonical process \(\X\cind{}\tip{}\) such that \(\mmm\sln{}\ts{} = \law(\X\cind{}\tip{[0,\T)})\) and \(\mmm\vind{\v}\ts{} = \law(\X\cind{\v}\tip{[0,\T)})\) for all \(\v \in V\). In particular, this means that \(\law(\X\cind{\tree\sln{n}}\tip{[0,\T)}) = \mmm\vind{\tree\sln{n}}\ts{} = \mmm\sln{n}\ts{}\). Since \(\X\cind{\tree\sln{n}}\tip{} \ra \X\cind{}\tip{}\) almost surely (we are in the topology of componentwise convergence), \(\mmm\sln{n}\ts{} \Rightarrow \mmm\sln{}\ts{}\). In order to characterize \(\X\cind{}\tip{}\) and \(\mmm\sln{}\ts{}\), we construct a stochastic differential equation on a probability space on which \(\X\sln{n}\cind{}\tip{} \sim \mmm\sln{n}\ts{}\) and \(\X\sln{n}\cind{}\tip{} = \X\cind{\tree\sln{n}}\tip{}\) almost surely. \tr{I don'\t know if it's clear, but we are taking \(\X\sln{n}\cind{}\tip{}\) and \(\X\cind{}\tip{}\) as given in this probability space.}
 
 \ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. The result is given in \cite[Exercise 14.7.1]{DalVer08} \tr{TODO: rigorously solve this exercise myself}).
 
@@ -1953,7 +1953,7 @@ Let \(\{\poiss\vind{\v},\alt{\poiss}{\v}:\v\in V\}\) be constructed as above. Th
 \end{equation}
 \labe{subsec::ProofU:eqn::ExtendedSDE\_fixedPoisson}
 
-By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. By Lemma \ref{subsec::ProofU:Lem::extendedSDE}, \(\te{law}(\X\sln{n}\cind{}\tip{}) = \mmm{}{}{n}\). By construction, \(\proj\vsi{\tree\sln{n}}\ts{\T-}(\X\cind{}\tip{}) = \X\sln{n}\cind{}\tip{}\) for all \(n\in\mb{N}\).
+By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. By Lemma \ref{subsec::ProofU:Lem::extendedSDE}, \(\te{law}(\X\sln{n}\cind{}\tip{}) = \mmm\sln{n}\ts{}\). By construction, \(\proj\vsi{\tree\sln{n}}\ts{\T-}(\X\cind{}\tip{}) = \X\sln{n}\cind{}\tip{}\) for all \(n\in\mb{N}\).
 
 \ind Fix any \(\v\in V\). Let \(n\in \mb{N}\) be any natural number such that \(\v\in \tree\sln{n-1}\). Then for any \(\t \in [0,\T)\),
 
@@ -1970,7 +1970,7 @@ Thus, \(\X\cind{}\tip{}\) is a solution to the coupled equation,
 \end{equation}
 \labe{subsec::ProofU:eqn::XSDE}
 
-However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m\sln{}\ts{}\). Thus, \(\mmm{}{}{} = \m\sln{}\ts{}\). We conclude that \(\mmm{}{}{1} = \proj\vsi{\tree\sln{1}}\ts{\T-}(\m\sln{}\ts{})\).
+However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m\sln{}\ts{}\). Thus, \(\mmm\sln{}\ts{} = \m\sln{}\ts{}\). We conclude that \(\mmm\sln{1}\ts{} = \proj\vsi{\tree\sln{1}}\ts{\T-}(\m\sln{}\ts{})\).
 
 \end{proof}
 
