@@ -1017,9 +1017,9 @@ Furthermore, by the same argument presented in the beginning of the proof of Lem
 
 \begin{align*}
 &\ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\t < \rt\indx{i+1}}} = \ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\evnt\ts{\t}}}\os{\alt{\X}\cind{\cl{\U}}\tip{[0,\rt\indx{i}]} = \X\cind{\cl{\U}}\tip{[0,\rt\indx{i}]}}{=} \ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\alt{\evnt}\ts{\t}}}\\
-&\ind\leq \ex{\mb{I}_{\alt{\evnt}\ts{\t}}\left|\int_\S\int{(\rt\indx{i},\t]} \s\,\poiss\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right]\,d\s\right) - \int_\S\int{(\rt\indx{i},\t]} \s\,\alt{\poiss}\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]\,d\s\right)\right|}\\
-&\ind \leq \ex{\int_\S\int{\mb{R}}\int{(\rt\indx{i},\t]}|\s|\mb{I}_{\alt{\evnt}\ts{\t}}\mb{I}_{\r\in \left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s), \IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}\,\poiss\vind{\v}\left(d\tt,d\r,d\s\right)}\\
-&\ind \os{\alt{\X}\cind{\cl{\U}}\tip{[0,\rt\indx{i}]} = \X\cind{\cl{\U}}\tip{[0,\rt\indx{i}]}}{=} \ex{\int_\S\int{\mb{R}}\int{(0,\t]}|\s|\mb{I}_{\evnt\ts{\t}}\mb{I}_{\r\in \left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s), \IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}\,\poiss\vind{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind\leq \ex{\mb{I}_{\alt{\evnt}\ts{\t}}\left|\int_\S\int_{(\rt\indx{i},\t]} \s\,\poiss\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right]\,d\s\right) - \int_\S\int_{(\rt\indx{i},\t]} \s\,\alt{\poiss}\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]\,d\s\right)\right|}\\
+&\ind \leq \ex{\int_\S\int_{\mb{R}}\int_{(\rt\indx{i},\t]}|\s|\mb{I}_{\alt{\evnt}\ts{\t}}\mb{I}_{\r\in \left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s), \IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}\,\poiss\vind{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind \os{\alt{\X}\cind{\cl{\U}}\tip{[0,\rt\indx{i}]} = \X\cind{\cl{\U}}\tip{[0,\rt\indx{i}]}}{=} \ex{\int_\S\int_{\mb{R}}\int_{(0,\t]}|\s|\mb{I}_{\evnt\ts{\t}}\mb{I}_{\r\in \left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s), \IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}\,\poiss\vind{\v}\left(d\tt,d\r,d\s\right)}\\
 &\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt\ts{\t}}\mb{I}_{\r\in\left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s),\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
 &\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt\ts{\t}}\left|\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s) - \IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
 &\ind \leq \const\indx{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt\ts{\t}}\sum_{\vv\in \cl{\v}}\left|\alt{\X}\cind{\vv}\tp{\tt-} - \X\cind{\vv}\tp{\tt-}\right|}\,d\tt\\
@@ -1681,8 +1681,8 @@ Assume \(\mmm\sln{1}\ts{}\) is a probability measure on \(\sset\vsi{\tree\sln{1}
 The marginal distribution of \(\mmm\sln{1}\ts{}\) on \(\sset\vsi{\{\v,\root\}}\ts{\T}\) for \(\v \in \tree\sln{1}\setminus\{\root\}\) is the law of the unique solution to the following SDE:
 
 \begin{align}
-\X\sln{1}\cind{\{\v,\root\}}\tp{\t} = \X\sln{1}\cind{\{\v,\root\}}\tp{0} &+ \ev\vind{\v}\int_\S\int{(0,\crate\vind{}\ts{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\tt)},\s)]}\int{(0,\t]}\s\,\poiss\vind{\v}(d\tt,d\r,d\s)\nonumber\\
-&+ \ev\vind{\root}\int_\S\int{(0,\crate\vind{}\ts{}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\tt)},\s)]}\int{(0,\t]}\s\,\poiss\vind{\root}(d\tt,d\r,d\s)
+\X\sln{1}\cind{\{\v,\root\}}\tp{\t} = \X\sln{1}\cind{\{\v,\root\}}\tp{0} &+ \ev\vind{\v}\int_\S\int_{(0,\crate\vind{}\ts{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\tt)},\s)]}\int_{(0,\t]}\s\,\poiss\vind{\v}(d\tt,d\r,d\s)\nonumber\\
+&+ \ev\vind{\root}\int_\S\int_{(0,\crate\vind{}\ts{}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\tt)},\s)]}\int_{(0,\t]}\s\,\poiss\vind{\root}(d\tt,d\r,d\s)
 \label{subsec::ProofU:eqn::Marginal}
 \end{align}
 \labe{subsec::ProofU:eqn::Marginal}
@@ -1725,7 +1725,7 @@ Notice that \(\X\sln{1}\cind{}\tip{}\) and \(\rate\) satisfy Assumption \ref{sub
 \begin{defn}
 Suppose \(\{\poiss\vind{}\}\) is Poisson process with intensity \(\leb\otimes \Sm\) on \(\mb{R}^2\times \S\). Define,
 
-\[\XX\cind{}\tp{\t} = \XX\cind{}\tp{0} + \int{(0,\t]}\int{(0,1]}\int_\S\s\,\poiss\vind{}(d\s,d\r,d\tt).\]
+\[\XX\cind{}\tp{\t} = \XX\cind{}\tp{0} + \int_{(0,\t]}\int_{(0,1]}\int_\S\s\,\poiss\vind{}(d\s,d\r,d\tt).\]
 
 Let \(\mm\vind{}\ts{} = \law(\XX\cind{}\tip{})\). Suppose \(\mmm\slnvind{1}{\v}\ts{0}\ll\mm\vind{}\ts{0}\) for all \(\v\in\tree\sln{1}\). Let \(\{\mm\vind{\v}\ts{}:\v\in V\}\) be the distributions of a sequence of i.i.d. \(\S\carp{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq V\), let 
 
@@ -1739,12 +1739,12 @@ Finally, for any \(\t\in [0,\T)\), let \(\mm\vind{\U}\ts{\t}\) be the restrictio
 \lin
 
 \begin{lem}
-For any \(\v \in V\setminus\{\root\}\), let \(\p{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(n \in \mb{N}\). Let \(\mmm\sln{n}\ts{} \in \pmsr\left(\sset\vsi{\tree\sln{n}}\ts{\T-}\right)\) be the law of the unique solution to the following SDE:
+For any \(\v \in V\setminus\{\root\}\), let \(\p\vind{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(n \in \mb{N}\). Let \(\mmm\sln{n}\ts{} \in \pmsr\left(\sset\vsi{\tree\sln{n}}\ts{\T-}\right)\) be the law of the unique solution to the following SDE:
 
 \begin{equation}
 \X\cind{\v}\tp{\t} = \begin{cases}
-\X\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{\left(0,\crate\vind{}\ts{}(\X\cind{\{\v,\p{\v}\}}\tip{[0,\tt)},\s)\right]}\s\,\poiss\vind{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n}\setminus \tree\sln{n-1}\\
-\X\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{\left(0,\rate(\X\cind{\cl{\v}}\tp{\tt-},\s\right)}\s\,\poiss\vind{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n-1}
+\X\cind{\v}\tp{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\crate\vind{}\ts{}(\X\cind{\{\v,\p\vind{\v}\}}\tip{[0,\tt)},\s)\right]}\s\,\poiss\vind{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n}\setminus \tree\sln{n-1}\\
+\X\cind{\v}\tp{0} + \int_{(0,\t]}\int_\S\int_{\left(0,\rate(\X\cind{\cl{\v}}\tp{\tt-},\s\right)}\s\,\poiss\vind{\v}(d\r,d\s,d\tt)\te{ if } \v \in \tree\sln{n-1}
 \end{cases}
 \label{subsec::ProofU:eqn::extendedSDE}
 \end{equation}
@@ -1777,7 +1777,7 @@ Let \(\mm\sln{1}\ts{} \defeq \mm\vind{\tree\sln{1}}\ts{}\). Then \(\pmap\vind{}(
 \ind Define the following mapping,
 
 \begin{align}
-\ds{\v}{\t}(\XXX\cind{}\tip{},f) &\defeq \sum_{0 < \rt\indx{\it}\vind{\v} \leq \t} \log{f(\XXX\cind{}\tip{[0,\rt\indx{\it}\vind{\v})},\mark{\it}_\v)} - \int{(0,\t]\times \S} [f(\XXX\cind{}\tip{[0,\tt)},\s) - 1]\,ds\,\Sm(d\s) \label{subsec::ProofU:eqn::shortdense}\\
+\ds\vind{\v}\ts{\t}(\XXX\cind{}\tip{},f) &\defeq \sum_{0 < \rt\indx{\it}\vind{\v} \leq \t} \log{f(\XXX\cind{}\tip{[0,\rt\indx{\it}\vind{\v})},\mark{\it}_\v)} - \int_{(0,\t]\times \S} [f(\XXX\cind{}\tip{[0,\tt)},\s) - 1]\,ds\,\Sm(d\s) \label{subsec::ProofU:eqn::shortdense}\\
 f&\te{ is a }[0,\const\indx{}] \te{-valued mapping and } \pmap\vind{\v}(\XXX\cind{}\tip{}) = \{(\rt\indx{\it}\vind{\v},\mark{\it}_\v):\it\in\mb{N}\}.\nonumber
 \end{align} 
 \labe{subsec::ProofU:eqn::shortdense}
@@ -1786,17 +1786,17 @@ Let \(\{(\rt\indx{\it},\mark{\it})\}\) be the events of \(\pmap\vind{}(\X\sln{1}
 
 \begin{align}
 \dense{1}{\t}(\X\cind{\tree\sln{1}}\tip{})&\defeq \frac{d\mmm\sln{1}\ts{\t}}{d\mm\sln{1}\ts{\t}}\nonumber\\
-&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{0< \rt\indx{\it} \leq \t} \log{\ratee(\X\sln{1}\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})} - \int{(0,\t]\times\S} [\ratee(\X\sln{1}\cind{}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
-&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\Bigg(\sum_{\v\in\tree\sln{1}\setminus\{\root\}}\left(\sum_{0< \rt\indx{\it}\vind{\v} \leq \t} \log{\crate\vind{}\ts{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\rt\indx{\it}\vind{\v})},\mark{\it})} - \int{(0,\t]\times\S} [\crate\vind{}\ts{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
-&\hspace{24pt} + \left(\sum_{0 < \rt\indx{\it}\vind{\root} \leq \t} \log{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\rt\indx{\it}\vind{\root}-},\mark{\it}_\root)} - \int{(0,\t]\times\S} [\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\tt-},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
-&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{1}\setminus\{\root\}} \ds{\v}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate\vind{}\ts{}) + \ds{\root}{\t}(\X\sln{1}\cind{\tree\sln{1}}\tip{},\IGrg{})\right).
+&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{0< \rt\indx{\it} \leq \t} \log{\ratee(\X\sln{1}\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})} - \int_{(0,\t]\times\S} [\ratee(\X\sln{1}\cind{}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\Bigg(\sum_{\v\in\tree\sln{1}\setminus\{\root\}}\left(\sum_{0< \rt\indx{\it}\vind{\v} \leq \t} \log{\crate\vind{}\ts{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\rt\indx{\it}\vind{\v})},\mark{\it})} - \int_{(0,\t]\times\S} [\crate\vind{}\ts{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+&\hspace{24pt} + \left(\sum_{0 < \rt\indx{\it}\vind{\root} \leq \t} \log{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\rt\indx{\it}\vind{\root}-},\mark{\it}_\root)} - \int_{(0,\t]\times\S} [\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\tt-},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
+&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{1}\setminus\{\root\}} \ds\vind{\v}\ts{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate\vind{}\ts{}) + \ds\vind{\root}\ts{\t}(\X\sln{1}\cind{\tree\sln{1}}\tip{},\IGrg{})\right).
 \label{subsec::ProofU:eqn::L1 density}
 \end{align}
 
 By a similar calculation, we can apply Lemmas \ref{subsec::Some:Lem::radnik} and \ref{subsec::ProofU:Lem::Marginal} to get,
 
 \begin{equation}
-\alt{\dense}{}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{}) \defeq \frac{d\mmm\vind{\{\v,\root\}}\ts{\t}}{d\mm\vind{\{\v,\root\}}\ts{\t}} = \frac{d\mmm\vind{\{\v,\root\}}\ts{0}}{d\mm\vind{\{\v,\root\}}\ts{0}}\exp\left(\ds{\v}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate\vind{}\ts{}) + \ds{\root}{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{},\crate\vind{}\ts{})\right).
+\alt{\dense}{}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{}) \defeq \frac{d\mmm\vind{\{\v,\root\}}\ts{\t}}{d\mm\vind{\{\v,\root\}}\ts{\t}} = \frac{d\mmm\vind{\{\v,\root\}}\ts{0}}{d\mm\vind{\{\v,\root\}}\ts{0}}\exp\left(\ds\vind{\v}\ts{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate\vind{}\ts{}) + \ds\vind{\root}\ts{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{},\crate\vind{}\ts{})\right).
 \label{subsec::ProofU:eqn::Margdense}
 \end{equation}
 \labe{subsec::ProofU:eqn::Margdense}
@@ -1805,7 +1805,7 @@ Define,
 
 \begin{align*}
 \cdense{}{\t}&(\X\sln{1}\cind{\{\tree\sln{1}\setminus\{\root\}\}}\tip{};\x\cind{\{\root,1\}}\tip{})\\
-& \defeq\frac{d\mmm\vind{\tree\sln{1}\setminus\{\root,1\}}\ts{0}}{d\mm\vind{\tree\sln{1}\setminus\{\root,1\}}\ts{0}}\exp\left(\sum_{\v\in \tree\sln{1}\setminus\{\root,1\}} \ds{\v}{\t}([\X\sln{1}\cind{\{v\}}\tip{},\x\cind{\root}\tip{}],\crate\vind{}\ts{}) + \ds{\root}{\t}([\X\sln{1}\cind{\tree\sln{1}\setminus\{\root,1\}}\tip{},\x\cind{\{\root,1\}}\tip{}],\IGrg{}) - \ds{\root}{\t}(\x\cind{\{\root,1\}}\tip{},\crate\vind{}\ts{})\right)\\
+& \defeq\frac{d\mmm\vind{\tree\sln{1}\setminus\{\root,1\}}\ts{0}}{d\mm\vind{\tree\sln{1}\setminus\{\root,1\}}\ts{0}}\exp\left(\sum_{\v\in \tree\sln{1}\setminus\{\root,1\}} \ds\vind{\v}\ts{\t}([\X\sln{1}\cind{\{v\}}\tip{},\x\cind{\root}\tip{}],\crate\vind{}\ts{}) + \ds\vind{\root}\ts{\t}([\X\sln{1}\cind{\tree\sln{1}\setminus\{\root,1\}}\tip{},\x\cind{\{\root,1\}}\tip{}],\IGrg{}) - \ds\vind{\root}\ts{\t}(\x\cind{\{\root,1\}}\tip{},\crate\vind{}\ts{})\right)\\
 \end{align*}
 
 Then,
@@ -1822,7 +1822,7 @@ So,
 
 The important thing is that this can be used to extend \(\X\sln{1}\cind{}\tip{}\) to a process with nodes in \(\tree\sln{2}\) whose marginal distribution with respect to the nodes on \(\tree\sln{1}\) is equal to \(\X\sln{1}\cind{}\tip{}\). To do that, consider the following notation:
 
-\ind Let \(\v \in V\setminus\{\root\}\). Let \(\c{}:V\setminus\{\root\} \ra V^{\degr-1}\) be defined such that \(\c{\v} = (\c{1}(\v),\dots,\c{\degr-1}(\v))\) are the children of \(\v\). Let \(\p{}:V\setminus\{\root\}\ra V\) map nodes to their parent.
+\ind Let \(\v \in V\setminus\{\root\}\). Let \(\c{}:V\setminus\{\root\} \ra V^{\degr-1}\) be defined such that \(\c{\v} = (\c{1}(\v),\dots,\c{\degr-1}(\v))\) are the children of \(\v\). Let \(\p\vind{}:V\setminus\{\root\}\ra V\) map nodes to their parent.
 
 \ind We can define the sequence of functions \(\dense{n}{\t}: \sset\vsi{\tree\sln{n}}\ts{\t-} \ra [0,\infty)\) by,
 
@@ -1833,7 +1833,7 @@ for \(n > 1\) (\(\tree\sln{0} = \{\root\}\)).
 \ind Let \(\mm\sln{n}\ts{}\defeq \mm\vind{\tree\sln{n}}\ts{}\) and assume for any \(\U \subseteq V\), \(\mmm\vind{\U}\ts{0} = \otimes_{\v\in\U}\mmm\vind{\v}\ts{0}\) where \(\{\mmm\vind{\v}\ts{0}:\v\in V\}\) describes a sequence of i.i.d. \(\S\)-valued random variables. We can show using induction that,
 
 \begin{equation}
-\dense{n}{\t}(\X\sln{n}\cind{}\tip{}) = \frac{d\mmm\sln{n}\ts{\t}}{d\mm\sln{n}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X\sln{n}\cind{\{v,\p{\v}\}}\tip{},\crate\vind{}\ts{})\right).
+\dense{n}{\t}(\X\sln{n}\cind{}\tip{}) = \frac{d\mmm\sln{n}\ts{\t}}{d\mm\sln{n}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds\vind{\v}\ts{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds\vind{\v}\ts{\t}(\X\sln{n}\cind{\{v,\p\vind{\v}\}}\tip{},\crate\vind{}\ts{})\right).
 \label{subsec::ProofU:eqn::densen}
 \end{equation}
 \labe{subsec::ProofU:eqn::densen}
@@ -1841,10 +1841,10 @@ for \(n > 1\) (\(\tree\sln{0} = \{\root\}\)).
 Assume equation \eqref{subsec::ProofU:eqn::densen} holds for \(\dense{n-1}{\t}\). Then,
 
 \begin{align*}
-\dense{n}{\t}(\X\sln{n}\cind{}\tip{}) &= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X\sln{2}\cind{\c{\v}}\tip{};\X\sln{2}\cind{\{\v,\p{\v}\}}\tip{})\\
-&=\left(\frac{d\mmm\sln{n-1}\ts{0}}{d\mm\sln{n-1}\ts{0}}\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\frac{d\mmm\vind{\c{\v}}\ts{0}}{d\mm\vind{\c{\v}}\ts{0}}\right)\exp\Bigg(\sum_{\v\in\tree\sln{n-2}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \ds{\v}{\t}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{},\crate\vind{}\ts{})\\
-&\ind + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\left(\sum_{\vv\in \c{\v}} \ds{\vv}{\t}(\X\sln{n}\cind{\{\vv,\v\}}\tip{},\crate\vind{}\ts{}) + \ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) - \ds{\v}{\t}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{},\crate\vind{}\ts{})\right)\Bigg)\\
-&=\frac{d\mmm\sln{n}\ts{0}}{d\mm\sln{n}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds{\v}{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds{\v}{\t}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{},\crate\vind{}\ts{})\right).
+\dense{n}{\t}(\X\sln{n}\cind{}\tip{}) &= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X\sln{2}\cind{\c{\v}}\tip{};\X\sln{2}\cind{\{\v,\p\vind{\v}\}}\tip{})\\
+&=\left(\frac{d\mmm\sln{n-1}\ts{0}}{d\mm\sln{n-1}\ts{0}}\prod_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\frac{d\mmm\vind{\c{\v}}\ts{0}}{d\mm\vind{\c{\v}}\ts{0}}\right)\exp\Bigg(\sum_{\v\in\tree\sln{n-2}}\ds\vind{\v}\ts{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}} \ds\vind{\v}\ts{\t}(\X\sln{n}\cind{\{\v,\p\vind{\v}\}}\tip{},\crate\vind{}\ts{})\\
+&\ind + \sum_{\v\in\tree\sln{n-1}\setminus\tree\sln{n-2}}\left(\sum_{\vv\in \c{\v}} \ds\vind{\vv}\ts{\t}(\X\sln{n}\cind{\{\vv,\v\}}\tip{},\crate\vind{}\ts{}) + \ds\vind{\v}\ts{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) - \ds\vind{\v}\ts{\t}(\X\sln{n}\cind{\{\v,\p\vind{\v}\}}\tip{},\crate\vind{}\ts{})\right)\Bigg)\\
+&=\frac{d\mmm\sln{n}\ts{0}}{d\mm\sln{n}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{n-1}}\ds\vind{\v}\ts{\t}(\X\sln{n}\cind{\cl{\v}}\tip{},\IGrg{}) + \sum_{\v\in\tree\sln{n}\setminus\tree\sln{n-1}} \ds\vind{\v}\ts{\t}(\X\sln{n}\cind{\{\v,\p\vind{\v}\}}\tip{},\crate\vind{}\ts{})\right).
 \end{align*}
 
 By a simple calculation analogous to what we did earlier to show that \(\dense{1}{\t}\) was a Radon-Nykodim derivative, we can apply Proposition \ref{subsec::Prope:Prop::radnikder} to prove that this is the Radon-Nikodym derivative of a marked point process. 
@@ -1856,11 +1856,11 @@ By a simple calculation analogous to what we did earlier to show that \(\dense{1
 Then,
 
 \begin{align*}
-\frac{d\proj\vsi{\tree\sln{n-1}}\ts{\t}(\mmm\sln{n}\ts{\t})}{d\mm\sln{n-1}\ts{\t}} &= \int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \frac{d\mmm\sln{n}\ts{\t}}{d\mm\sln{n}\ts{\t}}\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
-&=\int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \dense{n}{\t}(\X\sln{n}\cind{}\tip{})\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
-&= \int{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X\sln{n}\cind{\c{\v}}\tip{};\X\sln{n}\cind{\{v,\p{\v}\}}\tip{})\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
-&= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\int{\sset\vsi{\c{\v}}\ts{\t-}} \cdense{}{\t}(\X\sln{n}\cind{\c{\v}}\tip{};\X\sln{n}\cind{\{v,\p{\v}\}}\tip{})\,\mm\vind{\c{\v}}\ts{\t}(d\X\sln{n}\cind{\c{\v}}\tip{})\\
-&= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\exmu{\mm\vind{\c{\v}}\ts{\t}}{\cdense{}{\t}(\X\sln{n}\cind{\c{\v}}\tip{};\X\sln{n}\cind{\{v,\p{\v}\}}\tip{})}\\
+\frac{d\proj\vsi{\tree\sln{n-1}}\ts{\t}(\mmm\sln{n}\ts{\t})}{d\mm\sln{n-1}\ts{\t}} &= \int_{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \frac{d\mmm\sln{n}\ts{\t}}{d\mm\sln{n}\ts{\t}}\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
+&=\int_{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \dense{n}{\t}(\X\sln{n}\cind{}\tip{})\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
+&= \int_{\sset\vsi{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t-}} \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}} \cdense{}{\t}(\X\sln{n}\cind{\c{\v}}\tip{};\X\sln{n}\cind{\{v,\p\vind{\v}\}}\tip{})\,\mm\vind{\tree\sln{n}\setminus\tree\sln{n-1}}\ts{\t}(d\X\sln{n}\cind{\tree\sln{n}\setminus\tree\sln{n-1}}\tip{})\\
+&= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\int_{\sset\vsi{\c{\v}}\ts{\t-}} \cdense{}{\t}(\X\sln{n}\cind{\c{\v}}\tip{};\X\sln{n}\cind{\{v,\p\vind{\v}\}}\tip{})\,\mm\vind{\c{\v}}\ts{\t}(d\X\sln{n}\cind{\c{\v}}\tip{})\\
+&= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{})\prod_{\v\in \tree\sln{n-1}\setminus\tree\sln{n-2}}\exmu{\mm\vind{\c{\v}}\ts{\t}}{\cdense{}{\t}(\X\sln{n}\cind{\c{\v}}\tip{};\X\sln{n}\cind{\{v,\p\vind{\v}\}}\tip{})}\\
 &= \dense{n-1}{\t}(\X\sln{n}\cind{\tree\sln{n-1}}\tip{}).
 \end{align*}
 
@@ -1905,7 +1905,7 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 
 \[\rate\sln{n}(\t,\sv\cind{}\vsi{\tree\sln{n}}) = \begin{cases}
 \rate(\X\sln{n}\cind{\cl{\v}}\tp{\t-},\s) &\te{ if } \sv\cind{}\vsi{\tree\sln{n}} = \s\ev\vind{\v},\s \in \S\setminus\{0\},\v\in\tree\sln{n-1}\\
-\crate\vind{}\ts{}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{[0,\t)},\s) &\te{ if } \sv\cind{}\vsi{\tree\sln{n}} = \s\ev\vind{\v},\s\in\S\setminus\{0\},\v\in\tree\sln{n}\setminus\tree\sln{n-1}\\
+\crate\vind{}\ts{}(\X\sln{n}\cind{\{\v,\p\vind{\v}\}}\tip{[0,\t)},\s) &\te{ if } \sv\cind{}\vsi{\tree\sln{n}} = \s\ev\vind{\v},\s\in\S\setminus\{0\},\v\in\tree\sln{n}\setminus\tree\sln{n-1}\\
 0 &\te{ otherwise.}
 \end{cases}\]
 
@@ -1958,8 +1958,8 @@ Let \(\{\poiss\vind{\v},\alt{\poiss}\vind{\v}:\v\in V\}\) be constructed as abov
 
 \begin{equation}
 \X\sln{n}\cind{\v}\tp{\t} = \begin{cases}
-\X\sln{}\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{(0,\crate\vind{}\ts{}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{[0,\tt)},\s)]}\s\alt{\poiss}\vind{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
-\X\sln{}\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{(0,\rate(\X\sln{n}\cind{\cl{\v}}\tp{\tt-},\s)]}\s\,\poiss\vind{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n-1}.
+\X\sln{}\cind{\v}\tp{0} + \int_{(0,\t]}\int_\S\int_{(0,\crate\vind{}\ts{}(\X\sln{n}\cind{\{\v,\p\vind{\v}\}}\tip{[0,\tt)},\s)]}\s\alt{\poiss}\vind{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
+\X\sln{}\cind{\v}\tp{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate(\X\sln{n}\cind{\cl{\v}}\tp{\tt-},\s)]}\s\,\poiss\vind{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n-1}.
 \end{cases}
 \label{subsec::ProofU:eqn::ExtendedSDE_fixedPoisson}
 \end{equation}
@@ -1970,14 +1970,14 @@ By Lemma \ref{subsec::ProofU:Lem::Poisson}, these Poisson processes are i.i.d. B
 \ind Fix any \(\v\in V\). Let \(n\in \mb{N}\) be any natural number such that \(\v\in \tree\sln{n-1}\). Then for any \(\t \in [0,\T)\),
 
 \begin{align*}
-\X\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{(0,\rate(\X\cind{\cl{\v}}\tp{\tt-},\s)]}\s\poiss\vind{\v}(d\r,d\s,d\tt) &= \X\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{(0,\rate(\X\sln{n}\cind{\cl{\v}}\tp{\tt-},\s)]}\s\poiss\vind{\v}(d\r,d\s,d\tt)\\
+\X\cind{\v}\tp{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate(\X\cind{\cl{\v}}\tp{\tt-},\s)]}\s\poiss\vind{\v}(d\r,d\s,d\tt) &= \X\cind{\v}\tp{0} + \int_{(0,\t]}\int_\S\int_{(0,\rate(\X\sln{n}\cind{\cl{\v}}\tp{\tt-},\s)]}\s\poiss\vind{\v}(d\r,d\s,d\tt)\\
 &=\X\sln{n}\cind{\v}\tp{\t} = \X\cind{\v}\tp{\t}.
 \end{align*}
 
 Thus, \(\X\cind{}\tip{}\) is a solution to the coupled equation,
 
 \begin{equation}
-\X\cind{\v}\tp{\t} = \X\cind{\v}\tp{0} + \int{(0,\t]}\int_\S \int{(0,\rate(\X\cind{}\tp{\tt-},\s)]}\s\,\poiss\vind{\v}(d\r,d\s,d\tt).
+\X\cind{\v}\tp{\t} = \X\cind{\v}\tp{0} + \int_{(0,\t]}\int_\S \int_{(0,\rate(\X\cind{}\tp{\tt-},\s)]}\s\,\poiss\vind{\v}(d\r,d\s,d\tt).
 \label{subsec::ProofU:eqn::XSDE}
 \end{equation}
 \labe{subsec::ProofU:eqn::XSDE}
@@ -2041,7 +2041,7 @@ A Feller process on \(\spce\) is a collection of probability measures \(\{\pr{\x
 
 \item There exists a probability measure \(\mm\in \mc{P}(\spce)\) and a Feller process \(\{\alt{\m}^\x:\x \in \spce\}\) such that 
 
-\[\alt{\m}(\cdot) = \int{\spce} \alt{\m}^\x(\cdot)\,d\mm(\x).\]
+\[\alt{\m}(\cdot) = \int_{\spce} \alt{\m}^\x(\cdot)\,d\mm(\x).\]
 \end{enumerate}
 
 \textbf{Another Remark: } Given a c\`adl\`ag \(\spce\)-valued random process \(\X\cind{}\tip{}\), we say \(\X\cind{}\tip{}\) is Feller if,
@@ -2323,27 +2323,27 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 %\labe{subsec::Prope:Prop::voidprob}
 %
 %\begin{proof}
-%The proof is similar to the proof of \cite[Lemma 1]{BreMas96}. By Lemma \ref{Subsec::Prope:Lem::easier}, \(M(\t) = \rp([0,\t]\times \typset) - \int_0^\t \int{\typset} \ratee\ts{\tt}(\mark{})\,\Sm{}(d\mark{})\,d\tt\) is a Martingale. Then,
+%The proof is similar to the proof of \cite[Lemma 1]{BreMas96}. By Lemma \ref{Subsec::Prope:Lem::easier}, \(M(\t) = \rp([0,\t]\times \typset) - \int_0^\t \int_{\typset} \ratee\ts{\tt}(\mark{})\,\Sm{}(d\mark{})\,d\tt\) is a Martingale. Then,
 %
 %\[\ex{\rp(I\times\typset)} = \ex{\int_I\int_\typset \ratee\ts{\t}(\mark{})\,\Sm(d\mark{})\,d\t} \os{\te{Tonelli}}{=} \int_I\int_\typset \ex{\ratee\ts{\t}(\mark{})}\,\Sm(d\mark{})\,d\t.\]
 %
 %Let \(\rp\gid{\typset}(\t) \defeq \rp([0,\t]\times \typset)\). Since \(\ratee\) is bounded, we can assume without loss of generality that \(I = (a,b]\) for some \(0 \leq a < b < \T\). Then,
 %
-%\[\mb{I}_{\rp\left((a,b]\times \typset\right) = 0} = 1 - \int{(a,b]} \mb{I}_{\rp((a,\t)\times \typset) = 0}\,\rp\gid{\typset}(d\t).\]
+%\[\mb{I}_{\rp\left((a,b]\times \typset\right) = 0} = 1 - \int_{(a,b]} \mb{I}_{\rp((a,\t)\times \typset) = 0}\,\rp\gid{\typset}(d\t).\]
 %
 %
 %Taking an expectation,
 %
-%\[\pr\left(\rp(I\times\typset)=0\right) = 1 - \ex{\int{(a,b]}\mb{I}_{\rp((a,\t)\times \typset) = 0}\,\rp\gid{\typset}(d\t)}.\]
+%\[\pr\left(\rp(I\times\typset)=0\right) = 1 - \ex{\int_{(a,b]}\mb{I}_{\rp((a,\t)\times \typset) = 0}\,\rp\gid{\typset}(d\t)}.\]
 %
 %\tr{for me: Since \(\mb{I}_{\rp((a,\t)\times \typset) = 0}\) is \(\F\vsi{}\ts{\t}\)-predictable, we can replace the integral with respect to \(\rp\gid{\typset}\) with an integral with density \(\ratee\). To prove this fact, it suffices to show it for elementary predictable functions and then extend to all predictable processes.}
 %
 %\ind Then,
 %
 %\begin{align*}
-%\pr\left(\rp(I\times\typset)=0\right) &= 1 - \ex{\int{(a,b]}\mb{I}_{\rp((a,\t)\times \typset) = 0}\int_\typset\ratee\ts{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\\
-%& = 1 - \int{I\times \typset} \pr\left(\rp((a,\t)\times\typset) = 0\right)\ex{\ratee\ts{\t}(\mark{})|\rp((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.\\
-%& = 1 - \int{I\times \typset} \pr\left(\rp((a,\t]\times\typset) = 0\right)\ex{\ratee\ts{\t}(\mark{})|\rp((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.
+%\pr\left(\rp(I\times\typset)=0\right) &= 1 - \ex{\int_{(a,b]}\mb{I}_{\rp((a,\t)\times \typset) = 0}\int_\typset\ratee\ts{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\\
+%& = 1 - \int_{I\times \typset} \pr\left(\rp((a,\t)\times\typset) = 0\right)\ex{\ratee\ts{\t}(\mark{})|\rp((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.\\
+%& = 1 - \int_{I\times \typset} \pr\left(\rp((a,\t]\times\typset) = 0\right)\ex{\ratee\ts{\t}(\mark{})|\rp((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.
 %\end{align*}
 %
 %Letting \(f(\t) = \pr(\rp((a,\t]\times \typset) = 0)\) and \(g(\t) = \int_A\ex{\ratee\ts{\t}(\mark{})|\rp((a,\t)\times \typset) = 0}\Sm(d\mark{})\), this simplifies to
@@ -2356,7 +2356,7 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 %
 %That is,
 %
-%\[\pr\left(\rp(I\times\typset) = 0\right) = \exp\left(-\int{I\times\typset} \ex{\ratee\ts{\t}(\mark{})|\rp((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t\right).\]
+%\[\pr\left(\rp(I\times\typset) = 0\right) = \exp\left(-\int_{I\times\typset} \ex{\ratee\ts{\t}(\mark{})|\rp((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t\right).\]
 %
 %\end{proof}
 
@@ -2367,7 +2367,7 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 Let \(\rp\) be a marked process adapted to the filtration \(\F\ts{\t} := \F\ts{0}\wedge \FH{\t}\) where \(\FH\) is its natural filtration. Let the events and marks of \(\rp\) be given by \(\{(\rt\indx{j},\mark{j})\}\) such that \(\{\rt\indx{j}\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr{i}\) be probability measures on the probability space such that \(\rp\) is non-explosive and simple with respect to both probability measures. Let \(\pr{i}_\t\) be the restriction of \(\pr{i}\) to \(\F\ts{\t}\). Suppose \(\F\ts{0}\) describes a random variable, \(\X\), with law \(\mm^i\) under \(\pr{i}\). If \(\rp\) has a strictly positive \(\pr{1},\F\)-predictable intensity \(\rate^1\), then \(\pr{2}_\t \ll \pr{1}_\t\) for all \(\t \in [0,T]\) if and only if there exists a non-negative, \(\F\)-predictable process \(\m\) such that \(\rp\) admits the \(\F\)-intensity \(\rate^2 = \m\rate^1\) under \(\pr{2}\) and \(\mm^2 \ll \mm^1\). When this is satisfied, the likelihood ratio is the \(\pr{1}\)-a.t. c\`adl\`ag process defined by 
 
 \begin{equation}
-L_\t:= \frac{d\pr{2}_\t}{d\pr{1}_\t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i})\right)\exp\left(-\int{(0,\t]\times \mspce}[\m(\t,\mark) - 1]\rate^1(\t,\mark)\,ds\,\ell(d\mark)\right)
+L_\t:= \frac{d\pr{2}_\t}{d\pr{1}_\t}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i})\right)\exp\left(-\int_{(0,\t]\times \mspce}[\m(\t,\mark) - 1]\rate^1(\t,\mark)\,ds\,\ell(d\mark)\right)
 \label{subsec::Prope:eqn::Lnat}
 \end{equation}
 \labe{subsec::Prope:eqn::Lnat}
@@ -2390,14 +2390,14 @@ Note that for any fixed \(\x \in \te{supp}(\X)\) and any \(i \in \{1,2\}\), ther
 
 Note that for any fixed \(\x\), \(\pr{i}_\x\) and \(\rp\) satisfy the conditions of \cite[Theorem 14.4.I]{DalVer08}. So,
 
-\[L_\t(\rp,\x):=\frac{d\pr{2}_{\t,\x}}{d\pr{1}_{\t,\x}}(\rp) = \left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i};\rp,\x)\right)\exp\left(-\int{(0,\t]\times\mspce} [\m(\tt,k;\rp,\x) - 1]\rate^1(\tt,k;\rp,\x)\,ds\,\ell(dk)\right)\]
+\[L_\t(\rp,\x):=\frac{d\pr{2}_{\t,\x}}{d\pr{1}_{\t,\x}}(\rp) = \left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark{i};\rp,\x)\right)\exp\left(-\int_{(0,\t]\times\mspce} [\m(\tt,k;\rp,\x) - 1]\rate^1(\tt,k;\rp,\x)\,ds\,\ell(dk)\right)\]
 
 Giving us,
 
 \begin{align*}
 \mb{E}^2\left[f(\X,\rp[0,\t])\right] &= \int_\spce \mb{E}^2_\x[f(\x,\rp[0,\t])]\,d\mm^2(\x)\\
-&=\int{\spce} \mb{E}^1_\x[f(\x,\rp[0,\t])L_\t(\rp,\x)]\,d\mm^2(\x)\\
-&= \int{\spce} \frac{d\mm^2}{d\mm^1}(\x) \mb{E}^1_\x[f(\x,\rp[0,\t])L_\t(\rp,\x)]\,d\mm^1(\x)\\
+&=\int_{\spce} \mb{E}^1_\x[f(\x,\rp[0,\t])L_\t(\rp,\x)]\,d\mm^2(\x)\\
+&= \int_{\spce} \frac{d\mm^2}{d\mm^1}(\x) \mb{E}^1_\x[f(\x,\rp[0,\t])L_\t(\rp,\x)]\,d\mm^1(\x)\\
 &= \mb{E}^1\left[f(\X,\rp[0,\t])L_\t(\rp,\X)\frac{d\mm^2}{d\mm^1}\right]
 \end{align*}
 \end{proof}
@@ -2415,7 +2415,7 @@ Let \(G = (V,E)\) be a finite graph and let \(0 < \const\indx{}< \infty\). Let \
 \ind Then given any \(\S\carp{V}\)-valued random variable, \(\X\cind{}\tp{0}\), the following SDE has a unique strong solution:
 
 \begin{equation}
-\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee\ts{\tt}\vind{\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt)
+\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int_{(0,\t]}\int_\S\int_{(0,\ratee\ts{\tt}\vind{\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt)
 \label{subsec::Some:eqn::genfiniteSDE}
 \end{equation}
 \labe{subsec::Some:eqn::genfiniteSDE}
@@ -2528,7 +2528,7 @@ and such that \(\t\mapsto \ratee\ts{\t}\vind{\v}(\XX\cind{}\tip{[0,\t)},\sv\cind
 
 We can assume without loss of generality that \(\ratee\ts{\t}\vind{\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \sset\vsi{}\ts{\t-}\) such that \(\pr(\XX\cind{}\tip{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee\ts{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee\ts{\t}\vind{\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
 
-\[\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee\ts{\tt}\vind{\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt).\]
+\[\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int_{(0,\t]}\int_\S\int_{(0,\ratee\ts{\tt}\vind{\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt).\]
 
 By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap\vind{\v}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity \(\ratee\ts{\t}\vind{\v}(\X\cind{}\tip{[0,\t)},\s)\) for \(\s \in \S\). Then \(\alt{\rp} \defeq \pmap\vind{}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity,
 
@@ -2544,14 +2544,14 @@ By assumption, \(\X\cind{}\tp{0} \deq \XX\cind{}\tp{0}\). Thus, \(\rp\) and \(\a
 \begin{lem}
 Assume the notation and assumptions from Lemmas \ref{subsec::Some:Lem::genfiniteSDE} and \ref{subsec::Some:Lem::PPtoSDE} hold under the probability measure \(\m\sln{}\ts{}\). Suppose under \(\mm\vind{}\ts{}\), \(\X\cind{}\tip{}\) solves,
 
-\[\X\cind{\v}\tp{\t} = \X\cind{\v}\tp{0} +\int{(0,\t]}\int_\S\int{(0,1]} \s \poiss\vind{\v}(d\r,d\s,d\tt),\]
+\[\X\cind{\v}\tp{\t} = \X\cind{\v}\tp{0} +\int_{(0,\t]}\int_\S\int_{(0,1]} \s \poiss\vind{\v}(d\r,d\s,d\tt),\]
 
 where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over \(\S\). Let \(\rp \defeq \pmap\vind{}(\X\cind{}\tip{}) = \{(\rt\indx{\it},\mark{\it}):\it\in \mb{N}\}\).
 
 \ind Let \(\ov{\ell}\) be the extension of \(\Sm\) to \(\alt{\S} = \{\s\ev\vind{\v}: \s \in \S, \v \in V\}\) given by \(\alt{\Sm}(\typset\ev\vind{\v}) = \Sm(\typset)\) for any \(\typset \subseteq \S\). Then,
 
 \begin{equation}
-\frac{d\m\sln{}\ts{\t}}{d\mm\vind{}\ts{\t}}= \frac{d\m\sln{}\ts{0}}{d\mm\vind{}\ts{0}}\left(\prod_{0< \rt\indx{\it}\leq \t} \ratee\ts{\t}(\mark{\it})\right)\exp\left(-\int{(0,\t]\times \S} (\ratee\ts{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
+\frac{d\m\sln{}\ts{\t}}{d\mm\vind{}\ts{\t}}= \frac{d\m\sln{}\ts{0}}{d\mm\vind{}\ts{0}}\left(\prod_{0< \rt\indx{\it}\leq \t} \ratee\ts{\t}(\mark{\it})\right)\exp\left(-\int_{(0,\t]\times \S} (\ratee\ts{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
 \label{subsec::Some:eqn::radnik}
 \end{equation}
 \labe{subsec::Some:eqn::radnik}
