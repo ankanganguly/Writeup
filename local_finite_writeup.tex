@@ -1256,23 +1256,23 @@ Finally, by Lemma \ref{sec::TL:Lem::Props}(h),
 \lin
 
 \begin{defn}
-Let \(\U\subseteq V\) and suppose \(\X\cind{}\tip{} \in \sset\vsi{\U}\ts{\T-}\) is a stochastic process adapted to its own natural filtration. Then define the marked point process \(\pmap{}(\X\cind{}\tip{})\) as a random measure on \((0,\T) \times \S\carp{\U}\) defined by,
+Let \(\U\subseteq V\) and suppose \(\X\cind{}\tip{} \in \sset\vsi{\U}\ts{\T-}\) is a stochastic process adapted to its own natural filtration. Then define the marked point process \(\pmap\vind{}(\X\cind{}\tip{})\) as a random measure on \((0,\T) \times \S\carp{\U}\) defined by,
 
-\[\pmap{}(\X\cind{}\tip{})(\{(\rt\indx{},\mark{})\}) = \begin{cases}
+\[\pmap\vind{}(\X\cind{}\tip{})(\{(\rt\indx{},\mark{})\}) = \begin{cases}
 1 &\te{ if } \X\cind{}\tp{\rt\indx{}} - \X\cind{}\tp{\rt\indx{}-} = \mark{}\\
 0 &\te{ otherwise}
 \end{cases}.\]
 
-Similarly, for \(\UU \subseteq \U\), \(\pmap{\UU}(\X\cind{}\tip{}) = \pmap{}\left(\proj\vsi{\UU}\ts{\T}(\X\cind{}\tip{})\right)\). For any \(\v\in \U\), \(\pmap{\v}(\X\cind{}\tip{})\) is a random measure on \((0,\T) \times \S\) given by,
+Similarly, for \(\UU \subseteq \U\), \(\pmap\vind{\UU}(\X\cind{}\tip{}) = \pmap\vind{}\left(\proj\vsi{\UU}\ts{\T}(\X\cind{}\tip{})\right)\). For any \(\v\in \U\), \(\pmap\vind{\v}(\X\cind{}\tip{})\) is a random measure on \((0,\T) \times \S\) given by,
 
-\[\pmap{\v}(\X\cind{}\tip{})(\{(\rt\indx{},\mark{})\}) = \begin{cases}
+\[\pmap\vind{\v}(\X\cind{}\tip{})(\{(\rt\indx{},\mark{})\}) = \begin{cases}
 1 &\te{ if } \X\cind{\v}\tp{\rt\indx{}} - \X\cind{\v}\tp{\rt\indx{}-} = \mark{}\\
 0 &\te{ otherwise}
 \end{cases},\]
 
 and
 
-\[\pmap{\v}(\X\cind{}\tip{})(\{(\rt\indx{},\mark{}): \X\cind{\v}\tp{\rt\indx{}} - \X\cind{\v}\tp{\rt\indx{}-} \neq \mark{}\}) = 0.\]
+\[\pmap\vind{\v}(\X\cind{}\tip{})(\{(\rt\indx{},\mark{}): \X\cind{\v}\tp{\rt\indx{}} - \X\cind{\v}\tp{\rt\indx{}-} \neq \mark{}\}) = 0.\]
 \label{subsec::ProofE:Defn::pmap}
 \end{defn}
 \labe{subsec::ProofE:Defn::pmap}
@@ -1280,7 +1280,7 @@ and
 \lin
 
 \begin{assu}
-Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X\cind{}\tip{}\in \sset\vsi{\U}\ts{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap{\v}(\X\cind{}\tip{})\) has an \(\X\cind{}\tip{}\)-predictable intensity, \(\ratee{\v}\), and there exists a constant \(\const\indx{} < \infty\) such that \(\sup_{\v\in\U} \ratee{\v} \leq \const\indx{}\). Furthermore, \(\lambda: \S\carp{\degr+1}\times \S\ra[0,\const\indx{}]\) is some function.
+Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X\cind{}\tip{}\in \sset\vsi{\U}\ts{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap\vind{\v}(\X\cind{}\tip{})\) has an \(\X\cind{}\tip{}\)-predictable intensity, \(\ratee{\v}\), and there exists a constant \(\const\indx{} < \infty\) such that \(\sup_{\v\in\U} \ratee{\v} \leq \const\indx{}\). Furthermore, \(\lambda: \S\carp{\degr+1}\times \S\ra[0,\const\indx{}]\) is some function.
 \label{subsec::ProofE:Assu::Eassu}
 \end{assu}
 \labe{subsec::ProofE:Assu::Eassu}
@@ -1451,7 +1451,7 @@ Then there exists an \(O(\tt)\) function, \(f:[0,\infty)\ra[0,\infty)\), such th
 \pfsum Use the fact that over any small interval \([\t-\tt,\t)\), \(\X\cind{U}\) is constant with high probability for all finite \(U\). Thus \(\crate{v}{\t-\tt}\) will vary by only a tiny amount from \(\crate{v}{\t}\) with very high probability. We can actually estimate how quickly this probability converges to 1 as a function of \(s\).
 
 \begin{proof}
-Fix \(\v\in V\). By Assumption \ref{subsec::ProofE:Assu::Eassu}, \(\pmap{}(\X\cind{\{\v,\root\}}\tip{})\) has intensity bounded from above by \(2\const\indx{}\). Therefore, for every \(\t > 0\) there almost surely exists an \(\tt\) small enough such that \(\evnt^{\{\v,\root\}}_{\tt,\t}\) holds. Fix \(\tt < \t\). Let \(\const\indx{}\) be the upper bound of \(\rate{}\). Fix any \(\s\in \S\). We begin by computing
+Fix \(\v\in V\). By Assumption \ref{subsec::ProofE:Assu::Eassu}, \(\pmap\vind{}(\X\cind{\{\v,\root\}}\tip{})\) has intensity bounded from above by \(2\const\indx{}\). Therefore, for every \(\t > 0\) there almost surely exists an \(\tt\) small enough such that \(\evnt^{\{\v,\root\}}_{\tt,\t}\) holds. Fix \(\tt < \t\). Let \(\const\indx{}\) be the upper bound of \(\rate{}\). Fix any \(\s\in \S\). We begin by computing
 
 \[\ex{\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)|}.\]
 
@@ -1475,7 +1475,7 @@ Then,
 &= \sum_{\sv\cind{}\vsi{\tree\sln{1}},\alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt{\evnt}\ts{\t}\right)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)\\
 \end{align*}
 
-Because the jump rate of \(\pmap{\v}(\X\cind{}\tip{})\) is bounded from above by \(\const\indx{}\) for any \(\v\in\tree\sln{1}\),  when \(\sv\cind{}\vsi{\tree\sln{1}}\neq\alt{\sv}\cind{}\vsi{\tree\sln{1}}\), 
+Because the jump rate of \(\pmap\vind{\v}(\X\cind{}\tip{})\) is bounded from above by \(\const\indx{}\) for any \(\v\in\tree\sln{1}\),  when \(\sv\cind{}\vsi{\tree\sln{1}}\neq\alt{\sv}\cind{}\vsi{\tree\sln{1}}\), 
 
 \[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt{\evnt}\ts{\t}\right) \leq 1-e^{-\tt(\degr+1)\const\indx{}}\]
 
@@ -1623,7 +1623,7 @@ Then,
 
 \[\left(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\right)^\t = \left(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\right)^0 + \sum_{\v \in \tree\sln{1}}\ev\vind{\v}\int_\S\int_0^\t \s\,\poiss\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right],d\s\right).\]
 
-However, this is not \(\F\vsi{\tree\sln{1}}\ts{\t}\)-adapted. Let \(\rp{} = \{(\rt\indx{\it},\mark{\it})\} = \pmap{\tree\sln{1}}(\X\cind{}\tip{}).\) Then,
+However, this is not \(\F\vsi{\tree\sln{1}}\ts{\t}\)-adapted. Let \(\rp{} = \{(\rt\indx{\it},\mark{\it})\} = \pmap\vind{\tree\sln{1}}(\X\cind{}\tip{}).\) Then,
 
 \[\left(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\right)^\t = \left(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\right)^0 + \sum_{0 < \rt\indx{\it} \leq \t}\mark{\it}\]
 
@@ -1687,11 +1687,11 @@ The marginal distribution of \(\mmm\sln{1}\ts{}\) on \(\sset\vsi{\{\v,\root\}}\t
 \pfsum By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{}{}\) has a left-continuous modification so we can directly apply Lemma \ref{subsec::ProofE:Lem::filtering}.
 
 \begin{proof}
-Let \(\rp{} = \pmap{\tree\sln{1}}(\X\sln{1}\cind{}\tip{})\) be defined as in Definition \ref{subsec::ProofE:Defn::pmap}. Then \(\rp{}\) has \(\F\vsi{\tree\sln{1}}\ts{}\)-predictable intensity,
+Let \(\rp{} = \pmap\vind{\tree\sln{1}}(\X\sln{1}\cind{}\tip{})\) be defined as in Definition \ref{subsec::ProofE:Defn::pmap}. Then \(\rp{}\) has \(\F\vsi{\tree\sln{1}}\ts{}\)-predictable intensity,
 
 \[\crate{\rp{}}{\t}(\X\sln{1}\cind{}\tip{[0,\t)},\mark{}) = \sum_{\v\in \tree\sln{1}\setminus\{\root\}}\sum_{\s\in \S} \mb{I}_{\mark{} = \s\ev\vind{\v}}\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in\S}\mb{I}_{\mark{} = \s\ev\vind{\root}}\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s).\]
 
-Then \(\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})\defeq \pmap{\{\v,\root\}}(\X\sln{1}\cind{}\tip{})\) \tr{notation?} has \(\F\vsi{\tree\sln{1}}\ts{}\)-predictable intensity,
+Then \(\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})\defeq \pmap\vind{\{\v,\root\}}(\X\sln{1}\cind{}\tip{})\) \tr{notation?} has \(\F\vsi{\tree\sln{1}}\ts{}\)-predictable intensity,
 
 \[\rate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}{\t}(\X\sln{1}\cind{}\tip{[0,\t)},\mark{}) \defeq \sum_{\s\in \S} \left(\mb{I}_{\mark{} = \s\ev\vind{\v}}\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \mb{I}_{\mark{} = \s\ev\vind{\root}}\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\right)\te{ for } \kappa \in \S\carp{\{\v,\root\}}.\]
 
@@ -1756,7 +1756,7 @@ Then for any \(\alt{n} < n\), \(\mmm\sln{\alt{n}}\ts{\t} = \proj\vsi{\tree\sln{\
 
 Let \(\mm\vind{}\ts{} \in \pmsr(\sset\vsi{V}\ts{\T-})\) be as defined in Definition \ref{subsec::ProofU:Defn::nu}.
 
-\ind Recall that \(\rp{} \defeq \pmap{}(\X\sln{1}\cind{}\tip{})\) maps \(\X\sln{1}\cind{}\tip{}\) to the point process coinciding with the jumps of \(\X\sln{1}\cind{}\tip{}\). This point process has intensity,
+\ind Recall that \(\rp{} \defeq \pmap\vind{}(\X\sln{1}\cind{}\tip{})\) maps \(\X\sln{1}\cind{}\tip{}\) to the point process coinciding with the jumps of \(\X\sln{1}\cind{}\tip{}\). This point process has intensity,
 
 \[\ratee{}(\rp{}[0,\t),\mark{}) = \begin{cases}
 \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) &\te{ if } \v\in \tree\sln{1}\setminus\{\root\}\te{ and } \mark{} = \s\ev\vind{\v}\\
@@ -1764,17 +1764,17 @@ Let \(\mm\vind{}\ts{} \in \pmsr(\sset\vsi{V}\ts{\T-})\) be as defined in Definit
 0 &\te{ otherwise}.
 \end{cases}\]
 
-Let \(\mm\sln{1}\ts{} \defeq \mm\vind{\tree\sln{1}}\ts{}\). Then \(\pmap{}(\mm\sln{1}\ts{})\) has constant intensity \(\mb{I}_{\kappa \in\{\s\ev\vind{\v}:\s\in\S\setminus\{0\},\v\in\tree\sln{1}\}}\). 
+Let \(\mm\sln{1}\ts{} \defeq \mm\vind{\tree\sln{1}}\ts{}\). Then \(\pmap\vind{}(\mm\sln{1}\ts{})\) has constant intensity \(\mb{I}_{\kappa \in\{\s\ev\vind{\v}:\s\in\S\setminus\{0\},\v\in\tree\sln{1}\}}\). 
 
 \ind Define the following mapping,
 
 \begin{align}
 \ds{\v}{\t}(\XXX\cind{}\tip{},f) &\defeq \sum_{0 < \rt\indx{\it}\vind{\v} \leq \t} \log{f(\XXX\cind{}\tip{[0,\rt\indx{\it}\vind{\v})},\mark{\it}_\v)} - \int{(0,\t]\times \S} [f(\XXX\cind{}\tip{[0,\tt)},\s) - 1]\,ds\,\Sm(d\s) \label{subsec::ProofU:eqn::shortdense}\\
-f&\te{ is a }[0,\const\indx{}] \te{-valued mapping and } \pmap{\v}(\XXX\cind{}\tip{}) = \{(\rt\indx{\it}\vind{\v},\mark{\it}_\v):\it\in\mb{N}\}.\nonumber
+f&\te{ is a }[0,\const\indx{}] \te{-valued mapping and } \pmap\vind{\v}(\XXX\cind{}\tip{}) = \{(\rt\indx{\it}\vind{\v},\mark{\it}_\v):\it\in\mb{N}\}.\nonumber
 \end{align} 
 \labe{subsec::ProofU:eqn::shortdense}
 
-Let \(\{(\rt\indx{\it},\mark{\it})\}\) be the events of \(\pmap{}(\X\sln{1}\cind{}\tip{})\). By Lemma \ref{subsec::Some:Lem::radnik},
+Let \(\{(\rt\indx{\it},\mark{\it})\}\) be the events of \(\pmap\vind{}(\X\sln{1}\cind{}\tip{})\). By Lemma \ref{subsec::Some:Lem::radnik},
 
 \begin{align}
 \dense{1}{\t}(\X\cind{\tree\sln{1}}\tip{})&\defeq \frac{d\mmm\sln{1}\ts{\t}}{d\mm\sln{1}\ts{\t}}\nonumber\\
@@ -1893,7 +1893,7 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 
 \ind Let \(\alt{\S}^n = \{\s\ev\vind{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S\carp{V}\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev\vind{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_{\v}\}\) be the jump sizes and jump times of \(\X\sln{n}\cind{\v}\tip{}\). Let \(\alt{\poiss}\sln{n}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss}\sln{n}(\evnt) = \alt{\poiss}\sln{n-1}(\evnt)\). Assume \(\{\alt{\poiss}\sln{n}:n\in\mb{N}\}\) are independent of \(\{\X\cind{}\tip{},\X\sln{n}\cind{}\tip{}:n\in\mb{N}\}\). Let \(\{\rv_{\v}^{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
 
-\ind Recall the mapping \(\pmap{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{n} = \pmap{}(\X\sln{n}\cind{}\tip{})\). Then the intensity of \(\rp{n}\) is given by,
+\ind Recall the mapping \(\pmap\vind{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{n} = \pmap\vind{}(\X\sln{n}\cind{}\tip{})\). Then the intensity of \(\rp{n}\) is given by,
 
 \[\rate{n}(\t,\sv\cind{}\vsi{\tree\sln{n}}) = \begin{cases}
 \rate{}(\X\sln{n}\cind{\cl{\v}}\tp{\t-},\s) &\te{ if } \sv\cind{}\vsi{\tree\sln{n}} = \s\ev\vind{\v},\s \in \S\setminus\{0\},\v\in\tree\sln{n-1}\\
@@ -2499,7 +2499,7 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 \lin
 
 \begin{lem}
-Suppose that \(V\) is finite. Recall that \(\pmap{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap{}(\XX\cind{}\tip{})\) for some \(\sset\vsi{V}\ts{\T-}\)-valued stochastic process, \(\XX\cind{}\tip{}\). Suppose also that \(\rp{}\) has \(\XX\cind{}\tip{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const\indx{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\sset\vsi{}\ts{\t-}\times \S \ra [0,\const\indx{}]\}_{\t\in[0,\T),\v\in V}\) such that 
+Suppose that \(V\) is finite. Recall that \(\pmap\vind{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap\vind{}(\XX\cind{}\tip{})\) for some \(\sset\vsi{V}\ts{\T-}\)-valued stochastic process, \(\XX\cind{}\tip{}\). Suppose also that \(\rp{}\) has \(\XX\cind{}\tip{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const\indx{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\sset\vsi{}\ts{\t-}\times \S \ra [0,\const\indx{}]\}_{\t\in[0,\T),\v\in V}\) such that 
 
 \begin{equation}
 \ratee{\t}(\sv\cind{}\vsi{V}) := \begin{cases}
@@ -2522,7 +2522,7 @@ We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) 
 
 \[\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee{\tt,\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt).\]
 
-By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap{\v}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity \(\ratee{\t,\v}(\X\cind{}\tip{[0,\t)},\s)\) for \(\s \in \S\). Then \(\alt{\rp{}} \defeq \pmap{}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity,
+By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap\vind{\v}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity \(\ratee{\t,\v}(\X\cind{}\tip{[0,\t)},\s)\) for \(\s \in \S\). Then \(\alt{\rp{}} \defeq \pmap\vind{}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity,
 
 \[\ratee{\t}(\X\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V}) = \begin{cases}
 \ratee{\t,\v}(\X\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V}) &\te{ if } \sv\cind{}\vsi{V} = \s\ev\vind{\v}\\
@@ -2538,7 +2538,7 @@ Assume the notation and assumptions from Lemmas \ref{subsec::Some:Lem::genfinite
 
 \[\X\cind{\v}\tp{\t} = \X\cind{\v}\tp{0} +\int{(0,\t]}\int_\S\int{(0,1]} \s \poiss\vind{\v}(d\r,d\s,d\tt),\]
 
-where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over \(\S\). Let \(\rp{} \defeq \pmap{}(\X\cind{}\tip{}) = \{(\rt\indx{\it},\mark{\it}):\it\in \mb{N}\}\).
+where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over \(\S\). Let \(\rp{} \defeq \pmap\vind{}(\X\cind{}\tip{}) = \{(\rt\indx{\it},\mark{\it}):\it\in \mb{N}\}\).
 
 \ind Let \(\ov{\ell}\) be the extension of \(\Sm\) to \(\alt{\S} = \{\s\ev\vind{\v}: \s \in \S, \v \in V\}\) given by \(\alt{\Sm}(\typset\ev\vind{\v}) = \Sm(\typset)\) for any \(\typset \subseteq \S\). Then,
 
@@ -2556,7 +2556,7 @@ where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over 
 \pfsum The key is to express \(\X\) in terms of a Marked point process. Then we can compute the intensities of the point process under \(\m\) and \(\mm\) respectively and apply Proposition \ref{subsec::Prope:Prop::radnikder}.
 
 \begin{proof}
-Notice that \(\X\cind{}\tip{} \mapsto (\X\cind{}\tp{0},\pmap{\X\cind{}\tip{}})\) is a one-to-one mapping from c\`adl\`ag processes on \(\S\carp{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F\vsi{}\ts{\t}\)-adapted, where \(\F\vsi{}\ts{\t} = \F\vsi{}\ts{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp{}\).
+Notice that \(\X\cind{}\tip{} \mapsto (\X\cind{}\tp{0},\pmap(\X\cind{}\tip{}))\) is a one-to-one mapping from c\`adl\`ag processes on \(\S\carp{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F\vsi{}\ts{\t}\)-adapted, where \(\F\vsi{}\ts{\t} = \F\vsi{}\ts{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp{}\).
 
 \ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp{}\) has predictable intensity \(\ratee{\t}(\cdot)\) with respect to \(\F\vsi{}\ts{\t}\) and \(\m\sln{}\ts{}\). \(\rp{}\) has predictable intensity 1 with respect to \(\F\vsi{}\ts{\t}\) and \(\mm\vind{}\ts{}\). This holds all of the information about the original process \(\X\cind{}\tip{}\), so we can consider \(\frac{d\m\sln{}\ts{\t}}{d\mm\vind{}\ts{\t}}\) as a change of measure affecting \(\rp{}\) instead of \(\X\cind{}\tip{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee{\t,\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
 \end{proof}
@@ -2939,7 +2939,7 @@ I use the notation of section \ref{subsec::ProofU:sec::Proof2}. The assumptions 
 \item \(\poiss\vind{}(\cdot,\cdot)\) has \(\FH\)-predictable intensity \(\rate{}(\t,\mark)\).
 \end{itemize}
 
-If we let \(\poiss\vind{}(\cdot,\cdot) = \pmap{}(\X\sln{n}\cind{}\tip{})\) (see Definition \ref{subsec::ProofE:Defn::pmap}), then the proof of \cite[Proposition 14.7.I(b)]{DalVer08} shows that the point process defined in equation \eqref{subsec::ProofU:eqn::Poissonexpl} is a Poisson point process with intensity \(d\t\times \alt{\Sm^n}\times d\r\) and adapted to a larger filtration.
+If we let \(\poiss\vind{}(\cdot,\cdot) = \pmap\vind{}(\X\sln{n}\cind{}\tip{})\) (see Definition \ref{subsec::ProofE:Defn::pmap}), then the proof of \cite[Proposition 14.7.I(b)]{DalVer08} shows that the point process defined in equation \eqref{subsec::ProofU:eqn::Poissonexpl} is a Poisson point process with intensity \(d\t\times \alt{\Sm^n}\times d\r\) and adapted to a larger filtration.
 
 \ind However, our intensity is actually only predictable with respect to \(\F \supseteq \FH\) which includes the value of \(\X\sln{n}\cind{}\tp{0}\). This can be fixed simply. Let \(\rate{\v}^{\sv\cind{}\vsi{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X\sln{n}\cind{}\tp{0} = \sv\cind{}\vsi{\tree\sln{n}})\). Then \(\rate{\v}^{\sv\cind{}\vsi{\tree\sln{n}}}(\t,\mark)\) satisfies the conditions above. Then,
 
