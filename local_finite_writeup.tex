@@ -842,10 +842,10 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset V\).
 \lin
 
 \begin{thms}
-Let \(\X\cind{}\tip{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m\sln{}\ts{} = \law(\X\cind{}\tip{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\sset\vsi{}\ts{} \supseteq\sset\vsi{\tree\sln{1}}\ts{\T}\), \(\t\in (0,\T]\) and \(\mmm\sln{}\ts{} \in \pmsr(\sset\vsi{}\ts{})\), define \(\cm{\t}:\sset\vsi{\{\root,1\}}\ts{\t-}\times \pmsr(\sset\vsi{}\ts{}) \ra \pmsr(\sset\vsi{\{2,\dots,\degr\}}\ts{\t-})\) by,
+Let \(\X\cind{}\tip{}\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m\sln{}\ts{} = \law(\X\cind{}\tip{})\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\sset\vsi{}\ts{} \supseteq\sset\vsi{\tree\sln{1}}\ts{\T}\), \(\t\in (0,\T]\) and \(\mmm\sln{}\ts{} \in \pmsr(\sset\vsi{}\ts{})\), define \(\cm\ts{\t}:\sset\vsi{\{\root,1\}}\ts{\t-}\times \pmsr(\sset\vsi{}\ts{}) \ra \pmsr(\sset\vsi{\{2,\dots,\degr\}}\ts{\t-})\) by,
 
 \begin{equation}
-\cm{\t}(\x\cind{\{\root,1\}}\tip{[0,\t)},\mmm\sln{}\ts{})(\cdot) = \pr{\mmm\sln{}\ts{}}\left(\X\cind{\{2,\dots,\degr\}}\tip{[0,\t)} \in \cdot|\X\cind{\{\root,1\}}\tip{[0,\t)} = \x\cind{\{\root,1\}}\tip{[0,\t)}\right).
+\cm\ts{\t}(\x\cind{\{\root,1\}}\tip{[0,\t)},\mmm\sln{}\ts{})(\cdot) = \pr{\mmm\sln{}\ts{}}\left(\X\cind{\{2,\dots,\degr\}}\tip{[0,\t)} \in \cdot|\X\cind{\{\root,1\}}\tip{[0,\t)} = \x\cind{\{\root,1\}}\tip{[0,\t)}\right).
 \label{sec::Main:eqn::gamma}
 \end{equation}
 \labe{sec::Main:eqn::gamma}
@@ -862,7 +862,7 @@ Then there exists a unique solution, \(\alt{\m\sln{}\ts{}} \in \pmsr(\sset\vsi{\
 
 where
 
-\[\crate{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\alt{\m\sln{}\ts{}})}{\IGr\vind{\root}(\X\cind{}\tp{\t-},\s)}\]
+\[\crate{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm\ts{\t}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\alt{\m\sln{}\ts{}})}{\IGr\vind{\root}(\X\cind{}\tp{\t-},\s)}\]
 
 for all \(\s\in \S\). Furthermore, \(\alt{\m\sln{}\ts{}} = \proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})\).
 \label{sec::Main:Thm::Local SDE}
@@ -1300,7 +1300,7 @@ This is a restatement of \cite[Theorem 14.3.III]{DalVer08}.
 \begin{lem}
 Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\m\sln{}\ts{} = \law(\X\cind{}\tip{})\). Suppose,
 
-\[\crate{\v}{\t}(\s) := \crate{}{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\m\sln{}\ts{})}{\IGrg(\X\cind{\tree\sln{1}}\tp{\t-},\s)}.\]
+\[\crate{\v}{\t}(\s) := \crate{}{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm\ts{\t}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\m\sln{}\ts{})}{\IGrg(\X\cind{\tree\sln{1}}\tp{\t-},\s)}.\]
 
 
 Then \(\crate{\v}{\t}(\s)\) has an almost surely left-continuous modification on \([0,\T)\) with respect to \(\t\) for every \(\v \in \tree\sln{1}\setminus\{\root\}\) and \(\s \in \S\).
@@ -1634,7 +1634,7 @@ Applying Theorem \ref{sec::Main:Thm::CI} and symmetry of \(\m\sln{}\ts{}\) yield
 &\os{\te{Thm \ref{sec::Main:Thm::CI}}}{=} \exmu{\m\sln{}\ts{}}{\IGrg{}(\X\cind{\cl{\v}}\tp{\t-},\s)|\X\cind{\{\v,\root\}}\tip{[0,\t)}} \\
 &\os{\te{Sym}}{=} \exmu{\XX{}{}\sim \m\sln{}\ts{}}{\IGrg{}(\XX{\tree\sln{1}}{\t-},\s)|\XX{\{\root,1\}}{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
 &= \exmu{\XX{}{}\sim \proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})}{\IGrg{}(\XX{\tree\sln{1}}{\t-},\s)|\XX{\{\root,1\}}{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
-&= \exmu{\cm{\t}\left(\X\cind{\{\v,\root\}}\tip{[0,\t)},\proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})\right)}{\IGrg{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)}\\
+&= \exmu{\cm\ts{\t}\left(\X\cind{\{\v,\root\}}\tip{[0,\t)},\proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})\right)}{\IGrg{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)}\\
 &=\crate{}{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \crate{\v}{\t}(\s).
 \end{align*}
 
@@ -1659,7 +1659,7 @@ Assume \(\mmm\sln{1}\ts{}\) is a probability measure on \(\sset\vsi{\tree\sln{1}
 
 \ind Let \(\X\sln{1}\cind{}\tip{}\) be a process with law \(\mmm\sln{1}\ts{}\) embedded in \(\sset\vsi{V}\ts{\T-}\). That is, \(\X\sln{1}\cind{\v}\tip{} \equiv 0\) for \(\v \notin \tree\sln{1}\). Recall that, for \(\v \in \tree\sln{1}\setminus\{\root\}\),
 
-\[\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\mmm\sln{1}\ts{})}{\IGrg{}(\X\sln{1}\cind{}\tp{\t-},\s)}.\]
+\[\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \exmu{\cm\ts{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\mmm\sln{1}\ts{})}{\IGrg{}(\X\sln{1}\cind{}\tp{\t-},\s)}.\]
 
 \ind We will prove uniqueness of the local SDE by showing that \(\mmm\sln{1}\ts{}\) is the marginal distribution of \(\m\sln{}\ts{}\), which is the law of \(\X\cind{}\tip{}\) (as defined in equation \eqref{subsec::Notat:Eqn::IG}). To do that, we will construct a sequence of random variables \(\{\X\sln{n}\cind{}\tip{}:n\in\mb{N}\}\) on \(\sset\vsi{\tree\sln{n}}\ts{\T-}\) converging weakly to \(\X\cind{}\tip{}\). 
 
@@ -1698,7 +1698,7 @@ Consider the candidate rate \(\crate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}{\t}\
 &=\exmu{\m\sln{1}\ts{}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \mb{I}_{\kappa = \s\ev\vind{\root}}\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\right)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
 &=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\m\sln{1}\ts{}}{\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
 &=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\XXX{}{} \sim \m\sln{1}\ts{}}{\IGrg{}(\XXX{\tree\sln{1}}{\t-},\s)\middle|\XXX{\{\root,\v\}}{[0,\t)} = \X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\cm{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)},\m\sln{1}\ts{})}{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\t-},\s)}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\cm\ts{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)},\m\sln{1}\ts{})}{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\t-},\s)}\\
 &=\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \mb{I}_{\kappa = \s\ev\vind{\root}}\crate{}{}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)},\s)\right)\\
 \end{align*}
 
