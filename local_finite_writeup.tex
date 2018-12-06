@@ -903,20 +903,20 @@ We define the pair of sequences of stopping times:
 Here \(\const\indx{}\) is as defined in Assumption \ref{subsec::Assum:Assu::CI}. We also define the set of paths along \(\mb{N}^2\) by,
 
 \begin{align}
-\pathset{i}{j} = \{\apath{} \in (\mb{N}^2)^{i+j-1}: &\apath{}(1) = (1,1)\te{, } \apath{}(i+j-1) = (i,j)\te{, and } \nonumber\\
-&\apath{}(\it+1) - \apath{}(\it)\in \{\ev\vind{1},\ev\vind{2}\}\te{ for }\it\in \{1,\dots, i+j-2\}\}.
+\pathset{i}{j} = \{\apath\indx{} \in (\mb{N}^2)^{i+j-1}: &\apath\indx{}(1) = (1,1)\te{, } \apath\indx{}(i+j-1) = (i,j)\te{, and } \nonumber\\
+&\apath\indx{}(\it+1) - \apath\indx{}(\it)\in \{\ev\vind{1},\ev\vind{2}\}\te{ for }\it\in \{1,\dots, i+j-2\}\}.
 \label{sec::Proof1:eqn::Lambda}
 \end{align}
 \labe{sec::Proof1:eqn::Lambda}
 
-\(\ev\vind{1},\ev\vind{2}\) are assumed to be the standard basis vectors on \(\mb{N}^2\). We equivalently define a path \(\apath{} \in \pathset{i}{j}\) as an event:
+\(\ev\vind{1},\ev\vind{2}\) are assumed to be the standard basis vectors on \(\mb{N}^2\). We equivalently define a path \(\apath\indx{} \in \pathset{i}{j}\) as an event:
 
 \begin{align}
-\apath{}(\it) &= \begin{cases}
-\left\{\rt\indx{\apath{1}(\it)} \leq \rtt\indx{\apath{2}(\it)}\right\} &\te{ if } \apath{}(\it+1) - \apath{}(\it) = \ev\vind{1}\\
-\left\{\rt\indx{\apath{1}(\it)} > \rtt\indx{\apath{2}(\it)}\right\} &\te{ if } \apath{}(\it+1) - \apath{}(\it) = \ev\vind{2}
+\apath\indx{}(\it) &= \begin{cases}
+\left\{\rt\indx{\apath\indx{1}(\it)} \leq \rtt\indx{\apath\indx{2}(\it)}\right\} &\te{ if } \apath\indx{}(\it+1) - \apath\indx{}(\it) = \ev\vind{1}\\
+\left\{\rt\indx{\apath\indx{1}(\it)} > \rtt\indx{\apath\indx{2}(\it)}\right\} &\te{ if } \apath\indx{}(\it+1) - \apath\indx{}(\it) = \ev\vind{2}
 \end{cases}\\
-\apath{} &= \bigcap_{\it=1}^{i+j-2} \apath{}(\it)
+\apath\indx{} &= \bigcap_{\it=1}^{i+j-2} \apath\indx{}(\it)
 \label{sec::Proof1:eqn::Gamma}
 \end{align}
 \labe{sec::Proof1:eqn::Gamma}
@@ -924,14 +924,14 @@ Here \(\const\indx{}\) is as defined in Assumption \ref{subsec::Assum:Assu::CI}.
 \end{defn}
 \labe{sec::Proof1:Def::GammaLambda}
 
-\purpose The core of the proof of Theorem \ref{sec::Main:Thm::CI} comes from iterating over these stopping times in such a way that no stopping time gets too large with respect to the other. \(\apath{}\) tracks the route taken while \(\pathset{i}{j}\) is the set of all possible values of \(\apath{}\) given the current state of induction.
+\purpose The core of the proof of Theorem \ref{sec::Main:Thm::CI} comes from iterating over these stopping times in such a way that no stopping time gets too large with respect to the other. \(\apath\indx{}\) tracks the route taken while \(\pathset{i}{j}\) is the set of all possible values of \(\apath\indx{}\) given the current state of induction.
 
 \lin
 
 \begin{lem}
-For all \((i,j)\in \mb{N}_0^2\) and \(\apath{} \in \pathset{i}{j}\),
+For all \((i,j)\in \mb{N}_0^2\) and \(\apath\indx{} \in \pathset{i}{j}\),
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{\it})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath{}}\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath\indx{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{\it})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath\indx{}}\]
 \label{sec::Proof1:Lem::Induction}
 \end{lem}
 \labe{sec::Proof1:Lem::Induction}
@@ -1034,7 +1034,7 @@ so \(\alt{\X}\cind{\U}\tip{[0,\rt\indx{i+1})} = \X\cind{\U}\tip{[0,\rt\indx{i+1}
 \lin
 
 \begin{proof}[Proof of Lemma \ref{sec::Proof1:Lem::Induction}:]
-Begin the proof with the base case of \(i=j =1\). \(\pathset{1}{1}\) contains a single element \(\apath{} = ((1,1))\). In addition, \(\mb{I}_{\apath{}} = 1\).
+Begin the proof with the base case of \(i=j =1\). \(\pathset{1}{1}\) contains a single element \(\apath\indx{} = ((1,1))\). In addition, \(\mb{I}_{\apath\indx{}} = 1\).
 
 By independence of initial conditions,
 
@@ -1058,21 +1058,21 @@ By Lemma \ref{sec::Proof1:Lem::Decomposition}, we can express \(\X\cind{\U}\tip{
 
 This proves that Lemma \ref{sec::Proof1:Lem::Induction} holds in the base case where \(i = j = 1\).
 
-\ind Now, we prove the general case. Suppose Lemma \ref{sec::Proof1:Lem::Induction} holds for \(\alt{\apath{}} \in \pathset{i}{j}\). Then there exists a unique extension, \(\apath{} \in \pathset{i+1}{j}\), of \(\alt{\apath{}}\). It suffices to prove that Lemma \ref{sec::Proof1:Lem::Induction} holds for \(\apath{}\) (by symmetry it will also hold for the unique extension of \(\alt{\apath{}} \te{ to } \pathset{i}{j+1}\)). First, note that
+\ind Now, we prove the general case. Suppose Lemma \ref{sec::Proof1:Lem::Induction} holds for \(\alt{\apath\indx{}} \in \pathset{i}{j}\). Then there exists a unique extension, \(\apath\indx{} \in \pathset{i+1}{j}\), of \(\alt{\apath\indx{}}\). It suffices to prove that Lemma \ref{sec::Proof1:Lem::Induction} holds for \(\apath\indx{}\) (by symmetry it will also hold for the unique extension of \(\alt{\apath\indx{}} \te{ to } \pathset{i}{j+1}\)). First, note that
 
 \begin{equation}
-\mb{I}_{\apath{}} = \mb{I}_{\alt{\apath{}}}\mb{I}_{\rt\indx{i} \leq \rtt\indx{j}}
+\mb{I}_{\apath\indx{}} = \mb{I}_{\alt{\apath\indx{}}}\mb{I}_{\rt\indx{i} \leq \rtt\indx{j}}
 \label{sec::Proof1:eqn::extpath}
 \end{equation}
 \labe{sec::Proof1:eqn::extpath}
 
 By assumption,
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\alt{\apath{}}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\alt{\apath{}}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\alt{\apath{}}}\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\alt{\apath\indx{}}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\alt{\apath\indx{}}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\alt{\apath\indx{}}}\]
 
 By Lemma \ref{sec::TL:Lem::Props}(d), we can multiply everything by \(\mb{I}_{\rt\indx{i} \leq \rtt\indx{j}}\):
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath\indx{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath\indx{}}.\]
 
 By definition of \(\rt\indx{i}\), there is an event in \(\poiss\vind{\neigh\vind{\U}}\) at time \(\rt\indx{i}\) for every \(i \in \mb{ N}\). Let \(\rv\) be the random vector signifying in which node of \(\neigh\vind{\U}\) the event is located as well as the height and mark of the event. Because Poisson processes are simple, \(\rv\) is well-defined. Furthermore, \(\rv\) is independent of all terms in the equation above. We can specifically describe the distribution of \(\rv\). Let \(\rv^1\) be uniform over \(\neigh\vind{\U}\). Let \(\rv^2\) be an \(\S\)-valued random variable with distribution \(\Sm\). Finally, let \(\rv^3\) be a uniform \([0,\const\indx{}]\) random variable. Then, if \(\rv=(\rv^1,\rv^2,\rv^3)\),
 
@@ -1083,23 +1083,23 @@ By definition of \(\rt\indx{i}\), there is an event in \(\poiss\vind{\neigh\vind
 
 Note, because \(\X\cind{}\tip{}\) satisfies assumption \ref{subsec::Assum:Assu::CI}, \(\X\cind{\neigh\vind{\U}}\tp{\rt\indx{i}}\) only depends on \(\X\cind{\cl{\cl{\U}}}\tp{\rt\indx{i}-}\) and \(\rv\). By Lemma \ref{sec::TL:Lem::Props}(c), 
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i}]},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath\indx{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i}]},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath\indx{}}.\]
 
 \(\rt\indx{i+1} - \rt\indx{i}\) is \(\sigma(\poiss\vind{\neigh\vind{\U}}(\rt\indx{i},\infty))\) measurable, so it is independent of all terms above. Therefore, by Lemma \ref{sec::TL:Lem::Props}(b),
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i}]},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})},\rt\indx{i+1} - \rt\indx{i}\right)\mb{I}_{\apath{}}.\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath\indx{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i}]},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})},\rt\indx{i+1} - \rt\indx{i}\right)\mb{I}_{\apath\indx{}}.\]
 
 \(\X\cind{\neigh\vind{\U}}\tip{}\) is constant on \([\rt\indx{i},\rt\indx{i+1})\), so we can use a 1-to-1 function and Lemma \ref{sec::TL:Lem::Props}(a) to reduce the above statement to
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i+1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath\indx{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i+1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath\indx{}}.\]
 
 Now, \(\X\cind{\U}\tp{\rt\indx{i}}\) is \(\left(\X\cind{\U}\tip{[0,\rt\indx{i})}, \X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})}, \poiss\vind{\U}(\{\rt\indx{i}\}\times [0,\const\indx{}]\times\S)\right)\) measurable. Applying lemmas \ref{sec::TL:Lem::Props} (a) and (e), we get
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i}]}\mb{I}_{\apath{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i+1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i}]}\mb{I}_{\apath\indx{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i+1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath\indx{}}.\]
 
 Combining Lemmas \ref{sec::Proof1:Lem::Decomposition}, \ref{sec::TL:Lem::Props}(a) and \ref{sec::TL:Lem::Props}(e) as in the base case, we get
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i+1})}\mb{I}_{\apath{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i+1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath{}}.\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i+1})}\mb{I}_{\apath\indx{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i+1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath\indx{}}.\]
 
 which completes the proof.
 \end{proof}
@@ -1109,7 +1109,7 @@ which completes the proof.
 \begin{lem}
 Notice that for any \((i,j) \in \mb{N}^2\), \(\pathset{i}{j}\) is a space of disjoint events. Define
 
-\[\pathsete{i}{j} := \bigcup_{\apath{}\in\pathset{i}{j}} \apath{}\]
+\[\pathsete{i}{j} := \bigcup_{\apath\indx{}\in\pathset{i}{j}} \apath\indx{}\]
 
 Then \(\pathsete{i}{j}\) differs from \(\{\rt\indx{i} > \rtt\indx{j-1}, \rtt\indx{j} > \rt\indx{i-1}\}\) by a set of probability zero.
 \label{sec::Proof1:Lem::Ckk'}
@@ -1126,7 +1126,7 @@ In this proof, we will implicitly work in the equivalence class of events given 
 \ind First, \(\pathsete{1}{1} = \{\rt\indx{1} > 0,\rtt\indx{1} > 0\} = \{\rt\indx{1} > \rtt\indx{0},\rtt\indx{1}>\rt\indx{0}\}\). For any \(\it > 1\),
 
 \begin{align*}
-\pathsete{\it}{1} &= \bigcup_{\apath{} \in \pathset{\it}{1}} \apath{} = \{((1,1),\dots,(\it,1))\} = \bigcap_{i < \it} \{\rt\indx{i} < \rtt\indx{1}\} = \{\rt\indx{\it-1} < \rtt\indx{1}\} = \{\rt\indx{\it} > \rtt\indx{0},\rtt\indx{1} > \rt\indx{\it-1}\}
+\pathsete{\it}{1} &= \bigcup_{\apath\indx{} \in \pathset{\it}{1}} \apath\indx{} = \{((1,1),\dots,(\it,1))\} = \bigcap_{i < \it} \{\rt\indx{i} < \rtt\indx{1}\} = \{\rt\indx{\it-1} < \rtt\indx{1}\} = \{\rt\indx{\it} > \rtt\indx{0},\rtt\indx{1} > \rt\indx{\it-1}\}
 \end{align*}
 
 Similarly, \(\pathsete{1}{\it} = \{\rt\indx{1} > \rtt\indx{\it-1}, \rtt\indx{\it} > \rt\indx{0}\}\). Suppose that there exists some \(n\geq 3\) such that
@@ -1146,7 +1146,7 @@ for all \(i, j\in \mb{N}\) such that \(i+j = n\). Fix one such pair such that bo
 &:= \pathsete{i}{j+1}' \cup\pathsete{i}{j+1}''
 \end{align*}
 
-Now, it is clear that for any \(\apath{} \in \pathsete{i}{j+1}'\) or \(\apath{} \in \pathsete{i}{j+1}''\), \(\apath{}\in \{\rt\indx{i} > \rtt\indx{j},\rtt\indx{j+1} > \rt\indx{\it-1}\}\);
+Now, it is clear that for any \(\apath\indx{} \in \pathsete{i}{j+1}'\) or \(\apath\indx{} \in \pathsete{i}{j+1}''\), \(\apath\indx{}\in \{\rt\indx{i} > \rtt\indx{j},\rtt\indx{j+1} > \rt\indx{\it-1}\}\);
 
 \[\pathsete{i}{j+1} \subseteq \{\rt\indx{i} > \rtt\indx{j},\rtt\indx{j+1} > \rt\indx{i-1}\}.\]
 
@@ -1180,11 +1180,11 @@ So by induction, equation \eqref{sec::Proof1:eqn::Ckk'} holds for all \(i,j\in \
 
 Fix \((i,j) \in \mb{N}^2\). By Lemma \ref{sec::Proof1:Lem::Induction}, 
 
-\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}\big|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath{}}\te{ for all }\apath{} \in \pathset{i}{j}.\]
+\[\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath\indx{}}\perp \X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}\big|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath\indx{}}\te{ for all }\apath\indx{} \in \pathset{i}{j}.\]
 
-Notice that all terms have disjoint support for different \(\apath{}\). By Lemma \ref{sec::TL:Lem::Props}(f), 
+Notice that all terms have disjoint support for different \(\apath\indx{}\). By Lemma \ref{sec::TL:Lem::Props}(f), 
 
-\[\sum_{\apath{}\in\pathset{i}{j}}\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath{}}\perp \sum_{\apath{}\in\pathset{i}{j}}\X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath{}}\bigg|\sum_{\apath{}\in\pathset{i}{j}}\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath{}}\te{ for all }\apath{} \in \pathset{i}{j}.\]
+\[\sum_{\apath\indx{}\in\pathset{i}{j}}\X\cind{\U}\tip{[0,\rt\indx{i})}\mb{I}_{\apath\indx{}}\perp \sum_{\apath\indx{}\in\pathset{i}{j}}\X\cind{\UU}\tip{[0,\rtt\indx{j})}\mb{I}_{\apath\indx{}}\bigg|\sum_{\apath\indx{}\in\pathset{i}{j}}\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{j})}\right)\mb{I}_{\apath\indx{}}\te{ for all }\apath\indx{} \in \pathset{i}{j}.\]
 
 By Lemma \ref{sec::Proof1:Lem::Ckk'}, this simplifies to 
 
