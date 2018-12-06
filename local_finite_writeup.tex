@@ -205,6 +205,9 @@
 \newcommand{\vindpst}[2]{^{#1,#2}}				%\vind and \pst
 \newcommand{\slnpst}[2]{^{(#1),#2}}				%\sln and \pst
 \newcommand{\mepst}[2]{^{#1,#2}}				%\me and \pst
+\newcommand{\indxcind}[2]{_{#1,#2}}				%\indx and \cind
+
+
 
 \newtheorem{thms}{Theorem}[section]
 \newtheorem{conj}[thms]{Conjecture}
@@ -2056,18 +2059,18 @@ satisfies Definition \ref{sec::Infin:Def::Feller}.
 \lin
 
 \begin{defn}
-An infinitesimal generator is a (possibly unbounded) linear operator \(\IG{}\) on the space of continuous functions \(\cont(\spce)\) paired with a dense domain \(\core(\IG{}) \subseteq \cont(\spce)\) satisfying the following properties:
+An infinitesimal generator is a (possibly unbounded) linear operator \(\IG\) on the space of continuous functions \(\cont(\spce)\) paired with a dense domain \(\core(\IG) \subseteq \cont(\spce)\) satisfying the following properties:
 
 \begin{enumerate}
-\item If \(f \in \mc{D}(\IG{})\), \(a \geq 0\) and \(g:= f - a\IG{} f\), then 
+\item If \(f \in \mc{D}(\IG)\), \(a \geq 0\) and \(g:= f - a\IG f\), then 
 
 \[\inf_{\x \in \spce} f(\x) \geq \inf_{\x \in \spce} g(\x)\]
 
-\noindent In particular, this implies that \(\|f\| \leq \|f - a\IG{} f\|\).
+\noindent In particular, this implies that \(\|f\| \leq \|f - a\IG f\|\).
 
-\item For all sufficiently small \(a > 0\), \(I - a\IG{}\) is surjective as a mapping from \(\mc{D}(\IG{})\) to \(\cont(\spce)\).
+\item For all sufficiently small \(a > 0\), \(I - a\IG\) is surjective as a mapping from \(\mc{D}(\IG)\) to \(\cont(\spce)\).
 
-\item \(1 \in \core(\IG{})\) and \(\IG{} 1 = 0\).
+\item \(1 \in \core(\IG)\) and \(\IG 1 = 0\).
 \end{enumerate}
 \label{sec::Infin:Def::IG}
 \end{defn}
@@ -2080,7 +2083,7 @@ An infinitesimal generator is a (possibly unbounded) linear operator \(\IG{}\) o
 \lin
 
 \begin{thms}
-There is a bijection between infinitesimal generators and Feller processes. Furthermore, the infinitesimal generator \(\IG{}\) can be obtained from the Feller process \(\m\) by the following relation:
+There is a bijection between infinitesimal generators and Feller processes. Furthermore, the infinitesimal generator \(\IG\) can be obtained from the Feller process \(\m\) by the following relation:
 
 \begin{equation}
 \IG f(\x) = \lim_{\t\searrow 0} \frac{1}{\t}\left(\exmu{\m}{f(\X\cind{}\tp{\t})|\X\cind{}\tp{0}=\x} - f(\x)\right)
@@ -2098,19 +2101,19 @@ There is a bijection between infinitesimal generators and Feller processes. Furt
 \lin
 
 \begin{defn}
-Let \(\IG{}\) be an infinitesimal generator. A dense subset \(\core\subset \core(\IG{})\) is called a core of \(\IG{}\) if \(\IG{}\) is the closure of the operator \(\IG{}|_\core\).
+Let \(\IG\) be an infinitesimal generator. A dense subset \(\core\subset \core(\IG)\) is called a core of \(\IG\) if \(\IG\) is the closure of the operator \(\IG|_\core\).
 \label{sec::Infin:Def::core}
 \end{defn}
 \labe{sec::Infin:Def::core}
 
 \textbf{Source: }\cite[Definition 2.11]{Lig85}
 
-\purpose \(\core(\IG{})\) is extremely difficult to characterize in general. However, we can explicitly derive the core of the processes we are interested in.
+\purpose \(\core(\IG)\) is extremely difficult to characterize in general. However, we can explicitly derive the core of the processes we are interested in.
 
 \lin
 
 \begin{thms}[Trotter-Kurtz]
-Suppose \(\IG{n}\) and \(\IG{}\) are generators of Feller processes \(\m\sln{n}\) and \(\m\) respectively. If there is a core \(\core\) for \(\IG{}\) such that \(\core \subset \mc{D}(\IG{n})\) for all \(n\) and \(\IG{n} f \ra \IG{} f\) for all \(f \in \core\), then 
+Suppose \(\IG\sln{n}\) and \(\IG\) are generators of Feller processes \(\m\sln{n}\) and \(\m\) respectively. If there is a core \(\core\) for \(\IG\) such that \(\core \subset \mc{D}(\IG\sln{n})\) for all \(n\) and \(\IG\sln{n} f \ra \IG f\) for all \(f \in \core\), then 
 
 \[\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}=\cdot} \ra \exmu{\mu}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}=\cdot}\]
 
@@ -2136,11 +2139,15 @@ In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, sup
 \pfsum Use the same methods as in the proof of \cite[Theorem 4.2]{Kur81} to show weak convergence of the finite dimensional distributions. Apply \cite[Theorem 13.1]{Bil99} to get weak convergence.
 
 \begin{proof}
-By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\m\sln{n}\). Let the initial conditions (i.e. restriction to time 0) of \(\m\sln{n}\) be denoted \(\mm\sln{n}\) and let \(\mm\) denote the initial condition of \(\m\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(\spce\) is compact) function from \(\spce^k\ra\mb{R}\). Since \(\m\sln{n}\) are Feller, \(\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0} = \cdot}\) is continuous for all \(\t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f{i}(\xx{1})g{i}(\xx{2},\dots,\xx{\it})\). By monotone convergence, we can assume without loss of generality that \(f(\xx{1},\dots,\xx{\it}) = f{1}(\xx{1})f{2}(\xx{2},\dots,\xx{\it})\).
+By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\m\sln{n}\). Let the initial conditions (i.e. restriction to time 0) of \(\m\sln{n}\) be denoted \(\mm\sln{n}\) and let \(\mm\) denote the initial condition of \(\m\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(\spce\) is compact) function from \(\spce^k\ra\mb{R}\). Since \(\m\sln{n}\) are Feller, \(\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0} = \cdot}\) is continuous for all \(\t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f\indx{i}(\xx\indx{1})g\indx{i}(\xx\indx{2},\dots,\xx\indx{\it})\). By monotone convergence, we can assume without loss of generality that \(f(\xx\indx{1},\dots,\xx\indx{\it}) = f\indx{1}(\xx\indx{1})f\indx{2}(\xx\indx{2},\dots,\xx\indx{\it})\).
 
 \ind By Theorem \ref{sec::Infin:Thm::TrotterKurtz}, \(\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}} \ra \exmu{\m}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}\). Then, by bounded convergence and convergence of the initial condition,
 
-\[\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})}  = \exmu{\mm\sln{n}}{\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}} \ra \exmu{\mm\sln{n}}{\exmu{\m}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}} \ra \exmu{\mm}{\exmu{\m}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}} = \exmu{\m}{f(\XX\cind{}\tp{\t})}\]
+\begin{align*}
+\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})} & = \exmu{\mm\sln{n}}{\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}} \ra \exmu{\mm\sln{n}}{\exmu{\m}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}}\\
+& \ra \exmu{\mm}{\exmu{\m}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}} = \exmu{\m}{f(\XX\cind{}\tp{\t})}
+\end{align*}
+
 
 Thus all of the one-dimensional distributions converge. Assume that,
 
@@ -2149,9 +2156,9 @@ Thus all of the one-dimensional distributions converge. Assume that,
 \noindent for any continuous function \(g\) and for any \(\{\t\indx{1},\dots,\t\indx{k-1}\} \subset [0,T]\). Fix \(0\leq \t\indx{1} <\t\indx{2} <\cdots < \t\indx{\it}\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
 
 \begin{align}
-\exmu{\m\sln{n}}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0} = \xxx}&= \exmu{\m\sln{n}}{f{1}(\XX\cind{}\tp{0})f{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
-&= f{1}(\xxx)\exmu{\m\sln{n}}{f{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
-&\os{\te{Induction}}{\ra} f{1}(\xxx)\exmu{\m}{f{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
+\exmu{\m\sln{n}}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0} = \xxx}&= \exmu{\m\sln{n}}{f\indx{1}(\XX\cind{}\tp{0})f\indx{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
+&= f\indx{1}(\xxx)\exmu{\m\sln{n}}{f\indx{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
+&\os{\te{Induction}}{\ra} f\indx{1}(\xxx)\exmu{\m}{f\indx{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
 &= \exmu{\m}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0}=\xxx}
 \label{sec::Infin:eqn::zerocase}
 \end{align}
@@ -2168,10 +2175,11 @@ So,
 then,
 
 \begin{align*}
-\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0}=\xxx}&=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX\tp{\t\indx{1}},\dots,\XX\tp{\t\indx{\it}})|\XX\tp{\t\indx{1}}=\XX\cind{}\tp{\t\indx{1}},\XX\tp{0}=\xxx}|\XX\cind{}\tp{0}=\xxx}\\
+\mb{E}\me{\m\sln{n}}\bigg[f(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{\it}})&|\XX\cind{}\tp{0}=\xxx\bigg]\\
+&=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX\tp{\t\indx{1}},\dots,\XX\tp{\t\indx{\it}})|\XX\tp{\t\indx{1}}=\XX\cind{}\tp{\t\indx{1}},\XX\tp{0}=\xxx}|\XX\cind{}\tp{0}=\xxx}\\
 &=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX\tp{0},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\tp{0}=\XX\cind{}\tp{\t\indx{1}}}|\XX\cind{}\tp{0}=\xxx}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m}{f(\XX\tp{0},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\tp{0}=\XX\cind{}\tp{\t\indx{1}}}|\XX\cind{}\tp{0}=\xxx}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\m}{\exmu{\XX\sim \m}{f(\XX\tp{0},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\tp{0}=\XX\cind{}\tp{\t\indx{1}}}|\XX\cind{}\tp{0}=\xxx}\\
+&\os{\te{Eq \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m}{f(\XX\tp{0},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\tp{0}=\XX\cind{}\tp{\t\indx{1}}}|\XX\cind{}\tp{0}=\xxx}\\
+&\os{\te{Thm \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\m}{\exmu{\XX\sim \m}{f(\XX\tp{0},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\tp{0}=\XX\cind{}\tp{\t\indx{1}}}|\XX\cind{}\tp{0}=\xxx}\\
 &=\exmu{\m}{f(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0}=\xxx}
 \end{align*}
 
@@ -2245,7 +2253,7 @@ Let \(\rp\) be a non-explosive marked point process on the Polish space \([0,\in
 \lin
 
 \begin{prop}
-Suppose \(\rp\) is a \(\F\)-adapted non-explosive marked point process on \([0,\infty)\times \mspce\) with \(\F\)-predictable intensity \(\rate\). Suppose \(\F\ts{\t}\) can be expressed in the form \(\F\ts{\t} = \F\ts{0}\wedge \FH{\t}\) where \(\FH{\t}\) is the natural history of \(\rp\) and \(\F\ts{0} = \sigma(\X\cind{}\tp{0})\) for some random variable \(\X\cind{}\tp{0}\). Let \(E = \{(\rt\indx{n},\mark\indx{n})\}\) be the sequence of events of \(\rp\) increasing in \(\rt\). Then \(\rate\) uniquely characterizes \(\rp\).
+Suppose \(\rp\) is a \(\F\)-adapted non-explosive marked point process on \([0,\infty)\times \mspce\) with \(\F\)-predictable intensity \(\rate\). Suppose \(\F\ts{\t}\) can be expressed in the form \(\F\ts{\t} = \F\ts{0}\wedge \FH\ts{\t}\) where \(\FH\ts{\t}\) is the natural history of \(\rp\) and \(\F\ts{0} = \sigma(\X\cind{}\tp{0})\) for some random variable \(\X\cind{}\tp{0}\). Let \(E = \{(\rt\indx{n},\mark\indx{n})\}\) be the sequence of events of \(\rp\) increasing in \(\rt\). Then \(\rate\) uniquely characterizes \(\rp\).
 \label{subsec::Prope:Prop::intense char}
 \end{prop}
 \labe{subsec::Prope:Prop::intense char}
@@ -2365,7 +2373,7 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 \lin
 
 \begin{prop}
-Let \(\rp\) be a marked process adapted to the filtration \(\F\ts{\t} := \F\ts{0}\wedge \FH{\t}\) where \(\FH\) is its natural filtration. Let the events and marks of \(\rp\) be given by \(\{(\rt\indx{j},\mark\indx{j})\}\) such that \(\{\rt\indx{j}\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr\me{i}\) be probability measures on the probability space such that \(\rp\) is non-explosive and simple with respect to both probability measures. Let \(\pr\me{i}\ts{\t}\) be the restriction of \(\pr\me{i}\) to \(\F\ts{\t}\). Suppose \(\F\ts{0}\) describes a random variable, \(\X\), with law \(\mm^i\) under \(\pr\me{i}\). If \(\rp\) has a strictly positive \(\pr\me{1},\F\)-predictable intensity \(\rate^1\), then \(\pr\me{2}\ts{\t} \ll \pr\me{1}\ts{\t}\) for all \(\t \in [0,T]\) if and only if there exists a non-negative, \(\F\)-predictable process \(\m\) such that \(\rp\) admits the \(\F\)-intensity \(\rate^2 = \m\rate^1\) under \(\pr\me{2}\) and \(\mm^2 \ll \mm^1\). When this is satisfied, the likelihood ratio is the \(\pr\me{1}\)-a.t. c\`adl\`ag process defined by 
+Let \(\rp\) be a marked process adapted to the filtration \(\F\ts{\t} := \F\ts{0}\wedge \FH\ts{\t}\) where \(\FH\) is its natural filtration. Let the events and marks of \(\rp\) be given by \(\{(\rt\indx{j},\mark\indx{j})\}\) such that \(\{\rt\indx{j}\}\) is an almost surely increasing sequence. For \(i \in \{1,2\}\), let \(\pr\me{i}\) be probability measures on the probability space such that \(\rp\) is non-explosive and simple with respect to both probability measures. Let \(\pr\me{i}\ts{\t}\) be the restriction of \(\pr\me{i}\) to \(\F\ts{\t}\). Suppose \(\F\ts{0}\) describes a random variable, \(\X\), with law \(\mm^i\) under \(\pr\me{i}\). If \(\rp\) has a strictly positive \(\pr\me{1},\F\)-predictable intensity \(\rate^1\), then \(\pr\me{2}\ts{\t} \ll \pr\me{1}\ts{\t}\) for all \(\t \in [0,T]\) if and only if there exists a non-negative, \(\F\)-predictable process \(\m\) such that \(\rp\) admits the \(\F\)-intensity \(\rate^2 = \m\rate^1\) under \(\pr\me{2}\) and \(\mm^2 \ll \mm^1\). When this is satisfied, the likelihood ratio is the \(\pr\me{1}\)-a.t. c\`adl\`ag process defined by 
 
 \begin{equation}
 L_\t:= \frac{d\pr\me{2}\ts{\t}}{d\pr\me{1}\ts{\t}}(\rp) = \frac{d\mm^2}{d\mm^1}\left(\prod_{0<\rt^i\leq \t} \m(\rt^i,\mark^i)\right)\exp\left(-\int_{(0,\t]\times \mspce}[\m(\t,\mark) - 1]\rate^1(\t,\mark)\,ds\,\ell(d\mark)\right)
@@ -2527,7 +2535,7 @@ and such that \(\t\mapsto \ratee\ts{\t}\vind{\v}(\XX\cind{}\tip{[0,\t)},\sv\cind
 
 \begin{proof}
 
-We can assume without loss of generality that \(\ratee\ts{\t}\vind{\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \sset\vsi{}\ts{\t-}\) such that \(\pr(\XX\cind{}\tip{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee\ts{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee\ts{\t}\vind{\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
+We can assume without loss of generality that \(\ratee\ts{\t}\vind{\v}(\xx\tip{[0,\t)},\s) = 0\) for all \(\xx\tip{[0,\t)}\in \sset\vsi{}\ts{\t-}\) such that \(\pr(\XX\cind{}\tip{[0,\t)} = \xx\tip{[0,\t)}) = 0\). Then since \(\ratee\ts{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee\ts{\t}\vind{\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
 
 \[\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int_{(0,\t]}\int_\S\int_{(0,\ratee\ts{\tt}\vind{\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt).\]
 
@@ -2565,7 +2573,7 @@ where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over 
 \pfsum The key is to express \(\X\) in terms of a Marked point process. Then we can compute the intensities of the point process under \(\m\) and \(\mm\) respectively and apply Proposition \ref{subsec::Prope:Prop::radnikder}.
 
 \begin{proof}
-Notice that \(\X\cind{}\tip{} \mapsto (\X\cind{}\tp{0},\pmap(\X\cind{}\tip{}))\) is a one-to-one mapping from c\`adl\`ag processes on \(\S\carp{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp\) is \(\F\vsi{}\ts{\t}\)-adapted, where \(\F\vsi{}\ts{\t} = \F\vsi{}\ts{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp\).
+Notice that \(\X\cind{}\tip{} \mapsto (\X\cind{}\tp{0},\pmap(\X\cind{}\tip{}))\) is a one-to-one mapping from c\`adl\`ag processes on \(\S\carp{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp\) is \(\F\vsi{}\ts{\t}\)-adapted, where \(\F\vsi{}\ts{\t} = \F\vsi{}\ts{0}\vee \FH\ts{\t}\) and \(\FH\ts{\t}\) is the natural filtration of \(\rp\).
 
 \ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp\) has predictable intensity \(\ratee\ts{\t}(\cdot)\) with respect to \(\F\vsi{}\ts{\t}\) and \(\m\sln{}\ts{}\). \(\rp\) has predictable intensity 1 with respect to \(\F\vsi{}\ts{\t}\) and \(\mm\vind{}\ts{}\). This holds all of the information about the original process \(\X\cind{}\tip{}\), so we can consider \(\frac{d\m\sln{}\ts{\t}}{d\mm\vind{}\ts{\t}}\) as a change of measure affecting \(\rp\) instead of \(\X\cind{}\tip{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee\ts{\t}\vind{\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
 \end{proof}
@@ -2622,9 +2630,9 @@ for all bounded non-negative measurable functions \(f,g\) and \(h\).
 
 \item Any bounded non-negative measurable function in two variables \(f(\x,\xx)\) can be approximated by a sum of a product of two bounded non-negative measurable functions in one variable:
 
-\[f(\x,\xx) = \sum_{k=1}^\infty f^k{1}(\x)f^k{2}(\xx)\]
+\[f(\x,\xx) = \sum_{k=1}^\infty f\indxcind{k}{1}(\x)f\indxcind{k}{2}(\xx)\]
 
-Within this lemma, I will assume without loss of generality that all functions of the form \(f(\x,\xx)\) can be written as a product: \(f(\x,\xx) = f{1}(\x)f{2}(\xx)\).
+Within this lemma, I will assume without loss of generality that all functions of the form \(f(\x,\xx)\) can be written as a product: \(f(\x,\xx) = f\indx{1}(\x)f\indx{2}(\xx)\).
 \end{itemize}
 
 \begin{enumerate}[(a)]
@@ -2638,7 +2646,7 @@ Within this lemma, I will assume without loss of generality that all functions o
 
 \item Since \(T\perp (\X,\XX,\XXX)\), notice that by the tower property,
 
-\[\ex{\ex{f{1}(\X)f{2}(\XX)|\XXX}g(\XXX)h(T)} = \ex{f{1}(\X)f{2}(\XX)g(\XXX)}\ex{h(T)} = \ex{f{1}(\X)f{2}(\XX)g(\XXX)h(T)}\]
+\[\ex{\ex{f\indx{1}(\X)f\indx{2}(\XX)|\XXX}g(\XXX)h(T)} = \ex{f\indx{1}(\X)f\indx{2}(\XX)g(\XXX)}\ex{h(T)} = \ex{f\indx{1}(\X)f\indx{2}(\XX)g(\XXX)h(T)}\]
 
 So \((\X,\XX)\perp T|\XXX\). In particular, that means that 
 
@@ -2646,7 +2654,7 @@ So \((\X,\XX)\perp T|\XXX\). In particular, that means that
 
 which proves that \(\X\perp \XX|\XXX,T\).
 
-\[\ex{\ex{f{1}(\X)f{2}(T)|\XXX}g(\XX)h(\XXX)} = \ex{f{2}(T)}\ex{\ex{f{1}(\X)|\XXX}g(\XX)h(\XXX)} = \ex{f(\X,T)g(\XX)h(\XXX)}\]
+\[\ex{\ex{f\indx{1}(\X)f\indx{2}(T)|\XXX}g(\XX)h(\XXX)} = \ex{f\indx{2}(T)}\ex{\ex{f\indx{1}(\X)|\XXX}g(\XX)h(\XXX)} = \ex{f(\X,T)g(\XX)h(\XXX)}\]
 
 So \((\X,T)\perp \XX|\XXX\). Then \(\X\perp (\XX,T)|\XXX\) by symmetry.
 
@@ -2692,9 +2700,9 @@ which completes the proof.
 \item We can show this directly:
 
 \begin{align*}
-\mb{E}\bigg[\ex{f{1}(\X)f{2}(\XXX)f{3}(U)|\XXX}g{1}(\XX)&g{2}(\XXX)g{3}(V)h(\XXX)\bigg]\\
-&= \ex{f{3}(U)g{3}(V)}\ex{\ex{f{1}(\X)|\XXX}g{1}(\XX)(f{2}(\XXX)g{2}(\XXX)h(\XXX))}\\
-&= \ex{f{3}(U)g{3}(V)}\ex{f{1}(\X)g{1}(\XX)f{2}(\XXX)g{2}(\XXX)h(\XXX)}\\
+\mb{E}\bigg[\ex{f\indx{1}(\X)f\indx{2}(\XXX)f\indx{3}(U)|\XXX}g\indx{1}(\XX)&g\indx{2}(\XXX)g\indx{3}(V)h(\XXX)\bigg]\\
+&= \ex{f\indx{3}(U)g\indx{3}(V)}\ex{\ex{f\indx{1}(\X)|\XXX}g\indx{1}(\XX)(f\indx{2}(\XXX)g\indx{2}(\XXX)h(\XXX))}\\
+&= \ex{f\indx{3}(U)g\indx{3}(V)}\ex{f\indx{1}(\X)g\indx{1}(\XX)f\indx{2}(\XXX)g\indx{2}(\XXX)h(\XXX)}\\
 &= \ex{f(\X,\XXX,U)g(\XX,\XXX,V)h(\XXX)}
 \end{align*}
 
@@ -2954,15 +2962,15 @@ If we let \(\poiss\vind{}(\cdot,\cdot) = \pmap\vind{}(\X\sln{n}\cind{}\tip{})\) 
 
 \[\poiss\sln{n}{\sv\cind{}\vsi{\tree\sln{n}}}(\evnt) = \alt{\poiss}\sln{n}\left(\evnt\cap\{(\t,\sv\cind{}\vsi{\tree\sln{n}},\r):\r > \rate\slnpst{n}{\sv\cind{}\vsi{\tree\sln{n}}}(\t,\sv\cind{}\vsi{\tree\sln{n}})\}\right) + \#\{(\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v},\rv\vind{\v}\indx{\it}\rate\slnpst{n}{\sv\cind{}\vsi{\tree\sln{n}}}(\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v}) \in \evnt: \v\in \tree\sln{n}\}\]
 
-is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\). Let \(R \subseteq \alt{\S\carp{n}}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
+is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\). Let \(R \subseteq \alt{\S}\carp{n}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
 
 \begin{align*}
 \pr\left(\poiss\sln{n}\left(\inte\times R\times \alt{\inte}\right) = 0\right) &= \sum_{\sv\cind{}\vsi{\tree\sln{n}} \in \alt{\S}^n} \pr\left(\poiss\sln{n}{\sv\cind{}\vsi{\tree\sln{n}}}\left(\inte\times R\times \alt{\inte}\right) = 0\right)\pr(\X\sln{n}\cind{}\tp{0} = \sv\cind{}\vsi{\tree\sln{n}})\\
-&= \exp\left(-|R| |\inte||\alt{\inte}|\right)\sum_{\sv\cind{}\vsi{\tree\sln{n}} \in \alt{\S\carp{n}}} \pr(\X\sln{n}\cind{}\tp{0} = \sv\cind{}\vsi{\tree\sln{n}})\\
+&= \exp\left(-|R| |\inte||\alt{\inte}|\right)\sum_{\sv\cind{}\vsi{\tree\sln{n}} \in \alt{\S}\carp{n}} \pr(\X\sln{n}\cind{}\tp{0} = \sv\cind{}\vsi{\tree\sln{n}})\\
 &=\exp\left(-|R| |\inte||\alt{\inte}|\right)
 \end{align*}
 
-Since this holds for every rectangle, \(\poiss\sln{n}\) is a Poisson process on \([0,T]\times \alt{\S\carp{n}}\times [0,\const\indx{}]\) by R\'enyi, M\"onch \cite[Theorem 9.2.XII]{DalVer08}.
+Since this holds for every rectangle, \(\poiss\sln{n}\) is a Poisson process on \([0,T]\times \alt{\S}\carp{n}\times [0,\const\indx{}]\) by R\'enyi, M\"onch \cite[Theorem 9.2.XII]{DalVer08}.
 
 
 
