@@ -1280,7 +1280,7 @@ and
 \lin
 
 \begin{assu}
-Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X\cind{}\tip{}\in \sset\vsi{\U}\ts{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap\vind{\v}(\X\cind{}\tip{})\) has an \(\X\cind{}\tip{}\)-predictable intensity, \(\ratee{\v}\), and there exists a constant \(\const\indx{} < \infty\) such that \(\sup_{\v\in\U} \ratee{\v} \leq \const\indx{}\). Furthermore, \(\lambda: \S\carp{\degr+1}\times \S\ra[0,\const\indx{}]\) is some function.
+Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X\cind{}\tip{}\in \sset\vsi{\U}\ts{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap\vind{\v}(\X\cind{}\tip{})\) has an \(\X\cind{}\tip{}\)-predictable intensity, \(\ratee\vind{\v}\), and there exists a constant \(\const\indx{} < \infty\) such that \(\sup_{\v\in\U} \ratee\vind{\v} \leq \const\indx{}\). Furthermore, \(\lambda: \S\carp{\degr+1}\times \S\ra[0,\const\indx{}]\) is some function.
 \label{subsec::ProofE:Assu::Eassu}
 \end{assu}
 \labe{subsec::ProofE:Assu::Eassu}
@@ -1288,7 +1288,7 @@ Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X\cind{}\tip{}\in \sset\vsi{
 \lin
 
 \begin{lem}
-Let \(\rp{}\) be an \(\F\vsi{}\ts{}\)-adapted marked point process with \(\F\vsi{}\ts{}\)-predictable intensity \(\ratee{}\) and a countable mark space. For all \(\t \in [0,\T]\), let \(\sigma(\rp{\t}) \subseteq \alt{\F\ts{}}{\t}\subset \F\vsi{}\ts{\t}\) define a subfiltration of \(\F\vsi{}\ts{}\) containing the history of \(\rp{}\). If there exists an \(\Sm\times \pr\)-almost sure left-continuous modification of \(\cratee{}{}(\t,\mark{}) := \ex{\ratee{}(\t,\mark{})|\alt{\F\vsi{}\ts{}}^{\t-}}\) with respect to \(\t\) for all \(\mark{}\) in the mark space, then \(\cratee{}{}\) is the \(\alt{\F\vsi{}\ts{}}\)-predictable intensity of \(\rp{}\).
+Let \(\rp{}\) be an \(\F\vsi{}\ts{}\)-adapted marked point process with \(\F\vsi{}\ts{}\)-predictable intensity \(\ratee\) and a countable mark space. For all \(\t \in [0,\T]\), let \(\sigma(\rp{\t}) \subseteq \alt{\F\ts{}}{\t}\subset \F\vsi{}\ts{\t}\) define a subfiltration of \(\F\vsi{}\ts{}\) containing the history of \(\rp{}\). If there exists an \(\Sm\times \pr\)-almost sure left-continuous modification of \(\cratee{}{}(\t,\mark{}) := \ex{\ratee(\t,\mark{})|\alt{\F\vsi{}\ts{}}^{\t-}}\) with respect to \(\t\) for all \(\mark{}\) in the mark space, then \(\cratee{}{}\) is the \(\alt{\F\vsi{}\ts{}}\)-predictable intensity of \(\rp{}\).
 \label{subsec::ProofE:Lem::filtering}
 \end{lem}
 \labe{subsec::ProofE:Lem::filtering}
@@ -1431,7 +1431,7 @@ By definition of \(\XXX\cind{}\tip{}\), \(\XXX\cind{}\tp{\t} = \XX\cind{}\tp{\t}
 \lin
 
 \begin{lem}
-Let \(\X\cind{}\tip{},\ratee{}{}\) and \(\rate{}\) satisfy the conditions of Assumption \ref{subsec::ProofE:Assu::Eassu}. Let \(\crate{\v}{\t}(\s)\) be defined as in Lemma \ref{subsec::ProofE:Lem::leftmod}. Then \(\crate{\v}{\t}(\s)\) is left-continuous in probability for \(\v \in \tree\sln{1}\setminus\{\root\}\) and \(\s \in \S\setminus\{0\}\). That is, for every \(\t \in (0,\T]\), \(\s \in \S\), \(\ep > 0\) and \(\v\in \{1,\dots,\degr\}\),
+Let \(\X\cind{}\tip{},\ratee\) and \(\rate{}\) satisfy the conditions of Assumption \ref{subsec::ProofE:Assu::Eassu}. Let \(\crate{\v}{\t}(\s)\) be defined as in Lemma \ref{subsec::ProofE:Lem::leftmod}. Then \(\crate{\v}{\t}(\s)\) is left-continuous in probability for \(\v \in \tree\sln{1}\setminus\{\root\}\) and \(\s \in \S\setminus\{0\}\). That is, for every \(\t \in (0,\T]\), \(\s \in \S\), \(\ep > 0\) and \(\v\in \{1,\dots,\degr\}\),
 
 \[\lim_{\tt \nearrow \t}\pr\left(|\crate{\v}{\t}(\s)- \crate{\v}{\t-\tt}(\s)| > \ep\right) = 0.\]
 
@@ -1758,7 +1758,7 @@ Let \(\mm\vind{}\ts{} \in \pmsr(\sset\vsi{V}\ts{\T-})\) be as defined in Definit
 
 \ind Recall that \(\rp{} \defeq \pmap\vind{}(\X\sln{1}\cind{}\tip{})\) maps \(\X\sln{1}\cind{}\tip{}\) to the point process coinciding with the jumps of \(\X\sln{1}\cind{}\tip{}\). This point process has intensity,
 
-\[\ratee{}(\rp{}[0,\t),\mark{}) = \begin{cases}
+\[\ratee(\rp{}[0,\t),\mark{}) = \begin{cases}
 \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) &\te{ if } \v\in \tree\sln{1}\setminus\{\root\}\te{ and } \mark{} = \s\ev\vind{\v}\\
 \IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\t-},\s) &\te{ if } \mark{} = \s\ev\vind{\root}\\
 0 &\te{ otherwise}.
@@ -1778,7 +1778,7 @@ Let \(\{(\rt\indx{\it},\mark{\it})\}\) be the events of \(\pmap\vind{}(\X\sln{1}
 
 \begin{align}
 \dense{1}{\t}(\X\cind{\tree\sln{1}}\tip{})&\defeq \frac{d\mmm\sln{1}\ts{\t}}{d\mm\sln{1}\ts{\t}}\nonumber\\
-&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{0< \rt\indx{\it} \leq \t} \log{\ratee{}(\X\sln{1}\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})} - \int{(0,\t]\times\S} [\ratee{}(\X\sln{1}\cind{}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
+&= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{0< \rt\indx{\it} \leq \t} \log{\ratee(\X\sln{1}\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})} - \int{(0,\t]\times\S} [\ratee(\X\sln{1}\cind{}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
 &= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\Bigg(\sum_{\v\in\tree\sln{1}\setminus\{\root\}}\left(\sum_{0< \rt\indx{\it}\vind{\v} \leq \t} \log{\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\rt\indx{\it}\vind{\v})},\mark{\it})} - \int{(0,\t]\times\S} [\crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\tt)},\s) - 1]\,d\tt\,\Sm(d\s)\right)\nonumber\\
 &\hspace{24pt} + \left(\sum_{0 < \rt\indx{\it}\vind{\root} \leq \t} \log{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\rt\indx{\it}\vind{\root}-},\mark{\it}_\root)} - \int{(0,\t]\times\S} [\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\tt-},\s) - 1]\,ds\,\Sm(d\s)\right)\Bigg)\nonumber\\
 &= \frac{d\mmm\sln{1}\ts{0}}{d\mm\sln{1}\ts{0}}\exp\left(\sum_{\v\in\tree\sln{1}\setminus\{\root\}} \ds{\v}{\t}(\X\sln{1}\cind{\{\v,\root\}}\tip{},\crate{}{}) + \ds{\root}{\t}(\X\sln{1}\cind{\tree\sln{1}}\tip{},\IGrg{})\right).
@@ -2307,19 +2307,19 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 
 \tr{Commented out and unused proposition. Revisit later.}
 %\begin{prop}
-%Suppose \(\rp{}\) is a \(\F\vsi{}\ts{}\)-adapted point process on \([0,\T)\times \spce\) with \(\F\vsi{}\ts{}\)-predictable intensity \(\ratee{\t}:\spce \ra\mb{R}^+\) with respect to the reference probability measure \(\Sm\) on \(\spce\). Suppose there exists a constant \(\const\indx{} < \infty\) such that \(\rate{}\) is bounded from above by \(\const\indx{}\). Then for any interval \(I \subseteq [0,\T)\) and any measurable \(\typset \subseteq \spce\),
+%Suppose \(\rp{}\) is a \(\F\vsi{}\ts{}\)-adapted point process on \([0,\T)\times \spce\) with \(\F\vsi{}\ts{}\)-predictable intensity \(\ratee\ts{\t}:\spce \ra\mb{R}^+\) with respect to the reference probability measure \(\Sm\) on \(\spce\). Suppose there exists a constant \(\const\indx{} < \infty\) such that \(\rate{}\) is bounded from above by \(\const\indx{}\). Then for any interval \(I \subseteq [0,\T)\) and any measurable \(\typset \subseteq \spce\),
 %
-%\[\pr(\rp{}(I\times\typset) = 0) = \exp\left(-\ex{\int_I\int_\typset \ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\right).\]
+%\[\pr(\rp{}(I\times\typset) = 0) = \exp\left(-\ex{\int_I\int_\typset \ratee\ts{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\right).\]
 %\label{subsec::Prope:Prop::voidprob}
 %\end{prop}
 %\labe{subsec::Prope:Prop::voidprob}
 %
 %\begin{proof}
-%The proof is similar to the proof of \cite[Lemma 1]{BreMas96}. By Lemma \ref{Subsec::Prope:Lem::easier}, \(M(\t) = \rp{}([0,\t]\times \typset) - \int_0^\t \int{\typset} \ratee{\tt}(\mark{})\,\Sm{}(d\mark{})\,d\tt\) is a Martingale. Then,
+%The proof is similar to the proof of \cite[Lemma 1]{BreMas96}. By Lemma \ref{Subsec::Prope:Lem::easier}, \(M(\t) = \rp{}([0,\t]\times \typset) - \int_0^\t \int{\typset} \ratee\ts{\tt}(\mark{})\,\Sm{}(d\mark{})\,d\tt\) is a Martingale. Then,
 %
-%\[\ex{\rp{}(I\times\typset)} = \ex{\int_I\int_\typset \ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t} \os{\te{Tonelli}}{=} \int_I\int_\typset \ex{\ratee{\t}(\mark{})}\,\Sm(d\mark{})\,d\t.\]
+%\[\ex{\rp{}(I\times\typset)} = \ex{\int_I\int_\typset \ratee\ts{\t}(\mark{})\,\Sm(d\mark{})\,d\t} \os{\te{Tonelli}}{=} \int_I\int_\typset \ex{\ratee\ts{\t}(\mark{})}\,\Sm(d\mark{})\,d\t.\]
 %
-%Let \(\rp{\typset}(\t) \defeq \rp{}([0,\t]\times \typset)\). Since \(\ratee{}\) is bounded, we can assume without loss of generality that \(I = (a,b]\) for some \(0 \leq a < b < \T\). Then,
+%Let \(\rp{\typset}(\t) \defeq \rp{}([0,\t]\times \typset)\). Since \(\ratee\) is bounded, we can assume without loss of generality that \(I = (a,b]\) for some \(0 \leq a < b < \T\). Then,
 %
 %\[\mb{I}_{\rp{}{(a,b]\times \typset} = 0} = 1 - \int{(a,b]} \mb{I}_{\rp{}((a,\t)\times \typset) = 0}\,\rp{\typset}(d\t).\]
 %
@@ -2328,17 +2328,17 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 %
 %\[\pr\left(\rp{}(I\times\typset)=0\right) = 1 - \ex{\int{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\,\rp{\typset}(d\t)}.\]
 %
-%\tr{for me: Since \(\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\) is \(\F\vsi{}\ts{\t}\)-predictable, we can replace the integral with respect to \(\rp{\typset}\) with an integral with density \(\ratee{}\). To prove this fact, it suffices to show it for elementary predictable functions and then extend to all predictable processes.}
+%\tr{for me: Since \(\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\) is \(\F\vsi{}\ts{\t}\)-predictable, we can replace the integral with respect to \(\rp{\typset}\) with an integral with density \(\ratee\). To prove this fact, it suffices to show it for elementary predictable functions and then extend to all predictable processes.}
 %
 %\ind Then,
 %
 %\begin{align*}
-%\pr\left(\rp{}(I\times\typset)=0\right) &= 1 - \ex{\int{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\int_\typset\ratee{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\\
-%& = 1 - \int{I\times \typset} \pr\left(\rp{}((a,\t)\times\typset) = 0\right)\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.\\
-%& = 1 - \int{I\times \typset} \pr\left(\rp{}((a,\t]\times\typset) = 0\right)\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.
+%\pr\left(\rp{}(I\times\typset)=0\right) &= 1 - \ex{\int{(a,b]}\mb{I}_{\rp{}((a,\t)\times \typset) = 0}\int_\typset\ratee\ts{\t}(\mark{})\,\Sm(d\mark{})\,d\t}\\
+%& = 1 - \int{I\times \typset} \pr\left(\rp{}((a,\t)\times\typset) = 0\right)\ex{\ratee\ts{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.\\
+%& = 1 - \int{I\times \typset} \pr\left(\rp{}((a,\t]\times\typset) = 0\right)\ex{\ratee\ts{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t.
 %\end{align*}
 %
-%Letting \(f(\t) = \pr(\rp{}((a,\t]\times \typset) = 0)\) and \(g(\t) = \int_A\ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times \typset) = 0}\Sm(d\mark{})\), this simplifies to
+%Letting \(f(\t) = \pr(\rp{}((a,\t]\times \typset) = 0)\) and \(g(\t) = \int_A\ex{\ratee\ts{\t}(\mark{})|\rp{}((a,\t)\times \typset) = 0}\Sm(d\mark{})\), this simplifies to
 %
 %\[f(\t) = 1 - \int_a^\t f(\tt)g(\tt)\,d\tt.\]
 %
@@ -2348,7 +2348,7 @@ We were able to move the limit inside the expectation by bounded convergence. Th
 %
 %That is,
 %
-%\[\pr\left(\rp{}(I\times\typset) = 0\right) = \exp\left(-\int{I\times\typset} \ex{\ratee{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t\right).\]
+%\[\pr\left(\rp{}(I\times\typset) = 0\right) = \exp\left(-\int{I\times\typset} \ex{\ratee\ts{\t}(\mark{})|\rp{}((a,\t)\times\typset) = 0}\,\Sm(d\mark{})\,d\t\right).\]
 %
 %\end{proof}
 
@@ -2402,12 +2402,12 @@ Giving us,
 \lin
 
 \begin{lem}
-Let \(G = (V,E)\) be a finite graph and let \(0 < \const\indx{}< \infty\). Let \(\X\cind{}\tp{0}\) be an \(\S\carp{V}\)-valued random variable. Let \(\Sm\) be a probability measure over \(\S\) with positive weight on all elements in \(\S\setminus\{0\}\) and 0 weight on \(\{0\}\). Let \(\{\ratee{\t,\v}\}_{\v \in V,\t\in [0,\T]}\) be a set of measurable mappings from \(\sset\vsi{V}\ts{\t-} \times \S\) to \([0,\const\indx{}]\) such that if \(h \in \sset\vsi{V}\ts{\t-}\), then \(\t\mapsto \ratee{\t,\v}(h[0,\t),\s)\) is left-continuous for all \(\v \in V\) and \(\s \in \S\). Let \(\{\poiss\vind{\v}\}_{\v \in V}\) be i.i.d. Poisson processes on \(\mb{R}^+\times \S\times\mb{R}^+\) with intensity measure \(\leb\otimes\Sm\otimes\leb\) where \(\leb\) is the Lebesgue measure on \(\mb{R}\).
+Let \(G = (V,E)\) be a finite graph and let \(0 < \const\indx{}< \infty\). Let \(\X\cind{}\tp{0}\) be an \(\S\carp{V}\)-valued random variable. Let \(\Sm\) be a probability measure over \(\S\) with positive weight on all elements in \(\S\setminus\{0\}\) and 0 weight on \(\{0\}\). Let \(\{\ratee\ts{\t}\vind{\v}\}_{\v \in V,\t\in [0,\T]}\) be a set of measurable mappings from \(\sset\vsi{V}\ts{\t-} \times \S\) to \([0,\const\indx{}]\) such that if \(h \in \sset\vsi{V}\ts{\t-}\), then \(\t\mapsto \ratee\ts{\t}\vind{\v}(h[0,\t),\s)\) is left-continuous for all \(\v \in V\) and \(\s \in \S\). Let \(\{\poiss\vind{\v}\}_{\v \in V}\) be i.i.d. Poisson processes on \(\mb{R}^+\times \S\times\mb{R}^+\) with intensity measure \(\leb\otimes\Sm\otimes\leb\) where \(\leb\) is the Lebesgue measure on \(\mb{R}\).
 
 \ind Then given any \(\S\carp{V}\)-valued random variable, \(\X\cind{}\tp{0}\), the following SDE has a unique strong solution:
 
 \begin{equation}
-\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee{\tt,\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt)
+\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee\ts{\tt}\vind{\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt)
 \label{subsec::Some:eqn::genfiniteSDE}
 \end{equation}
 \labe{subsec::Some:eqn::genfiniteSDE}
@@ -2420,7 +2420,7 @@ Let \(G = (V,E)\) be a finite graph and let \(0 < \const\indx{}< \infty\). Let \
 \pfsum Direct construction.
 
 \begin{proof}
-Since \(\ratee{\tt,\v} \leq \const\indx{}\), we can view \(\{\poiss\vind{\v}:\v\in V\}\) as a sequence of Poisson random measures on \([0,\T)\times \S\times [0,\const\indx{}]\). Notice that,
+Since \(\ratee\ts{\tt}\vind{\v} \leq \const\indx{}\), we can view \(\{\poiss\vind{\v}:\v\in V\}\) as a sequence of Poisson random measures on \([0,\T)\times \S\times [0,\const\indx{}]\). Notice that,
 
 \[\ex{\sum_{\v\in V}\poiss\vind{\v}([0,\T)\times\S\times[0,\const\indx{}])} = \const\indx{}\T|V|.\]
 
@@ -2436,7 +2436,7 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 \item 
 
 \[\X\cind{}\tp{\rt\indx{1}} = \begin{cases}
-\X\cind{}\tp{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt\indx{1},\v{1}}(\X\cind{}\tip{[0,\rt\indx{1})},\mark{1})\\
+\X\cind{}\tp{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee\ts{\rt\indx{1}}\vind{\v{1}}(\X\cind{}\tip{[0,\rt\indx{1})},\mark{1})\\
 \X\cind{}\tp{0} &\te{ otherwise.}
 \end{cases}
 \] 
@@ -2446,7 +2446,7 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 \item 
 
 \[\X\cind{}\tp{\rt\indx{\it}} = \begin{cases}
-\X\cind{}\tp{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt\indx{\it},\v{\it}}(\X\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})\\
+\X\cind{}\tp{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee\ts{\rt\indx{\it}}\vind{\v{\it}}(\X\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})\\
 \X\cind{}\tp{\rt\indx{\it-1}} &\te{ otherwise.}
 \end{cases}\]
 
@@ -2464,11 +2464,11 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 
 \begin{align*}
 \XX\cind{}\tp{\rt\indx{1}} &= \begin{cases}
-\XX\cind{}\tp{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt\indx{1},\v{1}}(\XX\cind{}\tip{[0,\rt\indx{1})},\mark{1})\\
+\XX\cind{}\tp{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee\ts{\rt\indx{1}}\vind{\v{1}}(\XX\cind{}\tip{[0,\rt\indx{1})},\mark{1})\\
 \XX\cind{}\tp{0} &\te{ otherwise.}
 \end{cases}\\
 &= \begin{cases}
-\X\cind{}\tp{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt\indx{1},\v{1}}(\X\cind{}\tip{[0,\rt\indx{1})},\mark{1})\\
+\X\cind{}\tp{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee\ts{\rt\indx{1}}\vind{\v{1}}(\X\cind{}\tip{[0,\rt\indx{1})},\mark{1})\\
 \X\cind{}\tp{0} &\te{ otherwise.}
 \end{cases}\\
 &= \X\cind{}\tp{\rt\indx{1}}.
@@ -2480,11 +2480,11 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 
 \begin{align*}
 \XX\cind{}\tp{\rt\indx{\it}} &= \begin{cases}
-\XX\cind{}\tp{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt\indx{\it},\v{\it}}(\XX\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})\\
+\XX\cind{}\tp{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee\ts{\rt\indx{\it}}\vind{\v{\it}}(\XX\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})\\
 \XX\cind{}\tp{\rt\indx{\it-1}} &\te{ otherwise.}
 \end{cases}\\
 &= \begin{cases}
-\X\cind{}\tp{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt\indx{\it},\v{\it}}(\X\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})\\
+\X\cind{}\tp{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee\ts{\rt\indx{\it}}\vind{\v{\it}}(\X\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})\\
 \X\cind{}\tp{\rt\indx{\it-1}} &\te{ otherwise.}
 \end{cases}\\
 &= \X\cind{}\tp{\rt\indx{\it}}.
@@ -2499,18 +2499,18 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 \lin
 
 \begin{lem}
-Suppose that \(V\) is finite. Recall that \(\pmap\vind{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap\vind{}(\XX\cind{}\tip{})\) for some \(\sset\vsi{V}\ts{\T-}\)-valued stochastic process, \(\XX\cind{}\tip{}\). Suppose also that \(\rp{}\) has \(\XX\cind{}\tip{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const\indx{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\sset\vsi{}\ts{\t-}\times \S \ra [0,\const\indx{}]\}_{\t\in[0,\T),\v\in V}\) such that 
+Suppose that \(V\) is finite. Recall that \(\pmap\vind{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap\vind{}(\XX\cind{}\tip{})\) for some \(\sset\vsi{V}\ts{\T-}\)-valued stochastic process, \(\XX\cind{}\tip{}\). Suppose also that \(\rp{}\) has \(\XX\cind{}\tip{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee\ts{\t}(\cdot)\) bounded from above by \(\const\indx{}\). Suppose there exist mappings \(\{\ratee\ts{\t}\vind{\v}:\sset\vsi{}\ts{\t-}\times \S \ra [0,\const\indx{}]\}_{\t\in[0,\T),\v\in V}\) such that 
 
 \begin{equation}
-\ratee{\t}(\sv\cind{}\vsi{V}) := \begin{cases}
-\ratee{\t,\v}(\XX\cind{}\tip{[0,\t)},\s) &\te{ if } \sv\cind{}\vsi{V} = \s\ev\vind{\v}\\
+\ratee\ts{\t}(\sv\cind{}\vsi{V}) := \begin{cases}
+\ratee\ts{\t}\vind{\v}(\XX\cind{}\tip{[0,\t)},\s) &\te{ if } \sv\cind{}\vsi{V} = \s\ev\vind{\v}\\
 0 &\te{ otherwise,}
 \end{cases}
 \label{subsec::Some:eqn::intense}
 \end{equation}
 \labe{subsec::Some:eqn::intense}
 
-and such that \(\t\mapsto \ratee{\t,\v}(\XX\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V})\) is almost-surely left continuous on \([0,\T)\) for all \(\v\in V,\sv\cind{}\vsi{V}\in \S\carp{V}\). Then there is a unique solution, \(\X\cind{}\tip{}\), to equation \eqref{subsec::Some:eqn::genfiniteSDE}, and if \(\X\cind{}\tp{0} \deq \XX\cind{}\tp{0}\), then \(\X\cind{}\tip{} \deq \XX\cind{}\tip{}\).
+and such that \(\t\mapsto \ratee\ts{\t}\vind{\v}(\XX\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V})\) is almost-surely left continuous on \([0,\T)\) for all \(\v\in V,\sv\cind{}\vsi{V}\in \S\carp{V}\). Then there is a unique solution, \(\X\cind{}\tip{}\), to equation \eqref{subsec::Some:eqn::genfiniteSDE}, and if \(\X\cind{}\tp{0} \deq \XX\cind{}\tp{0}\), then \(\X\cind{}\tip{} \deq \XX\cind{}\tip{}\).
 
 \label{subsec::Some:Lem::PPtoSDE}
 \end{lem}
@@ -2518,14 +2518,14 @@ and such that \(\t\mapsto \ratee{\t,\v}(\XX\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V}
 
 \begin{proof}
 
-We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \sset\vsi{}\ts{\t-}\) such that \(\pr(\XX\cind{}\tip{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
+We can assume without loss of generality that \(\ratee\ts{\t}\vind{\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \sset\vsi{}\ts{\t-}\) such that \(\pr(\XX\cind{}\tip{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee\ts{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee\ts{\t}\vind{\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
 
-\[\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee{\tt,\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt).\]
+\[\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee\ts{\tt}\vind{\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt).\]
 
-By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap\vind{\v}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity \(\ratee{\t,\v}(\X\cind{}\tip{[0,\t)},\s)\) for \(\s \in \S\). Then \(\alt{\rp{}} \defeq \pmap\vind{}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity,
+By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap\vind{\v}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity \(\ratee\ts{\t}\vind{\v}(\X\cind{}\tip{[0,\t)},\s)\) for \(\s \in \S\). Then \(\alt{\rp{}} \defeq \pmap\vind{}(\X\cind{}\tip{})\) has \(\X\cind{}\tip{}\)-predictable intensity,
 
-\[\ratee{\t}(\X\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V}) = \begin{cases}
-\ratee{\t,\v}(\X\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V}) &\te{ if } \sv\cind{}\vsi{V} = \s\ev\vind{\v}\\
+\[\ratee\ts{\t}(\X\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V}) = \begin{cases}
+\ratee\ts{\t}\vind{\v}(\X\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V}) &\te{ if } \sv\cind{}\vsi{V} = \s\ev\vind{\v}\\
 0&\te{ otherwise.}
 \end{cases}\]
 
@@ -2543,7 +2543,7 @@ where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over 
 \ind Let \(\ov{\ell}\) be the extension of \(\Sm\) to \(\alt{\S} = \{\s\ev\vind{\v}: \s \in \S, \v \in V\}\) given by \(\alt{\Sm}(\typset\ev\vind{\v}) = \Sm(\typset)\) for any \(\typset \subseteq \S\). Then,
 
 \begin{equation}
-\frac{d\m\sln{}\ts{\t}}{d\mm\vind{}\ts{\t}}= \frac{d\m\sln{}\ts{0}}{d\mm\vind{}\ts{0}}\left(\prod_{0< \rt\indx{\it}\leq \t} \ratee{\t}(\mark{\it})\right)\exp\left(-\int{(0,\t]\times \S} (\ratee{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
+\frac{d\m\sln{}\ts{\t}}{d\mm\vind{}\ts{\t}}= \frac{d\m\sln{}\ts{0}}{d\mm\vind{}\ts{0}}\left(\prod_{0< \rt\indx{\it}\leq \t} \ratee\ts{\t}(\mark{\it})\right)\exp\left(-\int{(0,\t]\times \S} (\ratee\ts{\tt}(\s) - 1)\,d\tt\alt{\Sm}(d\s)\right)
 \label{subsec::Some:eqn::radnik}
 \end{equation}
 \labe{subsec::Some:eqn::radnik}
@@ -2558,7 +2558,7 @@ where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over 
 \begin{proof}
 Notice that \(\X\cind{}\tip{} \mapsto (\X\cind{}\tp{0},\pmap(\X\cind{}\tip{}))\) is a one-to-one mapping from c\`adl\`ag processes on \(\S\carp{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp{}\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp{}\) is \(\F\vsi{}\ts{\t}\)-adapted, where \(\F\vsi{}\ts{\t} = \F\vsi{}\ts{0}\vee \FH{}{\t}\) and \(\FH{}{\t}\) is the natural filtration of \(\rp{}\).
 
-\ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp{}\) has predictable intensity \(\ratee{\t}(\cdot)\) with respect to \(\F\vsi{}\ts{\t}\) and \(\m\sln{}\ts{}\). \(\rp{}\) has predictable intensity 1 with respect to \(\F\vsi{}\ts{\t}\) and \(\mm\vind{}\ts{}\). This holds all of the information about the original process \(\X\cind{}\tip{}\), so we can consider \(\frac{d\m\sln{}\ts{\t}}{d\mm\vind{}\ts{\t}}\) as a change of measure affecting \(\rp{}\) instead of \(\X\cind{}\tip{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee{\t,\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
+\ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp{}\) has predictable intensity \(\ratee\ts{\t}(\cdot)\) with respect to \(\F\vsi{}\ts{\t}\) and \(\m\sln{}\ts{}\). \(\rp{}\) has predictable intensity 1 with respect to \(\F\vsi{}\ts{\t}\) and \(\mm\vind{}\ts{}\). This holds all of the information about the original process \(\X\cind{}\tip{}\), so we can consider \(\frac{d\m\sln{}\ts{\t}}{d\mm\vind{}\ts{\t}}\) as a change of measure affecting \(\rp{}\) instead of \(\X\cind{}\tip{}\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee\ts{\t}\vind{\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
 \end{proof}
 
 \lin
