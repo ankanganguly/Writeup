@@ -827,7 +827,7 @@ Some further notation. Let \(\X\cind{}\tip{[0,\t]}\) denote the trajectory of \(
 
 \ind For \(\U \subseteq V\), let \(\dneigh\dnvind{\U} = \neigh\vind{\U} \cup \neigh\vind{\ov{\U}}\). 
 
-\ind For random elements \(\X\cind{}\tip{},\XX{}{}\) and \(\XXX{}{}\), we say that \(\X\cind{}\tip{}\) is conditionally independent of \(\XX{}{}\) given \(\XXX{}{}\) if \(\X\cind{}\tip{}\perp\XX{}{}|\XXX{}{}\).
+\ind For random elements \(\X\cind{}\tip{},\XX\cind{}\tip{}\) and \(\XXX\cind{}\tip{}\), we say that \(\X\cind{}\tip{}\) is conditionally independent of \(\XX\cind{}\tip{}\) given \(\XXX\cind{}\tip{}\) if \(\X\cind{}\tip{}\perp\XX\cind{}\tip{}|\XXX\cind{}\tip{}\).
 
 \lin
 
@@ -888,7 +888,7 @@ for all \(\s\in \S\). Furthermore, \(\alt{\m\sln{}\ts{}} = \proj\vsi{\tree\sln{1
 
 \textbf{Remark:} In this section we will distinguish between the events \(\{\X\cind{}\tip{[0,\t]} = 0\}\) and \(\{\X\cind{}\tip{[0,\t]}\equiv 0\}\). The first event is an event of probability 0 when \(\X\cind{}\tip{}\) is a \(\sset\vsi{\U}\ts{\t}\) or \(\sset\vsi{\U}\ts{\t-}\)-valued random variable for some \(\U\subseteq V\) and \(\t \in [0,\T]\) (because 0 is not a path) while the second event is the event that \(\X\cind{}\tp{\tt} = 0\) for all \(\tt \in [0,\t]\).
 
-\ind Given three random elements \(\X\cind{}\tip{},\XX{}{} \te{ and } \XXX{}{}\), we say \(\X\cind{}\tip{}\perp \XX{}{}\) if \(\X\cind{}\tip{}\) and \(\XX{}{}\) are independent. We say \(\X\cind{}\tip{}\mutex \XX{}{}\) if the events \(\{\X\cind{}\tip{}\neq 0\}\) and \(\{\XX{}{} \neq 0\}\) are mutually exclusive. We say \(\X\cind{}\tip{}\perp \XX{}{}|\XXX{}{}\) if \(\X\cind{}\tip{}\) and \(\XX{}{}\) are conditionally independent given \(\XXX{}{}\).
+\ind Given three random elements \(\X\cind{}\tip{},\XX\cind{}\tip{} \te{ and } \XXX\cind{}\tip{}\), we say \(\X\cind{}\tip{}\perp \XX\cind{}\tip{}\) if \(\X\cind{}\tip{}\) and \(\XX\cind{}\tip{}\) are independent. We say \(\X\cind{}\tip{}\mutex \XX\cind{}\tip{}\) if the events \(\{\X\cind{}\tip{}\neq 0\}\) and \(\{\XX\cind{}\tip{} \neq 0\}\) are mutually exclusive. We say \(\X\cind{}\tip{}\perp \XX\cind{}\tip{}|\XXX\cind{}\tip{}\) if \(\X\cind{}\tip{}\) and \(\XX\cind{}\tip{}\) are conditionally independent given \(\XXX\cind{}\tip{}\).
 
 \lin
 
@@ -976,12 +976,12 @@ By symmetry, it suffices to prove that equation \ref{sec::Proof1:eqn::XU forward
 Consider the following coupled equations:
 
 \begin{align}
-\XX{\vv}{\t} &= \X\cind{\vv}\tp{\rt\indx{i}} + \int_\S\int_0^\t \s\alt{\poiss}{\vv}\left(d\tt,\left(0,\IGr\vind{\vv}(\XX{}{\tt-},\s)\right],d\s\right)\te{ for } \vv \in \cl{\U} \te{ on } \rt\indx{i} < \infty \label{sec::Proof1:eqn::alternate SDE}\\
-\XX{\vv}{} &\equiv 0\te{ for } \vv\notin \cl{\U}\nonumber\\
-\alt{\poiss}{\vv}(d\tt,d\r,d\s) &= \poiss\vind{\vv}(\rt\indx{i} + d\tt,d\r,d\s) \te{ for all }\vv\in \cl{\U}\nonumber\\
+\XX\cind{\vv}\tp{\t} &= \X\cind{\vv}\tp{\rt\indx{i}} + \int_\S\int_0^\t \s\alt{\poiss}\vind{\vv}\left(d\tt,\left(0,\IGr\vind{\vv}(\XX\cind{}\tp{\tt-},\s)\right],d\s\right)\te{ for } \vv \in \cl{\U} \te{ on } \rt\indx{i} < \infty \label{sec::Proof1:eqn::alternate SDE}\\
+\XX\cind{\vv}\tip{} &\equiv 0\te{ for } \vv\notin \cl{\U}\nonumber\\
+\alt{\poiss}\vind{\vv}(d\tt,d\r,d\s) &= \poiss\vind{\vv}(\rt\indx{i} + d\tt,d\r,d\s) \te{ for all }\vv\in \cl{\U}\nonumber\\
 \alt{\X}\cind{\vv}\tp{\t} &= \begin{cases}
 \X\cind{\vv}\tp{\t} &\te{ on } \t \leq \rt\indx{i}\\
-\XX{\vv}{\t - \rt\indx{i}} &\te{ on } \t > \rt\indx{i}
+\XX\cind{\vv}\tp{\t - \rt\indx{i}} &\te{ on } \t > \rt\indx{i}
 \end{cases} \te{ for all } \vv\in \cl{\U} \nonumber
 \end{align}
 \labe{sec::Proof1:eqn::alternate SDE}
@@ -992,7 +992,7 @@ It's easy to see that \(\rt\indx{i}\) is almost surely finite for every finite \
 
 \ind By Proposition \ref{subsec::Well-:Prop::SDEWP}, equation \eqref{sec::Proof1:eqn::alternate SDE} has a unique solution, so \(\alt{\X}\cind{}\tip{}\) is well-defined. To prove this lemma, we first show that \(\X\cind{\U}\tip{[0,\rt\indx{i+1})} = \alt{\X}\cind{\U}\tip{}{[0,\rt\indx{i+1})}\) almost surely. 
 
-\ind Fix any \(\t > 0\). Let \(\evnt{\t} = \{\t < \rt\indx{i+1}\}\) and \(\alt\{\evnt\}\{\t\} = \{\t\in [\rt\indx{i},\rt\indx{i+1})\}\). Notice that \(\evnt{\tt} \supseteq \evnt{\t}\) for all \(\tt\in [0,\t]\) when \(\t > 0\). 
+\ind Fix any \(\t > 0\). Let \(\evnt\ts{\t} = \{\t < \rt\indx{i+1}\}\) and \(\alt{\evnt}\ts{\t} = \{\t\in [\rt\indx{i},\rt\indx{i+1})\}\). Notice that \(\evnt\ts{\tt} \supseteq \evnt\ts{\t}\) for all \(\tt\in [0,\t]\) when \(\t > 0\). 
 
 \ind Notice that \(\rt\indx{i} \perp \poiss\vind{\v}\) for all \(\v \in \U\). Thus, \(\poiss\vind{\v}(d\tt+\rt\indx{i},dr,d\s) \deq \poiss\vind{\v}(d\tt,dr,d\s)\). Now, \(\alt{\X}\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i}]} = \X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{i}]}\) almost surely by definition. Furthermore,
 
@@ -1009,15 +1009,15 @@ Furthermore, by the same argument presented in the beginning of the proof of Lem
 \tr{For any \(a,b\in \mb{R}\), I use the shorthand \((a,b]\) to denote the interval \((a\wedge b,a\vee b]\)}. Then for all \(v\in \U\) and \(\t > 0\),
 
 \begin{align*}
-&\ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\t < \rt\indx{i+1}}} = \ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\evnt{\t}}}\os{\alt{\X}\cind{\cl{\U}}\tip{[0,\rt\indx{i}]} = \X\cind{\cl{\U}}\tip{[0,\rt\indx{i}]}}{=} \ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\alt\{\evnt\}\{\t\}}}\\
-&\ind\leq \ex{\mb{I}_{\alt\{\evnt\}\{\t\}}\left|\int_\S\int{(\rt\indx{i},\t]} \s\,\poiss\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right]\,d\s\right) - \int_\S\int{(\rt\indx{i},\t]} \s\,\alt{\poiss}{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]\,d\s\right)\right|}\\
-&\ind \leq \ex{\int_\S\int{\mb{R}}\int{(\rt\indx{i},\t]}|\s|\mb{I}_{\alt\{\evnt\}\{\t\}}\mb{I}_{\r\in \left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s), \IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}\,\poiss\vind{\v}\left(d\tt,d\r,d\s\right)}\\
-&\ind \os{\alt{\X}\cind{\cl{\U}}\tip{[0,\rt\indx{i}]} = \X\cind{\cl{\U}}\tip{[0,\rt\indx{i}]}}{=} \ex{\int_\S\int{\mb{R}}\int{(0,\t]}|\s|\mb{I}_{\evnt{\t}}\mb{I}_{\r\in \left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s), \IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}\,\poiss\vind{\v}\left(d\tt,d\r,d\s\right)}\\
-&\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt{\t}}\mb{I}_{\r\in\left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s),\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
-&\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt{\t}}\left|\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s) - \IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
-&\ind \leq \const\indx{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt{\t}}\sum_{\vv\in \cl{\v}}\left|\alt{\X}\cind{\vv}\tp{\tt-} - \X\cind{\vv}\tp{\tt-}\right|}\,d\tt\\
-&\ind \os{\mb{I}_{\evnt{\t}}\|\alt{\X}\cind{\neigh\vind{\U}}\tip{} - \X\cind{\neigh\vind{\U}}\tip{}\|_\t = 0}{\leq} \left(\int_\S|\s|\,\Sm(d\s)\right)\const\indx{} \int_0^\t \sum_{\vv\in \cl{\v}\cap\U}\ex{\mb{I}_{\evnt{\t}}\|\alt{\X}\cind{\vv}\tip{} - \X\cind{\vv}\tip{}\|_\tt}\,d\tt\\
-&\ind \os{\evnt{\tt} \supseteq \evnt{\t}}{\leq} |\S|\const\indx{}(\degr+1) \int_0^\t \sup_{\v\in \U}\ex{\mb{I}_{\evnt{\tt}}\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\|_\tt}\,d\tt.
+&\ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\t < \rt\indx{i+1}}} = \ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\evnt\ts{\t}}}\os{\alt{\X}\cind{\cl{\U}}\tip{[0,\rt\indx{i}]} = \X\cind{\cl{\U}}\tip{[0,\rt\indx{i}]}}{=} \ex{\left\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\right\|_{\t}\mb{I}_{\alt{\evnt}\ts{\t}}}\\
+&\ind\leq \ex{\mb{I}_{\alt{\evnt}\ts{\t}}\left|\int_\S\int{(\rt\indx{i},\t]} \s\,\poiss\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right]\,d\s\right) - \int_\S\int{(\rt\indx{i},\t]} \s\,\alt{\poiss}\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]\,d\s\right)\right|}\\
+&\ind \leq \ex{\int_\S\int{\mb{R}}\int{(\rt\indx{i},\t]}|\s|\mb{I}_{\alt{\evnt}\ts{\t}}\mb{I}_{\r\in \left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s), \IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}\,\poiss\vind{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind \os{\alt{\X}\cind{\cl{\U}}\tip{[0,\rt\indx{i}]} = \X\cind{\cl{\U}}\tip{[0,\rt\indx{i}]}}{=} \ex{\int_\S\int{\mb{R}}\int{(0,\t]}|\s|\mb{I}_{\evnt\ts{\t}}\mb{I}_{\r\in \left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s), \IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}\,\poiss\vind{\v}\left(d\tt,d\r,d\s\right)}\\
+&\ind = \int_\S\int_\mb{R}\int_0^\t |\s|\ex{\mb{I}_{\evnt\ts{\t}}\mb{I}_{\r\in\left(\IGr\vind{\v}(\X\cind{}\tp{\tt-},\s),\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s)\right]}}\,d\tt\,d\r\,\Sm(d\s)\\
+&\ind = \int_\S |\s|\int_0^\t \ex{\mb{I}_{\evnt\ts{\t}}\left|\IGr\vind{\v}(\alt{\X}\cind{}\tp{\tt-},\s) - \IGr\vind{\v}(\X\cind{}\tp{\tt-},\s)\right|}\,d\tt\,\Sm(d\s)\\
+&\ind \leq \const\indx{}\int_\S|\s|\int_0^\t\ex{\mb{I}_{\evnt\ts{\t}}\sum_{\vv\in \cl{\v}}\left|\alt{\X}\cind{\vv}\tp{\tt-} - \X\cind{\vv}\tp{\tt-}\right|}\,d\tt\\
+&\ind \os{\mb{I}_{\evnt\ts{\t}}\|\alt{\X}\cind{\neigh\vind{\U}}\tip{} - \X\cind{\neigh\vind{\U}}\tip{}\|_\t = 0}{\leq} \left(\int_\S|\s|\,\Sm(d\s)\right)\const\indx{} \int_0^\t \sum_{\vv\in \cl{\v}\cap\U}\ex{\mb{I}_{\evnt\ts{\t}}\|\alt{\X}\cind{\vv}\tip{} - \X\cind{\vv}\tip{}\|_\tt}\,d\tt\\
+&\ind \os{\evnt\ts{\tt} \supseteq \evnt\ts{\t}}{\leq} |\S|\const\indx{}(\degr+1) \int_0^\t \sup_{\v\in \U}\ex{\mb{I}_{\evnt\ts{\tt}}\|\alt{\X}\cind{\v}\tip{} - \X\cind{\v}\tip{}\|_\tt}\,d\tt.
 \end{align*}
 
 We can conclude that
@@ -1047,7 +1047,7 @@ By independence of initial conditions,
 Since \(\X\cind{\neigh\vind{\U}}\tip{}\) is constant on \([0,\rt\indx{1})\) and \(\X\cind{\neigh\vind{\UU}}\tip{}\) is constant on \([0,\rtt\indx{1})\), the mapping \((\X\cind{\dneigh\dnvind{\U}}\tp{0},\rt\indx{1},\rtt\indx{1}) \mapsto (\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{1})})\) is 1-to-1. By Lemma \ref{sec::TL:Lem::Props}(a),
 
 \begin{equation}
-\X\cind{\U}\tp{0}\perp \XX{\U}{0}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{1})}\right).
+\X\cind{\U}\tp{0}\perp \XX\cind{\U}\tp{0}|\left(\X\cind{\neigh\vind{\U}}\tip{[0,\rt\indx{1})},\X\cind{\neigh\vind{\UU}}\tip{[0,\rtt\indx{1})}\right).
 \label{sec::Proof1:eqn::induction_intermediate_1}
 \end{equation}
 \labe{sec::Proof1:eqn::induction\_intermediate\_1}
@@ -1121,7 +1121,7 @@ Then \(\pathsete{i}{j}\) differs from \(\{\rt\indx{i} > \rtt\indx{j-1}, \rtt\ind
 \pfsum Direct argument.
 
 \begin{proof}
-In this proof, we will implicitly work in the equivalence class of events given by \(\evnt{}^1 = \evnt{}^2\) if \(\pr(\evnt{}^1 \triangle \evnt{}^2) = 0\).  
+In this proof, we will implicitly work in the equivalence class of events given by \(\evnt^1 = \evnt^2\) if \(\pr(\evnt^1 \triangle \evnt^2) = 0\).  
 
 \ind First, \(\pathsete{1}{1} = \{\rt\indx{1} > 0,\rtt\indx{1} > 0\} = \{\rt\indx{1} > \rtt\indx{0},\rtt\indx{1}>\rt\indx{0}\}\). For any \(\it > 1\),
 
@@ -1319,7 +1319,7 @@ Then \(\crate{\v}{\t}(\s)\) has an almost surely left-continuous modification on
 \lin
 
 \begin{defn}
-A set \(\evnt{}\) is called elementary with respect to a filtration \(\{\F\vsi{}\ts{\t}\}\) if it is a finite union of sets of the form \((\tt,\t]\times \alt{\evnt}\) where \(\alt{\evnt} \in \F\vsi{}\ts{\tt}\).
+A set \(\evnt\) is called elementary with respect to a filtration \(\{\F\vsi{}\ts{\t}\}\) if it is a finite union of sets of the form \((\tt,\t]\times \alt{\evnt}\) where \(\alt{\evnt} \in \F\vsi{}\ts{\tt}\).
 \label{subsec::ProofE:Defn::elementary}
 \end{defn}
 \labe{subsec::ProofE:Defn::elementary}
@@ -1329,7 +1329,7 @@ A set \(\evnt{}\) is called elementary with respect to a filtration \(\{\F\vsi{}
 \lin
 
 \begin{lem}
-Let \(\X\cind{}\tp{\t}\) be a stochastic process that is left continuous in probability and such that \(\sup_{\evnt{}\te{ elementary}}\ex{\int_0^\T \mb{I}_\evnt{}\,d\X\cind{}\tip{}} < \infty\). Then there exists a left-continuous modification of \(\X\cind{}\tip{}\).
+Let \(\X\cind{}\tp{\t}\) be a stochastic process that is left continuous in probability and such that \(\sup_{\evnt\te{ elementary}}\ex{\int_0^\T \mb{I}_\evnt\,d\X\cind{}\tip{}} < \infty\). Then there exists a left-continuous modification of \(\X\cind{}\tip{}\).
 \label{subsec::ProofE:Lem::leftmodgen}
 \end{lem}
 \labe{subsec::ProofE:Lem::leftmodgen}
@@ -1343,7 +1343,7 @@ This is a completed proof based off of the partial proof provided in the link ab
 
 \ind Fix some \(0\leq a < b < \infty\). Let \(\Tset \subset [0,\T]\) be a finite set. Let \(\upcrs{\alt{\T}}[a,b]\) denote the number of upcrossings of \(\X\cind{}\tip{}\) restricted to \(\alt{\T}\) with respect to the interval \([a,b]\).
 
-\ind It can be shown directly that there exists an elementary set \(\evnt{}\) such that,
+\ind It can be shown directly that there exists an elementary set \(\evnt\) such that,
 
 \begin{equation}
 (b-a)\upcrs{\Tset}[a,b] \leq \int_0^\T \mb{I}_{\evnt}\,d\X\cind{}\tip{} + \max\{a - \X\cind{}\tp{\T},0\}.
@@ -1364,17 +1364,17 @@ Because \(\Tset\) is finite, \(\mb{I}_{(\rt\gid{M}\gidd{\Tset},\T]}\) is an elem
 
 Replacing \(\X\cind{}\tip{}\) by \(-\X\cind{}\tip{}\) gives us the inequality,
 
-\[M\mb{I}_{\inf_{\t\in\Tset} \X\cind{}\tp{\t} < -M} \leq |\X\cind{}\tp{\T}| + \int_0^T \mb{I}_{(\alt\{\rt\}\{M\}\{\Tset\},\T]}\,d\X\cind{}\tip{},\]
+\[M\mb{I}_{\inf_{\t\in\Tset} \X\cind{}\tp{\t} < -M} \leq |\X\cind{}\tp{\T}| + \int_0^T \mb{I}_{(\alt{\rt}{M}{\Tset},\T]}\,d\X\cind{}\tip{},\]
 
-where \(\alt\{\rt\}\{M\}\{\Tset\} = \inf\{\t\in \Tset: \X\cind{}\tp{\t} < -M\}\). Summing yields,
+where \(\alt{\rt}{M}{\Tset} = \inf\{\t\in \Tset: \X\cind{}\tp{\t} < -M\}\). Summing yields,
 
 \begin{equation}
-M\mb{I}_{\sup_{\t\in\Tset}|\X\cind{}\tp{\t}| > M} \leq M\mb{I}_{\sup_{\t\in\Tset}\X\cind{}\tp{\t} > M} + M\mb{I}_{\inf_{\t\in\Tset}\X\cind{}\tp{\t} < -M} \leq 2|\X\cind{}\tp{\T}| + \int_0^\T \mb{I}_{(\alt\{\rt\}\{M\}\{\Tset\},\T]}\,d\X\cind{}\tip{} - \int_0^\T \mb{I}_{(\rt\gid{M}\gidd{\Tset},\T]}\,d\X\cind{}\tip{}
+M\mb{I}_{\sup_{\t\in\Tset}|\X\cind{}\tp{\t}| > M} \leq M\mb{I}_{\sup_{\t\in\Tset}\X\cind{}\tp{\t} > M} + M\mb{I}_{\inf_{\t\in\Tset}\X\cind{}\tp{\t} < -M} \leq 2|\X\cind{}\tp{\T}| + \int_0^\T \mb{I}_{(\alt{\rt}{M}{\Tset},\T]}\,d\X\cind{}\tip{} - \int_0^\T \mb{I}_{(\rt\gid{M}\gidd{\Tset},\T]}\,d\X\cind{}\tip{}
 \label{subsec::ProofE:eqn::bdd}
 \end{equation}
 \labe{subsec::ProofE:eqn::bdd}
 
-By assumption there exists a constant \(\const\indx{} < \infty\) such that \(\ex{\int_0^\T \mb{I}_{\evnt}\,d\X\cind{}\tip{}} \leq \const\indx{}\) for all elementary \(\evnt{}\). Taking an expectation of equations \eqref{subsec::ProofE:eqn::upcrossingineq} and \eqref{subsec::ProofE:eqn::bdd}, we get:
+By assumption there exists a constant \(\const\indx{} < \infty\) such that \(\ex{\int_0^\T \mb{I}_{\evnt}\,d\X\cind{}\tip{}} \leq \const\indx{}\) for all elementary \(\evnt\). Taking an expectation of equations \eqref{subsec::ProofE:eqn::upcrossingineq} and \eqref{subsec::ProofE:eqn::bdd}, we get:
 
 \begin{align}
 (b-a)\ex{\upcrs{\Tset}[a,b]} &\leq \const\indx{} + \ex{\max\{a-\X\cind{}\tp{\T},0\}}
@@ -1390,30 +1390,30 @@ By the monotone convergence theorem, equations \eqref{subsec::ProofE:eqn::expupc
 
 \ind Because \(\X\cind{}\tip{}\) is bounded on \(\Tset\) and because \(\upcrs{\Tset}[a,b]\) is almost surely finite for all rational \(a < b\), we can conclude that \(\lim_{\substack{\tt \nearrow \t\\ \tt \in \Tset}} \X\cind{}\tp{\tt}\) and \(\lim_{\substack{\tt \searrow \t\\ \tt \in \Tset}} \X\cind{}\tp{\tt}\) exist for all \(\t \in [0,\T]\). Define,
 
-\[\XX{}{\t} := \lim_{\substack{\tt \nearrow \t\\\tt \in \Tset}} \X\cind{}\tp{\tt}\te{ for all } \t \in [0,\T].\]
+\[\XX\cind{}\tp{\t} := \lim_{\substack{\tt \nearrow \t\\\tt \in \Tset}} \X\cind{}\tp{\tt}\te{ for all } \t \in [0,\T].\]
 
-Then \(\XX{}{}\) has left and right limits everywhere and it is almost surely left-continuous. Furthermore, if \(\alt{\XX{}{}}\) is generated by \(\alt{T'}\), where \(\alt{T'}\) is the union of \(\Tset\) and a countable number of points, then \(\XX{}{}\) and \(\alt{\XX{}{}}\) are identical processes. 
+Then \(\XX\cind{}\tip{}\) has left and right limits everywhere and it is almost surely left-continuous. Furthermore, if \(\alt{\XX\cind{}\tip{}}\) is generated by \(\alt{T'}\), where \(\alt{T'}\) is the union of \(\Tset\) and a countable number of points, then \(\XX\cind{}\tip{}\) and \(\alt{\XX\cind{}\tip{}}\) are identical processes. 
 
 \ind For each \(n \in \mb{N}\), let \(\typset\sln{n} \subset [0,\T]\) be defined by,
 
-\[\typset\sln{n} := \left\{\t\in [0,\T]: \pr\left(|\X\cind{}\tp{\t} - \XX{}{\t}| > 1/n\right) > 1/n\right\}.\] 
+\[\typset\sln{n} := \left\{\t\in [0,\T]: \pr\left(|\X\cind{}\tp{\t} - \XX\cind{}\tp{\t}| > 1/n\right) > 1/n\right\}.\] 
 
 Suppose \(\typset\sln{n}\) is not finite. Then there exists an increasing or decreasing sequence \(\{\t\indx{\it}:\it\in \mb{N}\}\subseteq \typset\sln{n}\). Since this sequence is contained in the compact interval \([0,\T]\), it is convergent. Without loss of generality, we can enlarge \(\Tset\) to contain this sequence so that
 
-\[\lim_{\it \ra\infty} \X\cind{}\tp{\t\indx{\it}} = \lim_{\it\ra\infty} \XX{}{\t\indx{\it}} \te{ almost surely.}\]
+\[\lim_{\it \ra\infty} \X\cind{}\tp{\t\indx{\it}} = \lim_{\it\ra\infty} \XX\cind{}\tp{\t\indx{\it}} \te{ almost surely.}\]
 
-Thus, \(\pr(|\X\cind{}\tp{\t\indx{\it}} - \XX{}{\t\indx{\it}}| > 1/n) \ra 0\), which contradicts the fact that \(\t\indx{\it} \in \typset\sln{n}\) for all \(\it\in\mb{N}\). We can then conclude that,
+Thus, \(\pr(|\X\cind{}\tp{\t\indx{\it}} - \XX\cind{}\tp{\t\indx{\it}}| > 1/n) \ra 0\), which contradicts the fact that \(\t\indx{\it} \in \typset\sln{n}\) for all \(\it\in\mb{N}\). We can then conclude that,
 
-\[\typset:= \{\t\in [0,\T]: \pr(\X\cind{}\tp{\t} \neq \XX{}{\t}) > 0\} = \cap_{n = 1}^\infty \typset\sln{n}\]
+\[\typset:= \{\t\in [0,\T]: \pr(\X\cind{}\tp{\t} \neq \XX\cind{}\tp{\t}) > 0\} = \cap_{n = 1}^\infty \typset\sln{n}\]
 
 is a finite set. Define,
 
-\[\XXX{}{\t}= \begin{cases}
-\XX{}{\t} &\te{ for } \t \notin \typset\\
+\[\XXX\cind{}\tp{\t}= \begin{cases}
+\XX\cind{}\tp{\t} &\te{ for } \t \notin \typset\\
 \X\cind{}\tp{\t} &\te{ otherwise.}
 \end{cases}\]
 
-Then \(\XXX{}{}\) differs from \(\XX{}{}\) at an almost surely finite number of points, so left and right limits exist everywhere for \(\XXX{}{}\) and it is left-continuous on \(\typset^c\). Furthermore, by definition, \(\XXX{}{}\) is a modification of \(\X\cind{}\tip{}\). Recall that \(\X\cind{}\tip{}\) is left-continuous in probability. That means,
+Then \(\XXX\cind{}\tip{}\) differs from \(\XX\cind{}\tip{}\) at an almost surely finite number of points, so left and right limits exist everywhere for \(\XXX\cind{}\tip{}\) and it is left-continuous on \(\typset^c\). Furthermore, by definition, \(\XXX\cind{}\tip{}\) is a modification of \(\X\cind{}\tip{}\). Recall that \(\X\cind{}\tip{}\) is left-continuous in probability. That means,
 
 \[\te{plim}_{\tt\nearrow \t} \X\cind{}\tp{\tt} = \X\cind{}\tp{\t}.\]
 
@@ -1423,9 +1423,9 @@ More specifically,
 
 Convergence in probability implies almost sure convergence of a subsequence:
 
-\[\lim_{\substack{\tt{\it\sln{i}} \nearrow \t\\\{\tt{\it}\}\subseteq \Tset}} \X\cind{}\tp{\tt{\it\sln{i}}} = \X\cind{}\tp{\t} = \XX{}{\t} \te{ almost surely.}\]
+\[\lim_{\substack{\tt{\it\sln{i}} \nearrow \t\\\{\tt{\it}\}\subseteq \Tset}} \X\cind{}\tp{\tt{\it\sln{i}}} = \X\cind{}\tp{\t} = \XX\cind{}\tp{\t} \te{ almost surely.}\]
 
-By definition of \(\XXX{}{}\), \(\XXX{}{\t} = \XX{}{\t}\) almost surely for every \(\t \in (0,\T]\). However, by definition, \(\XXX{}{}\) and \(\XX{}{}\) can only differ at a finite number of points, so \(\XXX{}{}\) and \(\XX{}{}\) must be indistinguishable processes on \((0,\T]\). Since \(\XX{}{}\) is left-continuous, it follows that \(\XXX{}{}\) is a left-continuous modification of \(\X\cind{}\tip{}\) (note: the value of \(\XXX{}{0}\) has no effect on the left-continuity of the process on \([0,\T]\)).
+By definition of \(\XXX\cind{}\tip{}\), \(\XXX\cind{}\tp{\t} = \XX\cind{}\tp{\t}\) almost surely for every \(\t \in (0,\T]\). However, by definition, \(\XXX\cind{}\tip{}\) and \(\XX\cind{}\tip{}\) can only differ at a finite number of points, so \(\XXX\cind{}\tip{}\) and \(\XX\cind{}\tip{}\) must be indistinguishable processes on \((0,\T]\). Since \(\XX\cind{}\tip{}\) is left-continuous, it follows that \(\XXX\cind{}\tip{}\) is a left-continuous modification of \(\X\cind{}\tip{}\) (note: the value of \(\XXX\cind{}\tp{0}\) has no effect on the left-continuity of the process on \([0,\T]\)).
 \end{proof}
 
 \lin
@@ -1437,11 +1437,11 @@ Let \(\X\cind{}\tip{},\ratee{}{}\) and \(\rate{}\) satisfy the conditions of Ass
 
 Furthermore, consider the event,
 
-\[\evnt{\U}{\tt,\t} := \{\X\cind{\U}\tip{} \te{ is constant over the interval } [\t-\tt,\t)\}.\]
+\[\evnt\vind{\U}{\tt,\t} := \{\X\cind{\U}\tip{} \te{ is constant over the interval } [\t-\tt,\t)\}.\]
 
 Then there exists an \(O(\tt)\) function, \(f:[0,\infty)\ra[0,\infty)\), such that 
 
-\[\mb{I}_{\evnt{\{\v,\root\}}{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)| \leq f(\tt) \te{ almost surely.}\]
+\[\mb{I}_{\evnt\vind{\{\v,\root\}}{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)| \leq f(\tt) \te{ almost surely.}\]
 \label{subsec::ProofE:Lem::pleft}
 \end{lem}
 \labe{subsec::ProofE:Lem::pleft}
@@ -1451,42 +1451,42 @@ Then there exists an \(O(\tt)\) function, \(f:[0,\infty)\ra[0,\infty)\), such th
 \pfsum Use the fact that over any small interval \([\t-\tt,\t)\), \(\X\cind{U}\) is constant with high probability for all finite \(U\). Thus \(\crate{v}{\t-\tt}\) will vary by only a tiny amount from \(\crate{v}{\t}\) with very high probability. We can actually estimate how quickly this probability converges to 1 as a function of \(s\).
 
 \begin{proof}
-Fix \(\v\in V\). By Assumption \ref{subsec::ProofE:Assu::Eassu}, \(\pmap{}(\X\cind{\{\v,\root\}}\tip{})\) has intensity bounded from above by \(2\const\indx{}\). Therefore, for every \(\t > 0\) there almost surely exists an \(\tt\) small enough such that \(\evnt{}^{\{\v,\root\}}_{\tt,\t}\) holds. Fix \(\tt < \t\). Let \(\const\indx{}\) be the upper bound of \(\rate{}\). Fix any \(\s\in \S\). We begin by computing
+Fix \(\v\in V\). By Assumption \ref{subsec::ProofE:Assu::Eassu}, \(\pmap{}(\X\cind{\{\v,\root\}}\tip{})\) has intensity bounded from above by \(2\const\indx{}\). Therefore, for every \(\t > 0\) there almost surely exists an \(\tt\) small enough such that \(\evnt^{\{\v,\root\}}_{\tt,\t}\) holds. Fix \(\tt < \t\). Let \(\const\indx{}\) be the upper bound of \(\rate{}\). Fix any \(\s\in \S\). We begin by computing
 
-\[\ex{\mb{I}_{\evnt{}^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)|}.\]
+\[\ex{\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)|}.\]
 
-Fix some \(\x\cind{}\tip{}\in \evnt{}^{\{\v,\root\}}_{\tt,\t}\). Let 
+Fix some \(\x\cind{}\tip{}\in \evnt^{\{\v,\root\}}_{\tt,\t}\). Let 
 
-\[\alt\{\evnt\}\{\t\} = \{\X\cind{\{\root,1\}}\tip{[0,\t)} = \x\cind{\{\v,\root\}}\tip{[0,\t)}\}.\]
+\[\alt{\evnt}\ts{\t} = \{\X\cind{\{\root,1\}}\tip{[0,\t)} = \x\cind{\{\v,\root\}}\tip{[0,\t)}\}.\]
 
 Then we will write,
 
 \begin{align*}
-\crate{\v}{\t}(\x\cind{}\tip{},\s) &:=\crate{}{}(\x\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)|\alt\{\evnt\}\{\t\}}\\
-\crate{\v}{\t-\tt}(\x\cind{}\tip{},\s) &:= \crate{}{}(\x\cind{\{\v,\root\}}\tip{[0,\t-\tt)},\s) = \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-},\s)|\alt{\evnt}{\t-\tt}}
+\crate{\v}{\t}(\x\cind{}\tip{},\s) &:=\crate{}{}(\x\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)|\alt{\evnt}\ts{\t}}\\
+\crate{\v}{\t-\tt}(\x\cind{}\tip{},\s) &:= \crate{}{}(\x\cind{\{\v,\root\}}\tip{[0,\t-\tt)},\s) = \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-},\s)|\alt{\evnt}\ts{\t-\tt}}
 \end{align*}
 
 Then,
 
 \begin{align*}
-\crate{\v}{\t}(\x\cind{}\tip{},\s) &= \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)|\alt\{\evnt\}\{\t\}}\\
-&= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right)\\
-&= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s) \sum_{\alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}},\X\cind{\tree\sln{1}}\tp{(\t-\tt)-} = \alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right)\\
-&= \sum_{\sv\cind{}\vsi{\tree\sln{1}},\alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt\{\evnt\}\{\t\}\right)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right)\\
+\crate{\v}{\t}(\x\cind{}\tip{},\s) &= \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)|\alt{\evnt}\ts{\t}}\\
+&= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)\\
+&= \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s) \sum_{\alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}},\X\cind{\tree\sln{1}}\tp{(\t-\tt)-} = \alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)\\
+&= \sum_{\sv\cind{}\vsi{\tree\sln{1}},\alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt{\evnt}\ts{\t}\right)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)\\
 \end{align*}
 
 Because the jump rate of \(\pmap{\v}(\X\cind{}\tip{})\) is bounded from above by \(\const\indx{}\) for any \(\v\in\tree\sln{1}\),  when \(\sv\cind{}\vsi{\tree\sln{1}}\neq\alt{\sv}\cind{}\vsi{\tree\sln{1}}\), 
 
-\[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt\{\evnt\}\{\t\}\right) \leq 1-e^{-\tt(\degr+1)\const\indx{}}\]
+\[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt{\evnt}\ts{\t}\right) \leq 1-e^{-\tt(\degr+1)\const\indx{}}\]
 
 and when \(\sv\cind{}\vsi{\tree\sln{1}}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}\),
 
-\[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt\{\evnt\}\{\t\}\right) \geq e^{-\tt(\degr+1)\const\indx{}}.\]
+\[\pr\left(\X\cind{\tree\sln{1}}\tp{\t-} = \sv\cind{}\vsi{\tree\sln{1}}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}},\alt{\evnt}\ts{\t}\right) \geq e^{-\tt(\degr+1)\const\indx{}}.\]
 
 So,
 
 \begin{equation}
-e^{-\tt(\degr+1)\const\indx{}}\sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right) \leq \crate{\v}{\t}(\x\cind{}\tip{},\s),
+e^{-\tt(\degr+1)\const\indx{}}\sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right) \leq \crate{\v}{\t}(\x\cind{}\tip{},\s),
 \label{subsec::ProofE:eqn::partlowbd}
 \end{equation}
 \labe{subsec::ProofE:eqn::partlowbd}
@@ -1494,48 +1494,48 @@ e^{-\tt(\degr+1)\const\indx{}}\sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tre
 and
 
 \begin{align}
-\crate{\v}{\t}(\x\cind{}\tip{},\s)&\leq (1 - e^{-\tt(\degr+1)\const\indx{}})\sum_{\sv\cind{}\vsi{\tree\sln{1}}\neq \alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right)\nonumber\\
-&\hspace{24 pt} +\sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right)\nonumber\\
-&\leq \const\indx{}(1 - e^{-\tt(\degr+1)\const\indx{}})|\S|^{\degr(\degr+1)/2} + \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right)
+\crate{\v}{\t}(\x\cind{}\tip{},\s)&\leq (1 - e^{-\tt(\degr+1)\const\indx{}})\sum_{\sv\cind{}\vsi{\tree\sln{1}}\neq \alt{\sv}\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\alt{\sv}\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)\nonumber\\
+&\hspace{24 pt} +\sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)\nonumber\\
+&\leq \const\indx{}(1 - e^{-\tt(\degr+1)\const\indx{}})|\S|^{\degr(\degr+1)/2} + \sum_{\sv\cind{}\vsi{\tree\sln{1}} \in \S\carp{\tree\sln{1}}} \rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)
 \label{subsec::ProofE:eqn::partupbd}
 \end{align}
 \labe{subsec::ProofE:eqn::partupbd}
 
-So we simply need to understand \(\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right)\). Recalling that \(\x\cind{}\tip{} \in \evnt{}^{\{\v,\root\}}_{\tt,\t}\), notice that
+So we simply need to understand \(\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)\). Recalling that \(\x\cind{}\tip{} \in \evnt^{\{\v,\root\}}_{\tt,\t}\), notice that
 
-\[\alt\{\evnt\}\{\t\} = \alt{\evnt}{\t-\tt}\cap \evnt{}^{\{\root,1\}}_{\tt,\t}.\]
+\[\alt{\evnt}\ts{\t} = \alt{\evnt}\ts{\t-\tt}\cap \evnt^{\{\root,1\}}_{\tt,\t}.\]
 
 \begin{align*}
-\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\}\right) &= \pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt},\evnt{}^{\{\root,1\}}_{\tt,\t}\right)\\
-&=\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right)\frac{\pr\left(\evnt{}^{\{\root,1\}}_{\tt,\t}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}},\alt{\evnt}{\t-\tt}\right)}{\pr\left(\evnt{}^{\{\root,1\}}_{\tt,\t}|\alt{\evnt}{\t-\tt}\right)}
+\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right) &= \pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t-\tt},\evnt^{\{\root,1\}}_{\tt,\t}\right)\\
+&=\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t-\tt}\right)\frac{\pr\left(\evnt^{\{\root,1\}}_{\tt,\t}|\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}},\alt{\evnt}\ts{\t-\tt}\right)}{\pr\left(\evnt^{\{\root,1\}}_{\tt,\t}|\alt{\evnt}\ts{\t-\tt}\right)}
 \end{align*}
 
 Notice that for any non-null \(\X\cind{\tree\sln{1}}\tip{[0,\t-\tt)}\)-measurable set \(\typset\), 
 
-\[\pr(\evnt{}^{\{\root,1\}}_{\tt,\t}|\typset) \geq e^{-2\tt\const\indx{}}\]
+\[\pr(\evnt^{\{\root,1\}}_{\tt,\t}|\typset) \geq e^{-2\tt\const\indx{}}\]
 
 Then,
 
 \begin{align}
-e^{-2\tt\const\indx{}}\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right) &\leq \pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t}\right)\nonumber\\
-&\leq e^{2\tt\const\indx{}}\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right).
+e^{-2\tt\const\indx{}}\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t-\tt}\right) &\leq \pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t}\right)\nonumber\\
+&\leq e^{2\tt\const\indx{}}\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-}=\sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t-\tt}\right).
 \label{subsec::ProofE:eqn::secpartbd}
 \end{align}
 \labe{subsec::ProofE:eqn::secpartbd}
 
 Now
 
-\[\crate{\v}{\t-\tt}(\x\cind{\tree\sln{1}}\tip{},\s) = \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-},\s)|\alt{\evnt}{\t-\tt}} = \sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}}\rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}{\t-\tt}\right)\]
+\[\crate{\v}{\t-\tt}(\x\cind{\tree\sln{1}}\tip{},\s) = \ex{\rate{}(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-},\s)|\alt{\evnt}\ts{\t-\tt}} = \sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}}\rate{}(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr\left(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t-\tt}\right)\]
 
 Applying equation \eqref{subsec::ProofE:eqn::secpartbd},
 
-\[e^{-2\tt\const\indx{}}\crate{\v}{\t-\tt}(\x\cind{\tree\sln{1}}\tip{},\s) \leq \sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}} \lambda(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt\{\evnt\}\{\t\})\leq e^{2\tt\const\indx{}}\crate{\v}{\t-\tt}(\x\cind{\tree\sln{1}}\tip{},\s)\]
+\[e^{-2\tt\const\indx{}}\crate{\v}{\t-\tt}(\x\cind{\tree\sln{1}}\tip{},\s) \leq \sum_{\sv\cind{}\vsi{\tree\sln{1}}\in \S\carp{\tree\sln{1}}} \lambda(\sv\cind{}\vsi{\tree\sln{1}},\s)\pr(\X\cind{\tree\sln{1}}\tp{(\t-\tt)-} = \sv\cind{}\vsi{\tree\sln{1}}|\alt{\evnt}\ts{\t})\leq e^{2\tt\const\indx{}}\crate{\v}{\t-\tt}(\x\cind{\tree\sln{1}}\tip{},\s)\]
 
 Additionally, we can apply equations \eqref{subsec::ProofE:eqn::partlowbd} and  \eqref{subsec::ProofE:eqn::partupbd} to get,
 
 \[e^{-\tt(\degr+3)\const\indx{}}\crate{\v}{\t-\tt}(\x\cind{\tree\sln{1}}\tip{},\s) \leq \crate{\v}{\t}(\x\cind{\tree\sln{1}}\tip{},\s) \leq \const\indx{}(1 - e^{-\tt(\degr+1)\const\indx{}})|\S|^{\degr(\degr+1)/2} + e^{2\tt\const\indx{}}\crate{\v}{\t-\tt}(\x\cind{\tree\sln{1}}\tip{},\s)\]
 
-Then for all \(\x\cind{}\tip{} \in \evnt{}^{\{\v,\root\}}_{\tt,\t}\), we can bound \(|\crate{\v}{\t}(\x\cind{}\tip{},\s) - \crate{\v}{\t-\tt}(\x\cind{}\tip{},\s)|\):
+Then for all \(\x\cind{}\tip{} \in \evnt^{\{\v,\root\}}_{\tt,\t}\), we can bound \(|\crate{\v}{\t}(\x\cind{}\tip{},\s) - \crate{\v}{\t-\tt}(\x\cind{}\tip{},\s)|\):
 
 \begin{align*}
 &|\crate{\v}{\t}(\x\cind{}\tip{},\s) - \crate{\v}{\t-\tt}(\x\cind{}\tip{},\s)| \\
@@ -1546,7 +1546,7 @@ Then for all \(\x\cind{}\tip{} \in \evnt{}^{\{\v,\root\}}_{\tt,\t}\), we can bou
 which is an \(O(\tt)\) function. Then,
 
 \begin{align*}
-\ex{|\crate{\v}{\t}(\x\cind{}\tip{},\s) - \crate{\v}{\t-\tt}(\x\cind{}\tip{},\s)|} &\leq \const\indx{}\pr\left(\te{not }\evnt{}^{\{\v,\root\}}_{\tt,\t}\right) + \ex{\mb{I}_{\evnt{}^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\x\cind{}\tip{},\s) - \crate{\v}{\t-\tt}(\x\cind{}\tip{},\s)|}\\
+\ex{|\crate{\v}{\t}(\x\cind{}\tip{},\s) - \crate{\v}{\t-\tt}(\x\cind{}\tip{},\s)|} &\leq \const\indx{}\pr\left(\te{not }\evnt^{\{\v,\root\}}_{\tt,\t}\right) + \ex{\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\x\cind{}\tip{},\s) - \crate{\v}{\t-\tt}(\x\cind{}\tip{},\s)|}\\
 &\leq \const\indx{}(1 - e^{-2\tt\const\indx{}}) + O(\tt) = O(\tt).
 \end{align*}
 
@@ -1577,7 +1577,7 @@ where \(\{[\tt{\it},\t\indx{\it}):\it=1,\dots,n\}\) are disjoint, if \(\tt{\it} 
 By Lemma \ref{subsec::ProofE:Lem::pleft}, there exists a \(\const\indx{1} < \infty\) such that,
 
 \begin{equation}
-\mb{I}_{\evnt{}^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)| \leq \const\indx{1}\tt.
+\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate{\v}{\t}(\s) - \crate{\v}{\t-\tt}(\s)| \leq \const\indx{1}\tt.
 \label{subsec::ProofE:eqn::driftbound}
 \end{equation}
 \labe{subsec::ProofE:eqn::driftbound}
@@ -1636,13 +1636,13 @@ Applying Theorem \ref{sec::Main:Thm::CI} and symmetry of \(\m\sln{}\ts{}\) yield
 \begin{align*}
 \exmu{\m\sln{}\ts{}}{\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)|\F\vsi{\tree\sln{1}}\ts{\t-}} &= \exmu{\m\sln{}\ts{}}{\IGr\vind{\v}(\X\cind{}\tp{\t-},\s)|\X\cind{\tree\sln{1}}\tip{[0,\t)}}\\
 &\os{\te{Thm \ref{sec::Main:Thm::CI}}}{=} \exmu{\m\sln{}\ts{}}{\IGrg{}(\X\cind{\cl{\v}}\tp{\t-},\s)|\X\cind{\{\v,\root\}}\tip{[0,\t)}} \\
-&\os{\te{Sym}}{=} \exmu{\XX{}{}\sim \m\sln{}\ts{}}{\IGrg{}(\XX{\tree\sln{1}}{\t-},\s)|\XX{\{\root,1\}}{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
-&= \exmu{\XX{}{}\sim \proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})}{\IGrg{}(\XX{\tree\sln{1}}{\t-},\s)|\XX{\{\root,1\}}{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
+&\os{\te{Sym}}{=} \exmu{\XX\cind{}\tip{}\sim \m\sln{}\ts{}}{\IGrg{}(\XX\cind{\tree\sln{1}}\tp{\t-},\s)|\XX\cind{\{\root,1\}}\tip{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
+&= \exmu{\XX\cind{}\tip{}\sim \proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})}{\IGrg{}(\XX\cind{\tree\sln{1}}\tp{\t-},\s)|\XX\cind{\{\root,1\}}\tip{[0,\t)} = \X\cind{\{\v,\root\}}\tip{[0,\t)}}\\
 &= \exmu{\cm\ts{\t}\left(\X\cind{\{\v,\root\}}\tip{[0,\t)},\proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})\right)}{\IGrg{}(\X\cind{\tree\sln{1}}\tp{\t-},\s)}\\
 &=\crate{}{}(\X\cind{\{\v,\root\}}\tip{[0,\t)},\s) = \crate{\v}{\t}(\s).
 \end{align*}
 
-By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{\v}{\t}(\s)\) has a left-continuous modification. Then, by Lemma \ref{subsec::ProofE:Lem::filtering}, \(\crate{\v}{\t}(\s)\) is a \(\F\vsi{\tree\sln{1}}\ts{}\)-predictable filtration of \(\XX{}{}\).
+By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate{\v}{\t}(\s)\) has a left-continuous modification. Then, by Lemma \ref{subsec::ProofE:Lem::filtering}, \(\crate{\v}{\t}(\s)\) is a \(\F\vsi{\tree\sln{1}}\ts{}\)-predictable filtration of \(\XX\cind{}\tip{}\).
 
 \ind By lemma \ref{subsec::Some:Lem::PPtoSDE}, we can characterize the law of \(\proj\vsi{\tree\sln{1}}\ts{\T}(\X\cind{}\tip{})\) as the law of the unique solution (given \(\proj\vsi{\tree\sln{1}}\ts{\T}(\m\sln{}\ts{})\)) to the SDE
 
@@ -1701,7 +1701,7 @@ Consider the candidate rate \(\crate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}{\t}\
 \crate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}{\t}(\kappa) &= \exmu{\m\sln{1}\ts{}}{\rate{\proj\vsi{\{\v,\root\}}\ts{\T}(\rp{})}^{\t}(\X\sln{1}\cind{}\tip{[0,\t)},\kappa)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
 &=\exmu{\m\sln{1}\ts{}}{\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \mb{I}_{\kappa = \s\ev\vind{\root}}\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\right)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
 &=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\m\sln{1}\ts{}}{\IGr\vind{\root}(\X\sln{1}\cind{}\tp{\t-},\s)\middle|\F\vsi{\{\v,\root\}}\ts{\t-}}\\
-&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\XXX{}{} \sim \m\sln{1}\ts{}}{\IGrg{}(\XXX{\tree\sln{1}}{\t-},\s)\middle|\XXX{\{\root,\v\}}{[0,\t)} = \X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)}}\\
+&=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\XXX\cind{}\tip{} \sim \m\sln{1}\ts{}}{\IGrg{}(\XXX\cind{\tree\sln{1}}\tp{\t-},\s)\middle|\XXX\cind{\{\root,\v\}}\tip{[0,\t)} = \X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)}}\\
 &=\sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in \S}\mb{I}_{\kappa = \s\ev\vind{\root}}\exmu{\cm\ts{\t}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)},\m\sln{1}\ts{})}{\IGrg{}(\X\sln{1}\cind{\tree\sln{1}}\tp{\t-},\s)}\\
 &=\sum_{\s\in \S}\left(\mb{I}_{\kappa = \s\ev\vind{\v}} \crate{}{}(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \mb{I}_{\kappa = \s\ev\vind{\root}}\crate{}{}(\X\sln{1}\cind{\{\root,\v\}}\tip{[0,\t)},\s)\right)\\
 \end{align*}
@@ -1717,9 +1717,9 @@ Notice that \(\X\sln{1}\cind{}\tip{}\) and \(\rate{}\) satisfy Assumption \ref{s
 \begin{defn}
 Suppose \(\{\poiss\vind{}\}\) is Poisson process with intensity \(\leb\otimes \Sm\) on \(\mb{R}^2\times \S\). Define,
 
-\[\XX{}{\t} = \XX{}{0} + \int{(0,\t]}\int{(0,1]}\int_\S\s\,\poiss\vind{}(d\s,d\r,d\tt).\]
+\[\XX\cind{}\tp{\t} = \XX\cind{}\tp{0} + \int{(0,\t]}\int{(0,1]}\int_\S\s\,\poiss\vind{}(d\s,d\r,d\tt).\]
 
-Let \(\mm\vind{}\ts{} = \law(\XX{}{})\). Suppose \(\mmm\slnvind{1}{\v}\ts{0}\ll\mm\vind{}\ts{0}\) for all \(\v\in\tree\sln{1}\). Let \(\{\mm\vind{\v}\ts{}:\v\in V\}\) be the distributions of a sequence of i.i.d. \(\S\carp{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq V\), let 
+Let \(\mm\vind{}\ts{} = \law(\XX\cind{}\tip{})\). Suppose \(\mmm\slnvind{1}{\v}\ts{0}\ll\mm\vind{}\ts{0}\) for all \(\v\in\tree\sln{1}\). Let \(\{\mm\vind{\v}\ts{}:\v\in V\}\) be the distributions of a sequence of i.i.d. \(\S\carp{\v}\)-valued c\`adl\`ag processes. For any \(\U\subseteq V\), let 
 
 \[\mm\vind{\U}\ts{} = \otimes_{\v\in\U} \mm\vind{\v}\ts{}.\]
 
@@ -1769,8 +1769,8 @@ Let \(\mm\sln{1}\ts{} \defeq \mm\vind{\tree\sln{1}}\ts{}\). Then \(\pmap{}(\mm\s
 \ind Define the following mapping,
 
 \begin{align}
-\ds{\v}{\t}(\XXX{}{},f) &\defeq \sum_{0 < \rt\indx{\it}\vind{\v} \leq \t} \log{f(\XXX{}{[0,\rt\indx{\it}\vind{\v})},\mark{\it}_\v)} - \int{(0,\t]\times \S} [f(\XXX{}{[0,\tt)},\s) - 1]\,ds\,\Sm(d\s) \label{subsec::ProofU:eqn::shortdense}\\
-f&\te{ is a }[0,\const\indx{}] \te{-valued mapping and } \pmap{\v}(\XXX{}{}) = \{(\rt\indx{\it}\vind{\v},\mark{\it}_\v):\it\in\mb{N}\}.\nonumber
+\ds{\v}{\t}(\XXX\cind{}\tip{},f) &\defeq \sum_{0 < \rt\indx{\it}\vind{\v} \leq \t} \log{f(\XXX\cind{}\tip{[0,\rt\indx{\it}\vind{\v})},\mark{\it}_\v)} - \int{(0,\t]\times \S} [f(\XXX\cind{}\tip{[0,\tt)},\s) - 1]\,ds\,\Sm(d\s) \label{subsec::ProofU:eqn::shortdense}\\
+f&\te{ is a }[0,\const\indx{}] \te{-valued mapping and } \pmap{\v}(\XXX\cind{}\tip{}) = \{(\rt\indx{\it}\vind{\v},\mark{\it}_\v):\it\in\mb{N}\}.\nonumber
 \end{align} 
 \labe{subsec::ProofU:eqn::shortdense}
 
@@ -1891,7 +1891,7 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 
 \ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. The result is given in \cite[Exercise 14.7.1]{DalVer08} \tr{TODO: rigorously solve this exercise myself}).
 
-\ind Let \(\alt{\S}^n = \{\s\ev\vind{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S\carp{V}\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev\vind{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_{\v}\}\) be the jump sizes and jump times of \(\X\sln{n}\cind{\v}\tip{}\). Let \(\alt{\poiss}{n}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt{} \in \ms{B}(\mb{R}^+\times\alt{\S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss}{n}(\evnt{}) = \alt{\poiss}{n-1}(\evnt{})\). Assume \(\{\alt{\poiss}{n}:n\in\mb{N}\}\) are independent of \(\{\X\cind{}\tip{},\X\sln{n}\cind{}\tip{}:n\in\mb{N}\}\). Let \(\{\rv_{\v}^{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
+\ind Let \(\alt{\S}^n = \{\s\ev\vind{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S\carp{V}\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev\vind{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_{\v}\}\) be the jump sizes and jump times of \(\X\sln{n}\cind{\v}\tip{}\). Let \(\alt{\poiss}\sln{n}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss}\sln{n}(\evnt) = \alt{\poiss}\sln{n-1}(\evnt)\). Assume \(\{\alt{\poiss}\sln{n}:n\in\mb{N}\}\) are independent of \(\{\X\cind{}\tip{},\X\sln{n}\cind{}\tip{}:n\in\mb{N}\}\). Let \(\{\rv_{\v}^{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
 
 \ind Recall the mapping \(\pmap{}(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp{n} = \pmap{}(\X\sln{n}\cind{}\tip{})\). Then the intensity of \(\rp{n}\) is given by,
 
@@ -1901,36 +1901,36 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 0 &\te{ otherwise.}
 \end{cases}\]
 
-For any \(\evnt{} \in \ms{B}(\mb{R}^+\times\alt{\S}^n\times\mb{R}^+)\), define
+For any \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^n\times\mb{R}^+)\), define
 
 \begin{equation}
-\poiss\sln{n}(\evnt{}) = \alt{\poiss}{n}\left(\evnt{}\cap\{(\t,\sv\cind{}\vsi{\tree\sln{n}},\r):\r > \rate{n}(\t,\sv\cind{}\vsi{\tree\sln{n}})\}\right) + \#\{(\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}(\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_\v) \in \evnt{}: \v\in \tree\sln{n}\}.
+\poiss\sln{n}(\evnt) = \alt{\poiss}\sln{n}\left(\evnt\cap\{(\t,\sv\cind{}\vsi{\tree\sln{n}},\r):\r > \rate{n}(\t,\sv\cind{}\vsi{\tree\sln{n}})\}\right) + \#\{(\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}(\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}.
 \label{subsec::ProofU:eqn::Poissonexpl}
 \end{equation}
 \labe{subsec::ProofU:eqn::Poissonexpl}
 
 Then \(\poiss\sln{n}\) is a Poisson random measure on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times \alt{\Sm}^n\times d\r\) (see proof of \cite[Theorem 14.7.1(b)]{DalVer08})
 
-\ind Notice that for any \(\evnt{} \in \ms{B}(\mb{R}^+\times \alt{\S}^{n-2}\times \mb{R}^+)\), \(\poiss\sln{n}(\evnt{}) = \poiss\sln{n-1}(\evnt{})\) almost surely. Define the random measure \(\poiss\vind{}\) on \(\ms{B}(\mb{R}^+\times \{\s\ev\vind{\v}:\s\in \S,\v \in V\}\times \mb{R}^+)\) by,
+\ind Notice that for any \(\evnt \in \ms{B}(\mb{R}^+\times \alt{\S}^{n-2}\times \mb{R}^+)\), \(\poiss\sln{n}(\evnt) = \poiss\sln{n-1}(\evnt)\) almost surely. Define the random measure \(\poiss\vind{}\) on \(\ms{B}(\mb{R}^+\times \{\s\ev\vind{\v}:\s\in \S,\v \in V\}\times \mb{R}^+)\) by,
 
-\[\poiss\vind{}(\evnt{}) = \lim_{n \ra\infty}\poiss\sln{n}\left(\proj\vsi{\tree\sln{n-1}}\ts{}(\evnt{})\right).\]
+\[\poiss\vind{}(\evnt) = \lim_{n \ra\infty}\poiss\sln{n}\left(\proj\vsi{\tree\sln{n-1}}\ts{}(\evnt)\right).\]
 
-Here \(\proj\vsi{\tree\sln{n}}\ts{}(\evnt{})\) is the restriction of \(\evnt{}\) to \(\mb{R}^+\times \alt{\S}^n\times\mb{R}^+\). 
+Here \(\proj\vsi{\tree\sln{n}}\ts{}(\evnt)\) is the restriction of \(\evnt\) to \(\mb{R}^+\times \alt{\S}^n\times\mb{R}^+\). 
 
 \ind Notice that this limit exists almost surely, because it is the limit of an almost surely monotonically increasing sequence. Let \(\poiss\vind{\v}\) be random measures on \(\mb{R}^+\times\S\times\mb{R}^+\) with intensity \(d\t\times\Sm(d\s)\times d\r\). Define it by,
 
-\[\poiss\vind{\v}(\evnt{}) = \poiss\vind{}\left(\{(\t,\s\ev\vind{\v},\r):(\t,\s,\r)\in \evnt{}\}\right) \te{ for } \evnt{} \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+).\]
+\[\poiss\vind{\v}(\evnt) = \poiss\vind{}\left(\{(\t,\s\ev\vind{\v},\r):(\t,\s,\r)\in \evnt\}\right) \te{ for } \evnt \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+).\]
 
 Similarly define,
 
-\[\alt{\poiss}{\v}(\evnt{}) = \poiss\sln{n}\left(\{(\t,\s\ev\vind{\v},\r):(\t,\s,\r)\in \evnt{}\}\right)\te{ for } \evnt{} \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+)\te{ and }n\te{ such that } \v\in \tree\sln{n}\setminus\tree\sln{n-1}.\]
+\[\alt{\poiss}\vind{\v}(\evnt) = \poiss\sln{n}\left(\{(\t,\s\ev\vind{\v},\r):(\t,\s,\r)\in \evnt\}\right)\te{ for } \evnt \in \ms{B}(\mb{R}^+\times\S\times\mb{R}^+)\te{ and }n\te{ such that } \v\in \tree\sln{n}\setminus\tree\sln{n-1}.\]
 
-Then \(\{\poiss\vind{\v}\}\) and \(\{\alt{\poiss}{\v}\}\) are both sequences of i.i.d. Poisson processes. Furthermore, for any \(n \in \mb{N}\), \(\{\poiss\vind{\vv},\alt{\poiss}{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d.
+Then \(\{\poiss\vind{\v}\}\) and \(\{\alt{\poiss}\vind{\v}\}\) are both sequences of i.i.d. Poisson processes. Furthermore, for any \(n \in \mb{N}\), \(\{\poiss\vind{\vv},\alt{\poiss}\vind{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d.
 
 \lin
 
 \begin{lem}
-The claims above are true. Namely, \(\poiss\sln{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss\vind{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss\vind{\vv},\alt{\poiss}{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\).
+The claims above are true. Namely, \(\poiss\sln{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss\vind{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss\vind{\vv},\alt{\poiss}\vind{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\).
 
 \label{subsec::ProofU:Lem::Poisson}
 \end{lem}
@@ -1941,16 +1941,16 @@ Fix \(n \in \mb{N}\). Notice that most of the assumptions of \cite[Proposition 1
 
 \ind By construction, \(\poiss\vind{\v}\) is the restriction of \(\poiss\sln{n}\) to \(\mb{R}^+ \times \{\s\ev\vind{\v}: \s\in \S\}\times \mb{R}^+\) for all \(\v\in \tree\sln{n-1}\). Thus, for any finite \(\U \subset V\), there exists a \(n\) such that \(\U \subseteq \tree\sln{n-1}\), so \(\{\poiss\vind{\v}: \v\in \U\}\) are i.i.d. Thus, \(\{\poiss\vind{\v}: \v\in V\}\) are i.i.d.
 
-\ind Similarly, for any \(n \in \mb{N}\), \(\{\poiss\vind{\v},\alt{\poiss}{\vv}: \v \in \tree\sln{n-1},\vv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) is just the set of restrictions of \(\poiss\sln{n}\) to \(\mb{R}^+\times\{\s\ev\vind{\v}\}\times\mb{R}^+\) for each \(\v\in \tree\sln{n}\), so they are i.i.d. Poisson processes with intensity measure \(d\t\times \Sm\times d\r\) because \(\poiss\sln{n}\) is a Poisson process with intensity measure \(d\t\times\alt{\Sm^n}\times d\r\).
+\ind Similarly, for any \(n \in \mb{N}\), \(\{\poiss\vind{\v},\alt{\poiss}\vind{\vv}: \v \in \tree\sln{n-1},\vv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) is just the set of restrictions of \(\poiss\sln{n}\) to \(\mb{R}^+\times\{\s\ev\vind{\v}\}\times\mb{R}^+\) for each \(\v\in \tree\sln{n}\), so they are i.i.d. Poisson processes with intensity measure \(d\t\times \Sm\times d\r\) because \(\poiss\sln{n}\) is a Poisson process with intensity measure \(d\t\times\alt{\Sm^n}\times d\r\).
 \end{proof}
 
 \lin
 
-Let \(\{\poiss\vind{\v},\alt{\poiss}{\v}:\v\in V\}\) be constructed as above. Then \(\X\sln{n}\cind{}\tip{}\) almost surely solves the equation,
+Let \(\{\poiss\vind{\v},\alt{\poiss}\vind{\v}:\v\in V\}\) be constructed as above. Then \(\X\sln{n}\cind{}\tip{}\) almost surely solves the equation,
 
 \begin{equation}
 \X\sln{n}\cind{\v}\tp{\t} = \begin{cases}
-\X\sln{}\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{(0,\crate{}{}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{[0,\tt)},\s)]}\s\alt{\poiss}{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
+\X\sln{}\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{(0,\crate{}{}(\X\sln{n}\cind{\{\v,\p{\v}\}}\tip{[0,\tt)},\s)]}\s\alt{\poiss}\vind{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n}\setminus\tree\sln{n-1}\\
 \X\sln{}\cind{\v}\tp{0} + \int{(0,\t]}\int_\S\int{(0,\rate{}(\X\sln{n}\cind{\cl{\v}}\tp{\tt-},\s)]}\s\,\poiss\vind{\v}(d\tt,d\s,d\r)\te{ for } \v \in \tree\sln{n-1}.
 \end{cases}
 \label{subsec::ProofU:eqn::ExtendedSDE_fixedPoisson}
@@ -2103,7 +2103,7 @@ Let \(\IG{}\) be an infinitesimal generator. A dense subset \(\core\subset \core
 \begin{thms}[Trotter-Kurtz]
 Suppose \(\IG{n}\) and \(\IG{}\) are generators of Feller processes \(\m\sln{n}\) and \(\m\) respectively. If there is a core \(\core\) for \(\IG{}\) such that \(\core \subset \mc{D}(\IG{n})\) for all \(n\) and \(\IG{n} f \ra \IG{} f\) for all \(f \in \core\), then 
 
-\[\exmu{\m\sln{n}}{f(\XX{}{\t})|\XX{}{0}=\cdot} \ra \exmu{\mu}{f(\XX{}{\t})|\XX{}{0}=\cdot}\]
+\[\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}=\cdot} \ra \exmu{\mu}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}=\cdot}\]
 
 uniformly in \(\t\) for all \(f \in \cont(\spce)\).
 \label{sec::Infin:Thm::TrotterKurtz}
@@ -2127,23 +2127,23 @@ In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, sup
 \pfsum Use the same methods as in the proof of \cite[Theorem 4.2]{Kur81} to show weak convergence of the finite dimensional distributions. Apply \cite[Theorem 13.1]{Bil99} to get weak convergence.
 
 \begin{proof}
-By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\m\sln{n}\). Let the initial conditions (i.e. restriction to time 0) of \(\m\sln{n}\) be denoted \(\mm\sln{n}\) and let \(\mm\) denote the initial condition of \(\m\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(\spce\) is compact) function from \(\spce^k\ra\mb{R}\). Since \(\m\sln{n}\) are Feller, \(\exmu{\m\sln{n}}{f(\XX{}{\t})|\XX{}{0} = \cdot}\) is continuous for all \(\t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f{i}(\xx{1})g{i}(\xx{2},\dots,\xx{\it})\). By monotone convergence, we can assume without loss of generality that \(f(\xx{1},\dots,\xx{\it}) = f{1}(\xx{1})f{2}(\xx{2},\dots,\xx{\it})\).
+By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\m\sln{n}\). Let the initial conditions (i.e. restriction to time 0) of \(\m\sln{n}\) be denoted \(\mm\sln{n}\) and let \(\mm\) denote the initial condition of \(\m\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(\spce\) is compact) function from \(\spce^k\ra\mb{R}\). Since \(\m\sln{n}\) are Feller, \(\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0} = \cdot}\) is continuous for all \(\t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f{i}(\xx{1})g{i}(\xx{2},\dots,\xx{\it})\). By monotone convergence, we can assume without loss of generality that \(f(\xx{1},\dots,\xx{\it}) = f{1}(\xx{1})f{2}(\xx{2},\dots,\xx{\it})\).
 
-\ind By Theorem \ref{sec::Infin:Thm::TrotterKurtz}, \(\exmu{\m\sln{n}}{f(\XX{}{\t})|\XX{}{0}} \ra \exmu{\m}{f(\XX{}{\t})|\XX{}{0}}\). Then, by bounded convergence and convergence of the initial condition,
+\ind By Theorem \ref{sec::Infin:Thm::TrotterKurtz}, \(\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}} \ra \exmu{\m}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}\). Then, by bounded convergence and convergence of the initial condition,
 
-\[\exmu{\m\sln{n}}{f(\XX{}{\t})}  = \exmu{\mm\sln{n}}{\exmu{\m\sln{n}}{f(\XX{}{\t})|\XX{}{0}}} \ra \exmu{\mm\sln{n}}{\exmu{\m}{f(\XX{}{\t})|\XX{}{0}}} \ra \exmu{\mm}{\exmu{\m}{f(\XX{}{\t})|\XX{}{0}}} = \exmu{\m}{f(\XX{}{\t})}\]
+\[\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})}  = \exmu{\mm\sln{n}}{\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}} \ra \exmu{\mm\sln{n}}{\exmu{\m}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}} \ra \exmu{\mm}{\exmu{\m}{f(\XX\cind{}\tp{\t})|\XX\cind{}\tp{0}}} = \exmu{\m}{f(\XX\cind{}\tp{\t})}\]
 
 Thus all of the one-dimensional distributions converge. Assume that,
 
-\[\exmu{\m\sln{n}}{g(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{k-1}})|\XX{}{0}=\xxx} \ra \exmu{\m}{g(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{k-1}})|\XX{}{0}=\xxx}\]
+\[\exmu{\m\sln{n}}{g(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{k-1}})|\XX\cind{}\tp{0}=\xxx} \ra \exmu{\m}{g(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{k-1}})|\XX\cind{}\tp{0}=\xxx}\]
 
 \noindent for any continuous function \(g\) and for any \(\{\t\indx{1},\dots,\t\indx{k-1}\} \subset [0,T]\). Fix \(0\leq \t\indx{1} <\t\indx{2} <\cdots < \t\indx{\it}\leq T\). Let \(f\) be from \((S')^k \ra \mb{R}\). We can assume without loss of generality that \(f\) is non-negative (consider negative and positive parts separately).
 
 \begin{align}
-\exmu{\m\sln{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0} = \xxx}&= \exmu{\m\sln{n}}{f{1}(\XX{}{0})f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
-&= f{1}(\xxx)\exmu{\m\sln{n}}{f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
-&\os{\te{Induction}}{\ra} f{1}(\xxx)\exmu{\m}{f{2}(\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{k}})|\XX{}{0}=\xxx}\nonumber\\
-&= \exmu{\m}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}
+\exmu{\m\sln{n}}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0} = \xxx}&= \exmu{\m\sln{n}}{f{1}(\XX\cind{}\tp{0})f{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
+&= f{1}(\xxx)\exmu{\m\sln{n}}{f{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
+&\os{\te{Induction}}{\ra} f{1}(\xxx)\exmu{\m}{f{2}(\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{k}})|\XX\cind{}\tp{0}=\xxx}\nonumber\\
+&= \exmu{\m}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0}=\xxx}
 \label{sec::Infin:eqn::zerocase}
 \end{align}
 \labe{sec::Infin:eqn::zerocase}
@@ -2151,27 +2151,27 @@ Thus all of the one-dimensional distributions converge. Assume that,
 So,
 
 \begin{align*}
-\exmu{\m\sln{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})} &= \exmu{\mm\sln{n}}{\exmu{\m\sln{n}}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}}}\\
-&\ra \exmu{\mm}{\exmu{\m}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}}}\\
-&= \exmu{\m}{f(\XX{}{0},\XX{}{\t\indx{2}},\dots,\XX{}{\t\indx{\it}})}
+\exmu{\m\sln{n}}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})} &= \exmu{\mm\sln{n}}{\exmu{\m\sln{n}}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0}}}\\
+&\ra \exmu{\mm}{\exmu{\m}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0}}}\\
+&= \exmu{\m}{f(\XX\cind{}\tp{0},\XX\cind{}\tp{\t\indx{2}},\dots,\XX\cind{}\tp{\t\indx{\it}})}
 \end{align*}
 
 then,
 
 \begin{align*}
-\exmu{\m\sln{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}&=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX{\t\indx{1}},\dots,\XX{\t\indx{\it}})|\XX{\t\indx{1}}=\XX{}{\t\indx{1}},\XX{0}=\xxx}|\XX{}{0}=\xxx}\\
-&=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\m}{\exmu{\XX\sim \m}{f(\XX{0},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{0}=\XX{}{\t\indx{1}}}|\XX{}{0}=\xxx}\\
-&=\exmu{\m}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{0}=\xxx}
+\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0}=\xxx}&=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX\tp{\t\indx{1}},\dots,\XX\tp{\t\indx{\it}})|\XX\tp{\t\indx{1}}=\XX\cind{}\tp{\t\indx{1}},\XX\tp{0}=\xxx}|\XX\cind{}\tp{0}=\xxx}\\
+&=\exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m\sln{n}}{f(\XX\tp{0},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\tp{0}=\XX\cind{}\tp{\t\indx{1}}}|\XX\cind{}\tp{0}=\xxx}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim\m\sln{n}}{\exmu{\XX\sim \m}{f(\XX\tp{0},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\tp{0}=\XX\cind{}\tp{\t\indx{1}}}|\XX\cind{}\tp{0}=\xxx}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim\m}{\exmu{\XX\sim \m}{f(\XX\tp{0},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\tp{0}=\XX\cind{}\tp{\t\indx{1}}}|\XX\cind{}\tp{0}=\xxx}\\
+&=\exmu{\m}{f(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{0}=\xxx}
 \end{align*}
 
 \begin{align*}
-\exmu{\m\sln{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})}&= \exmu{\XX\sim \XX{}{\t\indx{1}}}{\exmu{\m\sln{n}}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})|\XX{}{\t\indx{1}}=\XX}}\\
-&=\exmu{\XX\sim \m\sln{n}|_{\t\indx{1}}}{\exmu{\m\sln{n}}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
-&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim \m\sln{n}|_{\t\indx{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
-&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim \m|_{\t\indx{1}}}{\exmu{\m}{f(\XX{}{0},\XX{\t\indx{2}-\t\indx{1}},\dots,\XX{\t\indx{\it}-\t\indx{1}})|\XX{}{0}=\XX}}\\
-&=\exmu{\m}{f(\XX{}{\t\indx{1}},\dots,\XX{}{\t\indx{\it}})}
+\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{\it}})}&= \exmu{\XX\sim \XX\cind{}\tp{\t\indx{1}}}{\exmu{\m\sln{n}}{f(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{\it}})|\XX\cind{}\tp{\t\indx{1}}=\XX}}\\
+&=\exmu{\XX\sim \m\sln{n}|_{\t\indx{1}}}{\exmu{\m\sln{n}}{f(\XX\cind{}\tp{0},\XX\tp{\t\indx{2}-\t\indx{1}},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\cind{}\tp{0}=\XX}}\\
+&\os{\te{Eqn \eqref{sec::Infin:eqn::zerocase}}}{\ra} \exmu{\XX\sim \m\sln{n}|_{\t\indx{1}}}{\exmu{\m}{f(\XX\cind{}\tp{0},\XX\tp{\t\indx{2}-\t\indx{1}},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\cind{}\tp{0}=\XX}}\\
+&\os{\te{Theorem \ref{sec::Infin:Thm::TrotterKurtz}}}{\ra} \exmu{\XX\sim \m|_{\t\indx{1}}}{\exmu{\m}{f(\XX\cind{}\tp{0},\XX\tp{\t\indx{2}-\t\indx{1}},\dots,\XX\tp{\t\indx{\it}-\t\indx{1}})|\XX\cind{}\tp{0}=\XX}}\\
+&=\exmu{\m}{f(\XX\cind{}\tp{\t\indx{1}},\dots,\XX\cind{}\tp{\t\indx{\it}})}
 \end{align*}
 
 It follows by induction that the finite-dimensional distributions of \(\m\sln{n}\) converge weakly. Note: this proof is similar to the proof of \cite[Theorem 4.2]{Kur81}, but with the details filled in.
@@ -2453,19 +2453,19 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 \item Then \(\X\cind{}\tp{\t} = \X\cind{}\tp{\rt\indx{n}}\) for \(\t\in [\rt\indx{n},\T)\).
 \end{enumerate}
 
-\(\X\cind{}\tip{}\) solves equation \eqref{subsec::Some:eqn::genfiniteSDE} by construction. Furthermore, if \(\XX{}{}\) also solves \eqref{subsec::Some:eqn::genfiniteSDE}, then 
+\(\X\cind{}\tip{}\) solves equation \eqref{subsec::Some:eqn::genfiniteSDE} by construction. Furthermore, if \(\XX\cind{}\tip{}\) also solves \eqref{subsec::Some:eqn::genfiniteSDE}, then 
 
 \begin{enumerate}
-\item \(\XX{}{0} = \X\cind{}\tp{0}\) by assumption.
+\item \(\XX\cind{}\tp{0} = \X\cind{}\tp{0}\) by assumption.
 
-\item \(\XX{}{\t} = \XX{}{0} = \X\cind{}\tp{0} = \X\cind{}\tp{\t}\) for all \(\t\in [0,\rt\indx{1})\).
+\item \(\XX\cind{}\tp{\t} = \XX\cind{}\tp{0} = \X\cind{}\tp{0} = \X\cind{}\tp{\t}\) for all \(\t\in [0,\rt\indx{1})\).
 
 \item 
 
 \begin{align*}
-\XX{}{\rt\indx{1}} &= \begin{cases}
-\XX{}{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt\indx{1},\v{1}}(\XX{}{[0,\rt\indx{1})},\mark{1})\\
-\XX{}{0} &\te{ otherwise.}
+\XX\cind{}\tp{\rt\indx{1}} &= \begin{cases}
+\XX\cind{}\tp{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt\indx{1},\v{1}}(\XX\cind{}\tip{[0,\rt\indx{1})},\mark{1})\\
+\XX\cind{}\tp{0} &\te{ otherwise.}
 \end{cases}\\
 &= \begin{cases}
 \X\cind{}\tp{0} + \mark{1}\ev\vind{\v{1}} &\te{ if } \r{1} \leq \ratee{\rt\indx{1},\v{1}}(\X\cind{}\tip{[0,\rt\indx{1})},\mark{1})\\
@@ -2474,14 +2474,14 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 &= \X\cind{}\tp{\rt\indx{1}}.
 \end{align*}
 
-\item Inductive hypothesis: \(\XX{}{\t} = \X\cind{}\tp{\t}\) for \(\t\in [0,\rt\indx{\it})\). 
+\item Inductive hypothesis: \(\XX\cind{}\tp{\t} = \X\cind{}\tp{\t}\) for \(\t\in [0,\rt\indx{\it})\). 
 
 \item 
 
 \begin{align*}
-\XX{}{\rt\indx{\it}} &= \begin{cases}
-\XX{}{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt\indx{\it},\v{\it}}(\XX{}{[0,\rt\indx{\it})},\mark{\it})\\
-\XX{}{\rt\indx{\it-1}} &\te{ otherwise.}
+\XX\cind{}\tp{\rt\indx{\it}} &= \begin{cases}
+\XX\cind{}\tp{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt\indx{\it},\v{\it}}(\XX\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})\\
+\XX\cind{}\tp{\rt\indx{\it-1}} &\te{ otherwise.}
 \end{cases}\\
 &= \begin{cases}
 \X\cind{}\tp{\rt\indx{\it-1}} + \mark{\it}\ev\vind{\v{\it}} &\te{ if } \r{\it} \leq \ratee{\rt\indx{\it},\v{\it}}(\X\cind{}\tip{[0,\rt\indx{\it})},\mark{\it})\\
@@ -2490,27 +2490,27 @@ Thus, \(\sum_{\v\in V}\poiss\vind{\v}\) is an almost surely finite measure on \(
 &= \X\cind{}\tp{\rt\indx{\it}}.
 \end{align*}
 
-\item Then \(\XX{}{\t} = \XX{}{\rt\indx{\it}} = \X\cind{}\tp{\rt\indx{\it}} = \X\cind{}\tp{\t}\) for \(\t \in [\rt\indx{\it},\rt\indx{\it+1})\). Then, \(\XX{}{\t} = \X\cind{}\tp{\t}\) for \(\t\in [0,\rt\indx{\it+1})\).
+\item Then \(\XX\cind{}\tp{\t} = \XX\cind{}\tp{\rt\indx{\it}} = \X\cind{}\tp{\rt\indx{\it}} = \X\cind{}\tp{\t}\) for \(\t \in [\rt\indx{\it},\rt\indx{\it+1})\). Then, \(\XX\cind{}\tp{\t} = \X\cind{}\tp{\t}\) for \(\t\in [0,\rt\indx{\it+1})\).
 
-\item Finally, \(\XX{}{\t} = \XX{}{\rt\indx{n}} = \X\cind{}\tp{\rt\indx{n}} = \X\cind{}\tp{\t}\) for \(\t\in [\rt\indx{n},\T)\), so \(\XX{}{} = \X\cind{}\tip{}\) almost surely.
+\item Finally, \(\XX\cind{}\tp{\t} = \XX\cind{}\tp{\rt\indx{n}} = \X\cind{}\tp{\rt\indx{n}} = \X\cind{}\tp{\t}\) for \(\t\in [\rt\indx{n},\T)\), so \(\XX\cind{}\tip{} = \X\cind{}\tip{}\) almost surely.
 \end{enumerate}
 \end{proof}
 
 \lin
 
 \begin{lem}
-Suppose that \(V\) is finite. Recall that \(\pmap{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap{}(\XX{}{})\) for some \(\sset\vsi{V}\ts{\T-}\)-valued stochastic process, \(\XX{}{}\). Suppose also that \(\rp{}\) has \(\XX{}{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const\indx{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\sset\vsi{}\ts{\t-}\times \S \ra [0,\const\indx{}]\}_{\t\in[0,\T),\v\in V}\) such that 
+Suppose that \(V\) is finite. Recall that \(\pmap{}\) maps c\`adl\`ag processes to marked point processes (see definition \ref{subsec::ProofE:Defn::pmap}). Suppose \(\rp{} = \pmap{}(\XX\cind{}\tip{})\) for some \(\sset\vsi{V}\ts{\T-}\)-valued stochastic process, \(\XX\cind{}\tip{}\). Suppose also that \(\rp{}\) has \(\XX\cind{}\tip{}\)-predictable, left-continuous \tr{(If we can remove the left-continuous assumption in Lemma \ref{subsec::Some:Lem::genfiniteSDE}, then this becomes unnecessary.)} intensity \(\ratee{\t}(\cdot)\) bounded from above by \(\const\indx{}\). Suppose there exist mappings \(\{\ratee{\t,\v}:\sset\vsi{}\ts{\t-}\times \S \ra [0,\const\indx{}]\}_{\t\in[0,\T),\v\in V}\) such that 
 
 \begin{equation}
 \ratee{\t}(\sv\cind{}\vsi{V}) := \begin{cases}
-\ratee{\t,\v}(\XX{}{[0,\t)},\s) &\te{ if } \sv\cind{}\vsi{V} = \s\ev\vind{\v}\\
+\ratee{\t,\v}(\XX\cind{}\tip{[0,\t)},\s) &\te{ if } \sv\cind{}\vsi{V} = \s\ev\vind{\v}\\
 0 &\te{ otherwise,}
 \end{cases}
 \label{subsec::Some:eqn::intense}
 \end{equation}
 \labe{subsec::Some:eqn::intense}
 
-and such that \(\t\mapsto \ratee{\t,\v}(\XX{}{[0,\t)},\sv\cind{}\vsi{V})\) is almost-surely left continuous on \([0,\T)\) for all \(\v\in V,\sv\cind{}\vsi{V}\in \S\carp{V}\). Then there is a unique solution, \(\X\cind{}\tip{}\), to equation \eqref{subsec::Some:eqn::genfiniteSDE}, and if \(\X\cind{}\tp{0} \deq \XX{}{0}\), then \(\X\cind{}\tip{} \deq \XX{}{}\).
+and such that \(\t\mapsto \ratee{\t,\v}(\XX\cind{}\tip{[0,\t)},\sv\cind{}\vsi{V})\) is almost-surely left continuous on \([0,\T)\) for all \(\v\in V,\sv\cind{}\vsi{V}\in \S\carp{V}\). Then there is a unique solution, \(\X\cind{}\tip{}\), to equation \eqref{subsec::Some:eqn::genfiniteSDE}, and if \(\X\cind{}\tp{0} \deq \XX\cind{}\tp{0}\), then \(\X\cind{}\tip{} \deq \XX\cind{}\tip{}\).
 
 \label{subsec::Some:Lem::PPtoSDE}
 \end{lem}
@@ -2518,7 +2518,7 @@ and such that \(\t\mapsto \ratee{\t,\v}(\XX{}{[0,\t)},\sv\cind{}\vsi{V})\) is al
 
 \begin{proof}
 
-We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \sset\vsi{}\ts{\t-}\) such that \(\pr(\XX{}{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
+We can assume without loss of generality that \(\ratee{\t,\v}(\xx{}{[0,\t)},\s) = 0\) for all \(\xx{}{[0,\t)}\in \sset\vsi{}\ts{\t-}\) such that \(\pr(\XX\cind{}\tip{[0,\t)} = \xx{}{[0,\t)}) = 0\). Then since \(\ratee{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee{\t,\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
 
 \[\X\cind{\v}\tp{\t} = \X\cind{0}\tp{\v} + \int{(0,\t]}\int_\S\int{(0,\ratee{\tt,\v}(\X\cind{}\tip{[0,\tt)},\s)]}  \s\,\poiss\vind{\v}(d\r,d\s,d\tt).\]
 
@@ -2529,7 +2529,7 @@ By \cite[Exercise 14.7.1]{DalVer08}, \(\pmap{\v}(\X\cind{}\tip{})\) has \(\X\cin
 0&\te{ otherwise.}
 \end{cases}\]
 
-By assumption, \(\X\cind{}\tp{0} \deq \XX{}{0}\). Thus, \(\rp{}\) and \(\alt{\rp{}}\) have the same intensity. By Proposition \ref{subsec::Prope:Prop::intense char}, \(\rp{} \deq \alt{\rp{}}\).
+By assumption, \(\X\cind{}\tp{0} \deq \XX\cind{}\tp{0}\). Thus, \(\rp{}\) and \(\alt{\rp{}}\) have the same intensity. By Proposition \ref{subsec::Prope:Prop::intense char}, \(\rp{} \deq \alt{\rp{}}\).
 \end{proof}
 \lin
 
@@ -2874,11 +2874,11 @@ for all \(\ep > 0\).
 \purpose This allows us to obtain the c\`adl\`ag version of the equicontinuity condition necessary for Theorem \ref{sec::TL:Thm::Tight}. Note: The first time this lemma is applied is in the proof of Proposition \ref{subsec::Well-:Prop::IGApprox}. The proof refers to Proposition \ref{subsec::Well-:Prop::SDE=IG}.
 
 \begin{proof}
-Fix any \(n \in \mb{N}\). Let \(\cconst = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\XX{}{}\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
+Fix any \(n \in \mb{N}\). Let \(\cconst = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\XX\cind{}\tip{}\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
 
-\[\XX{}{\t} = \sum_{\v \in \U}\cconst\ev\vind{\v}\int_0^\t\int_0^{\const\indx{}}\alt{\poiss}{\v}(d\r, d\tt)\]
+\[\XX\cind{}\tp{\t} = \sum_{\v \in \U}\cconst\ev\vind{\v}\int_0^\t\int_0^{\const\indx{}}\alt{\poiss}\vind{\v}(d\r, d\tt)\]
 
-where \(\{\alt{\poiss}{\v}:\v \in \U\}\) are a sequence of i.i.d. unit rate Poisson processes on \(\mb{R}^2\). 
+where \(\{\alt{\poiss}\vind{\v}:\v \in \U\}\) are a sequence of i.i.d. unit rate Poisson processes on \(\mb{R}^2\). 
 
 \ind By Proposition \ref{subsec::Well-:Prop::SDE=IG}, there exists a sequence of i.i.d Poisson processes, \(\{\poiss\vind{\v}:\v\in V\}\), on \(\S\times\mb{R}^2\) with intensity measure \(\Sm\otimes \leb\) such that,
 
@@ -2886,40 +2886,40 @@ where \(\{\alt{\poiss}{\v}:\v \in \U\}\) are a sequence of i.i.d. unit rate Pois
 
 for all \(\v\in V\). Let
 
-\[\alt{\poiss}{\v}(\cdot) = \int_\S\,\poiss\vind{\v}(\cdot\times \S).\]
+\[\alt{\poiss}\vind{\v}(\cdot) = \int_\S\,\poiss\vind{\v}(\cdot\times \S).\]
 
-Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss\vind{\v}:\v\in V\}\) are i.i.d., it follows that \(\{\alt{\poiss}{\v}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\proj\vsi{\U}\ts{\T}(\X\sln{n}\cind{}\tip{})\) experiences a jump, \(\XX{}{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\XX{}{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
+Since \(\Sm\) is a probability measure on \(\S\) and \(\{\poiss\vind{\v}:\v\in V\}\) are i.i.d., it follows that \(\{\alt{\poiss}\vind{\v}:\v\in \U\}\) is a sequence of unit rate i.i.d. Poisson processes as desired. Under this coupling, every time \(\proj\vsi{\U}\ts{\T}(\X\sln{n}\cind{}\tip{})\) experiences a jump, \(\XX\cind{}\tip{}\) also experiences a jump. Furthermore, the magnitude of the jump of \(\XX\cind{}\tip{}\) is larger. For any \(\tt<\ttt\in [0,\T]\) and \(\v\in \U\),
 
 \begin{align*}
 |\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}|&\leq \cconst\left|\{\#\te{ of jumps in }\X\sln{n}\cind{\v}\tp{(\tt,\ttt]}\}\right| \\
-&\leq \cconst\left|\{\#\te{ of jumps in }\XX{\v}{(\tt,\ttt]}\}\right| = \left|\XX{\v}{\tt} - \XX{\v}{\ttt}\right|
+&\leq \cconst\left|\{\#\te{ of jumps in }\XX\cind{\v}\tp{(\tt,\ttt]}\}\right| = \left|\XX\cind{\v}\tp{\tt} - \XX\cind{\v}\tp{\ttt}\right|
 \end{align*}
 
 It follows that for any partition \(\{\t\indx{\it}\}\) of \([0,\T]\),
 
 \begin{align*}
-\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}|\leq \sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|.
+\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}|\leq \sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX\cind{\v}\tp{\tt} - \XX\cind{\v}\tp{\ttt}|.
 \end{align*}
 
 Fix \(\delta > 0\). Taking the infimum over all partitions with minimum interval length \(\delta\) yields,
 
 \begin{align*}
 \omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) &= \inf_{\{\t\indx{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\X\sln{n}\cind{\v}\tp{\tt} - \X\sln{n}\cind{\v}\tp{\ttt}|\\
-&\leq \inf_{\{\t\indx{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX{\v}{\tt} - \XX{\v}{\ttt}|\\
-&= \omega'_{\XX{}{}}(\delta).
+&\leq \inf_{\{\t\indx{\it}\}}\sup_\it\sup_{\tt,\ttt \in [\t\indx{\it-1},\t\indx{\it})} \sum_{\v\in \U} \b\cind{\v}|\XX\cind{\v}\tp{\tt} - \XX\cind{\v}\tp{\ttt}|\\
+&= \omega'_{\XX\cind{}\tip{}}(\delta).
 \end{align*}
 
 Thus,
 
-\[\pr\left(\omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) \geq \ep\right) \leq \pr\left(\omega'_{\XX{}{}}(\delta) \geq \ep\right).\]
+\[\pr\left(\omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) \geq \ep\right) \leq \pr\left(\omega'_{\XX\cind{}\tip{}}(\delta) \geq \ep\right).\]
 
-By applying this same argument to arbitrary \(n\in \mb{N}\) and noticing that the distribution of \(\XX{}{}\) does not vary with respect to our choice of coupling, we get,
+By applying this same argument to arbitrary \(n\in \mb{N}\) and noticing that the distribution of \(\XX\cind{}\tip{}\) does not vary with respect to our choice of coupling, we get,
 
-\[\sup_{n}\pr\left(\omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta)\geq \ep\right) \leq \pr\left(\omega'_{\XX{}{}}(\delta) \geq \ep\right).\]
+\[\sup_{n}\pr\left(\omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta)\geq \ep\right) \leq \pr\left(\omega'_{\XX\cind{}\tip{}}(\delta) \geq \ep\right).\]
 
-However, \(\XX{}{}\) is just a homogeneous Poisson point process, so the c\`adl\`ag modulus of continuity of \(\XX{}{}\) converges to 0 in probability as \(\delta \ra 0\). Thus,
+However, \(\XX\cind{}\tip{}\) is just a homogeneous Poisson point process, so the c\`adl\`ag modulus of continuity of \(\XX\cind{}\tip{}\) converges to 0 in probability as \(\delta \ra 0\). Thus,
 
-\[\lim_{\delta \searrow 0}\sup_{n}\pr\left(\omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) \geq \ep\right) \leq \lim_{\delta\searrow 0}\pr\left(\omega'_{\XX{}{}}(\delta)\geq \ep\right) = 0.\]
+\[\lim_{\delta \searrow 0}\sup_{n}\pr\left(\omega'_{\proj\vsi{\U}\ts{\T}\left(\X\sln{n}\cind{}\tip{}\right)}(\delta) \geq \ep\right) \leq \lim_{\delta\searrow 0}\pr\left(\omega'_{\XX\cind{}\tip{}}(\delta)\geq \ep\right) = 0.\]
 
 
 \end{proof}
@@ -2943,7 +2943,7 @@ If we let \(\poiss\vind{}(\cdot,\cdot) = \pmap{}(\X\sln{n}\cind{}\tip{})\) (see 
 
 \ind However, our intensity is actually only predictable with respect to \(\F \supseteq \FH\) which includes the value of \(\X\sln{n}\cind{}\tp{0}\). This can be fixed simply. Let \(\rate{\v}^{\sv\cind{}\vsi{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate{\v}(\cdot,\cdot)|\X\sln{n}\cind{}\tp{0} = \sv\cind{}\vsi{\tree\sln{n}})\). Then \(\rate{\v}^{\sv\cind{}\vsi{\tree\sln{n}}}(\t,\mark)\) satisfies the conditions above. Then,
 
-\[\poiss\sln{n}{\sv\cind{}\vsi{\tree\sln{n}}}(\evnt{}) = \alt{\poiss}{n}\left(\evnt{}\cap\{(\t,\sv\cind{}\vsi{\tree\sln{n}},\r):\r > \rate{n}^{\sv\cind{}\vsi{\tree\sln{n}}}(\t,\sv\cind{}\vsi{\tree\sln{n}})\}\right) + \#\{(\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}^{\sv\cind{}\vsi{\tree\sln{n}}}(\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_\v) \in \evnt{}: \v\in \tree\sln{n}\}\]
+\[\poiss\sln{n}{\sv\cind{}\vsi{\tree\sln{n}}}(\evnt) = \alt{\poiss}\sln{n}\left(\evnt\cap\{(\t,\sv\cind{}\vsi{\tree\sln{n}},\r):\r > \rate{n}^{\sv\cind{}\vsi{\tree\sln{n}}}(\t,\sv\cind{}\vsi{\tree\sln{n}})\}\right) + \#\{(\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_\v,\rv_{\v}^{\it}\rate{n}^{\sv\cind{}\vsi{\tree\sln{n}}}(\rt\slnvind{n}{\v}\indx{\it},\mark{n,\it}_\v) \in \evnt: \v\in \tree\sln{n}\}\]
 
 is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\). Let \(R \subseteq \alt{\S\carp{n}}\), and let \(\inte\) and \(\alt{\inte}\) be intervals in \(\mb{R}^+\). Then,
 
