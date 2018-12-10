@@ -93,7 +93,7 @@
 \newcommand{\tp}[1]{(#1)}						%Time of process
 \newcommand{\tip}[1]{#1}						%time interval process	
 \newcommand{\ts}[1]{_{#1}}						%time bound of set
-\newcommand{\slnvind}[2]{^{#1,#2}}				%vindsln combine
+\newcommand{\slnvind}[2]{^{(#1),#2}}				%vindsln combine
 
 %Section 2.2
 %Base commands
@@ -241,11 +241,173 @@ Title possibilities: Transient dynamics of a typical neighborhood of particles o
 \section*{For The Author's Use Only (FTAUO)}
 \subsection*{Notation}
 
-\begin{longtable}{c|c|c|c}
-Macro Command & Arguments & Symbol & Meaning\\\hline
-\tbs pr&0&\(\pr\)	& probability\\
+\begin{longtable}{|c|c|c|c|}
+\hline Macro Command & Arguments & Symbol & Meaning\\\hline
+\multicolumn{4}{|c|}{General Shorthand Macros}\\\hline
+\tbs skipLine & 0 & (no representation) & skips a line\\\hline
+\tbs mb & 0 & (no representation) & math bubble font\\\hline
+\tbs mc & 0 & (no representation) & math calligraphy font\\\hline
+\tbs ms & 0 & (no representation) & math script font\\\hline
+\tbs ra & 0 & \(\ra\) & converges\\\hline
+\tbs ov & 0 & \(\ov{\cdot}\) & overline\\\hline
+\tbs os & 0 & (no representation) & overset\\\hline
+\tbs un & 0 & \(\un{\cdot}\) & underline\\\hline
+\tbs te & 0 & (no representation) & regular text font\\\hline
+\tbs ep & 0 & \(\ep\) & epsilon\\\hline
+\tbs tr & 0 & (no representation) & red text\\\hline
+\tbs tb & 0 & (no representation) & blue text\\\hline
+\tbs tg & 0 & (no representation) & green text\\\hline
+\tbs labe & 1 & \(\labe{Label}\) & label\\\hline
+\tbs tbs & 0 & \(\tbs\) & back slash\\\hline
+\tbs purpose & 0 & \(\purpose\) & purpose header\\\hline
+\tbs pfsum & 0 & \(\pfsum\) & Proof summary header\\\hline
+\tbs usein &0  & \(\usein\) & Use in header\\\hline
+\tbs app & 0 & \(\app\) & Applied header\\\hline
+\tbs ind & 0 & (no representation) & indent \\\hline
+\tbs lin & 0 & (no representation) & horizontal line\\\hline
+\tbs pr & 0 & \(\pr\) & probability\\\hline
+\tbs ex & 1 & \(\ex{\cdot}\) & expectation\\\hline
+\tbs exmu & 2 & \(\exmu{\cdot}{\cdot}\) & expectation wrt a measure\\\hline
+\tbs deq & 0 & \(\deq\) & equal in distribution\\\hline	
+\tbs defeq & 0 & \(\defeq\) & definition equals\\\hline	
+\tbs msr & 0 & \(\msr\) & set of measures\\\hline
+\tbs pmsr & 0 & \(\pmsr\) & set of probability measures\\\hline	
+\tbs cad & 0 & \(\cad\) & set of c\`adl\`ag functions\\\hline
+\multicolumn{4}{|c|}{\textbf{Section 2.1}}\\\hline
+\multicolumn{4}{|c|}{Base Commands}\\\hline
+\tbs root & 0 & \(\root\) & root\\\hline
+\tbs v & 0 & \(\v\) & typical vertex\\\hline
+\tbs vv & 0 & \(\vv\) & typical 2nd vertex\\\hline
+\tbs vvv & 0 & \(\vvv\) & typical 3rd vertex\\\hline
+\tbs U & 0 & \(\U\) & typical vertex set\\\hline
+\tbs UU & 0 & \(\UU\) & typical 2nd vert set\\\hline
+\tbs UUU & 0 & \(\UUU\) & typical 3rd vert\\\hline
+\tbs S & 0 & \(\S\) & State space\\\hline
+\tbs s & 0 & \(\s\) & elt of S\\\hline
+\tbs sv & 0 & \(\sv\) & typ elt of XState\\\hline
+\tbs b & 0 & \(\b\) & inf dim norm coeffs\\\hline
+\tbs ev & 0 & \(\ev\) & standard basis\\\hline
+\tbs T & 0 & \(\T\) & time bound\\\hline
+\tbs x & 0 & \(\x\) & typical elt of Omega\\\hline
+\tbs t & 0 & \(\t\) & typical time\\\hline
+\tbs sset & 0 & \(\sset\) & sample set\\\hline
+\tbs proj & 0 & \(\proj\) & projection operator\\\hline
+\tbs tt & 0 & \(\tt\) & typical time 2\\\hline
+\tbs ttt & 0 & \(\ttt\) & typical time 3\\\hline
+\tbs F & 0 & \(\F\) & Filtrations\\\hline
+\tbs FG & 0 & \(\FG\) & Filtrations\\\hline
+\tbs FH & 0 & \(\FH\) & Filtrations\\\hline
+\tbs X & 0 & \(\X\) & typ random process\\\hline
+\tbs IG & 0 & \(\IG\) & Infinitesimal gens\\\hline
+\tbs IGr & 0 & \(\IGr\) & IG rate\\\hline
+\tbs f & 0 & \(\f\) & generic function\\\hline
+\tbs neigh & 0 & \(\neigh\) & neighbor\\\hline
+\tbs dneigh & 0 & \(\dneigh\) & double neighbor\\\hline
+\multicolumn{4}{|c|}{Modifiers}\\\hline
+\tbs vind & 1 & \(\X\vind{\v}\) & indexed by v,V,U etc.\\\hline
+\tbs carp & 1 & \(\S\carp{V}\) & Cartesian power\\\hline
+\tbs vsi & 1 & \(\Omega\vsi{\v}\) & vertex set identifier\\\hline
+\tbs cind & 1 & \(\ev\cind{\v}\) & component index\\\hline
+\tbs cl &  & \(\cl{\tree}\) & closure\\\hline
+\tbs tp & 1 & \(\X\tp{\t}\) & Time of process\\\hline
+\tbs tip & 1 & \(\X\tip{[0,\t)}\) & time interval process	\\\hline
+\tbs ts & 1 & \(\proj\ts{\t}\) & time bound of set\\\hline
+\tbs slnvind & 2 & \(\X\slnvind{n}{\v}\) & vindsln combine\\\hline
+\multicolumn{4}{|c|}{\textbf{Section 2.2}}\\\hline
+\multicolumn{4}{|c|}{Base Commands}\\\hline
+\tbs const & 0 & \(\const\) & Constant\\\hline
+\tbs degr & 0 & \(\degr\) & Max degree of graph\\\hline
+\tbs IGrg & 0 & \(\IGrg\) & Fixed rate function\\\hline
+\tbs gdist & 0 & \(\gdist\) & Graph distance\\\hline
+\tbs tree & 0 & \(\tree\) & Tree\\\hline
+\multicolumn{4}{|c|}{Modifiers}\\\hline
+\tbs sln & 1 & \(\X\sln{n}\) & sublimit numbering\\\hline
+\multicolumn{4}{|c|}{\textbf{Section 2.3}}\\\hline
+\multicolumn{4}{|c|}{Base Commands}\\\hline
+\tbs core & 0 & \(\core\) & Core\\\hline
+\tbs cont & 0 & \(\cont\) & space of cont. fs\\\hline
+\tbs delt & 0 & \(\delt\) & change in f\\\hline
+\tbs ss & 0 & \(\ss\) & 2nd elt of \S\\\hline
+\tbs SS & 0 & \(\SS\) & sub state space\\\hline
+\tbs poisses & 0 & \(\poisses\) & all Poisson processes\\\hline
+\tbs poiss & 0 & \(\poiss\) & Poisson process\\\hline
+\tbs leb & 0 & \(\leb\) & Lebesgue measure\\\hline
+\tbs Sm & 0 & \(\Sm\) & std msr on \S\\\hline
+\tbs rate & 0 & \(\rate\) & rate\\\hline
+\tbs Fpo & 0 & \(\Fpo\) & Picard mapping of SDE\\\hline
+\tbs r & 0 & \(\r\) & space var for poiss\\\hline
+\tbs cconst & 0 & \(\cconst\) & second constant\\\hline
+\tbs modu & 0 & \(\modu\) & modulus of continuity\\\hline
+\tbs cmodu & 0 & \(\cmodu\) & cadlag moc\\\hline
+\multicolumn{4}{|c|}{Modifiers}\\\hline
+\tbs deltf & 1 & \(\triangle\deltf{f}\) & Specify delt function\\\hline
+\tbs alt & 1 & \(\alt{\X}\) & alternate val\\\hline
+\tbs pra & 1 & \(\m\pra{\X}\) & Append process\\\hline
+\tbs indx & 1 & \(\rt\indx{i}\) & index\\\hline
+\tbs pst & 1 & \(\pr\pst{\x}\) & Start of process\\\hline
+\multicolumn{4}{|c|}{\textbf{Section 3}}\\\hline
+\multicolumn{4}{|c|}{Base Commands}\\\hline
+\tbs m & 0 & \(\m\) & typ measure\\\hline
+\tbs mm & 0 & \(\mm\) & typ measure 2\\\hline
+\tbs mmm & 0 & \(\mmm\) & typ measure 3\\\hline
+\tbs cm & 0 & \(\cm\) & conditional msr funct\\\hline
+\tbs law & 0 & \(\law\) & Law of a process\\\hline
+\multicolumn{4}{|c|}{Modifiers}\\\hline
+\tbs me & 1 & \(\pr\me{\m}\) & Append measure\\\hline
+\tbs dnvind & 1 & \(\dneigh\dnvind{\v}\) & vind for dneigh\\\hline
+\multicolumn{4}{|c|}{\textbf{Section 4}}\\\hline
+\tbs XX & 0 & \(\XX\) & second random element\\\hline
+\tbs XXX & 0 & \(\XXX\) & third random elt\\\hline
+\tbs rt & 0 & \(\rt\) & typical rand time\\\hline
+\tbs rtt & 0 & \(\rtt\) & typical rand time 2\\\hline
+\tbs it & 0 & \(\it\) & iterator\\\hline
+\tbs mutex & 0 & \(\mutex\) & Mutually exclusive\\\hline
+\tbs apath & 0 & \(\apath\) & path for CI proof\\\hline
+\tbs pathset & 2 & \(\pathset{i}{j}\) & A space of paths\\\hline
+\tbs pathsete & 2 & \(\pathsete{i}{j}\) & union over pathset\\\hline
+\tbs pathseted & 2 & \(\pathseted{i}{j}(\t)\) & pathsete with t\\\hline
+\tbs evnt & 0 & \(\evnt\) & Typical event\\\hline
+\tbs rv & 0 & \(\rv\) & Typical rand elt\\\hline
+\multicolumn{4}{|c|}{\textbf{Section 5.1}}\\\hline
+\multicolumn{4}{|c|}{Base Commands}\\\hline
+\tbs pmap & 0 & \(\pmap\) & Markov to MPP	\\\hline
+\tbs mark & 0 & \(\mark\) & Typical mark\\\hline
+\tbs rp & 0 & \(\rp\) & typ point process\\\hline
+\tbs Tset & 0 & \(\Tset\) & finite time subset\\\hline
+\tbs typset & 0 & \(\typset\) & Typical set\\\hline
+\tbs ratee & 0 & \(\ratee\) & general rate\\\hline
+\tbs crate & 0 & \(\crate\) & conditional rate\\\hline
+\tbs upcrs & 0 & \(\upcrs\) & upcrossing\\\hline
+\tbs cratee & 0 & \(\cratee\) & general conditional rate\\\hline
+\multicolumn{4}{|c|}{Modifiers}\\\hline
+\tbs gid & 1 & \(\rt\gid{M}\) & generic identifier\\\hline
+\tbs gidd & 1 & \(\rt\gidd{\Tset}\) & second gen ident\\\hline
+\multicolumn{4}{|c|}{\textbf{Section 5.2}}\\\hline
+\multicolumn{4}{|c|}{Base Commands}\\\hline
+\tbs dense & 0 & \(\dense\) & Typ density\\\hline
+\tbs cdense & 0 & \(\cdense\) & Cond density\\\hline
+\tbs ds & 0 & \(\ds\) & mapping in density\\\hline
+\tbs c & 0 & \(\c\) & child function\\\hline
+\tbs p & 0 & \(\p\) & parent function\\\hline
+\multicolumn{4}{|c|}{Modifiers}\\\hline
+\tbs prats & 2 & \(\crate\prats{\rp}{\t}\) & pra and ts\\\hline
+\multicolumn{4}{|c|}{\textbf{Appendix A}}\\\hline
+\tbs spce & 0 & \(\spce\) & arbitrary space\\\hline
+\tbs xx & 0 & \(\xx\) & typ path val2\\\hline
+\tbs xxx & 0 & \(\xxx\) & typ path val3\\\hline
+\multicolumn{4}{|c|}{\textbf{Appendix B}}\\\hline
+\tbs evs & 0 & \(\evs\) & Set of events\\\hline
+\tbs mspce & 0 & \(\mspce\) & Mark space\\\hline
+\tbs rpg & 0 & \(\rpg\) & ground process\\\hline
+\multicolumn{4}{|c|}{\textbf{Appendix C}}\\\hline
+\tbs dist & 0 & \(\dist\) & general metric\\\hline
+\tbs inte & 0 & \(\inte\) & Interval\\\hline
+\multicolumn{4}{|c|}{Appendix Modifiers}\\\hline
+\tbs vindpst & 2 & \(\rate\vindpst{\v}{\sv\vsi{V}}\) & vind and pst\\\hline
+\tbs slnpst & 2 & \(\rate\slnpst{n}{\sv\vsi{V}}\) & sln and pst\\\hline
+\tbs mepst & 2 & \(\pr\mepst{i}{\x}\) & me and pst\\\hline
+\tbs indxcind & 2 & \(f\indxcind{k}{1}\) & indx and cind\\\hline
 \end{longtable}
-
 \subsection*{TODO}
 
 Resolve notation problems:
