@@ -1,4 +1,7 @@
 \documentclass[12pt]{article}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL old_local_finite_writeup.tex   Tue Dec 11 10:00:29 2018
+%DIF ADD local_finite_writeup.tex       Mon Dec 10 18:38:25 2018
 \usepackage{enumerate}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -93,7 +96,11 @@
 \newcommand{\tp}[1]{(#1)}						%Time of process
 \newcommand{\tip}[1]{#1}						%time interval process	
 \newcommand{\ts}[1]{_{#1}}						%time bound of set
-\newcommand{\slnvind}[2]{^{(#1),#2}}				%vindsln combine
+%DIF 96c96
+%DIF < \newcommand{\slnvind}[2]{^{#1,#2}}				%vindsln combine
+%DIF -------
+\newcommand{\slnvind}[2]{^{(#1),#2}}				%vindsln combine %DIF > 
+%DIF -------
 
 %Section 2.2
 %Base commands
@@ -200,16 +207,20 @@
 %Base commands
 \newcommand{\dist}{d}							%general metric
 \newcommand{\inte}{I}							%Interval
-\renewcommand{\part}{\mc{T}}					%Partition
-\newcommand{\topo}{\mc{T}}						%Topology
+%DIF 203a203-204
+\renewcommand{\part}{\mc{T}}					%Partition %DIF > 
+\newcommand{\topo}{\mc{T}}						%Topology %DIF > 
+%DIF -------
 
 %Modifications
 \newcommand{\vindpst}[2]{^{#1,#2}}				%\vind and \pst
 \newcommand{\slnpst}[2]{^{(#1),#2}}				%\sln and \pst
 \newcommand{\mepst}[2]{^{#1,#2}}				%\me and \pst
 \newcommand{\indxcind}[2]{_{#1,#2}}				%\indx and \cind
-\newcommand{\indcs}[2]{_{#1,#2}}				%two indices
-\newcommand{\indxset}[1]{_{#1}}					%index set
+%DIF 209a211-212
+\newcommand{\indcs}[2]{_{#1,#2}}				%two indices %DIF > 
+\newcommand{\indxset}[1]{_{#1}}					%index set %DIF > 
+%DIF -------
 
 
 
@@ -223,6 +234,84 @@
 \newtheorem{assu}[thms]{Assumption}
 
 \setlength{\parindent}{0pt}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF LISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 
@@ -245,193 +334,193 @@ Title possibilities: Transient dynamics of a typical neighborhood of particles o
 \section*{For The Author's Use Only (FTAUO)}
 \subsection*{Notation}
 
-\begin{longtable}{|c|c|c|c|}
-\hline Macro Command & Arguments & Symbol & Meaning\\\hline
-\multicolumn{4}{|c|}{General Shorthand Macros}\\\hline
-\tbs skipLine & 0 & (no representation) & skips a line\\\hline
-\tbs mb & 0 & (no representation) & math bubble font\\\hline
-\tbs mc & 0 & (no representation) & math calligraphy font\\\hline
-\tbs ms & 0 & (no representation) & math script font\\\hline
-\tbs ra & 0 & \(\ra\) & converges\\\hline
-\tbs ov & 0 & \(\ov{\cdot}\) & overline\\\hline
-\tbs os & 0 & (no representation) & overset\\\hline
-\tbs un & 0 & \(\un{\cdot}\) & underline\\\hline
-\tbs te & 0 & (no representation) & regular text font\\\hline
-\tbs ep & 0 & \(\ep\) & epsilon\\\hline
-\tbs tr & 0 & (no representation) & red text\\\hline
-\tbs tb & 0 & (no representation) & blue text\\\hline
-\tbs tg & 0 & (no representation) & green text\\\hline
-\tbs labe & 1 & \(\labe{Label}\) & label\\\hline
-\tbs tbs & 0 & \tbs & back slash\\\hline
-\tbs purpose & 0 & \(\purpose\) & purpose header\\\hline
-\tbs pfsum & 0 & \(\pfsum\) & Proof summary header\\\hline
-\tbs usein &0  & \(\usein\) & Use in header\\\hline
-\tbs app & 0 & \(\app\) & Applied header\\\hline
-\tbs ind & 0 & (no representation) & indent \\\hline
-\tbs lin & 0 & (no representation) & horizontal line\\\hline
-\tbs pr & 0 & \(\pr\) & probability\\\hline
-\tbs ex & 1 & \(\ex{\cdot}\) & expectation\\\hline
-\tbs exmu & 2 & \(\exmu{\cdot}{\cdot}\) & expectation wrt a measure\\\hline
-\tbs deq & 0 & \(\deq\) & equal in distribution\\\hline	
-\tbs defeq & 0 & \(\defeq\) & definition equals\\\hline	
-\tbs msr & 0 & \(\msr\) & set of measures\\\hline
-\tbs pmsr & 0 & \(\pmsr\) & set of probability measures\\\hline	
-\tbs cad & 0 & \(\cad\) & set of c\`adl\`ag functions\\\hline
-\multicolumn{4}{|c|}{\textbf{Section 2.1}}\\\hline
-\multicolumn{4}{|c|}{Base Commands}\\\hline
-\tbs root & 0 & \(\root\) & root\\\hline
-\tbs v & 0 & \(\v\) & typical vertex\\\hline
-\tbs vv & 0 & \(\vv\) & typical 2nd vertex\\\hline
-\tbs vvv & 0 & \(\vvv\) & typical 3rd vertex\\\hline
-\tbs U & 0 & \(\U\) & typical vertex set\\\hline
-\tbs UU & 0 & \(\UU\) & typical 2nd vert set\\\hline
-\tbs UUU & 0 & \(\UUU\) & typical 3rd vert\\\hline
-\tbs S & 0 & \(\S\) & State space\\\hline
-\tbs s & 0 & \(\s\) & elt of S\\\hline
-\tbs sv & 0 & \(\sv\) & typ elt of XState\\\hline
-\tbs b & 0 & \(\b\) & inf dim norm coeffs\\\hline
-\tbs ev & 0 & \(\ev\) & standard basis\\\hline
-\tbs T & 0 & \(\T\) & time bound\\\hline
-\tbs x & 0 & \(\x\) & typical elt of Omega\\\hline
-\tbs t & 0 & \(\t\) & typical time\\\hline
-\tbs sset & 0 & \(\sset\) & sample set\\\hline
-\tbs proj & 0 & \(\proj\) & projection operator\\\hline
-\tbs tt & 0 & \(\tt\) & typical time 2\\\hline
-\tbs ttt & 0 & \(\ttt\) & typical time 3\\\hline
-\tbs F & 0 & \(\F\) & Filtrations\\\hline
-\tbs FG & 0 & \(\FG\) & Filtrations\\\hline
-\tbs FH & 0 & \(\FH\) & Filtrations\\\hline
-\tbs X & 0 & \(\X\) & typ random process\\\hline
-\tbs IG & 0 & \(\IG\) & Infinitesimal gens\\\hline
-\tbs IGr & 0 & \(\IGr\) & IG rate\\\hline
-\tbs f & 0 & \(\f\) & generic function\\\hline
-\tbs neigh & 0 & \(\neigh\) & neighbor\\\hline
-\tbs dneigh & 0 & \(\dneigh\) & double neighbor\\\hline
-\multicolumn{4}{|c|}{Modifiers}\\\hline
-\tbs vind & 1 & \(\X\vind{\v}\) & indexed by v,V,U etc.\\\hline
-\tbs carp & 1 & \(\S\carp{V}\) & Cartesian power\\\hline
-\tbs vsi & 1 & \(\Omega\vsi{\v}\) & vertex set identifier\\\hline
-\tbs cind & 1 & \(\ev\cind{\v}\) & component index\\\hline
-\tbs cl &  & \(\cl{\tree}\) & closure\\\hline
-\tbs tp & 1 & \(\X\tp{\t}\) & Time of process\\\hline
-\tbs tip & 1 & \(\X\tip{[0,\t)}\) & time interval process	\\\hline
-\tbs ts & 1 & \(\proj\ts{\t}\) & time bound of set\\\hline
-\tbs slnvind & 2 & \(\X\slnvind{n}{\v}\) & vindsln combine\\\hline
-\multicolumn{4}{|c|}{\textbf{Section 2.2}}\\\hline
-\multicolumn{4}{|c|}{Base Commands}\\\hline
-\tbs const & 0 & \(\const\) & Constant\\\hline
-\tbs degr & 0 & \(\degr\) & Max degree of graph\\\hline
-\tbs IGrg & 0 & \(\IGrg\) & Fixed rate function\\\hline
-\tbs gdist & 0 & \(\gdist\) & Graph distance\\\hline
-\tbs tree & 0 & \(\tree\) & Tree\\\hline
-\multicolumn{4}{|c|}{Modifiers}\\\hline
-\tbs sln & 1 & \(\X\sln{n}\) & sublimit numbering\\\hline
-\multicolumn{4}{|c|}{\textbf{Section 2.3}}\\\hline
-\multicolumn{4}{|c|}{Base Commands}\\\hline
-\tbs core & 0 & \(\core\) & Core\\\hline
-\tbs cont & 0 & \(\cont\) & space of cont. fs\\\hline
-\tbs delt & 0 & \(\delt\) & change in f\\\hline
-\tbs ss & 0 & \(\ss\) & 2nd elt of \S\\\hline
-\tbs SS & 0 & \(\SS\) & sub state space\\\hline
-\tbs poisses & 0 & \(\poisses\) & all Poisson processes\\\hline
-\tbs poiss & 0 & \(\poiss\) & Poisson process\\\hline
-\tbs leb & 0 & \(\leb\) & Lebesgue measure\\\hline
-\tbs Sm & 0 & \(\Sm\) & std msr on \S\\\hline
-\tbs rate & 0 & \(\rate\) & rate\\\hline
-\tbs Fpo & 0 & \(\Fpo\) & Picard mapping of SDE\\\hline
-\tbs r & 0 & \(\r\) & space var for poiss\\\hline
-\tbs cconst & 0 & \(\cconst\) & second constant\\\hline
-\tbs modu & 0 & \(\modu\) & modulus of continuity\\\hline
-\tbs cmodu & 0 & \(\cmodu\) & cadlag moc\\\hline
-\multicolumn{4}{|c|}{Modifiers}\\\hline
-\tbs deltf & 1 & \(\triangle\deltf{f}\) & Specify delt function\\\hline
-\tbs alt & 1 & \(\alt{\X}\) & alternate val\\\hline
-\tbs pra & 1 & \(\m\pra{\X}\) & Append process\\\hline
-\tbs indx & 1 & \(\rt\indx{i}\) & index\\\hline
-\tbs pst & 1 & \(\pr\pst{\x}\) & Start of process\\\hline
-\multicolumn{4}{|c|}{\textbf{Section 3}}\\\hline
-\multicolumn{4}{|c|}{Base Commands}\\\hline
-\tbs m & 0 & \(\m\) & typ measure\\\hline
-\tbs mm & 0 & \(\mm\) & typ measure 2\\\hline
-\tbs mmm & 0 & \(\mmm\) & typ measure 3\\\hline
-\tbs cm & 0 & \(\cm\) & conditional msr funct\\\hline
-\tbs law & 0 & \(\law\) & Law of a process\\\hline
-\multicolumn{4}{|c|}{Modifiers}\\\hline
-\tbs me & 1 & \(\pr\me{\m}\) & Append measure\\\hline
-\tbs dnvind & 1 & \(\dneigh\dnvind{\v}\) & vind for dneigh\\\hline
-\multicolumn{4}{|c|}{\textbf{Section 4}}\\\hline
-\tbs XX & 0 & \(\XX\) & second random element\\\hline
-\tbs XXX & 0 & \(\XXX\) & third random elt\\\hline
-\tbs rt & 0 & \(\rt\) & typical rand time\\\hline
-\tbs rtt & 0 & \(\rtt\) & typical rand time 2\\\hline
-\tbs it & 0 & \(\it\) & iterator\\\hline
-\tbs mutex & 0 & \(\mutex\) & Mutually exclusive\\\hline
-\tbs apath & 0 & \(\apath\) & path for CI proof\\\hline
-\tbs pathset & 2 & \(\pathset{i}{j}\) & A space of paths\\\hline
-\tbs pathsete & 2 & \(\pathsete{i}{j}\) & union over pathset\\\hline
-\tbs pathseted & 2 & \(\pathseted{i}{j}(\t)\) & pathsete with t\\\hline
-\tbs evnt & 0 & \(\evnt\) & Typical event\\\hline
-\tbs rv & 0 & \(\rv\) & Typical rand elt\\\hline
-\multicolumn{4}{|c|}{\textbf{Section 5.1}}\\\hline
-\multicolumn{4}{|c|}{Base Commands}\\\hline
-\tbs pmap & 0 & \(\pmap\) & Markov to MPP	\\\hline
-\tbs mark & 0 & \(\mark\) & Typical mark\\\hline
-\tbs rp & 0 & \(\rp\) & typ point process\\\hline
-\tbs Tset & 0 & \(\Tset\) & finite time subset\\\hline
-\tbs typset & 0 & \(\typset\) & Typical set\\\hline
-\tbs ratee & 0 & \(\ratee\) & general rate\\\hline
-\tbs crate & 0 & \(\crate\) & conditional rate\\\hline
-\tbs upcrs & 0 & \(\upcrs\) & upcrossing\\\hline
-\tbs cratee & 0 & \(\cratee\) & general conditional rate\\\hline
-\multicolumn{4}{|c|}{Modifiers}\\\hline
-\tbs gid & 1 & \(\rt\gid{M}\) & generic identifier\\\hline
-\tbs gidd & 1 & \(\rt\gidd{\Tset}\) & second gen ident\\\hline
-\multicolumn{4}{|c|}{\textbf{Section 5.2}}\\\hline
-\multicolumn{4}{|c|}{Base Commands}\\\hline
-\tbs dense & 0 & \(\dense\) & Typ density\\\hline
-\tbs cdense & 0 & \(\cdense\) & Cond density\\\hline
-\tbs ds & 0 & \(\ds\) & mapping in density\\\hline
-\tbs c & 0 & \(\c\) & child function\\\hline
-\tbs p & 0 & \(\p\) & parent function\\\hline
-\multicolumn{4}{|c|}{Modifiers}\\\hline
-\tbs prats & 2 & \(\crate\prats{\rp}{\t}\) & pra and ts\\\hline
-\multicolumn{4}{|c|}{\textbf{Appendix A}}\\\hline
-\tbs spce & 0 & \(\spce\) & arbitrary space\\\hline
-\tbs xx & 0 & \(\xx\) & typ path val2\\\hline
-\tbs xxx & 0 & \(\xxx\) & typ path val3\\\hline
-\multicolumn{4}{|c|}{\textbf{Appendix B}}\\\hline
-\tbs evs & 0 & \(\evs\) & Set of events\\\hline
-\tbs mspce & 0 & \(\mspce\) & Mark space\\\hline
-\tbs rpg & 0 & \(\rpg\) & ground process\\\hline
-\multicolumn{4}{|c|}{\textbf{Appendix C}}\\\hline
-\tbs dist & 0 & \(\dist\) & general metric\\\hline
-\tbs inte & 0 & \(\inte\) & Interval\\\hline
-\tbs part& 0 & \(\part\) & Partition\\\hline
-\tbs topo & 0 & \(\topo\) & Topology\\\hline
-\multicolumn{4}{|c|}{Appendix Modifiers}\\\hline
-\tbs vindpst & 2 & \(\rate\vindpst{\v}{\sv\vsi{V}}\) & vind and pst\\\hline
-\tbs slnpst & 2 & \(\rate\slnpst{n}{\sv\vsi{V}}\) & sln and pst\\\hline
-\tbs mepst & 2 & \(\pr\mepst{i}{\x}\) & me and pst\\\hline
-\tbs indxcind & 2 & \(f\indxcind{k}{1}\) & indx and cind\\\hline
-\tbs indcs & 2 & \(\part\indcs{i}{n}\) & two indices\\\hline
-\tbs indxset & 1 & \(\spce\indxset{A}\) & index set\\\hline
-\end{longtable}
+%\DIFdelbegin %DIFDELCMD < \begin{longtable}{c|c|c|c}
+%%DIFDELCMD < %%%
+%\DIFdelend \DIFaddbegin \begin{longtable}{|c|c|c|c|}
+%\hline \DIFaddend Macro Command & Arguments & Symbol & Meaning\\\hline
+%\DIFaddbegin \multicolumn{4}{|c|}{General Shorthand Macros}\\\hline
+%\DIFadd{\tbs skipLine }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{skips a line}\\\hline
+%\DIFadd{\tbs mb }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{math bubble font}\\\hline
+%\DIFadd{\tbs mc }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{math calligraphy font}\\\hline
+%\DIFadd{\tbs ms }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{math script font}\\\hline
+%\DIFadd{\tbs ra }& \DIFadd{0 }& \DIFadd{\(\ra\) }& \DIFadd{converges}\\\hline
+%\DIFadd{\tbs ov }& \DIFadd{0 }& \DIFadd{\(\ov{\cdot}\) }& \DIFadd{overline}\\\hline
+%\DIFadd{\tbs os }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{overset}\\\hline
+%\DIFadd{\tbs un }& \DIFadd{0 }& \DIFadd{\(\un{\cdot}\) }& \DIFadd{underline}\\\hline
+%\DIFadd{\tbs te }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{regular text font}\\\hline
+%\DIFadd{\tbs ep }& \DIFadd{0 }& \DIFadd{\(\ep\) }& \DIFadd{epsilon}\\\hline
+%\DIFadd{\tbs tr }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{red text}\\\hline
+%\DIFadd{\tbs tb }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{blue text}\\\hline
+%\DIFadd{\tbs tg }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{green text}\\\hline
+%\DIFadd{\tbs labe }& \DIFadd{1 }& \DIFadd{\(\labe{Label}\) }& \DIFadd{label}\\\hline
+%\DIFadd{\tbs tbs }& \DIFadd{0 }& \DIFaddend \tbs \DIFaddbegin & \DIFadd{back slash}\\\hline
+%\DIFadd{\tbs purpose }& \DIFadd{0 }& \DIFadd{\(\purpose\) }& \DIFadd{purpose header}\\\hline
+%\DIFadd{\tbs pfsum }& \DIFadd{0 }& \DIFadd{\(\pfsum\) }& \DIFadd{Proof summary header}\\\hline
+%\DIFadd{\tbs usein }&\DIFadd{0  }& \DIFadd{\(\usein\) }& \DIFadd{Use in header}\\\hline
+%\DIFadd{\tbs app }& \DIFadd{0 }& \DIFadd{\(\app\) }& \DIFadd{Applied header}\\\hline
+%\DIFadd{\tbs ind }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{indent }\\\hline
+%\DIFadd{\tbs lin }& \DIFadd{0 }& \DIFadd{(no representation) }& \DIFadd{horizontal line}\\\hline
+%\DIFadd{\tbs }\DIFaddend pr & 0 & \(\pr\) & probability\\\DIFaddbegin \hline
+%\DIFadd{\tbs ex }& \DIFadd{1 }& \DIFadd{\(\ex{\cdot}\) }& \DIFadd{expectation}\\\hline
+%\DIFadd{\tbs exmu }& \DIFadd{2 }& \DIFadd{\(\exmu{\cdot}{\cdot}\) }& \DIFadd{expectation wrt a measure}\\\hline
+%\DIFadd{\tbs deq }& \DIFadd{0 }& \DIFadd{\(\deq\) }& \DIFadd{equal in distribution}\\\hline	
+%\DIFadd{\tbs defeq }& \DIFadd{0 }& \DIFadd{\(\defeq\) }& \DIFadd{definition equals}\\\hline	
+%\DIFadd{\tbs msr }& \DIFadd{0 }& \DIFadd{\(\msr\) }& \DIFadd{set of measures}\\\hline
+%\DIFadd{\tbs pmsr }& \DIFadd{0 }& \DIFadd{\(\pmsr\) }& \DIFadd{set of probability measures}\\\hline	
+%\DIFadd{\tbs cad }& \DIFadd{0 }& \DIFadd{\(\cad\) }& \DIFadd{set of c\`adl\`ag functions}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Section 2.1}}\\\hline
+%\multicolumn{4}{|c|}{Base Commands}\\\hline
+%\DIFadd{\tbs root }& \DIFadd{0 }& \DIFadd{\(\root\) }& \DIFadd{root}\\\hline
+%\DIFadd{\tbs v }& \DIFadd{0 }& \DIFadd{\(\v\) }& \DIFadd{typical vertex}\\\hline
+%\DIFadd{\tbs vv }& \DIFadd{0 }& \DIFadd{\(\vv\) }& \DIFadd{typical 2nd vertex}\\\hline
+%\DIFadd{\tbs vvv }& \DIFadd{0 }& \DIFadd{\(\vvv\) }& \DIFadd{typical 3rd vertex}\\\hline
+%\DIFadd{\tbs U }& \DIFadd{0 }& \DIFadd{\(\U\) }& \DIFadd{typical vertex set}\\\hline
+%\DIFadd{\tbs UU }& \DIFadd{0 }& \DIFadd{\(\UU\) }& \DIFadd{typical 2nd vert set}\\\hline
+%\DIFadd{\tbs UUU }& \DIFadd{0 }& \DIFadd{\(\UUU\) }& \DIFadd{typical 3rd vert}\\\hline
+%\DIFadd{\tbs S }& \DIFadd{0 }& \DIFadd{\(\S\) }& \DIFadd{State space}\\\hline
+%\DIFadd{\tbs s }& \DIFadd{0 }& \DIFadd{\(\s\) }& \DIFadd{elt of S}\\\hline
+%\DIFadd{\tbs sv }& \DIFadd{0 }& \DIFadd{\(\sv\) }& \DIFadd{typ elt of XState}\\\hline
+%\DIFadd{\tbs b }& \DIFadd{0 }& \DIFadd{\(\b\) }& \DIFadd{inf dim norm coeffs}\\\hline
+%\DIFadd{\tbs ev }& \DIFadd{0 }& \DIFadd{\(\ev\) }& \DIFadd{standard basis}\\\hline
+%\DIFadd{\tbs T }& \DIFadd{0 }& \DIFadd{\(\T\) }& \DIFadd{time bound}\\\hline
+%\DIFadd{\tbs x }& \DIFadd{0 }& \DIFadd{\(\x\) }& \DIFadd{typical elt of Omega}\\\hline
+%\DIFadd{\tbs t }& \DIFadd{0 }& \DIFadd{\(\t\) }& \DIFadd{typical time}\\\hline
+%\DIFadd{\tbs sset }& \DIFadd{0 }& \DIFadd{\(\sset\) }& \DIFadd{sample set}\\\hline
+%\DIFadd{\tbs proj }& \DIFadd{0 }& \DIFadd{\(\proj\) }& \DIFadd{projection operator}\\\hline
+%\DIFadd{\tbs tt }& \DIFadd{0 }& \DIFadd{\(\tt\) }& \DIFadd{typical time 2}\\\hline
+%\DIFadd{\tbs ttt }& \DIFadd{0 }& \DIFadd{\(\ttt\) }& \DIFadd{typical time 3}\\\hline
+%\DIFadd{\tbs F }& \DIFadd{0 }& \DIFadd{\(\F\) }& \DIFadd{Filtrations}\\\hline
+%\DIFadd{\tbs FG }& \DIFadd{0 }& \DIFadd{\(\FG\) }& \DIFadd{Filtrations}\\\hline
+%\DIFadd{\tbs FH }& \DIFadd{0 }& \DIFadd{\(\FH\) }& \DIFadd{Filtrations}\\\hline
+%\DIFadd{\tbs X }& \DIFadd{0 }& \DIFadd{\(\X\) }& \DIFadd{typ random process}\\\hline
+%\DIFadd{\tbs IG }& \DIFadd{0 }& \DIFadd{\(\IG\) }& \DIFadd{Infinitesimal gens}\\\hline
+%\DIFadd{\tbs IGr }& \DIFadd{0 }& \DIFadd{\(\IGr\) }& \DIFadd{IG rate}\\\hline
+%\DIFadd{\tbs f }& \DIFadd{0 }& \DIFadd{\(\f\) }& \DIFadd{generic function}\\\hline
+%\DIFadd{\tbs neigh }& \DIFadd{0 }& \DIFadd{\(\neigh\) }& \DIFadd{neighbor}\\\hline
+%\DIFadd{\tbs dneigh }& \DIFadd{0 }& \DIFadd{\(\dneigh\) }& \DIFadd{double neighbor}\\\hline
+%\multicolumn{4}{|c|}{Modifiers}\\\hline
+%\DIFadd{\tbs vind }& \DIFadd{1 }& \DIFadd{\(\X\vind{\v}\) }& \DIFadd{indexed by v,V,U etc.}\\\hline
+%\DIFadd{\tbs carp }& \DIFadd{1 }& \DIFadd{\(\S\carp{V}\) }& \DIFadd{Cartesian power}\\\hline
+%\DIFadd{\tbs vsi }& \DIFadd{1 }& \DIFadd{\(\Omega\vsi{\v}\) }& \DIFadd{vertex set identifier}\\\hline
+%\DIFadd{\tbs cind }& \DIFadd{1 }& \DIFadd{\(\ev\cind{\v}\) }& \DIFadd{component index}\\\hline
+%\DIFadd{\tbs cl }&  & \DIFadd{\(\cl{\tree}\) }& \DIFadd{closure}\\\hline
+%\DIFadd{\tbs tp }& \DIFadd{1 }& \DIFadd{\(\X\tp{\t}\) }& \DIFadd{Time of process}\\\hline
+%\DIFadd{\tbs tip }& \DIFadd{1 }& \DIFadd{\(\X\tip{[0,\t)}\) }& \DIFadd{time interval process	}\\\hline
+%\DIFadd{\tbs ts }& \DIFadd{1 }& \DIFadd{\(\proj\ts{\t}\) }& \DIFadd{time bound of set}\\\hline
+%\DIFadd{\tbs slnvind }& \DIFadd{2 }& \DIFadd{\(\X\slnvind{n}{\v}\) }& \DIFadd{vindsln combine}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Section 2.2}}\\\hline
+%\multicolumn{4}{|c|}{Base Commands}\\\hline
+%\DIFadd{\tbs const }& \DIFadd{0 }& \DIFadd{\(\const\) }& \DIFadd{Constant}\\\hline
+%\DIFadd{\tbs degr }& \DIFadd{0 }& \DIFadd{\(\degr\) }& \DIFadd{Max degree of graph}\\\hline
+%\DIFadd{\tbs IGrg }& \DIFadd{0 }& \DIFadd{\(\IGrg\) }& \DIFadd{Fixed rate function}\\\hline
+%\DIFadd{\tbs gdist }& \DIFadd{0 }& \DIFadd{\(\gdist\) }& \DIFadd{Graph distance}\\\hline
+%\DIFadd{\tbs tree }& \DIFadd{0 }& \DIFadd{\(\tree\) }& \DIFadd{Tree}\\\hline
+%\multicolumn{4}{|c|}{Modifiers}\\\hline
+%\DIFadd{\tbs sln }& \DIFadd{1 }& \DIFadd{\(\X\sln{n}\) }& \DIFadd{sublimit numbering}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Section 2.3}}\\\hline
+%\multicolumn{4}{|c|}{Base Commands}\\\hline
+%\DIFadd{\tbs core }& \DIFadd{0 }& \DIFadd{\(\core\) }& \DIFadd{Core}\\\hline
+%\DIFadd{\tbs cont }& \DIFadd{0 }& \DIFadd{\(\cont\) }& \DIFadd{space of cont. fs}\\\hline
+%\DIFadd{\tbs delt }& \DIFadd{0 }& \DIFadd{\(\delt\) }& \DIFadd{change in f}\\\hline
+%\DIFadd{\tbs ss }& \DIFadd{0 }& \DIFadd{\(\ss\) }& \DIFadd{2nd elt of \S}\\\hline
+%\DIFadd{\tbs SS }& \DIFadd{0 }& \DIFadd{\(\SS\) }& \DIFadd{sub state space}\\\hline
+%\DIFadd{\tbs poisses }& \DIFadd{0 }& \DIFadd{\(\poisses\) }& \DIFadd{all Poisson processes}\\\hline
+%\DIFadd{\tbs poiss }& \DIFadd{0 }& \DIFadd{\(\poiss\) }& \DIFadd{Poisson process}\\\hline
+%\DIFadd{\tbs leb }& \DIFadd{0 }& \DIFadd{\(\leb\) }& \DIFadd{Lebesgue measure}\\\hline
+%\DIFadd{\tbs Sm }& \DIFadd{0 }& \DIFadd{\(\Sm\) }& \DIFadd{std msr on \S}\\\hline
+%\DIFadd{\tbs rate }& \DIFadd{0 }& \DIFadd{\(\rate\) }& \DIFadd{rate}\\\hline
+%\DIFadd{\tbs Fpo }& \DIFadd{0 }& \DIFadd{\(\Fpo\) }& \DIFadd{Picard mapping of SDE}\\\hline
+%\DIFadd{\tbs r }& \DIFadd{0 }& \DIFadd{\(\r\) }& \DIFadd{space var for poiss}\\\hline
+%\DIFadd{\tbs cconst }& \DIFadd{0 }& \DIFadd{\(\cconst\) }& \DIFadd{second constant}\\\hline
+%\DIFadd{\tbs modu }& \DIFadd{0 }& \DIFadd{\(\modu\) }& \DIFadd{modulus of continuity}\\\hline
+%\DIFadd{\tbs cmodu }& \DIFadd{0 }& \DIFadd{\(\cmodu\) }& \DIFadd{cadlag moc}\\\hline
+%\multicolumn{4}{|c|}{Modifiers}\\\hline
+%\DIFadd{\tbs deltf }& \DIFadd{1 }& \DIFadd{\(\triangle\deltf{f}\) }& \DIFadd{Specify delt function}\\\hline
+%\DIFadd{\tbs alt }& \DIFadd{1 }& \DIFadd{\(\alt{\X}\) }& \DIFadd{alternate val}\\\hline
+%\DIFadd{\tbs pra }& \DIFadd{1 }& \DIFadd{\(\m\pra{\X}\) }& \DIFadd{Append process}\\\hline
+%\DIFadd{\tbs indx }& \DIFadd{1 }& \DIFadd{\(\rt\indx{i}\) }& \DIFadd{index}\\\hline
+%\DIFadd{\tbs pst }& \DIFadd{1 }& \DIFadd{\(\pr\pst{\x}\) }& \DIFadd{Start of process}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Section 3}}\\\hline
+%\multicolumn{4}{|c|}{Base Commands}\\\hline
+%\DIFadd{\tbs m }& \DIFadd{0 }& \DIFadd{\(\m\) }& \DIFadd{typ measure}\\\hline
+%\DIFadd{\tbs mm }& \DIFadd{0 }& \DIFadd{\(\mm\) }& \DIFadd{typ measure 2}\\\hline
+%\DIFadd{\tbs mmm }& \DIFadd{0 }& \DIFadd{\(\mmm\) }& \DIFadd{typ measure 3}\\\hline
+%\DIFadd{\tbs cm }& \DIFadd{0 }& \DIFadd{\(\cm\) }& \DIFadd{conditional msr funct}\\\hline
+%\DIFadd{\tbs law }& \DIFadd{0 }& \DIFadd{\(\law\) }& \DIFadd{Law of a process}\\\hline
+%\multicolumn{4}{|c|}{Modifiers}\\\hline
+%\DIFadd{\tbs me }& \DIFadd{1 }& \DIFadd{\(\pr\me{\m}\) }& \DIFadd{Append measure}\\\hline
+%\DIFadd{\tbs dnvind }& \DIFadd{1 }& \DIFadd{\(\dneigh\dnvind{\v}\) }& \DIFadd{vind for dneigh}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Section 4}}\\\hline
+%\DIFadd{\tbs XX }& \DIFadd{0 }& \DIFadd{\(\XX\) }& \DIFadd{second random element}\\\hline
+%\DIFadd{\tbs XXX }& \DIFadd{0 }& \DIFadd{\(\XXX\) }& \DIFadd{third random elt}\\\hline
+%\DIFadd{\tbs rt }& \DIFadd{0 }& \DIFadd{\(\rt\) }& \DIFadd{typical rand time}\\\hline
+%\DIFadd{\tbs rtt }& \DIFadd{0 }& \DIFadd{\(\rtt\) }& \DIFadd{typical rand time 2}\\\hline
+%\DIFadd{\tbs it }& \DIFadd{0 }& \DIFadd{\(\it\) }& \DIFadd{iterator}\\\hline
+%\DIFadd{\tbs mutex }& \DIFadd{0 }& \DIFadd{\(\mutex\) }& \DIFadd{Mutually exclusive}\\\hline
+%\DIFadd{\tbs apath }& \DIFadd{0 }& \DIFadd{\(\apath\) }& \DIFadd{path for CI proof}\\\hline
+%\DIFadd{\tbs pathset }& \DIFadd{2 }& \DIFadd{\(\pathset{i}{j}\) }& \DIFadd{A space of paths}\\\hline
+%\DIFadd{\tbs pathsete }& \DIFadd{2 }& \DIFadd{\(\pathsete{i}{j}\) }& \DIFadd{union over pathset}\\\hline
+%\DIFadd{\tbs pathseted }& \DIFadd{2 }& \DIFadd{\(\pathseted{i}{j}(\t)\) }& \DIFadd{pathsete with t}\\\hline
+%\DIFadd{\tbs evnt }& \DIFadd{0 }& \DIFadd{\(\evnt\) }& \DIFadd{Typical event}\\\hline
+%\DIFadd{\tbs rv }& \DIFadd{0 }& \DIFadd{\(\rv\) }& \DIFadd{Typical rand elt}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Section 5.1}}\\\hline
+%\multicolumn{4}{|c|}{Base Commands}\\\hline
+%\DIFadd{\tbs pmap }& \DIFadd{0 }& \DIFadd{\(\pmap\) }& \DIFadd{Markov to MPP	}\\\hline
+%\DIFadd{\tbs mark }& \DIFadd{0 }& \DIFadd{\(\mark\) }& \DIFadd{Typical mark}\\\hline
+%\DIFadd{\tbs rp }& \DIFadd{0 }& \DIFadd{\(\rp\) }& \DIFadd{typ point process}\\\hline
+%\DIFadd{\tbs Tset }& \DIFadd{0 }& \DIFadd{\(\Tset\) }& \DIFadd{finite time subset}\\\hline
+%\DIFadd{\tbs typset }& \DIFadd{0 }& \DIFadd{\(\typset\) }& \DIFadd{Typical set}\\\hline
+%\DIFadd{\tbs ratee }& \DIFadd{0 }& \DIFadd{\(\ratee\) }& \DIFadd{general rate}\\\hline
+%\DIFadd{\tbs crate }& \DIFadd{0 }& \DIFadd{\(\crate\) }& \DIFadd{conditional rate}\\\hline
+%\DIFadd{\tbs upcrs }& \DIFadd{0 }& \DIFadd{\(\upcrs\) }& \DIFadd{upcrossing}\\\hline
+%\DIFadd{\tbs cratee }& \DIFadd{0 }& \DIFadd{\(\cratee\) }& \DIFadd{general conditional rate}\\\hline
+%\multicolumn{4}{|c|}{Modifiers}\\\hline
+%\DIFadd{\tbs gid }& \DIFadd{1 }& \DIFadd{\(\rt\gid{M}\) }& \DIFadd{generic identifier}\\\hline
+%\DIFadd{\tbs gidd }& \DIFadd{1 }& \DIFadd{\(\rt\gidd{\Tset}\) }& \DIFadd{second gen ident}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Section 5.2}}\\\hline
+%\multicolumn{4}{|c|}{Base Commands}\\\hline
+%\DIFadd{\tbs dense }& \DIFadd{0 }& \DIFadd{\(\dense\) }& \DIFadd{Typ density}\\\hline
+%\DIFadd{\tbs cdense }& \DIFadd{0 }& \DIFadd{\(\cdense\) }& \DIFadd{Cond density}\\\hline
+%\DIFadd{\tbs ds }& \DIFadd{0 }& \DIFadd{\(\ds\) }& \DIFadd{mapping in density}\\\hline
+%\DIFadd{\tbs c }& \DIFadd{0 }& \DIFadd{\(\c\) }& \DIFadd{child function}\\\hline
+%\DIFadd{\tbs p }& \DIFadd{0 }& \DIFadd{\(\p\) }& \DIFadd{parent function}\\\hline
+%\multicolumn{4}{|c|}{Modifiers}\\\hline
+%\DIFadd{\tbs prats }& \DIFadd{2 }& \DIFadd{\(\crate\prats{\rp}{\t}\) }& \DIFadd{pra and ts}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Appendix A}}\\\hline
+%\DIFadd{\tbs spce }& \DIFadd{0 }& \DIFadd{\(\spce\) }& \DIFadd{arbitrary space}\\\hline
+%\DIFadd{\tbs xx }& \DIFadd{0 }& \DIFadd{\(\xx\) }& \DIFadd{typ path val2}\\\hline
+%\DIFadd{\tbs xxx }& \DIFadd{0 }& \DIFadd{\(\xxx\) }& \DIFadd{typ path val3}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Appendix B}}\\\hline
+%\DIFadd{\tbs evs }& \DIFadd{0 }& \DIFadd{\(\evs\) }& \DIFadd{Set of events}\\\hline
+%\DIFadd{\tbs mspce }& \DIFadd{0 }& \DIFadd{\(\mspce\) }& \DIFadd{Mark space}\\\hline
+%\DIFadd{\tbs rpg }& \DIFadd{0 }& \DIFadd{\(\rpg\) }& \DIFadd{ground process}\\\hline
+%\multicolumn{4}{|c|}{\textbf{Appendix C}}\\\hline
+%\DIFadd{\tbs dist }& \DIFadd{0 }& \DIFadd{\(\dist\) }& \DIFadd{general metric}\\\hline
+%\DIFadd{\tbs inte }& \DIFadd{0 }& \DIFadd{\(\inte\) }& \DIFadd{Interval}\\\hline
+%\DIFadd{\tbs part}& \DIFadd{0 }& \DIFadd{\(\part\) }& \DIFadd{Partition}\\\hline
+%\DIFadd{\tbs topo }& \DIFadd{0 }& \DIFadd{\(\topo\) }& \DIFadd{Topology}\\\hline
+%\multicolumn{4}{|c|}{Appendix Modifiers}\\\hline
+%\DIFadd{\tbs vindpst }& \DIFadd{2 }& \DIFadd{\(\rate\vindpst{\v}{\sv\vsi{V}}\) }& \DIFadd{vind and pst}\\\hline
+%\DIFadd{\tbs slnpst }& \DIFadd{2 }& \DIFadd{\(\rate\slnpst{n}{\sv\vsi{V}}\) }& \DIFadd{sln and pst}\\\hline
+%\DIFadd{\tbs mepst }& \DIFadd{2 }& \DIFadd{\(\pr\mepst{i}{\x}\) }& \DIFadd{me and pst}\\\hline
+%\DIFadd{\tbs indxcind }& \DIFadd{2 }& \DIFadd{\(f\indxcind{k}{1}\) }& \DIFadd{indx and cind}\\\hline
+%\DIFadd{\tbs indcs }& \DIFadd{2 }& \DIFadd{\(\part\indcs{i}{n}\) }& \DIFadd{two indices}\\\hline
+%\DIFadd{\tbs indxset }& \DIFadd{1 }& \DIFadd{\(\spce\indxset{A}\) }& \DIFadd{index set}\\\hline
+%\DIFaddend \end{longtable}
+%\DIFdelbegin %DIFDELCMD < 
+%
+%%DIFDELCMD < %%%
+%\DIFdelend 
 \subsection*{TODO}
 
 Resolve notation problems:
 
 \begin{itemize}
-\item The proof of uniqueness in theorem \ref{sec::Main:Thm::Local SDE} shows that any solution to the local SDE is the marginal distribution of a weak solution to equation \eqref{subsec::Well-:Eqn::SDE}. However, I've only proved that such equations have unique strong solutions. Make sure that this equation has a unique weak solution in law.
+\item Complete notation macros
 
-\item Update the purpose and used in headers.
+\item Try removing references to measure space \(\pmsr(\cdot)\) in section 2.
 
-\item Standardize Poisson integration order
-
-\item Standardize capitalization (or lack thereof) of "lemma","theorem","proposition" and "corollary".
-
-\item Look for resources regarding well-posedness of infinite Poisson SDEs and local weak convergence of such SDEs. Most results in section 2 seem extremely standard.
-
-\item revise literature review.
+\item Finish all proofs.
 \end{itemize}
 
 \section{Introduction}
@@ -608,7 +697,7 @@ where we define,
 \app \cite[Theorem 3.9]{Lig85} and Assumption \ref{subsec::Assum:Assu::CI}.
 
 \begin{proof}
-By lemma \ref{sec::Infin:Lem::IPS-IG}, it suffices to show that:
+By \cite[Theorem 3.9 (a) and (b)]{Lig85}, it suffices to show that:
 
 \begin{enumerate}[i)]
 \item 
@@ -937,43 +1026,6 @@ By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X\) appl
 &\os{\te{Lebesgue Differentiation}}{=} \sum_{\v \in V} \int_\S \IGr\vind{\v}(\sv\vsi{V},\s)[f(\sv\vsi{V} + \s\ev\vind{\v}) - f(\sv\vsi{V})]\,\Sm(d\s)\\
 &= \sum_{\v \in V} \sum_{\s \in \S} \IGr\vind{\v}(\sv\vsi{V},\s)[f(\sv\vsi{V} + \s\ev\vind{\v}) - f(\sv\vsi{V})]
 \end{align*}
-\end{proof}
-
-\lin
-
-\begin{lem}
-Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \((\X,\{\poiss\vind{\v}:\v\in V\})\) be any weak solution to equation \eqref{subsec::Well-:Eqn::SDE} such that \(\X\) is adapted to \(\sigma(\X\tp{0})\vee\F\pra{\{\poiss\vind{\v}\}}\), where \(\F\pra{\{\poiss\vind{\v}\}}\) is the natural filtration of \(\{\poiss\vind{\v}\}\). Suppose also that \(\{\poiss\vind{\v}\}\) is still a Poisson process with the same rate after conditioning on the event \(\{\X\ts{0} = \sv\vsi{V}\}\) for all \(\sv\vsi{V} \in \S\carp{V}\). Let \(\alt{\X}\) be the unique strong solution to the same equation. Then \(\law(\X) = \law(\alt{\X})\).
-\label{subsec::Well-:Lem::weaksoln}
-\end{lem}
-\labe{subsec::Well-:Lem::weaksoln}
-
-\begin{proof}
-Because \(\X\) is adapted to \(\sigma(\X\tp{0})\vee\F\pra{\{\poiss\vind{\v}\}}\), for every \(\t\in [0,\T]\), there exists a measurable mapping \(F\ts{\t}:\S\carp{V}\times \left(\otimes_{i=0}^\infty ([0,\t)\times\mb{R}_+\times\S\carp{V})^i\right)\ra \S\carp{V}\) such that,
-
-\[\X\tp{\t} = F\ts{\t}\left(\X\tp{0},\{\poiss\vind{\v}((\tt,\r,\alt{\sv}\vsi{V})):\v\in V,\tt \in [0,\t),\r\in\mb{R}_+,\alt{\sv}\vsi{V} \in \S\carp{V}\}\right).\]
-
-Assume \(\alt{X}\) is defined on a probability space with Poisson processes \(\{\alt{\poiss}\vind{\v}\}\) (the intensity measures of these processes is given in Proposition \ref{subsec::Well-:Lem::SDEWP}). By uniqueness of the strong solution,
-
-\[\alt{X}\tp{\t} = F\ts{\t}\left(\alt{\X}\tp{0},\{\alt{\poiss}\vind{\v}((\tt,\r,\alt{\sv}\vsi{V})):\v\in V,\tt \in [0,\t),\r\in\mb{R}_+,\alt{\sv}\vsi{V} \in \S\carp{V}\}\right).\]
-
-Let \(\X\pst{\sv\vsi{V}}\) be \(\X\) conditioned on the event \(\{\X\tp{0} = \sv\vsi{V}\}\). Similarly, set \(\poiss\vindpst{\v}{\sv\vsi{V}}\) to be \(\poiss\vind{\v}\) conditioned on the event \(\{\X\tp{0} = \sv\vsi{V}\}\). Finally, let \(\alt{\X}\pst{\sv\vsi{V}}\) be \(\alt{\X}\)  conditioned on the event \(\{\alt{\X}\tp{0} = \sv\vsi{V}\}\). By assumption, \(\poiss\vindpst{\v}{\sv\vsi{V}}\) are Poisson processes with the same intensity as \(\alt{\poiss}\vind{\v}\). Thus, for any \(\t \in [0,\T]\),
-
-\begin{align*}
-\X\pst{\sv\vsi{V}}\tp{t} &= F\ts{\t}\left(\sv\vsi{V},\{\poiss\vindpst{\v}{\sv\vsi{V}}((\tt,\r,\alt{\sv}\vsi{V})):\v\in V,\tt \in [0,\t),\r\in\mb{R}_+,\alt{\sv}\vsi{V} \in \S\carp{V}\}\right)\\
-&\deq F\ts{\t}\left(\sv\vsi{V},\{\alt{\poiss}\vind{\v}((\tt,\r,\alt{\sv}\vsi{V})):\v\in V,\tt \in [0,\t),\r\in\mb{R}_+,\alt{\sv}\vsi{V} \in \S\carp{V}\}\right)\\
-&= \alt{X}\pst{\sv\vsi{V}}\tp{\t}.
-\end{align*}
-
-Since \(\X\tp{0} \deq \alt{X}\tp{0}\), it follows that \(\X\tp{\t} \deq \alt{X}\tp{\t}\) for all \(\t\in [0,\T]\). Given \(0\leq \tt < \t \leq \T\) and using the time-homogeneity of equation \eqref{subsec::Well-:Eqn::SDE}, we can write a similar expression proving that,
-
-\begin{align*}
-\left(\X\pst{\sv\vsi{V}}\tp(\t),\X\pst{\sv\vsi{V}}\tp(\tt)\right) &= \left(\X\pst{\X\pst{\sv\vsi{V}}\tp{\tt}}\tp{\t-\tt},\X\pst{\sv\vsi{V}}\tp{\tt}\right)\\
-&\deq \left(\alt{\X}\pst{\alt{\X}\pst{\sv\vsi{V}}\tp{\tt}}\tp{\t-\tt},\alt{\X}\pst{\sv\vsi{V}}\tp{\tt}\right)\\
-&= \left(\alt{\X}\pst{\sv\vsi{V}}\tp{\t},\alt{\X}\pst{\sv\vsi{V}}\tp{\tt}\right).
-\end{align*}
-
-By iterating, conclude that the finite dimensional distributions of \(\X\) and \(\alt{\X}\) are equal in distribution. Since both processes have c\`adl\`ag sample paths, we can conclude that they are equal in distribution.
-
 \end{proof}
 
 \lin
@@ -1937,6 +1989,8 @@ Notice that \(\X\sln{1}\) and \(\rate\) satisfy Assumption \ref{subsec::ProofE:A
 
 \lin
 
+\tr{TODO::standardize space, time and mark orderings of Poisson processes.}
+
 \begin{defn}
 Suppose \(\{\poiss\}\) is Poisson process with intensity \(\leb\otimes \Sm\) on \(\mb{R}^2\times \S\). Define,
 
@@ -2037,7 +2091,7 @@ So,
 
 The important thing is that this can be used to extend \(\X\sln{1}\) to a process with nodes in \(\tree\sln{2}\) whose marginal distribution with respect to the nodes on \(\tree\sln{1}\) is equal to \(\X\sln{1}\). To do that, consider the following notation:
 
-Let \(\v \in V\setminus\{\root\}\). Let \(\c\vind{\v} = (\c\cind{1}\vind{\v},\dots,\c\cind{\degr-1}\vind{\v})\) be the children of \(\v\). Let \(\p\vind{\v} \in V\) be the parent of \(\v\).
+\ind \tr{(These are not functions anymore)} Let \(\v \in V\setminus\{\root\}\). Let \(\c:V\setminus\{\root\} \ra V^{\degr-1}\) be defined such that \(\c\vind{\v} = (\c\cind{1}\vind{\v},\dots,\c\cind{\degr-1}\vind{\v})\) are the children of \(\v\). Let \(\p:V\setminus\{\root\}\ra V\) map nodes to their parent.
 
 \ind We can define the sequence of functions \(\dense\sln{n}\ts{\t}: \sset\vsi{\tree\sln{n}}\ts{\t-} \ra [0,\infty)\) by,
 
@@ -2108,33 +2162,49 @@ By property (b) above, this is well-defined. Since each \(\mmm\vind{\U}\) is a p
 
 \[\proj\vsi{\UU}\ts{\t}(\mmm\vind{\U}\ts{\t})(\cdot) = \mmm\vind{\U}\ts{\t}\left(\proj\vsi{\UU}\ts{\t}(\X\sln{n}\cind{\U}) \in \cdot\right) = \mmm\sln{n}\ts{\t}\left(\X\sln{n}\cind{\UU} \in \cdot\right) = \mmm\vind{\UU}\ts{\t}(\cdot).\]
 
-Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied (Lemma \ref{sec::TL:Lem::DanKolExt}). Therefore, there exists a \(\mmm\in \ms{P}(\sset\vsi{\U}\ts{\T-})\) such that \(\proj\vsi{\U}\ts{\T-}(\mmm) =\mmm\vind{\U}\) for all finite \(\U\).
+Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfied \DIFaddbegin \DIFadd{(Lemma \ref{sec::TL:Lem::DanKolExt})}\DIFaddend . Therefore, there exists a \(\mmm\in \ms{P}(\sset\vsi{\U}\ts{\T-})\) such that \(\proj\vsi{\U}\ts{\T-}(\mmm) =\mmm\vind{\U}\) for all finite \(\U\).
+\DIFdelbegin \DIFdel{\tr{citation needed (Reading off of Lecture notes (Theorem 2.4.3) which were used as the basis of Terence Tao's measure theory book)}.
+}\DIFdelend 
 
-\ind In particular, there exists a probability space with canonical process \(\X\) such that \(\mmm = \law(\X\tip{[0,\T)})\) and \(\mmm\vind{\v} = \law(\X\cind{\v}\tip{[0,\T)})\) for all \(\v \in V\). In particular, this means that \(\law(\X\cind{\tree\sln{n}}\tip{[0,\T)}) = \mmm\vind{\tree\sln{n}} = \mmm\sln{n}\). Since \(\X\cind{\tree\sln{n}} \ra \X\) almost surely (we are in the topology of componentwise convergence), \(\mmm\sln{n} \Rightarrow \mmm\). In order to characterize \(\X\) and \(\mmm\), we construct a stochastic differential equation on a probability space on which \(\X\sln{n} \sim \mmm\sln{n}\) and \(\X\sln{n} = \X\cind{\tree\sln{n}}\) almost surely. \tr{I don't know if it's clear, but we are taking \(\X\sln{n}\) and \(\X\) as given in this probability space.}
+\ind In particular, there exists a probability space with canonical process \(\X\) such that \(\mmm = \law(\X\tip{[0,\T)})\) and \(\mmm\vind{\v} = \law(\X\cind{\v}\tip{[0,\T)})\) for all \(\v \in V\). In particular, this means that \(\law(\X\cind{\tree\sln{n}}\tip{[0,\T)}) = \mmm\vind{\tree\sln{n}} = \mmm\sln{n}\). Since \(\X\cind{\tree\sln{n}} \ra \X\) almost surely (we are in the topology of componentwise convergence), \(\mmm\sln{n} \Rightarrow \mmm\). In order to characterize \(\X\) and \(\mmm\), we construct a stochastic differential equation on a probability space on which \(\X\sln{n} \sim \mmm\sln{n}\) and \(\X\sln{n} = \X\cind{\tree\sln{n}}\) almost surely. \DIFdelbegin \DIFdel{\tr{I don'\t know if it's clear, but we are taking \(\X\sln{n}\) and \(\X\) as given in this probability space.}
+}\DIFdelend \DIFaddbegin \DIFadd{\tr{I don't know if it's clear, but we are taking \(\X\sln{n}\) and \(\X\) as given in this probability space.}
+}\DIFaddend 
 
-\ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. See Lemma \ref{sec::TL:Lem::embedding}).
+\ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. \DIFdelbegin \DIFdel{The result is given in \mbox{%DIFAUXCMD
+\cite[Exercise 14.7.1]{DalVer08} }\hspace{0pt}%DIFAUXCMD
+\tr{TODO: rigorously solve this exercise myself}}\DIFdelend \DIFaddbegin \DIFadd{See Lemma \ref{sec::TL:Lem::embedding}}\DIFaddend ).
 
 \ind Let \(\alt{\S}^n = \{\s\ev\vind{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S\carp{V}\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev\vind{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v}\}\) be the jump sizes and jump times of \(\X\sln{n}\cind{\v}\). Let \(\alt{\poiss}\sln{n}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss}\sln{n}(\evnt) = \alt{\poiss}\sln{n-1}(\evnt)\). Assume \(\{\alt{\poiss}\sln{n}:n\in\mb{N}\}\) are independent of \(\{\X,\X\sln{n}:n\in\mb{N}\}\). Let \(\{\rv\vind{\v}\indx{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
 
 \ind Recall the mapping \(\pmap(\cdot)\) from Definition \ref{subsec::ProofE:Defn::pmap}. Define the Marked point process \(\rp\sln{n} = \pmap(\X\sln{n})\). Then the intensity of \(\rp\sln{n}\) is given by,
 
-\begin{equation}
-\rate\sln{n}(\t,\sv\vsi{\tree\sln{n}}) = \begin{cases}
+\DIFdelbegin \[\DIFdel{\rate\sln{n}(\t,\sv\vsi{\tree\sln{n}}) = \begin{cases}
+\rate(\X\sln{n}\cind{\cl{\v}}\tp{\t-},\s) &\te{ if } \sv\vsi{\tree\sln{n}} = \s\ev\vind{\v},\s \in \S\setminus\{0\},\v\in\tree\sln{n-1}\\
+\crate(\X\sln{n}\cind{\{\v,\p\vind{\v}\}}\tip{[0,\t)},\s) &\te{ if } \sv\vsi{\tree\sln{n}} = \s\ev\vind{\v},\s\in\S\setminus\{0\},\v\in\tree\sln{n}\setminus\tree\sln{n-1}\\
+0 &\te{ otherwise.}
+\end{cases}}\]%DIFAUXCMD
+\DIFdelend \DIFaddbegin \begin{equation}
+\DIFadd{\rate\sln{n}(\t,\sv\vsi{\tree\sln{n}}) = \begin{cases}
 \rate(\X\sln{n}\cind{\cl{\v}}\tp{\t-},\s) &\te{ if } \sv\vsi{\tree\sln{n}} = \s\ev\vind{\v},\s \in \S\setminus\{0\},\v\in\tree\sln{n-1}\\
 \crate(\X\sln{n}\cind{\{\v,\p\vind{\v}\}}\tip{[0,\t)},\s) &\te{ if } \sv\vsi{\tree\sln{n}} = \s\ev\vind{\v},\s\in\S\setminus\{0\},\v\in\tree\sln{n}\setminus\tree\sln{n-1}\\
 0 &\te{ otherwise.}
 \end{cases}
 \label{subsec::ProofU:eqn::pmaprate}
-\end{equation}
-\labe{subsec::ProofU:eqn::pmaprate}
+}\end{equation}\DIFaddend 
+\DIFaddbegin \DIFadd{\labe{subsec::ProofU:eqn::pmaprate}
+}\DIFaddend 
 
 For any \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^n\times\mb{R}^+)\), define
 
-\begin{align}
-\poiss\sln{n}(\evnt)& = \alt{\poiss}\sln{n}\left(\evnt\cap\{(\t,\sv\vsi{\tree\sln{n}},\r):\r > \rate\sln{n}(\t,\sv\vsi{\tree\sln{n}})\}\right)\nonumber\\
-&\hspace{24 pt} + \#\{(\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v},\rv\vind{\v}\indx{\it}\rate\sln{n}(\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v}) \in \evnt: \v\in \tree\sln{n}\}.
+\DIFdelbegin \begin{displaymath}
+\DIFdel{\poiss\sln{n}(\evnt) = \alt{\poiss}\sln{n}\left(\evnt\cap\{(\t,\sv\vsi{\tree\sln{n}},\r):\r > \rate\sln{n}(\t,\sv\vsi{\tree\sln{n}})\}\right) + \#\{(\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v},\rv\vind{\v}\indx{\it}\rate\sln{n}(\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v}) \in \evnt: \v\in \tree\sln{n}\}.
+%DIFDELCMD < \label{subsec::ProofU:eqn::Poissonexpl}%%%
+}\end{displaymath}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \begin{align}
+\DIFadd{\poiss\sln{n}(\evnt)}& \DIFadd{= \alt{\poiss}\sln{n}\left(\evnt\cap\{(\t,\sv\vsi{\tree\sln{n}},\r):\r > \rate\sln{n}(\t,\sv\vsi{\tree\sln{n}})\}\right)\nonumber}\\
+&\DIFadd{\hspace{24 pt} + \#\{(\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v},\rv\vind{\v}\indx{\it}\rate\sln{n}(\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v}) \in \evnt: \v\in \tree\sln{n}\}.
 \label{subsec::ProofU:eqn::Poissonexpl}
-\end{align}
+}\end{align}\DIFaddend 
 \labe{subsec::ProofU:eqn::Poissonexpl}
 
 Then \(\poiss\sln{n}\) is a Poisson random measure on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times \alt{\Sm}^n\times d\r\) (see proof of \cite[Theorem 14.7.1(b)]{DalVer08})
@@ -2158,14 +2228,16 @@ Then \(\{\poiss\vind{\v}\}\) and \(\{\alt{\poiss}\vind{\v}\}\) are both sequence
 \lin
 
 \begin{lem}
-The claims above are true. Namely, \(\poiss\sln{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss\vind{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss\vind{\vv},\alt{\poiss}\vind{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\). Finally, the joint distribution of \(\{\poiss\vind{\vv},\alt{\poiss}\vind{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) does not change when conditioned on \(\{\X\tp{0} = \sv\vsi{V}\}\) for any \(\sv\vsi{V}\in \S\carp{V}\).
+The claims above are true. Namely, \(\poiss\sln{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss\vind{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss\vind{\vv},\alt{\poiss}\vind{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\).
 
 \label{subsec::ProofU:Lem::Poisson}
 \end{lem}
 \labe{subsec::ProofU:Lem::Poisson}
 \begin{proof}
 
-Fix \(n \in \mb{N}\). Notice that all of the assumptions of Lemma \ref{sec::TL:Lem::fatembedding} are satisfied by \(\rp\sln{n}\) and its intensity given in equation \eqref{subsec::ProofU:eqn::pmaprate}. Then, by Lemma \ref{sec::TL:Lem::fatembedding}, \(\poiss\sln{n}\) is a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\) even when conditioned on events of the form \(\{\X\tp{0} = \sv\vsi{V}\}\).
+Fix \(n \in \mb{N}\). Notice that \DIFdelbegin \DIFdel{most }\DIFdelend \DIFaddbegin \DIFadd{all }\DIFaddend of the assumptions of \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite[Proposition 14.7.I(b)]{DalVer08} }\hspace{0pt}%DIFAUXCMD
+are satisfied , except the filtration with respect to which \(\rate\sln{n}\) is predictable is slightly larger (the proposition requires the filtration to only contain the jumps of \(\X\sln{n}\), but not the initial state). However, the proof of the proposition does not fail when the initial state is included in the filtration (Lemma \ref{sec::TL:Lem::embedding}). Furthermore}\DIFdelend \DIFaddbegin \DIFadd{Lemma \ref{sec::TL:Lem::fatembedding} are satisfied by \(\rp\sln{n}\) and its intensity given in equation }\eqref{subsec::ProofU:eqn::pmaprate}\DIFadd{. Then, by Lemma \ref{sec::TL:Lem::fatembedding}}\DIFaddend , \(\poiss\sln{n}\) is \DIFdelbegin \DIFdel{the Poisson process constructed in the proof, so it is }\DIFdelend a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\).
 
 \ind By construction, \(\poiss\vind{\v}\) is the restriction of \(\poiss\sln{n}\) to \(\mb{R}^+ \times \{\s\ev\vind{\v}: \s\in \S\}\times \mb{R}^+\) for all \(\v\in \tree\sln{n-1}\). Thus, for any finite \(\U \subset V\), there exists a \(n\) such that \(\U \subseteq \tree\sln{n-1}\), so \(\{\poiss\vind{\v}: \v\in \U\}\) are i.i.d. Thus, \(\{\poiss\vind{\v}: \v\in V\}\) are i.i.d.
 
@@ -2202,7 +2274,7 @@ Thus, \(\X\) is a solution to the coupled equation,
 \end{equation}
 \labe{subsec::ProofU:eqn::XSDE}
 
-\(\X\) is clearly adapted to the natural filtration of \(\{\poiss\vind{\v}\}\) augmented by \(\sigma(\X\tp{0})\). By Lemma \ref{subsec::ProofU:Lem::Poisson}, \(\{\poiss\vind{\v}\}\) remain i.i.d. unit intensity Poisson processes when conditioned on the initial state of \(\X\). Furthermore, \(\X\) is a weak solution to equation \eqref{subsec::Well-:Eqn::SDE}. By lemma \ref{subsec::Well-:Lem::weaksoln}, the law of \(\X\) coincides with the law of the unique strong solution to the equation. The unique strong solution has distribution \(\m\). Thus, \(\mmm = \m\). We conclude that \(\mmm\sln{1} = \proj\vsi{\tree\sln{1}}\ts{\T-}(\m)\).
+However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m\). Thus, \(\mmm = \m\). We conclude that \(\mmm\sln{1} = \proj\vsi{\tree\sln{1}}\ts{\T-}(\m)\).
 
 \end{proof}
 
@@ -2326,31 +2398,6 @@ Let \(\IG\) be an infinitesimal generator. A dense subset \(\core\subset \core(\
 
 \purpose \(\core(\IG)\) is extremely difficult to characterize in general. However, we can explicitly derive the core of the processes we are interested in.
 
-\lin
-
-\begin{lem}
-Let \(\spce = \S\carp{V}\). Consider the following operator on \(\cont\):
-
-\[\IG f(\sv\vsi{V}) = \sum_{v \in V}\sum_{\s\in \S} \IGr\vind{\v}(\sv\vsi{V},\s)[f(\sv\vsi{V} + \s\ev\vind{\v}) - f(\sv\vsi{V})], \sv\vsi{V} \in \S\carp{V}.\]
-
-Then \(\IG\) is a well-defined infinitesimal generator of a Feller process if
-
-\begin{itemize}
-\item 
-
-\[\sup_{\v \in V,\sv\vsi{V} \in \S\carp{V}} \sum_{\s \in \S} \IGr\vind{\v}(\sv\vsi{V},\s) < \infty.\]
-
-\item 
-
-\[\sup_{\v\in V}\sum_{\vv\neq \v} \sup_{\substack{\sv\vsi{V} \in \S\carp{V}\\ \s\in \S\\ \SS \subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr\vind{\v}(\sv\vsi{V},\ss) - \IGr\vind{\v}(\sv\vsi{V}+\s \ev\vind{\vv},\ss))\right| < \infty.\]
-\end{itemize}
-\label{sec::Infin:Lem::IPS-IG}
-\end{lem}
-\labe{sec::Infin:Lem::IPS-IG}
-
-\begin{proof}
-This is a special case of \cite[Chapter 1, Theorem 3.9]{Lig85}.
-\end{proof}
 \lin
 
 \begin{thms}[Trotter-Kurtz]
@@ -3184,127 +3231,180 @@ However, \(\XX\) is just a homogeneous Poisson point process, so the c\`adl\`ag 
 
 \lin
 
-\begin{defn}
-Given a complete separable metric space \(\spce\), a dissecting system is a sequence of partitions \(\{\part\indcs{i}{n}:n \in \mb{N},i=1,\dots,k_n\}\) such that,
+\DIFaddbegin \begin{defn}
+\DIFadd{Given a complete separable metric space \(\spce\), a dissecting system is a sequence of partitions \(\{\part\indcs{i}{n}:n \in \mb{N},i=1,\dots,k_n\}\) such that,
+}
 
 \begin{itemize}
-\item \(\{\part\indcs{i}{n}:i=1,\dots,k_n\}\) is a partition of \(\spce\) for all \(n\).
+\item \DIFadd{\(\{\part\indcs{i}{n}:i=1,\dots,k_n\}\) is a partition of \(\spce\) for all \(n\).
+}
 
-\item For every \(m > n\), \(i \leq k_n\) and \(j \leq k_m\), \(\part\indcs{i}{n}\cap \part\indcs{j}{m} \in \{\emptyset, \part\indcs{j}{m}\}\).
+\item \DIFadd{For every \(m > n\), \(i \leq k_n\) and \(j \leq k_m\), \(\part\indcs{i}{n}\cap \part\indcs{j}{m} \in \{\emptyset, \part\indcs{j}{m}\}\).
+}
 
-\item For every distinct pair \(\x,\xx \in \spce\), there exists an \(N < \infty\) so that for all \(n > N\), \(x \in \part\indcs{i}{n}\) and \(\xx \in \part\indcs{j}{n}\) implies that \(i \neq j\).
-\end{itemize}
+\item \DIFadd{For every distinct pair \(\x,\xx \in \spce\), there exists an \(N < \infty\) so that for all \(n > N\), \(x \in \part\indcs{i}{n}\) and \(\xx \in \part\indcs{j}{n}\) implies that \(i \neq j\).
+}\end{itemize}
 \label{sec::TL:Def::DissectingSystem}
 \end{defn}
-\labe{sec::TL:Def::DissectingSystem}\\
+\DIFadd{\labe{sec::TL:Def::DissectingSystem}}\\
 
-See \cite[Definition A1.6.I]{DalVer03}.
+\DIFadd{See \mbox{%DIFAUXCMD
+\cite[Definition A1.6.I]{DalVer03}}\hspace{0pt}%DIFAUXCMD
+.
+}
 
 \lin
 
 \begin{defn}
-A dissecting ring is any ring generated by a dissecting system.
-\label{sec::TL:Def::DissectingRing}
+\DIFadd{A dissecting ring is any ring generated by a dissecting system.
+}\label{sec::TL:Def::DissectingRing}
 \end{defn}
-\labe{sec::TL:Def::DissectingRing}\\
+\DIFadd{\labe{sec::TL:Def::DissectingRing}}\\
 
-See \cite[Definition A2.1.V]{DalVer03}.
+\DIFadd{See \mbox{%DIFAUXCMD
+\cite[Definition A2.1.V]{DalVer03}}\hspace{0pt}%DIFAUXCMD
+.
+}
 
 \lin
 
-\begin{lem}
-The distribution of a simple point process \(\poiss\) on a complete separable metric space, \(\spce\), is determined by the values of the avoidance function \(P\gid{0}\defeq \pr(\poiss(\cdot) = 0)\) on the bounded sets of a dissecting ring of \(\spce\).
-\label{sec::TL:Lem::Renyi-Monch}
+\DIFaddend \begin{lem}
+\DIFdelbegin \DIFdel{We can apply \mbox{%DIFAUXCMD
+\cite[Proposition 14.7.I(b)]{DalVer08} }\hspace{0pt}%DIFAUXCMD
+to the proof of Lemma \ref{subsec::ProofU:Lem::Poisson} even though it does not satisfy all of the assumptions. }\DIFdelend \DIFaddbegin \DIFadd{The distribution of a simple point process \(\poiss\) on a complete separable metric space, \(\spce\), is determined by the values of the avoidance function \(P\gid{0}\defeq \pr(\poiss(\cdot) = 0)\) on the bounded sets of a dissecting ring of \(\spce\).
+}\label{sec::TL:Lem::Renyi-Monch}
 \end{lem}
-\labe{sec::TL:Lem::Renyi-Monch}
-\begin{proof}
-This is just a restatement of \cite[Theorem 9.2.XII]{DalVer08}.
-\end{proof}
+\DIFadd{\labe{sec::TL:Lem::Renyi-Monch}
+}\begin{proof}
+\DIFadd{This is just a restatement of \mbox{%DIFAUXCMD
+\cite[Theorem 9.2.XII]{DalVer08}}\hspace{0pt}%DIFAUXCMD
+.
+}\end{proof}
 \lin
 
 \begin{lem}
-Let \(\poiss(\cdot,\cdot)\) be a marked point process on \(\mb{R}\times \mspce\) with natural history \(\FH\). Suppose \(\poiss\) has a \(\FH\)-predictable intensity \(\rate\). Then, extending the probability space if necessary, there exists a Poisson process \(\alt{\poiss}\) on \(\mb{R}_+\times \mspce\times \mb{R}_+\), with intensity measure \(d\t\times \ell(d\s)\times d\r\) (henceforth called unit intensity) such that \(\alt{\poiss}\) is \(\alt{\FH}\)-adapted and,
+\DIFadd{Let \(\poiss(\cdot,\cdot)\) be a marked point process on \(\mb{R}\times \mspce\) with natural history \(\FH\). Suppose \(\poiss\) has a \(\FH\)-predictable intensity \(\rate\). Then, extending the probability space if necessary, there exists a Poisson process \(\alt{\poiss}\) on \(\mb{R}_+\times \mspce\times \mb{R}_+\), with intensity measure \(d\t\times \ell(d\s)\times d\r\) (henceforth called unit intensity) such that \(\alt{\poiss}\) is \(\alt{\FH}\)-adapted and,
+}
 
-\[\poiss(d\t\times d\s) = \alt{\poiss}\left(d\t\times d\s\times (0,\rate(\t,\s)]\right).\]
+\[\DIFadd{\poiss(d\t\times d\s) = \alt{\poiss}\left(d\t\times d\s\times (0,\rate(\t,\s)]\right).}\]
 
-Moreover, \(\alt{\poiss}\) can be explicitly constructed as follows. Let \(\alt{\alt{\poiss}}\) be an Poisson process on \(\mb{R}\times \mspce\times \mb{R}_+\) with intensity measure \(d\t\times \Sm(d\s)\times d\r\) independent of \(\poiss\) and \(\alt{\poiss}\). Let \(\{\rv\indx{\it}\}\) be a sequence of i.i.d. uniform random variables supported on \([0,1]\). Then if \(\{(\rt\indx{\it},\mark\indx{\it})\}\) are the events of \(\poiss\), then for any \(\evnt \in\mc{B}(\mb{R}_+\times \mspce\times \mb{R}_+)\),
+\DIFadd{Moreover, \(\alt{\poiss}\) can be explicitly constructed as follows. Let \(\alt{\alt{\poiss}}\) be an Poisson process on \(\mb{R}\times \mspce\times \mb{R}_+\) with intensity measure \(d\t\times \Sm(d\s)\times d\r\) independent of \(\poiss\) and \(\alt{\poiss}\). Let \(\{\rv\indx{\it}\}\) be a sequence of i.i.d. uniform random variables supported on \([0,1]\). Then if \(\{(\rt\indx{\it},\mark\indx{\it})\}\) are the events of \(\poiss\), then for any \(\evnt \in\mc{B}(\mb{R}_+\times \mspce\times \mb{R}_+)\),
+}
 
 \begin{align}
-\alt{N}(\evnt) &\defeq \alt{\alt{N}}\left(\evnt \cap \{(\t,\s,\r): \r > \rate(\t,\s)\}\right) + \#\left\{\left(\rt\indx{\it},\mark\indx{\it},\rv\indx{\it}\rate(\rt\indx{\it},\mark\indx{\it})\right) \in \evnt\right\}
+\DIFadd{\alt{N}(\evnt) }&\DIFadd{\defeq \alt{\alt{N}}\left(\evnt \cap \{(\t,\s,\r): \r > \rate(\t,\s)\}\right) + \#\left\{\left(\rt\indx{\it},\mark\indx{\it},\rv\indx{\it}\rate(\rt\indx{\it},\mark\indx{\it})\right) \in \evnt\right\}
 \label{sec::TL:eqn::embedding}
-\end{align}
+}\end{align}
 
-satisfies the conditions above.
+\DIFadd{satisfies the conditions above.
+}
 
-\label{sec::TL:Lem::embedding}
+\DIFaddend \label{sec::TL:Lem::embedding}
 \end{lem}
-\labe{sec::TL:Lem::embedding}
+\DIFaddbegin \DIFadd{\labe{sec::TL:Lem::embedding}
+}
 
-\begin{proof}
-The existence of \(\alt{\poiss}\) is given directly by \cite[Proposition 14.7.I(b)]{DalVer08} (in fact, the proposition is holds for \(\poiss\) on \(\mb{R}\times \mspce \times \mb{R}_+\), which is stronger). Equation \eqref{sec::TL:eqn::embedding} is derived in the proof of the Proposition.
-\end{proof}
+\DIFaddend \begin{proof}
+\DIFdelbegin \DIFdel{I }\DIFdelend \DIFaddbegin \DIFadd{The existence of \(\alt{\poiss}\) is given directly by \mbox{%DIFAUXCMD
+\cite[Proposition 14.7.I(b)]{DalVer08} }\hspace{0pt}%DIFAUXCMD
+(in fact, the proposition is holds for \(\poiss\) on \(\mb{R}\times \mspce \times \mb{R}_+\), which is stronger). Equation }\eqref{sec::TL:eqn::embedding} \DIFadd{is derived in the proof of the Proposition.
+}\end{proof}
 
 \lin
 
 \begin{lem}
-Let us use the notation of lemma \ref{sec::TL:Lem::embedding}. Suppose \(\mspce\) is finite. Let \(\F\ts{0} \defeq \sigma(\X)\) for some \(\mspce\)-valued random variable \(\X\), and let \(\F\ts{\t}\defeq \F\ts{0}\vee\FH\ts{\t}\). Then lemma \ref{sec::TL:Lem::embedding} holds if \(\poiss\) is assumed to be \(\F\)-adapted with \(\F\)-predictable intensity \(\rate\). Furthermore, for any \(\x\in \mspce\), \(\alt{\poiss}\) conditioned on \(\{\X = \x\}\) remains a unit intensity Poisson process.
-\label{sec::TL:Lem::fatembedding}
+\DIFadd{Let us }\DIFaddend use the notation of \DIFdelbegin \DIFdel{section \ref{subsec::ProofU:sec::Proof2}. }\DIFdelend \DIFaddbegin \DIFadd{lemma \ref{sec::TL:Lem::embedding}. Suppose \(\mspce\) is finite. Let \(\F\ts{0} \defeq \sigma(\X)\) for some \(\mspce\)-valued random variable \(\X\), and let \(\F\ts{\t}\defeq \F\ts{0}\vee\FH\ts{\t}\). Then lemma \ref{sec::TL:Lem::embedding} holds if \(\poiss\) is assumed to be \(\F\)-adapted with \(\F\)-predictable intensity \(\rate\).
+}\label{sec::TL:Lem::fatembedding}
 \end{lem}
-\labe{sec::TL:Lem::fatembedding}
-\begin{proof}
-The assumptions of lemma \ref{sec::TL:Lem::embedding} are as follows:
+\DIFadd{\labe{sec::TL:Lem::fatembedding}
+}\begin{proof}
+\DIFaddend The assumptions of \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite[Proposition 14.7.I(b)]{DalVer08} }\hspace{0pt}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{lemma \ref{sec::TL:Lem::embedding} }\DIFaddend are as follows:
 
 \begin{itemize}
 \item \(\poiss(\cdot,\cdot)\) is a marked point process with internal history \(\FH\).
 
-\item \(\poiss(\cdot,\cdot)\) has \(\FH\)-predictable intensity \(\rate(\t,\s)\).
+\item \(\poiss(\cdot,\cdot)\) has \(\FH\)-predictable intensity \DIFdelbegin \DIFdel{\(\rate(\t,\mark)\)}\DIFdelend \DIFaddbegin \DIFadd{\(\rate(\t,\s)\)}\DIFaddend .
 \end{itemize}
 
-For any \(\x \in \mspce\), \(\{\x\} \in \F\ts{0}\). Let \(\{\rate\pst{\x}:\x \in \mspce\}\) be the unique family of functions such that,
+\DIFdelbegin \DIFdel{If we let \(\poiss(\cdot,\cdot) = \pmap(\X\sln{n})\) (see Definition \ref{subsec::ProofE:Defn::pmap}), then the proof of \mbox{%DIFAUXCMD
+\cite[Proposition 14.7.I(b)]{DalVer08} }\hspace{0pt}%DIFAUXCMD
+shows thatthe point process defined in equation }%DIFDELCMD < \eqref{subsec::ProofU:eqn::Poissonexpl} %%%
+\DIFdel{is a Poisson point process with intensity \(d\t\times \alt{\Sm^n}\times d\r\) and adapted to a larger filtration.
+}\DIFdelend \DIFaddbegin \DIFadd{For any \(\x \in \mspce\), \(\{\x\} \in \F\ts{0}\). Let \(\{\rate\pst{\x}:\x \in \mspce\}\) be the unique family of functions such that,
+}\DIFaddend 
 
-\[\rate(\t,\s) = \sum_{\x \in \mspce} \mb{I}_{\X = \x}\rate\pst{\x}(\t,\s) \te{ for all } \t \in \mb{R}_+,\s \in \mspce.\]
+\DIFdelbegin \DIFdel{\ind However, our intensity is actually only predictable with respect to \(\F \supseteq \FH\) which includes the value of \(\X\sln{n}\tp{0}\). This can be fixed simply. Let \(\rate\vindpst{\v}{\sv\vsi{\tree\sln{n}}}(\cdot,\cdot) \sim \law(\rate\vind{\v}(\cdot,\cdot)|\X\sln{n}\tp{0} = \sv\vsi{\tree\sln{n}})\). Then \(\rate\vindpst{\v}{\sv\vsi{\tree\sln{n}}}(\t,\mark)\) satisfies the conditions above. Then, }\DIFdelend \DIFaddbegin \[\DIFadd{\rate(\t,\s) = \sum_{\x \in \mspce} \mb{I}_{\X = \x}\rate\pst{\x}(\t,\s) \te{ for all } \t \in \mb{R}_+,\s \in \mspce.}\]
+\DIFaddend 
 
-Then for each fixed \(\x\in \mspce\), \(\rate\pst{\x}\) is \(\FH\)-predictable. For any \(\evnt \in \mc{B}(\mb{R}_+\times \mspce \times \mb{R}_+)\), Define,
+\DIFaddbegin \DIFadd{Then for each fixed \(\x\in \mspce\), \(\rate\pst{\x}\) is \(\FH\)-predictable. For any \(\evnt \in \mc{B}(\mb{R}_+\times \mspce \times \mb{R}_+)\), Define,
+}
 
-\[\alt{\poiss}\pst{\x}(\evnt) = \alt{\alt{\poiss}}\left(\evnt\cap \{(\t,\s,\r) : \r > \rate\pst{\x}(\t,\s)\}\right) + \#\{(\rt\indx{\it},\mark\indx{\it},\rv\indx{\it}\rate\pst{\x}(\rt\indx{\it},\mark\indx{\it})\}.\]
+\DIFaddend \[\DIFdelbegin \DIFdel{\poiss\sln{n}{\sv\vsi{\tree\sln{n}}}}\DIFdelend \DIFaddbegin \alt{\poiss}\DIFadd{\pst{\x}}\DIFaddend (\evnt) = \DIFdelbegin %DIFDELCMD < \alt{\poiss}%%%
+\DIFdel{\sln{n}}\DIFdelend \DIFaddbegin \alt{\alt{\poiss}}\DIFaddend \left(\evnt\cap \{(\t,\DIFdelbegin %DIFDELCMD < \sv%%%
+\DIFdel{\vsi{\tree\sln{n}}}\DIFdelend \DIFaddbegin \DIFadd{\s}\DIFaddend ,\r) : \r > \rate\DIFdelbegin \DIFdel{\slnpst{n}{\sv\vsi{\tree\sln{n}}}}\DIFdelend \DIFaddbegin \DIFadd{\pst{\x}}\DIFaddend (\t,\DIFdelbegin %DIFDELCMD < \sv%%%
+\DIFdel{\vsi{\tree\sln{n}}}\DIFdelend \DIFaddbegin \DIFadd{\s}\DIFaddend )\}\right) + \#\{(\rt\DIFdelbegin \DIFdel{\slnvind{n}{\v}}\DIFdelend \indx{\it},\mark\indx{\it}\DIFdelbegin \DIFdel{\slnvind{n}{\v}}\DIFdelend ,\rv\DIFdelbegin \DIFdel{\vind{\v}}\DIFdelend \indx{\it}\rate\DIFdelbegin \DIFdel{\slnpst{n}{\sv\vsi{\tree\sln{n}}}}\DIFdelend \DIFaddbegin \DIFadd{\pst{\x}}\DIFaddend (\rt\DIFdelbegin \DIFdel{\slnvind{n}{\v}}\DIFdelend \indx{\it},\mark\indx{\it}\DIFdelbegin \DIFdel{\slnvind{n}{\v}}\DIFdelend )\DIFdelbegin \DIFdel{\in \evnt: \v\in \tree\sln{n}}\DIFdelend \}\DIFaddbegin \DIFadd{.}\DIFaddend \]
 
-By lemma \ref{sec::TL:Lem::embedding}, \(\alt{\poiss}\pst{\x}\) is a Poisson process with unit intensity. Let \(\evnt \in \F\ts{0}\vee\ms{B}(\mb{R}_+\times \mspce\times \mb{R}_+)\). Let \(\evnt\pst{\x} = \evnt\cap \{\X = \x\}\) so we can consider \(\evnt\pst{\x}\) as an element in \(\ms{B}(\mb{R}_+\times \mspce\times \mb{R}_+)\). Then define,
+\DIFaddbegin \DIFadd{By lemma \ref{sec::TL:Lem::embedding}, \(\alt{\poiss}\pst{\x}\) }\DIFaddend is a Poisson process with \DIFdelbegin \DIFdel{intensity \(d\t\times \alt{\Sm^n}\times d\r\). Let \(R \subseteq \alt{\S}\carp{n}\),
+and let }\DIFdelend \DIFaddbegin \DIFadd{unit intensity. Let \(\evnt \in \F\ts{0}\vee\ms{B}(\mb{R}_+\times \mspce\times \mb{R}_+)\). Let \(\evnt\pst{\x} = \evnt\cap \{\X = \x\}\) so we can consider \(\evnt\pst{\x}\) as an element in \(\ms{B}(\mb{R}_+\times \mspce\times \mb{R}_+)\). Then define,
+}
 
-\[\alt{\poiss}(\evnt) \defeq \sum_{\x\in \mspce} \alt{\poiss}\pst{\x}(\evnt\pst{x}).\]
+\[\DIFadd{\alt{\poiss}(\evnt) \defeq \sum_{\x\in \mspce} \alt{\poiss}\pst{\x}(\evnt\pst{x}).}\]
 
-Let \(\inte\) and \(\alt{\inte}\) be intervals of \(\mb{R}_+\). Let \(\SS \subseteq \mspce\)
+\DIFadd{Let }\DIFaddend \(\inte\) and \(\alt{\inte}\) be intervals \DIFdelbegin \DIFdel{in \(\mb{R}^+\). Then,
+}\DIFdelend \DIFaddbegin \DIFadd{of \(\mb{R}_+\). Let \(\SS \subseteq \mspce\)
+}\DIFaddend 
 
 \begin{align*}
-\pr\left(\alt{\poiss}(\inte\times \SS\times \alt{\inte}) = 0\right) &= \sum_{\x\in \mspce}\pr\left(\alt{\poiss}\pst{\x}(\inte\times \SS\times \alt{\inte}) = 0\right)\pr(\X = \x)\\
-&\os{\alt{\poiss}\pst{\x}\te{ unit Poisson}}{=} \exp\left(-|\inte||\alt{\inte}|\Sm(\SS)\right)\sum_{\x\in \mspce}\pr(\X = \x)\\
-&= \exp\left(-|\inte||\alt{\inte}|\Sm(\SS)\right)
+\pr\left(\DIFdelbegin \DIFdel{\poiss\sln{n}}%DIFDELCMD < \left(%%%
+\DIFdelend \DIFaddbegin \alt{\poiss}\DIFadd{(}\DIFaddend \inte\times \DIFdelbegin \DIFdel{R}\DIFdelend \DIFaddbegin \SS\DIFaddend \times \alt{\inte}\DIFdelbegin %DIFDELCMD < \right) %%%
+\DIFdelend \DIFaddbegin \DIFadd{) }\DIFaddend = 0\right) &= \sum\DIFdelbegin \DIFdel{_{\sv\vsi{\tree\sln{n}} \in \alt{\S}^n} }\DIFdelend \DIFaddbegin \DIFadd{_{\x\in \mspce}}\DIFaddend \pr\left(\DIFdelbegin \DIFdel{\poiss\sln{n}{\sv\vsi{\tree\sln{n}}}}%DIFDELCMD < \left(%%%
+\DIFdelend \DIFaddbegin \alt{\poiss}\DIFadd{\pst{\x}(}\DIFaddend \inte\times \DIFdelbegin \DIFdel{R}\DIFdelend \DIFaddbegin \SS\DIFaddend \times \alt{\inte}\DIFdelbegin %DIFDELCMD < \right) %%%
+\DIFdelend \DIFaddbegin \DIFadd{) }\DIFaddend = 0\right)\pr(\X \DIFdelbegin \DIFdel{\sln{n}\tp{0} }\DIFdelend = \DIFdelbegin %DIFDELCMD < \sv%%%
+\DIFdel{\vsi{\tree\sln{n}}}\DIFdelend \DIFaddbegin \DIFadd{\x}\DIFaddend )\\
+&\DIFdelbegin \DIFdel{= }\DIFdelend \DIFaddbegin \os{\alt{\poiss}\pst{\x}\te{ unit Poisson}}{=} \DIFaddend \exp\left(-|\DIFdelbegin \DIFdel{R| |}\DIFdelend \inte||\alt{\inte}|\DIFaddbegin \DIFadd{\Sm(}\SS\DIFadd{)}\DIFaddend \right)\sum\DIFdelbegin \DIFdel{_{\sv\vsi{\tree\sln{n}} \in \alt{\S}\carp{n}} }\DIFdelend \DIFaddbegin \DIFadd{_{\x\in \mspce}}\DIFaddend \pr(\X \DIFdelbegin \DIFdel{\sln{n}\tp{0} }\DIFdelend = \DIFdelbegin %DIFDELCMD < \sv%%%
+\DIFdel{\vsi{\tree\sln{n}}}\DIFdelend \DIFaddbegin \DIFadd{\x}\DIFaddend )\\
+&= \exp\left(-|\DIFdelbegin \DIFdel{R| |}\DIFdelend \inte||\alt{\inte}|\DIFaddbegin \DIFadd{\Sm(}\SS\DIFadd{)}\DIFaddend \right)
 \end{align*}
 
-Since this holds for every rectangle, and since the rectangles form a dissecting ring on \([0,\T]\times \mspce \times [0,\const]\) for every \(\T,\const < \infty\), \(\alt{\poiss}\) is a Poisson process on \([0,\T]\times \mspce \times [0,\const]\) with unit intensity (Lemma \ref{sec::TL:Lem::Renyi-Monch}). Since this is true for arbitrary \(\T,\const < \infty\), \(\alt{\poiss}\) is a Poisson process on \(\mb{R}_+ \times \mspce \times \mb{R}_+\) with unit intensity.
-\end{proof}
+Since this holds for every rectangle, \DIFdelbegin \DIFdel{\(\poiss\sln{n}\) }\DIFdelend \DIFaddbegin \DIFadd{and since the rectangles form a dissecting ring on \([0,\T]\times \mspce \times [0,\const]\) for every \(\T,\const < \infty\), \(\alt{\poiss}\) }\DIFaddend is a Poisson process on \DIFdelbegin \DIFdel{\([0,T]\times \alt{\S}\carp{n}\times [0,\const]\) by R\'enyi, M\"onch \mbox{%DIFAUXCMD
+\cite[Theorem 9.2.XII]{DalVer08}}\hspace{0pt}%DIFAUXCMD
+.
+}\DIFdelend \DIFaddbegin \DIFadd{\([0,\T]\times \mspce \times [0,\const]\) with unit intensity (Lemma \ref{sec::TL:Lem::Renyi-Monch}). Since this is true for arbitrary \(\T,\const < \infty\), \(\alt{\poiss}\) is a Poisson process on \(\mb{R}_+ \times \mspce \times \mb{R}_+\) with unit intensity.
+}\end{proof}
+\DIFaddend 
 
-\lin
+\DIFaddbegin \lin
 \begin{lem}[Danielle-Kolmogorov Extension Theorem]
-Let \(((\spce\indx{\alpha},\F\indx{\alpha}),\topo\indx{\alpha})\indxset{A}\) be a family of measurable spaces \((\spce\indx{\alpha},\F\indx{\alpha})\) equipped with a topology \(\topo\indx{\alpha}\). For each finite \(B \subset A\), let \(\m\indxset{B}\) be an inner regular probability measure on \(\F\indxset{B} \defeq \prod_{\alpha\in B} \F\indx{\alpha}\), obeying the following compatibility condition for all finite \(B\) and \(C\) such that \(C \subset B\subset A\):
+\DIFadd{Let \(((\spce\indx{\alpha},\F\indx{\alpha}),\topo\indx{\alpha})\indxset{A}\) be a family of measurable spaces \((\spce\indx{\alpha},\F\indx{\alpha})\) equipped with a topology \(\topo\indx{\alpha}\). For each finite \(B \subset A\), let \(\m\indxset{B}\) be an inner regular probability measure on \(\F\indxset{B} \defeq \prod_{\alpha\in B} \F\indx{\alpha}\), obeying the following compatibility condition for all finite \(B\) and \(C\) such that \(C \subset B\subset A\):
+}
 
 \begin{itemize}
-\item \(\proj\indxset{B}: \spce\indxset{A} \ra \spce\indxset{A}\) is defined by \(\proj\indxset{B}\left((\x\indx{\alpha})\indxset{\alpha\in A}\right) = (\x\indx{\alpha})\indxset{\alpha\in B}\).
+\item \DIFadd{\(\proj\indxset{B}: \spce\indxset{A} \ra \spce\indxset{A}\) is defined by \(\proj\indxset{B}\left((\x\indx{\alpha})\indxset{\alpha\in A}\right) = (\x\indx{\alpha})\indxset{\alpha\in B}\).
+}
 
-\item \(\proj\indxset{C\leftarrow B}\left((\x\indx{\alpha})\indxset{\alpha \in B}\right) = (\x\indx{\alpha})\indxset{\alpha \in C}\).
+\item \DIFadd{\(\proj\indxset{C\leftarrow B}\left((\x\indx{\alpha})\indxset{\alpha \in B}\right) = (\x\indx{\alpha})\indxset{\alpha \in C}\).
+}
 
-\item For all events \(\evnt\indxset{C} \in \F\indxset{C}\),
+\item \DIFadd{For all events \(\evnt\indxset{C} \in \F\indxset{C}\),
+}
 
-\[\m\indxset{C}(\evnt\indxset{C}) = \m\indxset{B}\left(\proj\indxset{C\leftarrow B}^{-1}(\evnt\indxset{C})\right).\]
+\[\DIFadd{\m\indxset{C}(\evnt\indxset{C}) = \m\indxset{B}\left(\proj\indxset{C\leftarrow B}^{-1}(\evnt\indxset{C})\right).}\]
 \end{itemize}
 
-Then there exists a unique probability measure \(\m\indxset{A}\) on \(\F\indxset{A}\) such that \(\m\indxset{B}(\cdot) = \m\indxset{A}\left(\proj\indxset{B}^{-1}(\cdot)\right)\) for all finite \(B \subset A\).
-\label{sec::TL:Lem::DanKolExt}
+\DIFadd{Then there exists a unique probability measure \(\m\indxset{A}\) on \(\F\indxset{A}\) such that \(\m\indxset{B}(\cdot) = \m\indxset{A}\left(\proj\indxset{B}^{-1}(\cdot)\right)\) for all finite \(B \subset A\).
+}\label{sec::TL:Lem::DanKolExt}
 \end{lem}
-\labe{sec::TL:Lem::DanKolExt}
-\begin{proof}
-This is a restatement of Theorem 62 from \url{https://terrytao.wordpress.com/2010/10/30/245a-notes-6-outer-measures-pre-measures-and-product-measures/#more-4371}. \tr{TODO:: find a better source.}
-\end{proof}
-\newpage
+\DIFadd{\labe{sec::TL:Lem::DanKolExt}
+}\begin{proof}
+\DIFadd{This is a restatement of Theorem 62 from }\url{https://terrytao.wordpress.com/2010/10/30/245a-notes-6-outer-measures-pre-measures-and-product-measures/#more-4371}\DIFadd{. \tr{TODO:: find a better source.}
+}\DIFaddend \end{proof}
+\DIFaddbegin 
+
+\lin
+
+\DIFaddend \newpage
 \bibliographystyle{plain}
 \bibliography{weekly_refs}
 \end{document}
