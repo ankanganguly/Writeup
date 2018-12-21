@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL old_local_finite_writeup.tex   Tue Dec 11 10:00:29 2018
-%DIF ADD local_finite_writeup.tex       Mon Dec 10 18:38:25 2018
+%DIF ADD local_finite_writeup.tex       Wed Dec 12 20:58:20 2018
 \usepackage{enumerate}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -511,17 +511,33 @@ Title possibilities: Transient dynamics of a typical neighborhood of particles o
 %
 %%DIFDELCMD < %%%
 %\DIFdelend 
+
+\DIFaddbegin \DIFadd{LaTeX diff was unable to parse the table I added here.} \DIFaddend
+
 \subsection*{TODO}
 
 Resolve notation problems:
 
 \begin{itemize}
-\item Complete notation macros
+\item \DIFdelbegin \DIFdel{Complete notation macros
+}\DIFdelend \DIFaddbegin \DIFadd{The proof of uniqueness in theorem \ref{sec::Main:Thm::Local SDE} shows that any solution to the local SDE is the marginal distribution of a weak solution to equation }\eqref{subsec::Well-:Eqn::SDE}\DIFadd{. However, I've only proved that such equations have unique strong solutions. Make sure that this equation has a unique weak solution in law.
+}\DIFaddend 
 
-\item Try removing references to measure space \(\pmsr(\cdot)\) in section 2.
+\item \DIFdelbegin \DIFdel{Try removing references to measure space \(\pmsr(\cdot)\) in section 2.
+}\DIFdelend \DIFaddbegin \DIFadd{Update the purpose and used in headers.
+}\DIFaddend 
 
-\item Finish all proofs.
-\end{itemize}
+\item \DIFdelbegin \DIFdel{Finish all proofs}\DIFdelend \DIFaddbegin \DIFadd{Standardize Poisson integration order
+}
+
+\item \DIFadd{Standardize capitalization (or lack thereof) of "lemma","theorem","proposition" and "corollary"}\DIFaddend .
+\DIFaddbegin 
+
+\item \DIFadd{Look for resources regarding well-posedness of infinite Poisson SDEs and local weak convergence of such SDEs. Most results in section 2 seem extremely standard.
+}
+
+\item \DIFadd{revise literature review.
+}\DIFaddend \end{itemize}
 
 \section{Introduction}
 \label{sec::Intro}\labe{sec::Intro}
@@ -633,7 +649,7 @@ The following three conditions hold:
 \label{subsec::Assum:Assu::CI}\labe{subsec::Assum:Assu::CI}
 \end{assu}
 
-\purpose Intuitively, we are assuming that each node of the process changes state at a bounded rate and that the number of nodes that any one node interacts with is bounded. This assumption (along with independent initial conditions) yields sufficient conditions for well-posedness of the infinitesimal generator and SDE. It is also all that is required to prove the conditional independence property (Theorem \ref{sec::Main:Thm::CI}). 
+\purpose \DIFdelbegin \DIFdel{Intuitively, we }\DIFdelend \DIFaddbegin \DIFadd{We }\DIFaddend are assuming that each node of the process changes state at a bounded rate and that the number of nodes that any one node interacts with is bounded. This assumption (along with independent initial conditions) yields sufficient conditions for well-posedness of the infinitesimal generator and SDE. It is also all that is required to prove the conditional independence property (Theorem \ref{sec::Main:Thm::CI}). 
 
 \usein All of section \ref{subsec::Well-:sec::Preli}. Theorem \ref{sec::Main:Thm::CI}. All of section \ref{sec::Proof1}.
 
@@ -656,7 +672,7 @@ There exists a fixed \(\degr\in \mb{N}\) such that:
 \label{subsec::Assum:Assu::Local}\labe{subsec::Assum:Assu::Local}
 \end{assu}
 
-\purpose Assumption \ref{subsec::Assum:Assu::Local} implies Assumption \ref{subsec::Assum:Assu::CI}, so all results for Assumption \ref{subsec::Assum:Assu::CI} hold for Assumption \ref{subsec::Assum:Assu::Local}. This assumption adds an additional symmetry assumption. We also work on trees so we do not have to deal with cycles (which add extra dependencies making the problem harder to analyze). Furthermore, this assumption is sufficient for Theorem \ref{sec::Main:Thm::Local SDE} (existence and uniqueness of a local representation of \(\m \defeq \law(\X)\)).
+\purpose Assumption \ref{subsec::Assum:Assu::Local} implies Assumption \ref{subsec::Assum:Assu::CI}, so all results \DIFdelbegin \DIFdel{for Assumption \ref{subsec::Assum:Assu::CI} hold for }\DIFdelend \DIFaddbegin \DIFadd{that hold given Assumption \ref{subsec::Assum:Assu::CI} also hold given }\DIFaddend Assumption \ref{subsec::Assum:Assu::Local}. This assumption adds an additional symmetry assumption. We also work on trees so we do not have to deal with cycles (which add extra dependencies making the problem harder to analyze). Furthermore, this assumption is sufficient for Theorem \ref{sec::Main:Thm::Local SDE} (existence and uniqueness of a local representation of \(\m \defeq \law(\X)\)).
 
 \usein Theorem \ref{sec::Main:Thm::Local SDE}, all of section \ref{sec::Proof2}.
 
@@ -690,14 +706,19 @@ where we define,
 \end{prop}
 \labe{subsec::Well-:Prop::Welldef}
 
-\purpose This is necessary for obvious reasons. If \(\X\) is not well-defined, then there is no longer any point in deriving any results about its properties. The infinitesimal generator representation of \(\X\) is used to prove convergence of the finite-dimensional approximations of \(\X\) to \(\X\).
+\purpose This is necessary for obvious reasons. If \(\X\) is not well-defined, then there is no longer any point in deriving any results about its properties. The infinitesimal generator representation of \(\X\) is used to prove convergence of the finite-dimensional approximations of \(\X\) to \(\X\). \DIFaddbegin \DIFadd{If I find a convenient SDE version of the proof of convergence, (which may be necessary for local-weak convergence or cases in which the full process is history-dependent), then I may discard this lemma.
+}\DIFaddend 
 
 \usein This is important for Propositions \ref{subsec::Well-:Prop::SDE=IG} and \ref{subsec::Well-:Prop::IGApprox}. It is only implicitly used in \ref{subsec::Well-:Prop::SDE=IG}.
 
-\app \cite[Theorem 3.9]{Lig85} and Assumption \ref{subsec::Assum:Assu::CI}.
+\app \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite[Theorem 3.9]{Lig85} }\hspace{0pt}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{Lemma \ref{sec::Infin:Lem::IPS-IG} }\DIFaddend and Assumption \ref{subsec::Assum:Assu::CI}.
 
 \begin{proof}
-By \cite[Theorem 3.9 (a) and (b)]{Lig85}, it suffices to show that:
+By \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite[Theorem 3.9 (a) and (b)]{Lig85}}\hspace{0pt}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{lemma \ref{sec::Infin:Lem::IPS-IG}}\DIFaddend , it suffices to show that:
 
 \begin{enumerate}[i)]
 \item 
@@ -755,7 +776,7 @@ has a unique strong solution.
 
 \pfsum Prove uniqueness using Gronwall's inequality. Prove existence using Picard iterations. Proof is provided after Lemma \ref{subsec::Well-:Lem::GronwallPrep}.
 
-\usein Proposition \ref{subsec::Well-:Prop::SDE=IG}, Lemma \ref{sec::Proof1:Lem::Decomposition} and section \ref{subsec::ProofU:sec::Proof2}.
+\usein Proposition \ref{subsec::Well-:Prop::SDE=IG}, Lemma \DIFaddbegin \DIFadd{\ref{subsec::Well-:Lem::weaksoln}, Lemma }\DIFaddend \ref{sec::Proof1:Lem::Decomposition} and section \ref{subsec::ProofU:sec::Proof2}.
 
 \app Lemma \ref{subsec::Well-:Lem::GronwallPrep} and Assumption \ref{subsec::Assum:Assu::CI}. Lemma \ref{subsec::Well-:Lem::SDEWP} is an intermediate result used to prove Lemma \ref{subsec::Well-:Lem::GronwallPrep}.
 
@@ -778,7 +799,7 @@ for some constant \(\const\indx{1} < \infty\).
 
 \purpose Proposition \ref{subsec::Well-:Prop::SDEWP} is proved using Picard iterations to prove existence and a similar inequality to prove uniqueness. This lemma is also applied in the proof of Proposition \ref{subsec::Well-:Prop::SDE=IG}. Furthermore, the proof that any strong solution, \(\X\), to equation \eqref{subsec::Well-:Eqn::SDE} also involves a similar computation. This Lemma allows us to do the computation a single time to avoid repetition or citing results found within proofs.
 
-\usein Lemma \ref{subsec::Well-:Lem::GronwallPrep} and Proposition \ref{subsec::Well-:Prop::SDE=IG}. Proof is referenced in Lemma \ref{sec::Proof1:Lem::Decomposition}.
+\usein \DIFdelbegin \DIFdel{Lemma }\DIFdelend \DIFaddbegin \DIFadd{Intermediate result for Lemma \ref{subsec::Well-:Prop::SDEWP}, Lemma }\DIFaddend \ref{subsec::Well-:Lem::GronwallPrep} and Proposition \ref{subsec::Well-:Prop::SDE=IG}. Proof is referenced in Lemma \ref{sec::Proof1:Lem::Decomposition}.
 
 \app Assumption \ref{subsec::Assum:Assu::CI}.
 
@@ -1001,7 +1022,7 @@ Applying Gronwall's inequality:
 
 Now, let \(f: \S\carp{V} \ra \mb{R}\) be a continuous function. Since \(\S\carp{V}\) is compact, \(f\) must be uniformly continuous. Then there exists a continuous monotonic function \(\phi: \mb{R}_+ \ra \mb{R}_+\) such that \(\phi(0) = 0\) and \(|f(\sv\vsi{V}) - f(\alt{\sv}\vsi{V})| \leq \phi(|\sv\vsi{V} - \alt{\sv}\vsi{V}|)\) for all \(\sv\vsi{V},\alt{\sv}\vsi{V}\in \S\carp{V}\). Furthermore, since \(f\) is necessarily bounded, we can assume that \(\phi\) is bounded.
 
-\ind Fix any \(\ep > 0\). Let \(\psi\) be a concave, monotonic, upper-bound of \(\phi\) such that \(\psi(0) = 0\) (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
+\ind Fix any \(\ep > 0\). Let \(\psi\) be a concave, monotonic, upper-bound of \(\phi\) such that \DIFdelbegin \DIFdel{\(\psi(0) = 0\) }\DIFdelend \DIFaddbegin \DIFadd{\(\psi(0) = \ep\) }\DIFaddend (see Lemma \ref{sec::TL:Lem::concbd}). By Jensen's inequality,
 
 \begin{align*}
 \ex{\|f(\X) - f(\alt{\X})\|_\T} &\leq \ex{\psi\left(\|\X - \alt{\X}\|_{\T,\b}\right)}\\
@@ -1009,7 +1030,12 @@ Now, let \(f: \S\carp{V} \ra \mb{R}\) be a continuous function. Since \(\S\carp{
 &\leq \psi\left(\|\sv\vsi{V} - \alt{\sv}\vsi{V}\|_{\b}e^{\T\b(\degr+1)\const\indx{1}}\right) \os{\sv\vsi{V} \ra\alt{\sv}\vsi{V}}{\ra} \ep.
 \end{align*}
 
-This concludes the proof that \(\X\) is Feller.
+\DIFaddbegin \DIFadd{Since \(\ep > 0\) was chosen arbitrarily, it follows that,
+}
+
+\[\DIFadd{\lim_{\sv\vsi{V} \ra \alt{\sv}\vsi{V}} \ex{\|f(\X) - f(\alt{\X})\|_\T} = 0.}\]
+
+\DIFaddend This concludes the proof that \(\X\) is Feller.
 \end{enumerate}
 
 Let \(f \in \core\). Recall that \(\core\) is the core of \(\IG\). Then \(f\) can be represented by the SDE
@@ -1030,7 +1056,62 @@ By Theorem \ref{sec::Infin:Thm::Bij}, the infinitesimal generator of \(\X\) appl
 
 \lin
 
-\begin{prop}
+\DIFaddbegin \begin{lem}
+\DIFadd{Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \((\X,\{\poiss\vind{\v}:\v\in V\})\) be any weak solution to equation }\eqref{subsec::Well-:Eqn::SDE} \DIFadd{such that \(\X\) is adapted to \(\sigma(\X\tp{0})\vee\F\pra{\{\poiss\vind{\v}\}}\), where \(\F\pra{\{\poiss\vind{\v}\}}\) is the natural filtration of \(\{\poiss\vind{\v}\}\). Suppose also that \(\{\poiss\vind{\v}\}\) is still a Poisson process with the same rate after conditioning on the event \(\{\X\ts{0} = \sv\vsi{V}\}\) for all \(\sv\vsi{V} \in \S\carp{V}\). Let \(\alt{\X}\) be the unique strong solution to the same equation. Then \(\law(\X) = \law(\alt{\X})\).
+}\label{subsec::Well-:Lem::weaksoln}
+\end{lem}
+\DIFadd{\labe{subsec::Well-:Lem::weaksoln}
+}
+
+\DIFadd{\purpose Yields conditions under which a weak solution to equation }\eqref{subsec::Well-:Eqn::SDE} \DIFadd{has the same law as any strong solution to the same equation. In section \ref{subsec::ProofU:sec::Proof2}, I characterize the law of a certain process as the weak solution to equation }\eqref{subsec::Well-:Eqn::SDE}\DIFadd{. This lemma ensures my characterization is unique.
+}
+
+\DIFadd{\pfsum Given a weak solution, I show that these conditions are sufficient to ensure that the weak solution is equal to the strong solution given the Poisson process from the weak solution.
+}
+
+\DIFadd{\usein Theorem \ref{sec::Main:Thm::Local SDE}, Section \ref{subsec::ProofU:sec::Proof2}.
+}
+
+\DIFadd{\app Assumption \ref{subsec::Assum:Assu::CI}, Proposition \ref{subsec::Well-:Prop::SDEWP}.
+}
+
+\begin{proof}
+\DIFadd{Because \(\X\) is adapted to \(\sigma(\X\tp{0})\vee\F\pra{\{\poiss\vind{\v}\}}\), for every \(\t\in [0,\T]\), there exists a measurable mapping \(F\ts{\t}:\S\carp{V}\times \left(\otimes_{i=0}^\infty ([0,\t)\times\mb{R}_+\times\S\carp{V})^i\right)\ra \S\carp{V}\) such that,
+}
+
+\[\DIFadd{\X\tp{\t} = F\ts{\t}\left(\X\tp{0},\{\poiss\vind{\v}((\tt,\r,\alt{\sv}\vsi{V})):\v\in V,\tt \in [0,\t),\r\in\mb{R}_+,\alt{\sv}\vsi{V} \in \S\carp{V}\}\right).}\]
+
+\DIFadd{Assume \(\alt{X}\) is defined on a probability space with Poisson processes \(\{\alt{\poiss}\vind{\v}\}\) (the intensity measures of these processes is given in Proposition \ref{subsec::Well-:Prop::SDEWP}). By uniqueness of the strong solution,
+}
+
+\[\DIFadd{\alt{X}\tp{\t} = F\ts{\t}\left(\alt{\X}\tp{0},\{\alt{\poiss}\vind{\v}((\tt,\r,\alt{\sv}\vsi{V})):\v\in V,\tt \in [0,\t),\r\in\mb{R}_+,\alt{\sv}\vsi{V} \in \S\carp{V}\}\right).}\]
+
+\DIFadd{Let \(\X\pst{\sv\vsi{V}}\) be \(\X\) conditioned on the event \(\{\X\tp{0} = \sv\vsi{V}\}\). Similarly, set \(\poiss\vindpst{\v}{\sv\vsi{V}}\) to be \(\poiss\vind{\v}\) conditioned on the event \(\{\X\tp{0} = \sv\vsi{V}\}\). Finally, let \(\alt{\X}\pst{\sv\vsi{V}}\) be \(\alt{\X}\)  conditioned on the event \(\{\alt{\X}\tp{0} = \sv\vsi{V}\}\). By assumption, \(\poiss\vindpst{\v}{\sv\vsi{V}}\) are Poisson processes with the same intensity as \(\alt{\poiss}\vind{\v}\). Thus, for any \(\t \in [0,\T]\),
+}
+
+\begin{align*}
+\DIFadd{\X\pst{\sv\vsi{V}}\tp{t} }&\DIFadd{= F\ts{\t}\left(\sv\vsi{V},\{\poiss\vindpst{\v}{\sv\vsi{V}}((\tt,\r,\alt{\sv}\vsi{V})):\v\in V,\tt \in [0,\t),\r\in\mb{R}_+,\alt{\sv}\vsi{V} \in \S\carp{V}\}\right)}\\
+&\DIFadd{\deq F\ts{\t}\left(\sv\vsi{V},\{\alt{\poiss}\vind{\v}((\tt,\r,\alt{\sv}\vsi{V})):\v\in V,\tt \in [0,\t),\r\in\mb{R}_+,\alt{\sv}\vsi{V} \in \S\carp{V}\}\right)}\\
+&\DIFadd{= \alt{X}\pst{\sv\vsi{V}}\tp{\t}.
+}\end{align*}
+
+\DIFadd{Since \(\X\tp{0} \deq \alt{X}\tp{0}\), it follows that \(\X\tp{\t} \deq \alt{X}\tp{\t}\) for all \(\t\in [0,\T]\). Given \(0\leq \tt < \t \leq \T\) and using the time-homogeneity of equation }\eqref{subsec::Well-:Eqn::SDE}\DIFadd{, we can write a similar expression proving that,
+}
+
+\begin{align*}
+\DIFadd{\left(\X\pst{\sv\vsi{V}}\tp(\t),\X\pst{\sv\vsi{V}}\tp(\tt)\right) }&\DIFadd{= \left(\X\pst{\X\pst{\sv\vsi{V}}\tp{\tt}}\tp{\t-\tt},\X\pst{\sv\vsi{V}}\tp{\tt}\right)}\\
+&\DIFadd{\deq \left(\alt{\X}\pst{\alt{\X}\pst{\sv\vsi{V}}\tp{\tt}}\tp{\t-\tt},\alt{\X}\pst{\sv\vsi{V}}\tp{\tt}\right)}\\
+&\DIFadd{= \left(\alt{\X}\pst{\sv\vsi{V}}\tp{\t},\alt{\X}\pst{\sv\vsi{V}}\tp{\tt}\right).
+}\end{align*}
+
+\DIFadd{By iterating, conclude that the finite dimensional distributions of \(\X\) and \(\alt{\X}\) are equal in distribution. Since both processes have c\`adl\`ag sample paths, we can conclude that they are equal in distribution.
+}
+
+\end{proof}
+
+\lin
+
+\DIFaddend \begin{prop}
 Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Let \(\root \in V\) be some node. Let \(V\sln{0} = \{\root\}\) and \(V\sln{n+1} = \cl{V\sln{n}}\) for all \(n \in \mb{N}\). For all \(\U \subseteq V\) and \(\t \in [0,\T]\), let \(\sset\vsi{\U}\ts{\t}\) be embedded in \(\sset\vsi{V}\ts{\t}\) in the standard way. Let \(\X\sln{n}\tp{0} = \proj\vsi{V\sln{n}}\ts{0}(\X\tp{0})\). For each \(n\in\mb{N}\), let the \(\sset\vsi{V\sln{n}}\ts{\T}\)-valued random element \(\X\sln{n}\) be the unique Feller process with initial condition \(\X\sln{n}\tp{0}\) and infinitesimal generator,
 
 \begin{equation}
@@ -1119,7 +1200,13 @@ Suppose Assumption \ref{subsec::Assum:Assu::CI} holds. Suppose \(\U \subset V\).
 
 \pfsum See Section \ref{sec::Proof1}.
 
-\lin
+\DIFaddbegin \DIFadd{\usein Section \ref{sec::Proof2} in the proof of Theorem \ref{sec::Main:Thm::Local SDE}.
+}
+
+\DIFadd{\app Assumption \ref{subsec::Assum:Assu::CI}, Lemma \ref{sec::TL:Lem::Props} and all of section \ref{sec::Proof1}.
+}
+
+\DIFaddend \lin
 
 \begin{thms}
 Let \(\X\) be a Feller process satisfying Assumption \ref{subsec::Assum:Assu::Local} with infinitesimal generator \(\IG\). Let \(\m = \law(\X)\). Let \(\root\) be the root of \(G\) and let \(\{1,\dots,\degr\}\) be the children of \(\root\) in \(G\). For any \(\sset \supseteq\sset\vsi{\tree\sln{1}}\ts{\T}\), \(\t\in (0,\T]\) and \(\mmm \in \pmsr(\sset)\), define \(\cm\ts{\t}:\sset\vsi{\{\root,1\}}\ts{\t-}\times \pmsr(\sset) \ra \pmsr(\sset\vsi{\{2,\dots,\degr\}}\ts{\t-})\) by,
@@ -1153,7 +1240,13 @@ for all \(\s\in \S\). Furthermore, \(\alt{\m} = \proj\vsi{\tree\sln{1}}\ts{\T}(\
 
 \pfsum See section \ref{sec::Proof2}.
 
-\lin
+\DIFaddbegin \DIFadd{\usein At the moment, nothing. This is the main result. We may find some simulations or other examples with which to apply this Theorem.
+}
+
+\DIFadd{\app All of section \ref{sec::Proof2}, Assumption \ref{subsec::Assum:Assu::Local}, Proposition \ref{subsec::Well-:Prop::SDE=IG}, Lemma \ref{subsec::Well-:Lem::weaksoln}, Theorem \ref{sec::Main:Thm::CI}, Lemma \ref{subsec::Some:Lem::PPtoSDE}.
+}
+
+\DIFaddend \lin
 
 \section{Proof of Theorem \ref{sec::Main:Thm::CI}}
 \label{sec::Proof1}\labe{sec::Proof1}
@@ -1202,7 +1295,10 @@ Here \(\const\) is as defined in Assumption \ref{subsec::Assum:Assu::CI}. We als
 
 \purpose The core of the proof of Theorem \ref{sec::Main:Thm::CI} comes from iterating over these stopping times in such a way that no stopping time gets too large with respect to the other. \(\apath\) tracks the route taken while \(\pathset{i}{j}\) is the set of all possible values of \(\apath\) given the current state of induction.
 
-\lin
+\DIFaddbegin \DIFadd{\usein All of section \ref{sec::Proof1}.
+}
+
+\DIFaddend \lin
 
 \begin{lem}
 For all \((i,j)\in \mb{N}_0^2\) and \(\apath \in \pathset{i}{j}\),
@@ -1216,7 +1312,13 @@ For all \((i,j)\in \mb{N}_0^2\) and \(\apath \in \pathset{i}{j}\),
 
 \pfsum Using Lemma \ref{sec::Proof1:Lem::Decomposition}, we break \(\X\) into its component random elements and manipulate it using the properties of conditional independence proven in Appendix \ref{sec::TL}.
 
-\lin
+\DIFaddbegin \DIFadd{\usein Theorem \ref{sec::Main:Thm::CI}
+}
+
+\DIFadd{\app Lemma \ref{sec::TL:Lem::Props}, Lemma \ref{sec::Proof1:Lem::Decomposition}.
+}
+
+\DIFaddend \lin
 
 \begin{lem}
 For all \((i,j)\in \mb{N}^2\), there exist measurable mappings \(\phi\) and \(\psi\) such that 
@@ -1243,8 +1345,13 @@ and
 
 \pfsum Take the SDE definition of \(\X\). Use the existence of a unique solution to break down exactly which random elements need to be known to derive \(\X\cind{\U}\tip{[0,\rt\indx{i+1})}\). The same idea holds for \(\X\cind{\UU}\tip{[0,\rtt\indx{j+1})}\).
 
+\DIFaddbegin \DIFadd{\usein Lemma \ref{sec::Proof1:Lem::Induction}.
+}
 
-\begin{proof}
+\DIFadd{\app Proposition \ref{subsec::Well-:Eqn::SDE}, Lemma \ref{subsec::Well-:Lem::SDEWP}.
+}
+
+\DIFaddend \begin{proof}
 By symmetry, it suffices to prove that equation \ref{sec::Proof1:eqn::XU forward map} holds (if we proof equation \eqref{sec::Proof1:eqn::XU forward map} holds for all \(\U \subseteq V\), then we can proof equation \eqref{sec::Proof1:eqn::XW forward map} holds by swapping the definitions of \(\U\) and \(\UU\)). By Proposition \ref{subsec::Well-:Prop::SDEWP}, for any sequence of i.i.d. Poisson processes, \(\poisses\), on \(\mb{R}^2\times \S\) with intensity measure \(\leb\times\Sm\) we can write,
 
 \[\X\cind{\v}\tp{\t} = \X\cind{\v}\tp{0} + \int_\S\int_0^\t \s\,\poiss\vind{\v}\left(d\tt,\left(0,\IGr\vind{\v}(\X\tp{\tt-},\s)\right],d\s\right)\te{ for all } \v\in V.\]
@@ -1396,7 +1503,10 @@ Then \(\pathsete{i}{j}\) differs from \(\{\rt\indx{i} > \rtt\indx{j-1}, \rtt\ind
 
 \pfsum Direct argument.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Theorem \ref{sec::Main:Thm::CI}.
+}
+
+\DIFaddend \begin{proof}
 In this proof, we will implicitly work in the equivalence class of events given by \(\evnt^1 = \evnt^2\) if \(\pr(\evnt^1 \triangle \evnt^2) = 0\).  
 
 \ind First, \(\pathsete{1}{1} = \{\rt\indx{1} > 0,\rtt\indx{1} > 0\} = \{\rt\indx{1} > \rtt\indx{0},\rtt\indx{1}>\rt\indx{0}\}\). For any \(\it > 1\),
@@ -1553,7 +1663,13 @@ and
 \end{defn}
 \labe{subsec::ProofE:Defn::pmap}
 
-\lin
+\DIFaddbegin \DIFadd{\purpose This provides a convenient one-to-one mapping from jump processes to point processes. This allows me to use results from the theory point processes to prove the local approximation is well-defined.
+}
+
+\DIFadd{\usein All over the place in section \ref{sec::Proof2}. Lemma \ref{subsec::Some:Lem::PPtoSDE}.
+}
+
+\DIFaddend \lin
 
 \begin{assu}
 Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X\in \sset\vsi{\U}\ts{\T-}\) be a stochastic process. For each \(\v\in \U\), \(\pmap\vind{\v}(\X)\) has an \(\X\)-predictable intensity, \(\ratee\vind{\v}\), and there exists a constant \(\const < \infty\) such that \(\sup_{\v\in\U} \ratee\vind{\v} \leq \const\). Furthermore, \(\lambda: \S\carp{\degr+1}\times \S\ra[0,\const]\) is some function.
@@ -1561,7 +1677,13 @@ Let \(\tree\sln{1}\subseteq\U \subseteq V\). Let \(\X\in \sset\vsi{\U}\ts{\T-}\)
 \end{assu}
 \labe{subsec::ProofE:Assu::Eassu}
 
-\lin
+\DIFaddbegin \DIFadd{\purpose This generalizes the left-continuous modification results slightly so that I can use the same proofs in Lemma \ref{subsec::ProofU:Lem::Marginal}.
+}
+
+\DIFadd{\usein Lemma \ref{subsec::ProofE:Lem::leftmod}, Lemma \ref{subsec::ProofE:Lem::pleft}, Lemma \ref{subsec::ProofE:Lem::bddvar} and Lemma \ref{subsec::ProofU:Lem::Marginal}.
+}
+
+\DIFaddend \lin
 
 \begin{lem}
 Let \(\rp\) be an \(\F\)-adapted marked point process with \(\F\)-predictable intensity \(\ratee\) and a countable mark space. For all \(\t \in [0,\T]\), let \(\sigma(\rp\ts{\t}) \subseteq \alt{\F}\ts{\t}\subset \F\ts{\t}\) define a subfiltration of \(\F\) containing the history of \(\rp\). If there exists an \(\Sm\times \pr\)-almost sure left-continuous modification of \(\cratee(\t,\mark) := \ex{\ratee(\t,\mark)|\alt{\F}\ts{\t-}}\) with respect to \(\t\) for all \(\mark\) in the mark space, then \(\cratee\) is the \(\alt{\F}\)-predictable intensity of \(\rp\).
@@ -1571,7 +1693,10 @@ Let \(\rp\) be an \(\F\)-adapted marked point process with \(\F\)-predictable in
 
 \purpose This allows us to derive a new intensity on the cruder filtration that arises once we project to \(\S\carp{\tree\sln{1}}\).
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Theorem \ref{sec::Main:Thm::Local SDE}, Lemma \ref{subsec::ProofU:Lem::Marginal}.
+}
+
+\DIFaddend \begin{proof}
 This is a restatement of \cite[Theorem 14.3.III]{DalVer08}.
 \end{proof}
 
@@ -1592,7 +1717,13 @@ Then \(\crate\vind{\v}\ts{\t}(\s)\) has an almost surely left-continuous modific
 
 \pfsum Apply Lemmas \ref{subsec::ProofE:Lem::leftmodgen} and \ref{subsec::ProofE:Lem::bddvar}. The proof is provided after lemma \ref{subsec::ProofE:Lem::bddvar}.
 
-\lin
+\DIFaddbegin \DIFadd{\usein Theorem \ref{sec::Main:Thm::Local SDE}, Lemma \ref{subsec::ProofU:Lem::Marginal}.
+}
+
+\DIFadd{\app Assumption \ref{subsec::ProofE:Assu::Eassu}, Lemma \ref{subsec::ProofE:Lem::leftmodgen}, Lemma \ref{subsec::ProofE:Lem::pleft}, Lemma \ref{subsec::ProofE:Lem::bddvar}.
+}
+
+\DIFaddend \lin
 
 \begin{defn}
 A set \(\evnt\) is called elementary with respect to a filtration \(\{\F\ts{\t}\}\) if it is a finite union of sets of the form \((\tt,\t]\times \alt{\evnt}\) where \(\alt{\evnt} \in \F\ts{\tt}\).
@@ -1602,7 +1733,10 @@ A set \(\evnt\) is called elementary with respect to a filtration \(\{\F\ts{\t}\
 
 \purpose This definition is used in the statement of Lemma \ref{subsec::ProofE:Lem::leftmodgen}.
 
-\lin
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::ProofE:Lem::leftmodgen}.
+}
+
+\DIFaddend \lin
 
 \begin{lem}
 Let \(\X\tp{\t}\) be a stochastic process that is left continuous in probability and such that \(\sup_{\evnt\te{ elementary}}\ex{\int_0^\T \mb{I}_\evnt\,d\X} < \infty\). Then there exists a left-continuous modification of \(\X\).
@@ -1614,7 +1748,13 @@ Let \(\X\tp{\t}\) be a stochastic process that is left continuous in probability
 
 \pfsum The website Almost Sure (url: https://almostsure.wordpress.com/2009/12/18/cadlag-modifications/) has a statement of a similar result along with a partial proof. Completing the proof and adapting it to left-continuous modifications instead of c\`adl\`ag functions is simple.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::ProofE:Lem::leftmod}.
+}
+
+\DIFadd{\app Definition \ref{subsec::ProofE:Defn::elementary}.
+}
+
+\DIFaddend \begin{proof}
 This is a completed proof based off of the partial proof provided in the link above.
 
 \ind Fix some \(0\leq a < b < \infty\). Let \(\Tset \subset [0,\T]\) be a finite set. Let \(\upcrs\gidd{\alt{\T}}[a,b]\) denote the number of upcrossings of \(\X\) restricted to \(\alt{\T}\) with respect to the interval \([a,b]\).
@@ -1726,7 +1866,13 @@ Then there exists an \(O(\tt)\) function, \(f:[0,\infty)\ra[0,\infty)\), such th
 
 \pfsum Use the fact that over any small interval \([\t-\tt,\t)\), \(\X\cind{U}\) is constant with high probability for all finite \(U\). Thus \(\crate\vind{v}\ts{\t-\tt}\) will vary by only a tiny amount from \(\crate\vind{v}\ts{\t}\) with very high probability. We can actually estimate how quickly this probability converges to 1 as a function of \(s\).
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::ProofE:Lem::bddvar}, Theorem \ref{sec::Main:Thm::Local SDE}, Lemma \ref{subsec::ProofE:Lem::leftmod}.
+}
+
+\DIFadd{\app Assumption \ref{subsec::ProofE:Assu::Eassu}, Assumption \ref{subsec::Assum:Assu::Local}.
+}
+
+\DIFaddend \begin{proof}
 Fix \(\v\in V\). By Assumption \ref{subsec::ProofE:Assu::Eassu}, \(\pmap(\X\cind{\{\v,\root\}})\) has intensity bounded from above by \(2\const\). Therefore, for every \(\t > 0\) there almost surely exists an \(\tt\) small enough such that \(\evnt^{\{\v,\root\}}_{\tt,\t}\) holds. Fix \(\tt < \t\). Let \(\const\) be the upper bound of \(\rate\). Fix any \(\s\in \S\). We begin by computing
 
 \[\ex{\mb{I}_{\evnt^{\{\v,\root\}}_{\tt,\t}}|\crate\vind{\v}\ts{\t}(\s) - \crate\vind{\v}\ts{\t-\tt}(\s)|}.\]
@@ -1844,7 +1990,13 @@ Suppose Assumption \ref{subsec::ProofE:Assu::Eassu} holds. Let \(\crate\vind{\v}
 
 \pfsum Look at the variation of \(\crate\) where it is continuous (which is obtained from an estimate in the proof of Lemma \ref{subsec::ProofE:Lem::pleft}) and use the fact that the number of jumps is finite in expectation.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::ProofE:Lem::leftmod}.
+}
+
+\DIFadd{\app Assumption \ref{subsec::Assum:Assu::Local}, Assumption \ref{subsec::ProofE:Assu::Eassu}, Lemma \ref{subsec::ProofE:Lem::pleft}.
+}
+
+\DIFaddend \begin{proof}
 Any elementary set can be expressed in the form
 
 \[\typset = \bigcup_{\it = 1}^n [\tt\indx{\it},\t\indx{\it})\times \typset\sln{\it},\]
@@ -1892,7 +2044,7 @@ Therefore \(\crate\vind{\v}\ts{\t}(\s)\) satisfies the conditions of Lemma \ref{
 
 \begin{proof}[Proof of existence in Theorem \ref{sec::Main:Thm::Local SDE}]
 
-Let \(\{\F\vsi{\tree\sln{1}}\ts{\t}:\t\in [0,\T]\}\) be the natural filtration of \(\X\cind{\tree\sln{1}}\). Recall that by Proposition \ref{subsec::Well-:Prop::SDE=IG}, \(\X\) can be expressed as the unique solution to,
+Let \(\{\F\vsi{\tree\sln{1}}\ts{\t}:\t\in [0,\T]\}\) be the natural filtration of \(\X\cind{\tree\sln{1}}\). Recall that by Proposition \ref{subsec::Well-:Prop::SDE=IG}, \(\X\) can be expressed as the unique \DIFaddbegin \DIFadd{strong }\DIFaddend solution to,
 
 \[\X\cind{\v}\tp{\t} = \X\cind{\v}\tp{0} + \int_\S\int_0^\t \s\,\poiss\vind{\v}\left(d\tt,\left(0,c{\v}(\X\tp{\tt-},\s)\right],d\s\right) \te{ for all } \v \in V.\]
 
@@ -1963,7 +2115,13 @@ The marginal distribution of \(\mmm\sln{1}\) on \(\sset\vsi{\{\v,\root\}}\ts{\T}
 
 \pfsum By Lemma \ref{subsec::ProofE:Lem::leftmod}, \(\crate\) has a left-continuous modification so we can directly apply Lemma \ref{subsec::ProofE:Lem::filtering}.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::ProofU:Lem::extendedSDE}
+}
+
+\DIFadd{\app Definition \ref{subsec::ProofE:Defn::pmap}, Lemma \ref{subsec::ProofE:Lem::pleft}, Lemma \ref{subsec::ProofE:Lem::filtering}, Lemma \ref{subsec::Some:Lem::genfiniteSDE}, Lemma \ref{subsec::Some:Lem::PPtoSDE}.
+}
+
+\DIFaddend \begin{proof}
 Let \(\rp = \pmap\vind{\tree\sln{1}}(\X\sln{1})\) be defined as in Definition \ref{subsec::ProofE:Defn::pmap}. Then \(\rp\) has \(\F\vsi{\tree\sln{1}}\)-predictable intensity,
 
 \[\crate\prats{\rp}{\t}(\X\sln{1}\tip{[0,\t)},\mark) \defeq \sum_{\v\in \tree\sln{1}\setminus\{\root\}}\sum_{\s\in \S} \mb{I}_{\mark = \s\ev\vind{\v}}\crate(\X\sln{1}\cind{\{\v,\root\}}\tip{[0,\t)},\s) + \sum_{\s\in\S}\mb{I}_{\mark = \s\ev\vind{\root}}\IGr\vind{\root}(\X\sln{1}\tp{\t-},\s).\]
@@ -1989,9 +2147,11 @@ Notice that \(\X\sln{1}\) and \(\rate\) satisfy Assumption \ref{subsec::ProofE:A
 
 \lin
 
-\tr{TODO::standardize space, time and mark orderings of Poisson processes.}
+\DIFdelbegin \DIFdel{\tr{TODO::standardize space, time and mark orderings of Poisson processes.}
+}%DIFDELCMD < 
 
-\begin{defn}
+%DIFDELCMD < %%%
+\DIFdelend \begin{defn}
 Suppose \(\{\poiss\}\) is Poisson process with intensity \(\leb\otimes \Sm\) on \(\mb{R}^2\times \S\). Define,
 
 \[\XX\tp{\t} = \XX\tp{0} + \int_{(0,\t]}\int_{(0,1]}\int_\S\s\,\poiss(d\s,d\r,d\tt).\]
@@ -2005,7 +2165,13 @@ Finally, for any \(\t\in [0,\T)\), let \(\mm\vind{\U}\ts{\t}\) be the restrictio
 \end{defn}
 \labe{subsec::ProofU:Defn::nu}
 
-\lin
+\DIFaddbegin \DIFadd{\purpose This process works as a nice reference process compared to which the local approximation and its extensions (as designed in Lemma \ref{subsec::ProofU:Lem::extendedSDE}) are all absolutely continuous.
+}
+
+\DIFadd{\usein Lemma \ref{subsec::ProofU:Lem::extendedSDE}
+}
+
+\DIFaddend \lin
 
 \begin{lem}
 For any \(\v \in V\setminus\{\root\}\), let \(\p\vind{\v}\) be the parent node of \(\v\) (neighboring node of \(\v\) closest to \(\root\)). Fix \(n \in \mb{N}\). Let \(\mmm\sln{n} \in \pmsr\left(\sset\vsi{\tree\sln{n}}\ts{\T-}\right)\) be the law of the unique solution to the following SDE:
@@ -2028,7 +2194,13 @@ Then for any \(\alt{n} < n\), \(\mmm\sln{\alt{n}}\ts{\t} = \proj\vsi{\tree\sln{\
 
 \pfsum Using Lemmas \ref{subsec::ProofU:Lem::Marginal} and \ref{subsec::Some:Lem::radnik} \tr{rrewrite}, we can construct a conditional density which can be used to extend \(\mu\sln{1}\). We can use simple density arguments to prove the marginal properties we can use Lemma \ref{subsec::Some:Lem::radnik} \tr{rrewrite} to get the SDE formulation.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Theorem \ref{sec::Main:Thm::Local SDE}
+}
+
+\DIFadd{\app Definition \ref{subsec::ProofU:Defn::nu}, Lemma \ref{subsec::ProofU:Lem::Marginal}, Proposition \ref{subsec::Prope:Prop::radnikder}, Lemma \ref{subsec::Some:Lem::radnik}.
+}
+
+\DIFaddend \begin{proof}
 \tr{I'm not being consistent about the intervals I am using. Everything is in half open intervals. I should make the final result the same.}
 
 Let \(\mm \in \pmsr(\sset\vsi{V}\ts{\T-})\) be as defined in Definition \ref{subsec::ProofU:Defn::nu}.
@@ -2091,7 +2263,7 @@ So,
 
 The important thing is that this can be used to extend \(\X\sln{1}\) to a process with nodes in \(\tree\sln{2}\) whose marginal distribution with respect to the nodes on \(\tree\sln{1}\) is equal to \(\X\sln{1}\). To do that, consider the following notation:
 
-\ind \tr{(These are not functions anymore)} Let \(\v \in V\setminus\{\root\}\). Let \(\c:V\setminus\{\root\} \ra V^{\degr-1}\) be defined such that \(\c\vind{\v} = (\c\cind{1}\vind{\v},\dots,\c\cind{\degr-1}\vind{\v})\) are the children of \(\v\). Let \(\p:V\setminus\{\root\}\ra V\) map nodes to their parent.
+\DIFdelbegin \DIFdel{\ind \tr{(These are not functions anymore)} }\DIFdelend Let \(\v \in V\setminus\{\root\}\). Let \DIFdelbegin \DIFdel{\(\c:V\setminus\{\root\} \ra V^{\degr-1}\) be defined such that }\DIFdelend \(\c\vind{\v} = (\c\cind{1}\vind{\v},\dots,\c\cind{\degr-1}\vind{\v})\) \DIFdelbegin \DIFdel{are }\DIFdelend \DIFaddbegin \DIFadd{be }\DIFaddend the children of \(\v\). Let \DIFdelbegin \DIFdel{\(\p:V\setminus\{\root\}\ra V\) map nodes to their parent }\DIFdelend \DIFaddbegin \DIFadd{\(\p\vind{\v} \in V\) be the parent of \(\v\)}\DIFaddend .
 
 \ind We can define the sequence of functions \(\dense\sln{n}\ts{\t}: \sset\vsi{\tree\sln{n}}\ts{\t-} \ra [0,\infty)\) by,
 
@@ -2172,7 +2344,7 @@ Therefore the conditions of the Daniell-Kolmogorov extension theorem are satisfi
 
 \ind On this space, we construct a sequence of i.i.d Poisson processes as follows (Construction is based on the proof of \cite[Theorem 14.7.1(b)]{DalVer08}. \DIFdelbegin \DIFdel{The result is given in \mbox{%DIFAUXCMD
 \cite[Exercise 14.7.1]{DalVer08} }\hspace{0pt}%DIFAUXCMD
-\tr{TODO: rigorously solve this exercise myself}}\DIFdelend \DIFaddbegin \DIFadd{See Lemma \ref{sec::TL:Lem::embedding}}\DIFaddend ).
+\tr{TODO: rigorously solve this exercise myself}}\DIFdelend \DIFaddbegin \DIFadd{See Lemma \ref{sec::TL:Lem::fatembedding}}\DIFaddend ).
 
 \ind Let \(\alt{\S}^n = \{\s\ev\vind{\v}: \s\in\S,\v \in \tree\sln{n}\}\). For each \(n\), consider \(\alt{\S}^n\) as embedded in \(\S\carp{V}\). Thus, \(\alt{\S}^1 \subset \alt{\S}^2 \subset \cdots\). Let \(\alt{\Sm}\sln{n}\) be the measure on \(\alt{\S}^n\) defined by \(\alt{\Sm}\sln{n}(\{\s\ev\vind{\v}\}) = \mb{I}_{\v \in \tree\sln{n}}\Sm(\s)\). Let \(\{\rt\slnvind{n}{\v}\indx{\it},\mark\indx{\it}\slnvind{n}{\v}\}\) be the jump sizes and jump times of \(\X\sln{n}\cind{\v}\). Let \(\alt{\poiss}\sln{n}\) be a sequence Poisson processes on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times\alt{\Sm}^n\times d\r\) and such that if \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^{n-1}\times \mb{R}^+)\), then \(\alt{\poiss}\sln{n}(\evnt) = \alt{\poiss}\sln{n-1}(\evnt)\). Assume \(\{\alt{\poiss}\sln{n}:n\in\mb{N}\}\) are independent of \(\{\X,\X\sln{n}:n\in\mb{N}\}\). Let \(\{\rv\vind{\v}\indx{i}\}\) be a sequence of i.i.d. uniform random variables with support on \([0,1]\).
 
@@ -2207,7 +2379,9 @@ For any \(\evnt \in \ms{B}(\mb{R}^+\times\alt{\S}^n\times\mb{R}^+)\), define
 }\end{align}\DIFaddend 
 \labe{subsec::ProofU:eqn::Poissonexpl}
 
-Then \(\poiss\sln{n}\) is a Poisson random measure on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times \alt{\Sm}^n\times d\r\) (see proof of \cite[Theorem 14.7.1(b)]{DalVer08})
+Then \(\poiss\sln{n}\) is a Poisson random measure on \(\mb{R}^+\times\alt{\S}^n\times \mb{R}^+\) with intensity measure \(d\t\times \alt{\Sm}^n\times d\r\) (\DIFdelbegin \DIFdel{see proof of \mbox{%DIFAUXCMD
+\cite[Theorem 14.7.1(b)]{DalVer08}}\hspace{0pt}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{Lemma \ref{sec::TL:Lem::fatembedding}}\DIFaddend )
 
 \ind Notice that for any \(\evnt \in \ms{B}(\mb{R}^+\times \alt{\S}^{n-2}\times \mb{R}^+)\), \(\poiss\sln{n}(\evnt) = \poiss\sln{n-1}(\evnt)\) almost surely. Define the random measure \(\poiss\) on \(\ms{B}(\mb{R}^+\times \{\s\ev\vind{\v}:\s\in \S,\v \in V\}\times \mb{R}^+)\) by,
 
@@ -2228,16 +2402,30 @@ Then \(\{\poiss\vind{\v}\}\) and \(\{\alt{\poiss}\vind{\v}\}\) are both sequence
 \lin
 
 \begin{lem}
-The claims above are true. Namely, \(\poiss\sln{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss\vind{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss\vind{\vv},\alt{\poiss}\vind{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\).
+The claims above are true. Namely, \(\poiss\sln{n}\) are all Poisson processes with intensity measure \(d\t\times\alt{\Sm^{n}}\times d\r\), \(\{\poiss\vind{\v}:\v\in V\}\) is a sequence of i.i.d. Poisson processes with intensity measure \(d\t\times\Sm\times d\r\) and \(\{\poiss\vind{\vv},\alt{\poiss}\vind{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) are i.i.d. for any \(n \in \mb{N}\). \DIFaddbegin \DIFadd{Finally, the joint distribution of \(\{\poiss\vind{\vv},\alt{\poiss}\vind{\vvv}:\vv\in \tree\sln{n-1},\vvv\in\tree\sln{n}\setminus\tree\sln{n-1}\}\) does not change when conditioned on \(\{\X\tp{0} = \sv\vsi{V}\}\) for any \(\sv\vsi{V}\in \S\carp{V}\).
+}\DIFaddend 
 
-\label{subsec::ProofU:Lem::Poisson}
+\DIFaddbegin \DIFadd{\tr{TODO:: Include the construction above in the proof of this lemma. Lemma \ref{subsec::ProofU:Lem::Poisson} should follow directly after Lemma \ref{subsec::ProofU:Lem::extendedSDE}.}
+}\DIFaddend \label{subsec::ProofU:Lem::Poisson}
 \end{lem}
 \labe{subsec::ProofU:Lem::Poisson}
-\begin{proof}
+\DIFaddbegin 
+
+\DIFadd{\purpose This allows us to explicitly construct Poisson processes with which \(\mmm\) is a weak solution to equation }\eqref{subsec::Well-:Eqn::SDE}\DIFadd{.
+}
+
+\DIFadd{\pfsum Most of the work is done in the proof of Lemma \ref{sec::TL:Lem::fatembedding}. The idea is to find an embedded Poisson process so that \(\X\sln{n}\) solves equation }\eqref{subsec::ProofU:eqn::extendedSDE} \DIFadd{for all \(n\). Then overlap them and use independence properties of Poisson processes to show that the individual Poisson processes are i.i.d.
+}
+
+\DIFadd{\usein Theorem \ref{sec::Main:Thm::Local SDE}.
+}
+
+\DIFadd{\app Lemma \ref{sec::TL:Lem::fatembedding}, Lemma \ref{sec::TL:Lem::DanKolExt}, Definition \ref{subsec::ProofE:Defn::pmap}.
+}\DIFaddend \begin{proof}
 
 Fix \(n \in \mb{N}\). Notice that \DIFdelbegin \DIFdel{most }\DIFdelend \DIFaddbegin \DIFadd{all }\DIFaddend of the assumptions of \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \cite[Proposition 14.7.I(b)]{DalVer08} }\hspace{0pt}%DIFAUXCMD
-are satisfied , except the filtration with respect to which \(\rate\sln{n}\) is predictable is slightly larger (the proposition requires the filtration to only contain the jumps of \(\X\sln{n}\), but not the initial state). However, the proof of the proposition does not fail when the initial state is included in the filtration (Lemma \ref{sec::TL:Lem::embedding}). Furthermore}\DIFdelend \DIFaddbegin \DIFadd{Lemma \ref{sec::TL:Lem::fatembedding} are satisfied by \(\rp\sln{n}\) and its intensity given in equation }\eqref{subsec::ProofU:eqn::pmaprate}\DIFadd{. Then, by Lemma \ref{sec::TL:Lem::fatembedding}}\DIFaddend , \(\poiss\sln{n}\) is \DIFdelbegin \DIFdel{the Poisson process constructed in the proof, so it is }\DIFdelend a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\).
+are satisfied , except the filtration with respect to which \(\rate\sln{n}\) is predictable is slightly larger (the proposition requires the filtration to only contain the jumps of \(\X\sln{n}\), but not the initial state). However, the proof of the proposition does not fail when the initial state is included in the filtration (Lemma \ref{sec::TL:Lem::embedding}). Furthermore}\DIFdelend \DIFaddbegin \DIFadd{Lemma \ref{sec::TL:Lem::fatembedding} are satisfied by \(\rp\sln{n}\) and its intensity given in equation }\eqref{subsec::ProofU:eqn::pmaprate}\DIFadd{. Then, by Lemma \ref{sec::TL:Lem::fatembedding}}\DIFaddend , \(\poiss\sln{n}\) is \DIFdelbegin \DIFdel{the Poisson process constructed in the proof, so it is }\DIFdelend a Poisson process with intensity \(d\t\times \alt{\Sm^n}\times d\r\) \DIFaddbegin \DIFadd{even when conditioned on events of the form \(\{\X\tp{0} = \sv\vsi{V}\}\)}\DIFaddend .
 
 \ind By construction, \(\poiss\vind{\v}\) is the restriction of \(\poiss\sln{n}\) to \(\mb{R}^+ \times \{\s\ev\vind{\v}: \s\in \S\}\times \mb{R}^+\) for all \(\v\in \tree\sln{n-1}\). Thus, for any finite \(\U \subset V\), there exists a \(n\) such that \(\U \subseteq \tree\sln{n-1}\), so \(\{\poiss\vind{\v}: \v\in \U\}\) are i.i.d. Thus, \(\{\poiss\vind{\v}: \v\in V\}\) are i.i.d.
 
@@ -2274,7 +2462,8 @@ Thus, \(\X\) is a solution to the coupled equation,
 \end{equation}
 \labe{subsec::ProofU:eqn::XSDE}
 
-However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation \eqref{subsec::ProofU:eqn::XSDE} has a unique solution, and that solution has distribution \(\m\). Thus, \(\mmm = \m\). We conclude that \(\mmm\sln{1} = \proj\vsi{\tree\sln{1}}\ts{\T-}(\m)\).
+\DIFdelbegin \DIFdel{However, by Propositions \ref{subsec::Well-:Prop::SDEWP} and \ref{subsec::Well-:Prop::SDE=IG}, equation }%DIFDELCMD < \eqref{subsec::ProofU:eqn::XSDE} %%%
+\DIFdel{has a unique solution , and that solution }\DIFdelend \DIFaddbegin \DIFadd{\(\X\) is clearly adapted to the natural filtration of \(\{\poiss\vind{\v}\}\) augmented by \(\sigma(\X\tp{0})\). By Lemma \ref{subsec::ProofU:Lem::Poisson}, \(\{\poiss\vind{\v}\}\) remain i.i.d. unit intensity Poisson processes when conditioned on the initial state of \(\X\). Furthermore, \(\X\) is a weak solution to equation }\eqref{subsec::Well-:Eqn::SDE}\DIFadd{. By lemma \ref{subsec::Well-:Lem::weaksoln}, the law of \(\X\) coincides with the law of the unique strong solution to the equation. The unique strong solution }\DIFaddend has distribution \(\m\). Thus, \(\mmm = \m\). We conclude that \(\mmm\sln{1} = \proj\vsi{\tree\sln{1}}\ts{\T-}(\m)\).
 
 \end{proof}
 
@@ -2344,7 +2533,10 @@ satisfies Definition \ref{sec::Infin:Def::Feller}.
 
 \purpose As shown later, there is a bijection between Feller processes and Infinitesimal generators. This allows us to express the process \(\mu\) in terms of its infinitesimal generator in equation \eqref{subsec::Notat:Eqn::IG}.
 
-\lin
+\DIFaddbegin \DIFadd{\usein Proposition \ref{subsec::Well-:Prop::SDE=IG}.
+}
+
+\DIFaddend \lin
 
 \begin{defn}
 An infinitesimal generator is a (possibly unbounded) linear operator \(\IG\) on the space of continuous functions \(\cont(\spce)\) paired with a dense domain \(\core(\IG) \subseteq \cont(\spce)\) satisfying the following properties:
@@ -2386,7 +2578,10 @@ There is a bijection between infinitesimal generators and Feller processes. Furt
 
 \pfsum Apply \cite[Theorem 1.5,2.9]{Lig85}.
 
-\lin
+\DIFaddbegin \DIFadd{\usein Proposition \ref{subsec::Well-:Prop::SDE=IG}.
+}
+
+\DIFaddend \lin
 
 \begin{defn}
 Let \(\IG\) be an infinitesimal generator. A dense subset \(\core\subset \core(\IG)\) is called a core of \(\IG\) if \(\IG\) is the closure of the operator \(\IG|_\core\).
@@ -2400,7 +2595,43 @@ Let \(\IG\) be an infinitesimal generator. A dense subset \(\core\subset \core(\
 
 \lin
 
-\begin{thms}[Trotter-Kurtz]
+\DIFaddbegin \begin{lem}
+\DIFadd{Let \(\spce = \S\carp{V}\). Consider the following operator on \(\cont\):
+}
+
+\[\DIFadd{\IG f(\sv\vsi{V}) = \sum_{v \in V}\sum_{\s\in \S} \IGr\vind{\v}(\sv\vsi{V},\s)}[\DIFadd{f(\sv\vsi{V} + \s\ev\vind{\v}) - f(\sv\vsi{V})}]\DIFadd{, \sv\vsi{V} \in \S\carp{V}.}\]
+
+\DIFadd{Then \(\IG\) is a well-defined infinitesimal generator of a Feller process if
+}
+
+\begin{itemize}
+\item 
+
+\[\DIFadd{\sup_{\v \in V,\sv\vsi{V} \in \S\carp{V}} \sum_{\s \in \S} \IGr\vind{\v}(\sv\vsi{V},\s) < \infty.}\]
+
+\item 
+
+\[\DIFadd{\sup_{\v\in V}\sum_{\vv\neq \v} \sup_{\substack{\sv\vsi{V} \in \S\carp{V}\\ \s\in \S\\ \SS \subseteq \S}} \left|\sum_{\ss \in \SS} (\IGr\vind{\v}(\sv\vsi{V},\ss) - \IGr\vind{\v}(\sv\vsi{V}+\s \ev\vind{\vv},\ss))\right| < \infty.}\]
+\end{itemize}
+\label{sec::Infin:Lem::IPS-IG}
+\end{lem}
+\DIFadd{\labe{sec::Infin:Lem::IPS-IG}
+}
+
+\DIFadd{\purpose This gives some simple inequalities that can be used to determine the well-posedness of a pure jump Feller process. 
+}
+
+\DIFadd{\usein Proposition \ref{subsec::Well-:Prop::Welldef}
+}
+
+\begin{proof}
+\DIFadd{This is a special case of \mbox{%DIFAUXCMD
+\cite[Chapter 1, Theorem 3.9]{Lig85}}\hspace{0pt}%DIFAUXCMD
+.
+}\end{proof}
+\lin
+
+\DIFaddend \begin{thms}[Trotter-Kurtz]
 Suppose \(\IG\sln{n}\) and \(\IG\) are generators of Feller processes \(\m\sln{n}\) and \(\m\) respectively. If there is a core \(\core\) for \(\IG\) such that \(\core \subset \mc{D}(\IG\sln{n})\) for all \(n\) and \(\IG\sln{n} f \ra \IG f\) for all \(f \in \core\), then 
 
 \[\exmu{\m\sln{n}}{f(\XX\tp{\t})|\XX\tp{0}=\cdot} \ra \exmu{\mu}{f(\XX\tp{\t})|\XX\tp{0}=\cdot}\]
@@ -2414,7 +2645,10 @@ uniformly in \(\t\) for all \(f \in \cont(\spce)\).
 
 \pfsum Apply \cite[Theorem 2.12]{Lig85}
 
-\lin
+\DIFaddbegin \DIFadd{\usein Corollary \ref{sec::Infin:Cor::Convergence}.
+}
+
+\DIFaddend \lin
 
 \begin{coro}
 In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, suppose that \(\{\m\sln{n}\}\) are tight and that \((\m\sln{n})\ts{0} \Rightarrow \m\ts{0}\). Then \(\m\sln{n} \Rightarrow \m\).
@@ -2426,7 +2660,13 @@ In addition to the conditions of Theorem \ref{sec::Infin:Thm::TrotterKurtz}, sup
 
 \pfsum Use the same methods as in the proof of \cite[Theorem 4.2]{Kur81} to show weak convergence of the finite dimensional distributions. Apply \cite[Theorem 13.1]{Bil99} to get weak convergence.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Proposition \ref{subsec::Well-:Prop::IGApprox}.
+}
+
+\DIFadd{\app Theorem \ref{sec::Infin:Thm::TrotterKurtz}.
+}
+
+\DIFaddend \begin{proof}
 By \cite[Theorem 13.1]{Bil99} (tightness + weak convergence of the finite dimensional distributions implies weak convergence), it suffices to prove weak convergence of the finite-dimensional distributions of \(\m\sln{n}\). Let the initial conditions (i.e. restriction to time 0) of \(\m\sln{n}\) be denoted \(\mm\sln{n}\) and let \(\mm\) denote the initial condition of \(\m\). Let \(f\) be any continuous (and therefore bounded function since we are assuming \(\spce\) is compact) function from \(\spce^k\ra\mb{R}\). Since \(\m\sln{n}\) are Feller, \(\exmu{\m\sln{n}}{f(\XX\tp{\t})|\XX\tp{0} = \cdot}\) is continuous for all \(\t\). By the monotone class theorem, both the positive and negative parts of \(f\) can be approximated arbitrarily closely from below by functions of the form \(\sum_{i=1}^n f\indx{i}(\xx\indx{1})g\indx{i}(\xx\indx{2},\dots,\xx\indx{\it})\). By monotone convergence, we can assume without loss of generality that \(f(\xx\indx{1},\dots,\xx\indx{\it}) = f\indx{1}(\xx\indx{1})f\indx{2}(\xx\indx{2},\dots,\xx\indx{\it})\).
 
 \ind By Theorem \ref{sec::Infin:Thm::TrotterKurtz}, \(\exmu{\m\sln{n}}{f(\XX\tp{\t})|\XX\tp{0}} \ra \exmu{\m}{f(\XX\tp{\t})|\XX\tp{0}}\). Then, by bounded convergence and convergence of the initial condition,
@@ -2550,7 +2790,10 @@ Suppose \(\rp\) is a \(\F\)-adapted non-explosive marked point process on \([0,\
 
 \pfsum Apply \cite[Propositions 14.3.II(b),14.2.IV(c) and 9.2.III]{DalVer08}. There is one extra technical condition that we have to proof holds which we can show using \cite[Proposition A1.5.III]{DalVer03}.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::Some:Lem::PPtoSDE}.
+}
+
+\DIFaddend \begin{proof}
 Assume that \(\law((\rt\indx{n},\mark\indx{n})|\F\ts{\rt\indx{n-1}})\) is a regular distribution for all \(n\). Then uniqueness of the intensity is given by \cite[Proposition 14.3.II (b)]{DalVer08}. By \cite[Proposition 14.2.IV (c)]{DalVer08}, the compensator of \(\rp\) uniquely defines the finite dimensional distributions of \(\rp\), which uniquely define \(\rp\) in distribution \cite[Proposition 9.2.III]{DalVer08}. However, the intensity of \(\rp\) uniquely defines its compensator, so all that remains is to prove that the regular conditional distribution above exists.
 
 \ind Fix \(n\). Suppose \(\XX\) is a \(\spce\)-valued random variable. Let \(\m\) be the law of \(\rp\). Then \(\left([0,\infty)\times \mspce\right)^{n-1}\times\spce\) and \([0,\infty)\times \mspce\) are both Polish spaces, and \(\alt{\m}\) defined by 
@@ -2569,7 +2812,13 @@ Suppose \(\rp\) is a marked process with \(\F\ts{\t}\)-predictable ground intens
 \end{lem}
 \labe{Subsec::Prope:Lem::easier}
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\purpose Might be used implicitly in some calculations involving intensity. \tr{TODO:: double check whether or not this is the case.}
+}
+
+\DIFadd{\usein Lemma \ref{Subsec::Prope:Lem::easy intense calc}.
+}
+
+\DIFaddend \begin{proof}
 Fix some \(K \in \ms{B}(\mspce)\). Let \(\rate\gid{K}(\t) = \rate(\t,K)\). Let \(\rp\gid{K}(\cdot) = \rp(\cdot\times K)\). Then \(\rate\gid{K}(\t) \leq \rate(\t,\mspce) \leq \const\). Therefore \(\rp\gid{K}\) is a simple point process with bounded intensity. Reduce to the case of a simple point process (\(\mspce = \{0\}, K = \mspce, \rp = \rp\gid{K},\rate(\t) = \rate\gid{K}(\t)\)).
 
 Let \(M(\t) = \rp(\t) - \int_0^\t \rate(\tt)\,ds\). Let \(\rt\indx{n}\) be a localizing sequence of \(M(\t)\). Notice for all \(n\),
@@ -2594,7 +2843,13 @@ Let \(\rp\) be a marked point process with bounded \(\F\ts{\t}\)-predictable gro
 \end{lem}
 \labe{Subsec::Prope:Lem::easy intense calc}
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\purpose I used this in earlier drafts, but I don't think I use it anymore. \tr{TODO:: Make sure I'm not implicitly using this result somewhere.}
+}
+
+\DIFadd{\app Lemma \ref{Subsec::Prope:Lem::easier}
+}
+
+\DIFaddend \begin{proof}
 By Lemma \ref{Subsec::Prope:Lem::easier}, we can use the Martingale definition of intensity.
 
 \begin{align*}
@@ -2676,7 +2931,10 @@ L_\t:= \frac{d\pr\me{2}\ts{\t}}{d\pr\me{1}\ts{\t}}(\rp) = \frac{d\mm^2}{d\mm^1}\
 
 \pfsum In the case where \(\F\ts{0}\) is trivial, we can directly apply \cite[Theorem 14.4.I]{DalVer08}. To extend, we define \(\pr\me{i}\) as an integral of a class of regular conditional probabilities and apply \cite[Theorem 14.4.I]{DalVer08} accordingly.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::ProofU:Lem::extendedSDE}, Lemma \ref{subsec::Some:Lem::radnik}.
+}
+
+\DIFaddend \begin{proof}
 Let \(f\) be a bounded, \(\alt{\F}\ts{\t}\) measurable function to the real numbers. Let \(\m(\t,k;\xx,\x)\) be the value \(\m\) takes when \(\rp[0,\t)=\xx[0,\t)\) and \(\{\X=\x\}\). Since \(\m\) is \(\alt{\F}\)-predictable, this is deterministic for any \(\xx,\x\).
 
 \[\mb{E}^2[f(\X,\rp[0,\t])] = \int_\spce \mb{E}^2[f(\x,\rp[0,\t])|\X=\x]\,d\mm^2(\x)\]
@@ -2724,7 +2982,10 @@ Let \(G = (V,E)\) be a finite graph and let \(0 < \const< \infty\). Let \(\X\tp{
 
 \pfsum Direct construction.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::ProofU:Lem::Marginal}, Lemma \ref{subsec::Some:Lem::PPtoSDE}, Lemma \ref{subsec::Some:Lem::radnik}.
+}
+
+\DIFaddend \begin{proof}
 Since \(\ratee\ts{\tt}\vind{\v} \leq \const\), we can view \(\{\poiss\vind{\v}:\v\in V\}\) as a sequence of Poisson random measures on \([0,\T)\times \S\times [0,\const]\). Notice that,
 
 \[\ex{\sum_{\v\in V}\poiss\vind{\v}([0,\T)\times\S\times[0,\const])} = \const\T|V|.\]
@@ -2821,7 +3082,19 @@ and such that \(\t\mapsto \ratee\ts{\t}\vind{\v}(\XX\tip{[0,\t)},\sv\vsi{V})\) i
 \end{lem}
 \labe{subsec::Some:Lem::PPtoSDE}
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\purpose Allows us to skip directly from the point process representation of a process to the SDE representation. It is the reverse of Definition \ref{subsec::ProofE:Defn::pmap}.
+}
+
+\DIFadd{\pfsum Apply embedding theorems.
+}
+
+\DIFadd{\usein Lemma \ref{subsec::ProofU:Lem::Marginal}, Lemma \ref{subsec::Some:Lem::radnik}.
+}
+
+\DIFadd{\app Definition \ref{subsec::ProofE:Defn::pmap}, Lemma \ref{subsec::Some:Lem::genfiniteSDE}, Proposition \ref{subsec::Prope:Prop::intense char}.
+}
+
+\DIFaddend \begin{proof}
 
 We can assume without loss of generality that \(\ratee\ts{\t}\vind{\v}(\xx\tip{[0,\t)},\s) = 0\) for all \(\xx\tip{[0,\t)}\in \sset\ts{\t-}\) such that \(\pr(\XX\tip{[0,\t)} = \xx\tip{[0,\t)}) = 0\). Then since \(\ratee\ts{\t}(\cdot)\) is almost surely left-continuous, we can conclude that \(\ratee\ts{\t}\vind{\v}(\cdot,\s)\) is left-continuous with respect to \(\t\) given c\`adl\`ag inputs for all \(\v\in V,\s\in\S\). By Lemma \ref{subsec::Some:Lem::genfiniteSDE}, the following equation has a unique solution:
 
@@ -2860,7 +3133,13 @@ where \(\{\X\cind{\v}\tp{0}\}_{\v \in V}\) are i.i.d uniformly distributed over 
 
 \pfsum The key is to express \(\X\) in terms of a Marked point process. Then we can compute the intensities of the point process under \(\m\) and \(\mm\) respectively and apply Proposition \ref{subsec::Prope:Prop::radnikder}.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Lemma \ref{subsec::ProofU:Lem::extendedSDE}.
+}
+
+\DIFadd{\app Proposition \ref{subsec::Prope:Prop::radnikder}, Lemma \ref{subsec::Some:Lem::genfiniteSDE}, Lemma \ref{subsec::Some:Lem::PPtoSDE}.
+}
+
+\DIFaddend \begin{proof}
 Notice that \(\X \mapsto (\X\tp{0},\pmap(\X))\) is a one-to-one mapping from c\`adl\`ag processes on \(\S\carp{V}\) to marked point processes with marks in \(\alt{\S}\). Thus, we can consider \(\rp\) a marked point process with marks in \(\alt{\S}\). In both cases, \(\rp\) is \(\F\ts{\t}\)-adapted, where \(\F\ts{\t} = \F\ts{0}\vee \FH\ts{\t}\) and \(\FH\ts{\t}\) is the natural filtration of \(\rp\).
 
 \ind By Lemma \ref{subsec::Some:Lem::PPtoSDE}, \(\rp\) has predictable intensity \(\ratee\ts{\t}(\cdot)\) with respect to \(\F\ts{\t}\) and \(\m\). \(\rp\) has predictable intensity 1 with respect to \(\F\ts{\t}\) and \(\mm\). This holds all of the information about the original process \(\X\), so we can consider \(\frac{d\m\ts{\t}}{d\mm\ts{\t}}\) as a change of measure affecting \(\rp\) instead of \(\X\). In Lemma \ref{subsec::Some:Lem::genfiniteSDE}, it was assumed that \(\ratee\ts{\t}\vind{\v}\) is bounded. Thus, the result follows directly from Proposition \ref{subsec::Prope:Prop::radnikder}. 
@@ -2906,7 +3185,16 @@ Assume \(\X,\XX\) and \(\XXX\) are random elements such that \(\X\perp \XX|\XXX\
 \end{lem}
 \labe{sec::TL:Lem::Props}
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\purpose This gives several properties of conditional independence that allow us to indirectly prove our conditional independence result.
+}
+
+\DIFadd{\pfsum I use monotone class theorems and a functional representation of conditional independence.
+}
+
+\DIFadd{\usein Lemma \ref{subsec::Proof1:Lem::Induction}, Theorem \ref{sec::Main:Thm::CI}.
+}
+
+\DIFaddend \begin{proof}
 For all parts of this lemma, I use the following two results:
 
 \begin{itemize}
@@ -3089,39 +3377,61 @@ So \(\ex{f(\X\mb{I}_\typset|\XXX\mb{I}_\typset} = \ex{f(\X\mb{I}_\typset|\XXX\mb
 \lin
 
 \begin{lem}
-Let \(\phi: \mb{R}^+ \ra \mb{R}^+\) be a monotonic function such that \(\phi(0+) = 0\). Suppose also that \(\phi \leq C\) for some constant \(C\). Then there exists a continuous monotonic concave function \(\psi:\mb{R}^+\ra \mb{R}^+\) such that \(\psi(0) = 0\) and \(\phi \leq \psi\leq C\).
+Let \DIFaddbegin \DIFadd{\(\ep >0\). Let }\DIFaddend \(\phi: \mb{R}^+ \ra \mb{R}^+\) be a monotonic function such that \(\phi(0+) = 0\). Suppose also that \(\phi \leq C\) for some constant \(C\). Then there exists a continuous monotonic concave function \(\psi:\mb{R}^+\ra \mb{R}^+\) such that \DIFdelbegin \DIFdel{\(\psi(0) = 0\) }\DIFdelend \DIFaddbegin \DIFadd{\(\psi(0) = \ep\) }\DIFaddend and \(\phi \leq \psi\leq C\).
 \label{sec::TL:Lem::concbd}
 \end{lem}
 \labe{sec::TL:Lem::concbd}
 
 \purpose This is used in Proposition \ref{subsec::Well-:Prop::SDE=IG} for a technical result.
 
-\begin{proof}
-Fix \(\ep > 0\). Since \(\phi(0+) = 0\), there exists a \(\delta > 0\) such that \(\phi(\delta) < \ep/2\). Let \(\ov{\phi} = \min\{\phi+\ep/2, C\}\).
+\DIFaddbegin \DIFadd{\pfsum Use a simple piece-wise linear construction.
+}
+
+\DIFadd{\usein Proposition \ref{subsec::Well-:Prop::SDE=IG}
+}
+
+
+
+\DIFaddend \begin{proof}
+\DIFdelbegin \DIFdel{Fix \(\ep > 0\).
+}\DIFdelend Since \(\phi(0+) = 0\), there exists a \(\delta > 0\) such that \(\phi(\delta) < \ep/2\). Let \(\ov{\phi} = \min\{\phi+\ep/2, C\}\).
 
 \ind Let \(a_\ep = \inf\{a \geq 0: a\x + \ep \geq \phi(\x)\te{ for all } \x\geq 0\}\). Note that \(0\leq a_\ep \leq C/\delta\). 
 
-\ind Define \(\psi_\ep(\x) = \min\{a\x+\ep,C\}\). Then \(\psi_\ep\) is continuous, concave, non-decreasing, \(\psi_\ep(0) = \ep\) and \(\psi_\ep \geq \phi\).
+\ind Define \DIFdelbegin \DIFdel{\(\psi_\ep(\x) = \min\{a\x+\ep,C\}\). Then \(\psi_\ep\) }\DIFdelend \DIFaddbegin \DIFadd{\(\psi(\x) = \min\{a\x+\ep,C\}\). Then \(\psi\) }\DIFaddend is continuous, concave, non-decreasing, \(\psi_\ep(0) = \ep\) and \DIFdelbegin \DIFdel{\(\psi_\ep \geq \phi\).
+}%DIFDELCMD < 
 
-\ind Let \(\psi(\x) = \inf_{\ep > 0} \psi_\ep(\x)\). Then \(\psi\) is trivially concave, bounded and non-decreasing. Furthermore, since it is non-decreasing, it can only have jump discontinuities, and left and right limits exist at each point. Suppose \(\x\) is a discontinuity point of \(\psi\). Let \(\triangle\psi(\x) = \psi(\x+) - \psi(\x-)\).
+%DIFDELCMD < %%%
+\DIFdel{\ind Let \(\psi(\x) = \inf_{\ep > 0} \psi_\ep(\x)\). Then \(\psi\) is trivially concave, bounded and non-decreasing. Furthermore, since it is non-decreasing, it can only have jump discontinuities, and left and right limits exist at each point. Suppose \(\x\) is a discontinuity point of \(\psi\). Let \(\triangle\psi(\x) = \psi(\x+) - \psi(\x-)\).
+}%DIFDELCMD < 
 
-For any small \(\delta > 0\), notice that
+%DIFDELCMD < %%%
+\DIFdel{For any small \(\delta > 0\), notice that
+}%DIFDELCMD < 
 
-\[\lim_{\delta \ra 0} \frac{\psi(\x-\delta) + \psi(\x+\delta)}{2} = \psi(\x-) + \frac{\triangle\psi(\x)}{2} > \psi(\x-).\]
+%DIFDELCMD < %%%
+\[\DIFdel{\lim_{\delta \ra 0} \frac{\psi(\x-\delta) + \psi(\x+\delta)}{2} = \psi(\x-) + \frac{\triangle\psi(\x)}{2} > \psi(\x-).}\]%DIFAUXCMD
+%DIFDELCMD < 
 
-Thus, there exists some \(\delta\) and some \(1>\rate>1/2\) such that
+%DIFDELCMD < %%%
+\DIFdel{Thus, there exists some \(\delta\) and some \(1>\rate>1/2\) such that
+}%DIFDELCMD < 
 
-\[\rate\psi(\x-\delta) + (1 -\rate)\psi(\x+\delta) > \psi(\x-) > \psi(\x + (1 - 2\rate)\delta) = \psi\left(\rate(\x-\delta) + (1 - \rate)(\x+\delta)\right).\]
+%DIFDELCMD < %%%
+\[\DIFdel{\rate\psi(\x-\delta) + (1 -\rate)\psi(\x+\delta) > \psi(\x-) > \psi(\x + (1 - 2\rate)\delta) = \psi\left(\rate(\x-\delta) + (1 - \rate)(\x+\delta)\right).}\]%DIFAUXCMD
+%DIFDELCMD < 
 
-This contradicts concavity of \(\psi\). Thus, \(\psi\) is continuous.
-\end{proof}
+%DIFDELCMD < %%%
+\DIFdel{This contradicts concavity of \(\psi\). Thus, \(\psi\) is continuous.
+}\DIFdelend \DIFaddbegin \DIFadd{\(\psi \geq \phi\).
+}\DIFaddend \end{proof}
 
 \lin
 
 \begin{defn}
 Let \(\{	{i}\}\) be denote a finite set of times \(0=	{0} <\t\indx{1} <\cdots < \t\indx{n}=1\). Let \(\X\in \cad([0,T],\spce)\) where \(\spce\) is a separable and complete space with respect to the metric \(d\). Define,
 
-\[\modu{\X}([\t\indx{i-1},	{i})) = \sup_{\tt,\t\in [\t\indx{i-1},	{i})} d(\X\tp{\t},\X\tp{\tt}).\]
+\[\DIFdelbegin \DIFdel{\modu{\X}}\DIFdelend \DIFaddbegin \DIFadd{\modu\pra{\X}}\DIFaddend ([\t\indx{i-1},	{i})) = \sup_{\tt,\t\in [\t\indx{i-1},	{i})} d(\X\tp{\t},\X\tp{\tt}).\]
 
 Then for all \(\delta \in (0,T)\),
 
@@ -3134,7 +3444,10 @@ is called the c\`adl\`ag modulus of continuity.
 
 \purpose This modulus of continuity is useful for the c\`adl\`ag version of the Arzela-Ascoli Theorem.
 
-\lin
+\DIFaddbegin \DIFadd{\usein Proposition \ref{subsec::Well-:Prop::IGApprox}
+}
+
+\DIFaddend \lin
 
 \begin{thms}
 Let \(\{\m\sln{i}\}\subseteq \mc{P}\left(\cad([0,T],\spce)\right)\) where \(\spce\) is a separable and complete normed space. Assume \(\X\sln{i}\) is a random process with law \(\m\sln{i}\) for each \(i\). Then \(\{\m\sln{i}\}\) is tight if and only if:
@@ -3152,7 +3465,10 @@ Let \(\{\m\sln{i}\}\subseteq \mc{P}\left(\cad([0,T],\spce)\right)\) where \(\spc
 \end{thms}
 \labe{sec::TL:Thm::Tight}
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Proposition \ref{subsec::Well-:Prop::IGApprox}
+}
+
+\DIFaddend \begin{proof}
 This is simply a restatement of \cite[Theorem 13.2]{Bil99}.
 \end{proof}
 
@@ -3178,7 +3494,13 @@ for all \(\ep > 0\).
 
 \purpose This allows us to obtain the c\`adl\`ag version of the equicontinuity condition necessary for Theorem \ref{sec::TL:Thm::Tight}. Note: The first time this lemma is applied is in the proof of Proposition \ref{subsec::Well-:Prop::IGApprox}. The proof refers to Proposition \ref{subsec::Well-:Prop::SDE=IG}.
 
-\begin{proof}
+\DIFaddbegin \DIFadd{\usein Proposition \ref{subsec::Well-:Prop::IGApprox}
+}
+
+\DIFadd{\app Proposition \ref{subsec::Well-:Prop::SDE=IG}
+}
+
+\DIFaddend \begin{proof}
 Fix any \(n \in \mb{N}\). Let \(\cconst = \sup_{\s,\ss \in \S} |\s - \ss|\). Let \(\XX\) be the \(\cad([0,\T],\mb{R}^\U)\)-valued process defined by the following stochastic integral:
 
 \[\XX\tp{\t} = \sum_{\v \in \U}\cconst\ev\vind{\v}\int_0^\t\int_0^{\const}\alt{\poiss}\vind{\v}(d\r, d\tt)\]
@@ -3253,6 +3575,12 @@ However, \(\XX\) is just a homogeneous Poisson point process, so the c\`adl\`ag 
 .
 }
 
+\DIFadd{\purpose Needed for Definition \ref{sec::TL:Def::DissectingRing}.
+}
+
+\DIFadd{\usein Definition \ref{sec::TL:Def::DissectingRing}
+}
+
 \lin
 
 \begin{defn}
@@ -3266,6 +3594,15 @@ However, \(\XX\) is just a homogeneous Poisson point process, so the c\`adl\`ag 
 .
 }
 
+\DIFadd{\purpose Necessary for Renyi-Monch theorem (Lemma \ref{sec::TL:Lem::Renyi-Monch}).
+}
+
+\DIFadd{\usein Lemma \ref{sec::TL:Lem::Renyi-Monch}
+}
+
+\DIFadd{\app Definition \ref{sec::TL:Def::DissectingSystem}
+}
+
 \lin
 
 \DIFaddend \begin{lem}
@@ -3275,7 +3612,18 @@ to the proof of Lemma \ref{subsec::ProofU:Lem::Poisson} even though it does not 
 }\label{sec::TL:Lem::Renyi-Monch}
 \end{lem}
 \DIFadd{\labe{sec::TL:Lem::Renyi-Monch}
-}\begin{proof}
+}
+
+\DIFadd{\purpose This allows us to prove that the process constructed in section \ref{subsec::ProofU:sec::Proof2} is actually a Poisson process.
+}
+
+\DIFadd{\usein Lemma \ref{sec::TL:Lem::fatembedding}.
+}
+
+\DIFadd{\app Definition \ref{sec::TL:Def::DissectingRing}.
+}
+
+\begin{proof}
 \DIFadd{This is just a restatement of \mbox{%DIFAUXCMD
 \cite[Theorem 9.2.XII]{DalVer08}}\hspace{0pt}%DIFAUXCMD
 .
@@ -3304,6 +3652,12 @@ to the proof of Lemma \ref{subsec::ProofU:Lem::Poisson} even though it does not 
 \DIFaddbegin \DIFadd{\labe{sec::TL:Lem::embedding}
 }
 
+\DIFadd{\purpose This is the embedding theorem from Daley Vere Jones which lets us construct \(\X\) as the weak solution to an SDE.
+}
+
+\DIFadd{\usein Lemma \ref{sec::TL:Lem::fatembedding}.
+}
+
 \DIFaddend \begin{proof}
 \DIFdelbegin \DIFdel{I }\DIFdelend \DIFaddbegin \DIFadd{The existence of \(\alt{\poiss}\) is given directly by \mbox{%DIFAUXCMD
 \cite[Proposition 14.7.I(b)]{DalVer08} }\hspace{0pt}%DIFAUXCMD
@@ -3313,11 +3667,22 @@ to the proof of Lemma \ref{subsec::ProofU:Lem::Poisson} even though it does not 
 \lin
 
 \begin{lem}
-\DIFadd{Let us }\DIFaddend use the notation of \DIFdelbegin \DIFdel{section \ref{subsec::ProofU:sec::Proof2}. }\DIFdelend \DIFaddbegin \DIFadd{lemma \ref{sec::TL:Lem::embedding}. Suppose \(\mspce\) is finite. Let \(\F\ts{0} \defeq \sigma(\X)\) for some \(\mspce\)-valued random variable \(\X\), and let \(\F\ts{\t}\defeq \F\ts{0}\vee\FH\ts{\t}\). Then lemma \ref{sec::TL:Lem::embedding} holds if \(\poiss\) is assumed to be \(\F\)-adapted with \(\F\)-predictable intensity \(\rate\).
+\DIFadd{Let us }\DIFaddend use the notation of \DIFdelbegin \DIFdel{section \ref{subsec::ProofU:sec::Proof2}. }\DIFdelend \DIFaddbegin \DIFadd{lemma \ref{sec::TL:Lem::embedding}. Suppose \(\mspce\) is finite. Let \(\F\ts{0} \defeq \sigma(\X)\) for some \(\mspce\)-valued random variable \(\X\), and let \(\F\ts{\t}\defeq \F\ts{0}\vee\FH\ts{\t}\). Then lemma \ref{sec::TL:Lem::embedding} holds if \(\poiss\) is assumed to be \(\F\)-adapted with \(\F\)-predictable intensity \(\rate\). Furthermore, for any \(\x\in \mspce\), \(\alt{\poiss}\) conditioned on \(\{\X = \x\}\) remains a unit intensity Poisson process.
 }\label{sec::TL:Lem::fatembedding}
 \end{lem}
 \DIFadd{\labe{sec::TL:Lem::fatembedding}
-}\begin{proof}
+}
+
+\DIFadd{\purpose Extends the assumptions of Lemma \ref{sec::TL:Lem::embedding} to the case we are currently considering.
+}
+
+\DIFadd{\usein Lemma \ref{subsec::ProofU:Lem::Poisson}.
+}
+
+\DIFadd{\app Lemma \ref{sec::TL:Lem::Renyi-Monch}, Lemma \ref{sec::TL:Lem::embedding}.
+}
+
+\begin{proof}
 \DIFaddend The assumptions of \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \cite[Proposition 14.7.I(b)]{DalVer08} }\hspace{0pt}%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{lemma \ref{sec::TL:Lem::embedding} }\DIFaddend are as follows:
@@ -3368,7 +3733,8 @@ and let }\DIFdelend \DIFaddbegin \DIFadd{unit intensity. Let \(\evnt \in \F\ts{0
 &= \exp\left(-|\DIFdelbegin \DIFdel{R| |}\DIFdelend \inte||\alt{\inte}|\DIFaddbegin \DIFadd{\Sm(}\SS\DIFadd{)}\DIFaddend \right)
 \end{align*}
 
-Since this holds for every rectangle, \DIFdelbegin \DIFdel{\(\poiss\sln{n}\) }\DIFdelend \DIFaddbegin \DIFadd{and since the rectangles form a dissecting ring on \([0,\T]\times \mspce \times [0,\const]\) for every \(\T,\const < \infty\), \(\alt{\poiss}\) }\DIFaddend is a Poisson process on \DIFdelbegin \DIFdel{\([0,T]\times \alt{\S}\carp{n}\times [0,\const]\) by R\'enyi, M\"onch \mbox{%DIFAUXCMD
+Since this holds for every rectangle, \DIFdelbegin \DIFdel{\(\poiss\sln{n}\) }\DIFdelend \DIFaddbegin \DIFadd{and since the rectangles form a dissecting ring on \([0,\T]\times \mspce \times [0,\const]\) for every \(\T,\const < \infty\), \(\alt{\poiss}\) }\DIFaddend is a Poisson process on \DIFdelbegin \DIFdel{\([0,T]\times \alt{\S}\carp{n}\times [0,\const]\) by R\'enyi,
+M\"onch \mbox{%DIFAUXCMD
 \cite[Theorem 9.2.XII]{DalVer08}}\hspace{0pt}%DIFAUXCMD
 .
 }\DIFdelend \DIFaddbegin \DIFadd{\([0,\T]\times \mspce \times [0,\const]\) with unit intensity (Lemma \ref{sec::TL:Lem::Renyi-Monch}). Since this is true for arbitrary \(\T,\const < \infty\), \(\alt{\poiss}\) is a Poisson process on \(\mb{R}_+ \times \mspce \times \mb{R}_+\) with unit intensity.
@@ -3397,14 +3763,18 @@ Since this holds for every rectangle, \DIFdelbegin \DIFdel{\(\poiss\sln{n}\) }\D
 }\label{sec::TL:Lem::DanKolExt}
 \end{lem}
 \DIFadd{\labe{sec::TL:Lem::DanKolExt}
-}\begin{proof}
+}
+
+\DIFadd{\purpose By continually extending \(\m\sln{1}\) to larger and larger measures, this theorem guarantees the existence of a unique measure on infinite-dimensional space that has \(\m\sln{1}\) as a marginal.
+}
+
+\DIFadd{\usein Lemma \ref{subsec::ProofU:Lem::Poisson}.
+}
+
+\begin{proof}
 \DIFadd{This is a restatement of Theorem 62 from }\url{https://terrytao.wordpress.com/2010/10/30/245a-notes-6-outer-measures-pre-measures-and-product-measures/#more-4371}\DIFadd{. \tr{TODO:: find a better source.}
 }\DIFaddend \end{proof}
-\DIFaddbegin 
-
-\lin
-
-\DIFaddend \newpage
+\newpage
 \bibliographystyle{plain}
 \bibliography{weekly_refs}
 \end{document}
