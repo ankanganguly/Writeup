@@ -1,0 +1,239 @@
+\documentclass[12pt]{article}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{pdfcomment}
+%\usepackage{coffee4}
+\usepackage{lipsum}
+\usepackage{showkeys}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{verbatim}
+\usepackage{longtable}
+
+%General Shorthand Macros
+\newcommand{\skipLine}{\vspace{12pt}}
+\newcommand{\mb}{\mathbb}
+\newcommand{\mc}{\mathcal}
+\newcommand{\ms}{\mathscr}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\ov}{\overline}
+\newcommand{\os}{\overset}
+\newcommand{\un}{\underline}
+\newcommand{\te}{\text}
+\newcommand{\ep}{\epsilon}
+\newcommand{\tr}{\textcolor{red}}
+\newcommand{\tb}{\textcolor{blue}}
+\newcommand{\tg}{\textcolor{green}}
+\newcommand{\labe}[1]{\tr{\texttt{Label: #1}}}
+\newcommand{\tbs}{\textbackslash}
+\newcommand{\purpose}{\textbf{Purpose: }}
+\newcommand{\pfsum}{\textbf{Proof Summary: }}
+\newcommand{\usein}{\textbf{Used in: }}
+\newcommand{\app}{\textbf{Applies: }}
+\newcommand{\ind}{\hspace{24pt}}
+\newcommand{\lin}{\rule{\linewidth}{0.4 pt}}
+\newcommand{\pr}{\mb{P}}							%probability
+\newcommand{\ex}[1]{\mb{E}\left[#1\right]}			%expectation
+\newcommand{\exmu}[2]{\mb{E}^{#1}\left[#2\right]}	%exp wrt a measure
+\newcommand{\deq}{\overset{\text{(d)}}{=}}			%equal in dist
+\newcommand{\defeq}{:=}								%definition equal
+\newcommand{\msr}{\mc{M}}							%space of measures
+\newcommand{\pmsr}{\mc{P}}							%space of pmsrs
+\newcommand{\cad}{\mb{D}}							%Cadlag space
+\newcommand{\argmin}{\te{arg}\min}
+
+
+%Notation and Basic Assumptions
+%Graph Notation
+%Base Commands
+\newcommand{\sta}{\mc{X}}							%state space
+\newcommand{\neigh}[1]{\mc{N}_{#1}}					%neighborhood
+\newcommand{\dneigh}[1]{\mc{N}^2_{#1}}				%double neigh
+\newcommand{\tneigh}[1]{\mc{N}^3_{#1}}				%double neigh
+\newcommand{\gneigh}[2]{\mc{N}^{#1}_{#2}}			%neighborhood w G
+\newcommand{\dgneigh}[2]{\mc{N}^{2,#1}_{#2}}		%double neigh w G
+\newcommand{\tgneigh}[2]{\mc{N}^{3,#1}_{#2}}		%double neigh w G
+\newcommand{\bdry}[1]{\partial_{#1}}				%bdry
+\newcommand{\gbdry}[2]{\partial^{#1}_{#2}}			%G bdry
+\newcommand{\cl}[1]{\ov{#1}}						%graph closure
+\renewcommand{\root}{\mathbf{0}}					%root
+
+%Modifiers
+\newcommand{\stb}[1]{_{#1}}							%add base of \st
+\newcommand{\indx}[1]{^{#1}}						%sublimit index
+\newcommand{\subg}[1]{_{#1}}						%subgraph
+
+
+%Process Notation
+%Base Commands
+\newcommand{\Xf}{X}									%Full process
+\newcommand{\poiss}{N}								%Poisson process
+\newcommand{\leb}{\lambda}							%Lebesgue msr
+\newcommand{\Sm}{\ell}								%ctng msr on sta
+\newcommand{\rate}{r}								%jump rate
+\newcommand{\F}{\mc{F}}								%filtrations
+\newcommand{\m}{\mu}								%law of \Xf
+\newcommand{\proj}{\pi}								%projection
+
+%Modifiers
+\newcommand{\poissv}[1]{_{#1}}						%v comp of Poisson
+\newcommand{\poisso}[1]{^{#1}}						%Other P modifier
+\newcommand{\vind}[1]{_{#1}}						%v component
+\newcommand{\tme}[1]{(#1)}							%time
+\newcommand{\tmi}[1]{#1}							%time interval
+\newcommand{\gind}[1]{^{#1}}						%interaction net
+\newcommand{\vpara}[1]{^{#1}}						%vertex param
+\newcommand{\stpara}[1]{_{#1}}						%state parameter	
+\newcommand{\tpara}[1]{_{#1}}						%time parameter
+\newcommand{\gvpara}[2]{^{#1,#2}}					%G and v params
+\newcommand{\psf}{_*}								%push forward
+\newcommand{\tparapsf}[1]{_{#1,*}}					%psf t param
+
+
+%Simultaneous Jumps
+\newcommand{\Jmps}{\mc{J}}							%set of jumps
+
+
+%Assumptions
+\newcommand{\psize}{\ell}							%Branching size
+\newcommand{\xf}{x}									%x input
+
+%Well-Posedness
+%Base Commands
+
+%Modifiers
+\newcommand{\trnc}[1]{_{#1}}						%Truncated graph
+
+
+%Conditional Independence
+%Base Commands
+%Modifiers
+
+
+%Statement
+%Base Commands
+\newcommand{\Xg}{Y}									%Alt proc rep
+\newcommand{\brate}{\alt{\rate}}					%local rt at bdry
+
+%Modifications
+\newcommand{\inte}[1]{{#1}^\mathrm{o}}				%interior
+\newcommand{\alt}[1]{\tilde{#1}}					%alternate
+
+
+
+%Existence
+%Base commands
+\newcommand{\pmap}{\Lambda}							%Mk chain to PP
+\newcommand{\rt}{\tau}								%PP time
+\renewcommand{\mark}{\kappa}						%PP mark
+\newcommand{\ratee}{\Gamma}							%generic rate
+\newcommand{\cratee}{\alt{\ratee}}					%gen cdtl rate
+\newcommand{\rp}{P}									%generic PP
+\newcommand{\mm}{\nu}								%gen msr
+\newcommand{\law}{\te{Law}}							%law
+\newcommand{\ev}[1]{\ep^{#1}}						%std basis
+
+
+%Uniqueness
+%Base Commands
+\newcommand{\Xh}{Z}									%2nd alt proc
+\newcommand{\crate}{\hat{\rate}}					%dneigh bdry rate
+\newcommand{\bgrate}{\ov{\rate}}					%gen bdry rate
+\newcommand{\bcrate}{\hat{\brate}}					%neigh bdry rate
+\newcommand{\mmm}{\eta}								%std msr
+\newcommand{\ds}{\Upsilon}							%Radon mapping
+\newcommand{\dense}{L}								%density
+\newcommand{\densen}{N}								%density of dneigh
+\newcommand{\denseph}{\alt{N}}						%density of CUdneigh
+\newcommand{\mdense}{M}								%marge density
+\newcommand{\xg}{y}									%small \Xg
+
+%Modifications
+\newcommand{\gvjpara}[3]{^{#1,#2,#3}}				%include branch
+\newcommand{\prc}[1]{_{#1}}							%wrt a msr
+\renewcommand{\it}[1]{_{#1}}						%iterator
+\newcommand{\jpara}[1]{^{#1}}						%B_j dependence
+
+
+
+
+
+
+
+
+%reassign later
+\newcommand{\arr}{\lambda}							%arrival rate
+\newcommand{\neighI}[1]{\partial^I_{#1}}			%int. neigh
+\newcommand{\IG}{\mc{L}}							%infinitesimal gen
+\newcommand{\para}[1]{^{#1}}
+\newcommand{\inter}[1]{#1^I}
+\newcommand{\uni}{m}
+\renewcommand{\d}{D}
+
+
+\newtheorem{thms}{Theorem}[section]
+\newtheorem{conj}[thms]{Conjecture}
+\newtheorem{prop}[thms]{Proposition}
+\newtheorem{coro}[thms]{Corollary}
+\newtheorem{lem}[thms]{Lemma}
+%\newtheorem{sublem}{Sublemma}[lem]
+\newtheorem{defn}[thms]{Definition}
+\newtheorem{assu}[thms]{Assumption}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\title{General Graph Topology Results (Working Title)}
+\author{Ankan Ganguly}
+
+\maketitle
+
+Remark: This document uses the results from the derivation of the local approximation on trees. I will refer to this derivation as the main paper for now.
+
+\skipLine
+
+Remark: In this paper I mostly work with locally finite graphs. However, I proved all my results in the main paper for bounded degree graphs. I may need to strengthen the assumptions of this paper to bounded degree. However, since we are working with local convergence, all results that hold for locally finite graphs should extend to bounded degree graphs (the one possible exception would be well-posedness results).
+
+\section{TODO}
+
+
+
+
+\section{Notation and basic assumptions}
+\label{not}
+
+\subsection{Graph Notation}
+\label{g::not}
+
+We consider an interacting particle system for which each node takes values in the countable state-space \(\sta = \mb{Z}\). Our goal is to understand the local evolution of a network whose nodes take values in \(\sta\). Therefore, we represent the interaction network between nodes by a rooted graph \(G = (V,E,\root)\) in which \(\root \in V\) is the vertex representing the node whose local evolution is of interest to us. When looking at sequences of such processes on networks, we let \(G\indx{k} = (V\indx{k},E\indx{k},\root\indx{k})\) represent the network structure in the sublimit.
+
+\ind Given a specific rooted graph \(G\) and any vertex set \(\root \in A \subseteq V\), define \(G\subg{A} \defeq (A,E\cap A^2,\root)\). This is the maximal subgraph of \(G\) restricted to the vertices in \(A\). For any \(v \in V\), let \(\neigh{v}\subseteq V\) be the neighbors of \(v\) in \(g\). Let \(\cl{v} = \{v\}\cup\neigh{v}\). We also define the double neighborhood given by, \(\dneigh{v} = \cl{\neigh{v}}\setminus \{v\}\). The triple neighborhood will be \(\cl{\dneigh{v}} \setminus \{v\}\). These notions also extend to vertex set. If \(A\subseteq V\), then \(\neigh{A} = \{v \in V\setminus A: \exists u \in A\te{ s.t. } (u,v) \in E\}\). \(\cl{A} = A\cup \neigh{A}\). \(\dneigh{A} = \cl{\neigh{A}}\setminus A\). Similarly, \(\tneigh{A} = \dneigh{A} \cup \cl{\dneigh{A}}\setminus A\). When the graph we are working on is not clear from context, I may use \(\gneigh{G}{A}\), \(\dgneigh{G}{A}\) and \(\tgneigh{G}{A}\) to denote the neighborhood, double neighborhood and triple neighborhood of \(A\) with respect to \(G\). Let the boundary of \(A\) be denoted by \(\bdry{A} \defeq \{v \in A: \neigh{v}\cap A^c \neq \emptyset\}\). If \(G\) is not clear from context, we may use \(\gbdry{G}{A}\) instead.
+
+\subsection{Process Notation}
+\label{p::not}
+
+For any \(U \subseteq V\), let \(\Omega\vpara{U} = \cad\left([0,\infty),\sta^U\right)\) be the set of \(\sta^U\)-valued c\`adl\`ag processes up to infinite time. Let \(\Omega\vpara{U}\tpara{t} = \cad\left([0,t),\sta^U\right)\). In this context, define \(\Xf \in \Omega\vpara{V}\). For any \(v \in V\) and \(t < \infty\), let \(\Xf\vind{v}\tme{t}\) be the value the \(v\)-component of \(\Xf\) at time \(t\). Given a set \(U\subset V\) and an interval \(I \subset \mb{R}^+\), let \(\Xf\vind{U}\tmi{I}\) denote the path taken by the \(U\)-components of \(\Xf\) over \(\tmi{I}\). We denote the natural filtration of this process by \(\F\vpara{U}\tpara{t} \defeq \sigma \left(\Xf\vind{v}\tmi{[0,t]}\right)\). We will often be interested in the predictable sigma-algebra of the process given by \(\F\vpara{U}\tpara{t-} \defeq \bigvee_{s < t} \F\vpara{U}\tpara{s} = \sigma\left(\Xf\vind{v}\tmi{[0,t)}\right)\). Furthermore, when the evolution of \(\Xf\) with respect to its topology is clearly defined, but the specific interaction network of \(\Xf\) is not clear from context, we may write \(\Xf\gind{G}\) to represent the process \(\Xf\) with interaction network \(G\). Fix any \(v \in V,t \in \mb{R}^+\) and \(j \in \sta\setminus\{\Xf\vind{v}\tme{t}\}\). Then at time \(t\), we can define the jump rate \(\rate\gvpara{G}{v}\stpara{j}(G,t)\) to be the inverse of the expected time for \(\Xf\vind{v}\) to jump to \(\Xf\vind{v} + j\). It now becomes clear how we can define the interaction network. The interaction network is any graph \(G\) such that \(\Xf\) is a \(\sta^V\)-valued process and such that for every \(v \in V\),\(t\in \mb{R}^+\) and \(j \in \sta\), \(\rate\gvpara{G}{v}\stpara{j}(G,t)\) is \(\F\vpara{v}\tpara{t-}\)-measurable. 
+
+\ind We can rigorously define this in the following manner. Let \(\Sm\) be the counting measure on \(\sta\). Let \(\leb\) be the Lebesgue measure on \(\mb{R}^2\). Let \(\{\poiss\poissv{v}:v \in V\}\) be a sequence of i.i.d. Poisson point processes on \(\sta\times \mb{R}^2\) with intensity \(\Sm\times \leb\). Let \(\Xf\tme{0}\) be an \(\sta^V\)-valued random variable. Let \(\Xf\tme{0}\) be some given \(\sta^V\)-valued random variable. Assume \(\rate\gvpara{G}{v}\stpara{j}(t)\) is \(\F\vpara{\cl{v}}\tpara{t-}\)-measurable for all \(v,j,t\) and that \(\rate\gvpara{G}{v}\stpara{j}:\mb{R}^+ \ra\mb{R}^+\) is an almost surely Borel-Measurable function. Consider the following SDE:
+
+\begin{equation}
+\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \int_{\sta}\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}(s)} \poiss\poissv{v}\left(dr,ds,di\right)
+\label{p::Xf}
+\end{equation}
+
+Assuming equation \eqref{p::Xf} has a well-defined unique solution, this is the infinite-dimensional process whose marginals we are interested in.
+
+\ind Let \(\m\) be the law of \(\Xf\). We are primarily interested in the marginals of \(\m\). For any \(U \subseteq V\), let \(\proj\vpara{U}(\Xf)\) map \(\Xf\) to an \(\sta^U\)-valued process defined by \((\proj\vpara{U}(\Xf))\vind{v} = \Xf\vind{v}\) for all \(v\in U\). Then the \(U\)-marginal of \(\m\) is given by the push-forward measure \(\proj\vpara{U}\psf(\m)\). I will often use the shorthand \(\m\vpara{U} \defeq \proj\psf\vpara{U}(\m)\). We may also be interested in restricting the process to some finite time interval \([0,T)\). In this case, we define \((\proj\vpara{U}\tpara{T}(\Xf))\vind{v}\tme{t} = \Xf\vind{v}\tme{t}\) for \(v \in U\) and \(t \in [0,T)\). The corresponding push-forward measure is given by \(\proj\vpara{U}\tparapsf{T}(\m)\). Again, I will use the shorthand \(\m\vpara{U}\tpara{T} \defeq \proj\vpara{U}\tparapsf{T}(\m)\). \(\m\tpara{0} = \law(\Xf\tme{0})\).
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{weekly_refs}
+\end{document}
