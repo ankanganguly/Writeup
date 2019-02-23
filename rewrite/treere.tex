@@ -16,6 +16,7 @@
 \usepackage{algpseudocode}
 \usepackage{verbatim}
 \usepackage{longtable}
+\usepackage{etoolbox}
 
 %General Shorthand Macros
 \newcommand{\skipLine}{\vspace{12pt}}
@@ -46,7 +47,7 @@
 \newcommand{\defeq}{:=}								%definition equal
 \newcommand{\msr}{\mc{M}}							%space of measures
 \newcommand{\pmsr}{\mc{P}}							%space of pmsrs
-\newcommand{\cad}{\mb{D}}							%Cadlag space
+\newcommand{\cad}{\mc{D}}							%Cadlag space
 \newcommand{\argmin}{\te{arg}\min}
 
 
@@ -81,6 +82,22 @@
 \newcommand{\F}{\mc{F}}								%filtrations
 \newcommand{\m}{\mu}								%law of \Xf
 \newcommand{\proj}{\pi}								%projection
+\newcommand{\utmet}[1]{
+\ifstrempty{#1}{
+	d_{\te{U}}}{
+	d_{\te{U},#1}}}									%uniform metric
+\newcommand{\stmet}[1]{
+\ifstrempty{#1}{
+	d_{\te{S}}}{
+	d_{\te{S},#1}}}									%skorokhod metric
+\newcommand{\xf}{x}									%x input
+\newcommand{\xg}{y}									%y input
+\newcommand{\met}[2]{
+\ifstrempty{#2}{
+	d_{#1}}{
+	d_{#1,#2}}}										%gen metric
+\newcommand{\bor}{\mc{B}}							%borel
+\newcommand{\poisses}{\mathbf{N}}					%poisson family
 
 %Modifiers
 \newcommand{\poissv}[1]{_{#1}}						%v comp of Poisson
@@ -97,20 +114,36 @@
 \newcommand{\tparapsf}[1]{_{#1,*}}					%psf t param
 
 
+
 %Simultaneous Jumps
 \newcommand{\Jmps}{\mc{J}}							%set of jumps
 
 
 %Assumptions
+%Base Commands
 \newcommand{\psize}{\ell}							%Branching size
-\newcommand{\xf}{x}									%x input
+\newcommand{\rateset}{\mathbf{\rate}}				%set of rates
+\newcommand{\jumpbd}[1]{C_{#1}}						%jump bound
+%Modifiers
+\newcommand{\tmepro}[2]{(#1,#2)}					%time, process
+\newcommand{\Gs}{\mc{G}_\ast}						%graphs
 
 %Well-Posedness
 %Base Commands
 
 %Modifiers
-\newcommand{\trnc}[1]{_{#1}}						%Truncated graph
 
+
+%Local Weak Convergence
+%Base Commands
+\newcommand{\iso}{I}								%isomorphism set
+\newcommand{\trnc}[1]{B_{#1}}						%Truncated graph
+\newcommand{\spce}{\mc{Y}}							%space
+
+%Modifiers
+\renewcommand{\sp}[1]{[#1]}							%include space
+\newcommand{\dit}[2]{_{#1,#2}}						%double iter
+\newcommand{\vindit}[2]{_{#1,#2}}					%\vind + \it
 
 %Conditional Independence
 %Base Commands
@@ -153,7 +186,6 @@
 \newcommand{\densen}{N}								%density of dneigh
 \newcommand{\denseph}{\alt{N}}						%density of CUdneigh
 \newcommand{\mdense}{M}								%marge density
-\newcommand{\xg}{y}									%small \Xg
 
 %Modifications
 \newcommand{\gvjpara}[3]{^{#1,#2,#3}}				%include branch
@@ -204,35 +236,274 @@ Remark: In this paper I mostly work with locally finite graphs. However, I prove
 
 \section{TODO}
 
+\begin{enumerate}
+\item Make sure I properly distinguish between networks and graphs. All graph theoretic results will use graph terminology (e.g. "graph", "vertex"). All results involving the geometry of the interacting particle process will use network terminology (e.g. "network", "node"). Thus, we can choose a vertex \(v \in V\). But, \(\Xf\vind{v}\) is a node of \(\Xf\).
+
+\item Fix notation for convergent marked graphs. My current notation is confusing as both vertices and iterators are in the subscript. This gets even worse with the rooted isomorphisms appearing in the subscript. See definition \ref{lwc::mlc}.
+
+\item I play a little fast and loose with definitions of vertex sets. Since vertex sets are all assumed to be at most countable, we can assume without loss of generality that there is a universal vertex set from which all vertices are drawn (for example, this can be defined via a 1-to-1 mapping from the vertex set to the integers). Most importantly, suppose \(G_n \ra G\) locally. Then for any \(v \in V\), I can assume WLOG \(v \in \cap_{n \in \mb{N}} V_n\). This is because there is some \(k\) such that \(v \in \trnc{k}(V)\) and we can remove the early terms of \(G_n\) so that \(\trnc{k}(G_n) \cong \trnc{k}(G)\) for all \(n\). Thus, technically we are looking at the sequence \(v_n = \phi_{n,k}^{-1}(v)\).
+
+\item I will occasionally introduce a graph \(G\) and then use its vertex set \(V\) or edge set \(E\) without specifically mentioning that \(G = (V,E,\root)\). 
+\end{enumerate}
 
 
 
 \section{Notation and basic assumptions}
 \label{not}
 
+We consider an interacting particle system for which each node takes values in the countable state-space \(\sta = \mb{Z}\). Our goal is to understand the local evolution of a network whose nodes take values in \(\sta\) (\tb{This can be generalized to \(\sta \subsetneq \mb{Z}\) by placing letting the initial value of the process hit \(\mb{Z}\setminus \sta\) with probability 0 and transitioning to \(\mb{Z}\setminus \sta\) at rate 0 at all times}). Therefore, we represent the interaction network between nodes by a rooted graph \(G = (V,E,\root)\) in which \(\root \in V\) is a distinguishable vertex representing the node whose local evolution is of interest to us.
+
 \subsection{Graph Notation}
-\label{g::not}
+\label{not::g}
 
-We consider an interacting particle system for which each node takes values in the countable state-space \(\sta = \mb{Z}\). Our goal is to understand the local evolution of a network whose nodes take values in \(\sta\). Therefore, we represent the interaction network between nodes by a rooted graph \(G = (V,E,\root)\) in which \(\root \in V\) is the vertex representing the node whose local evolution is of interest to us. When looking at sequences of such processes on networks, we let \(G\indx{k} = (V\indx{k},E\indx{k},\root\indx{k})\) represent the network structure in the sublimit.
-
-\ind Given a specific rooted graph \(G\) and any vertex set \(\root \in A \subseteq V\), define \(G\subg{A} \defeq (A,E\cap A^2,\root)\). This is the maximal subgraph of \(G\) restricted to the vertices in \(A\). For any \(v \in V\), let \(\neigh{v}\subseteq V\) be the neighbors of \(v\) in \(g\). Let \(\cl{v} = \{v\}\cup\neigh{v}\). We also define the double neighborhood given by, \(\dneigh{v} = \cl{\neigh{v}}\setminus \{v\}\). The triple neighborhood will be \(\cl{\dneigh{v}} \setminus \{v\}\). These notions also extend to vertex set. If \(A\subseteq V\), then \(\neigh{A} = \{v \in V\setminus A: \exists u \in A\te{ s.t. } (u,v) \in E\}\). \(\cl{A} = A\cup \neigh{A}\). \(\dneigh{A} = \cl{\neigh{A}}\setminus A\). Similarly, \(\tneigh{A} = \dneigh{A} \cup \cl{\dneigh{A}}\setminus A\). When the graph we are working on is not clear from context, I may use \(\gneigh{G}{A}\), \(\dgneigh{G}{A}\) and \(\tgneigh{G}{A}\) to denote the neighborhood, double neighborhood and triple neighborhood of \(A\) with respect to \(G\). Let the boundary of \(A\) be denoted by \(\bdry{A} \defeq \{v \in A: \neigh{v}\cap A^c \neq \emptyset\}\). If \(G\) is not clear from context, we may use \(\gbdry{G}{A}\) instead.
+Given a specific rooted graph \(G\) and any vertex set \(\root \in U \subseteq V\), define \(G\subg{U} \defeq (U,E\cap U^2,\root)\). This is the maximal subgraph of \(G\) restricted to the vertices in \(U\). For any \(v \in V\), let \(\neigh{v}\subseteq V\) be the neighbors of \(v\) in \(g\). Let \(\cl{v} = \{v\}\cup\neigh{v}\). We also define the double neighborhood given by, \(\dneigh{v} = \cl{\neigh{v}}\setminus \{v\}\). The triple neighborhood will be \(\cl{\dneigh{v}} \setminus \{v\}\). These notions also extend to vertex set. If \(U\subseteq V\), then \(\neigh{U} = \{v \in V\setminus U: \exists u \in U\te{ s.t. } (u,v) \in E\}\). \(\cl{U} = U\cup \neigh{U}\). \(\dneigh{U} = \cl{\neigh{U}}\setminus U\). Similarly, \(\tneigh{U} = \dneigh{U} \cup \cl{\dneigh{U}}\setminus U\). When the graph we are working on is not clear from context, I may use \(\gneigh{G}{U}\), \(\dgneigh{G}{U}\) and \(\tgneigh{G}{U}\) to denote the neighborhood, double neighborhood and triple neighborhood of \(U\) with respect to \(G\). Let the boundary of \(U\) be denoted by \(\bdry{U} \defeq \{v \in U: \neigh{v}\cap U^c \neq \emptyset\}\). If \(G\) is not clear from context, we may use \(\gbdry{G}{U}\) instead.
 
 \subsection{Process Notation}
-\label{p::not}
+\label{not::p}
 
-For any \(U \subseteq V\), let \(\Omega\vpara{U} = \cad\left([0,\infty),\sta^U\right)\) be the set of \(\sta^U\)-valued c\`adl\`ag processes up to infinite time. Let \(\Omega\vpara{U}\tpara{t} = \cad\left([0,t),\sta^U\right)\). In this context, define \(\Xf \in \Omega\vpara{V}\). For any \(v \in V\) and \(t < \infty\), let \(\Xf\vind{v}\tme{t}\) be the value the \(v\)-component of \(\Xf\) at time \(t\). Given a set \(U\subset V\) and an interval \(I \subset \mb{R}^+\), let \(\Xf\vind{U}\tmi{I}\) denote the path taken by the \(U\)-components of \(\Xf\) over \(\tmi{I}\). We denote the natural filtration of this process by \(\F\vpara{U}\tpara{t} \defeq \sigma \left(\Xf\vind{v}\tmi{[0,t]}\right)\). We will often be interested in the predictable sigma-algebra of the process given by \(\F\vpara{U}\tpara{t-} \defeq \bigvee_{s < t} \F\vpara{U}\tpara{s} = \sigma\left(\Xf\vind{v}\tmi{[0,t)}\right)\). Furthermore, when the evolution of \(\Xf\) with respect to its topology is clearly defined, but the specific interaction network of \(\Xf\) is not clear from context, we may write \(\Xf\gind{G}\) to represent the process \(\Xf\) with interaction network \(G\). Fix any \(v \in V,t \in \mb{R}^+\) and \(j \in \sta\setminus\{\Xf\vind{v}\tme{t}\}\). Then at time \(t\), we can define the jump rate \(\rate\gvpara{G}{v}\stpara{j}(G,t)\) to be the inverse of the expected time for \(\Xf\vind{v}\) to jump to \(\Xf\vind{v} + j\). It now becomes clear how we can define the interaction network. The interaction network is any graph \(G\) such that \(\Xf\) is a \(\sta^V\)-valued process and such that for every \(v \in V\),\(t\in \mb{R}^+\) and \(j \in \sta\), \(\rate\gvpara{G}{v}\stpara{j}(G,t)\) is \(\F\vpara{v}\tpara{t-}\)-measurable. 
+For any \(U \subseteq V\), let \(\cad\vpara{U} := \cad\left([0,\infty),\sta^U\right)\) be the set of \(\sta^U\)-valued c\`adl\`ag processes up to infinite time. Let \(\cad\vpara{U}\tpara{t} = \cad\left([0,t),\sta^U\right)\). Finally write \(\cad \defeq \cad([0,\infty),\sta)\). We impose the following norms and metrics:
 
-\ind We can rigorously define this in the following manner. Let \(\Sm\) be the counting measure on \(\sta\). Let \(\leb\) be the Lebesgue measure on \(\mb{R}^2\). Let \(\{\poiss\poissv{v}:v \in V\}\) be a sequence of i.i.d. Poisson point processes on \(\sta\times \mb{R}^2\) with intensity \(\Sm\times \leb\). Let \(\Xf\tme{0}\) be an \(\sta^V\)-valued random variable. Let \(\Xf\tme{0}\) be some given \(\sta^V\)-valued random variable. Assume \(\rate\gvpara{G}{v}\stpara{j}(t)\) is \(\F\vpara{\cl{v}}\tpara{t-}\)-measurable for all \(v,j,t\) and that \(\rate\gvpara{G}{v}\stpara{j}:\mb{R}^+ \ra\mb{R}^+\) is an almost surely Borel-Measurable function. Consider the following SDE:
+\begin{itemize}
+\item For \(\xf \in \cad\tpara{t}\), \(\|\xf\|\tpara{t} \defeq \sup_{0\leq s \leq t} \xf\tme{s}\). For \(\xf \in \cad\), \(\|\xf\| = \sum_{t=1}^\infty 2^{-1}(1\wedge \|\xf\|\tpara{t})\).
+
+\item For \(\xf,\xg \in \cad\tpara{t}\), \(\utmet{t}(\xf,\xg) \defeq \|\xf-\xg\|\tpara{t}\). For \(\xf,\xg \in \cad\), \(\utmet{}(\xf,\xg) \defeq \|\xf - \xg\|\tpara{t}\).
+
+\item For \(\xf,\xg \in \cad\tpara{t}\), \(\stmet{t}(\xf,\xg) \defeq \|\xf-\xg\|\tpara{t} \defeq \inf_{\substack{f:[0,t]\ra[0,t]\\\te{cts}\\\te{str. increasing}}}\max\{\|\xf-\xg\circ f\|\tpara{t},\|f - I\|\tpara{t}\}\). Here \(I\) is the identity function.
+
+\item For \(\xf,\xg \in \cad\), \(\stmet{}(\xf,\xg) = \sum_{t=1}^\infty 2^{-t}(1\wedge \stmet{t}(\xf,\xg))\).
+
+\item For \(U \subset V\), \(\xf,\xg\in \cad\vpara{U}\), \(\met{\ast}{}\vpara{U}(\xf,\xg) = \sum_{v \in U} 2^{-\phi_G(v)}(1\wedge \met{\ast}{}(\xf\vind{v},\xg\vind{v}))\), where \(\phi_G: V \ra \mb{N}\) is some arbitrarily fixed 1-to-1 mapping. Here \(\ast \in \{\te{U},\te{S}\}\).
+\end{itemize}
+
+\ind In this context, define \(\Xf \in \cad\vpara{V}\). For any \(v \in V\) and \(t < \infty\), let \(\Xf\vind{v}\tme{t}\) be the value the \(v\)-component of \(\Xf\) at time \(t\). Given a set \(U\subset V\) and an interval \(I \subset \mb{R}^+\), let \(\Xf\vind{U}\tmi{I}\) denote the path taken by the \(U\)-components of \(\Xf\) over \(\tmi{I}\). We denote the natural filtration of this process by \(\F\vpara{U}\tpara{t} \defeq \sigma \left(\Xf\vind{U}\tmi{[0,t]}\right)\). We will often be interested in the predictable sigma-algebra of the process given by \(\F\vpara{U}\tpara{t-} \defeq \bigvee_{s < t} \F\vpara{U}\tpara{s} = \sigma\left(\Xf\vind{U}\tmi{[0,t)}\right)\). Furthermore, when the evolution of \(\Xf\) with respect to its topology is clearly defined, but the specific interaction network of \(\Xf\) is not clear from context, we may write \(\Xf\gind{G}\) to represent the process \(\Xf\) with interaction network \(G\). Fix any \(v \in V,t \in \mb{R}^+\) and \(j \in \sta\setminus\{0\}\). Then at time \(t\), we can define the jump rate \(\rate\gvpara{G}{v}\stpara{j}(t)\) to be the inverse of the expected time for \(\Xf\vind{v}\) to jump to \(\Xf\vind{v} + j\). It now becomes clear how we can define the interaction network. The interaction network is any graph \(G\) such that \(\Xf\) is a \(\sta^V\)-valued process and such that for every \(v \in V\),\(t\in \mb{R}^+\) and \(j \in \sta\), \(\rate\gvpara{G}{v}\stpara{j}(t)\) is \(\F\vpara{v}\tpara{t-}\)-measurable. 
+
+\ind We can rigorously define this in the following manner. Let \(\Sm\) be the counting measure on \(\sta\). Let \(\leb\) be the Lebesgue measure on \(\mb{R}^2\). Let \(\poisses \defeq \{\poiss\poissv{v}:v \in V\}\) be a sequence of i.i.d. Poisson point processes on \(\sta\times \mb{R}^2\) with intensity \(\Sm\times \leb\). Let \(\Xf\tme{0}\) be an \(\sta^V\)-valued random variable. Let \(\Xf\tme{0}\) be some given \(\sta^V\)-valued random variable. Assume \(\rate\gvpara{G}{v}\stpara{j}(t)\) is \(\F\vpara{\cl{v}}\tpara{t-}\)-measurable for all \(v,j,t\) and that \(\rate\gvpara{G}{v}\stpara{j}:\mb{R}^+ \ra\mb{R}^+\) is an almost surely Borel-Measurable function. Consider the following SDE:
 
 \begin{equation}
-\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \int_{\sta}\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}(s)} \poiss\poissv{v}\left(dr,ds,di\right)
+\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \int_{\sta}\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}(s)} \poiss\poissv{v}\left(dr,ds,di\right) \te{ for } v\in V, t \geq 0
 \label{p::Xf}
 \end{equation}
 
-Assuming equation \eqref{p::Xf} has a well-defined unique solution, this is the infinite-dimensional process whose marginals we are interested in.
+Assuming there exists a unique in law solution to equation \eqref{p::Xf}, we define \(\Xf\gind{G}\) to be that solution. 
 
-\ind Let \(\m\) be the law of \(\Xf\). We are primarily interested in the marginals of \(\m\). For any \(U \subseteq V\), let \(\proj\vpara{U}(\Xf)\) map \(\Xf\) to an \(\sta^U\)-valued process defined by \((\proj\vpara{U}(\Xf))\vind{v} = \Xf\vind{v}\) for all \(v\in U\). Then the \(U\)-marginal of \(\m\) is given by the push-forward measure \(\proj\vpara{U}\psf(\m)\). I will often use the shorthand \(\m\vpara{U} \defeq \proj\psf\vpara{U}(\m)\). We may also be interested in restricting the process to some finite time interval \([0,T)\). In this case, we define \((\proj\vpara{U}\tpara{T}(\Xf))\vind{v}\tme{t} = \Xf\vind{v}\tme{t}\) for \(v \in U\) and \(t \in [0,T)\). The corresponding push-forward measure is given by \(\proj\vpara{U}\tparapsf{T}(\m)\). Again, I will use the shorthand \(\m\vpara{U}\tpara{T} \defeq \proj\vpara{U}\tparapsf{T}(\m)\). \(\m\tpara{0} = \law(\Xf\tme{0})\).
+\ind Assume \(G\) is fixed. Let \(\m\) be the law of \(\Xf\) (again, if \(G\) is not clear from context, we will use the notation \(\m\gind{G}\)). For any \(U \subseteq V\), let \(\proj\vpara{U}(\Xf)\) map \(\Xf\) to an \(\sta^U\)-valued process defined by \((\proj\vpara{U}(\Xf))\vind{v} = \Xf\vind{v}\) for all \(v\in U\). Then the \(U\)-marginal of \(\m\) is given by the push-forward measure \(\proj\vpara{U}\psf(\m)\). I will often use the shorthand \(\m\vpara{U} \defeq \proj\psf\vpara{U}(\m)\). We may also be interested in restricting the process to some finite time interval \([0,T)\). In this case, we define \((\proj\vpara{U}\tpara{T}(\Xf))\vind{v}\tme{t} = \Xf\vind{v}\tme{t}\) for \(v \in U\) and \(t \in [0,T)\). The corresponding push-forward measure is given by \(\proj\vpara{U}\tparapsf{T}(\m)\). Again, I will use the shorthand \(\m\vpara{U}\tpara{T} \defeq \proj\vpara{U}\tparapsf{T}(\m)\). \(\m\tpara{0} = \law(\Xf\tme{0})\).
 
+\section{Assumptions, Well-posedness and Local Convergence}
+\label{awl}
+\subsection{Assumptions}
+\label{awl::a}
+\begin{defn}
+\(\Gs\) is the set of countable, connected, locally finite rooted graphs up to rooted isomorphism (see definition \ref{lwc::riso}).
+\label{a::gstar}
+\end{defn}
+
+All graphs considered in this paper are assumed to be members of \(\Gs\). Countability is required for obvious reasons. We restrict our attention to rooted graphs so that we can clearly describe local properties (this could also be achieved using ordinary graphs and choosing an arbitrary vertex, however working with rooted graphs simplifies matters greatly). We need the graphs to be locally finite so that all finite vertex sets have finite neighborhoods within the graph. \tr{Most of my results currently hold only for bounded degree graphs rather than locally finite. For now I will write up the results as if I have already extended everything, but I need to keep an eye out for this assumption when pulling results from the main paper.}
+
+\ind \tr{Connectedness is not actually necessary for my results. For well-posedness, it suffices to prove that the process is well-defined on all components (reducing to the connected case). Local convergence automatically discounts everything except for the connected component on which the root appears, so we can assume everything is connected without loss of generality. The conditional independence property only holds if one of the sets considered is finite. Thus, on a disconnected graph, we only need to consider a finite number of components. This would allow us to consider each component separately. Similarly, the admissible set of the local approximation is finite, so once again, we can consider each connected component separately.}
+
+We also need some assumptions on the form equation \eqref{p::Xf} can take. It turns out the following assumption is sufficient for equation \eqref{p::Xf} to have a unique strong solution.
+
+\begin{assu}
+Let \(\rateset \defeq \{\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{x}:v \in V,i \in \sta\setminus\{0\},t \in \mb{R}^+, x \in \cad\vpara{V}, G \in \Gs\}\) be a sequence of functions from \(\mb{R}^+\times \cad\) to \(\mb{R}^+\). \(\left\{(\Xf\gind{G}\tme{0},\rateset\gind{G}): G \in \Gs\right\}\) satisfies assumption \ref{a::pbasics} if,
+
+\begin{enumerate}
+\item 
+
+\begin{equation}
+\sup_G\sup_v \ex{|\Xf\gind{G}\vind{v}\tme{0}|} < \infty
+\label{a::bddstart}
+\end{equation}
+
+\item \(\{\Xf\gind{G}\vind{v}\tme{0}:v \in V\}\) is a sequence of independent random variables. \tr{Consider 2nd order Gibbs instead. This should still hold, but some of the density calculations in the proof of uniqueness would become a little more complex.} \tr{Also, I should move this to a later section. It's also unnecessary for the proof of well-posedness and local weak convergence.}
+
+\item For all \(T < \infty\) there exists a constant \(\jumpbd{T} < \infty\) such that,
+
+\begin{equation}
+\sum_{i \in \sta}|i|\sup_{v \in V,t \in [0,T),\xf \in \cad\vpara{V},G \in \Gs} \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf} = \jumpbd{T}
+\label{a::bddjmp}
+\end{equation}
+
+\item For any \(t \in \mb{R}^+\),
+
+\begin{equation}
+\sup_{v \in V,t \in [0,T),\xf,\xg \in \cad\vpara{V},G \in \Gs} \sum_{i \in \sta}|i|\left|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xg}\right| \leq \jumpbd{T}\left|\stmet{T-}(\xf\vind{v},\xg\vind{v}) + \frac{1}{|\gneigh{G}{v}|}\sum_{u\in\gneigh{G}{v}} \stmet{T-}(\xf\vind{u},\xg\vind{u})\right|.
+\label{a::Lipschitz}
+\end{equation}
+
+\tr{It may be possible to exchange Lipschitz continuity of \(\rateset\gind{G}\) for continuity in exchange for an assumption that increasing neighborhoods of the root of \(G\) grow at most exponentially asymptotically. The proof is longer and I haven't completely worked it out.}
+
+\item \(t\mapsto \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}\) is left-continuous for all \(v \in V,i\in \sta,\xf\in \cad\vpara{V}\). Furthermore, it is continuous at all \(t\) such that \(\xf\vind{\cl{v}}\tme{t}\) is continuous. \tr{Move this elsewhere. It is not necessary for well-posedness or local weak convergence.}
+\end{enumerate}
+\skipLine
+
+Note: for brevity, we may occasionally use the notation, \(\rate\gvpara{G}{v}\stpara{i}\tme{t}\defeq \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf}\) when our choice of \(\Xf\) is clear from context.
+\label{a::pbasics}
+\end{assu}
+
+These assumptions impose enough regularity that equation \eqref{p::Xf} has a unique solution.
+
+\subsection{Well-Posedness}
+\label{awl::wp}
+
+\begin{thms}
+If \(\left\{(\Xf\gind{G}\tme{0},\rateset\gind{G}):G \in \Gs\right\}\) satisfies assumption \ref{a::pbasics}, then there exists a unique strong solution \(\Xf\gind{G}\) to equation \eqref{p::Xf} for all \(G \in \Gs\).
+\label{wp::wp}
+\end{thms}
+
+The proof of this comes after the proof of lemma \ref{wp::Gronwall}.
+
+\begin{lem}
+Suppose \(\left\{(\Xf\gind{G}\tme{0},\rateset\gind{G}):G \in \Gs\right\}\) satisfies assumption \ref{a::pbasics}. Fix \(G \in \Gs\). Let \(\poisses = \{\poiss\poissv{v}:v \in V\}\) be a sequence of i.i.d. Poisson processes defined as in equation \eqref{p::Xf}. Let \(\Xf,\alt{\Xf}\) be \(\cad\vpara{V}\)-valued random elements with the property that \(\Xf\tme{0} = \alt{\Xf}\tme{0} = \Xf\gind{G}\tme{0}\). Define \(\Xg,\alt{\Xg}\) as follows:
+
+\begin{align*}
+\Xg\vind{v}\tme{t} &\defeq \Xf\vind{v}\tme{0} + \int_\sta\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}}\,\poiss\poissv{v}(dr,ds,di) \te{ for } v \in V,t \geq 0\\
+\alt{\Xg}\vind{v}\tme{t} &\defeq \alt{\Xf}\vind{v}\tme{0} + \int_\sta\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}}\,\poiss\poissv{v}(dr,ds,di) \te{ for } v \in V,t \geq 0.\\
+\end{align*}
+
+Then for any \(T \in \mb{R}^+\),
+
+\begin{equation}
+\sup_{v\in V}\ex{\|\Xg\vind{v} - \alt{\Xg}\vind{v}\|\tpara{T}} \leq 2\jumpbd{T} \int_{(0,T]} \sup_{v \in V} \ex{\|\Xf\vind{v} - \alt{\Xf}\vind{v}\|\tpara{t}}\,dt.
+\label{wp::Groneqn}
+\end{equation}
+\label{wp::Gronwall}
+\end{lem}
+\begin{proof}
+Fix \(T \in \mb{R}^+\). For any \(t \in [0,T)\),
+
+\begin{align*}
+\ex{\|\Xg\vind{v} - \alt{\Xg}\vind{v}\|\tpara{t}} &= \ex{\sup_{t' \in (0,t]}\left|\int_\sta\int_{(0,t']\times (0,\infty)} i\left(\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}} - \mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}}\right)\,\poiss\poissv{v}(dr,ds,di)\right|}\\
+&\leq \ex{\int_\sta\int_{(0,t]\times (0,\infty)} |i|\left|\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}} - \mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}}\right|\,\poiss\poissv{v}(dr,ds,di)}\\
+&= \int_{(0,t]\times (0,\infty)}\ex{\sum_{i\in \sta}|i|\left|\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}} - \mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}}\right|}\,dr\,ds\\
+&= \int_{(0,t]}\ex{\sum_{i\in \sta}|i|\left|\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf} - \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}\right|}\,ds\\
+&\leq \int_{(0,t]}\ex{\jumpbd{T}\left|\stmet{s-}(\Xf\vind{v},\alt{\Xf}\vind{v}) + \frac{1}{|\gneigh{G}{v}|}\sum_{u\in \gneigh{G}{v}} \stmet{s-}(\Xf\vind{u},\alt{\Xf}\vind{u}) \right|}\,ds\\
+&\leq 2\jumpbd{T} \int_{(0,t]} \sup_{v \in V} \ex{\|\Xf\vind{v} - \alt{\Xf}\vind{v}\|\tpara{s}}\,ds
+\end{align*}
+
+Thus,
+
+\[\sup_{v\in V}\ex{\|\Xg\vind{v} - \alt{\Xg}\vind{v}\|\tpara{T}} \leq 2\jumpbd{T} \int_{(0,T]} \sup_{v \in V} \ex{\|\Xf\vind{v} - \alt{\Xf}\vind{v}\|\tpara{t}}\,dt.\]
+\end{proof}
+
+From here we can directly prove well-posedness.
+
+\begin{proof}[Proof of Theorem \ref{wp::wp}]
+Use standard Picard iteration arguments.
+\end{proof}
+
+\subsection{Local Weak Convergence}
+\label{awl::lwc}
+
+Much of this section draws on the work of \cite{LacRamWu19}.
+
+\begin{defn}
+Given two graphs \(G\) and \(G'\), an isomorphism is a bijection \(\phi: V \ra V'\) that satisfies \((\phi(u),\phi(v)) \in E'\) if and only if \((u,v) \in E\). \tr{In the general graph case, isomorphisms that don't preserve the root are useful, so I'm distinguishing them from rooted isomorphisms here.}
+\label{lwc::iso}
+\end{defn}
+
+This notion can be extended to rooted graphs in the following manner:
+
+\begin{defn}
+A rooted isomorphism between two rooted graphs \(G\),\(G' \in \Gs\) is an isomorphism \(\phi\) such that \(\phi(\root) = \root'\).
+\label{lwc::riso}
+\end{defn}
+
+As mentioned in definition \ref{a::gstar}, we assume two graphs in \(\Gs\) to be equivalent if there exists a rooted isomorphism between them. This is denoted by the notation \(G \cong G'\). The set of rooted isomorphisms between two graphs \(G\) and \(G'\) is given by \(\iso(G,G')\). If \(G\) and \(G'\) are not isomorphic, then \(\iso(G,G') = \emptyset\).
+
+\begin{defn}
+Let \(G \in \Gs\). For any \(k \in \mb{N}\), define \(\trnc{k}(G)\) to be the maximal rooted subgraph of \(G\) restricted to vertices \(v \in V\) such that \(\met{G}{}(v,\root) \leq k\).
+\label{lwc::trnc}
+\end{defn}
+
+We can now define the notion of local convergence.
+
+\begin{defn}
+Let \(\{G\it{n},G\}\) be a sequence of graphs in \(\Gs\). Then \(G\it{k} \ra G\) locally if for every \(k \in \mb{N}\), there exists an \(n_k\) such that \(\trnc{k}(G\it{n}) \cong \trnc{k}(G)\) for every \(n \geq n_k\).
+\label{lwc::lc}
+\end{defn}
+
+Under the topology induced by local convergence, \(\Gs\) is a Polish space \tr{citation needed}. To extend this notion of convergence to interacting particle system, we mark the vertices.
+
+\begin{defn}
+Let \(\spce\) be a Polish space with metric \(\met{\spce}{}\). Then \(\Gs\sp{\spce} = \{(G,\{\xg\vind{v}:v \in V\}): G \in \Gs, \xg\in \spce^V\}\) is the set of graphs with marked vertices.
+\label{lwc::marked}
+\end{defn}
+
+\begin{defn}
+Let \(\{(G\it{n},\xg\it{n}),(G,\xg)\}\) be a sequence of marked graphs in \(\Gs\sp{\spce}\). Then \((G\it{n},\xg\it{n}) \ra (G,\xg)\) locally if \(G\it{n} \ra G\) locally, and for every \(k \in \mb{N}\) and \(n\) sufficiently large, there exists a rooted isomorphism \(\phi\dit{n,k}:\trnc{k}(G\it{n}) \ra \trnc{k}(G)\) such that \(\lim_{n\ra\infty} \met{\spce}{}(\xg\vindit{\phi\dit{n}{k}(v)}{n},\xg\vind{v}) = 0\) for all \(v \in \trnc{k}(V)\). \tr{Bad notation. Fix it.}
+\label{lwc::mlc}
+\end{defn}
+
+Under the topology of local convergence, \(\Gs\sp{\spce}\) is a Polish space (\cite[Lemmas A.2, A.3, and A.5]{LacRamWu19}). \tr{Double check that \(\cad^V\) is Polish under the metric, \(\stmet{}\vpara{V}\).}
+
+\begin{defn}
+Suppose \(\{\Xg\vindit{v}{n}:v \in V\it{n}\}\) is a sequence of \(\spce^V\)-valued random elements. Suppose also that \(G\it{n} \ra G\) locally and \((G\it{n},\Xg\it{n})\) converges to \((G,\Xg)\) weakly with respect to convergence in \(\Gs\sp{\spce}\). Then we say that \((G\it{n},\Xg\it{n})\) converges to \((G,\Xg)\) locally weakly.
+\label{lwc::lwc}
+\end{defn} 
+
+\begin{lem}
+Let \(\left\{(\Xf\gind{G}\tme{0},\rateset\gind{G}):G \in \Gs\right\}\) satisfy assumption \ref{a::pbasics}. Then the set \(\{\Xf\gind{G}\vind{v}:G \in \Gs\}\) is tight.
+\label{lwc::tight}
+\end{lem}
+\begin{proof}
+Fix any \(t \in \mb{R}^+\). Then,
+
+\begin{align*}
+\sup_{G\in \Gs}\sup_{v \in V} \ex{\|\Xf\gind{G}\vind{v}\|\tpara{t}} &\leq \sup_{G\in \Gs}\sup_{v \in V}\ex{|\Xf\gind{G}\vind{v}\tme{0}| + \int_\sta\int_{(0,t]\times(0,\infty)} |i|\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}}\,\poiss\poissv{v}(dr,ds,di)}\\
+&\leq \sup_{G\in \Gs}\sup_{v \in V}\ex{|\Xf\gind{G}\vind{v}\tme{0}|} + \int_{(0,t]}\ex{\sum_{i\in \sta}|i|\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}}\,ds\\
+&\leq \sup_{G\in \Gs}\sup_{v \in V}\ex{|\Xf\gind{G}\vind{v}\tme{0}|} + t\jumpbd{t} < \infty
+\end{align*}
+
+Fix some \(T \in \mb{R}^+\). Let \(0 \leq \rt \leq T\) be any stopping time. Then for any \(\delta > 0\), \(G \in \Gs\) and \(v \in V\),
+
+\begin{align*}
+\ex{\left|\Xf\gind{G}\vind{v}\tme{\rt + \delta} - \Xf\gind{G}\vind{v}\tme{\rt}\right|} &= \ex{\left|\int_\sta\int_{(\rt,\rt+\delta]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}}\,\poiss\poissv{v}(dr,ds,di)\right|}\\
+&\leq \ex{\int_\sta\int_{(0,T+\delta]\times (0,\infty)} |i|\mb{I}_{s \in (\rt,\rt+\delta]}\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}}\,\poiss\poissv{v}(dr,ds,di)}\\
+&= \int_{(0,T + \delta]}\ex{\sum_{i\in \sta} |i|\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}\mb{I}_{s \in (\rt,\rt+\delta]}}\,ds\\
+&\leq \jumpbd{T+\delta}\int_{(0,T+\delta]} \pr\left(s \in (\rt,\rt+\delta]\right)\,ds\\
+&= \delta\jumpbd{T + \delta}.
+\end{align*}
+
+Thus, \(\{\Xf\gind{G}\vind{v}:G \in \Gs\}\) satisfies the conditions of Aldous's theorem \cite[Theorem 16.10]{Bil99}, so it is tight.
+\end{proof}
+
+From this we can directly get a convergence result.
+
+\begin{thms}
+Suppose assumption \ref{a::pbasics} holds. Let \(G\it{n} \ra G\) in \(\Gs\), and assume that \((G\it{n},\Xf\gind{G\it{n}}\tme{0}) \Rightarrow (G,\Xf\gind{G}\tme{0})\) locally weakly with respect to \(\Gs\sp{\sta}\). Then \((G\it{n},\Xf\gind{G\it{n}}) \Rightarrow (G,\Xf\gind{G})\) locally weakly with respect to \(\Gs\sp{\cad}\).
+
+\begin{proof}
+For any \(k \in \mb{N}\), \(\trnc{k}(V)\) is finite. Therefore the set, \(\{\Xf\gind{G\it{n}}\vind{v}: n \in \mb{N}, v \in \trnc{k}(G\it{n})\}\) is a finite union of tight sets (lemma \ref{lwc::tight}), so it is also a tight set. Thus, by \cite[Lemma A.6]{LacRamWu19}, \((G\it{n},\Xf\gind{G\it{n}})\) is tight in \(\Gs\sp{\cad}\).
+
+\ind Let \(\{n_\ell\}\) be a subsequence such that \((G\it{n_\ell},\Xf\gind{G\it{n_\ell}}) \ra (G,\Xf) \in \Gs\sp{\cad}\). It suffices to show that \(\Xf \deq \Xf\gind{G}\). \tr{I go through an overly complicated construction to apply a result from \cite{KurPro91}. However, \cite{Kur91} has much more applicable results. Find the appropriate theorem and fix this proof.}
+
+\ind Fix \(v \in V\) arbitrary. Then \(\Xf\gind{G\it{n_\ell}}\vind{v} \Rightarrow \Xf\gind{G}\vind{v}\). Let \(U\it{j}^\ell\) be a sequence of i.i.d. random variables uniformly distributed over \([0,1]\). Let \(\{\rt\it{j}^\ell\}\) be an increasing sequence of \(\Xf\gind{G\it{n_\ell}}\vind{v}\)-stopping times given by,
+
+\[\rt\it{0}^\ell = 0\te{ and } \rt\it{j+1}^\ell = \inf\left\{t > \rt\it{j}^\ell: \Xf\gind{G\it{n_\ell}}\vind{v}\tme{t} - \Xf\gind{G\it{n_\ell}}\vind{v}\tme{t-} \neq 0\right\}.\]
+
+Define the stochastic process,
+
+\[\Xg^\ell\tme{t} = \mb{I}_{t = 0}U^\ell\it{0} + \sum_{j=0}^\infty \mb{I}_{\rt\it{j} < t \leq \rt\it{j+1}} U^\ell\it{j}.\]
+
+Let \(\psi: \mb{N} \ra \sta\) be a bijection. Fix \(T \in \mb{R}^+\) and let \(C = \sup_{v \in V,\ell \in \mb{N},t \in [0,T],\xf\in\cad^V}\sum_{i\in \sta} \rate\gvpara{G\it{n_\ell}}{v}\stpara{i}\tmepro{t}{\xf}\leq \jumpbd{T}\). Define the mapping \(f^\ell:\mb{R}^+\times [0,1] \times \cad^{V\it{n_\ell}}\ra \sta\) by,
+
+\[f^\ell(t,u,\xf) = \sum_{m\in \mb{N}} \psi(m)\mb{I}_{u \in \left[\frac{\sum_{m'=1}^{m-1} \rate\gvpara{G\it{n_\ell}}{v}\stpara{\psi(m')}\tmepro{t}{\xf}}{C}, \frac{\sum_{m'=1}^{m} \rate\gvpara{G\it{n_\ell}}{v}\stpara{\psi(m')}\tmepro{t}{\xf}}{C}\right)}.\]
+
+This looks complicated. However, the idea is simple. If \(U \sim \te{Unif}([0,1])\), then \(f^\ell(t,U,\xf) = i\) with probability \(\frac{\rate\gvpara{G\it{n_\ell}}{v}\stpara{i}\tmepro{t}{\xf}}{C}\). If \(\xf = \Xf\gind{G\it{n_\ell}}\), then this is also the probability that \(\Xf\gind{G\it{n_\ell}}\tme{t} - \Xf\gind{G\it{n_\ell}}\tme{t-} = i\) given that \(\Xf\gind{G\it{n_\ell}}\) jumps at time \(t\). Then we can write,
+
+\[\Xf\gind{G\it{n_\ell}}\vind{v}\tme{t} = \Xf\gind{G\it{n_\ell}}\vind{v}\tme{0} + \int_{(0,t]} f^\ell(s,\Xg^\ell\tme{s},\Xf\gind{G\it{n_\ell}})\,\alt{\poiss}\poissv{v}^\ell(ds).\]
+
+Here \(\{\alt{\poiss}\poissv{v}:v \in V\}\) are a sequence of i.i.d. Poisson processes of constant rate \(C\). \tr{Make the relation between \(\alt{\poiss}\poissv{v}^\ell\) and \(\poiss\poissv{v}\) explicit to show that they really are i.i.d.}
+
+Now, notice that the sequence \((f^\ell(\cdot,\Xg^\ell,\Xf\gind{G\it{n_\ell}}), \alt{\poiss}\poissv{v}^\ell)\) is tight \tr{prove explicitly}.
+
+By passing to another subsequence, we can assume without loss of generality that it converges. Then by \cite[Theorem 2.2, Remark 2.5]{KurPro91}, the integral converges as well, so 
+
+\[\Xf\vind{v}\tme{t} = \Xf\vind{v}\tme{0} + \int_{(0,t]} f(s,\Xg^\ell(s),\Xf)\,\alt{\poiss}\poissv{v}(ds) = \Xf\vind{v}\tme{0} + \int_\sta\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}}\,\poiss\poissv{v}(dr,ds,di).\]
+
+Because \(\Xf\gind{G\it{n}}\vind{v}\tme{0} \Rightarrow \Xf\gind{G}\vind{v}\tme{0}\), we can conclude by theorem \ref{wp::wp} that \(\Xf \deq \Xf\gind{G}\).
+\end{proof}
+\end{thms}
 \newpage
 \bibliographystyle{plain}
 \bibliography{weekly_refs}
