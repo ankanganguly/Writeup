@@ -406,20 +406,24 @@ Let \(\Xf\gind{G}\) be the unique strong solution to equation \eqref{p::Xf}. Def
 
 Then there exists a family of i.i.d. unit rate Poisson processes on \(\mb{R}\) given by \(\{\alt{\poiss}\poissvst{v}{i}:v \in V,i \in \sta\}\) such that,
 
-\[\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \sum_{i \in \sta} i\alt{\poiss}\poissvst{v}{i}\left(\left(0,a\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf\gind{G}}\right]\right).\]
+\begin{equation}
+\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \sum_{i \in \sta} i\alt{\poiss}\poissvst{v}{i}\left(\left(0,\compen\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf\gind{G}}\right]\right).
+\label{wp::timeeqn}
+\end{equation}
+\label{wp::timechange}
 \end{coro}
 \begin{proof}
-\tr{TODO:: Include necessary macros for this proof.}
+\tr{TODO:: Include necessary macros for this proof. Also, split this corollary into a lemma and a corollary and move both to the appendix. This is turning out to be a technical proof that distracts from the paper.}
 
 Notice that for each \(i\in \sta\), the point process of jumps of size \(i\) in \(\Xf\gind{G}\vind{v}\) has intensity \(\rate\gvpara{G}{v}\stpara{i}\). Thus, the compensator of this point process is precisely \(\compen\gvpara{G}{v}\stpara{i}\). Furthermore, by assumption \ref{a::pbasics}, \(\rate\gvpara{G}{v}\stpara{i}\) is bounded from above. Thus, \(\compen\gvpara{G}{v}\stpara{i}\) is continuous and non-decreasing.
 
 Define,
 
-\[\ov{\poiss}\poissv{v}(\{t,i\}) = \mb{I}_{\Xf\gind{G}\vind{v}\tme{t} - \Xf\gind{G}\vind{v}\tme{t-} = i}.\]
+\[\ov{\poiss}\poissv{U}(\{t,i,v\}) = \mb{I}_{\Xf\gind{G}\vind{v}\tme{t} - \Xf\gind{G}\vind{v}\tme{t-} = i}.\]
 
-Then \(\ov{\poiss}\poissv{v}\) is a point process with finite compensator \(\compen\gvpara{G}{v}(t,i) \defeq \compen\gvpara{G}{v}\stpara{i}\tme{t}\). The ground intensity of \(\ov{\poiss}\poissv{v}\) is given by \(\sum_{i\in \sta}\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf} \leq \jumpbd{t} < \infty\). Let \(\binver{\compen\gvpara{G}{v}}(t,i) \defeq \inf\{s \geq 0: \compen\gvpara{G}{v}(s,i) = t\}\). This is a left-continuous strictly increasing function.
+\tr{fix}Where \(U \subseteq V\) is an arbitrary finite subset. Then \(\ov{\poiss}\poissv{U}\) is a point process with finite compensator \(\compen\gvpara{G}{U}(t,i,v) \defeq \compen\gvpara{G}{v}\stpara{i}\tme{t}\). The ground intensity of \(\ov{\poiss}\poissv{U}\) is given by \(\sum_{i\in \sta}\sum_{v\in U}\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf} \leq |U|\jumpbd{t} < \infty\). Let \(\binver{\compen\gvpara{G}{U}}(t,i,v) \defeq \inf\{s \geq 0: \compen\gvpara{G}{U}(s,i,v) = t\}\). In otherwords, we define the inverse of the compensator to be an inverse of the \(t\)-input only \tr{phrasing}. This is a left-continuous strictly increasing function in \(t\).
 
-\ind This compensator is not necessarily non-terminating (doesn't converge to infinity for all \(i\)), so we define \(\ov{\ov{\poiss}}\poissv{v}\) as a Poisson process independent of \(\ov{\poiss}\poissv{v}\). Assume it has unit ground rate and stationary mark distribution \(\Sm\). Let \(\{\tau_k:k\in\mb{N}\}\) be an a.s. increasing sequence of a.s. finite \(\{\poiss\poissv{v}\}\)-stopping times such that \(\lim_{k \ra \infty} \rt_k = \infty\). Define,
+\ind This compensator is not necessarily non-terminating (doesn't converge to infinity for all \(i\)), so we define an i.i.d. sequence of Poisson processes, \(\{\ov{\ov{\poiss}}\poissv{v}:v \in U\}\) independent of \(\ov{\poiss}\poissv{U}\). Assume it has unit ground rate and stationary mark distribution \(\Sm\). Let \(\{\tau_k:k\in\mb{N}\}\) be an a.s. increasing sequence of a.s. finite \(\{\poiss\poissv{v}\}\)-stopping times such that \(\lim_{k \ra \infty} \rt_k = \infty\). Define,
 
 \[\ov{\poiss}\poissv{v}^k(t,i) = \ov{\poiss}\poissv{v}((0,t\wedge\tau_k]\times\{i\}) + \ov{\ov{\poiss}}\poissv{v}\left((t\wedge\tau_k,t]\times\{i\}\right).\]
 
@@ -443,16 +447,34 @@ t + \tau_k - \compen\gvpara{G}{v}(\tau_k,i) &\te{ otherwise.}
 Then,
 
 \begin{align*}
-\alt{\poiss}\poissv{v}^k(t,i) &= \ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvjpara{G}{v}{k}}(t\wedge\tau_k,i)\right]\times\{i\}\right) + \ov{\ov{\poiss}}\poissv{v}\left(\left(\binver{\compen\gvjpara{G}{v}{k}}(t\wedge\tau_k,i),\binver{\compen\gvjpara{G}{v}{k}}(t,i)\right]\times\{i\}\right)\\
-&=\mb{I}_{\compen\gvpara{G}{v}(\tau_k,i) \geq t, t \leq \tau_k}\left(\ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvpara{G}{v}}(t,i)\right]\times\{i\}\right)\right)\\
-&\hspace{24pt} + \mb{I}_{\compen\gvpara{G}{v}(\tau_k,i) < t, t \leq \tau_k}\left(\ov{\poiss}\poissv{v}\left(\left(0,t + \tau_k - \compen\gvpara{G}{v}(\tau_k,i)\right]\times\{i\}\right)\right) + \mb{I}_{t > \tau_k}\left(\cdots\right)\\
-&\os{k\ra\infty}{\ra} \mb{I}_{\compenbd\gvpara{G}{v}\stpara{i} \geq t}\left(\ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvpara{G}{v}}(t,i)\right]\times\{i\}\right)\right) + \mb{I}_{\compenbd\gvpara{G}{v}\stpara{i} < t}\left(\ov{\poiss}\poissv{v}\left(\left(0,\infty\right)\times\{i\}\right)\right)\\
+\alt{\poiss}\poissv{v}^k(t,i) &= \ov{\poiss}\poissv{v}^k\left(\binver{\compen\gvjpara{G}{v}{k}}(t,i),i\right)\\
+&=\ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvjpara{G}{v}{k}}(t,i)\wedge\tau_k\right]\times\{i\}\right) + \ov{\ov{\poiss}}\poissv{v}\left(\left(\binver{\compen\gvjpara{G}{v}{k}}(t,i)\wedge\tau_k,\binver{\compen\gvjpara{G}{v}{k}}(t,i)\right]\times\{i\}\right)\\
+&=\mb{I}_{\compen\gvpara{G}{v}(\tau_k,i) \geq t}\left(\ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvpara{G}{v}}(t,i)\right]\times\{i\}\right)\right)\\
+&\hspace{24pt} + \mb{I}_{\compen\gvpara{G}{v}(\tau_k,i) < t}\left(\ov{\poiss}\poissv{v}\left(\left(0,\tau_k\right]\times\{i\}\right) + \ov{\ov{\poiss}}\poissv{v}\left(\left(\tau_k,t + \tau_k - \compen\gvpara{G}{v}(\tau_k,i)\right]\times \{i\}\right)\right)\\
+&\os{k\ra\infty}{\Rightarrow} \mb{I}_{\compenbd\gvpara{G}{v}\stpara{i} \geq t}\left(\ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvpara{G}{v}}(t,i)\right]\times\{i\}\right)\right) + \mb{I}_{\compenbd\gvpara{G}{v}\stpara{i} < t}\left(\ov{\poiss}\poissv{v}\left(\left(0,\infty\right)\times\{i\}\right) + \poiss\left(\Sm(i)(t - \compenbd\gvpara{G}{v}\stpara{i}\right)\right)\\
 &\defeq \alt{\poiss}\poissv{v}(t,i)
 \end{align*}
 
-Notice that,
+Here \(\poiss\) is a unit rate Poisson process independent of \(\{\poiss\poissv{v}: v\in V\}\) and \(\{\ov{\poiss}\poissv{v}:v \in V\}\). Notice that \(\{\alt{\poiss}\poissv{v}^k:v \in V\}\) is trivially tight because \(\law(\alt{\poiss}\poissv{v}^k)\) does not depend on \(k\). It suffices to prove the finite dimensional distributions of \(\alt{\poiss}\poissv{v}^k\) converge weakly to \(\alt{\poiss}\poissv{v}\).
 
-\[\mb{I}_{\compenbd\gvpara{G}{v}\stpara{i}< \infty}\ex{\ov{\poiss}\poissv{v}\left(\left(0,\infty\right)\times\{i\}\right)\middle|\compenbd\gvpara{G}{v}\stpara{i}} =  \compenbd\gvpara{G}{v}\stpara{i}.\tr{ double check}\]
+\ind Suppose \(0\leq t_1 < t_2 < \cdots < t_n\), and \((\alt{\poiss}\poissv{v}^k(t_j,i))_{j=1}^{n-1} \Rightarrow (\alt{\poiss}\poissv{v}(t_j,i))_{j=1}^{n-1}\). Then for each \(k\),
+
+\begin{align*}
+\alt{\poiss}&\poissv{v}^k(t_n,i) - \alt{\poiss}\poissv{v}^k(t_{n-1},i)\\
+&= \mb{I}_{\compen\gvpara{G}{v}(\tau_k,i) \geq t_n}\ov{\poiss}\poissv{v}\left(\left(\binver{\compen\gvpara{G}{v}}(t_{n-1},i), \binver{\compen\gvpara{G}{v}}(t_{n},i)\right]\times\{i\}\right)\\
+&\hspace{24pt} + \mb{I}_{t_n \geq \compen\gvpara{G}{v}(\tau_k,i) \geq t_{n-1}}\left(\ov{\poiss}\poissv{v}\left(\left(\binver{\compen\gvpara{G}{v}}(t_{n-1},i), \tau_k\right]\times\{i\}\right) + \ov{\ov{\poiss}}\poissv{v}\left(\left(\tau_k,t_n + \tau_k - \compen\gvpara{G}{v}(\tau_k,i)\right]\times\{i\}\right)\right)\\
+&\hspace{24pt} + \mb{I}_{t_{n-1} \geq \compen\gvpara{G}{v}(\tau_k,i)}\left(\ov{\ov{\poiss}}\poissv{v}\left(\left(t_{n-1} + \tau_k - \compen\gvpara{G}{v}(\tau_k,i),t_{n} + \tau_k - \compen\gvpara{G}{v}(\tau_k,i)\right]\times\{i\}\right)\right)\\
+&\Rightarrow \mb{I}_{\compenbd\gvpara{G}{v}\stpara{i} \geq t_n}\ov{\poiss}\poissv{v}\left(\left(\binver{\compen\gvpara{G}{v}}(t_{n-1},i), \binver{\compen\gvpara{G}{v}}(t_{n},i)\right]\times\{i\}\right)\\
+&\hspace{24pt} + \mb{I}_{t_n \geq \compenbd\gvpara{G}{v}\stpara{i} \geq t_{n-1}}\left(\ov{\poiss}\poissv{v}\left(\left(\binver{\compen\gvpara{G}{v}}(t_{n-1},i), \infty\right)\times\{i\}\right) + \poiss\left(\left(0, t_n - \compenbd\gvpara{G}{v}\stpara{i}\right]\times\{i\}\right)\right)\\
+&\hspace{24pt} + \mb{I}_{t_{n-1} \geq \compenbd\gvpara{G}{v}\stpara{i}}\left(\poiss\left(\left(t_{n-1},t_{n}\right]\times\{i\}\right)\right)\\
+&= \alt{\poiss}\poissv{v}(t_n,i) - \alt{\poiss}\poissv{v}(t_{n-1},i)
+\end{align*}
+
+So \(\alt{\poiss}\poissv{v}^k \Rightarrow \alt{\poiss}\poissv{v}\), so \(\alt{\poiss}\poissv{v}\) is a Poisson process with unit ground rate and mark distribution \(\Sm\) (notice also that this proves independent increments of \(\alt{\poiss}\poissv{v}\)). Furthermore, by construction, 
+
+\[\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \sum_{i\in \sta} i \alt{\poiss}\poissv{v}\left(\compen\gvpara{G}{v}\stpara{i}(t,\Xf\gind{G}), i\right),\]
+
+which is equivalent to equation \eqref{wp::timeeqn}. All that remains is to show that \(\{\alt{\poiss}\poissv{v}:v \in V\}\) are mutually independent. \tr{Redo all of the calculations above for a marked process with the mark space being \(\{i\ev{v}: i \in \sta, v \in U\}\) for all \(U \subset V\) finite. This will automatically yield independence.}
 
 \end{proof}
 
@@ -536,8 +558,19 @@ From this we can directly get a convergence result.
 
 \begin{thms}
 Suppose assumption \ref{a::pbasics} holds. Let \(G\it{n} \ra G\) in \(\Gs\), and assume that \((G\it{n},\Xf\gind{G\it{n}}\tme{0}) \Rightarrow (G,\Xf\gind{G}\tme{0})\) locally weakly with respect to \(\Gs\sp{\sta}\). Then \((G\it{n},\Xf\gind{G\it{n}}) \Rightarrow (G,\Xf\gind{G})\) locally weakly with respect to \(\Gs\sp{\cad}\).
-
+\label{lwc::lwcthm}
+\end{thms}
 \begin{proof}
+By corollary \ref{wp::timechange}, we can write \(\Xf\gind{G}\) as,
+
+\[\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \sum_{i\in \sta} i\alt{\poiss}_{v,i}\left(\left(0, \compen\gvpara{G}{v}\stpara{i}\tme{t}\right]\right),\]
+
+where \(\{\alt{\poiss}_{v,i}\}\) is a sequence of independent stationary Poisson processes on \([0,\infty)\) with rate \(\Sm(\{i\})\).
+\end{proof}
+
+Here is an alternate, somewhat messy proof.
+
+\begin{proof}[Alternate proof of Theorem \ref{lwc::lwcthm}]
 For any \(k \in \mb{N}\), \(\trnc{k}(V)\) is finite. Therefore the set, \(\{\Xf\gind{G\it{n}}\vind{v}: n \in \mb{N}, v \in \trnc{k}(G\it{n})\}\) is a finite union of tight sets (lemma \ref{lwc::tight}), so it is also a tight set. Thus, by \cite[Lemma A.6]{LacRamWu19}, \((G\it{n},\Xf\gind{G\it{n}})\) is tight in \(\Gs\sp{\cad}\).
 
 \ind Let \(\{n_\ell\}\) be a subsequence such that \((G\it{n_\ell},\Xf\gind{G\it{n_\ell}}) \ra (G,\Xf) \in \Gs\sp{\cad}\). It suffices to show that \(\Xf \deq \Xf\gind{G}\). \tr{I go through an overly complicated construction to apply a result from \cite{KurPro91}. However, \cite{Kur91} has much more applicable results. Find the appropriate theorem and fix this proof.}
@@ -568,7 +601,6 @@ By passing to another subsequence, we can assume without loss of generality that
 
 Because \(\Xf\gind{G\it{n}}\vind{v}\tme{0} \Rightarrow \Xf\gind{G}\vind{v}\tme{0}\), we can conclude by theorem \ref{wp::wp} that \(\Xf \deq \Xf\gind{G}\).
 \end{proof}
-\end{thms}
 \newpage
 \bibliographystyle{plain}
 \bibliography{weekly_refs}
