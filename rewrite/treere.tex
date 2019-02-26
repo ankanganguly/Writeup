@@ -130,9 +130,13 @@
 
 %Well-Posedness
 %Base Commands
+\newcommand{\compen}{a}								%compensator
+\newcommand{\compenbd}{\ov{a}}						%comp max
 
 %Modifiers
-
+\newcommand{\poissst}[1]{_{#1}}						%poisson state
+\newcommand{\poissvst}[2]{_{#1,#2}}					%poisson v,state
+\newcommand{\binver}[1]{(#1)^{-1}}					%inverse
 
 %Local Weak Convergence
 %Base Commands
@@ -244,6 +248,8 @@ Remark: In this paper I mostly work with locally finite graphs. However, I prove
 \item I play a little fast and loose with definitions of vertex sets. Since vertex sets are all assumed to be at most countable, we can assume without loss of generality that there is a universal vertex set from which all vertices are drawn (for example, this can be defined via a 1-to-1 mapping from the vertex set to the integers). Most importantly, suppose \(G_n \ra G\) locally. Then for any \(v \in V\), I can assume WLOG \(v \in \cap_{n \in \mb{N}} V_n\). This is because there is some \(k\) such that \(v \in \trnc{k}(V)\) and we can remove the early terms of \(G_n\) so that \(\trnc{k}(G_n) \cong \trnc{k}(G)\) for all \(n\). Thus, technically we are looking at the sequence \(v_n = \phi_{n,k}^{-1}(v)\).
 
 \item I will occasionally introduce a graph \(G\) and then use its vertex set \(V\) or edge set \(E\) without specifically mentioning that \(G = (V,E,\root)\). 
+
+\item \(\Sm\) is no longer the counting measure. Instead it's a positive probability measure on \(\sta\) (that is, for every \(i \in \sta\), \(\Sm(\{i\}) > 0\) and \(\Sm(\sta) = 1\)).
 \end{enumerate}
 
 
@@ -277,7 +283,7 @@ For any \(U \subseteq V\), let \(\cad\vpara{U} := \cad\left([0,\infty),\sta^U\ri
 
 \ind In this context, define \(\Xf \in \cad\vpara{V}\). For any \(v \in V\) and \(t < \infty\), let \(\Xf\vind{v}\tme{t}\) be the value the \(v\)-component of \(\Xf\) at time \(t\). Given a set \(U\subset V\) and an interval \(I \subset \mb{R}^+\), let \(\Xf\vind{U}\tmi{I}\) denote the path taken by the \(U\)-components of \(\Xf\) over \(\tmi{I}\). We denote the natural filtration of this process by \(\F\vpara{U}\tpara{t} \defeq \sigma \left(\Xf\vind{U}\tmi{[0,t]}\right)\). We will often be interested in the predictable sigma-algebra of the process given by \(\F\vpara{U}\tpara{t-} \defeq \bigvee_{s < t} \F\vpara{U}\tpara{s} = \sigma\left(\Xf\vind{U}\tmi{[0,t)}\right)\). Furthermore, when the evolution of \(\Xf\) with respect to its topology is clearly defined, but the specific interaction network of \(\Xf\) is not clear from context, we may write \(\Xf\gind{G}\) to represent the process \(\Xf\) with interaction network \(G\). Fix any \(v \in V,t \in \mb{R}^+\) and \(j \in \sta\setminus\{0\}\). Then at time \(t\), we can define the jump rate \(\rate\gvpara{G}{v}\stpara{j}(t)\) to be the inverse of the expected time for \(\Xf\vind{v}\) to jump to \(\Xf\vind{v} + j\). It now becomes clear how we can define the interaction network. The interaction network is any graph \(G\) such that \(\Xf\) is a \(\sta^V\)-valued process and such that for every \(v \in V\),\(t\in \mb{R}^+\) and \(j \in \sta\), \(\rate\gvpara{G}{v}\stpara{j}(t)\) is \(\F\vpara{v}\tpara{t-}\)-measurable. 
 
-\ind We can rigorously define this in the following manner. Let \(\Sm\) be the counting measure on \(\sta\). Let \(\leb\) be the Lebesgue measure on \(\mb{R}^2\). Let \(\poisses \defeq \{\poiss\poissv{v}:v \in V\}\) be a sequence of i.i.d. Poisson point processes on \(\sta\times \mb{R}^2\) with intensity \(\Sm\times \leb\). Let \(\Xf\tme{0}\) be an \(\sta^V\)-valued random variable. Let \(\Xf\tme{0}\) be some given \(\sta^V\)-valued random variable. Assume \(\rate\gvpara{G}{v}\stpara{j}(t)\) is \(\F\vpara{\cl{v}}\tpara{t-}\)-measurable for all \(v,j,t\) and that \(\rate\gvpara{G}{v}\stpara{j}:\mb{R}^+ \ra\mb{R}^+\) is an almost surely Borel-Measurable function. Consider the following SDE:
+\ind We can rigorously define this in the following manner. Let \(\Sm\) be a positive probability measure on \(\sta\). Let \(\leb\) be the Lebesgue measure on \(\mb{R}^2\). Let \(\poisses \defeq \{\poiss\poissv{v}:v \in V\}\) be a sequence of i.i.d. Poisson point processes on \(\sta\times \mb{R}^2\) with intensity \(\Sm\times \leb\). Let \(\Xf\tme{0}\) be an \(\sta^V\)-valued random variable. Let \(\Xf\tme{0}\) be some given \(\sta^V\)-valued random variable. Assume \(\rate\gvpara{G}{v}\stpara{j}(t)\) is \(\F\vpara{\cl{v}}\tpara{t-}\)-measurable for all \(v,j,t\) and that \(\rate\gvpara{G}{v}\stpara{j}:\mb{R}^+ \ra\mb{R}^+\) is an almost surely Borel-Measurable function. Consider the following SDE:
 
 \begin{equation}
 \Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \int_{\sta}\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}(s)} \poiss\poissv{v}\left(dr,ds,di\right) \te{ for } v\in V, t \geq 0
@@ -319,20 +325,20 @@ Let \(\rateset \defeq \{\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{x}:v \in V,i \in 
 \item For all \(T < \infty\) there exists a constant \(\jumpbd{T} < \infty\) such that,
 
 \begin{equation}
-\sum_{i \in \sta}|i|\sup_{v \in V,t \in [0,T),\xf \in \cad\vpara{V},G \in \Gs} \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf} = \jumpbd{T}
+\sum_{i \in \sta}|i|\Sm(\{i\})\sup_{\substack{v \in V,t \in [0,T)\\\xf \in \cad\vpara{V},G \in \Gs}} \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf} = \jumpbd{T}
 \label{a::bddjmp}
 \end{equation}
 
 \item For any \(t \in \mb{R}^+\),
 
 \begin{equation}
-\sup_{v \in V,t \in [0,T),\xf,\xg \in \cad\vpara{V},G \in \Gs} \sum_{i \in \sta}|i|\left|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xg}\right| \leq \jumpbd{T}\left|\stmet{T-}(\xf\vind{v},\xg\vind{v}) + \frac{1}{|\gneigh{G}{v}|}\sum_{u\in\gneigh{G}{v}} \stmet{T-}(\xf\vind{u},\xg\vind{u})\right|.
+\sup_{\substack{v \in V,t \in [0,T)\\\xf,\xg \in \cad\vpara{V},G \in \Gs}} \sum_{i \in \sta}|i|\Sm(\{i\})\left|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xg}\right| \leq \jumpbd{T}\left|\stmet{T-}(\xf\vind{v},\xg\vind{v}) + \frac{1}{|\gneigh{G}{v}|}\sum_{u\in\gneigh{G}{v}} \stmet{T-}(\xf\vind{u},\xg\vind{u})\right|.
 \label{a::Lipschitz}
 \end{equation}
 
 \tr{It may be possible to exchange Lipschitz continuity of \(\rateset\gind{G}\) for continuity in exchange for an assumption that increasing neighborhoods of the root of \(G\) grow at most exponentially asymptotically. The proof is longer and I haven't completely worked it out.}
 
-\item \(t\mapsto \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}\) is left-continuous for all \(v \in V,i\in \sta,\xf\in \cad\vpara{V}\). Furthermore, it is continuous at all \(t\) such that \(\xf\vind{\cl{v}}\tme{t}\) is continuous. \tr{Move this elsewhere. It is not necessary for well-posedness or local weak convergence.}
+\item \(t\mapsto \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}\) is left-continuous for all \(v \in V,i\in \sta,\xf\in \cad\vpara{V}\) and \(G \in \Gs\). Furthermore, it is continuous at all \(t\) such that \(\xf\vind{\cl{v}}\tme{t}\) is continuous. \tr{Move this elsewhere. It is not necessary for well-posedness or local weak convergence.}
 \end{enumerate}
 \skipLine
 
@@ -374,8 +380,8 @@ Fix \(T \in \mb{R}^+\). For any \(t \in [0,T)\),
 \begin{align*}
 \ex{\|\Xg\vind{v} - \alt{\Xg}\vind{v}\|\tpara{t}} &= \ex{\sup_{t' \in (0,t]}\left|\int_\sta\int_{(0,t']\times (0,\infty)} i\left(\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}} - \mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}}\right)\,\poiss\poissv{v}(dr,ds,di)\right|}\\
 &\leq \ex{\int_\sta\int_{(0,t]\times (0,\infty)} |i|\left|\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}} - \mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}}\right|\,\poiss\poissv{v}(dr,ds,di)}\\
-&= \int_{(0,t]\times (0,\infty)}\ex{\sum_{i\in \sta}|i|\left|\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}} - \mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}}\right|}\,dr\,ds\\
-&= \int_{(0,t]}\ex{\sum_{i\in \sta}|i|\left|\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf} - \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}\right|}\,ds\\
+&= \int_{(0,t]\times (0,\infty)}\ex{\sum_{i\in \sta}|i|\Sm(\{i\})\left|\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf}} - \mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}}\right|}\,dr\,ds\\
+&= \int_{(0,t]}\ex{\sum_{i\in \sta}|i|\Sm(\{i\})\left|\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf} - \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\alt{\Xf}}\right|}\,ds\\
 &\leq \int_{(0,t]}\ex{\jumpbd{T}\left|\stmet{s-}(\Xf\vind{v},\alt{\Xf}\vind{v}) + \frac{1}{|\gneigh{G}{v}|}\sum_{u\in \gneigh{G}{v}} \stmet{s-}(\Xf\vind{u},\alt{\Xf}\vind{u}) \right|}\,ds\\
 &\leq 2\jumpbd{T} \int_{(0,t]} \sup_{v \in V} \ex{\|\Xf\vind{v} - \alt{\Xf}\vind{v}\|\tpara{s}}\,ds
 \end{align*}
@@ -389,6 +395,65 @@ From here we can directly prove well-posedness.
 
 \begin{proof}[Proof of Theorem \ref{wp::wp}]
 Use standard Picard iteration arguments.
+\end{proof}
+
+For convenience, we can also construct another representation of the same process.
+
+\begin{coro}
+Let \(\Xf\gind{G}\) be the unique strong solution to equation \eqref{p::Xf}. Define,
+
+\[\compen\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf} \defeq \int_0^t \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\xf}\,ds.\]
+
+Then there exists a family of i.i.d. unit rate Poisson processes on \(\mb{R}\) given by \(\{\alt{\poiss}\poissvst{v}{i}:v \in V,i \in \sta\}\) such that,
+
+\[\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \sum_{i \in \sta} i\alt{\poiss}\poissvst{v}{i}\left(\left(0,a\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf\gind{G}}\right]\right).\]
+\end{coro}
+\begin{proof}
+\tr{TODO:: Include necessary macros for this proof.}
+
+Notice that for each \(i\in \sta\), the point process of jumps of size \(i\) in \(\Xf\gind{G}\vind{v}\) has intensity \(\rate\gvpara{G}{v}\stpara{i}\). Thus, the compensator of this point process is precisely \(\compen\gvpara{G}{v}\stpara{i}\). Furthermore, by assumption \ref{a::pbasics}, \(\rate\gvpara{G}{v}\stpara{i}\) is bounded from above. Thus, \(\compen\gvpara{G}{v}\stpara{i}\) is continuous and non-decreasing.
+
+Define,
+
+\[\ov{\poiss}\poissv{v}(\{t,i\}) = \mb{I}_{\Xf\gind{G}\vind{v}\tme{t} - \Xf\gind{G}\vind{v}\tme{t-} = i}.\]
+
+Then \(\ov{\poiss}\poissv{v}\) is a point process with finite compensator \(\compen\gvpara{G}{v}(t,i) \defeq \compen\gvpara{G}{v}\stpara{i}\tme{t}\). The ground intensity of \(\ov{\poiss}\poissv{v}\) is given by \(\sum_{i\in \sta}\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf} \leq \jumpbd{t} < \infty\). Let \(\binver{\compen\gvpara{G}{v}}(t,i) \defeq \inf\{s \geq 0: \compen\gvpara{G}{v}(s,i) = t\}\). This is a left-continuous strictly increasing function.
+
+\ind This compensator is not necessarily non-terminating (doesn't converge to infinity for all \(i\)), so we define \(\ov{\ov{\poiss}}\poissv{v}\) as a Poisson process independent of \(\ov{\poiss}\poissv{v}\). Assume it has unit ground rate and stationary mark distribution \(\Sm\). Let \(\{\tau_k:k\in\mb{N}\}\) be an a.s. increasing sequence of a.s. finite \(\{\poiss\poissv{v}\}\)-stopping times such that \(\lim_{k \ra \infty} \rt_k = \infty\). Define,
+
+\[\ov{\poiss}\poissv{v}^k(t,i) = \ov{\poiss}\poissv{v}((0,t\wedge\tau_k]\times\{i\}) + \ov{\ov{\poiss}}\poissv{v}\left((t\wedge\tau_k,t]\times\{i\}\right).\]
+
+The compensator of \(\ov{\poiss}\poissv{v}^k\) is given by, 
+
+\[\compen\gvjpara{G}{v}{k}(t,i) := \compen\gvpara{G}{v}(t\wedge \tau_k,i) + (t - t\wedge\tau_k).\]
+
+This compensator is non-terminating. By \cite[Theorem 14.6.IV]{DalVer08}, 
+
+\[\alt{\poiss}\poissv{v}^k(t,i) \defeq \ov{\poiss}\poissv{v}^k\left(\binver{\compen\gvjpara{G}{v}{k}}(t,i),i\right)\te{ for all }i\in \sta,\]
+
+is a marked point process with a unit rate ground process and a stationary mark distribution of \(\Sm\). Let \(\compenbd\gvpara{G}{v}\stpara{i} = \lim_{t\ra\infty}\compen\gvpara{G}{v}\stpara{i}(t)\). Then we can easily verify that,
+
+\begin{align*}
+\binver{\compen\gvjpara{G}{v}{k}}(t,i)&= \begin{cases}
+\binver{\compen\gvpara{G}{v}}(t,i) &\te{ if } \compen\gvpara{G}{v}(\tau_k,i) \geq t\\
+t + \tau_k - \compen\gvpara{G}{v}(\tau_k,i) &\te{ otherwise.}
+\end{cases}
+\end{align*}
+
+Then,
+
+\begin{align*}
+\alt{\poiss}\poissv{v}^k(t,i) &= \ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvjpara{G}{v}{k}}(t\wedge\tau_k,i)\right]\times\{i\}\right) + \ov{\ov{\poiss}}\poissv{v}\left(\left(\binver{\compen\gvjpara{G}{v}{k}}(t\wedge\tau_k,i),\binver{\compen\gvjpara{G}{v}{k}}(t,i)\right]\times\{i\}\right)\\
+&=\mb{I}_{\compen\gvpara{G}{v}(\tau_k,i) \geq t, t \leq \tau_k}\left(\ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvpara{G}{v}}(t,i)\right]\times\{i\}\right)\right)\\
+&\hspace{24pt} + \mb{I}_{\compen\gvpara{G}{v}(\tau_k,i) < t, t \leq \tau_k}\left(\ov{\poiss}\poissv{v}\left(\left(0,t + \tau_k - \compen\gvpara{G}{v}(\tau_k,i)\right]\times\{i\}\right)\right) + \mb{I}_{t > \tau_k}\left(\cdots\right)\\
+&\os{k\ra\infty}{\ra} \mb{I}_{\compenbd\gvpara{G}{v}\stpara{i} \geq t}\left(\ov{\poiss}\poissv{v}\left(\left(0,\binver{\compen\gvpara{G}{v}}(t,i)\right]\times\{i\}\right)\right) + \mb{I}_{\compenbd\gvpara{G}{v}\stpara{i} < t}\left(\ov{\poiss}\poissv{v}\left(\left(0,\infty\right)\times\{i\}\right)\right)\\
+&\defeq \alt{\poiss}\poissv{v}(t,i)
+\end{align*}
+
+Notice that,
+
+\[\mb{I}_{\compenbd\gvpara{G}{v}\stpara{i}< \infty}\ex{\ov{\poiss}\poissv{v}\left(\left(0,\infty\right)\times\{i\}\right)\middle|\compenbd\gvpara{G}{v}\stpara{i}} =  \compenbd\gvpara{G}{v}\stpara{i}.\tr{ double check}\]
+
 \end{proof}
 
 \subsection{Local Weak Convergence}
@@ -459,12 +524,12 @@ Fix some \(T \in \mb{R}^+\). Let \(0 \leq \rt \leq T\) be any stopping time. The
 \begin{align*}
 \ex{\left|\Xf\gind{G}\vind{v}\tme{\rt + \delta} - \Xf\gind{G}\vind{v}\tme{\rt}\right|} &= \ex{\left|\int_\sta\int_{(\rt,\rt+\delta]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}}\,\poiss\poissv{v}(dr,ds,di)\right|}\\
 &\leq \ex{\int_\sta\int_{(0,T+\delta]\times (0,\infty)} |i|\mb{I}_{s \in (\rt,\rt+\delta]}\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}}\,\poiss\poissv{v}(dr,ds,di)}\\
-&= \int_{(0,T + \delta]}\ex{\sum_{i\in \sta} |i|\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}\mb{I}_{s \in (\rt,\rt+\delta]}}\,ds\\
+&= \int_{(0,T + \delta]}\ex{\sum_{i\in \sta} |i|\Sm(\{i\})\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}}\mb{I}_{s \in (\rt,\rt+\delta]}}\,ds\\
 &\leq \jumpbd{T+\delta}\int_{(0,T+\delta]} \pr\left(s \in (\rt,\rt+\delta]\right)\,ds\\
 &= \delta\jumpbd{T + \delta}.
 \end{align*}
 
-Thus, \(\{\Xf\gind{G}\vind{v}:G \in \Gs\}\) satisfies the conditions of Aldous's theorem \cite[Theorem 16.10]{Bil99}, so it is tight.
+Thus, \(\{\Xf\gind{G}\vind{v}:G \in \Gs\}\) satisfies the conditions of Aldous's theorem (see \cite[Theorem 16.10]{Bil99}), so it is tight.
 \end{proof}
 
 From this we can directly get a convergence result.
