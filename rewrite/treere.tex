@@ -367,7 +367,7 @@ Fix a graph \(G = (V,E,\root)\). For any \(U \subseteq V\), let \(\cad\vpara{U} 
 
 \[\spce^\sqcup = \bigcup_{i=0}^\infty \spce^i.\]
 
-A point process, \(\poiss\), is a \(\spce^\sqcup\)-valued random element. For \(x \in \spce\), we say \(x \in \poiss\) if one of the components of \(\poiss\) is given by \(x\). We will also treat \(\poiss\) as a non-negative random integer valued measure on \(\spce\). The intensity measure of \(\poiss\) is some \(\mu\in \pmsr(\spce)\) such that \(\mu(\cdot) = \ex{\poiss(\cdot)}\). If \(\spce = [0,a]\times \spce'\) for \(a \in (0,\infty]\), then we call \(\poiss\) a marked point process with mark space \(\spce'\). If \(\spce'\) is equipped with a measure, that measure is called the representative measure of \(\spce'\). \(\omega\it{n} \in \spce^\sqcup\) converges if for all bounded and continuous \(f: \spce \ra \mb{R}\), \(\sum_{x \in \omega\it{n}} f(x) \ra \sum_{x \in \omega} f(x)\). Another way of thinking of this is that point processes are measures that converge with respect to weak convergence.
+A point process, \(\poiss\), is a \(\spce^\sqcup\)-valued random element. For \(x \in \spce\), we say \(x \in \poiss\) if one of the components of \(\poiss\) is given by \(x\). We will also treat \(\poiss\) as a non-negative random integer valued measure on \(\spce\). The intensity measure of \(\poiss\) is some \(\mu\in \pmsr(\spce)\) such that \(\mu(\cdot) = \ex{\poiss(\cdot)}\). If \(\spce = [0,a]\times \spce'\) for \(a \in (0,\infty]\), then we call \(\poiss\) a marked point process with mark space \(\spce'\). If \(\spce'\) is equipped with a measure, that measure is called the representative measure of \(\spce'\). \(\omega\it{n} \in \spce^\sqcup\) converges if for all bounded and continuous \(f: \spce \ra \mb{R}\), \(\sum_{x \in \omega\it{n}} f(x) \ra \sum_{x \in \omega} f(x)\). Another way of thinking of this is that point processes are measures that converge with respect to vague convergence.
 
 \ind We can rigorously define this in the following manner. Let \(\Sm\) be a positive probability measure on \(\sta\) with a finite first moment. Let \(\leb\) be the Lebesgue measure on \(\mb{R}^2\). Let \(\poisses \defeq \{\poiss\poissv{v}:v \in V\}\) be a sequence of i.i.d. Poisson point processes on \(\sta\times \mb{R}^2\) with intensity \(\Sm\times \leb\). Let \(\Xf\tme{0}\) be an \(\sta^V\)-valued random variable. Let \(\Xf\tme{0}\) be some given \(\sta^V\)-valued random variable. Assume \(\rate\gvpara{G}{v}\stpara{j}(t)\) is \(\F\vpara{\cl{v}}\tpara{t-}\)-measurable for all \(v,j,t\) and that \(\rate\gvpara{G}{v}\stpara{j}:\mb{R}^+ \ra\mb{R}^+\) is an almost surely Borel-Measurable function. Consider the following SDE:
 
@@ -435,9 +435,9 @@ Let \(\rateset \defeq \{\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{x}:v \in V,i \in 
 
 \tr{This assumption is only used to prove existence of the local equations.}
 
-\item Let \(G,G'\in \Gs\). Suppose for some \(v \in V\gind{G}\) and \(v' \in V\gind{G'}\), \(\{v'\}\cup\gneigh{G'}{v'} \cong \{v\}\cup\gneigh{G}{v}\). Then,
+\item Let \(G,G'\in \Gs\). Let \(U \subseteq V\gind{G}\) and \(U' \subseteq V\gind{G'}\) such that \(U \cong U'\). Suppose \(\cl{v}\subseteq U\) and \(\cl{v'} \subseteq U'\) and let \(\phi \in I(G\vpara{U},(G')\vpara{U'})\). Then,
 
-\[\rate\gvpara{G}{v}\stpara{i} = \rate\gvpara{G'}{v'}\stpara{i}\te{ for all } i \in \sta.\]
+\[\rate\gvpara{G}{v}\stpara{i} = \rate\gvpara{G'}{\phi(v)}\stpara{i}\te{ for all } i \in \sta.\]
 
 \tr{This is necessary for local weak convergence, but not for well-posedness.}
 \end{enumerate}
@@ -674,7 +674,7 @@ Here we define \(\poiss\poissv{U\it{n}}(\cdot\times \{v\it{n}\}) \defeq \poiss\p
 
 The goal is to prove that,
 
-\[F\vpara{U\it{n}}\left(\poiss\poissv{U\it{n}}, \Xf\gind{G\it{n}}\vind{\gneigh{G\it{n}}{U\it{n}}}\tmi{[0,T]}, \Xf\gind{G\it{n}}\vind{U\it{n}}\tme{0}\right) \Rightarrow F\vpara{U}\left(\poiss\poissv{U}, \Xf\gind{G}\vind{\gneigh{G}{U}}\tmi{[0,T]}, \Xf\gind{G}\vind{U}\tme{0}\right).\]
+\[F\vpara{U}\left(\poiss\poissv{U\it{n}}, \Xf\gind{G\it{n}}\vind{\gneigh{G\it{n}}{U\it{n}}}\tmi{[0,T]}, \Xf\gind{G\it{n}}\vind{U\it{n}}\tme{0}\right) \Rightarrow F\vpara{U}\left(\poiss\poissv{U}, \Xf\gind{G}\vind{\gneigh{G}{U}}\tmi{[0,T]}, \Xf\gind{G}\vind{U}\tme{0}\right).\]
 
 First, by assumption and independence,
 
