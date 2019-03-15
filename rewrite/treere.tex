@@ -11,7 +11,7 @@
 \usepackage{pdfcomment}
 %\usepackage{coffee4}
 \usepackage{lipsum}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \usepackage{verbatim}
@@ -166,10 +166,20 @@
 \newcommand{\dit}[2]{_{#1,#2}}						%double iter
 \newcommand{\vindit}[2]{_{#1,#2}}					%\vind + \it
 
-%Conditional Independence
-%Base Commands
-%Modifiers
+%CI
+\newcommand{\seto}{U}								%1st set in CI
+\newcommand{\sett}{W}								%2nd set in CI
+\newcommand{\setc}{R}								%set condition CI
 
+%Proof
+\newcommand{\mutex}{\|}								%mutually exclsve
+\newcommand{\rtt}{\theta}							%2nd stopping time
+\newcommand{\apath}{\Gamma}						%path for CI proof
+\newcommand{\pathset}[2]{\Lambda_{#1,#2}}		%A space of paths
+\newcommand{\evnt}{\mc{E}}						%Typical event
+\newcommand{\rv}{A}								%Typical rand elt
+\newcommand{\indo}{n}							%index of \rt
+\newcommand{\indt}{m}							%index of \rtt
 
 %Statement
 %Base Commands
@@ -179,8 +189,6 @@
 %Modifications
 \newcommand{\inte}[1]{{#1}^\mathrm{o}}				%interior
 \newcommand{\alt}[1]{\tilde{#1}}					%alternate
-
-
 
 %Existence
 %Base commands
@@ -193,7 +201,6 @@
 \newcommand{\mm}{\nu}								%gen msr
 \newcommand{\law}{\te{Law}}							%law
 \newcommand{\ev}[1]{\ep^{#1}}						%std basis
-
 
 %Uniqueness
 %Base Commands
@@ -214,24 +221,7 @@
 \renewcommand{\it}[1]{_{#1}}						%iterator
 \newcommand{\jpara}[1]{^{#1}}						%B_j dependence
 
-%CI
 
-\newcommand{\seto}{U}								%1st set in CI
-\newcommand{\sett}{W}								%2nd set in CI
-\newcommand{\setc}{R}								%set condition CI
-
-%Proof
-\newcommand{\mutex}{\|}								%mutually exclsve
-\newcommand{\rtt}{\theta}							%2nd stopping time
-\newcommand{\apath}{\Gamma}						%path for CI proof
-\newcommand{\pathset}[2]{\Lambda_{#1,#2}}		%A space of paths
-\newcommand{\pathsete}[2]{C_{#1,#2}}			%union over pathset
-\newcommand{\pathseted}[2]{H_{#1,#2}}			%pathsete with \t
-\newcommand{\evnt}{\mc{E}}						%Typical event
-\newcommand{\rv}{A}								%Typical rand elt
-\newcommand{\indo}{n}							%index of \rt
-\newcommand{\indt}{m}							%index of \rtt
-\newcommand{\const}{C}							%arbitrary constant
 
 %Appendix
 \newcommand{\Xj}{T}								%4th variable
@@ -239,14 +229,13 @@
 
 
 %reassign later
-\newcommand{\arr}{\lambda}							%arrival rate
-\newcommand{\neighI}[1]{\partial^I_{#1}}			%int. neigh
-\newcommand{\IG}{\mc{L}}							%infinitesimal gen
-\newcommand{\para}[1]{^{#1}}
-\newcommand{\inter}[1]{#1^I}
-\newcommand{\uni}{m}
-\renewcommand{\d}{D}
-
+%\newcommand{\arr}{\lambda}							%arrival rate
+%\newcommand{\neighI}[1]{\partial^I_{#1}}			%int. neigh
+%\newcommand{\IG}{\mc{L}}							%infinitesimal gen
+%\newcommand{\para}[1]{^{#1}}
+%\newcommand{\inter}[1]{#1^I}
+%\newcommand{\uni}{m}
+\renewcommand{\d}{\tattle}
 
 \newtheorem{thms}{Theorem}[section]
 \newtheorem{conj}[thms]{Conjecture}
@@ -267,8 +256,13 @@
 
 \maketitle
 
-\section{TODO}
+\newpage
 
+\tableofcontents
+
+\newpage
+
+\section{TODO}
 \begin{enumerate}
 \item \(\Sm\) is no longer the counting measure. Instead it's a positive probability measure on \(\sta\) (that is, for every \(i \in \sta\), \(\Sm(\{i\}) > 0\) and \(\Sm(\sta) = 1\)). Double check for any inconsistencies introduced by this change.
 
@@ -447,25 +441,6 @@ We will call \(\rateset \defeq \{(\Xf\gind{G}\tme{0},\rate\stpara{i}:\mb{R}^+\ti
 \tr{It may be possible to exchange Lipschitz continuity of \(\rateset\gind{G}\) for continuity in exchange for an assumption that increasing neighborhoods of the root of \(G\) grow at most exponentially asymptotically. The proof is longer and I haven't completely worked it out.}
 \label{a::liprx}
 \end{assu}
-
-%\begin{assu}
-%The continuous part of \(\rateset\) is locally Lipschitz in \(t\): for any \(T < \infty\) and \(0\leq s < t < T\),
-%
-%\begin{equation}
-%\sup_{\xf \in \cad, \xf'\in \cad^\sqcup} \sum_{i\in \sta}|i|\left|\rate\stpara{i}\tmepro{t}{\xf}{\xf'} - \rate\stpara{i}\tmepro{s}{\xf}{\xf'} - \sum_{s\leq u < t} \delt \rate\stpara{i}\tmepro{u}{\xf}{\xf'}\right| \leq \jumpbd{T}\left|t - s\right|.
-%\label{a::tLipschitz}
-%\end{equation}
-%
-%\tr{Note: since \(\rate\stpara{i}\) is c\`agl\`ad wrt \(t\), \(\delt\rate\stpara{i}\tmepro{t}{\xf}{\xf'} = \rate\stpara{i}\tmepro{t+}{\xf}{\xf'} - \rate\stpara{i}\tmepro{t}{\xf}{\xf'}\).}
-%\label{a::liprt}
-%\end{assu}
-%
-%\begin{assu}
-%\(t\mapsto \rate\stpara{i}\tmepro{t}{\xf}{\xf'}\) is left-continuous for all \(i\in \sta,\xf\in \cad\) and \(\xf'\in \cad^\sqcup\). Furthermore, it is continuous at all \(t\) such that \(\xf\vind{\cl{v}}\tme{t}\) is continuous. 
-%
-%\tr{This assumption is only used to prove existence of the local equations.}
-%\label{a::lctr}
-%\end{assu}
 
 \skipLine
 
@@ -937,7 +912,7 @@ Because \(\Xf\) satisfies assumption \ref{a::liprx}, \(\Xf\vind{\neigh{\seto}}\t
 
 \[\Xf\vind{\seto}\tmi{[0,\rt\it{\indo}\wedge t)}\mb{I}_{\apath}\perp \Xf\vind{\sett}\tmi{[0,\rtt\it{\indt}\wedge t)}\mb{I}_{\apath}|\left(\Xf\vind{\neigh{\seto}}\tmi{[0,\rt\it{\indo+1}\wedge t)},\Xf\vind{\neigh{\sett}}\tmi{[0,\rtt\it{\indt}\wedge t)}\right)\mb{I}_{\apath}.\]
 
-Now, \(\Xf\vind{\seto}\tme{\rt\it{\indo}\wedge t}\) is \(\left(\Xf\vind{\seto}\tmi{[0,\rt\it{\indo}\wedge t)}, \Xf\vind{\neigh{\seto}}\tmi{[0,\rt\it{\indo}\wedge t)}, \poiss\poissv{\seto}(\{\rt\it{\indo}\wedge t\}\times [0,\const]\times\sta)\right)\) measurable. Applying lemmas \ref{TL::Props} (a) and (e), we get
+Now, \(\Xf\vind{\seto}\tme{\rt\it{\indo}\wedge t}\) is \(\left(\Xf\vind{\seto}\tmi{[0,\rt\it{\indo}\wedge t)}, \Xf\vind{\neigh{\seto}}\tmi{[0,\rt\it{\indo}\wedge t)}, \poiss\poissv{\seto}(\{\rt\it{\indo}\wedge t\}\times \mb{R}\times\sta)\right)\) measurable. Applying lemmas \ref{TL::Props} (a) and (e), we get
 
 \[\Xf\vind{\seto}\tmi{[0,\rt\it{\indo}\wedge t]}\mb{I}_{\apath}\perp \Xf\vind{\sett}\tmi{[0,\rtt\it{\indt}\wedge t)}\mb{I}_{\apath}|\left(\Xf\vind{\neigh{\seto}}\tmi{[0,\rt\it{\indo+1}\wedge t)},\Xf\vind{\neigh{\sett}}\tmi{[0,\rtt\it{\indt}\wedge t)}\right)\mb{I}_{\apath}.\]
 
@@ -1228,125 +1203,6 @@ So \(\ex{f(\Xf\mb{I}_\typset|\Xh\mb{I}_\typset} = \ex{f(\Xf\mb{I}_\typset|\Xh\mb
 \end{align*}
 \end{enumerate}
 \end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%\section{Statement of the Local Approximation}
-%\label{Main}
-%
-%\begin{defn}
-%For any graph \(G\), an automorphism \(\phi: V \ra V\) is an isomorphism from \(G\) to itself. Note: if \(G\) is a rooted graph, it is possible that \(\phi(\root) \neq \root\).
-%\label{a:siso}
-%\end{defn}
-%
-%Of course, the most important point is that the symmetry extend to \(\Xf\).
-%
-%\begin{defn}
-%Let \((G,\Xf\gind{G})\) be well-defined. \(\phi: V \ra V\) is said to be a symmetry of \(\Xf\gind{G}\) if,
-%
-%\begin{enumerate}
-%\item \(\phi\) is an automorphism of \(G\).
-%
-%\item 
-%
-%\begin{equation}
-%\rate\stpara{i}\left(\xf\gind{G}\vind{\phi(\cl{v})}\tmi{[0,t)}\right) = \rate\stpara{i}\left(\xf\gind{G}\vind{\cl{v}}\tmi{[0,t)}\right) \te{ for all } v \in V,i \in \sta, t \in \mb{R}^+, \xf\in \Omega\vpara{V}\tpara{t}.
-%\label{a::ratesym}
-%\end{equation}
-%
-%\item \(\Xf\gind{G}\vind{\phi(V)}\tme{0} \deq \Xf\gind{G}\vind{V}\tme{0}\).
-%\end{enumerate}
-%\label{a:Xsim}
-%\end{defn}
-%
-%This is called a symmetry of \(\Xf\) for a simple reason:
-%
-%\begin{prop}
-%Let \((G,\Xf\gind{G})\) satisfy assumptions \ref{a::bddinit} and \ref{a::liprx}, and suppose \(\phi\) is a symmetry of \(\Xf\gind{G}\). Then,
-%
-%\[\Xf\gind{G}\vind{V} \deq \Xf\gind{G}\vind{\phi(V)},\]
-%
-%where \(\phi(V)\) is treated as a permutation of \(V\).
-%\label{a::simprop}
-%\end{prop}
-%\begin{proof}
-%By theorem \ref{wp::wp}, \(\Xf\gind{G}\) is the unique strong solution to the equation,
-%\[\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \int_\sta\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xf\gind{G}\vind{\cl{v}}}{}}\,\poiss\poissv{v}(dr,ds,di) \te{ for } v \in V, t \geq 0.\]
-%
-%By \cite[Proposition 2.10]{Kur07}, \((\{\poiss\poissv{v}:v\in V\},\Xf\gind{G})\) is also the unique weak solution to the equation above.
-%
-%\ind Let \(\Xg\vind{v} = \Xf\vind{\phi(v)}\). Then for all \(v\in V,t\geq 0\),
-%
-%\begin{align*}
-%\Xg\gind{G}\vind{v}\tme{t} &= \Xf\gind{G}\vind{\phi(v)}\tme{t} = \int_\sta\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xf\gind{G}\vind{\cl{\phi(v)}}}{}}\,\poiss\poissv{\phi(v)}(dr,ds,di)\\
-%&= \Xg\gind{G}\vind{v}\tme{t} = \int_\sta\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xg\gind{G}\vind{\cl{v}}}{}}\,\poiss\poissv{\phi(v)}(dr,ds,di)\\
-%\end{align*}
-%
-%Then \(\{\poiss\poissv{\phi(v)}:v \in V\} \deq \{\poiss\poissv{v}:v\in V\}\) and \((\{\poiss\poissv{\phi(v)}:v \in V\},\Xg\gind{G}) \deq (\{\poiss\poissv{v}:v \in V\},\Xf\gind{G})\), so \(\Xg\gind{G}\vind{V} = \Xf\gind{G}\vind{\phi(V)} \deq \Xf\gind{G}\vind{V}\).
-%\end{proof}
-%
-%\begin{assu}
-%Suppose \(G \in \Gs\). \(G\) is said to be admissible if there exists a finite set \(A \subset V\) such that,
-%
-%\begin{itemize}
-%\item There exists a finite partition \(\{B_i\}_{i=1}^\psize\) of \(A^c\).
-%
-%\item \(\dneigh{B_i} \subseteq A\) for all \(i\).
-%
-%\item Let \(C_i = B_i\cap\neigh{A}\). For each \(i\), there exists a self-isomorphism, \(\phi_i\), such that \(\phi_i(C_i\cup \dneigh{B_i}) \subset A\), and \(\phi_i(B_i\setminus C_i)\cap A = \emptyset\). \tr{The last one may be unnecessary, but it greatly simplifies the casework.}
-%
-%\item If we let \(A\indx{1} = A\cup \left(\bigcup_{i=1}^\psize C_i\right)\). Then \(A\indx{1}\) is also admissible with partition \(\{B\indx{1}_i\}_{i=1}^{\psize\indx{1}}\) and boundary nodes \(C\indx{1}_i = B\indx{1}_i\cap \neigh{A\indx{1}}\).
-%
-%\item If \(C\indx{1}_{i'} \subseteq B_i\), then there exists a \(j\) so that \(\phi_i(C\indx{1}_{i'}) = C_j\). \tr{I think this is implied by the other conditions if \(A\) has a unique corresponding set of branches and boundary nodes.}
-%
-%\item If \(\phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\gneigh{G}{B_{j'}}\) is nonempty, then \(\phi_j(C_j)\cap\dgneigh{G}{B_{j'}} = \emptyset\). \tr{I suspect this can be proven using the points above. Try to do so or find a simpler set of assumptions that satisfy this.}
-%
-%\item If \(\phi_j(C_j) \cap \gneigh{G}{B_{j'}}\) is nonempty, then \(\dgneigh{G}{B_{j'}} \subseteq \phi_j(C_j\cup\dgneigh{G}{B_j})\). In fact, \(\phi_j^{-1}(\dgneigh{G}{B_{j'}}) = \dgneigh{G}{B_{j''}\indx{1}}\) for some \(j''\). Furthermore, \(C_j\cap\phi_j^{-1}(\gneigh{G}{B_{j'}}) = \gneigh{G}{B_{j''}\indx{1}}\).
-%\end{itemize}
-%
-%The set \(A\) is called an admissible set. \(\{B_i\}_{i=1}^\psize\) will be referred to as the set of branches of \(A\). \(\psize\) is the branching number of \(A\). \(\{C_i\}_{i=1}^\psize\) will be called the boundary nodes of \(A\).
-%
-%\ind \tr{Right now I'm just adding assumptions whenever I need them (after making sure load-balancing satisfies them).}
-%\label{Main::admissible}
-%\end{assu}
-%
-%\begin{assu}
-%Let \((G,\Xf\gind{G}) \in \Gs\sp{\cad}\) be well-defined. Then all automorphisms of assumption \ref{Main::admissible} are symmetries of \((G,\Xf\gind{G})\).
-%\label{Main::padmin}
-%\end{assu}
-%
-%\begin{thms}
-%Let \((G,\Xf) \in \Gs\sp{\cad}\) satisfy assumptions \ref{a::bddinit},\ref{a::bddr}, \ref{a::liprx}, \ref{CI::indinit}, \ref{Main::admissible} and \ref{Main::padmin}. Let \(A\) be the admissible set and \(\{B_i\}\) the branches of \(A\). Let \(\inte{A} = \{v \in A: \neigh{v} \subseteq A\}\). Consider the following equations:
-%
-%\begin{align}
-%\Xg\vind{v}\tme{t} &= 
-%\begin{cases}
-%\Xg\vind{v}\tme{0} + \int_{\sta} \int_{[0,t)\times (0,\infty)} i\mb{I}_{r\leq \rate\gvpara{A}{v}\stpara{i}(\Xg\vind{\cl{v}}\tmi{[0,s)})}\,\poiss\poissv{v}(dr,ds,di) & \te{ if } v \in \inte{A}\\
-%\Xg\vind{v}\tme{0} + \int_{\sta} \int_{[0,t)\times (0,\infty)} i\mb{I}_{r\leq \brate\gvpara{A}{v}\stpara{i}(\Xg\vind{\dneigh{B_j}}\tmi{[0,s)})}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in \neigh{B_j}
-%\end{cases}\label{Main::local}\\
-%\brate\gvpara{A}{v}\stpara{i}(x_{\dneigh{B_j}}[0,t)) &= \exmu{\Xg \sim \mu}{\rate\gvpara{A}{\phi_j(v)}\stpara{i}\left(\Xg\vind{\cl{\phi_j(v)}}\tmi{[0,t)}\right)\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,t)} = x\vind{\dneigh{B_j}}\tmi{[0,t)}} \te{ if } v \in \neigh{B_j}\label{Main::CI}\\
-%\mu &= \law(\Xg).\label{Main::fixed}
-%\end{align}
-%
-%Equations \eqref{Main::local}, \eqref{Main::CI} and \eqref{Main::fixed} have a unique weak solution in law satisfying the results of theorem \ref{CI::CI}, and \(\mu = \law(\Xf\vind{A})\). (We don't yet have a general proof of uniqueness, just that only one of the solutions satisfies the conditional independence property outlined in section \ref{CI}).
-%\label{Main::Main}
-%\end{thms}
-
 
 \newpage
 \bibliographystyle{plain}
