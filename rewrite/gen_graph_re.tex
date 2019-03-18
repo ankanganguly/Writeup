@@ -48,7 +48,7 @@
 \newcommand{\defeq}{:=}								%definition equal
 \newcommand{\msr}{\mc{M}}							%space of measures
 \newcommand{\pmsr}{\mc{P}}							%space of pmsrs
-\newcommand{\cad}{\mb{D}}							%Cadlag space
+\newcommand{\cad}{\mc{D}}							%Cadlag space
 \newcommand{\argmin}{\te{arg}\min}
 
 
@@ -194,10 +194,17 @@
 \renewcommand{\mark}{\kappa}						%PP mark
 \newcommand{\ratee}{\Gamma}							%generic rate
 \newcommand{\cratee}{\alt{\ratee}}					%gen cdtl rate
+\newcommand{\grate}{\ov{\ratee}}					%2nd generic rate
 \newcommand{\rp}{P}									%generic PP
 \newcommand{\mm}{\nu}								%gen msr
 \newcommand{\law}{\te{Law}}							%law
 \newcommand{\ev}[1]{\ep^{#1}}						%std basis
+\newcommand{\const}{M}								%constant
+
+%Modifications
+\newcommand{\sttpara}[2]{_{#1,#2}}					%state and time
+\newcommand{\mpara}[1]{^{#1}}						%measure param
+\newcommand{\tspara}[2]{_{#1,#2}}					%2 times para
 
 %Uniqueness
 %Base Commands
@@ -332,30 +339,6 @@ Then \(\{\poiss\poissv{\phi(v)}:v \in V\} \deq \{\poiss\poissv{v}:v\in V\}\) and
 \end{proof}
 
 
-%\section{Statement of the Local Approximation}
-%\label{Main}
-%
-
-%
-
-%
-%\begin{thms}
-%Let \((G,\Xf) \in \Gs\sp{\cad}\) satisfy assumptions \ref{a::bddinit},\ref{a::bddr}, \ref{a::liprx}, \ref{CI::indinit}, \ref{Main::admissible} and \ref{Main::padmin}. Let \(A\) be the admissible set and \(\{B_i\}\) the branches of \(A\). Let \(\inte{A} = \{v \in A: \neigh{v} \subseteq A\}\). Consider the following equations:
-%
-%\begin{align}
-%\Xg\vind{v}\tme{t} &= 
-%\begin{cases}
-%\Xg\vind{v}\tme{0} + \int_{\sta} \int_{[0,t)\times (0,\infty)} i\mb{I}_{r\leq \rate\gvpara{A}{v}\stpara{i}(\Xg\vind{\cl{v}}\tmi{[0,s)})}\,\poiss\poissv{v}(dr,ds,di) & \te{ if } v \in \inte{A}\\
-%\Xg\vind{v}\tme{0} + \int_{\sta} \int_{[0,t)\times (0,\infty)} i\mb{I}_{r\leq \brate\gvpara{A}{v}\stpara{i}(\Xg\vind{\dneigh{B_j}}\tmi{[0,s)})}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in \neigh{B_j}
-%\end{cases}\label{Main::local}\\
-%\brate\gvpara{A}{v}\stpara{i}(x_{\dneigh{B_j}}[0,t)) &= \exmu{\Xg \sim \mu}{\rate\gvpara{A}{\phi_j(v)}\stpara{i}\left(\Xg\vind{\cl{\phi_j(v)}}\tmi{[0,t)}\right)\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,t)} = x\vind{\dneigh{B_j}}\tmi{[0,t)}} \te{ if } v \in \neigh{B_j}\label{Main::CI}\\
-%\mu &= \law(\Xg).\label{Main::fixed}
-%\end{align}
-%
-%Equations \eqref{Main::local}, \eqref{Main::CI} and \eqref{Main::fixed} have a unique weak solution in law satisfying the results of theorem \ref{CI::CI}, and \(\mu = \law(\Xf\vind{A})\). (We don't yet have a general proof of uniqueness, just that only one of the solutions satisfies the conditional independence property outlined in section \ref{CI}).
-%\label{Main::Main}
-%\end{thms}
-
 
 \subsection{New Assumptions}
 \label{a::not}
@@ -438,7 +421,7 @@ The definition of an admissible set is designed ensure a high enough level of sy
 
 
 \begin{thms}
-Let \((G,\Xf)\) satisfy assumptions \ref{a::admissible} and \ref{a::padmin}. Let \(A\) be the admissible set and \(\{B_i\}\) the branches of \(A\). Let \(\inte{A} = \{v \in A: \neigh{v} \subseteq A\}\). Consider the following equations:
+Let \((G,\Xf) \in \Gs\sp{\cad}\) satisfy \cite[assumptions \ref{F-a::bddinit},\ref{F-a::bddr}, \ref{F-a::liprx}, \ref{F-CI::indinit}]{F} as well as assumptions \ref{a::liprt},\ref{a::lctr},\ref{a::admissible} and \ref{a::padmin}. Let \(A\) be the admissible set and \(\{B_i\}\) the branches of \(A\). Let \(\inte{A} = \{v \in A: \neigh{v} \subseteq A\}\). Consider the following equations:
 
 \begin{align}
 \Xg\vind{v}\tme{t} &= 
@@ -450,7 +433,7 @@ Let \((G,\Xf)\) satisfy assumptions \ref{a::admissible} and \ref{a::padmin}. Let
 \mu &= \law(\Xg).\label{Main::fixed}
 \end{align}
 
-Equations \eqref{Main::local}, \eqref{Main::CI} and \eqref{Main::fixed} have a unique weak solution in law satisfying the results of theorem \ref{CI::CI}, and \(\mu = \law(\Xf\vind{A})\). (We don't yet have a general proof of uniqueness, just that only one of the solutions satisfies the conditional independence property outlined in section \ref{CI}).
+Equations \eqref{Main::local}, \eqref{Main::CI} and \eqref{Main::fixed} have a unique weak solution in law satisfying the results of \cite[theorem \ref{F-CI::CI}]{F}, and \(\mu = \law(\Xf\vind{A})\). (We don't yet have a general proof of uniqueness, just that only one of the solutions satisfies the conditional independence property outlined in \cite[section \ref{F-CI}]{F}).
 \label{Main::Main}
 \end{thms}
 
@@ -489,18 +472,22 @@ Finally, for any \(T\in (0,\infty)\), \(\pmap\tpara{T}(\Xg) = \pmap(\Xg)|_{\ms{B
 \ind \tr{revise assumption \ref{Ex::Eassu}. Make it as simple as possible for lemma 6.4 to hold. I only use this assumption for lemma \ref{Ex::leftmod}}
 
 \begin{assu}
-Let \(G\) satisfy assumption \ref{a::gbasics}, however assumptions \ref{a::pbasics} and \ref{a::admissible} need not hold. Let \(A\) be any finite set, and define the set \(U\) such that \(A\subseteq U \subseteq V\). Let \(\Xg\) be an \(\sta^U\)-valued c\`adl\`ag stochastic process on \((0,\infty)\). For each \(v\in U\), \(\pmap\vpara{v}(\Xg)\) has an \(\Xg\vind{A}\)-predictable intensity, \(\ratee\vpara{v}\), and there exists a constant \(C < \infty\) such that \(\sup_{v\in U}\sup_{t\in \mb{R}^+}\sum_{i \in \sta} \ratee\vpara{v}(t,i) \leq C\). Furthermore, \(f\tpara{t}: \cad([0,t),\sta^{|A|})\times \sta\ra[0,C]\) is a sequence of mappings such that for all \(\Xh \in \cad([0,\infty),\sta^{|A|})\), if \(t\in (0,\infty)\) is a continuity point of \(\Xh\), then \(t\) is a continuity point of \(s \mapsto f\tpara{s}(\Xh\tmi{[0,s)},z)\) for all \(z \in \sta\). \tr{Maybe move this technical assumption about \(f\) into section \ref{a::not}.}
+Suppose \(G \in \Gs\). Let \(A \subseteq U \subseteq V\), and assume \(A\) is finite. Let \(\Xg \in \cad\vpara{U}\), and for all \(v \in U\), \(\pmap\vpara{v}(\Xg)\) has a \(\Xg\)-predictable intensity \(\ratee\vpara{v}\) such that \(\ratee\vpara{v}\tmepro{t}{\Xg}{} \leq \jumpibd{i}{t}\). Define the mapping \(f_t: \cad\vpara{A}\tpara{t-}\times\sta \ra \mb{R}^+\). There exists a sequence of constants \(\{\const\sttpara{i}{t}:i \in \sta,t \in \mb{R}^+\}\) that are non-decreasing in \(t\) and satisfy
+
+\[\sum_{i \in \sta}\Sm(\{i\})\const\sttpara{i}{t} \defeq \const\tpara{t} < \infty\]
+
+such that \(f_t(\cdot,i)\) is bounded from above by \(\const\sttpara{i}{t}\) and the continuous part of \(t \mapsto f_t(\Xg\vind{A},i)\) is uniformly \(\const\tpara{T}\)-Lipschitz on \([0,T)\) for all \(T < \infty\). \tr{I hope it's clear. By uniformly locally Lipschitz, I mean that it's locally-Lipschitz with respect to \(t\), and the Lipschitz coefficient has a non-random upper bound.} Finally, \(t \mapsto f_t(\Xg\vind{A},i)\) is left-continuous and continuous at all continuity points of \(\Xg\vind{A}\).
 \label{Ex::Eassu}
 \end{assu}
 
 
 \begin{lem}
-Let \(\rp\) be an \(\F\)-adapted marked point process with \(\F\)-predictable intensity \(\ratee\) with respect to the reference measure \(\Sm\) on its mark space. For all \(t \in [0,\infty)\), let \(\sigma(\rp_{t}) \subseteq \alt{\F}_{t}\subset \F_{t}\) define a subfiltration of \(\F\) containing the history of \(\rp\). If there exists an \(\ell\times \pr\)-almost sure left-continuous modification of \(\cratee(t,\mark) := \ex{\ratee(t,\mark)|\alt{\F}_{t-}}\) with respect to \(t\), then \(\cratee\) is the \(\alt{\F}\)-predictable intensity of \(\rp\). \tr{Make sure the lemma stated in the book works for infinite time.}
+Let \(\rp\) be an \(\F\)-adapted marked point process with \(\F\)-predictable intensity \(\ratee\) with respect to the reference measure \(\Sm\) on its mark space. For all \(t \in [0,\infty)\), let \(\sigma(\rp_{t}) \subseteq \alt{\F}_{t}\subset \F_{t}\) define a subfiltration of \(\F\) containing the history of \(\rp\). If there exists an \(\ell\times \pr\)-almost sure left-continuous modification of \(\cratee(t,\mark) := \ex{\ratee(t,\mark)|\alt{\F}_{t-}}\) with respect to \(t\), then \(\cratee\) is the \(\alt{\F}\)-predictable intensity of \(\rp\). 
 \label{Ex::filtering}
 \end{lem}
 
 \begin{proof}
-This is Lemma 5.3 from the main paper.
+This is a restatement of \cite[theorem 14.3.III]{DalVer08}.
 \end{proof}
 
 Now we need a simple method to know when the conditional expectation has a left-continuous modification. The following lemma, although a technical lemma, may be more broadly useful. It is also later applied in the proof of uniqueness.
@@ -509,14 +496,154 @@ Now we need a simple method to know when the conditional expectation has a left-
 \begin{lem}
 Suppose Assumption \ref{Ex::Eassu} holds. Let \(\mm = \law(\Xg)\) and \(W\subseteq A \subseteq U\subseteq V\). Let \(W'\subseteq A\) be such that \(|W'| = |W|\), and suppose there is a natural association between elements of \(W'\) and \(W\). For any \(i \in \sta\), let
 
-\[\ratee\vpara{v}\tpara{t}(i) \defeq \exmu{\Xh\sim \mm}{f_t(\Xh\tmi{[0,t)},i)|\Xh\vind{W'}\tmi{[0,t)} = \Xg\vind{W}\tmi{[0,t)}}.\]
+\[\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} \defeq \exmu{\Xh\sim \mm\vpara{A}}{f_t(\Xh\tmi{[0,t)},i)|\Xh\vind{W'}\tmi{[0,t)} = \Xg\vind{W}\tmi{[0,t)}}.\]
 
-Then \(\ratee\vpara{v}\tpara{t}(i)\) has an almost surely left-continuous modification on \([0,T)\) with respect to \(t\) for every \(v \in A\) and \(\ell\)-almost every \(i \in \sta\), where \(\ell\) is the counting measure on \(\sta\) (see section \ref{p::not}). Furthermore, \(\ratee\vpara{v}\tpara{t}(i)\) is a.s. continuous at all continuity points of \(\Xg\vind{W}\).
+Then \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) has an almost surely left-continuous modification on \(\mb{R}^+\) with respect to \(t\) for every \(\ell\)-almost every \(i \in \sta\), where \(\ell\) is the reference measure on \(\sta\) (see section \tr{(add citation)}). Furthermore, \(t\mapsto\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is a.s. continuous at all continuity points of \(\Xg\vind{W}\), and the continuous part of \(t\mapsto\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is uniformly locally Lipschitz.
 \label{Ex::leftmod}
 \end{lem}
+
+The proof is shown after \tr{(location needed)}. To prove this, we use a result from a website (see \tr{(citation needed)}) which can be used to prove the existence of a left-continuous modification of \(\ratee\vpara{v}\tpara{t}(i)\) in lemma \ref{Ex::leftmod}.
+
+\begin{defn}
+A set \(\evnt\) is called elementary with respect to a filtration \(\{\F\tpara{t}\}\) if it is a finite union of sets of the form \((s,t]\times \alt{\evnt}\) where \(\alt{\evnt} \in \F\tpara{s}\).
+\label{Ex::elementary}
+\end{defn}
+
+The notion of an elementary set gives us a useful set of test sets to prove the existence of a left-continuous modification:
+
+\begin{lem}
+Let \(\Xf\tme{t}\) be a stochastic process that is left continuous in probability and such that \(\sup_{\evnt\te{ elementary}}\ex{\int_0^T \mb{I}_\evnt\,d\Xf} < \infty\) for all \(T < \infty\). Then there exists a left-continuous modification of \(\Xf\).
+\label{Ex::leftmodgen}
+\end{lem}
 \begin{proof}
-Lemma 5.4 of the main paper is extremely similar to this Lemma. I can go back and generalize that Lemma to apply to this situation later so that this becomes a direct application of lemma 5.4 of the main paper.
+The website Almost Sure (url: https://almostsure.wordpress.com/2009/12/18/cadlag-modifications/) has a statement of a similar result along with a partial proof. Completing the proof and adapting it to left-continuous modifications instead of c\`adl\`ag functions is simple. I have a full proof written up elsewhere, but I haven't included it here because it is virtually identical to the original proof provided in the link above.
 \end{proof}
+
+\begin{lem}
+Let \(\Xg,\mm,\ratee\) and \(f_t\) satisfy the conditions of Assumption \ref{Ex::Eassu}. Let \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) be defined as in Lemma \ref{Ex::leftmod}. Then \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is left-continuous in probability for \(i \in \sta\setminus\{0\}\). That is, for every \(t \in (0,T]\), \(i \in \sta\) and \(\ep > 0\),
+
+\[\lim_{s \nearrow t}\pr\mpara{\mm}\left(|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}- \grate\stpara{i}\tmepro{s}{\Xg\vind{W}}{}| > \ep\right) = 0.\]
+\label{Ex::pleft}
+
+Furthermore, suppose \(0 < s < t < T < \infty\). Then there exists a non-random constant \(\alt{\const}\sttpara{i}{T}\) such that,
+
+\[\mb{I}_{\Xg\vind{W}\tmi{[s,t)} \equiv \Xg\vind{W}\tme{s-}}\left|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}- \grate\stpara{i}\tmepro{s}{\Xg\vind{W}}{}\right| < \alt{\const}\sttpara{i}{T}|t-s| \te{ almost surely}.\]
+\end{lem}
+\begin{proof}
+Fix some \(T < \infty\). Suppose \(t \in (0,T)\) and \(0 < s < t\). Let \(x \in \cad\vpara{W}\). Suppose that \(s\) is sufficiently small so that \(\xf\tmi{[t-s,t)} \equiv \xf\tme{(t-s)-}\). Because \(\xf\) is a c\`adl\`ag mapping taking values in a countable space equipped with the discrete topology, there always exist \(s\) small enough for this to be true.
+
+\ind Define,
+
+\[\evnt\tspara{s}{t} \defeq \{\xg \in \cad\vpara{A}: \xg\tmi{[t-s,t)} \equiv \xg\tme{(t-s)-}\}.\]
+
+For \(Z \sim \mm\vpara{A}\), I will write \(\evnt\tspara{s}{t}\) as a shorthand for the event that \(Z \in \evnt\tspara{s}{t}\). Before starting the proof, we begin by establishing some inequalities.
+
+\begin{itemize}
+\item We can bound the probability of \(\evnt\tspara{s}{t}\):
+
+\begin{equation}
+\pr\mpara{\mm\vpara{A}}(\evnt\tspara{s}{t}) \geq \exp\left(-s|A|\jumpbd{t}\right)
+\label{Ex::evntbd}
+\end{equation}
+
+Justification: by \cite[Exercise 14.7.I]{DalVer08}, there exists a marked Poisson process of rate \(|A|\jumpbd{t}\) such that all jumps of \(\Xg\) are also jumps of the Poisson process (although the reverse is generally false). Use that coupling to get this estimate.
+
+\item 
+
+\begin{align}
+\big|\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}& - \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\big|\nonumber \\
+&= \left|\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i) - f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\right|\nonumber\\
+& \leq \exmu{\Xh \sim\mm\vpara{A}}{|f\tpara{t}(\Xh,i) - f\tpara{t-s}(\Xh,i)|\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\nonumber\\
+&\leq \const\sttpara{i}{t}s.
+\label{Ex::lipft}
+\end{align}
+
+\item Finally notice that \(\{\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}\} = \{\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}\}\).
+
+\begin{align*}
+\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} &= \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}\\
+&=\frac{\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\mb{I}_{\evnt\tspara{s}{t}}\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)}
+\end{align*}
+
+Let \(\poiss\) be the Poisson process used in the coupling described in the justification of equation \eqref{Ex::evntbd}. Then \(\poiss\tmi{[t-s,t)}\) is independent of \(\Xh\vind{W'}\tmi{[0,t-s)}\), so
+
+\begin{align*}
+\frac{\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\mb{I}_{\evnt\tspara{s}{t}}\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)} &\leq \frac{\exmu{\Xh\sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\exp\left(-s|A|\jumpbd{t}\right)}\\
+&= \frac{\grate\stpara{i}\tmepro{t-s}{\xf}{}}{\exp\left(-s|A|\jumpbd{t}\right)}.
+\end{align*}
+
+and,
+
+\begin{align*}
+&\frac{\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\mb{I}_{\evnt\tspara{s}{t}}\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)} \\
+&\hspace{48 pt}\geq \frac{\pr(\poiss\tmi{[t-s,t)} = 0)\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)}\\
+&\hspace{48 pt} \geq \exp\left(-s|A|\jumpbd{t}\right)\grate\stpara{i}\tmepro{t-s}{\xf}{}.
+\end{align*}
+
+Thus,
+
+\begin{equation}
+\exp\left(-s|A|\jumpbd{t}\right)\grate\stpara{i}\tmepro{t-s}{\xf}{} \leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} \leq \frac{\grate\stpara{i}\tmepro{t-s}{\xf}{}}{\exp\left(-s|A|\jumpbd{t}\right)}.
+\label{Ex::cdbd}
+\end{equation}
+\end{itemize}
+
+We end up with,
+
+\begin{align*}
+\grate\stpara{i}\tmepro{t}{\xf}{} &= \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\pr(\evnt\tspara{s}{t})\\
+&\hspace{24 pt} + \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t}^c,\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\pr(\evnt\tspara{s}{t}^c)
+\end{align*}
+
+Then,
+
+\begin{align*}
+e^{-s|A|\jumpbd{t}}\mb{E}^{\Xh \sim\mm\vpara{A}}\big[f\tpara{t}(\Xh,i)&\big|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}\big] \leq \grate\stpara{i}\tmepro{t}{\xf}{} \\
+&\leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} + \const\sttpara{i}{t}(1 - e^{-s|A|\jumpbd{t}})\\
+e^{-s|A|\jumpbd{t}}\mb{E}^{\Xh \sim\mm\vpara{A}}\big[f\tpara{t-s}(\Xh,i)&\big|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}\big] - \const\sttpara{i}{t}se^{-s|A|\jumpbd{t}} \leq \grate\stpara{i}\tmepro{t}{\xf}{}\\
+&\leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} + \const\sttpara{i}{t}(1 + s - e^{-s|A|\jumpbd{t}})\\
+e^{-2s|A|\jumpbd{t}}\grate\stpara{i}\tmepro{t-s}{\xf}{} &- \const\sttpara{i}{t}se^{-s|A|\jumpbd{t}} \leq \grate\stpara{i}\tmepro{t}{\xf}{}\\
+&\leq e^{s|A|\jumpbd{t}}\grate\stpara{i}\tmepro{t-s}{\xf}{}+ \const\sttpara{i}{t}(1 + s - e^{-s|A|\jumpbd{t}})\\
+(e^{-2s|A|\jumpbd{t}}-1)\grate\stpara{i}\tmepro{t-s}{\xf}{} &- \const\sttpara{i}{t}se^{-s|A|\jumpbd{t}} \leq \grate\stpara{i}\tmepro{t}{\xf}{} - \grate\stpara{i}\tmepro{t-s}{\xf}{}\\
+&\leq (e^{s|A|\jumpbd{t}}-1)\grate\stpara{i}\tmepro{t-s}{\xf}{}+ \const\sttpara{i}{t}(1 + s - e^{-s|A|\jumpbd{t}})\\
+\end{align*}
+
+Since \(\grate\stpara{i}\tmepro{t-s}{\xf}{}\leq \const\sttpara{i}{t}\), 
+
+\begin{equation}
+\const\sttpara{i}{t}(e^{-2s|A|\jumpbd{t}}-se^{-s|A|\jumpbd{t}}-1) \leq \grate\stpara{i}\tmepro{t}{\xf}{} - \grate\stpara{i}\tmepro{t-s}{\xf}{} \leq \const\sttpara{i}{t}(e^{s|A|\jumpbd{t}} + s - e^{-s|A|\jumpbd{t}})
+\label{Ex::lipbd}
+\end{equation}
+
+Fix any \(t < T < \infty\). Then if \(s\) is sufficiently small,
+
+\begin{equation}
+\const\sttpara{i}{T}(e^{-2s|A|\jumpbd{T}}-se^{-s|A|\jumpbd{T}}-1) \leq \grate\stpara{i}\tmepro{t}{\xf}{} - \grate\stpara{i}\tmepro{t-s}{\xf}{} \leq \const\sttpara{i}{T}(e^{s|A|\jumpbd{T}} + s - e^{-s|A|\jumpbd{T}})
+\label{Ex::loclipbd}
+\end{equation}
+
+These bounds are both \(O(s)\), so \(\grate\stpara{i}\tmepro{t}{\xf}{}\) is uniformly locally Lipschitz around \(t\) whenever \(t\) is a continuity point of \(\xf\). Thus, the continuous part of \(t\mapsto\grate\stpara{i}\tmepro{t}{\xf}{}\) is uniformly locally Lipschitz.
+
+\ind To prove that it is left-continuous in probability, we must also consider jumps. 
+
+\begin{align*}
+\ex{|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{t-s}{\Xg\vind{W}}{}|}&\leq \alt{\const}\sttpara{i}{T}|t-s| + \ex{\mb{I}_{\Xg\vind{W}\tmi{[t-s,t)} \not\equiv \Xg\vind{W}\tme{(t-s)-}}|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{t-s}{\Xg\vind{W}}{}|}\\
+&\leq \alt{\const}\sttpara{i}{T}|t-s| + \const\sttpara{i}{T}e^{-s|W|\jumpbd{T}} \os{s\searrow 0}{\ra} 0
+\end{align*}
+
+By the Chebyshev inequality, \(t \mapsto \grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is left-continuous in probability.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\newpage
 
 \begin{proof}[Proof of Theorem \ref{Main::Main} Existence]
 
@@ -626,7 +753,7 @@ In this case, fix \(i,v\) and \(\mark = i\ev{v}\).
 \cratee(\rt,\mark) &= \exmu{\Xg\sim\mm}{\ratee(\rt,\mark)\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}} = \exmu{\Xg\sim\mm}{\rate\gvpara{A}{v}\stpara{i}(\Xg\vind{\cl{v}}\tmi{[0,\rt)})\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}}.
 \end{align*}
 
-Looking back at assumption \ref{Ex::Eassu}, our graph \(G\) is assumed to satisfy assumption \ref{a::gbasics}. Let \(A\) from the assumption be the same as the admissible set, \(A\), from this lemma. Let \(U = A\). \(\Xg\) from the assumption is precisely \(\rp\). \(\ratee\) satisfies the conditions of the intensity by assumption \ref{a::pbasics}. \(f_t\) from the assumption is just \(\rate\gvpara{A}{v}\stpara{i}(\cdot)\), which satisfies the continuity property by \ref{a::pbasics}. So, the conditions of assumption \ref{Ex::Eassu} hold in this case. Furthermore, from the conditions of lemma \ref{Ex::leftmod}, let \(W = W' = \phi_j(\dgneigh{G}{B_j})\). Then by lemma \ref{Ex::leftmod}, \(\cratee(\rt,\mark)\) has a left continuous modification wrt \(\rt\).
+Looking back at assumption \ref{Ex::Eassu}, our graph \(G\) is assumed to satisfy assumption \ref{a::gbasics}. Let \(A\) from the assumption be the same as the admissible set, \(A\), from this lemma. Let \(U = A\). \(\Xg\) from the assumption is precisely \(\rp\). \(\ratee\) satisfies the conditions of the intensity by assumption \ref{a::pbasics}. \(f_t\) from the assumption is just \(\rate\gvpara{A}{v}\stpara{i}(\cdot)\), which satisfies the continuity property by \ref{a::pbasics}. So, the conditions of assumption \ref{Ex::Eassu} hold in this case. Furthermore, from the conditions of lemma \ref{Ex::leftmod} \tr{BOOMS!}, let \(W = W' = \phi_j(\dgneigh{G}{B_j})\). Then by lemma \ref{Ex::leftmod}, \(\cratee(\rt,\mark)\) has a left continuous modification wrt \(\rt\).
 
 \skipLine
 

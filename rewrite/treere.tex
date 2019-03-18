@@ -722,6 +722,8 @@ Suppose \((G,\Xf\gind{G})\in \Gs\sp{\cad}\) satisfy assumptions \ref{a::bddinit}
 \label{CI::CI}
 \end{thms}
 
+The proof of this theorem can be found after the proof of lemma \ref{CIpf::Induction}.
+
 \subsection{Proof}
 \label{CI::CIpf}
 
@@ -747,7 +749,7 @@ We define the pair of sequences of stopping times:
 \rtt\indx{\indt} &= \inf \left\{t \in [0,\infty): \poiss\poissv{\neigh{\sett}}\left((0,\jumpibd{i}{T}],[0,t],\sta \right) = \indt\right\}.
 \end{align*}
 
-Here \(\jumpibd{i}{T}\) is as defined in assumption \ref{a::bddjmp}. We also define the set of paths along \(\mb{N}^2\) by,
+Here \(\jumpibd{i}{T}\) is as defined in assumption \ref{a::bddr}. We also define the set of paths along \(\mb{N}^2\) by,
 
 \begin{align}
 \pathset{\indo}{\indt} = \{\apath \in (\mb{N}^2)^{\indo+\indt-1}: &\apath(1) = (1,1)\te{, } \apath(\indo+\indt-1) = (\indo,\indt)\te{, and } \nonumber\\
@@ -779,7 +781,7 @@ For all \((\indo,\indt)\in \mb{N}_0^2\), \(t < \infty\) and \(\apath \in \pathse
 \label{CIpf::Induction}
 \end{lem}
 
-This is proven by decomposing \(\Xf\) into its component random elements. Using the properties of conditional independence proven in the appendix (lemma \ref{TL::CI}), we prove the conditional independence of lemma \ref{CIpf::Induction}. The proof of this lemma comes after the proof of lemma \ref{CIpf::Decomposition}.
+This is proven by decomposing \(\Xf\) into its component random elements. Using the properties of conditional independence proven in the appendix (lemma \ref{TL::Props}), we prove the conditional independence of lemma \ref{CIpf::Induction}. The proof of this lemma comes after the proof of lemma \ref{CIpf::Decomposition}.
 
 \begin{lem}
 For all \((\indo,\indt)\in \mb{N}^2\), there exist measurable mappings \(\phi\) and \(\psi\) such that 
