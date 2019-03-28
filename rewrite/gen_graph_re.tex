@@ -56,12 +56,12 @@
 %Graph Notation
 %Base Commands
 \newcommand{\sta}{\mc{X}}							%state space
-\newcommand{\neigh}[1]{\partial_{#1}}				%neighborhood
-\newcommand{\dneigh}[1]{\partial^2_{#1}}			%double neigh
-\newcommand{\tneigh}[1]{\partial^3_{#1}}			%double neigh
-\newcommand{\gneigh}[2]{\partial^{#1}_{#2}}			%neighborhood w G
-\newcommand{\dgneigh}[2]{\partial^{2,#1}_{#2}}		%double neigh w G
-\newcommand{\tgneigh}[2]{\partial^{3,#1}_{#2}}		%double neigh w G
+\newcommand{\neigh}[1]{\mc{N}_{#1}}				%neighborhood
+\newcommand{\dneigh}[1]{\mc{N}^2_{#1}}			%double neigh
+\newcommand{\tneigh}[1]{\mc{N}^3_{#1}}			%double neigh
+\newcommand{\gneigh}[2]{\mc{N}^{#1}_{#2}}			%neighborhood w G
+\newcommand{\dgneigh}[2]{\mc{N}^{2,#1}_{#2}}		%double neigh w G
+\newcommand{\tgneigh}[2]{\mc{N}^{3,#1}_{#2}}		%double neigh w G
 \newcommand{\cl}[1]{\ov{#1}}						%graph closure
 \newcommand{\bdry}[1]{\partial_{#1}}				%bdry
 \newcommand{\gbdry}[2]{\partial^{#1}_{#2}}			%G bdry
@@ -131,8 +131,8 @@
 %Modifiers
 \newcommand{\tmepro}[3]{
 \ifstrempty{#3}{
-	(#1,#2)}{
-	(#1,#2,#3)}}									%time, process
+	\left(#1,#2\right)}{
+	\left(#1,#2,#3\right)}}							%time, process
 
 %Well-Posedness
 %Base Commands
@@ -205,6 +205,7 @@
 \newcommand{\sttpara}[2]{_{#1,#2}}					%state and time
 \newcommand{\mpara}[1]{^{#1}}						%measure param
 \newcommand{\tspara}[2]{_{#1,#2}}					%2 times para
+\newcommand{\tmestpro}[3]{\left(#1,#2,#3\right)}	%time,state,pro
 
 %Uniqueness
 %Base Commands
@@ -224,6 +225,7 @@
 \newcommand{\prc}[1]{_{#1}}							%wrt a msr
 \renewcommand{\it}[1]{_{#1}}						%iterator
 \newcommand{\jpara}[1]{^{#1}}						%B_j dependence
+\newcommand{\vjpara}[2]{^{#1,#2}}					%v, B_j depend.
 
 %Appendix
 \newcommand{\Xj}{T}								%4th variable
@@ -254,6 +256,8 @@ Remark: This document uses the results from the derivation of the local approxim
 \skipLine
 
 Remark: In this paper I mostly work with locally finite graphs. However, I proved all my results in the main paper for bounded degree graphs. I may need to strengthen the assumptions of this paper to bounded degree. However, since we are working with local convergence, all results that hold for locally finite graphs should extend to bounded degree graphs (the one possible exception would be well-posedness results).
+
+\tableofcontents
 
 \section{TODO}
 
@@ -426,14 +430,16 @@ Let \((G,\Xf) \in \Gs\sp{\cad}\) satisfy \cite[assumptions \ref{F-a::bddinit},\r
 \begin{align}
 \Xg\vind{v}\tme{t} &= 
 \begin{cases}
-\Xg\vind{v}\tme{0} + \int_{\sta} \int_{[0,t)\times (0,\infty)} i\mb{I}_{r\leq \rate\gvpara{A}{v}\stpara{i}(\Xg\vind{\cl{v}}\tmi{[0,s)})}\,\poiss\poissv{v}(dr,ds,di) & \te{ if } v \in \inte{A}\\
-\Xg\vind{v}\tme{0} + \int_{\sta} \int_{[0,t)\times (0,\infty)} i\mb{I}_{r\leq \brate\gvpara{A}{v}\stpara{i}(\Xg\vind{\dneigh{B_j}}\tmi{[0,s)})}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in \neigh{B_j}
+\Xg\vind{v}\tme{0} + \int_{\sta} \int_{[0,t)\times (0,\infty)} i\mb{I}_{r\leq \rate\stpara{i}\tmepro{s}{\Xg\vind{\cl{v}}}{}}\,\poiss\poissv{v}(dr,ds,di) & \te{ if } v \in \inte{A}\\
+\Xg\vind{v}\tme{0} + \int_{\sta} \int_{[0,t)\times (0,\infty)} i\mb{I}_{r\leq \brate\vjpara{v}{B_j}\stpara{i}\tmepro{s}{\Xg\vind{\dneigh{B_j}}}{}}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in \neigh{B_j}
 \end{cases}\label{Main::local}\\
-\brate\gvpara{A}{v}\stpara{i}(x_{\dneigh{B_j}}[0,t)) &= \exmu{\Xg \sim \mu}{\rate\gvpara{A}{\phi_j(v)}\stpara{i}\left(\Xg\vind{\cl{\phi_j(v)}}\tmi{[0,t)}\right)\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,t)} = x\vind{\dneigh{B_j}}\tmi{[0,t)}} \te{ if } v \in \neigh{B_j}\label{Main::CI}\\
+\brate\vjpara{v}{B_j}\stpara{i}\tmepro{t}{\xf}{} &= \exmu{\Xg \sim \mu}{\rate\stpara{i}\tmepro{t}{\Xg\vind{\cl{\phi_j(v)}}}{}\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,t)} = x\vind{\dneigh{B_j}}\tmi{[0,t)}} \te{ if } v \in \neigh{B_j}\label{Main::CI}\\
 \mu &= \law(\Xg).\label{Main::fixed}
 \end{align}
 
-Equations \eqref{Main::local}, \eqref{Main::CI} and \eqref{Main::fixed} have a unique weak solution in law satisfying the results of \cite[theorem \ref{F-CI::CI}]{F}, and \(\mu = \law(\Xf\vind{A})\). (We don't yet have a general proof of uniqueness, just that only one of the solutions satisfies the conditional independence property outlined in \cite[section \ref{F-CI}]{F}).
+\tr{\(\brate\) depends on the vertex \(v\), the admissible set \(A\), the branch set \(B_j\) and the symmetry \(\phi_j\). Figure out what parameters are useful to include and what are not in defining \(\brate\).}
+
+\ind Equations \eqref{Main::local}, \eqref{Main::CI} and \eqref{Main::fixed} have a unique weak solution in law satisfying the results of \cite[theorem \ref{F-CI::CI}]{F}, and \(\mu = \law(\Xf\vind{A})\). (We don't yet have a general proof of uniqueness, just that only one of the solutions satisfies the conditional independence property outlined in \cite[section \ref{F-CI}]{F}).
 \label{Main::Main}
 \end{thms}
 
@@ -444,7 +450,7 @@ In this section, we prove that \(\law(\Xf\vind{A})\) is a weak solution to equat
 
 \ind Just like in the regular tree case, the idea of the proof is to convert \(\Xf\) into a point process and use a well-known filtration result for point processes.
 
-\ind In this section, we assume \((G,\Xf)\) satisfy assumptions \ref{a::admissible} and \ref{a::padmin}. Recall that \(\proj\vpara{\cdot}\tpara{\cdot}(\cdot)\) is the projection mapping (see section \ref{p::not}). All graph operations (unless otherwise stated) are assumed to be in terms of \(G\). So if \(v \in A\setminus\inte{A}\), then \(\neigh{v}\) contains elements outside of \(A\).
+\ind In this section, we assume \((G,\Xf)\) satisfy assumptions \ref{a::admissible} and \ref{a::padmin}. Recall that \(\proj\vpara{\cdot}\tpara{\cdot}(\cdot)\) is the projection mapping (see \cite[section \ref{F-not::p}]{F}). All graph operations (unless otherwise stated) are assumed to be in terms of \(G\). So if \(v \in A\setminus\inte{A}\), then \(\neigh{v}\) contains elements outside of \(A\).
 
 \begin{defn}
 Let \(U\subseteq V\) and suppose \(\Xg\) is a \(\sta^U\)-valued c\`adl\`ag stochastic process adapted to its own natural filtration. Define the marked point process \(\pmap(\Xg)\) as a random measure on \((0,\infty) \times \sta^U\) defined by,
@@ -469,14 +475,37 @@ Finally, for any \(T\in (0,\infty)\), \(\pmap\tpara{T}(\Xg) = \pmap(\Xg)|_{\ms{B
 \label{Ex::pmap}
 \end{defn}
 
-\ind \tr{revise assumption \ref{Ex::Eassu}. Make it as simple as possible for lemma 6.4 to hold. I only use this assumption for lemma \ref{Ex::leftmod}}
+\ind \tr{revise assumption \ref{Ex::Eassu}. Make it as simple as possible for lemma \ref{Ex::leftmod} to hold. I only use this assumption for lemma \ref{Ex::leftmod}}
 
 \begin{assu}
-Suppose \(G \in \Gs\). Let \(A \subseteq U \subseteq V\), and assume \(A\) is finite. Let \(\Xg \in \cad\vpara{U}\), and for all \(v \in U\), \(\pmap\vpara{v}(\Xg)\) has a \(\Xg\)-predictable intensity \(\ratee\vpara{v}\) such that \(\ratee\vpara{v}\tmepro{t}{\Xg}{} \leq \jumpibd{i}{t}\). Define the mapping \(f_t: \cad\vpara{A}\tpara{t-}\times\sta \ra \mb{R}^+\). There exists a sequence of constants \(\{\const\sttpara{i}{t}:i \in \sta,t \in \mb{R}^+\}\) that are non-decreasing in \(t\) and satisfy
+Define the following variables and assume the following:
 
-\[\sum_{i \in \sta}\Sm(\{i\})\const\sttpara{i}{t} \defeq \const\tpara{t} < \infty\]
+\begin{enumerate}[(a)]
+\item Define \(G = (V,E,\root) \in \Gs\).
 
-such that \(f_t(\cdot,i)\) is bounded from above by \(\const\sttpara{i}{t}\) and the continuous part of \(t \mapsto f_t(\Xg\vind{A},i)\) is uniformly \(\const\tpara{T}\)-Lipschitz on \([0,T)\) for all \(T < \infty\). \tr{I hope it's clear. By uniformly locally Lipschitz, I mean that it's locally-Lipschitz with respect to \(t\), and the Lipschitz coefficient has a non-random upper bound.} Finally, \(t \mapsto f_t(\Xg\vind{A},i)\) is left-continuous and continuous at all continuity points of \(\Xg\vind{A}\).
+\item Define \(A \subseteq U\subseteq V\) and \(A\) is finite.
+
+\item Define \(\Xg \in \cad\vpara{U}\).
+
+\item Assume \(\pmap\vpara{v}(\Xg)\) has a \(\Xg\)-predictable intensity \(\ratee\vpara{v}\) for all \(v \in U\).
+
+\item Assume \(\ratee\vpara{v}\tmestpro{t}{i}{\Xg} \leq \jumpibd{i}{t}\).
+
+\item Define the sequence of measurable mappings \(\{f_t: \cad\vpara{A}\tpara{t-}\times \sta \ra\mb{R}^+:t \in \mb{R}^+\}\).
+
+\item Assume \(t \mapsto f_t(\xf,i)\) is left continuous for all \(\xf \in \cad\vpara{A}\) and continuous at all continuity points of \(\xf\).
+
+\item Define a family of finite constants \(\{\const\sttpara{i,t}: i \in \sta,t\in \mb{R}^+\}\). Define \(\const\tpara{t} \defeq \sum_{i\in\sta}\Sm(\{i\})\const\sttpara{i}{t} < \infty\).
+
+\item Assume \(f_t(\cdot,i) \leq \const\sttpara{i}{t}\).
+
+\item Assume the continuous part of \(t \mapsto f_t(\cdot,i)\) is uniformly \(\const\tpara{T}\)-Lipschitz on \([0,T)\) for all \(T < \infty\).
+\end{enumerate}
+%Suppose \(G \in \Gs\). Let \(A \subseteq U \subseteq V\), and assume \(A\) is finite. Let \(\Xg \in \cad\vpara{U}\), and for all \(v \in U\), \(\pmap\vpara{v}(\Xg)\) has a \(\Xg\)-predictable intensity \(\ratee\vpara{v}\) such that \(\ratee\vpara{v}\tmepro{t}{\Xg}{} \leq \jumpibd{i}{t}\). Define the mapping \(f_t: \cad\vpara{A}\tpara{t-}\times\sta \ra \mb{R}^+\). There exists a sequence of constants \(\{\const\sttpara{i}{t}:i \in \sta,t \in \mb{R}^+\}\) that are non-decreasing in \(t\) and satisfy
+%
+%\[\sum_{i \in \sta}\Sm(\{i\})\const\sttpara{i}{t} \defeq \const\tpara{t} < \infty\]
+%
+%such that \(f_t(\cdot,i)\) is bounded from above by \(\const\sttpara{i}{t}\) and the continuous part of \(t \mapsto f_t(\Xg\vind{A},i)\) is uniformly \(\const\tpara{T}\)-Lipschitz on \([0,T)\) for all \(T < \infty\). \tr{I hope it's clear. By uniformly locally Lipschitz, I mean that it's locally-Lipschitz with respect to \(t\), and the Lipschitz coefficient has a non-random upper bound.} Finally, \(t \mapsto f_t(\Xg\vind{A},i)\) is left-continuous and continuous at all continuity points of \(\Xg\vind{A}\).
 \label{Ex::Eassu}
 \end{assu}
 
@@ -494,22 +523,22 @@ Now we need a simple method to know when the conditional expectation has a left-
 
 \ind \tr{Revise and simplify the statement lemma \ref{Ex::leftmod} as much as possible.}
 \begin{lem}
-Suppose Assumption \ref{Ex::Eassu} holds. Let \(\mm = \law(\Xg)\) and \(W\subseteq A \subseteq U\subseteq V\). Let \(W'\subseteq A\) be such that \(|W'| = |W|\), and suppose there is a natural association between elements of \(W'\) and \(W\). For any \(i \in \sta\), let
+Suppose Assumption \ref{Ex::Eassu} holds. Let \(\mm = \law(\Xg)\) and \(W\subseteq A \subseteq U\subseteq V\). Let \(W'\subseteq A\) be such that there exists a bijection \(\phi:W' \ra W\). For any \(i \in \sta\), let
 
-\[\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} \defeq \exmu{\Xh\sim \mm\vpara{A}}{f_t(\Xh\tmi{[0,t)},i)|\Xh\vind{W'}\tmi{[0,t)} = \Xg\vind{W}\tmi{[0,t)}}.\]
+\[\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} \defeq \exmu{\Xh\sim \mm\vpara{A}}{f_t(\Xh\tmi{[0,t)},i)|\Xh\vind{W'}\tmi{[0,t)} = \Xg\vind{\phi(W')}\tmi{[0,t)} = \Xg\vind{W}\tmi{[0,t)}}.\]
 
-Then \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) has an almost surely left-continuous modification on \(\mb{R}^+\) with respect to \(t\) for every \(\ell\)-almost every \(i \in \sta\), where \(\ell\) is the reference measure on \(\sta\) (see section \tr{(add citation)}). Furthermore, \(t\mapsto\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is a.s. continuous at all continuity points of \(\Xg\vind{W}\), and the continuous part of \(t\mapsto\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is uniformly locally Lipschitz.
+Then \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) has an almost surely left-continuous modification on \(\mb{R}^+\) with respect to \(t\) for every \(\ell\)-almost every \(i \in \sta\), where \(\ell\) is the reference measure on \(\sta\) (see \cite[section \ref{F-not::p}]{F}). Furthermore, \(\|\grate\stpara{i}\tmepro{\cdot}{\cdot}{}\|\tpara{T-} \leq \const\sttpara{i}{T}\), \(t\mapsto\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is a.s. continuous at all continuity points of \(\Xg\vind{W}\), and the continuous part of \(t\mapsto\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is uniformly locally Lipschitz.
 \label{Ex::leftmod}
 \end{lem}
 
-The proof is shown after \tr{(location needed)}. To prove this, we use a result from a website (see \tr{(citation needed)}) which can be used to prove the existence of a left-continuous modification of \(\ratee\vpara{v}\tpara{t}(i)\) in lemma \ref{Ex::leftmod}.
+The proof is shown after the proof of lemma \ref{Ex::bddvar}. To prove this, we use a result from a website (see \cite[section \ref{F-not::p}]{F}) which can be used to prove the existence of a left-continuous modification of \(\ratee\vpara{v}\tpara{t}(i)\) in lemma \ref{Ex::leftmod}.
 
 \begin{defn}
 A set \(\evnt\) is called elementary with respect to a filtration \(\{\F\tpara{t}\}\) if it is a finite union of sets of the form \((s,t]\times \alt{\evnt}\) where \(\alt{\evnt} \in \F\tpara{s}\).
 \label{Ex::elementary}
 \end{defn}
 
-The notion of an elementary set gives us a useful set of test sets to prove the existence of a left-continuous modification:
+The notion of an elementary set gives us a useful set of test sets to prove the existence of a left-continuous modification. 
 
 \begin{lem}
 Let \(\Xf\tme{t}\) be a stochastic process that is left continuous in probability and such that \(\sup_{\evnt\te{ elementary}}\ex{\int_0^T \mb{I}_\evnt\,d\Xf} < \infty\) for all \(T < \infty\). Then there exists a left-continuous modification of \(\Xf\).
@@ -519,18 +548,24 @@ Let \(\Xf\tme{t}\) be a stochastic process that is left continuous in probabilit
 The website Almost Sure (url: https://almostsure.wordpress.com/2009/12/18/cadlag-modifications/) has a statement of a similar result along with a partial proof. Completing the proof and adapting it to left-continuous modifications instead of c\`adl\`ag functions is simple. I have a full proof written up elsewhere, but I haven't included it here because it is virtually identical to the original proof provided in the link above.
 \end{proof}
 
+So, to prove lemma \ref{Ex::leftmod}, it suffices to prove that \(\grate\stpara{i}\) is left-continuous in probability and has bounded variance in expectation. We start with proving that it is left-continuous in probability.
+
 \begin{lem}
 Let \(\Xg,\mm,\ratee\) and \(f_t\) satisfy the conditions of Assumption \ref{Ex::Eassu}. Let \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) be defined as in Lemma \ref{Ex::leftmod}. Then \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is left-continuous in probability for \(i \in \sta\setminus\{0\}\). That is, for every \(t \in (0,T]\), \(i \in \sta\) and \(\ep > 0\),
 
-\[\lim_{s \nearrow t}\pr\mpara{\mm}\left(|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}- \grate\stpara{i}\tmepro{s}{\Xg\vind{W}}{}| > \ep\right) = 0.\]
-\label{Ex::pleft}
+\[\lim_{s \searrow 0}\pr\mpara{\mm}\left(|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}- \grate\stpara{i}\tmepro{t-s}{\Xg\vind{W}}{}| > \ep\right) = 0.\]
 
 Furthermore, suppose \(0 < s < t < T < \infty\). Then there exists a non-random constant \(\alt{\const}\sttpara{i}{T}\) such that,
 
-\[\mb{I}_{\Xg\vind{W}\tmi{[s,t)} \equiv \Xg\vind{W}\tme{s-}}\left|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}- \grate\stpara{i}\tmepro{s}{\Xg\vind{W}}{}\right| < \alt{\const}\sttpara{i}{T}|t-s| \te{ almost surely}.\]
+\begin{equation}
+\mb{I}_{\Xg\vind{W}\tmi{[t-s,t)} \equiv \Xg\vind{W}\tme{(t-s)-}}\left|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}- \grate\stpara{i}\tmepro{t-s}{\Xg\vind{W}}{}\right| < s\alt{\const}\sttpara{i}{T} \te{ almost surely}.
+\label{Ex::ptwslip}
+\end{equation}
+
+\label{Ex::pleft}
 \end{lem}
 \begin{proof}
-Fix some \(T < \infty\). Suppose \(t \in (0,T)\) and \(0 < s < t\). Let \(x \in \cad\vpara{W}\). Suppose that \(s\) is sufficiently small so that \(\xf\tmi{[t-s,t)} \equiv \xf\tme{(t-s)-}\). Because \(\xf\) is a c\`adl\`ag mapping taking values in a countable space equipped with the discrete topology, there always exist \(s\) small enough for this to be true.
+Fix \(T < \infty\), \(t \in (0,T)\) and \(0 < s < t\). Let \(x \in \cad\vpara{W}\). Suppose that \(s\) is sufficiently small so that \(\xf\tmi{[t-s,t)} \equiv \xf\tme{(t-s)-}\). Because \(\xf\) is a c\`adl\`ag mapping taking values in a countable space equipped with the discrete topology, there always exist \(s\) small enough for this to be true.
 
 \ind Define,
 
@@ -542,11 +577,11 @@ For \(Z \sim \mm\vpara{A}\), I will write \(\evnt\tspara{s}{t}\) as a shorthand 
 \item We can bound the probability of \(\evnt\tspara{s}{t}\):
 
 \begin{equation}
-\pr\mpara{\mm\vpara{A}}(\evnt\tspara{s}{t}) \geq \exp\left(-s|A|\jumpbd{t}\right)
+\pr\mpara{\mm\vpara{A}}(\evnt\tspara{s}{t}) \geq \exp\left(-s|A|\jumpbd{T}\right)
 \label{Ex::evntbd}
 \end{equation}
 
-Justification: by \cite[Exercise 14.7.I]{DalVer08}, there exists a marked Poisson process of rate \(|A|\jumpbd{t}\) such that all jumps of \(\Xg\) are also jumps of the Poisson process (although the reverse is generally false). Use that coupling to get this estimate.
+Justification: by \cite[Exercise 14.7.I]{DalVer08}, there exists a Poisson process of rate \(|A|\jumpbd{T}\) such that all discontinuities of \(\Xg\vind{A}\tmi{[0,T)}\) coincide with events of the Poisson process (although the reverse is generally false). Use that coupling to get this estimate.
 
 \item 
 
@@ -554,22 +589,22 @@ Justification: by \cite[Exercise 14.7.I]{DalVer08}, there exists a marked Poisso
 \big|\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}& - \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\big|\nonumber \\
 &= \left|\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i) - f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\right|\nonumber\\
 & \leq \exmu{\Xh \sim\mm\vpara{A}}{|f\tpara{t}(\Xh,i) - f\tpara{t-s}(\Xh,i)|\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\nonumber\\
-&\leq \const\sttpara{i}{t}s.
+&\os{\te{assumption} \ref{Ex::Eassu}}{\leq} \const\sttpara{i}{T}s.
 \label{Ex::lipft}
 \end{align}
 
-\item Finally notice that \(\{\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}\} = \{\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}\}\).
+\item Notice that \(\{\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}\} = \{\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}\}\).
 
 \begin{align*}
 \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} &= \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}\\
-&=\frac{\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\mb{I}_{\evnt\tspara{s}{t}}\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)}
+&\os{\te{ineq. }\eqref{Ex::evntbd}}{=}\frac{\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\mb{I}_{\evnt\tspara{s}{t}}\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)}
 \end{align*}
 
 Let \(\poiss\) be the Poisson process used in the coupling described in the justification of equation \eqref{Ex::evntbd}. Then \(\poiss\tmi{[t-s,t)}\) is independent of \(\Xh\vind{W'}\tmi{[0,t-s)}\), so
 
 \begin{align*}
-\frac{\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\mb{I}_{\evnt\tspara{s}{t}}\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)} &\leq \frac{\exmu{\Xh\sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\exp\left(-s|A|\jumpbd{t}\right)}\\
-&= \frac{\grate\stpara{i}\tmepro{t-s}{\xf}{}}{\exp\left(-s|A|\jumpbd{t}\right)}.
+\frac{\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\mb{I}_{\evnt\tspara{s}{t}}\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)} &\leq \frac{\exmu{\Xh\sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\exp\left(-s|A|\jumpbd{T}\right)}\\
+&= \frac{\grate\stpara{i}\tmepro{t-s}{\xf}{}}{\exp\left(-s|A|\jumpbd{T}\right)}.
 \end{align*}
 
 and,
@@ -577,136 +612,227 @@ and,
 \begin{align*}
 &\frac{\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\mb{I}_{\evnt\tspara{s}{t}}\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)} \\
 &\hspace{48 pt}\geq \frac{\pr(\poiss\tmi{[t-s,t)} = 0)\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\Xh\vind{W'}\tmi{[0,t-s)} = \xf\tmi{[0,t-s)}}}{\pr\mpara{\mm\vpara{A}}\left(\evnt\tspara{s}{t}\right)}\\
-&\hspace{48 pt} \geq \exp\left(-s|A|\jumpbd{t}\right)\grate\stpara{i}\tmepro{t-s}{\xf}{}.
+&\hspace{48 pt} \geq \exp\left(-s|A|\jumpbd{T}\right)\grate\stpara{i}\tmepro{t-s}{\xf}{}.
 \end{align*}
 
 Thus,
 
 \begin{equation}
-\exp\left(-s|A|\jumpbd{t}\right)\grate\stpara{i}\tmepro{t-s}{\xf}{} \leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} \leq \frac{\grate\stpara{i}\tmepro{t-s}{\xf}{}}{\exp\left(-s|A|\jumpbd{t}\right)}.
+e^{-s|A|\jumpbd{T}}\grate\stpara{i}\tmepro{t-s}{\xf}{} \leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} \leq \frac{\grate\stpara{i}\tmepro{t-s}{\xf}{}}{e^{-s|A|\jumpbd{T}}}.
 \label{Ex::cdbd}
 \end{equation}
 \end{itemize}
 
-We end up with,
+First, we compute \(\grate\stpara{i}\tmepro{t}{\xf}{}\):
 
 \begin{align*}
 \grate\stpara{i}\tmepro{t}{\xf}{} &= \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\pr(\evnt\tspara{s}{t})\\
-&\hspace{24 pt} + \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t}^c,\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\pr(\evnt\tspara{s}{t}^c)
+&\hspace{24 pt} + \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t}^c,\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}}\pr(\evnt\tspara{s}{t}^c).
 \end{align*}
 
-Then,
+Then by equation \eqref{Ex::evntbd} and assumption \ref{Ex::Eassu},
 
-\begin{align*}
-e^{-s|A|\jumpbd{t}}\mb{E}^{\Xh \sim\mm\vpara{A}}\big[f\tpara{t}(\Xh,i)&\big|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}\big] \leq \grate\stpara{i}\tmepro{t}{\xf}{} \\
-&\leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} + \const\sttpara{i}{t}(1 - e^{-s|A|\jumpbd{t}})\\
-e^{-s|A|\jumpbd{t}}\mb{E}^{\Xh \sim\mm\vpara{A}}\big[f\tpara{t-s}(\Xh,i)&\big|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}\big] - \const\sttpara{i}{t}se^{-s|A|\jumpbd{t}} \leq \grate\stpara{i}\tmepro{t}{\xf}{}\\
-&\leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} + \const\sttpara{i}{t}(1 + s - e^{-s|A|\jumpbd{t}})\\
-e^{-2s|A|\jumpbd{t}}\grate\stpara{i}\tmepro{t-s}{\xf}{} &- \const\sttpara{i}{t}se^{-s|A|\jumpbd{t}} \leq \grate\stpara{i}\tmepro{t}{\xf}{}\\
-&\leq e^{s|A|\jumpbd{t}}\grate\stpara{i}\tmepro{t-s}{\xf}{}+ \const\sttpara{i}{t}(1 + s - e^{-s|A|\jumpbd{t}})\\
-(e^{-2s|A|\jumpbd{t}}-1)\grate\stpara{i}\tmepro{t-s}{\xf}{} &- \const\sttpara{i}{t}se^{-s|A|\jumpbd{t}} \leq \grate\stpara{i}\tmepro{t}{\xf}{} - \grate\stpara{i}\tmepro{t-s}{\xf}{}\\
-&\leq (e^{s|A|\jumpbd{t}}-1)\grate\stpara{i}\tmepro{t-s}{\xf}{}+ \const\sttpara{i}{t}(1 + s - e^{-s|A|\jumpbd{t}})\\
-\end{align*}
+\[e^{-s|A|\jumpbd{T}}\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} \leq \grate\stpara{i}\tmepro{t}{\xf}{}\]
+\[\leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} + \const\sttpara{i}{T}(1 - e^{-s|A|\jumpbd{T}}).\]
 
-Since \(\grate\stpara{i}\tmepro{t-s}{\xf}{}\leq \const\sttpara{i}{t}\), 
+By equation \eqref{Ex::lipft},
+
+\[e^{-s|A|\jumpbd{T}}\exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} - \const\sttpara{i}{T}se^{-s|A|\jumpbd{T}} \leq \grate\stpara{i}\tmepro{t}{\xf}{}\]
+\[\leq \exmu{\Xh \sim\mm\vpara{A}}{f\tpara{t-s}(\Xh,i)\middle|\evnt\tspara{s}{t},\Xh\vind{W'}\tmi{[0,t)} = \xf\tmi{[0,t)}} + \const\sttpara{i}{T}(1 + s - e^{-s|A|\jumpbd{T}}).\]
+
+By equation \eqref{Ex::cdbd},
+
+\[e^{-2s|A|\jumpbd{T}}\grate\stpara{i}\tmepro{t-s}{\xf}{} - \const\sttpara{i}{T}se^{-s|A|\jumpbd{T}} \leq \grate\stpara{i}\tmepro{t}{\xf}{}\]
+\[\leq e^{s|A|\jumpbd{T}}\grate\stpara{i}\tmepro{t-s}{\xf}{}+ \const\sttpara{i}{T}(1 + s - e^{-s|A|\jumpbd{T}}).\]
+
+This simplifies to,
+
+\[(e^{-2s|A|\jumpbd{T}}-1)\grate\stpara{i}\tmepro{t-s}{\xf}{} - \const\sttpara{i}{T}se^{-s|A|\jumpbd{T}} \leq \grate\stpara{i}\tmepro{t}{\xf}{} - \grate\stpara{i}\tmepro{t-s}{\xf}{}\]
+\[\leq (e^{s|A|\jumpbd{T}}-1)\grate\stpara{i}\tmepro{t-s}{\xf}{}+ \const\sttpara{i}{T}(1 + s - e^{-s|A|\jumpbd{T}}).\]
+
+
+Since \(f\tpara{t-s}(\xf,i) \leq \const\sttpara{i}{T}\), it follows that \(\grate\stpara{i}\tmepro{t-s}{\xf}{}\leq \const\sttpara{i}{T}\). This implies,
 
 \begin{equation}
-\const\sttpara{i}{t}(e^{-2s|A|\jumpbd{t}}-se^{-s|A|\jumpbd{t}}-1) \leq \grate\stpara{i}\tmepro{t}{\xf}{} - \grate\stpara{i}\tmepro{t-s}{\xf}{} \leq \const\sttpara{i}{t}(e^{s|A|\jumpbd{t}} + s - e^{-s|A|\jumpbd{t}})
+\const\sttpara{i}{T}(1 - se^{-s|A|\jumpbd{T}}-e^{-2s|A|\jumpbd{T}}) \leq \grate\stpara{i}\tmepro{t}{\xf}{} - \grate\stpara{i}\tmepro{t-s}{\xf}{} \leq \const\sttpara{i}{T}(e^{s|A|\jumpbd{T}} + s - e^{-s|A|\jumpbd{T}})
 \label{Ex::lipbd}
 \end{equation}
 
-Fix any \(t < T < \infty\). Then if \(s\) is sufficiently small,
-
-\begin{equation}
-\const\sttpara{i}{T}(e^{-2s|A|\jumpbd{T}}-se^{-s|A|\jumpbd{T}}-1) \leq \grate\stpara{i}\tmepro{t}{\xf}{} - \grate\stpara{i}\tmepro{t-s}{\xf}{} \leq \const\sttpara{i}{T}(e^{s|A|\jumpbd{T}} + s - e^{-s|A|\jumpbd{T}})
-\label{Ex::loclipbd}
-\end{equation}
-
-These bounds are both \(O(s)\), so \(\grate\stpara{i}\tmepro{t}{\xf}{}\) is uniformly locally Lipschitz around \(t\) whenever \(t\) is a continuity point of \(\xf\). Thus, the continuous part of \(t\mapsto\grate\stpara{i}\tmepro{t}{\xf}{}\) is uniformly locally Lipschitz.
-
-\ind To prove that it is left-continuous in probability, we must also consider jumps. 
+Now, notice that for \(s \in (0,T)\),
 
 \begin{align*}
-\ex{|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{t-s}{\Xg\vind{W}}{}|}&\leq \alt{\const}\sttpara{i}{T}|t-s| + \ex{\mb{I}_{\Xg\vind{W}\tmi{[t-s,t)} \not\equiv \Xg\vind{W}\tme{(t-s)-}}|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{t-s}{\Xg\vind{W}}{}|}\\
-&\leq \alt{\const}\sttpara{i}{T}|t-s| + \const\sttpara{i}{T}e^{-s|W|\jumpbd{T}} \os{s\searrow 0}{\ra} 0
+\frac{|1 - se^{-s|A|\jumpbd{T}}-e^{-2s|A|\jumpbd{T}}|}{s} & \leq e^{-s|A|\jumpbd{T}} + \frac{1 - e^{-2s|A|\jumpbd{T}}}{s}\\
+&\leq e^{-s|A|\jumpbd{T}} + \frac{2s|A|\jumpbd{T}}{s}\\
+&\leq 1 + 2|A|\jumpbd{T}.
 \end{align*}
+
+Similarly,
+
+\begin{align*}
+\frac{|e^{s|A|\jumpbd{T}} + s - e^{-s|A|\jumpbd{T}}|}{s} &\leq 1 + e^{s|A|\jumpbd{T}}\frac{1 - e^{-2s|A|\jumpbd{T}}}{s}\\
+&\leq 1 + 2|A|\jumpbd{T}e^{T|A|\jumpbd{T}}.
+\end{align*}
+
+Thus, equation \eqref{Ex::ptwslip} holds for,
+
+\begin{equation}
+\alt{\const}\sttpara{i}{T} = \const\sttpara{i}{T}\left(1 + 2|A|\jumpbd{T}e^{T|A|\jumpbd{T}}\right).
+\label{Ex::altconst}
+\end{equation}
+
+
+\ind To prove that \(\grate\stpara{i}\) is left-continuous in probability, we must also consider jumps. 
+
+\begin{align}
+\ex{|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{t-s}{\Xg\vind{W}}{}|}&\leq \alt{\const}\sttpara{i}{T}|s| + \ex{\mb{I}_{\Xg\vind{W}\tmi{[t-s,t)} \not\equiv \Xg\vind{W}\tme{(t-s)-}}|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{t-s}{\Xg\vind{W}}{}|}\nonumber\\
+&\leq \alt{\const}\sttpara{i}{T}|s| + 2\const\sttpara{i}{T}\pr\left(\Xg\vind{W}\tmi{[t-s,t)} \equiv \Xg\vind{W}\tme{(t-s)-}\right)\nonumber\\
+&\leq \alt{\const}\sttpara{i}{T}|s| + 2\const\sttpara{i}{T}\left(1 - e^{-s|W|\jumpbd{T}}\right)\nonumber\\
+&\leq s\left(\alt{\const}\sttpara{i}{T} + 2\const\sttpara{i}{T}|W|\jumpbd{T}\right)
+\label{Ex::expectbd}
+\end{align}
 
 By the Chebyshev inequality, \(t \mapsto \grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) is left-continuous in probability.
 \end{proof}
 
+Now we prove that in expectation, \(\grate\stpara{i}\) is a bounded variation process.
 
+\begin{lem}
+Suppose Assumption \ref{Ex::Eassu} holds. Let \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) be defined as in Lemma \ref{Ex::leftmod}. Then, 
 
+\[\sup_{\typset\te{ elementary}} \ex{\int_0^T \mb{I}_\typset\,d\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}} < \infty.\]
+\label{Ex::bddvar}
+\end{lem}
 
+\begin{proof}
+Any elementary set can be expressed in the form
 
+\[\typset = \bigcup_{k = 1}^n [s\indx{k},t\indx{k})\times \typset\indx{k},\]
 
+where \(\{[s\indx{k},t\indx{k}):k=1,\dots,n\}\) are disjoint. If \(s\indx{k} = t\indx{k} = 0\), then \([s\indx{k},t\indx{k}) = \{0\}\) and \(\typset\indx{k}\) are all \(\sigma\left(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}:t\in [0,s\indx{k}]\right)\)-measurable. By equation \eqref{Ex::expectbd} in the proof of lemma \ref{Ex::pleft}, for any \(T < \infty\), there exists a \(\ov{\const}\sttpara{i}{T}\) such that for any \(0 < s < t < T\),
 
+\[\ex{|\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{s}{\Xg\vind{W}}{}|} \leq \ov{\const}\sttpara{i}{T}|t-s|.\]
 
+Let \(\typset = \bigcup_{k = 1}^n [s\indx{k},t\indx{k})\times \typset\indx{k}\) be an arbitrary elementary set. Assume without loss of generality that \(\{[s\indx{k},t\indx{k}):k = 1,\dots,n\}\) are disjoint. Then,
 
+\begin{align*}
+\ex{\int_0^T \mb{I}_A\,d\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}} &\leq \sum_{k=1}^n \ex{|\grate\stpara{i}\tmepro{t\indx{k}}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{s\indx{k}}{\Xg\vind{W}}{}|}\\
+&\leq \ov{\const}\sttpara{i}{T}\sum_{k=1}^n |t\indx{k} - s\indx{k}| \leq \ov{\const}\sttpara{i}{T}|T| < \infty.
+\end{align*} 
+\end{proof}
 
-\newpage
+We can now prove the lemma \ref{Ex::pleft}.
+
+\begin{proof}[Proof of lemma \ref{Ex::pleft}]
+By lemmas \ref{Ex::pleft} and \ref{Ex::pleft}, \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) satisfies the conditions of lemma \ref{Ex::leftmodgen}. Thus a left-continuous modification of \(\grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\) exists.
+
+\ind \(\grate\stpara{i}\) is bounded from above by \(\const\sttpara{i}{T}\) on \([0,T]\) because it is the conditional expectation of a mapping \(f_\cdot\) which is also bounded from above by \(\const\sttpara{i}{T}\).
+
+\ind Let \(\xf\in \cad\vpara{W}\) be continuous on \([t,t+s)\). Again, notice that if \(t\) is a point of continuity for \(\xf\), then there exists an \(s\) sufficiently small such that this is true. Then by lemma \ref{Ex::pleft} and equation \eqref{Ex::ptwslip},
+
+\[\left|\grate\stpara{i}\tmepro{t+s}{\xf}{} - \grate\stpara{i}\tmepro{t}{\xf}{}\right| < s\alt{\const}\sttpara{i}{T}\]
+
+Because \(\grate\stpara{i}\) is left-continuous, we can take a union over a small, dense set and apply continuity to get,
+
+\[\pr\left(\left|\grate\stpara{i}\tmepro{t+s}{\Xg\vind{W}}{} - \grate\stpara{i}\tmepro{t}{\Xg\vind{W}}{}\right| < s\alt{\const}\sttpara{i}{T} \te{ for all } s > 0\te{ suff. small}\right) = 1.\]
+
+Thus, \(\grate\stpara{i}\) is almost surely continuous at \(t\). Furthermore, for any \(0 < s < t < T\) and for \(\mm\vpara{W}-a.s.\) \(\xf\), let \(s= s\it{0} < s\it{1} < s\it{2} < \cdots < s\it{N(\xf)} < s\it{N(\xf)+1} = t\) enumerate the bounds of \([s,t]\) and the discontinuities of \(\xf\). Then, 
+
+\begin{align*}
+\left|\grate\stpara{i}\tmepro{t+s}{\xf}{} - \grate\stpara{i}\tmepro{t}{\xf}{} - \sum_{u \in [s,t)} \delt\grate\stpara{i}\tmepro{u}{\xf}{} \right| & \leq \sum_{k=0}^{N(\xf)} \left|\grate\stpara{i}\tmepro{s\it{k+1}}{\xf}{} - \grate\stpara{i}\tmepro{s\it{k}}{\xf}{}\right| \leq \alt{\const}\sttpara{i}{T}|t - s|.
+\end{align*}
+
+Thus \(\grate\stpara{i}\) is almost surely uniformly locally Lipschitz.
+\end{proof}
+
 
 \begin{proof}[Proof of Theorem \ref{Main::Main} Existence]
 
-Let \((G,\Xf)\) be a process and graph satisfying assumptions \ref{a::admissible} and \ref{a::padmin}. Let \(\ev{v} \in \sta^V\) denote the standard basis vector of \(\sta^V\). That is, \(\ev{v}\vind{u} = \mb{I}_{u=v}\). By Theorem \ref{WP::WP}, \(\Xf\) is the unique solution to,
+Let \((G,\Xf) \in \Gs\sp{\cad}\) satisfy assumptions \ref{a::admissible} and \ref{a::padmin}. Let \(\ev{v} \in \sta^V\) denote the standard basis vector of \(\sta^V\). That is, \(\ev{v}\vind{u} = \mb{I}_{u=v}\). By \cite[theorem \ref{F-wp::wp}]{F} \tr{(could just assume there exists a weak solution)}, \(\Xf\) is the unique solution to,
 
-\[\Xf\tme{t} = \Xf\tme{0} + \sum_{v \in V}\ev{v}\int_\sta\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tme{s}}\,\poiss\poissv{v}(dr,ds,di).\]
+\[\Xf\tme{t} = \Xf\tme{0} + \sum_{v \in V}\ev{v}\int_\sta\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xf\vind{\cl{v}}}{}}\,\poiss\poissv{v}(dr,ds,di).\]
 
 Then,
 
-\[\left(\proj\vpara{A}(\Xf)\right)\tme{t} = \left(\proj\vpara{A}(\Xf)\right)\tme{0} + \sum_{v\in A}\ev{v}\int_\sta\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tme{s}}\,\poiss\poissv(dr,ds,di).\]
+\[\left(\proj\vpara{A}(\Xf)\right)\tme{t} = \left(\proj\vpara{A}(\Xf)\right)\tme{0} + \sum_{v\in A}\ev{v}\int_\sta\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xf\vind{\cl{v}}}{}}\,\poiss\poissv(dr,ds,di).\]
 
 By definition, \(\pmap\left(\proj\vpara{A}(\Xf)\right) = \pmap\vpara{A}(\Xf)\). Let \(\rp = \pmap\vpara{A}(\Xf)\). By \cite[Exercise 14.7.1]{DalVer08}, \(\rp\) has \(\Xf\)-predictable intensity \(\ratee\) given by,
 
-\[\ratee(\rt,\mark) = \sum_{v \in A} \sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}} \rate\gvpara{G}{v}\stpara{i}\tme{\rt}.\]
+\[\ratee(\rt,\mark) = \sum_{v \in A} \sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}} \rate\stpara{i}\tmepro{\rt}{\Xf\vind{v}}{\Xf\vind{\neigh{v}}}.\]
 
-However, for \(v \in A\setminus \inte{A}\), \(\rate\gvpara{G}{v}\stpara{i}\tme{\rt}\) is not \(\Xf\vind{A}\)-measurable. Furthermore, for \(v \in \inte{A}\), notice that \(\rate\gvpara{G}{v}\stpara{i}\tme{\rt} = \rate\gvpara{A}{v}\stpara{i}\tme{\rt}\) by assumption \ref{a::pbasics}. So, let's propose an alternate rate given by,
+However, for \(v \in A\setminus \inte{A}\), \(\rate\stpara{i}\tmepro{\rt}{\Xf\vind{v}}{\Xf\vind{\neigh{v}}}\) is not \(\Xf\vind{A}\)-measurable. Let's propose an alternate rate given by,
 
 \begin{equation}
-\alt{\ratee}(\rt,\mark) = \sum_{v \in \inte{A}}\sum_{i\in \sta} \mb{I}_{\mark = i\ev{v}}\rate\gvpara{A}{v}\stpara{i}\tme{\rt} + \sum_{v \in A\setminus \inte{A}}\sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}}\ex{\rate\gvpara{G}{v}\stpara{i}\tme{\rt}\middle|\F\vpara{A}\tpara{\rt-}}.
+\cratee(\rt,\mark) = \sum_{v \in \inte{A}}\sum_{i\in \sta} \mb{I}_{\mark = i\ev{v}}\rate\stpara{i}\tmepro{\rt}{\Xf\vind{v}}{\Xf\vind{\gneigh{G}{v}}} + \sum_{v \in A\setminus \inte{A}}\sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}}\ex{\rate\stpara{i}\tmepro{\rt}{\Xf\vind{v}}{\Xf\vind{\gneigh{G}{v}}}\middle|\F\vpara{A}\tpara{\rt-}}.
 \label{Ex::tempfiltrate}
 \end{equation}
 
-Notice that by lemma \ref{Ex::filtering}, if \(\alt{\ratee}\) has a \(\Sm\times \pr\)-a.s. left-continuous modification with respect to time, then it is the \(\F\vpara{A}\)-predictable rate of \(\rp\). For all \(i\in\sta\) and \(v \in A\), \(\rate\gvpara{G}{v}\stpara{i}\tme{\cdot}\) is almost surely left-continuous and bounded. Thus, it suffices to prove that \(\ex{\rate\gvpara{G}{v}\stpara{i}(\rt)\middle|\F\vpara{A}\tpara{\rt-}}\) also has a left continuous modification for all \(i\in \sta\) and \(v \in A\setminus\inte{A}\).
+Notice that by lemma \ref{Ex::filtering}, if \(\alt{\ratee}\) has a \(\Sm\times \pr\)-a.s. left-continuous modification with respect to time, then it is the \(\F\vpara{A}\)-predictable rate of \(\rp\). For all \(i\in\sta\), \(\rate\stpara{i}\tme{\cdot}\) is almost surely left-continuous and bounded (assumptions \ref{a::lctr}, \cite[\ref{F-a::bddr}]{F}). Thus, it suffices to prove that \(\ex{\rate\stpara{i}\tmepro{\rt}{\Xf\vind{\cl{v}}}{}\middle|\F\vpara{A}\tpara{\rt-}}\) also has a left continuous modification for all \(i\in \sta\) and \(v \in A\setminus\inte{A}\).
 
 \ind Fix some \(v \in A\setminus \inte{A}\). By assumption \ref{a::admissible}, there exists a unique \(j\) such that \(v \in \neigh{B_j}\). Recall that \(C_j = \neigh{A}\cap B_j\), and there exists a symmetry of \(\Xf\), \(\phi_j\) such that \(\phi_j(C_j\cup\dneigh{B_j}) \subseteq A\). By proposition \ref{a::simprop}, \(\Xf\vind{V} \deq \Xf\vind{\phi_j(V)}\). It should be clear that \(\cl{v} \subseteq C_j\cup\dneigh{B_j}\).
 
-\ind Recalling that \(\m = \law(\Xf)\) and applying Theorem \ref{Main::CI} (we may consider \(\rate\gvpara{G}{v}\stpara{i}\tme{\rt}\) as a \(\F\vpara{C_j\cup\dneigh{B_j}}\tpara{\rt-}\)-measurable random variable and apply Lemma C.1 (e) from the main paper),
+\ind Recalling that \(\m = \law(\Xf)\) and applying \cite[theorem \ref{F-CI::CI}]{F} (we may consider \(\rate\stpara{i}\tmepro{\rt}{\Xf\vind{\cl{v}}}{}\) as a \(\F\vpara{C_j\cup\dneigh{B_j}}\tpara{\rt-}\)-measurable random variable and apply \cite[lemma \ref{F-TL::Props}(e)]{F} from the main paper),
 
 \begin{align*}
-\exmu{\m}{\rate\gvpara{G}{v}\stpara{i}\tme{\rt}\middle|\F\vpara{A}\tpara{\rt-}} &=\exmu{\m}{\rate\gvpara{G}{v}\stpara{i}\left(\Xf\vind{\cl{v}}\tmi{[0,\rt)}\right)\middle|\F\vpara{A}\tpara{\rt-}}\\
-&\os{\te{thm \ref{Main::CI}}}{=} \exmu{\m}{\rate\gvpara{G}{v}\stpara{i}\left(\Xf\vind{\cl{v}}\tmi{[0,\rt)}\right)\middle|\F\vpara{\dneigh{B_j}}\tpara{\rt-}}\\
-&=\exmu{\Xg\sim \m}{\rate\gvpara{G}{v}\stpara{i}\left(\Xg\vind{\cl{v}}\tmi{[0,\rt)}\right)\middle|\Xg\vind{\dneigh{B_j}}\tmi{[0,\rt)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,\rt)}}\\
-&\os{\te{prop \ref{a::simprop},assm \ref{a::pbasics}}}{=} \exmu{\Xg\sim \m}{\rate\gvpara{G}{\phi_j(v)}\stpara{i}\left(\Xg\vind{\phi_j(\cl{v})}\tmi{[0,\rt)}\right)\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,\rt)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,\rt)}}\\
-&\os{\phi_j(v) \in \inte{A}}{=} \exmu{\Xg\sim \m}{\rate\gvpara{A}{\phi_j(v)}\stpara{i}\left(\Xg\vind{\phi_j(\cl{v})}\tmi{[0,\rt)}\right)\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,\rt)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,\rt)}}\\
+\exmu{\m}{\rate\stpara{i}\tmepro{\rt}{\Xf\vind{\cl{v}}}{}\middle|\F\vpara{A}\tpara{\rt-}} &=\exmu{\m}{\rate\stpara{i}\tmepro{\rt}{\Xf\vind{\cl{v}}}{}\middle|\F\vpara{A}\tpara{\rt-}}\\
+&\os{\te{\cite[thm \ref{F-CI::CI}]{F}}}{=} \exmu{\m}{\rate\stpara{i}\tmepro{\rt}{\Xf\vind{\cl{v}}}{}\middle|\F\vpara{\dneigh{B_j}}\tpara{\rt-}}\\
+&=\exmu{\Xg\sim \m}{\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{}\middle|\Xg\vind{\dneigh{B_j}}\tmi{[0,\rt)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,\rt)}}\\
+&\os{\te{prop \ref{a::simprop}}}{=} \exmu{\Xg\sim \m}{\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\phi_j(\cl{v})}}{}\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,\rt)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,\rt)}}\\
+&\os{\phi_j(v) \in \inte{A}}{=} \exmu{\Xg\sim \m}{\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\phi_j(\cl{v})}}{}\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,\rt)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,\rt)}}\\
 \end{align*}
 
-Notice that this satisfies assumption \ref{Ex::Eassu} with \(f_t = \rate\gvpara{A}{\phi_j(v)}\stpara{i}\), \(U = V\), \(A\) as the admissible set, the intensities satisfy the requisite bound by assumption \ref{a::pbasics}. Here \(W = \dneigh{B_j}\) and \(W' = \phi_j(\dneigh{B_j})\). Since they are related by a symmetry, \(|W'| = |W|\). Thus, by lemma \ref{Ex::leftmod}, \(\exmu{\m}{\rate\gvpara{G}{v}\stpara{i}\tme{\rt}\middle|\F\vpara{A}\tpara{\rt-}}\) has a left-continuous modification. Then \(\alt{\ratee}\) must also have a left-continuous modification, and 
+Notice that assumption \ref{Ex::Eassu} is satisfied:
 
-\[\alt{\ratee}(\rt,\mark) = \sum_{v \in \inte{A}}\sum_{i\in \sta} \mb{I}_{\mark = i\ev{v}}\rate\gvpara{A}{v}\stpara{i}\tme{\rt} + \sum_j\sum_{v \in B_j}\sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}}\exmu{\Xg\sim \m}{\rate\gvpara{A}{\phi_j(v)}\stpara{i}\left(\Xg\vind{\phi_j(\cl{v})}\tmi{[0,\rt)}\right)\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,\rt)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,\rt)}}.\]
+\ind \tb{Full verification just to be careful. Notation from assumption is in green to avoid confusion.}
+
+\begin{enumerate}[(a)]
+\item \(\tg{G} = G\).
+
+\item \(\tg{A} = A\), \(\tg{U} = V\).
+
+\item \(\tg{Y} = \Xf\).
+
+\item \(\tg{\ratee\vpara{v}(t,i,\Xg)} = \rate\stpara{i}\tmepro{t}{\Xf\vind{\cl{v}}}{}\).
+
+\item See \cite[assumption \ref{F-a::bddr}]{F}.
+
+\item \(\tg{f_t(\xf,i)} = \rate\stpara{i}\tmepro{t}{\xf\vind{\phi_j(\cl{v})}}{}\).
+
+\item \(\tg{\const\sttpara{i}{t}} \defeq \jumpibd{i}{t}\).
+
+\item See \cite[assumption \ref{F-a::bddr}]{F}.
+
+\item See assumptions \ref{a::lctr} and \ref{a::liprt}.
+\end{enumerate}
+
+\tb{End verification.}
+
+\ind Here \(W = \dneigh{B_j}\) and \(W' = \phi_j(\dneigh{B_j})\). Thus, by lemma \ref{Ex::leftmod}, \(\exmu{\m}{\rate\stpara{i}\tmepro{\rt}{\Xf\vind{\cl{v}}}{}\middle|\F\vpara{A}\tpara{\rt-}}\) has a left-continuous modification. Then \(\cratee\) must also have a left-continuous modification, and 
+
+\[\cratee(\rt,\mark) = \sum_{v \in \inte{A}}\sum_{i\in \sta} \mb{I}_{\mark = i\ev{v}}\rate\stpara{i}\tmepro{\rt}{\Xf\vind{\cl{v}}}{} + \sum_j\sum_{v \in B_j}\sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}}\exmu{\Xg\sim \m}{\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\phi_j(\cl{v})}}{}\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,\rt)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,\rt)}}.\]
 
 Once again, by \cite[Exercise 14.7.1]{DalVer08}, the process \(\pmap^{-1}(\rp) \deq \proj\vpara{A}(\Xf)\), and can be written as a solution to the equations,
 
 \[\Xg\vind{v}\tme{t} = \Xg\vind{v}\tme{0} + \begin{cases}
-\int_\sta\int_{(0,t]\times (0,\infty)} \rate\gvpara{A}{v}\stpara{i}\tme{s}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in \inte{A}\\
-\int_\sta\int_{(0,t]\times (0,\infty)} \brate\gvpara{A}{v}\stpara{i}\tme{s}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in A\setminus\inte{A}
+\int_\sta\int_{(0,t]\times (0,\infty)} \mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xg\vind{\cl{v}}}{}}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in \inte{A}\\
+\int_\sta\int_{(0,t]\times (0,\infty)} \mb{I}_{r \leq \brate\vjpara{v}{B_j}\stpara{i}\tmepro{s}{\Xg}{}}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in \neigh{B_j}
 \end{cases},\]
 
 where
 
-\[\brate\gvpara{A}{v}\stpara{i}\tme{t} = \exmu{\Xg\sim \m}{\rate\gvpara{G}{\phi_j(v)}\stpara{i}\left(\Xg\vind{\phi_j(\cl{v})}\tmi{[0,t)}\right)\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,t)} = \Xf\vind{\dneigh{B_j}}\tmi{[0,t)}}\te{ if } v \in \neigh{B_j}.\]
+\[\brate\vjpara{v}{B_j}\stpara{i}\tmepro{t}{\xg}{} = \exmu{\Xg\sim \m}{\rate\stpara{i}\tmepro{t}{\Xg\vind{\phi_j(\cl{v})}}{}\middle|\Xg\vind{\phi_j(\dneigh{B_j})}\tmi{[0,t)} = \xg\vind{\dneigh{B_j}}\tmi{[0,t)}}\te{ if } v \in \neigh{B_j}.\]
 
 \end{proof}
 
 \section{Proof of Uniqueness}
 \label{Uq}
 
-Let \((G,\Xf\gind{G})\) satisfy assumptions \ref{a::admissible} and \ref{a::padmin}. Let \(\rate\) be defined by \(\Xf\), and let \(\m = \law(\Xf)\).
+Let \((G,\Xf\gind{G}) \in \Gs\sp{\cad}\) satisfy assumptions \ref{a::admissible} and \ref{a::padmin}. Assume \(G\) is non-random. Let \(\rate\) be defined by assumptions \cite[\ref{F-a::bddr},\ref{F-a::liprx}]{F}, \ref{a::liprt} and \ref{a::lctr}. Let \(\m = \law(\Xf\gind{G})\).
 
-\ind Let \((\mm,\Xg)\) be a solution to the local equations (\eqref{Main::local}-\eqref{Main::fixed}). Assume that for every \(U,U' \subseteq A\) such that \(\{U,U',\dgneigh{A}{U}\}\) is a partition of \(A\) and \(t \in [0,\infty)\),
+\ind Let \((\mm,\Xg)\) be a solution to the local equations (\eqref{Main::local}-\eqref{Main::fixed}). Assume that for every \(U,U' \subseteq A\) such that \(\{U,U',\dgneigh{G\vpara{A}}{U}\}\) is a partition of \(A\) and \(t \in [0,\infty)\),
 
-\[\Xg\vind{U}\tmi{[0,t)} \perp \Xg\vind{U'}\tmi{[0,t)} |\Xg\vind{\dgneigh{A}{U}}\tmi{[0,t)}.\]
+\[\Xg\vind{U}\tmi{[0,t)} \perp \Xg\vind{U'}\tmi{[0,t)} |\Xg\vind{\dgneigh{G\vpara{A}}{U}}\tmi{[0,t)}.\]
 
-Our approach to this proof will be to construct a measure \(\mm\vpara{V} \in \pmsr(\sta^V)\) such that \(\proj\psf\vpara{A}(\mm\vpara{V}) = \mm\). Then we will show that \(\mm\vpara{V} = \m\). 
+Our approach to this proof will be to construct a measure \(\mm\vpara{V} \in \pmsr(\Gs\sp{\cad})\) such that \(\proj\psf\vpara{A}(\mm\vpara{V}) = \mm\). Then we will show that \(\mm\vpara{V} = \m\). 
 
 \ind \tr{Insert explanation here. The gist is we need to understand the conditional distribution of each boundary set of \(A\) given it's double neighborhood inside \(A\). We can do this by studying the same conditional distribution in a symmetry that takes the set inside \(A\). To do that, we start by computing the marginals of the double neighborhood, and the whole set under the application of symmetry.}
 
@@ -715,8 +841,8 @@ For all \(j \in \{1,\dots,\psize\}\), \(\proj\psf\vpara{\phi_j(\dgneigh{G}{B_j})
 
 \begin{equation}
 \Xh\vind{v}\tme{t} = \Xh\vind{v}\tme{0} + \begin{cases}
-\int_\sta\int_{(0,t]\times (0,\infty)} \mb{I}_{r \leq \brate\gvpara{A}{v}\stpara{i}(s)}\,\poiss\poissv{v}(dr,ds,di)&\te{ if } v \in \phi_j(\dgneigh{G}{B_j})\cap \inte{A}\\
-\int_\sta\int_{(0,t]\times (0,\infty)} \mb{I}_{r \leq \bcrate\gvpara{A}{v}\stpara{i}(s)}\,\poiss\poissv{v}(dr,ds,di)&\te{ if } v \in \phi_j(\dgneigh{G}{B_j})\cap\gneigh{G}{B_{j'}}
+\int_\sta\int_{(0,t]\times (0,\infty)} \mb{I}_{r \leq \bgrate\vjpara{v}{B_j}\stpara{i}\tmepro{s}{\Xh}{}}\,\poiss\poissv{v}(dr,ds,di)&\te{ if } v \in \phi_j(\dgneigh{G}{B_j})\cap \inte{A}\\
+\int_\sta\int_{(0,t]\times (0,\infty)} \mb{I}_{r \leq \bcrate\vjpara{v}{B_j}\stpara{i}\tmepro{s}{\Xh}{}}\,\poiss\poissv{v}(dr,ds,di)&\te{ if } v \in \phi_j(\dgneigh{G}{B_j})\cap\gneigh{G}{B_{j'}}
 \end{cases}
 \label{Uq::marg1eqn}
 \end{equation}
@@ -724,8 +850,8 @@ For all \(j \in \{1,\dots,\psize\}\), \(\proj\psf\vpara{\phi_j(\dgneigh{G}{B_j})
 where \(j' \in \{1,\dots,\psize\}\) is not necessarily distinct from \(j\), and
 
 \begin{align}
-\bgrate\gvjpara{A}{v}{B_j}\stpara{i}(t) &\defeq \ex{\rate\gvpara{A}{v}\stpara{i}\left(\Xh\vind{\cl{v}}\tmi{[0,t)}\right)\middle|\Xh\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,t)}} \te{ if } v \in  \phi_j(\dgneigh{G}{B_j})\cap \inte{A} \label{Uq::brrt}\\
-\bcrate\gvjpara{A}{v}{B_j}\stpara{i}(t) &\defeq \ex{\brate\gvpara{A}{v}\stpara{i}\left(\Xh\vind{\dgneigh{G}{B_{j'}}}\tmi{[0,t)}\right)\middle| \Xh\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,t)}} \te{ if } v \in \phi_j(\dgneigh{G}{B_j})\cap\gneigh{G}{B_{j'}}\label{Uq::brcdrt}
+\bgrate\vjpara{v}{B_j}\stpara{i}\tmepro{t}{\Xh}{} &\defeq \ex{\rate\stpara{i}\tmepro{t}{\Xh\vind{\cl{v}}}{}\middle|\Xh\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,t)}} \te{ if } v \in  \phi_j(\dgneigh{G}{B_j})\cap \inte{A} \label{Uq::brrt}\\
+\bcrate\vjpara{v}{B_j}\stpara{i}\tmepro{t}{\Xh}{} &\defeq \ex{\brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{t}{\Xh}{}\middle| \Xh\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,t)}} \te{ if } v \in \phi_j(\dgneigh{G}{B_j})\cap\gneigh{G}{B_{j'}}\label{Uq::brcdrt}
 \end{align}
 \label{Uq::marg}
 \end{lem}
@@ -734,7 +860,7 @@ where \(j' \in \{1,\dots,\psize\}\) is not necessarily distinct from \(j\), and
 Let \(\rp = \pmap(\Xg)\) where \(\Xg \sim \mm\). By a direct application of \cite[Exercise 14.7.1]{DalVer08}, \(\rp\vind{\phi_j(\dgneigh{G}{B_j})}\) has \(\Xg\)-intensity \(\ratee\) given by,
 
 \begin{equation}
-\ratee(\rt,\mark) = \sum_{v \in\phi_j(\dgneigh{G}{B_j})\cap\inte{A}} \sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}} \rate\gvpara{A}{v}\stpara{i}(\Xg\vind{\cl{v}}\tmi{[0,\rt)}) + \sum_{j = 1}^\psize\sum_{v \in \phi_j(\dgneigh{G}{B_j})\cap\gneigh{G}{B_j}}\sum_{i\in \sta} \mb{I}_{\mark = i\ev{v}} \brate\gvpara{A}{v}\stpara{i}(\Xg\vind{\dgneigh{G}{B_j}}\tmi{[0,\rt)}).
+\ratee(\rt,\mark) = \sum_{v \in\phi_j(\dgneigh{G}{B_j})\cap\inte{A}} \sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}} \rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{} + \sum_{j' = 1}^\psize\sum_{v \in \phi_j(\dgneigh{G}{B_j})\cap\gneigh{G}{B_j'}}\sum_{i\in \sta} \mb{I}_{\mark = i\ev{v}} \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}.
 \label{Uq::Xg-int}
 \end{equation}
 
@@ -742,7 +868,41 @@ Consider the following candidate for the \(\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\)-
 
 \[\cratee(\rt,\mark) \defeq \exmu{\Xg \sim \mm}{\ratee(\rt,\mark)\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}}.\]
 
-By lemma \ref{Ex::filtering}, it \(\cratee\) is the intensity if it has a \(\pr\times\Sm\)-a.s. left-continuous modification with respect to \(\rt\). Since \(\ratee\) is a countable sum of elements of which finitely many (one) are nonzero for any given argument \((\rt,\mark)\), it suffices to prove that the conditional expectation of each element of equation \eqref{Uq::Xg-int} is also left continuous. This leaves us with two cases.
+By lemma \ref{Ex::filtering}, it \(\cratee\) is the intensity if it has a \(\pr\times\Sm\)-a.s. left-continuous modification with respect to \(\rt\). Since \(\ratee\) is a countable sum of elements of which finitely many (one) are nonzero for any given argument \((\rt,\mark)\), it suffices to prove that the conditional expectation of each element of equation \eqref{Uq::Xg-int} is also left continuous. Fix \(\mark \in \sta^A\).
+
+\skipLine
+
+\tb{Begin verification of lemma \ref{Ex::leftmod}:}
+
+\skipLine
+
+\begin{enumerate}[(a)]
+\item \(\tg{G} = G\vpara{A}\).
+
+\item \(\tg{A} = A = \tg{U} \subsetneq V\).
+
+\item \(\tg{\Xg} = \Xg\).
+
+\item \(\tg{\ratee\vpara{v}(t,i,\Xg)} = \ratee(t,i\ev{v})\).
+
+\item \(\rate\stpara{i} \leq \jumpibd{i}{t}\) by \cite[assumption \ref{F-a::bddr}]{F}, and \(\brate\vjpara{v}{B_{j'}}\stpara{i}\) is a conditional expectation of \(\rate\stpara{i}\) so it is bounded by the same constant. Thus, if \(v \in \gbdry{G}{A}\), then \(\ratee\vpara{v}(t,i,\cdot) = \brate\vjpara{v}{B_{j'}}\stpara{i}(t,\cdot) \leq \jumpibd{i}{t}\). Similarly if \(v \in \inte{A}\), \(\ratee\vpara{v}(t,i,\cdot) = \rate\stpara{i}(t,\cdot) \leq \jumpibd{i}{t}\).
+
+\item \(f_t = \ratee(t,\mark)\).
+
+\item Set \(\const\sttpara{i}{t} \defeq \jumpibd{i}{t}(1 + 2|A|\jumpibd{i}{t}e^{t|A|\jumpibd{i}{t}})\).
+
+\item See (e).
+
+\item If \(u \in \inte{A}\), then this is true by assumptions \ref{a::lctr} and \ref{a::liprt}. If \(u \in \gbdry{G}{A}\), then this is true by lemma \ref{Ex::leftmod} and equation \eqref{Ex::altconst}.
+\end{enumerate}
+
+\skipLine
+
+\tb{End verification of lemma \ref{Ex::pleft}:}
+
+\skipLine
+
+This leaves us with two cases.
 
 \begin{description}
 \item[Case 1: ] \(v \in \phi_j(\dgneigh{G}{B_j})\cap\inte{A}\).
@@ -750,10 +910,8 @@ By lemma \ref{Ex::filtering}, it \(\cratee\) is the intensity if it has a \(\pr\
 In this case, fix \(i,v\) and \(\mark = i\ev{v}\).
 
 \begin{align*}
-\cratee(\rt,\mark) &= \exmu{\Xg\sim\mm}{\ratee(\rt,\mark)\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}} = \exmu{\Xg\sim\mm}{\rate\gvpara{A}{v}\stpara{i}(\Xg\vind{\cl{v}}\tmi{[0,\rt)})\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}}.
+\cratee(\rt,\mark) &= \exmu{\Xg\sim\mm}{\ratee(\rt,\mark)\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}} = \exmu{\Xg\sim\mm}{\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{}\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}} = \bgrate\vjpara{v}{B_j}\tmepro{t}{\Xg}{}.
 \end{align*}
-
-Looking back at assumption \ref{Ex::Eassu}, our graph \(G\) is assumed to satisfy assumption \ref{a::gbasics}. Let \(A\) from the assumption be the same as the admissible set, \(A\), from this lemma. Let \(U = A\). \(\Xg\) from the assumption is precisely \(\rp\). \(\ratee\) satisfies the conditions of the intensity by assumption \ref{a::pbasics}. \(f_t\) from the assumption is just \(\rate\gvpara{A}{v}\stpara{i}(\cdot)\), which satisfies the continuity property by \ref{a::pbasics}. So, the conditions of assumption \ref{Ex::Eassu} hold in this case. Furthermore, from the conditions of lemma \ref{Ex::leftmod} \tr{BOOMS!}, let \(W = W' = \phi_j(\dgneigh{G}{B_j})\). Then by lemma \ref{Ex::leftmod}, \(\cratee(\rt,\mark)\) has a left continuous modification wrt \(\rt\).
 
 \skipLine
 
@@ -762,10 +920,10 @@ Looking back at assumption \ref{Ex::Eassu}, our graph \(G\) is assumed to satisf
 In this case, fix \(i,v\) and \(\mark = i\ev{v}\).
 
 \begin{align*}
-\cratee(\rt,\mark) &= \exmu{\Xg\sim\mm}{\ratee(\rt,\mark)\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}} = \exmu{\Xg\sim\mm}{\brate\gvpara{A}{v}\stpara{i}(\Xg\vind{\dgneigh{G}{B_{j'}}}\tmi{[0,\rt)})\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}}.
+\cratee(\rt,\mark) &= \exmu{\Xg\sim\mm}{\ratee(\rt,\mark)\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}} = \exmu{\Xg\sim\mm}{\brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\middle|\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\tmi{[0,\rt)}} = \bcrate\vjpara{v}{B_j}\stpara{i}\tmepro{\rt}{\Xg}{}.
 \end{align*}
 
-Looking back at assumption \ref{Ex::Eassu}, our graph \(G\) is assumed to satisfy assumption \ref{a::gbasics}. Let \(A\) from the assumption be the same as the admissible set, \(A\), from this lemma. Let \(U = A\). \(\Xg\) from the assumption is precisely \(\rp\). \(\ratee\) satisfies the conditions of the intensity by assumption \ref{a::pbasics}. \(f_t\) from the assumption is just \(\rate\gvpara{A}{v}\stpara{i}(\cdot)\), which satisfies the continuity property by \ref{a::pbasics}. So, the conditions of assumption \ref{Ex::Eassu} hold in this case. Furthermore, from the conditions of lemma \ref{Ex::leftmod}, let \(W = W' = \phi_j(\dgneigh{G}{B_j})\). Then by lemma \ref{Ex::leftmod}, \(\cratee(\rt,\mark)\) has a left continuous modification wrt \(\rt\).
+
 \end{description}
 \end{proof}
 
@@ -787,22 +945,22 @@ For all \(j \in \{1,\dots,\psize\}\), \(\proj\psf\vpara{\phi_j\left(C_j\cup\dgne
 
 \begin{equation}
 \Xh\vind{v}\tme{t} = \Xh\vind{v}\tme{0} + \begin{cases}
-\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \brate\gvpara{A}{v}\stpara{i}\tme{s}}\,\poiss\poissv{v}(dr,ds,di).\te{ if } v \in \phi_j(C_j)\\
-\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \rate\gvpara{A}{v}\stpara{i}\tme{s}}\,\poiss\poissv{v}(dr,ds,di).\te{ if } v \in \phi_j(\gneigh{G}{B_j})\\
-\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \bgrate\gvjpara{A}{v}{B_j}\stpara{i}\tme{s}}\,\poiss\poissv{v}(dr,ds,di).\te{ if } v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\inte{A}\\
-\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \bcrate\gvjpara{A}{v}{B_j}\stpara{i}\tme{s}}\,\poiss\poissv{v}(dr,ds,di).\te{ if } v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\gneigh{G}{B_{j'}}\\
+\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{s}{\Xh}{}}\,\poiss\poissv{v}(dr,ds,di).\te{ if } v \in \phi_j(C_j)\cap \gneigh{G}{B_{j'}}\\
+\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xh\vind{\cl{v}}}{}}\,\poiss\poissv{v}(dr,ds,di).\te{ if } v \in \phi_j(\gneigh{G}{B_j})\\
+\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \bgrate\vjpara{v}{B_j}\stpara{i}\tmepro{s}{\Xh}{}}\,\poiss\poissv{v}(dr,ds,di).\te{ if } v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\inte{A}\\
+\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \bcrate\vjpara{v}{B_j}\stpara{i}\tmepro{s}{\Xh}{}}\,\poiss\poissv{v}(dr,ds,di).\te{ if } v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\gneigh{G}{B_{j'}}\\
 \end{cases}
 \label{Uq::marg2eqn}
 \end{equation}
 
-where \(\rate,\brate,\bgrate\) and \(\bcrate\) are as defined in lemma \ref{Uq::marg}, theorem \ref{Main::Main}, assumption \ref{a::pbasics}, assumption \ref{a::admissible} and assumption \ref{a::padmin}.
+where \(\rate,\brate,\bgrate\) and \(\bcrate\) are as defined in lemma \ref{Uq::marg}, theorem \ref{Main::Main}, \cite[assumption \ref{F-a::bddr}]{F}, assumption \ref{a::admissible} and assumption \ref{a::padmin}.
 \label{Uq::marg2}
 \end{lem}
 \begin{proof}
 The proof is similar to the proof of lemma \ref{Uq::marg}. Only there are more cases. Once again, let \(\Xg \sim \mm\), \(\rp = \pmap(\Xg)\). Then by \cite[Exercise 14.7.1]{DalVer08}, \(\rp\vind{\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)}\) has \(\Xg\)-intensity \(\ratee\) given by,
 
 \begin{equation}
-\ratee(\rt,\mark) = \sum_{v \in\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)\cap\inte{A}} \sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}} \rate\gvpara{A}{v}\stpara{i}(\Xg\vind{\cl{v}}\tmi{[0,\rt)}) + \sum_{j = 1}^\psize\sum_{v \in \phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)\cap\gneigh{G}{B_j}}\sum_{i\in \sta} \mb{I}_{\mark = i\ev{v}} \brate\gvpara{A}{v}\stpara{i}(\Xg\vind{\dgneigh{G}{B_j}}\tmi{[0,\rt)}).
+\ratee(\rt,\mark) = \sum_{v \in\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)\cap\inte{A}} \sum_{i \in \sta} \mb{I}_{\mark = i\ev{v}} \rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{} + \sum_{j' = 1}^\psize\sum_{v \in \phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)\cap\gneigh{G}{B_{j'}}}\sum_{i\in \sta} \mb{I}_{\mark = i\ev{v}} \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}.
 \label{Uq::Xg-int2}
 \end{equation}
 
@@ -810,41 +968,51 @@ Consider the following candidate for the \(\Xg\vind{\phi_j\left(C_j\cup\dgneigh{
 
 \[\cratee(\rt,\mark) \defeq \exmu{\Xg \sim \mm}{\ratee(\rt,\mark)\middle|\Xg\vind{\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}.\]
 
-By lemma \ref{Ex::filtering}, \(\cratee\) is the intensity if it has a \(\pr\times\Sm\)-a.s. left-continuous modification with respect to \(\rt\). Since \(\ratee\) is a countable sum of elements of which finitely many (one) are nonzero for any given argument \((\rt,\mark)\), it suffices to prove that the conditional expectation of each element of equation \eqref{Uq::Xg-int} is also left continuous. 
+By lemma \ref{Ex::filtering}, \(\cratee\) is the intensity if it has a \(\pr\times\Sm\)-a.s. left-continuous modification with respect to \(\rt\). Since \(\ratee\) is a countable sum of elements of which finitely many (one) are nonzero for any given argument \((\rt,\mark)\), it suffices to prove that the conditional expectation of each element of equation \eqref{Uq::Xg-int} is also left continuous. Fix some \(\mark \in \sta^A\).
 
-\ind \tr{move this new argument to lemma \ref{Uq::marg}.}
+\skipLine
 
-\ind Notice that \(G\) satisfies assumption \ref{a::gbasics}. Let \(A\) from assumption \ref{Ex::Eassu} be the same as our admissible set. Let \(U = A\). Let \(\Xg\) from assumption \ref{Ex::Eassu} be the same as \(\Xg\) in this context. The intensity satisfies the boundedness condition as a consequence of assumption \ref{a::pbasics}. For fixed \(\kappa\), \(\ratee\) can be considered a function satisfying the conditions of \(f_t\) from assumption \ref{Ex::Eassu}. Finally, in the conditions for lemma \ref{Ex::leftmod}, we can let \(W = W' = \phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)\). Thus, by lemma \ref{Ex::leftmod}, \(\cratee\) has a left-continuous modification.
+\tb{Begin verification of lemma \ref{Ex::leftmod}:}
+
+\skipLine
+
+This is exactly the same as the verification in the proof lemma \ref{Uq::marg} with only the values of \(\tg{W}\) and \(\tg{W'}\) changing.
+
+\skipLine
+
+\tb{End verification of lemma \ref{Ex::pleft}:}
+
+\skipLine
 
 \ind Now we evaluate \(\cratee\) for different \(\kappa\). Suppose \(\kappa = i\ev{v}\), where \(i \in \sta\) and \(v\in A\) are fixed.
 
 \begin{description}
 \item[Case 1: ] \(v \in \phi_j(C_j)\).
 
-By assumption \ref{a::admissible}, \(\dgneigh{G}{B_{j'}} \subseteq \phi_j(C_j\cup \gneigh{G}{B_j})\), and \(v \in A\setminus\inte{A}\). Thus, \(\cratee(\rt,\mark) = \brate\gvpara{A}{v}\stpara{i}(\rt)\).
+By assumption \ref{a::admissible}, \(\dgneigh{G}{B_{j'}} \subseteq \phi_j(C_j\cup \gneigh{G}{B_j})\), and \(v \in A\setminus\inte{A}\). Thus, \(\cratee(\rt,\mark) = \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\).
 
 \item[Case 2: ] \(v\in \phi_j(\gneigh{G}{B_j})\). 
 
-Because \(\phi_j\) is an automorphism, \(\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right) \subseteq A\) and \(\cl{v} \subseteq C_j\cup\dgneigh{G}{B_j}\), we can conclude that \(v \in \inte{A}\). Since \(\rate\gvpara{A}{v}\stpara{i}(\rt)\) is \(\F\vpara{C_j\cup\dgneigh{G}{B_j}}\tpara{\rt-}\)-measurable, we can conclude that \(\cratee(\rt,\mark) = \rate\gvpara{A}{v}\stpara{i}(\rt)\).
+Because \(\phi_j\) is an automorphism, \(\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right) \subseteq A\) and \(\cl{v} \subseteq C_j\cup\dgneigh{G}{B_j}\), we can conclude that \(v \in \inte{A}\). Since \(\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{}\) is \(\F\vpara{\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)}\tpara{\rt-}\)-measurable, we can conclude that \(\cratee(\rt,\mark) = \rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{}\).
 
 \item[Case 3: ] \(v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\inte{A}\).
 
-Because \(\Xg\sim\mm\), \(\ratee(\rt,\mark) = \rate\gvpara{A}{v}\stpara{i}(\rt)\) which is \(\F\vpara{\cl{v}}\tpara{\rt-}\)-measurable. We can consider this to be a measurable function of \(\Xg\vind{A\setminus\phi_j(C_j)}\tmi{[0,\rt)}\). By applying lemma C.1 (e) of the main paper, we get
+Because \(\Xg\sim\mm\), \(\ratee(\rt,\mark) = \rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{}\) which is \(\F\vpara{\cl{v}}\tpara{\rt-}\)-measurable. We can consider this to be a measurable function of \(\Xg\vind{A\setminus\phi_j(C_j)}\tmi{[0,\rt)}\). By applying \cite[lemma \ref{F-TL::Props}(e)]{F}, we get
 
 \begin{align*}
-\cratee(\rt,\mark) &= \ex{\rate\gvpara{A}{v}\stpara{i}(\rt)\middle|\Xg\vind{\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
-&= \ex{\rate\gvpara{A}{v}\stpara{i}(\rt)\middle|\Xg\vind{\phi_j\left(\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
-&= \bgrate\gvjpara{A}{v}{B_j}\stpara{i}\tme{\rt}.
+\cratee(\rt,\mark) &= \ex{\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{}\middle|\Xg\vind{\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
+&= \ex{\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{}\middle|\Xg\vind{\phi_j\left(\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
+&= \bgrate\vjpara{v}{B_j}\stpara{i}\tmepro{\rt}{\Xg}{}.
 \end{align*}
 
 \item[Case 4: ] \(v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap \gneigh{G}{B_{j'}}\) for some \(j'\) not necessarily distinct from \(j\).
 
-First, by assumption \ref{a::admissible}, \(\phi_j(C_j)\cap\dgneigh{G}{B_{j'}}= \emptyset\). Because \(\Xg\sim\mm\), \(\ratee(\rt,\mark) = \brate\gvpara{A}{v}\stpara{i}(\rt)\) which is \(\F\vpara{\dgneigh{G}{B_{j'}}}\tpara{\rt-}\)-measurable. We can consider this to be a measurable function of \(\Xg\vind{A\setminus\phi_j(C_j)}\tmi{[0,\rt)}\). By applying lemma C.1 (e) of the main paper, we get
+First, by assumption \ref{a::admissible}, \(\phi_j(C_j)\cap\dgneigh{G}{B_{j'}}= \emptyset\). Because \(\Xg\sim\mm\), \(\ratee(\rt,\mark) = \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\) which is \(\F\vpara{\dgneigh{G}{B_{j'}}}\tpara{\rt-}\)-measurable. We can consider this to be a measurable function of \(\Xg\vind{A\setminus\phi_j(C_j)}\tmi{[0,\rt)}\). By applying lemma C.1 (e) of the main paper, we get
 
 \begin{align*}
-\cratee(\rt,\mark) &= \ex{\brate\gvpara{A}{v}\stpara{i}(\rt)\middle|\Xg\vind{\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
-&= \ex{\brate\gvpara{A}{v}\stpara{i}(\rt)\middle|\Xg\vind{\phi_j\left(\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
-&= \bcrate\gvjpara{A}{v}{B_j}\stpara{i}\tme{\rt}.
+\cratee(\rt,\mark) &= \ex{\brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\middle|\Xg\vind{\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
+&= \ex{\brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\middle|\Xg\vind{\phi_j\left(\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
+&= \bcrate\vjpara{v}{B_j}\stpara{i}\tmepro{\rt}{\Xg}{}.
 \end{align*}
 \end{description}
 
@@ -856,15 +1024,13 @@ As we extend \(\mm\) to larger processes, it's easiest to look at these larger p
 \begin{defn}
 Let \(\poiss\) be a Poisson random measure on \(\sta\times\mb{R}^2\) with intensity \(\Sm\times\leb\). Define \(\Xh\) by,
 
-\[\Xh\vind{v}\tme{t} = \Xh\vind{v}\tme{0} + \int_{\sta}\int_{(0,t]\times (0,p_i]}\,\poiss(dr,ds,di).\]
-
-where \(\{p_i\}_{i\in \sta}\) are a sequence of positive real numbers such that \(\sum_{i\in \sta}p_i = 1\). 
+\[\Xh\vind{v}\tme{t} = \Xh\vind{v}\tme{0} + \int_{\sta}\int_{(0,t]\times (0,1]}\,\poiss(dr,ds,di).\]
 
 \ind Let \(\mmm = \law(\Xh)\). Suppose \(\mm\vpara{v}\tpara{0}\ll\mmm\tpara{0}\) for all \(v\in A\). Let \(\{\mmm\vind{v}:v\in V\}\) be the distributions of a sequence of i.i.d. copies of the measure \(\mmm\). For any \(U\subseteq V\), let 
 
 \[\mmm\vpara{U} = \otimes_{v\in U} \mm\vpara{v}.\]
 
-Finally, for any \(T < \infty\) and \(t\in [0,T)\), let \(\mm\vpara{U}\tpara{t}\) be the restriction of \(\mm\vpara{U}\) to c\`adl\`ag processes defined on \([0,T)\) (see section \ref{p::not}).
+Finally, for any \(T < \infty\) and \(t\in [0,T)\), let \(\mm\vpara{U}\tpara{t}\) be the restriction of \(\mm\vpara{U}\) to c\`adl\`ag processes defined on \([0,T)\) (see \cite[section \ref{F-not::p}]{F}).
 \label{Uq::eta}
 \end{defn}
 
@@ -873,7 +1039,7 @@ We now have to describe how to extend the graph \(G\vind{A}\).
 \begin{defn}
 As in assumption \ref{a::admissible}, let \(A\indx{1} = A\cup\left(\bigcup_{i=1}^\Sm C_i\right)\). By assumption \ref{a::admissible}, we can find branches of \(A\indx{1}\), \(\{B_i\indx{1}\}_{i=1}^{\Sm\indx{1}}\). Let \(C_i\indx{1} = B_i\indx{1}\cap\gneigh{G}{A\indx{1}}\). Finally, for all \(i = 1,\dots,\Sm\indx{1}\), let \(\phi_i\indx{1}\) be a symmetry of \(\Xf\) mapping \(C_i\indx{1}\cup \dgneigh{G}{B\indx{1}_i}\) to a subset of \(A\). We can assume without loss of generality that \(\phi_i\indx{1}(C_i\indx{1}\cup \dgneigh{G}{B\indx{1}_i}) = \phi_{j\indx{1}_i}(C_{j\indx{1}_i}\cup\dgneigh{G}{B_{j\indx{1}_i}})\) for some \(j\indx{1}_i \in \{1,\dots,\Sm\}\).
 
-\ind In general, let \(A\indx{k} = A\indx{k-1} \cup \left(\bigcup_{i=1}^{\Sm\indx{k}} C_i\indx{k-1}\right)\). Again, by assumption \ref{a::admissible}, there exist branches of \(A\indx{k}\), \(\{B_i\indx{k}\}_{i=1}^{\Sm\indx{k}}\). Let \(C_i\indx{k} = B_i\indx{k}\cap \gneigh{G}{A\indx{k}}\). Finally, for all \(i=1,\dots,\Sm\indx{k}\), \(\phi_i\indx{k}\) is the symmetry of \(\Xf\) mapping \(C_i\indx{k}\cup\dgneigh{G}{B_i\indx{k}}\) to \(\phi_{j\indx{k}_i}(C_{j\indx{k}_i}\cup\dneigh{G}{B_{j\indx{k}_i}})\) for some \(j\indx{k}_i \in \{1,\dots,\Sm\}\).
+\ind In general, let \(A\indx{k} = A\indx{k-1} \cup \left(\bigcup_{i=1}^{\Sm\indx{k}} C_i\indx{k-1}\right)\). Again, by assumption \ref{a::admissible}, there exist branches of \(A\indx{k}\), \(\{B_i\indx{k}\}_{i=1}^{\Sm\indx{k}}\). Let \(C_i\indx{k} = B_i\indx{k}\cap \gneigh{G}{A\indx{k}}\). Finally, for all \(i=1,\dots,\Sm\indx{k}\), \(\phi_i\indx{k}\) is the symmetry of \(\Xf\) mapping \(C_i\indx{k}\cup\dgneigh{G}{B_i\indx{k}}\) to \(\phi_{j\indx{k}_i}(C_{j\indx{k}_i}\cup\dgneigh{G}{B_{j\indx{k}_i}})\) for some \(j\indx{k}_i \in \{1,\dots,\Sm\}\).
 \label{Uq::Extnot}
 \end{defn}
 
@@ -885,26 +1051,26 @@ Fix \(k \in \mb{N}\). Let \(\mm\indx{k} = \law(\Xg\indx{k})\) where \(\Xg\indx{k
 \begin{equation}
 \Xg\indx{k}\vind{v}\tme{t} = \Xg\indx{k}\vind{v}\tme{0} + 
 \begin{cases}
-\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \brate\gvpara{A\indx{k}}{v}\stpara{i}\tme{s}}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in A\indx{k}\setminus A\indx{k-1}\\
-\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \rate\gvpara{A\indx{k}}{v}\stpara{i}\tme{s}}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in A\indx{k}\setminus A\indx{k-1}
+\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \brate\vjpara{v}{B\indx{k}_j}\stpara{i}\tmepro{s}{\Xg}{}}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in \gneigh{G}{B\indx{k}_j}\\
+\int_\sta\int_{(0,t]\times(0,\infty)} \mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xg\vind{\cl{v}}}{}}\,\poiss\poissv{v}(dr,ds,di) &\te{ if } v \in A\indx{k-1}
 \end{cases}.
 \label{Uq::exteqn}
 \end{equation}
 
 Here \(\brate\) is defined by,
 
-\[\brate\gvpara{A\indx{k}}{v}\stpara{i}(t) \defeq \exmu{\Xh\sim \mm}{\rate\gvpara{A}{\phi_j\indx{k}(v)}\stpara{i}(\Xh\vind{\cl{\phi_j\indx{k}(v)}}\tmi{[0,t)})\middle|\Xh\vind{\phi_j\indx{k}\left(\dgneigh{G}{B\indx{k}_j}\right)}\tmi{[0,t)} = \Xg\indx{k}\vind{\dgneigh{G}{B\indx{k}_j}}\tmi{[0,t)}} \te{ for } A\indx{k}\te{ admissible, and } v \in \gneigh{G}{B\indx{k}_j}.\]
+\[\brate\vjpara{v}{B\indx{k}_j}\stpara{i}\tmepro{t}{\xg}{} \defeq \exmu{\Xh\sim \mm}{\rate\stpara{i}\tmepro{t}{\Xh\vind{\cl{\phi_j\indx{k}(v)}}}{}\middle|\Xh\vind{\phi_j\indx{k}\left(\dgneigh{G}{B\indx{k}_j}\right)}\tmi{[0,t)} = \xg\indx{k}\vind{\dgneigh{G}{B\indx{k}_j}}\tmi{[0,t)}} \te{ for } A\indx{k}\te{ admissible, and } v \in \gneigh{G}{B\indx{k}_j}.\]
 
 Then for any \(k' \leq k\), \(\proj\psf\vpara{A\indx{k'}}(\mm\indx{k}) = \mm\indx{k'}\) and \(\proj\psf\vpara{A}(\mm\indx{k}) = \mm\).
 \label{Uq::ext}
 \end{lem}
 
 \begin{proof}
-Let \(\mmm\vind{V}\) be as defined in definition \ref{Uq::eta}. Recall that \(\rp\defeq \pmap(\Xg)\) maps \(\Xg\) (the solution to equations \eqref{Main::local}-\eqref{Main::fixed}) to a point process coinciding with the jumps of \(\Xg\). This point process has intensity,
+Let \(\mmm\vpara{V}\) be as defined in definition \ref{Uq::eta}. Recall that \(\rp\defeq \pmap(\Xg)\) maps \(\Xg\) (the solution to equations \eqref{Main::local}-\eqref{Main::fixed}) to a point process coinciding with the jumps of \(\Xg\). This point process has intensity,
 
 \[\ratee\prc{\mm}(\rt,\mark) = \begin{cases}
-\brate\gvpara{A}{v}\stpara{i}\tme{\rt} &\te{ if } v \in A\setminus\inte{A}\te{ and } \mark = i\ev{v}\\
-\rate\gvpara{A}{v}\stpara{i}\tme{\rt} &\te{ if } v \in \inte{A}\te{ and } \mark = i\ev{v}\\
+\brate\vjpara{v}{B_j}\stpara{i}\tmepro{\rt}{\Xg}{} &\te{ if } v \in \gneigh{G}{B_j}\te{ and } \mark = i\ev{v}\\
+\rate\stpara{i}\tmepro{\rt}{\Xg\vind{\cl{v}}}{} &\te{ if } v \in \inte{A}\te{ and } \mark = i\ev{v}\\
 0 &\te{ otherwise}
 \end{cases}.\]
 
@@ -912,14 +1078,14 @@ Let \(\mmm\indx{0} \defeq \mmm\vpara{A}\). Then \(\pmap\psf(\mmm\indx{0})\) has 
 
 \[\ratee\prc{\mmm\indx{0}}(\rt,\mark) = 
 \begin{cases}
-p_i &\te{ if } \mark= i\ev{v}\te{ and } v\in A\\
+1 &\te{ if } \mark\in  \{i\ev{v}: i \in \sta,v \in A\}\\
 0 &\te{ otherwise}
 \end{cases}.\]
 
-\tr{Later be more precise here.} Define the following mapping where \(f\) is a function and \(\Xh\) is a c\'adl\`ag process. Suppose the \(k\)th jump of the \(v\)th component of \(\Xh\) happens at time \(\rt\vpara{v}\it{k}\), and \(\Xh\tme{\rt\vpara{v}\it{k}} - \Xh\tme{\rt\vpara{v}\it{k}-} = \mark\vpara{v}\it{k}\). 
+\tr{Later be more precise with definitions. For now, this should be clear enough as I'm using \(\ds\) as a shorthand rather than a mapping.} Define the following mapping where \(f\) is a function and \(\Xh \in \cad\vpara{U}\) for some finite \(U \subseteq V\). Suppose the \(k\)th jump of the \(v\)th component of \(\Xh\) happens at time \(\rt\vpara{v}\it{k}\), and \(\Xh\tme{\rt\vpara{v}\it{k}} - \Xh\tme{\rt\vpara{v}\it{k}-} = \mark\vpara{v}\it{k}\). 
 
 \begin{equation}
-\ds\vpara{v}\tpara{t}(\Xh,f): = \sum_{0 < \rt\vpara{v}\it{k}\leq t} \log \frac{f(\Xh\tmi{[0,\rt\vpara{v}\it{k})},\mark\vpara{v}\it{k})}{p\it{\mark\vpara{v}\it{k}}} - \int_{\sta\times[0,t)} [f(\Xh\tmi{[0,s)},i) - p\it{i}]\,\Sm(di)\,ds.
+\ds\vpara{v}\tpara{t}(\Xh,f): = \sum_{0 < \rt\vpara{v}\it{k}\leq t} \log f(\Xh\tmi{[0,\rt\vpara{v}\it{k})},\mark\vpara{v}\it{k}) - \int_{\sta\times[0,t)} [f(\Xh\tmi{[0,s)},i) - 1]\,\Sm(di)\,ds.
 \label{Uq::ds}
 \end{equation}
 
@@ -927,40 +1093,41 @@ Now, let \(\{(\rt\it{k},\mark\it{k}):k\in\mb{N}\}\) be the events of \(\pmap(\Xg
 
 \begin{align*}
 \dense\tpara{t}(\Xg)&\defeq \frac{d\mm\tpara{t}}{d\mmm\tpara{t}\indx{0}}\\
-&= \frac{d\mm\tpara{0}}{d\mmm\tpara{0}\indx{0}}\exp\left(\sum_{0< \rt\it{k}\leq t} \log\frac{\ratee\prc{\mm}(\rt\it{k},\mark\it{k})}{p_{i\it{k}}} - \sum_{v \in A}\int_{\sta\times (0,t]} [\ratee\prc{\mm}(s,i) - p_i]\,\Sm(di)\,ds\right)\\
-&= \frac{d\mm\tpara{0}}{d\mmm\tpara{0}\indx{0}}\exp\Bigg(\sum_{v \in A\setminus\inte{A}}\left(\sum_{0 < \rt\it{k}\vpara{v}\leq t} \log\frac{\brate\gvpara{A}{v}\stpara{\mark\it{k}\vpara{v}}(\rt\it{k}\vpara{v})}{p_{\mark\it{k}\vpara{v}}} - \int_{\sta\times (0,t]} [\brate\gvpara{A}{v}\stpara{i}(s) - p_i]\,\Sm(di)\,ds\right) \\
-&\hspace{24 pt} + \sum_{v \in \inte{A}}\left(\sum_{0 < \rt\it{k}\vpara{v}\leq t} \log\frac{\rate\gvpara{A}{v}\stpara{\mark\it{k}\vpara{v}}(\rt\it{k}\vpara{v})}{p_{\mark\it{k}\vpara{v}}} - \int_{\sta\times (0,t]} [\rate\gvpara{A}{v}\stpara{i}(s) - p_i]\,\Sm(di)\,ds\right)\Bigg)\\
-&= \frac{d\mm\tpara{0}}{d\mmm\tpara{0}\indx{0}}\exp\left(\sum_{j=1}^{\psize}\sum_{v\in \gneigh{G}{B_j}} \ds\vpara{v}\tpara{t}(\Xg\vind{\dgneigh{G}{B_j}},\brate\gvpara{A}{v}\stpara{\cdot}) + \sum_{v\in\inte{A}}\ds\vpara{v}\tpara{t}(\Xg\vind{\cl{v}},\rate\gvpara{A}{v}\stpara{\cdot})\right).
+&= \frac{d\mm\tpara{0}}{d\mmm\tpara{0}\indx{0}}\exp\left(\sum_{0< \rt\it{k}\leq t} \log\left(\ratee\prc{\mm}(\rt\it{k},\mark\it{k})\right) - \sum_{v \in A}\int_{\sta\times (0,t]} [\ratee\prc{\mm}(s,i) - 1]\,\Sm(di)\,ds\right)\\
+&= \frac{d\mm\tpara{0}}{d\mmm\tpara{0}\indx{0}}\exp\Bigg(\sum_{j=1}^\psize \sum_{v \in \gneigh{G}{B_j}}\left(\sum_{0 < \rt\it{k}\vpara{v}\leq t} \log\left(\brate\vjpara{v}{B_j}\stpara{\mark\it{k}\vpara{v}}\tmepro{\rt\it{k}\vpara{v}}{\Xg}{}\right) - \int_{\sta\times (0,t]} [\brate\vjpara{v}{B_j}\stpara{i}\tmepro{s}{\Xg}{} - 1]\,\Sm(di)\,ds\right) \\
+&\hspace{24 pt} + \sum_{v \in \inte{A}}\left(\sum_{0 < \rt\it{k}\vpara{v}\leq t} \log\left(\rate\stpara{\mark\it{k}\vpara{v}}\tmepro{\rt\it{k}\vpara{v}}{\Xg\vind{\cl{v}}}{}\right) - \int_{\sta\times (0,t]} [\rate\stpara{i}\tmepro{s}{\Xg\vind{\cl{v}}}{} - 1]\,\Sm(di)\,ds\right)\Bigg)\\
+&= \frac{d\mm\tpara{0}}{d\mmm\tpara{0}\indx{0}}\exp\left(\sum_{j=1}^{\psize}\sum_{v\in \gneigh{G}{B_j}} \ds\vpara{v}\tpara{t}(\Xg\vind{\dgneigh{G}{B_j}},\brate\vjpara{v}{B_j}\stpara{\cdot}) + \sum_{v\in\inte{A}}\ds\vpara{v}\tpara{t}(\Xg\vind{\cl{v}},\rate\stpara{\cdot})\right).
 \end{align*}
 
 By a similar computation, apply lemma \ref{Uq::marg} to get,
 
 \begin{align*}
 \densen\jpara{j}\tpara{t}(\Xg\vind{\phi_j(\dgneigh{G}{B_j})}) &\defeq \frac{d\mm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{t}}{d\mmm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{t}}\\
-&= \frac{d\mm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{0}}{d\mmm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{0}}\exp\Bigg(\sum_{j'=1}^\psize \sum_{v \in \phi_j(\dgneigh{G}{B_j})\cap \gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\phi_j(\dgneigh{G}{B_j})},\bcrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right)\\
-&\hspace{24 pt} + \sum_{v \in \phi_j(\dgneigh{G}{B_j})\cap\inte{A}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right)\Bigg)
+&= \frac{d\mm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{0}}{d\mmm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{0}}\exp\Bigg(\sum_{j'=1}^\psize \sum_{v \in \phi_j(\dgneigh{G}{B_j})\cap \gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\phi_j(\dgneigh{G}{B_j})},\bcrate\vjpara{v}{B_j}\stpara{\cdot}\right)\\
+&\hspace{24 pt} + \sum_{v \in \phi_j(\dgneigh{G}{B_j})\cap\inte{A}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\vjpara{v}{B_j}\stpara{\cdot}\right)\Bigg)
 \end{align*}
 
 Apply lemma \ref{Uq::marg2} and another similar computation to get,
 
 \begin{align*}
 \denseph\jpara{j}\tpara{t}(\Xg\vind{\phi_j(C_j\cup \dgneigh{G}{B_j})}) &\defeq \frac{d\mm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{t}}{d\mmm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{t}}\\
-&= \frac{d\mm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{0}}{d\mmm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{0}}\exp\Bigg(\sum_{j' = 1}^{\psize}\sum_{v \in \phi_j(C_j)\cap\gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\dgneigh{G}{B_{j'}}},\brate\gvpara{A}{v}\stpara{\cdot}\right) + \sum_{v \in \phi_j(\gneigh{G}{B_j})} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\cl{v}},\rate\gvpara{A}{v}\stpara{\cdot}\right)\\
-&\hspace{24pt} + \sum_{j'=1}^\psize \sum_{v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap \gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\phi_j(\dgneigh{G}{B_j})},\bcrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right)\\
-&\hspace{24 pt} + \sum_{v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\inte{A}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right)\Bigg)
+&= \frac{d\mm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{0}}{d\mmm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{0}}\exp\Bigg(\sum_{j' = 1}^{\psize}\sum_{v \in \phi_j(C_j)\cap\gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\dgneigh{G}{B_{j'}}},\brate\vjpara{v}{B_{j'}}\stpara{\cdot}\right) + \sum_{v \in \phi_j(\gneigh{G}{B_j})} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\cl{v}},\rate\stpara{\cdot}\right)\\
+&\hspace{24pt} + \sum_{j'=1}^\psize \sum_{v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap \gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\phi_j(\dgneigh{G}{B_j})},\bcrate\vjpara{v}{B_j}\stpara{\cdot}\right)\\
+&\hspace{24 pt} + \sum_{v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\inte{A}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\vjpara{v}{B_j}\stpara{\cdot}\right)\Bigg)
 \end{align*}
 
 Applying the fact that \(\mm\tpara{0}\) is assumed to be a product measure,
 
-\begin{align*}
-\mdense\jpara{j}\tpara{t}(\Xg\vind{\phi_j(C_j)};\xg\vind{\phi_j(\dgneigh{G}{B_j})}) &\defeq \frac{\denseph\jpara{j}\tpara{t}(\Xg\vind{\phi_j(C_j)};\xg\vind{\phi_j(\dgneigh{G}{B_j})})}{\densen\jpara{j}\tpara{t}(\xg\vind{\phi_j(\dgneigh{G}{B_j})})}\\
-&= \frac{\frac{d\mm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{0}}{d\mmm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{0}}}{\frac{d\mm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{0}}{d\mmm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{0}}}\exp\Bigg(\sum_{j' = 1}^{\psize}\sum_{v \in \phi_j(C_j)\cap\gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\dgneigh{G}{B_{j'}}\cap\phi_j(C_j)};\xg\vind{\dgneigh{G}{B_{j'}}\cap\phi_j(\dgneigh{G}{B_j})},\brate\gvpara{A}{v}\stpara{\cdot}\right)\\
-&\hspace{24pt} + \sum_{v \in \phi_j(\gneigh{G}{B_j})} \left(\ds\vpara{v}\tpara{t}\left(\Xg\vind{\cl{v}\cap\phi_j(C_j)};\xg\vind{\cl{v}\cap\phi_j(\dgneigh{G}{B_j})},\rate\gvpara{A}{v}\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right)\right)\\
-&\hspace{24pt} +  \sum_{j'=1}^\psize \sum_{v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap \gneigh{G}{B_{j'}}} \left(\ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bcrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bcrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right)\right)\\
-&\hspace{24pt} +  \sum_{v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\inte{A}} \left(\ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right)\right)\Bigg)\\
-&= \frac{d\mm\vpara{\phi_j(C_j)}\tpara{0}}{d\mmm\vpara{\phi_j(C_j)}\tpara{0}}\exp\Bigg(\sum_{j' = 1}^{\psize}\sum_{v \in \phi_j(C_j)\cap\gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\dgneigh{G}{B_{j'}}\cap\phi_j(C_j)};\xg\vind{\dgneigh{G}{B_{j'}}\cap\phi_j(\dgneigh{G}{B_j})},\brate\gvpara{A}{v}\stpara{\cdot}\right)\\
-&\hspace{24pt} + \sum_{v \in \phi_j(\gneigh{G}{B_j})} \left(\ds\vpara{v}\tpara{t}\left(\Xg\vind{\cl{v}\cap\phi_j(C_j)};\xg\vind{\cl{v}\cap\phi_j(\dgneigh{G}{B_j})},\rate\gvpara{A}{v}\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\gvjpara{A}{v}{B_j}\stpara{\cdot}\right)\right)\Bigg)
-\end{align*}
+\begin{align}
+\mdense\jpara{j}\tpara{t}(\Xg\vind{\phi_j(C_j)};\xg\vind{\phi_j(\dgneigh{G}{B_j})}) &\defeq \frac{\denseph\jpara{j}\tpara{t}(\Xg\vind{\phi_j(C_j)};\xg\vind{\phi_j(\dgneigh{G}{B_j})})}{\densen\jpara{j}\tpara{t}(\xg\vind{\phi_j(\dgneigh{G}{B_j})})}\nonumber\\
+&= \frac{\frac{d\mm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{0}}{d\mmm\vpara{\phi_j(C_j\cup \dgneigh{G}{B_j})}\tpara{0}}}{\frac{d\mm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{0}}{d\mmm\vpara{\phi_j(\dgneigh{G}{B_j})}\tpara{0}}}\exp\Bigg(\sum_{j' = 1}^{\psize}\sum_{v \in \phi_j(C_j)\cap\gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\dgneigh{G}{B_{j'}}\cap\phi_j(C_j)};\xg\vind{\dgneigh{G}{B_{j'}}\cap\phi_j(\dgneigh{G}{B_j})},\brate\vjpara{v}{B_{j'}}\stpara{\cdot}\right)\nonumber\\
+&\hspace{24pt} + \sum_{v \in \phi_j(\gneigh{G}{B_j})} \left(\ds\vpara{v}\tpara{t}\left(\Xg\vind{\cl{v}\cap\phi_j(C_j)};\xg\vind{\cl{v}\cap\phi_j(\dgneigh{G}{B_j})},\rate\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\vjpara{v}{B_j}\stpara{\cdot}\right)\right)\nonumber\\
+&\hspace{24pt} +  \sum_{j'=1}^\psize \sum_{v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap \gneigh{G}{B_{j'}}} \left(\ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bcrate\vjpara{v}{B_j}\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bcrate\vjpara{v}{B_j}\stpara{\cdot}\right)\right)\nonumber\\
+&\hspace{24pt} +  \sum_{v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap\inte{A}} \left(\ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\vjpara{v}{B_j}\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\vjpara{v}{B_j}\stpara{\cdot}\right)\right)\Bigg)\nonumber\\
+&= \frac{d\mm\vpara{\phi_j(C_j)}\tpara{0}}{d\mmm\vpara{\phi_j(C_j)}\tpara{0}}\exp\Bigg(\sum_{j' = 1}^{\psize}\sum_{v \in \phi_j(C_j)\cap\gneigh{G}{B_{j'}}} \ds\vpara{v}\tpara{t}\left(\Xg\vind{\dgneigh{G}{B_{j'}}\cap\phi_j(C_j)};\xg\vind{\dgneigh{G}{B_{j'}}\cap\phi_j(\dgneigh{G}{B_j})},\brate\vjpara{v}{B_{j'}}\stpara{\cdot}\right)\nonumber\\
+&\hspace{24pt} + \sum_{v \in \phi_j(\gneigh{G}{B_j})} \left(\ds\vpara{v}\tpara{t}\left(\Xg\vind{\cl{v}\cap\phi_j(C_j)};\xg\vind{\cl{v}\cap\phi_j(\dgneigh{G}{B_j})},\rate\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\vind{\phi_j(\dgneigh{G}{B_j})},\bgrate\vjpara{v}{B_j}\stpara{\cdot}\right)\right)\Bigg)
+\label{Uq::M}
+\end{align}
 
 By definition, 
 
@@ -970,7 +1137,7 @@ Thus,
 
 \[\exmu{\mmm\vpara{\phi_j(C_j)}\tpara{t}}{\mdense\jpara{j}\tpara{t}(\Xg\vind{\phi_j(C_j)};\xg\vind{\phi_j(\dgneigh{G}{B_j})})} = \frac{\densen\jpara{j}\tpara{t}(\xg\vind{\phi_j(\dgneigh{G}{B_j})})}{\densen\jpara{j}\tpara{t}(\xg\vind{\phi_j(\dgneigh{G}{B_j})})} = 1.\]
 
-Thus, \(\mdense\jpara{j}\tpara{t}\) is the density of the distribution of \(\Xg\vind{\phi_j(C_j)}\) conditioned on \(\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\) with respect to \(\mmm\vpara{\phi_j(C_j)}\tpara{t}\). This can be used to extend \(\mm\) to larger domains. To do this, consider the following functions \(\dense\indx{k}\tpara{t}: \cad([0,t),\sta^{A\indx{k}}) \ra [0,\infty)\):
+Thus, \(\mdense\jpara{j}\tpara{t}\) is the density of the distribution of \(\Xg\vind{\phi_j(C_j)}\) conditioned on \(\Xg\vind{\phi_j(\dgneigh{G}{B_j})}\) with respect to \(\mmm\vpara{\phi_j(C_j)}\tpara{t}\). This can be used to extend \(\mm\) to larger domains. To do this, consider the following mappings \(\dense\indx{k}\tpara{t}: \cad\vpara{A\indx{k}}\tpara{t} \ra \mb{R}^+\):
 
 \[\dense\indx{0}\tpara{t}(\xg\indx{0}) = \dense\tpara{t}(\xg\indx{0}).\]
 
@@ -978,12 +1145,16 @@ Thus, \(\mdense\jpara{j}\tpara{t}\) is the density of the distribution of \(\Xg\
 
 Let \(\mmm\indx{k} \defeq \mmm\vpara{A\indx{k}}\) for all \(k\in \mb{N}\). I claim that,
 
-\[\dense\indx{k}\tpara{t}(\xg\indx{k}) = \frac{d\mm\indx{k}\tpara{0}}{d\mmm\indx{k}\tpara{0}}\exp\left(\sum_{j=1}^{\psize\indx{k}}\sum_{v\in \dgneigh{G}{B_j\indx{k}}} \ds\vpara{v}\tpara{t}\left(\xg\indx{k}\vind{\dgneigh{G}{B_j}},\brate\gvpara{A\indx{k}}{v}\stpara{\cdot}\right) + \sum_{v \in A\indx{k-1}} \ds\vpara{v}\tpara{t}\left(\xg\indx{k}\vind{\cl{v}},\rate\gvpara{A\indx{k}}{v}\stpara{\cdot}\right)\right),\]
+\[\dense\indx{k}\tpara{t}(\xg\indx{k}) = \frac{d\mm\indx{k}\tpara{0}}{d\mmm\indx{k}\tpara{0}}\exp\left(\sum_{j=1}^{\psize\indx{k}}\sum_{v\in \dgneigh{G}{B_j\indx{k}}} \ds\vpara{v}\tpara{t}\left(\xg\indx{k}\vind{\dgneigh{G}{B_j\indx{k}}},\brate\vjpara{v}{B\indx{k}_{j'}}\stpara{\cdot}\right) + \sum_{v \in A\indx{k-1}} \ds\vpara{v}\tpara{t}\left(\xg\indx{k}\vind{\cl{v}},\rate\stpara{\cdot}\right)\right),\]
 
-where \(\brate\) is defined as in the statement of lemma \ref{Uq::ext}. To prove this, we first need to understand some properties of \(\mdense\). Fix some \(j \in \{1,\dots,\psize\indx{k}\}\). Let \(j' = j\indx{k}_j\) (as defined in definition \ref{Uq::Extnot}). Let \(\phi = \phi\indx{k}_j\). Applying substitution, assumptions \ref{a::pbasics}, \ref{a::admissible} and \ref{a::padmin},
+where \(\brate\) is defined as in the statement of lemma \ref{Uq::ext}. To prove this, we first need to understand some properties of \(\mdense\). Fix some \(j \in \{1,\dots,\psize\indx{k}\}\). Let \(j' = j\indx{k}_j\) (as defined in definition \ref{Uq::Extnot}). Let \(\phi = \phi\indx{k}_j\). Apply equation \eqref{Uq::M}, and let \(\xg\vind{v} = \xg\indx{k+1}\vind{\phi^{-1}(v)}\).
+
+
+
+Applying equation \eqref{Uq::M}, substitution, assumptions \ref{a::pbasics}, \ref{a::admissible} and \ref{a::padmin},
 
 \begin{align*}
-\mdense\jpara{j'}\tpara{t}\left(\xg\indx{k+1}\vind{C_j\indx{k}};\xg\indx{k+1}\vind{\dgneigh{G}{B\indx{k}_j}}\right) &= \frac{d\mm\vpara{\phi_{j'}(C_{j'})}\tpara{0}}{d\mmm\vpara{\phi_{j'}(C_{j'})}\tpara{0}}(\xg\indx{k+1}\vind{C\indx{k}_j})\exp\Bigg(\sum_{j'' = 1}^{\psize}\sum_{v \in C_j\indx{k}\cap\phi^{-1}(\gneigh{G}{B_{j''}})} \ds\vpara{v}\tpara{t}\left(\xg\indx{k+1}\vind{C_j\indx{k}\cap\phi^{-1}(\dgneigh{G}{B_{j''}})};\xg\indx{k+1}\vind{\dgneigh{G}{B_j\indx{k}}\cap\phi^{-1}(\dgneigh{G}{B_{j''}})},\brate\gvpara{A\indx{k+1}}{v}\stpara{\cdot}\right)\\
+\mdense\jpara{j'}\tpara{t}\left(\xg\indx{k+1}\vind{C_j\indx{k}};\xg\indx{k+1}\vind{\dgneigh{G}{B\indx{k}_j}}\right) &= \frac{d\mm\vpara{\phi_{j'}(C_{j'})}\tpara{0}}{d\mmm\vpara{\phi_{j'}(C_{j'})}\tpara{0}}(\xg\indx{k+1}\vind{C\indx{k}_j})\exp\Bigg(\sum_{j'' = 1}^{\psize}\sum_{v \in C_j\indx{k}\cap\phi^{-1}(\gneigh{G}{B_{j''}})} \ds\vpara{v}\tpara{t}\left(\xg\indx{k+1}\vind{C_j\indx{k}\cap\phi^{-1}(\dgneigh{G}{B_{j''}})};\xg\indx{k+1}\vind{\dgneigh{G}{B_j\indx{k}}\cap\phi^{-1}(\dgneigh{G}{B_{j''}})},\brate\vjpara{v}{B\indx{k}_j}\stpara{\cdot}\right)\\
 &\hspace{24pt} + \sum_{v \in \gneigh{G}{B_j\indx{k}}} \left(\ds\vpara{v}\tpara{t}\left(\xg\indx{k+1}\vind{\cl{v}\cap C_j\indx{k}};\xg\indx{k+1}\vind{\cl{v}\cap\dgneigh{G}{B_j\indx{k}}},\rate\gvpara{A\indx{k+1}}{v}\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\indx{k+1}\vind{\dgneigh{G}{B_j\indx{k}}},\bgrate\gvjpara{A\indx{k}}{v}{B_{j'}}\stpara{\cdot}\right)\right)\Bigg)\\
 &= \frac{d\mm\vpara{C_j\indx{k}}}{d\mmm\vpara{C_j\indx{k}}}\exp\Bigg(\sum_{j'' =1}^{\psize}\sum_{v \in C_j\indx{k}\cap\phi^{-1}(\gneigh{G}{B_{j''}})} \ds\vpara{v}\tpara{t}\left(\xg\indx{k+1}\vind{\left(C_j\indx{k}\cup\dgneigh{G}{B_j\indx{k}}\right)\cap\phi^{-1}(\dgneigh{G}{B_{j''}})},\brate\gvpara{A\indx{k}}{v}\stpara{\cdot}\right)\\
 &\hspace{24pt} + \sum_{v \in \gneigh{G}{B_j\indx{k}}}\left(\ds\vpara{v}\tpara{t}\left(\xg\indx{k+1}\vind{\cl{v}},\rate\gvpara{A\indx{k+1}}{v}\stpara{\cdot}\right) - \ds\vpara{v}\tpara{t}\left(\xg\indx{k+1}\vind{\dgneigh{G}{B_j\indx{k}}},\bgrate\gvjpara{A\indx{k}}{v}{B_{j'}}\right)\right)\Bigg)
