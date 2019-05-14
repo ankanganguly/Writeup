@@ -11,7 +11,7 @@
 \usepackage{pdfcomment}
 %\usepackage{coffee4}
 \usepackage{lipsum}
-%\usepackage{showkeys}
+\usepackage{showkeys}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \usepackage{verbatim}
@@ -51,6 +51,8 @@
 \newcommand{\cad}{\mc{D}}							%Cadlag space
 \newcommand{\argmin}{\te{arg}\min}
 
+%TODO
+\newcommand{\valid}{\mc{V}}							%valid histories
 
 %Notation and Basic Assumptions
 %Graph Notation
@@ -133,6 +135,17 @@
 \ifstrempty{#3}{
 	\left(#1,#2\right)}{
 	\left(#1,#2,#3\right)}}							%time, process
+	
+%Examples
+%Base Commands
+\renewcommand{\d}{d}								%degree
+\newcommand{\eneigh}[1]{\mc{N}^E_{#1}}				%eff neighborhood
+\newcommand{\deneigh}[1]{\mc{N}^{2,E}_{#1}}			%eff double neigh
+\newcommand{\ecl}[1]{\ov{#1}^E}						%eff graph closure
+\newcommand{\ebdry}[1]{\partial^E_{#1}}				%eff bdry
+\newcommand{\einte}[1]{{#1}^{\mathrm{o},E}}			%interior
+\newcommand{\tree}[1]{\mc{T}_{#1}}					%subtree	
+\newcommand{\desc}{d}								%descendants				
 
 %Well-Posedness
 %Base Commands
@@ -243,7 +256,9 @@
 %\newtheorem{sublem}{Sublemma}[lem]
 \newtheorem{defn}[thms]{Definition}
 \newtheorem{assu}{Assumption}
+\newtheorem{nassu}{New Assumption}
 \renewcommand{\theassu}{\Alph{assu}}
+\newtheorem{example}[thms]{Example}
 
 \setlength{\parindent}{0pt}
 
@@ -265,11 +280,7 @@ Remark: In this paper I mostly work with locally finite graphs. However, I prove
 \section{TODO}
 
 \begin{itemize}
-\item Revise assumption \ref{Ex::Eassu} and lemma \ref{Ex::leftmod}.
-
 \item \tg{Bad notation! I use \(i\) to indicate elements of \(\sta\) and to enumerate branches of \(A\).} Now I mostly use \(j\), but there may be a few stray \(i\)'s hanging around.
-
-\item The conditional expectations in lemma \ref{Ex::leftmod} may not be well-defined. Add assumptions to make sure they are. Then make sure I use those assumptions everywhere where I cite lemma \ref{Ex::leftmod}.
 
 \item Let \(U,U'\subseteq V\) such that \(|U| = |U'|\). I'll often say things like \(\Xf\vind{U} = \Xf\vind{U'}\). This makes sense if there is an implied bijection \(\phi:U \ra U'\). Make sure that the implied bijection is clear wherever I make such statements.
 
@@ -277,14 +288,100 @@ Remark: In this paper I mostly work with locally finite graphs. However, I prove
 
 \item I'm a little inconsistent in the interval bounds I use. Make sure I use open/closed/half-open intervals with some purpose.
 
-\item Everything should work in infinite time, but I do most of my work on \([0,T]\) for \(T < \infty\). Make sure to extend to \([0,\infty)\).
-
 \item I've been forgetting to put \(i\) in the integral for the SDEs. Tried to fix it, make sure I got them all.
 
 \item Replace references to \cite[exercise 14.7.I]{DalVer08} with references to lemma \ref{ref::propoi}.
+
+\item Describe all notation from the foundations paper here as well.
 \end{itemize}
 
+\subsection{New Assumptions}
+\label{na}
 
+Note: This section uses all notation defined in the foundations paper and through section 2.1 of this paper. I will let \(\sta\) be a finite or countable group, and let \(\Sm\) be a probability measure over \(\sta\).
+
+\begin{defn}
+\label{na::valid}
+Given a rate function, \(\{\rate\gvpara{G}{v}\stpara{i}\tmepro{\cdot}{\cdot}{}:G \in \Gs,v \in V\gind{G}, i \in \sta\}\),
+
+\[\valid \subset \Gs\sp{\cad} = \{(G,\xf)\in \Gs\sp{\cad}: \te{ for all }t>0,v\in V\te{ s.t. } \Delta \xf\vind{v}\tme{t} \neq 0,\quad \rate\gvpara{G}{v}\stpara{\Delta\xf\vind{v}\tme{t}}\tmepro{t}{\xf\vind{\cl{v}}}{} > 0.\},\]
+
+is the set of \emph{valid histories}.
+\end{defn}
+
+We also redefine \((G,\Xf\gind{G})\) and the jump rate:
+
+\[\rate\gvpara{G}{v}\stpara{i}\tmepro{\cdot}{\xf}{}: \mb{R}^+\times \cad^{V\gind{G}} \ra \mb{R}^+.\]
+
+I will often write \(\rate\gvpara{G}{v}\stpara{i}\tmepro{\cdot}{\xf\vind{\cl{v}}}{}\) to emphasize the dependence of the rate on a subset of the components of \(\xf\).
+
+\[\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \int_{\sta\times (0,\infty)\times (0,t]} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}\vind{v}}{}}\,\poiss\poissv{v}(ds,dr,di).\]
+
+First, assumptions on initial histories. 
+
+\begin{nassu}
+\label{na::start}
+
+The initial distribution is independently distributed \tr{(or second-order Gibbs)} and,
+
+\[\sup_{G,v} \ex{\Xf\gind{G}\vind{v}\tme{0}} < \infty.\]
+\end{nassu}
+
+We need jump rates to be consistent:
+
+\begin{nassu}
+\label{na::consist}
+
+Suppose there exists a rooted isomorphism \(\phi\) such that \(\phi((G,\xf)) = (H,\xg)\). Then,
+
+\[\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf\vind{\cl{v}}}{} = \rate\gvpara{\phi(G)}{\phi(v)}\stpara{i}\tmepro{t}{\xg\vind{\phi(\cl{v})}}{}.\]
+\end{nassu}
+
+\begin{nassu}
+\label{na::bddr}
+
+For each \(t>0\), there exist constants \(\jumpibd{i}{t}\) and \(\jumpbd{t}\) such that,
+
+\[\sup_{G,v,\xf\in\valid} \|\rate\gvpara{G}{v}\stpara{i}\tmepro{\cdot}{\xf}{}\|_t \leq \jumpibd{i}{t}\te{ and } \sum_{i\in\sta} i\Sm(\{i\})\jumpibd{i}{t} = \jumpbd{t} < \infty.\]
+\end{nassu}
+
+The Lipschitz dependence on history is the only assumption that should have changed significantly.
+
+\begin{nassu}
+\label{na::liprx}
+
+Using the same constants as in assumption \ref{na::bddr},
+
+\[\sup_{G,\xf,\xg\in \valid} \sum_{i\in\sta}i\Sm(\{i\})|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xg}{}| \leq \jumpbd{t}\stmet{t-}(\xf\vind{\cl{v}},\xg\vind{\cl{v}})\te{ for all } v\in V.\]
+
+\tr{Here, \(\stmet{t}\) is the Skorohod metric on \(\cad^{\cl{v}}\). Furthermore, for \(i,j\in\sta^{\cl{v}}\), I assume \(d(i,j) = \sup_{u\in\cl{v}} d(i_u,j_u)\).}
+\end{nassu}
+
+The continuous part of the jump rate should still be locally-Lipschitz in \(t\):
+
+\begin{nassu}
+\label{na::liprt}
+
+The continuous part of the jump rate is locally Lipschitz in \(t\). For any \(T < \infty\) and \(0 \leq t_1 < t_2 < T\),
+
+\[\sup_{G,v,\xf\in\valid} \sum_{i\in\sta}|i|\Sm(\{i\})\left|\rate\gvpara{G}{v}\stpara{i}\tmepro{t_2}{\xf}{} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t_1}{\xf}{} - \sum_{t_1\leq s < t_2} \Delta\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\xf}{}\right| \leq \jumpbd{T}|t-s|.\] 
+\end{nassu}
+
+Before continuing, we need to update the definition of a symmetry of \(\Xf\).
+
+\begin{defn}
+\label{na::Xsim}
+
+Let \((G,\Xf\gind{G})\) be well-defined. \(\phi:V \ra V\) is said to be a symmetry of \(\Xf\gind{G}\) if,
+
+\begin{enumerate}
+\item \(\phi\) is an automorphism of \(G\).
+
+\item 
+
+\[\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf\vind{\cl{v}}}{} = \rate\gvpara{G}{\phi(v)}\stpara{i}\tmepro{t}{\xg\vind{\phi(\cl{v})}}{} \te{ for all } G\in \Gs, v \in V,i\in \sta, t \in \mb{R}^+, \xf,\xg \in \valid\te{ such that } \xf\vind{\cl{v}} = \xg\vind{\phi(\cl{v})}.\]
+\end{enumerate}
+\end{defn}
 \section{Notation and basic assumptions}
 \label{not}
 
@@ -305,7 +402,7 @@ Let \((G,\Xf\gind{G})\) be well-defined. \(\phi: V \ra V\) is said to be a symme
 \begin{enumerate}
 \item \(\phi\) is an automorphism of \(G\).
 
-\item 
+\item  \tr{This is no longer necessary unless I decide to make \(\rate\) depend explicitly on \(v\) again.}
 
 \begin{equation}
 \rate\stpara{i}\left(\xf\gind{G}\vind{\phi(\cl{v})}\tmi{[0,t)}\right) = \rate\stpara{i}\left(\xf\gind{G}\vind{\cl{v}}\tmi{[0,t)}\right) \te{ for all } v \in V,i \in \sta, t \in \mb{R}^+, \xf\in \Omega\vpara{V}\tpara{t}.
@@ -348,7 +445,7 @@ Then \(\{\poiss\poissv{\phi(v)}:v \in V\} \deq \{\poiss\poissv{v}:v\in V\}\) and
 \subsection{New Assumptions}
 \label{a::not}
 
-The local equations require a few more regularization assumptions to hold. This includes,
+\tr{Assumptions can be simplified by assuming the initial distribution is i.i.d.} The local equations require a few more regularization assumptions to hold. This includes,
 
 \begin{assu}
 The continuous part of \(\rateset\) is locally Lipschitz in \(t\): for any \(T < \infty\) and \(0\leq s < t < T\),
@@ -374,16 +471,18 @@ Now we can characterize the types of symmetries necessary for the local equation
 \begin{assu}
 Suppose \(G \in \Gs\). \(G\) is said to be admissible if there exists a finite set \(A \subset V\) such that,
 
-\begin{itemize}
+\begin{enumerate}[(a)]
 \item There exists a finite partition \(\{B_i\}_{i=1}^\psize\) of \(A^c\).
 
 \item \(\dneigh{B_i} \subseteq A\) for all \(i\).
 
 \item Let \(C_i = B_i\cap\neigh{A}\). For each \(i\), there exists a automorphism, \(\phi_i\), such that \(\phi_i(C_i\cup \dneigh{B_i}) \subset A\), and \(\phi_i(B_i\setminus C_i)\cap A = \emptyset\). \tr{The last one may be unnecessary, but it greatly simplifies the casework.}
 
-\item For any \(j,j' \in \{1,\dots,\psize\}\), \(\dgneigh{G}{B_{j'}}\cap\phi_j(C_j\cup\dgneigh{G}{B_j}) \in \{\dgneigh{G}{B_{j'}},\emptyset\}\). \tr{I may be able to weaken this to \(\dgneigh{G}{B_{j'}}\cap\phi_j(C_j\cup\dgneigh{G}{B_j}) = \dgneigh{G}{B_{j'}}\) whenever \(\gneigh{G}{B_{j'}}\cap\phi_j(C_j)\) is non-empty. Without this, the admissible set needs to be very large.}
+\item For any \(j,j' \in \{1,\dots,\psize\}\), \(\dgneigh{G}{B_{j'}}\cap\phi_j(C_j\cup\dgneigh{G}{B_j}) \in \{\dgneigh{G}{B_{j'}},\emptyset\}\). 
 
-\item For every \(v \in \phi_j(C_j)\), suppose \(v \in \gneigh{G}{B_{j'}}\). Then \(\dgneigh{G}{B_{j'}}\subseteq \phi_j(C_j\cup\gneigh{G}{B_j}\). \tr{It may be possible to combine this with the condition above.}
+\item \tr{I may be able to weaken (d) to \(\dgneigh{G}{B_{j'}}\cap\phi_j(C_j\cup\dgneigh{G}{B_j}) = \dgneigh{G}{B_{j'}}\) whenever \(\gneigh{G}{B_{j'}}\cap\phi_j(C_j)\) is non-empty. Without this, the admissible set needs to be very large.}
+
+\item For every \(v \in \phi_j(C_j)\), suppose \(v \in \gneigh{G}{B_{j'}}\). Then \(\dgneigh{G}{B_{j'}}\subseteq \phi_j(C_j\cup\gneigh{G}{B_j})\). \tr{This implies (e)}
 
 \item If \(\phi_j(C_j) \cap \gneigh{G}{B_{j'}}\) is nonempty, then \(\dgneigh{G}{B_{j'}} \subseteq \phi_j(C_j\cup\dgneigh{G}{B_j})\). In fact, \(\phi_j^{-1}(\dgneigh{G}{B_{j'}}) = \dgneigh{G}{B_{j''}\indx{1}}\) for some \(j''\). Furthermore, \(C_j\cap\phi_j^{-1}(\gneigh{G}{B_{j'}}) = \gneigh{G}{B_{j''}\indx{1}}\). \tr{Stronger version of the statement above. Experiment to see what's necessary.}
 
@@ -392,7 +491,7 @@ Suppose \(G \in \Gs\). \(G\) is said to be admissible if there exists a finite s
 \item If we let \(A\indx{1} = A\cup \left(\bigcup_{i=1}^\psize C_i\right)\). Then \(A\indx{1}\) is also admissible with partition \(\{B\indx{1}_i\}_{i=1}^{\psize\indx{1}}\) and boundary nodes \(C\indx{1}_i = B\indx{1}_i\cap \neigh{A\indx{1}}\).
 
 \item If \(C\indx{1}_{i'} \subseteq B_i\), then there exists a \(j\) so that \(\phi_i(C\indx{1}_{i'}) = C_j\). \tr{I think this is implied by the other conditions if \(A\) has a unique corresponding set of branches and boundary nodes. Check if this is sufficient.}
-\end{itemize}
+\end{enumerate}
 
 The set \(A\) is called an admissible set. \(\{B_i\}_{i=1}^\psize\) will be referred to as the set of branches of \(A\). \(\psize\) is the branching number of \(A\). \(\{C_i\}_{i=1}^\psize\) will be called the boundary nodes of \(A\).
 
@@ -408,21 +507,597 @@ Let \((G,\Xf\gind{G}) \in \Gs\sp{\cad}\) be well-defined. Then all automorphisms
 The definition of an admissible set is designed ensure a high enough level of symmetry for the arguments in the main paper to hold in this case as well. \tr{Interestingly enough, if this assumption suffices to prove the local approximation, then we will be able to understand the dynamics of a typical class of particles even when such particles are split into heterogeneous classes so long as they are distributed with a high level of symmetry. This will be especially useful if we consider random graphs later.}
 
 \subsection{Examples}
-\label{e::not}
+\label{not::ex}
 
-\tr{Verify that all examples below satisfy the assumptions. }
+%\begin{example}[Contact Process on the \(\d\)-Cayley Tree]
+%\label{ex::cp}
+%
+%The contact process can be used to model the spread of disease through a population. Each particle represents a member of the population, and edges represent interactions between particles which can spread disease. Each node is assumed to become ill at a rate proportional to the fraction of its neighbors that are ill. Let \(\lambda\) be the proportionality constant. Each node recovers at unit rate. (\cite[Chapter VI]{Lig85}).
+%
+%\ind Let \(G \in \Gs\). Assume \(\Xf\gind{G}\tme{0} \sim \te{Binom}(p)\) for some \(p \in [0,1]\). Then assumption \ref{a::bddinit} is trivially satisfied.
+%
+%\begin{align*}
+%\rate\stpara{1}(t,\xf\vind{v}\tmi{[0,t)},\xf\vind{\neigh{v}}\tmi{[0,t)} &:=
+%\frac{\lambda}{|\neigh{v}|}\sum_{u \in \neigh{v}}\xf\vind{u}\tme{t-}\mb{I}_{\xf\vind{v}\tme{t-} = 0}\\
+%\rate\stpara{-1}(t,\xf\vind{v}\tmi{[0,t)},\xf\vind{\neigh{v}}\tmi{[0,t)} &:=
+%\mb{I}_{\xf\vind{v}\tme{t-} = 1}
+%\end{align*}
+%
+%Let \(\ell(\{i\}) = \frac{\mb{I}_{i=\pm 1}}{2}\). Then,
+%
+%\[\sum_{i \in \pm 1}|i|\ell(\{i\})\sup_{\substack{t\in [0,T]\\\xf\in\cad,\xf'\in\cad^\sqcup}} \rate\stpara{i}\tmepro{t}{\xf}{\xf'} \leq \frac{\max\{\lambda,1\}}{2} < \infty.\]
+%
+%Thus \cite[assumption \ref{F-a::bddr}]{F} is satisfied. Finally, note that,
+%
+%\begin{align*}
+%\sup_{\substack{k \in \mb{N}_0\\\xf,\xg \in \cad,\xf',\xg'\in \cad^k}} &\frac{\sum_{i \in \sta}|i|\Sm(\{i\})\left|\rate\stpara{i}\tmepro{t}{\xf}{\xf'} - \rate\stpara{i}\tmepro{t}{\xg}{\xg'}\right|}{\left|\stmet{t-}(\xf,\xg) + \frac{1}{k}\sum_{j=1}^k \stmet{t-}(\xf'\vind{j},\xg'\vind{j})\right|}\\
+%& \leq \sup_{\substack{k \in \mb{N}_0\\\xf,\xg \in \cad,\xf',\xg'\in \cad^k}} \frac{\sum_{i \in \sta}|i|\Sm(\{i\})\left|\rate\stpara{i}\tmepro{t}{\xf}{\xf'} - \rate\stpara{i}\tmepro{t}{\xg}{\xg'}\right|}{\left||\xf(t-) - \xg(t-)| + \frac{1}{k}\sum_{j=1}^k |\xf\vind{j}(t-) - \xg\vind{j}(t-)|\right|}\\
+%&\leq \frac{\frac{\max{\lambda,1}}{2}}{2} = \frac{\max{\lambda,1}}{4} < \infty
+%\end{align*}
+%
+%So \cite[assumption \ref{F-a::liprx}]{F} is satisfied.
+%\end{example}
+
+\begin{example}[Potts Model, Glauber dynamics]
+\label{ex::Potts}
+We consider the Potts model with Glauber dynamics \cite{Gla63}, \tr{(citation needed)}. \tr{Include brief description of model and applications.} This model is parameterized by some \(\beta\in\mb{R}\).
+
+\ind Let \(\sta = \{1,\dots,q\}\) for some \(q \in \mb{N}\). Then for \(\xf \in \cad\), \(\xf' \in \cad^\sqcup\), \(0 < t < \infty\) and \(j \in \sta\), 
+
+\[\rate\stpara{j-\xf\tme{t-}}\tmepro{t}{\xf}{\xf'} = \begin{cases}
+\frac{e^{-\beta\sum_{u} \delta_{j,\xf'_u\tme{t-}}}}{\sum_{k \in \sta} e^{-\beta\sum_{u} \delta_{k,\xf'_u\tme{t-}}}} &\te{ if } j \in \sta\\
+0 &\te{ otherwise.}
+\end{cases}\]
+
+Where \(\delta_{j,k} = \mb{I}_{j=k}\). Assume \(\{\Xf\vind{v}\tme{0}: v \in V\}\) are i.i.d. uniformly distributed over \(\sta\) and let \(\Sm\) be the uniform probability measure over \(\{-q+1,\dots,q-1\}\). \tr{TODO:: make accommodations for finite state spaces. Maybe state that \(\sta = \mathbb{Z}\) or \(\mathbb{Z}/m\mathbb{Z}\).}
+
+\ind As for the graph topology, let \(G = (V,E, \root)\) be an undirected, \(d\)-Cayley graph (infinite tree with uniform degree \(d\)) and root \(\root\).
+
+Then we can verify all of the assumptions:
+
+\begin{description}
+\item[] \cite[Assumption \ref{F-a::bddinit}]{F}: \textbf{Initial conditions are bounded in expectation:} \(\Xf\vind{v}\tme{0} \leq q < \infty\) almost surely, so the assumption is met.
+
+\item[] \cite[Assumption \ref{F-a::bddr}]{F}: \textbf{Jump rates are bounded. Jump rates of the ground jump point process are bounded:} For any \(i\in \mb{Z},t >0, \xf \in \cad\) and \(\xf'\in\cad^\sqcup\),
+
+\[\rate\stpara{i}\tmepro{t}{\xf}{\xf'} \leq \frac{e^{-\beta\sum_{u} \delta_{j,\xf'_u\tme{t-}}}}{\sum_{k \in \sta} e^{-\beta\sum_{u} \delta_{k,\xf'_u\tme{t-}}}} \leq 1.\]
+
+Then, 
+
+\[\sum_{j \in \mb{Z}}|j|\Sm(\{j\})\sup_{j,t,x,x'} \rate\stpara{j}\tmepro{t}{\xf}{\xf'} \leq \sum_{j \in \mb{Z}}|j|\Sm(\{j\}) = \frac{1}{2q-1}\sum_{j = -q+1}^{q-1} |j| < \infty.\]
+
+\item[] \cite[Assumption \ref{F-a::liprx}]{F}: \textbf{Jump rates are Lipschitz with respect to history:} \tr{This assumption may be modified.}
+
+Note that for \(d < q\),
+
+\begin{align*}
+\sup_{\xf,\xg\in \cad,\xf',\xg' \in \cad^d, (\xf,\xf')\neq(\xg,\xg')} \frac{\sum_{j \in \mb{Z}}|j|\Sm(\{j\})|\rate\stpara{j}(t,\xf,\xf') - \rate\stpara{j}(t,\xg,\xg')|}{\left|\stmet{t-}(\xf,\xg) + \frac{1}{d}\sum_{k=1}^d \stmet{t-}(\xf',\xg')\right|} \leq \frac{d}{2q-1}\sum_{j=-q+1}^{q-1} |j|
+\end{align*}
+
+This is because the denominator is bounded from below by \(\frac{1}{d}\). When \(d > q\), notice that \(\sum_{k\in\sta}e^{-\beta\sum_u \delta_{k,\xf'\vind{u}\tme{t-}}} \geq d-q\) (pigeonhole principle), and \(\sup_{d\in \mb{N},d > q} \frac{d}{d-q} = q+1 < \infty\). Then,
+
+\[\sum_{j \in \mb{Z}}|j|\Sm(\{j\})|\rate\stpara{j}(t,\xf,\xf') - \rate\stpara{j}(t,\xg,\xg')|\leq \sum_{j \in \mb{Z}}|j|\Sm(\{j\})\frac{1}{d-q} = \frac{1}{(2q-1)(d-q)}\sum_{j=-q+1}^{q-1}|j| < \infty.\]
+
+Then,
+
+\begin{align*}
+\sup_{\substack{d \in\mb{N},\xf,\xg\in \cad\\ \xf',\xg' \in \cad^d, (\xf,\xf')\neq(\xg,\xg')}} \frac{\sum_{j \in \mb{Z}}|j|\Sm(\{j\})|\rate\stpara{j}(t,\xf,\xf') - \rate\stpara{j}(t,\xg,\xg')|}{\left|\stmet{t-}(\xf,\xg) + \frac{1}{d}\sum_{k=1}^d \stmet{t-}(\xf',\xg')\right|} &\leq \sup_d \frac{d}{(2q-1)[(d-q)\vee 1]}\sum_{j=-q+1}^{q-1}|j|\\
+& \leq \frac{q+1}{2q-1}\sum_{j=-q+1}^{q-1}|j|\\
+& < \infty
+\end{align*}
+
+\item[] \cite[Assumption \ref{F-CI::indinit}]{F}: \textbf{Initial distributions are independent:} We assumed the initial condition is i.i.d.
+
+\item[] Assumption \ref{a::liprt}: \textbf{Jump rates are locally Lipschitz in time if they are continuous:} \(\rate\stpara{j}\tmepro{t}{\xf}{\xf'}\) is constant when \((\xf,\xf')\) is continuous at \(t\).
+
+\item[] Assumption \ref{a::lctr}: \textbf{Jump rates are left-continuous in time and discontinuities match history:} This is trivially true because \(\rate\stpara{j}\tmepro{t}{\xf}{\xf'}\) depends only on \((\xf,\xf')\tme{t-}\).
+
+\item[] Assumption \ref{a::admissible}: \textbf{Graph geometry is symmetric enough:} Let \(A\indx{k} = \{v \in V: d_G(v,\root) \leq k+1\}\). Let \(A \defeq A\indx{0}\). To satisfy assumption \ref{a::admissible}(i), we must prove that \(A\) and \(A\indx{k}\) satisfy all the conditions below for all \(k\in\mb{N}\). All illustrations cover the \(d=3\) case.
+
+\ind For clarity, we name the vertices in the following manner. The root is \(\root\). Its children are labeled \(1,2,\dots,d\). The following children are numbered similarly. Thus \(1123\) is the 3rd child of the 2nd child of the first child of the first child of the root. It is a leaf of \(A\indx{3}\).
+
+\includegraphics[scale=0.1]{treevert.jpg}
+
+\begin{enumerate}[(a)]
+\item {\bfseries\boldmath Definition of \(\{B_j\}\):} For each \(j\), \(B_j\) and \(B\indx{k}_j\) are the set of descendants of a single leaf of \(A\) and \(A\indx{k}\) respectively. The descendants of all leaves of \(A\) and \(A\indx{k}\) form a partition of \(A^c\) and \((A\indx{k})^c\). For simplicity we will index the branches by the leaf they descend from. For example, since \(1121\) is a leaf of \(A\indx{3}\), \(B\indx{3}_{1121}\) is the set of descendants of \(1121\). \tr{I did not use this naming convention in figure 2 below.}
+
+\includegraphics[scale=0.1]{pottstree1.jpg}
+
+\item {\bfseries\boldmath\(\dneigh{B_j} \subseteq A\):} See (a) and figure 3 for an example. For \(v \in A\setminus\{\root\}\), \(\dneigh{B_v} = \{v,\root\} \subset A\). If \(v\) is a leaf of \(A\indx{k}\), then \(\dneigh{B\indx{k}_v} = \{v,p(v)\}\subset A\indx{k}\) where \(p(v)\) is the parent of \(v\).
+
+\item {\bfseries\boldmath\(\phi_j(C_j\cup\dneigh{B_j}) \subset A\) and \(\phi_j(B_j\setminus C_j) \cap A = \emptyset\):} See figure 3. For any \(v \in A\setminus \{\root\}\), let \(\phi_v\) be any automorphism of \(G\) such that \(\phi_v(v) = \root\) and \(\phi_v(\root) = v\). See figure 3 for one such example of \(\phi_1\). By definition, \(\phi_v(\{v1,v2,\dots,v(d-1)\}) = \{1,\dots,d\}\setminus \{v\}\), so
+
+\[\phi_v(C_v\cup\dneigh{B_v}) = \{v,\root\}\cup(\{1,\dots,d\}\setminus \{v\}) = A.\]
+
+Furthermore, since \(\phi_v\) is an automorphism and \(\phi_v(C_v\cup\dneigh{B_v}) = A\), it follows that \(\phi_v(B_v\setminus C_v)\cap A = \emptyset\).
+
+\includegraphics[scale=0.1]{phismall.jpg}
+
+For \(v \in A\indx{k}\setminus A\indx{k-1}\), we use a slightly different automorphism (see figure 4 for an example of \(\phi\indx{2}_{111}\)). \(\phi\indx{k}_v(v) = p(v)\) and \(\phi\indx{k}_v(p(v)) = p(p(v))\). This isn't possible in the \(k=0\) case because \(\root\) does not have any parents, but it is possible in general. Then \(\phi\indx{k}_v(C\indx{k}_v) = \phi\indx{k}_v(\{v1,\dots,v(d-1)\}) = \{p(v)1,\dots,p(v)(d-1)\} = C\indx{k-1}_{p(v)}\). Thus,
+
+\[\phi\indx{k}_v(C\indx{k}_v\cup\dneigh{B\indx{k}_v}) = C\indx{k-1}_{p(v)}\cup \{p(v),p(p(v))\} \subset A.\]
+
+Notice that \(\phi\indx{k}_v\) preserves the parent/descendant structure of all descendants of \(v\). Since each \(u\in B_v\setminus C_v\) is a descendant of some \(u' \in C\indx{k}_v\), \(\phi\indx{k}_v(u)\) is a descendant of \(\phi\indx{k}_v(u')\), but \(\phi\indx{k}_v(u')\) is a leaf of \(A\indx{k}\), so \(\phi\indx{k}_v(u) \notin A\indx{k}\). It follows that \(\phi\indx{k}_v(B\indx{k}_v\setminus C\indx{k}_v)\cap A\indx{k} = \emptyset\).
+
+\includegraphics[scale=0.1]{phibig.jpg}
+
+\item {\bfseries\boldmath\(\dneigh{B_{j'}}\cap\phi_j(C_j\cup\dneigh{B_j}) \in \{\dneigh{B_{j'}},\emptyset\}\):} In part (c) we showed that for any \(v \in A\setminus\{\root\}\), \(\phi_v(C_v\cup\dneigh{B_v}) = A\). By (b), \(\dneigh{B_{j'}} \subseteq A\). Thus Thus, \(\dneigh{B_{j'}} \subseteq\phi_j(C_j\cup\dneigh{B_j})\).
+
+\ind Notice that for all \(k\) and \(v \in A\indx{k}\setminus A\indx{k-1}\), \(\dneigh{B\indx{k}_v} = \{v,p(v)\}\). Suppose for some \(u \in A\indx{k}\setminus A\indx{k-1}\), \(v \in \phi\indx{k}_u(C\indx{k}_u\cup\dneigh{B\indx{k}_u})\). By definition of \(\phi\indx{k}\), \(\phi\indx{k}(\dneigh{B\indx{k}_u})\) is contained in the interior of \(A\indx{k}\). Thus, \(v \in \phi\indx{k}_u(C\indx{k}_u)\), so \(p(u) = p(v)\). In this case, \(\phi\indx{k}(u) = p(v)\) and \(\dneigh{B\indx{k}_v} = \{v,p(v)\}\subset \phi\indx{k}_u(C\indx{k}_u\cup\dneigh{B\indx{k}_u})\). Now suppose \(p(v) \in \phi\indx{k}_u(C\indx{k}_u\cup\dneigh{B_u})\). Then \(p(v) = \phi\indx{k}(u)\) and \(p(v) = p(u)\). In this case, \(\phi\indx{k}(C\indx{k}_u) = C\indx{k-1}_{p(u)} = C\indx{k-1}_{p(v)} \ni v\).
+
+\ind \tr{This is kind of complicated. I would recommend walking through the argument while looking at figures 3 and 4}
+
+\ind Thus, \(\dneigh{B\indx{k}_v}\cap\phi\indx{k}_u(C\indx{k}_u\cup\dneigh{B\indx{k}_u}) \in \{\emptyset, \dneigh{B\indx{k}_v}\}\).
+
+\item {\bfseries\boldmath\(\dneigh{B_{j'}}\subseteq\phi_j(C_j\cup\dneigh{B_j})\) whenever \(\neigh{B_{j'}}\cap\phi_j(C_j)\) is nonempty:} (d) implies (e).
+
+\item {\bfseries\boldmath If \(v\in \phi_j(C_j)\cap\neigh{B_{j'}}\) then \(\dneigh{B_{j'}}\subseteq \phi_j(C_j\cup\neigh{B_j})\):} Suppose \(v \in A\setminus \{\root\}\) is in \(\phi_u(C_u)\) for some \(u\). Then \(v \neq u\) (\(\phi_u(\root) = u\)). \(\phi_u(C_u\cup\neigh{B_u}) = A\setminus \{u\}\) and \(v \in \neigh{B_v}\), so \(\dneigh{B_v} = \{v,\root\} \subseteq A\setminus \{u\} = \phi_u(C_u\cup\neigh{B_u})\).
+
+\ind Fix any \(k \geq 1\). Let \(v \in A\indx{k}\setminus A\indx{k-1}\), so \(v = \neigh{B\indx{k}_v}\). If \(v \in \phi\indx{k}_u(C\indx{k}_u)\), then \(p(v) = p(u) = \phi\indx{k}_u(u) = \phi\indx{k}_u(\neigh{B\indx{k}_u})\). Thus, \(\dneigh{B\indx{k}_v} = \{v,p(v)\} \subseteq \phi\indx{k}(C\indx{k}_u\cup\neigh{B\indx{k}_u})\).
+
+\item {\bfseries\boldmath If \(\phi_j(C_j)\cap\neigh{B_{j'}}\) is non-empty, then \(\dneigh{B_{j'}} \subseteq \phi_j(C_j\cup\dneigh{B_j})\). In fact, \(\phi_j^{-1}(\dneigh{B_{j'}}) = \dneigh{B\indx{1}_{j''}}\) for some \(j''\) and \(C_j\cap\phi_j^{-1}(\neigh{B_{j'}}) = \neigh{B\indx{1}_{j''}}\):}
+
+The first statement is implied by (d). Recall that \(\dneigh{B_v} = \{v,\root\}\). Suppose \(v \in \phi_u(C_u)\). Then \(\phi_u(u) = \root\). This means that \(\phi^{-1}_u(\dneigh{B_v}) = \{u',u\}\) for some \(u' \in C_u = \neigh{B\indx{1}_{u'}}\). But then, by definition, \(\dneigh{B\indx{1}_{u'}} = \{u',u\} = \phi^{-1}_u(\dneigh{B_v})\). Finally, \(C_u \cap \phi^{-1}(v) = u' = \neigh{B\indx{1}_{u'}}\).
+
+\ind Suppose \(v \in A\indx{k}\setminus A\indx{k-1}\) and \(v \in \phi\indx{k}_u(C\indx{k}_u)\) for some \(u \in A\indx{k}\setminus A\indx{k-1}\). Suppose \((\phi\indx{k})^{-1}_u(v) = u' \in C\indx{k}_u\). Then,
+
+\[(\phi\indx{k})^{-1}_u(\dneigh{B\indx{k}_v}) = (\phi\indx{k})^{-1}_u(\{v,p(v)\}) = \{u',u\} = \dneigh{B\indx{k+1}_{u'}}.\]
+
+Finally,
+
+\[C\indx{k}_u\cap(\phi\indx{k})^{-1}_u(\neigh{B_u}) = C\indx{k}_u\cap u' = u' = \neigh{B\indx{k+1}_{u'}}.\]
+
+\item {\bfseries\boldmath \(\phi_j(\dneigh{B_j}\setminus \neigh{B_j})\cap \neigh{B_{j'}}\) nonempty implies \(\phi_j(C_j)\cap\dneigh{B_{j'}} = \emptyset\):}
+
+For any \(v \in A\setminus\{\root\}\), \(\phi_v(\dneigh{B_v}\setminus\neigh{B_v}) = \phi_v(\root) = v\). Then \(\phi_v(C_v)\cap\dneigh{B_v} = (\{1,\dots,d\}\setminus\{v\})\cap \{v,\root\} = \emptyset\).
+
+\ind This is trivially true. For any \(v \in A\indx{k}\setminus A\indx{k-1}\), \(\phi\indx{k}_v(\dneigh{B\indx{k}_v}\setminus\neigh{B\indx{k}_v}) = \phi\indx{k}_v(p(v)) = p(p(v)) \in A\indx{k-1}\). Thus, the intersection is always empty.
+
+\item {\bfseries\boldmath \(\ov{A}\) is admissible:} This is true as long as \(A\indx{k}\) satisfies all of the other conditions.
+
+\item {\bfseries\boldmath \(C\indx{1}_{j'} \subseteq B_j\) implies that there exists a \(j''\) such that \(\phi_j(C\indx{1}_{j'}) = C_{j''}\):} 
+
+Suppose \(C\indx{1}_u \subseteq B_v\) for some \(u,v\). Then \(\phi_v(u) \in A\setminus\{\root,v\}\) and \(\phi_v(v) = \root\). Because \(\phi_v\) is an automorphism, the descendants of \(u\) are mapped to the descendants of \(\phi_v(u)\). That is,
+
+\[\phi_v(C\indx{1}_u) = C_{\phi_v(u)}.\]
+
+Now suppose \(C\indx{k+1}_u \subseteq B\indx{k}_v\) for some appropriate \(u,v\). Then \(u \in C\indx{k}_v\), so \(p(\phi\indx{k}_v(u)) = p(v)\). Since \(\phi\indx{k}\) preserves the descendants of all descendants of \(v\), it follows that \(\phi\indx{k}_v(C\indx{k+1}_u) = C\indx{k}_{\phi\indx{k}_v(u)}\).
+\end{enumerate}
+
+\item[] Assumption \ref{a::padmin}: \textbf{All automorphisms of assumption \ref{a::admissible} are symmetries of \((G,\Xf\gind{G})\):} This follows because \(\{\Xf\gind{G}\vind{v}\tme{0}:v \in V\}\) are i.i.d.
+\end{description}
+\end{example}
+
+The work of \tr{(Cite other local equation papers)} cover the tree topology of example \ref{ex::Potts}. However, this paper extends the local equation to other useful deterministic graph topologies.
+
+\begin{example}[Load Balancing]
+\label{ex::lb}
+\tr{For simplicity I'm only introducing the nearest neighbor load-balancing. This requires asymmetric inputs. I will just assume for now that \(\rate\) is equipped to handle asymmetric inputs.} This model is parameterized by some \(\lambda > 0\).
+
+\ind We introduce a model similar to that of \cite{BudMukWu17}. Consider a network of servers. Jobs arrive at each server at a constant rate of \(\lambda\). Upon arrival, the jobs investigate the size of the server's queue as well as \(\d\) neighboring queues within the network (chosen uniformly at random). The job chooses uniformly at random from the local servers with the shortest queue lengths. Each queue processes jobs at unit rate.
+
+\ind Let \(\sta = \mb{N}_0\), and let \(\Sm\) be the uniform probability measure on \(\{\pm 1\}\). Let \(G = (V,E)\) represent the network topology. Notice that the evolution of any server \(v \in V\) depends not only on its neighbors \(\neigh{v}\), but also on the neighbors of its neighbors (if \((u,v) \in E\) and a job arrives at \(u\), \(u\) may choose to send the job to \(v\) or to one of the neighbors of \(u\) depending on the queue sizes of its neighbors). Thus we work in two graph topologies. The first is \(G\), which is assumed to be a \(\d\)-Cayley tree. This is the topology describing how servers are connected. The second is \(G^E = (V,E^E)\). This is the effective graph topology. Here \(E^E = \{(u,v) \in V^2: d_G(u,v) \in \{1,2\}\}\). Any graph operation (such as \(v\mapsto \neigh{v}\)) done with respect to \(G^E\) will have a superscript \(E\). So, the neighbors of \(v\) with respect to \(G\) are \(\neigh{v}\), but \(\eneigh{v}\) denotes the neighbors of \(v\) with respect to \(G^E\).
+
+\ind To account for the asymmetry of \(\rate\), I'm changing the notation here slightly. We let \(\rate\) depend on \(G^E\) and \(v\). Rewrite condition 2 of definition \ref{a:Xsim} as follows:
+
+\lin
+
+Let \(G = (V,E,\root), G' = (V',E',\root') \in \Gs\) and \(v \in V, u\in V'\). If \(G\vpara{\cl{v}} \cong (G')\vpara{\cl{u}}\), then there exists an isomorphism from \(G\vpara{\cl{v}}\) to \((G')\vpara{\cl{u}}\) (not necessarily preserving the root) such that \(\phi(v) = u\), and 
+
+\[\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf\vind{v}}{\xf\vind{\gneigh{G}{v}}} = \rate\gvpara{G'}{\phi(v)}\stpara{i}\tmepro{t}{\xg\vind{\phi(v)}}{\xg\vind{\phi(\gneigh{G'}{u})}}, \te{ whenever } \xf\vind{\cl{v}} = \xg\vind{\phi(\cl{u})}.\]
+
+\lin
+
+For \(v \in V\), \(\xf \in \cad\vpara{\ecl{v}}:=\cad\vpara{\cl{\cl{v}}}\), \(0 < t < \infty\) and \(i \in \sta\),
+
+\begin{align*}
+\rate\stpara{1}\gvpara{G^E}{v}\tmepro{t}{\xf}{} &= \sum_{u \in \cl{v}} \left(\frac{\d}{|\neigh{v}|}\wedge 1\right)\frac{\lambda\mb{I}_{\xf\vind{v}\tme{t-} = \min_{w\in\neigh{u}} \xf\vind{w}\tme{t-}}}{|\te{argmin}_{w\in\neigh{u}} \xf\vind{w}\tme{t-}|}\\
+\rate\stpara{-1}\gvpara{G^E}{v}\tmepro{t}{\xf}{} &= \mb{I}_{\xf\vind{v}\tme{t-} > 0}\\
+\rate\stpara{i}\gvpara{G^E}{v}\tmepro{t}{\xf}{} &= 0 \te{ when } i \neq \pm 1.
+\end{align*}
+
+Note that for our choice of \(G\), each server checks all of its neighbors at any given time. However, for graphs with higher degree vertices, each server only checks \(\d\) random neighbors. Finally, assume \(\{\Xf\vind{v}\gind{G^E}\tme{0}: v \in V\}\) is i.i.d. Poisson unit rate.
+
+We can now verify the assumptions.
+
+\begin{description}
+\item[] \cite[Assumption \ref{F-a::bddinit}]{F}: \textbf{Initial distribution is bounded in expectation:}
+
+\[\sup_{G,v} \ex{|\Xf\vind{v}\gind{G}\tme{0}|} = 1 < \infty.\]
+
+\item[] \cite[Assumption \ref{F-a::bddr}]{F}: \textbf{Jump rates are bounded. Jump rates of the ground jump point process are bounded:} The jump rate is maximized when \(\xf\vind{v}\tme{t-}\) is strictly smaller than all of its neighbors and their neighbors.
+
+\[\sup_{G,v,t,\xf,i} \rate\stpara{i}\gvpara{G^E}{v}\tmepro{t}{\xf}{} \leq \sup_{G,v}\left(\frac{d}{|\neigh{v}|}\wedge 1\right)(|\neigh{v}|+1)\lambda \vee 1\leq (d+1)\lambda\vee 1 < \infty.\]
+
+\item[] \cite[Assumption \ref{F-a::liprx}]{F}: \textbf{Jump rates are Lipschitz with respect to history:} As written, load-balancing doesn't satisfy this. However, it turns out for Markov processes this assumption is not necessary \tr{Make the changes}. I hypothesize that we can replace this Lipschitz assumption with a supremum type assumption for non-Markov processes. However, I'll have to see if the Hawkes process satisfies this first.
+
+\item[] \cite[Assumption \ref{F-CI::indinit}]{F}: \textbf{Initial distributions are independent:} We assumed the initial distribution was i.i.d.
+
+\item[] Assumption \ref{a::liprt}: \textbf{The continuous part of jump rates are locally Lipschitz in time:} This is trivially true because the jump rate depends only on \(\Xf\vind{\ecl{v}}\tme{t-}\).
+
+\item[] Assumption \ref{a::lctr}: \textbf{Jump rates are left-continuous in time and discontinuities match history:} Again, trivially true because \(\Xf\) is Markov.
+
+\item[] Assumption \ref{a::admissible}: \textbf{Graph geometry is sufficiently symmetric:} Let \(\tree{k}\) indicate the subtree of \(G\) with \(k\) generations of descendants. Thus, \(\tree{0} = \{\root\}\), \(\tree{1} = \{\root,1,\dots,d\}\) and so on. That is, \(\tree{k} = \{v \in V: d_G(\root,v) \leq k\}\). We use the following notation for graph operations:
+
+\tr{Move this to the beginning of the example.}
 
 \begin{itemize}
-\item Ising/Potts Model on the regular tree.
+\item \(\neigh{v}\) is the neighborhood of \(v\) wrt \(G\). \(\eneigh{v}\) is the neighborhood of \(v\) wrt \(G^E\).
 
-\item Ising/Potts Model on the lattice (a counterexample).
+\item \(\dneigh{v}\) is the double neighborhood of \(v\) wrt \(G\). \(\deneigh{v}\) is the double neighborhood of \(v\) wrt \(G^E\).
 
-\item \(k\)-neighbor JSQ routing for queues.
+\item \(\cl{v} = v\cup \neigh{v}\). \(\ecl{v} = v\cup\eneigh{v}\).
 
-\item Asymmetric Exclusion Process.
-
-\item Neuronal Models on tree-like structures.
+\item For \(U \subset V\), \(\inte{U} = \{v \in U: \neigh{v}\subseteq U\}\). \(\einte{U} = \{v \in U: \eneigh{v}\subseteq U\}\).
 \end{itemize}
+
+Let \(A = \tree{5}\). In general, define \(A\indx{k} = \tree{5+2k}\). Then \(A\indx{1} = \ecl{A}\) and \(A\indx{k+1} = \ecl{A\indx{k}}\). We are now ready to start verifying conditions. All illustrations will cover the \(\d = 3\) case. All edges on drawn graphs will be with respect to \(G\), not \(G^E\). All arguments will be made for \(A\indx{k}\) for all \(k \in \mb{N}_0\).
+
+\ind Note: I say a vertex \(v\in V\) is in the \(k\)th generation if \(d_G(v,\root) = k\). This stratification makes it much easier to talk about graph topology. Symbolically this will be written \(g(v) = k\) or \(v \in \bdry{\tree{k}}\). \tr{I made a mistake in the illustrations. Due to assumption \ref{a::admissible}(d), \(A\) must be 5 generations, not 4, but all the illustrations have \(A\) as 4 generations. I'll fix this later.}
+
+\begin{enumerate}[(a)]
+\item {\bfseries\boldmath Definition of \(\{B_j\}\):} Fix \(k\). We name the branches of \(A\indx{k}\) after vertices \(v\) in the \(2k + 3\)rd generation. For \(v \in \bdry{\tree{2k+3}}\), \(B\indx{k}_v\) is the maximal subset of descendants of \(v\) such that \(B\indx{k}_v\cap A\indx{k} = \emptyset\). For every vertex \(u \in (A\indx{k})^c\), there exists a unique \(v \in \bdry{\tree{2k+3}}\) such that \(v\) is the ancestor of \(u\) (with respect to \(G\)!). Thus, \(\{B\indx{k}_v:v \in \bdry{\tree{k}}\}\) is a partition of \((A\indx{k})^c\). (See figure 5 for a partial illustration of \(A,B_{111}\) and \(C_{111}\) \tr{fix illustration}).
+
+\includegraphics[scale=0.1]{fattreeABC.jpg}
+
+\item {\bfseries\boldmath \(\deneigh{B_j} \subseteq A\):} See figure 3 for an example of \(\deneigh{B_{111}}\) \tr{fix illustration}.
+
+\ind Fix \(k\). For \(v \in A\indx{k}\), 
+
+\[\deneigh{B\indx{k}_v} = \left(\desc(v)\cap A\indx{k}\right)\cup\{v,p(v)\},\]
+
+where \(\desc(v) = \{u\in V: p^m(u) = v\te{ for some }m\}\) is the set of descendants of \(v\). This is clearly a subset of \(A\indx{k}\) since \(\{v,p(v)\} \subset \bdry{\tree{2k+3}}\cup\bdry{\tree{2k+2}}\).
+
+\ind\tr{This works because \(A\indx{k} = \bigcup_{m=0}^{2k+5} \bdry{\tree{m}}\).}
+
+\item {\bfseries\boldmath \(\phi_j(C_j\cup\deneigh{B_j}) \subset A\) and \(\phi_j(B_j\setminus C_j) \cap A = \emptyset\):}
+
+See figure 3 for an illustration of \(\phi_{111}(C_{111}\cap \deneigh{B_{111}})\) \tr{fix}.
+
+\ind We can explicitly describe \(\phi\). First, \(\phi\indx{k}_v(p(v)) = p^3(v)\) (in the \(k=0\) case, this is just the root). Suppose \(u\) is a descendant of \(p(v)\). Using our naming convention, \(u = p(v)w\) where \(w\) is another string of numbers indicating the path from \(p(v)\) to \(u\). Then \(\phi\indx{k}_v(u) = \phi\indx{k}_v(p(v))w\). (we treat \(\root w\) as \(w\)).
+
+\ind For example, let \(u = 21324221\), and suppose \(v = 21323\). Then \(k = 1\) because \(v \in \bdry{\tree{5}} = \bdry{\tree{2*1+3}}\). \(p(v) = 2132\) and \(w = 4221\). Then \(\phi\indx{1}_v(p(v)) = 21\), so \(\phi\indx{1}_v(u) = \phi\indx{1}_v(p(v))w = 214221\). Furthermore, \(\phi\indx{1}_v(v) = 213\). \tr{Explain this in terms of paths. That's a more intuitive way of understanding these automorphisms. It's also a good way to rigorously prove that these are automorphisms.}
+
+\ind Notice that this does not uniquely define \(\phi\indx{k}_v\), but it does define \(\phi\indx{k}_v\) on all vertices we are interested in. In particular, if \(u\) is \(p(v)\) or a descendant of \(p(v)\) and \(u \in \bdry{\tree{m}}\), then \(\phi\indx{k}_v(u) \in \bdry{\tree{m-2}}\).
+
+\ind Now we can address the problem. Fix \(k\) and \(v \in \bdry{\tree{2k+3}}\). Notice that \(C\indx{k}_v\cup\deneigh{B\indx{k}_v} \subset \cup_{m=2k+2}^{2k+7} \bdry{\tree{m}}\). Furthermore, all elements of \(C\indx{k}_v\cup\deneigh{B\indx{k}_v}\) except \(p(v)\) are descendants of \(p(v)\). Thus,
+
+\[\phi\indx{k}_v(C\indx{k}_v\cup\deneigh{B\indx{k}_v}) \subset \cup_{m=2k}^{2k+5} \bdry{\tree{m}} \subseteq A\indx{k}.\]
+
+Furthermore, if \(u \in B\indx{k}_v \setminus C\indx{k}_v\), then \(g(u) > 2k+7\), so \(\phi\indx{k}_v(u) \in \bdry{\tree{m}}\) for some \(m > 2k+5\). But then \(\bdry{\tree{m}}\cap A\indx{k} = \emptyset\), so \(\phi\indx{k}_v(u) \notin A\indx{k}\).
+
+\item {\bfseries\boldmath \(\deneigh{B_{j'}}\cap\phi_j(C_j\cup\deneigh{B_j}) \in \{\deneigh{B_{j'}},\emptyset\}\):}
+
+We can argue using the definition of \(\phi\indx{k}_v\) defined above. 
+
+\[C\indx{k}_v\cup\deneigh{B\indx{k}_v} = \left(\desc(v)\cap A\indx{k+1}\right)\cup\{v,p(v)\}.\]
+
+Thus,
+
+\[\phi\indx{k}_v(C\indx{k}_v\cup\deneigh{B\indx{k}_v}) = \left(\desc(\phi\indx{k}_v(v))\cap A\indx{k}\right)\cup\{\phi\indx{k}_v(v),p^3(v)\}.\]
+
+\ind It's easier to think in terms of generations:
+
+\[\bdry{\tree{m}}\cap \phi\indx{k}_v(C\indx{k}_v\cup\deneigh{B\indx{k}_v}) = \begin{cases}
+\{w: p^{m-2k-1}(w) = \phi\indx{k}_v(v)\} &\te{ if } 2k+5\geq m > 2k+1\\
+\{\phi\indx{k}_v(v)\} &\te{ if } m = 2k+1\\
+\{p^3(v)\} &\te{ if } m = 2k\\
+\emptyset &\te{ otherwise}
+\end{cases}.\]
+
+\ind Suppose there exist a \(w \in \deneigh{B\indx{k}_u}\cap \phi\indx{k}_v(C\indx{k}_v\cup\deneigh{B\indx{k}_v})\) for some \(u\). 
+
+\begin{description}
+\item[Case 1: ] If \(2k+4\leq g(w) \leq 2k+5\), then \(w\) must be a descendant of \(u\) and a descendant of \(\phi\indx{k}_v(v)\). It follows that \(p^2(u) = \phi\indx{k}_v(v)\), so \(\deneigh{B\indx{k}_u}\) is contained in \(\phi\indx{k}_v(v)\) and its descendants. Thus \(\deneigh{B\indx{k}_u} \subset \phi\indx{k}_v(C\indx{k}_v\cup\deneigh{B\indx{k}_v})\).
+
+\item[Case 2: ] If \(g(w) = 2k+3\), \(p(w) = u\). Furthermore, \(p^3(w) = \phi\indx{k}_v(v)\). It follows that \(p^2(u) = \phi\indx{k}_v(v)\). Conclude as in case 1.
+
+\item[Case 3: ] If \(g(w) = 2k+2\), then \(w = p(u)\) and \(p(w) = \phi\indx{k}_v(v)\). Again, it follows that \(p^2(u) = \phi\indx{k}_v(v)\) and we can conclude as in case 1.
+\end{description}
+
+Thus, if \(\deneigh{B\indx{k}_u}\cap \phi\indx{k}_v(C\indx{k}_v\cup\deneigh{B\indx{k}_v})\) is non-empty, then it is \(\deneigh{B\indx{k}_u}\).
+
+\item {\bfseries\boldmath\(\dneigh{B_{j'}}\subseteq\phi_j(C_j\cup\dneigh{B_j})\) whenever \(\neigh{B_{j'}}\cap\phi_j(C_j)\) is nonempty:} (d) implies (e).
+
+\item {\bfseries\boldmath If \(v\in \phi_j(C_j)\cap\eneigh{B_{j'}}\) then \(\deneigh{B_{j'}}\subseteq \phi_j(C_j\cup\eneigh{B_j})\):}
+
+Suppose \(u \in \eneigh{B\indx{k}_{v'}}\) and \(u \in \phi\indx{k}_v(C\indx{k}_v)\). Then \(u\) is a descendant of \(v'\), and \(u\) is a descendant of \(\phi\indx{k}_v(v)\). Thus, \(p^2(v') = \phi\indx{k}_v(v)\).
+
+\ind Note that \(\eneigh{B\indx{k}_v} = \desc(v)\cap A\indx{k}\), so \(\phi\indx{k}_v(C\indx{k}_v\cup\eneigh{B\indx{k}_v}) = \desc(\phi\indx{k}_v(v))\cap A\indx{k}\). However, \(\eneigh{B\indx{k}_{v'}} = \desc(v')\cap A\indx{k} \subset \desc(\phi\indx{k}_v(v))\cap A\indx{k}\), so we're done.
+
+\item {\bfseries\boldmath If \(\phi_j(C_j)\cap\eneigh{B_{j'}}\) is non-empty, then \(\deneigh{B_{j'}} \subseteq \phi_j(C_j\cup\deneigh{B_j})\). In fact, \(\phi_j^{-1}(\deneigh{B_{j'}}) = \deneigh{B\indx{1}_{j''}}\) for some \(j''\) and \(C_j\cap\phi_j^{-1}(\eneigh{B_{j'}}) = \eneigh{B\indx{1}_{j''}}\):}
+
+The first part is implied by (d). Recall that \(\deneigh{B\indx{k}_v} = \left(\desc(v)\cap A\indx{k}\right)\cup\{v,p(v)\}\). Now suppose \(\phi\indx{k}_{v'}(C\indx{k}_{v'}) \cap \eneigh{B\indx{k}_v}\) is nonempty. What are these sets?
+
+\[\phi\indx{k}_{v'}(C\indx{k}_{v'}) = \left(\bigcup_{m=2k+4}^{2k+5}\bdry{\tree{m}}\right)\cap \desc(\phi\indx{k}_{v'}(v')).\]
+
+\[\eneigh{B\indx{k}_v} = \left(\bigcup_{m=2k+4}^{2k+5}\bdry{\tree{m}}\right)\cap \desc(v) \subseteq \phi\indx{k}_{v'}(C\indx{k}_{v'}).\]
+
+So it should be clear that if \(\deneigh{B\indx{k}_v} = \left(\desc(v)\cap A\indx{k}\right)\cup\{v,p(v)\}\) is non-empty, then \(p^2(v) = \phi\indx{k}_{v'}(v')\). Since descendants of \(p(v')\) are preserved under \(\phi\indx{k}_{v'}\), it follows that descendants of \(p^3(v')\) are preserved under the inverse \tr{(be a little more clear what this means)}. Thus,
+
+\[C\indx{k}_{v'}\supseteq (\phi\indx{k}_{v'})^{-1}(\eneigh{B\indx{k}_v}) = \left(\bigcup_{m=2k+6}^{2k+7}\bdry{\tree{m}}\right)\cap \desc((\phi\indx{k}_{v'})^{-1}(v)) = \eneigh{B\indx{k+1}_{(\phi\indx{k}_{v'})^{-1}(v)}}\]
+
+Furthermore,
+
+\[\deneigh{B\indx{k}_v} = \eneigh{B\indx{k}_v}\cup\{v,p(v)\},\]
+
+so
+
+\[(\phi\indx{k}_{v'})^{-1}(\deneigh{B\indx{k}_v}) = \eneigh{B\indx{k+1}_{(\phi\indx{k}_{v'})^{-1}(v)}} \cup \{(\phi\indx{k}_{v'})^{-1}(v),p((\phi\indx{k}_{v'})^{-1}(v))\} = \deneigh{B\indx{k+1}_{(\phi\indx{k}_{v'})^{-1}(v)}}.\]
+
+\item {\bfseries\boldmath \(\phi_j(\deneigh{B_j}\setminus \eneigh{B_j})\cap \eneigh{B_{j'}}\) nonempty implies \(\phi_j(C_j)\cap\deneigh{B_{j'}} = \emptyset\):}
+
+\[\deneigh{B\indx{k}_v}\setminus \eneigh{B\indx{k}_v} = \{v,p(v)\} \in \cup_{m=2k+2}^{2k+3}\bdry{\tree{m}}.\]
+
+Then,
+
+\[\phi\indx{k}_v(\{v,p(v)\}) \in \cup_{m=2k}^{2k+1}\bdry{\tree{m}}.\]
+
+However, for any \(u\in \bdry{\tree{2k+3}}\), 
+
+\[\eneigh{B\indx{k}_u} \in \cup_{m=2k+4}^{2k+5}.\]
+
+Thus, \(\phi\indx{k}_v(\deneigh{B\indx{k}_v}\setminus \eneigh{B\indx{k}_v}) \cap \eneigh{B\indx{k}_u} = \emptyset\).
+
+\item {\bfseries\boldmath \(\ov{A}\) is admissible:} This is true as long as \(A\indx{k}\) satisfies all of the other conditions.
+
+\item {\bfseries\boldmath \(C\indx{1}_{j'} \subseteq B_j\) implies that there exists a \(j''\) such that \(\phi_j(C\indx{1}_{j'}) = C_{j''}\):} 
+
+If \(C\indx{k+1}_{v'} \subseteq B\indx{k}_v\), it follows that \(p^2(v') = v\). \(v'\) is a descendant of \(p(v)\), so it's descendants are preserved under \(\phi\indx{k}_v\).
+
+\[C\indx{k+1}_{v'} = \desc(v')\cap \left(\cup_{m=2k+8}^{2k+9}\bdry{\tree{m}}\right).\]
+
+Thus,
+
+\[\phi\indx{k}_v(C\indx{k+1}_{v'}) = \desc(\phi\indx{k}_v(v'))\cap \left(\cup_{m=2k+6}^{2k+7}\bdry{\tree{m}}\right) = C\indx{k}_{\phi\indx{k}_v(v')}.\]
+\end{enumerate}
+
+\item[] Assumption \ref{a::padmin}: \textbf{The starting distribution is independent:} \tr{This is going to change soon. Rate needs to be consistent across \(G\).} \(\{\Xf\vind{v}\tme{0}:v \in V\}\) is assumed to be i.i.d. 
+\end{description}
+
+\end{example}
+
+\begin{example}[Hawkes Process]
+\label{ex::Hawkes}
+
+In general, the non-linear Hawkes process is used to describe point processes with clustering behavior. We are particularly interested in applications to neuronal modeling. The jump rates of the Hawkes process can be described in the following manner \cite{BreMas96}:
+
+\[\rate\stpara{1}\gvpara{G}{v}\tmepro{t}{\xf\vind{\cl{v}}}{} = \psi_v\left(\frac{1}{|\neigh{u}|}\sum_{u \in \cl{v}}\int_{(0,t)}  h_{uv}(t-s)\,d\xf\vind{u}(s)\right).\]
+
+\(\rate\stpara{i} \equiv 0\) for any \(i \neq 1\). \tr{The scaling factor and finite history are our additions}. Within the neuroscience community there is a lot of interest in what functions \(\{\psi_v,h_{uv}\}\) and graph topologies can produce stable stationary processes \tr{choose citations}. \cite{GerDegTru17} introduce a specific nonlinear model for the single neuron model, derive an approximation and investigate stability conditions. Their model is given by,
+
+\[\psi(x) = ce^x\te{ and } h(s) = J_r\theta(s)e^{-s/\tau_r} + J_a\theta(s)e^{-s/\tau_a} + J_{ref}\theta(s)\theta(\tau_{ref}-s).\]
+
+Here \(\theta\) is the Heaviside function, \(J_r\) and \(J_a\) are parameters used to model the behavior of the neuron (refractory or burst tendencies, adaptation vs inhibition, etc). \(\tau_r,\tau_s\) are time constants. \(J_{ref} = -\infty\) and \(\tau_{ref}\) are used to enforce an absolute refractory period (time when the neuron cannot fire).
+
+\ind We extend this model to multiple neurons using the simplest approach:
+
+\[\psi_v(x) = \psi(x),\quad h_{vv}(s) = h(s) \te{ and } h_{uv}(s) = J_{uv}e^{-s/\tau_{uv}}.\]
+
+We make the following assumptions:
+
+\begin{enumerate}
+\item \(J_re^{-\tau_{ref}/\tau_r} + J_ae^{-\tau_{ref}/\tau_a} = 0\) with \(J_r < 0\). This ensures the continuity of \(h\). 
+
+\item \(\tau_{\cdot},c > 0\).
+
+\item \(J_{uv} := J_u\) does not depend on \(v\).
+
+\item \(J_u \in \{\pm J\}\) for some fixed \(J > 0\). If \(J_u < 0\), then \(u\) is called inhibitory. Otherwise it is called excitatory.
+
+\item \(\Xf\vind{v}\tme{0} = 0\) a.s. for all \(v\). \tr{Consider including history.}
+
+\item \(\tau_{uv} = \tau_{in}\) if \(u\) is inhibitory. \(\tau_{uv} = \tau_{ex}\) if \(u\) is excitatory.
+\end{enumerate}
+
+\tr{I introduce a heterogenous network here. An alternative approach would be to set \(\sta = \mb{N}_0^2\) to represent a excitatory, inhibitory pair.} Notice this introduces a heterogeneous network with two types of neurons. Excitatory and inhibitory. Let \(G^{\pm} = (V^\pm,E^\pm,\root^\pm)\) be two \(\d\)-Cayley graphs representing networks of excitatory and inhibitory neurons. Let \(\phi^{-\ra+}: V^- \ra V^+\) be an isomorphism \tr{(assume \(\phi^{-\ra+}(\root-) = \root+\))}. Let \(G = (V,E)\) be the graph defined by,
+
+\[V = V^+\cup V^- \te{ and } E = E^+\cup E^-\cup \{(\phi^{-\ra+}(v),v): v \in V^-\}.\]
+
+Thus we have an excitatory and inhibitory network, and each neuron is connected to precisely one neuron in the other network. We can now start verifying assumptions:
+
+\begin{description}
+\item[] \item[] \cite[Assumption \ref{F-a::bddinit}]{F}: \textbf{Initial distribution is bounded in expectation:}
+
+Better yet, they are constant and almost surely 0.
+
+\item[] \cite[Assumption \ref{F-a::bddr}]{F}: \textbf{Jump rates are bounded. Jump rates of the ground jump point process are bounded:}
+
+Recall that \(\xf_v\) cannot jump more than once in an interval of size \(\tau_{ref}\). Thus,
+
+\begin{align*}
+\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf\vind{v}}{} &\leq c\vee c\exp\left(\frac{1}{|\neigh{v}|}\left(\sum_{m=0}^\infty J_re^{-m\tau_{ref}/\tau_r} + J_ae^{-m\tau_{ref}/\tau_a}+\sum_{u \in \cl{v}} J_ue^{-m\tau_{ref}/\tau_{u}}\right)\right)\\
+&= c\vee c\exp\left(\frac{1}{|\neigh{v}|}\left(\frac{J_r}{1 - e^{-\tau_{ref}/\tau_r}} + \frac{J_a}{1 - e^{-\tau_{ref}/\tau_a}} + \sum_{u\in \cl{v}} \frac{J_u}{1 - e^{-\tau_{ref}/\tau_u}}\right)\right)\\
+&\leq c\vee c\exp\left(\frac{1}{|\neigh{v}|}\left(\frac{J_a}{1 - e^{-\tau_{ref}/\tau_a}} + (|\neigh{v}|+1)\frac{J}{1 - e^{-\tau_{ref}/\tau_{ex}}}\right)\right)\\
+&\leq c\exp\left(\frac{J_a + 2J}{1 - e^{-\tau_{ref}/\max\{\tau_a,\tau_{ex}\}}}\right) < \infty.
+\end{align*}
+
+\item[] \cite[Assumption \ref{F-a::liprx}]{F}: \textbf{Jump rates are Lipschitz with respect to history:}
+
+Now our process is no longer Markov, and timing makes a difference. Since the jump rate is bounded, we can ignore the case where \(\stmet{t-}(\xf,\xg) \geq 1\) (so ignore the case in which \(\xf\) and \(\xg\) jumped a different number of times in the past). Instead, fix \(G,v,\xf,\xg,t\) and suppose \(\sup_{u \in \cl{v}}\stmet{t-}(\xf\vind{u},\xg\vind{u}) = \epsilon < 1\). What does this mean? This means that on the interval \([0,t)\), \(\xf\) and \(\xg\) had the same number of jumps, and the timing of respective jumps varied by at most \(\epsilon\).
+
+\ind Now, notice that \(x \mapsto \exp(x)\) is Lipschitz on the interval \(\left(-\infty,\frac{J_a + 2J}{1 - e^{-\tau_{ref}/\max\{\tau_a,\tau_{ex}\}}}\right]\) with coefficient \(L_1 < \infty\). Therefore, it suffices to prove that
+
+\[\frac{1}{|\neigh{v}|}\sum_{u \in \cl{v}}\int_0^t h_{uv}(t-s)\,d\xf_u(s),\]
+
+is Lipschitz. Notice that \(h_{uv}\) is Lipschitz for all \(u,v\) (it's a sum of negative exponentials, and there are finitely many combinations of constants that define all of the \(u,v \in V\) \tr{rewrite}) with maximal Lipschitz coefficient \(L_2 <\infty\). Furthermore, the integral decomposes into a sum of at most \((|\neigh{v}|+1)\left\lceil\frac{t}{\tau_{ref}}\right\rceil\) elements. \tr{rewrite this coherently when I am less tired}. Thus, \(\rate\) is Lipschitz with coefficient bounded by,
+
+\[\jumpbd{T}  = L_1L_2\left\lceil\frac{T}{\tau_{ref}}\right\rceil.\]
+
+\tr{Rewrite this whole assumption!}
+
+\item[] \cite[Assumption \ref{F-CI::indinit}]{F}: \textbf{Initial distributions are independent:}
+
+The initial distributions are deterministic and therefore independent \tr{Consider allowing history.}
+
+\item[] Assumption \ref{a::liprt}: \textbf{The continuous part of jump rates are locally Lipschitz in time:}
+
+Suppose \(t\) is a point of continuity for \(\xf\vind{\cl{v}}\). Let \(t^v_i\) be the jump times of \(\xf\vind{v}\). Suppose also that \(t - t^v_i > \tau_{ref}\) for all \(t^v_i < t\).
+
+\begin{align*}
+\frac{d}{dt}\rate\stpara{1}\gvpara{G}{v}\tmepro{t}{\xf}{} &= c\exp\left(\frac{1}{|\neigh{v}|}\sum_{u\in\cl{v}}\int_{(0,t)} h_{uv}(t-s)\,d\xf\vind{u}(s)\right)\frac{d}{dt}\left(\frac{1}{|\neigh{v}|}\sum_{u\in\cl{v}}\int_{(0,t)} h_{uv}(t-s)\,d\xf\vind{u}(s)\right)\\
+&\leq \frac{c\exp\left(\frac{J_a + 2J}{1 - e^{-\tau_{ref}/\max\{\tau_a,\tau_{ex}\}}}\right)}{|\neigh{v}|}\frac{d}{dt}\left(\sum_{t^v_i < t} J_re^{-(t-t^v_i)/\tau_r} + J_ae^{-(t-t^v_i)/\tau_a} + \sum_{u\in\neigh{v}}\sum_{t^u_i < t} J_ue^{-(t-t^u_i)/\tau_u}\right)\\
+&\leq 2c\exp\left(\frac{J_a + 2J}{1 - e^{-\tau_{ref}/\max\{\tau_a,\tau_{ex}\}}}\right)\frac{J_r + J_a + J}{\min\{\tau_r,\tau_a,\tau_{ex},\tau_{in}\}}\left\lceil\frac{t}{\tau_{ref}}\right\rceil < \infty
+\end{align*}
+
+\item[] Assumption \ref{a::lctr}: \textbf{Jump rates are left-continuous in time and discontinuities match history:}
+
+This is a direct artifact of the integral defining the jump rate.
+
+\item[] Assumptions \ref{a::admissible} and \ref{a::padmin} \textbf{Graph geometry is sufficiently symmetric with respect to symmetries of \(\Xf\):}
+
+I combine the last two assumptions because unlike in examples \ref{ex::Potts} and \ref{ex::lb}, not all automorphisms of \(G\) are symmetries of \(\Xf\).
+
+\ind Let \(\phi^+\) be an automorphism of \(G^+\). Define,
+
+\[\phi^- = (\phi^{-\ra+})^{-1}\phi^+\phi^{-\ra+}.\]
+
+Then,
+
+\[\phi(v) = \begin{cases}
+\phi^+(v) &\te{ if } v \in V^+\\
+\phi^-(v) &\te{ if } v \in V^-
+\end{cases},\]
+
+is an automorphism of \(G\) and a symmetry of \(\Xf\). This gives us a injection from any admissible set and its symmetries on the \(\d\)-Cayley tree to the admissible sets of \(G\) and their symmetries.
+\end{description}
+
+\end{example}
+
+\begin{example}[TASEP with delay]
+
+This model is based off of TASEP with movement rate \(\alpha\). However, particle transfer from one vertex is not instantaneous, and instead happens at rate \(\beta\). This produces an example of a process which is distinctly asymmetric and non-Markovian.
+
+\ind These dynamics can be described in the following manner. Let \(\sta = \{0,1\}\). Let \(G = (V,E,\root)\), where \(V = \mb{Z}\), \(E = \{(v,v+1): v \in V\}\) and \(\root = 0\). For \((G,\xf)\in \Gs\sp{\sta}\), let \(\{\tau^v_m(t,\xf)\}\) be the transition times of \(\xf\vind{v}\) in decreasing order. Thus, \(t \geq \tau^v_1(t,\xf) \geq \tau^v_2(t,\xf) \geq\cdots\). If \(\xf\vind{v}\) has had fewer than \(m\) transitions, \(\tau^v_m(t,\xf) = 0\).
+
+\begin{align*}
+\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf_{\cl{v}}}{} &=  \begin{cases}
+\beta &\te{ if } \xf\vind{v}\tme{t-} = \xf\vind{v-1}\tme{t-} = 0\te{ and } \tau^{v-1}_1(t,\xf) > \tau^v_1(t,\xf)\\
+\beta &\te{ if } \xf\vind{v}\tme{t-} = 0,\xf\vind{v-1}\tme{t-} = 1\te{ and } \tau^{v-1}_2(t,\xf) > \tau^v_1(t,\xf)\\
+0&\te{ otherwise}
+\end{cases}\\
+\rate\gvpara{G}{v}\stpara{-1}\tmepro{t}{\xf_{\cl{v}}}{} &=  \begin{cases}
+\alpha &\te{ if } \xf\vind{v}\tme{t-} = 1, \xf\vind{v+1}\tme{t-} = 0\te{ and } \tau^{v}_2(t,\xf) \leq \tau^{v+1}_1(t,\xf)\\
+0&\te{ otherwise}
+\end{cases}\\
+\rate\gvpara{G}{v}\stpara{i}\tmepro{\cdot}{\cdot}{} &\equiv 0\te{ for all } i \neq \pm 1.
+\end{align*}
+
+Finally, we assume for any \(\tilde{G} \in \Gs\), and \(v \in V\gind{\tilde{G}}\) such that \(|\neigh{v}| \neq 2\), \(\rate\gvpara{\tilde{G}}{v}\stpara{i}\tmepro{t}{\cdot}{} \equiv 0\). We can tailor the density of traffic through the initial distribution. \(\{\Xf\vind{v}\tme{0}:v \in V\}\) are assumed to be i.i.d. Bernoulli random variables with parameter \(p \in (0,1)\).
+
+\ind We can now verify assumptions:
+
+\begin{description}
+\item[] \cite[Assumption \ref{F-a::bddinit}]{F}: \textbf{Initial distribution is bounded in expectation:}
+
+The state space is bounded by 1, so this is trivially true.
+
+\item[] \cite[Assumption \ref{F-a::bddr}]{F}: \textbf{Jump rates are bounded. Jump rates of the ground jump point process are bounded:}
+
+Jump rates are bounded from above by \(\max\{\alpha,\beta\}\).
+
+\item[] \cite[Assumption \ref{F-a::liprx}]{F}: \textbf{Jump rates are Lipschitz with respect to history:}
+
+\tr{Restrict suprema to valid paths.} Notice that if \(\xf\vind{v}\tme{t-} \neq \xg\vind{v}\tme{t-}\), then \(|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf\vind{v}}{} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf\vind{v}}{}| \geq \min\{\alpha,\beta,|\alpha-\beta|\}\). Now suppose \(\sup_{u\in\cl{v}} \stmet{t-}(\xf\vind{u},\xg\vind{u}) = \ep < 1\).
+
+\tr{Modify lipschitz condition to \(|r(x_{\cl{v}}) - r(y_{\cl{v}})|\leq C\inf_{\lambda}\sup_{u\in\cl{v}}\|x_u - y_u\|_t\).}
+
+Any small change in time does not change the value of the jump rate as all that matters is the order of events.
+
+\item[] \cite[Assumption \ref{F-CI::indinit}]{F}: \textbf{Initial distributions are independent:}
+
+Yup.
+
+\item[] Assumption \ref{a::liprt}: \textbf{The continuous part of jump rates are locally Lipschitz in time:}
+
+In fact, they are constant.
+
+\item[] Assumption \ref{a::lctr}: \textbf{Jump rates are left-continuous in time and discontinuities match history:}
+
+Yup.
+
+\item[] Assumptions \ref{a::admissible} and \ref{a::padmin} \textbf{Graph geometry is sufficiently symmetric with respect to symmetries of \(\Xf\):}
+
+The symmetries of \(\Xf\) consist of all mappings of the form \(\phi(v) = v + m\) for some \(m \in \mb{Z}\). Note that automorphisms of \(G\) also include mappings of the form \(\phi(v) = -v+m\), but these are not symmetries of \(\Xf\). This is why we cannot use the symmetries introduced in the first example. Before we verify this, note the following:
+
+\begin{enumerate}
+\item \(A\indx{k} = \{-k-1,\dots,0,\dots,k+1\}\), and \(A = A\indx{0}\).
+
+\item The branches are given by \(B\indx{k}_1 = \{k+2,k+3,\dots\}\) and \(B\indx{k}_{-1} = \{-k-2,-k-3,\dots\}\).
+
+\item For \(j\in \pm 1\), \(\neigh{B\indx{k}_j} = \{j(k+1)\}\) and \(\dneigh{B\indx{k}_j} = \{j(k+1),jk\}\).
+
+\item For \(j \in \pm 1\), \(\phi\indx{k}_j(v) = v - j\).
+\end{enumerate}
+
+Then,
+
+\begin{enumerate}[(a)]
+\item {\bfseries\boldmath Definition of \(\{B_j\}:\)} See item 2 above.
+
+\item {\bfseries\boldmath\(\dneigh{B_j}\subseteq A\):}
+
+\[\dneigh{B\indx{k}_j} = \{j(k+1),jk\} \subset \{-k-1,\dots,0,\dots,k+1\} = A\indx{k}.\]
+
+\item {\bfseries\boldmath \(\phi_j(C_j\cup\dneigh{B_j}) \subset A\) and \(\phi_j(B_j\setminus C_j) \cap A = \emptyset\):}
+
+\begin{align*}
+\phi\indx{k}_j(C\indx{k}_j\cup\dneigh{B\indx{k}_j}) &= \phi\indx{k}_j(\{j(k+2),j(k+1),jk\}) = \{j(k+2) - j,j(k+1)-j,jk-j\}\\
+&= \{j(k+1),jk,j(k-1)\} \subseteq \{-k-1,\dots,k+1\} = A\indx{k}.
+\end{align*}
+
+\item {\bfseries\boldmath \(\dneigh{B_{j'}}\cap\phi_j(C_j\cup\dneigh{B_j}) \in \{\dneigh{B_{j'}},\emptyset\}\):}
+
+When \(k = 0\), \(\phi_j(B_j) = A\), so this is trivially true. When \(k > 0\),
+
+\begin{align*}
+\dneigh{B\indx{k}_{j'}}\cap\phi\indx{k}_j(C\indx{k}_j\cup\dneigh{B\indx{k}_j}) &= \{j'(k+1),j'k\}\cap\{j(k+1),jk,j(k-1)\} \\
+&= \begin{cases}
+\{j'(k+1),j'k\} = \dneigh{B\indx{k}_{j'}}&\te{ if }j = j'\\
+\emptyset &\te{ if } j \neq j'
+\end{cases}.
+\end{align*}
+
+\item {\bfseries\boldmath\(\dneigh{B_{j'}}\subseteq\phi_j(C_j\cup\dneigh{B_j})\) whenever \(\neigh{B_{j'}}\cap\phi_j(C_j)\) is nonempty:} (d) implies (e).
+
+\item {\bfseries\boldmath If \(v\in \phi_j(C_j)\cap\neigh{B_{j'}}\) then \(\dneigh{B_{j'}}\subseteq \phi_j(C_j\cup\neigh{B_j})\):}
+
+\[\phi\indx{k}_j(C\indx{k}_j)\cap\neigh{B\indx{k}_{j'}} = \{j(k+1)\}\cap\{j'(k+1)\}.\]
+
+So it's non-empty if and only if \(j = j'\). But then,
+
+\[\phi\indx{k}_j(\neigh{B\indx{k}_j}\cup C\indx{k}_j) = \{j(k+1),jk\} = \dneigh{B\indx{k}_j}.\]
+
+
+\item {\bfseries\boldmath If \(\phi_j(C_j)\cap\neigh{B_{j'}}\) is non-empty, then \(\dneigh{B_{j'}} \subseteq \phi_j(C_j\cup\dneigh{B_j})\). In fact, \(\phi_j^{-1}(\dneigh{B_{j'}}) = \dneigh{B\indx{1}_{j''}}\) for some \(j''\) and \(C_j\cap\phi_j^{-1}(\neigh{B_{j'}}) = \neigh{B\indx{1}_{j''}}\):}
+
+The first part is implied by part (d). By part (f), we know that if the intersection is non-empty, then \(j = j'\). Thus,
+
+\[(\phi\indx{k}_j)^{-1}(\dneigh{B\indx{k}_j}) = \{j(k+1)+j,jk+j\} = \{j(k+2),j(k+1)\} = \dneigh{B\indx{k+1}_j},\]
+
+and
+
+\[C\indx{k}_j\cap(\phi\indx{k}_j)^{-1}(\neigh{B\indx{k}_j}) = \{j(k+2)\}\cap\{j(k+2)\} = \{j(k+2)\} = \neigh{B\indx{k+1}_j}.\]
+
+\item {\bfseries\boldmath \(\phi_j(\dneigh{B_j}\setminus \neigh{B_j})\cap \neigh{B_{j'}}\) nonempty implies \(\phi_j(C_j)\cap\dneigh{B_{j'}} = \emptyset\):}
+
+\[\phi\indx{k}_j(\dneigh{B\indx{k}_j}\setminus\neigh{B\indx{k}_j})\cap\neigh{B\indx{k}_{j'}} = \{j(k-1)\}\cap \{j'(k+1)\}.\]
+
+This is non-empty if and only if \(j = -j'\) and \(k = 0\). In this case,
+
+\[\phi_j(C_j) \cap \dneigh{B_{j'}} = \{j\}\cap\{j',0\} = \{j\}\cap\{-j,0\} = \emptyset.\]
+
+\item {\bfseries\boldmath \(\ov{A}\) is admissible:} This is true as long as \(A\indx{k}\) satisfies all of the other conditions.
+
+\item {\bfseries\boldmath \(C\indx{1}_{j'} \subseteq B_j\) implies that there exists a \(j''\) such that \(\phi_j(C\indx{1}_{j'}) = C_{j''}\):} 
+
+If \(C\indx{k+1}_{j'} \subseteq B\indx{k}_j\), then \(j = j'\). In this case,
+
+\[\phi\indx{k}_j(C\indx{k+1}_j) = \{j(k+3) - j\} = \{j(k+2)\} = C\indx{k}_j.\]
+
+\end{enumerate}
+\end{description}
+\end{example}
 
 
 \section{Statement of the Local Approximation}
@@ -998,7 +1673,7 @@ This is exactly the same as the verification in the proof lemma \ref{Uq::marg} w
 \begin{description}
 \item[Case 1: ] \(v \in \phi_j(C_j)\).
 
-By assumption \ref{a::admissible}, \tb{there exists a \(j'\) such that \(\dgneigh{G}{B_{j'}} \subseteq \phi_j(C_j\cup \gneigh{G}{B_j})\), and \(v \in \dgneigh{G}{B_{j'}}\)}. Thus, \(\cratee(\rt,\mark) = \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\).
+By assumption \ref{a::admissible}\tb{(f), there exists a \(j'\) such that \(\dgneigh{G}{B_{j'}} \subseteq \phi_j(C_j\cup \gneigh{G}{B_j})\), and \(v \in \gneigh{G}{B_{j'}}\)}. Thus, \(\cratee(\rt,\mark) = \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\).
 
 \item[Case 2: ] \(v\in \phi_j(\gneigh{G}{B_j})\). 
 
@@ -1016,7 +1691,7 @@ Because \(\Xg\sim\mm\), \(\ratee(\rt,\mark) = \rate\stpara{i}\tmepro{\rt}{\Xg\vi
 
 \item[Case 4: ] \(v \in \phi_j(\dgneigh{G}{B_j}\setminus\gneigh{G}{B_j})\cap \gneigh{G}{B_{j'}}\) for some \(j'\) not necessarily distinct from \(j\).
 
-First, by assumption \ref{a::admissible}, \tb{\(\phi_j(C_j)\cap\dgneigh{G}{B_{j'}}= \emptyset\)}. Because \(\Xg\sim\mm\), \(\ratee(\rt,\mark) = \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\) which is \(\F\vpara{\dgneigh{G}{B_{j'}}}\tpara{\rt-}\)-measurable. We can consider this to be a measurable function of \(\Xg\vind{A\setminus\phi_j(C_j)}\tmi{[0,\rt)}\). By applying \cite[lemma \ref{F-TL::Props}(e)]{F}, we get
+First, by assumption \ref{a::admissible}\tb{(h), \(\phi_j(C_j)\cap\dgneigh{G}{B_{j'}}= \emptyset\)}. Because \(\Xg\sim\mm\), \(\ratee(\rt,\mark) = \brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\) which is \(\F\vpara{\dgneigh{G}{B_{j'}}}\tpara{\rt-}\)-measurable. We can consider this to be a measurable function of \(\Xg\vind{A\setminus\phi_j(C_j)}\tmi{[0,\rt)}\). By applying \cite[lemma \ref{F-TL::Props}(e)]{F}, we get
 
 \begin{align*}
 \cratee(\rt,\mark) &= \ex{\brate\vjpara{v}{B_{j'}}\stpara{i}\tmepro{\rt}{\Xg}{}\middle|\Xg\vind{\phi_j\left(C_j\cup\dgneigh{G}{B_j}\right)}\tmi{[0,\rt)}}\\
@@ -1156,7 +1831,7 @@ Let \(\mmm\indx{k} \defeq \mmm\vpara{A\indx{k}}\) for all \(k\in \mb{N}\). I cla
 
 \[\dense\indx{k}\tpara{t}(\xg\indx{k}) = \frac{d\mm\indx{k}\tpara{0}}{d\mmm\indx{k}\tpara{0}}\exp\left(\sum_{j=1}^{\psize\indx{k}}\sum_{v\in \gneigh{G}{B_j\indx{k}}} \ds\vpara{v}\tpara{t}\left(\xg\indx{k}\vind{\dgneigh{G}{B_j\indx{k}}},\brate\vjpara{v}{B\indx{k}_{j}}\stpara{\cdot}\right) + \sum_{v \in A\indx{k-1}} \ds\vpara{v}\tpara{t}\left(\xg\indx{k}\vind{\cl{v}},\rate\stpara{\cdot}\right)\right),\]
 
-where \(\brate\) is defined as in the statement of lemma \ref{Uq::ext}. To prove this, we first need to understand some properties of \(\mdense\). Fix some \(j \in \{1,\dots,\psize\indx{k}\}\). Let \(j' = j\indx{k}_j\) (as defined in definition \ref{Uq::Extnot}). Let \(\phi = \phi\indx{k}_j\). Apply equation \eqref{Uq::M}, and let \(\xg\vind{v} = \xg\indx{k+1}\vind{\phi^{-1}(v)}\) for all \(v \in A\). First, notice that for any \(j'' \in \{1,\dots,\psize\}\) and \(v \in \gneigh{G}{B_{j''}}\cap\phi(C\indx{k}_j\cup\dgneigh{G}{B\indx{k}_{j}})\), \tb{there exists a \(j'''(v) \in \{1,\dots,\psize\indx{k+1}\}\) such that \(\phi^{-1}(\dgneigh{G}{B_{j''}}) = \dgneigh{G}{B\indx{k+1}_{j'''(v)}}\) for some \(j'''(v)\) such that \(\phi^{-1}(v) \in \dgneigh{G}{B\indx{k+1}_{j'''(v)}}\). }
+where \(\brate\) is defined as in the statement of lemma \ref{Uq::ext}. To prove this, we first need to understand some properties of \(\mdense\). Fix some \(j \in \{1,\dots,\psize\indx{k}\}\). Let \(j' = j\indx{k}_j\) (as defined in definition \ref{Uq::Extnot}). Let \(\phi = \phi\indx{k}_j\). Apply equation \eqref{Uq::M}, and let \(\xg\vind{v} = \xg\indx{k+1}\vind{\phi^{-1}(v)}\) for all \(v \in A\). First, notice that for any \(j'' \in \{1,\dots,\psize\}\) and \(v \in \gneigh{G}{B_{j''}}\cap\phi(C\indx{k}_j\cup\dgneigh{G}{B\indx{k}_{j}})\), \tb{(assumption \ref{a::admissible}(g)(j)?) there exists a \(j'''(v) \in \{1,\dots,\psize\indx{k+1}\}\) such that \(\phi^{-1}(\dgneigh{G}{B_{j''}}) = \dgneigh{G}{B\indx{k+1}_{j'''(v)}}\) for some \(j'''(v)\) such that \(\phi^{-1}(v) \in \dgneigh{G}{B\indx{k+1}_{j'''(v)}}\). }
 
 \begin{align}
 \brate\vjpara{v}{B_{j''}}\stpara{i}\tmepro{t}{\xg\vind{\dgneigh{G}{B_{j''}}}}{} &= \exmu{\Xg\sim \mm}{\rate\stpara{i}\tmepro{t}{\Xg\vind{\cl{\phi_{j''}(v)}}}{}\middle|\Xg\vind{\phi_{j''}(\dgneigh{G}{B_{j''}})}\tmi{[0,t)} = \xg\vind{\dgneigh{G}{B_{j''}}}\tmi{[0,t)}}\nonumber\\

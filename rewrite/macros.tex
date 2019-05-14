@@ -1,0 +1,268 @@
+\documentclass[12pt]{article}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{commath}
+\usepackage{graphicx}
+\usepackage{pdfcomment}
+%\usepackage{coffee4}
+\usepackage{lipsum}
+%\usepackage{showkeys}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{verbatim}
+\usepackage{longtable}
+\usepackage{etoolbox}
+\usepackage{xr}
+\externaldocument[F-]{treere}
+\externaldocument[G-]{gen_graph_re}
+
+%General Shorthand Macros
+\newcommand{\skipLine}{\vspace{12pt}}
+\newcommand{\mb}{\mathbb}
+\newcommand{\mc}{\mathcal}
+\newcommand{\ms}{\mathscr}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\ov}{\overline}
+\newcommand{\os}{\overset}
+\newcommand{\un}{\underline}
+\newcommand{\te}{\text}
+\newcommand{\ep}{\epsilon}
+\newcommand{\tr}{\textcolor{red}}
+\newcommand{\tb}{\textcolor{blue}}
+\newcommand{\tg}{\textcolor{green}}
+\newcommand{\labe}[1]{\tr{\texttt{Label: #1}}}
+\newcommand{\tbs}{\textbackslash}
+\newcommand{\purpose}{\textbf{Purpose: }}
+\newcommand{\pfsum}{\textbf{Proof Summary: }}
+\newcommand{\usein}{\textbf{Used in: }}
+\newcommand{\app}{\textbf{Applies: }}
+\newcommand{\remark}{\textbf{Remark: }}
+\newcommand{\ind}{\hspace{24pt}}
+\newcommand{\lin}{\rule{\linewidth}{0.4 pt}}
+\newcommand{\pr}{\mb{P}}							%probability
+\newcommand{\ex}[1]{\mb{E}\left[#1\right]}			%expectation
+\newcommand{\exmu}[2]{\mb{E}^{#1}\left[#2\right]}	%exp wrt a measure
+\newcommand{\deq}{\overset{\text{(d)}}{=}}			%equal in dist
+\newcommand{\defeq}{:=}								%definition equal
+\newcommand{\msr}{\mc{M}}							%space of measures
+\newcommand{\pmsr}{\mc{P}}							%space of pmsrs
+\newcommand{\cad}{\mc{D}}							%Cadlag space
+\newcommand{\argmin}{\te{arg}\min}
+
+%TODO
+\newcommand{\valid}{\mc{V}}							%valid histories
+
+%Notation and Basic Assumptions
+%Graph Notation
+%Base Commands
+\newcommand{\sta}{\mc{X}}							%state space
+\newcommand{\neigh}[1]{\mc{N}_{#1}}				%neighborhood
+\newcommand{\dneigh}[1]{\mc{N}^2_{#1}}			%double neigh
+\newcommand{\tneigh}[1]{\mc{N}^3_{#1}}			%double neigh
+\newcommand{\gneigh}[2]{\mc{N}^{#1}_{#2}}			%neighborhood w G
+\newcommand{\dgneigh}[2]{\mc{N}^{2,#1}_{#2}}		%double neigh w G
+\newcommand{\tgneigh}[2]{\mc{N}^{3,#1}_{#2}}		%double neigh w G
+\newcommand{\cl}[1]{\ov{#1}}						%graph closure
+\newcommand{\bdry}[1]{\partial_{#1}}				%bdry
+\newcommand{\gbdry}[2]{\partial^{#1}_{#2}}			%G bdry
+\renewcommand{\root}{\mathbf{0}}					%root
+
+%Modifiers
+\newcommand{\stb}[1]{_{#1}}							%add base of \st
+\newcommand{\indx}[1]{^{#1}}						%sublimit index
+\newcommand{\subg}[1]{_{#1}}						%subgraph
+
+%Process Notation
+%Base Commands
+\newcommand{\Xf}{X}									%Full process
+\newcommand{\poiss}{N}								%Poisson process
+\newcommand{\leb}{\lambda}							%Lebesgue msr
+\newcommand{\Sm}{\ell}								%ctng msr on sta
+\newcommand{\rate}{r}								%jump rate
+\newcommand{\F}{\mc{F}}								%filtrations
+\newcommand{\m}{\mu}								%law of \Xf
+\newcommand{\proj}{\pi}								%projection
+\newcommand{\utmet}[1]{
+\ifstrempty{#1}{
+	d_{\te{U}}}{
+	d_{\te{U},#1}}}									%uniform metric
+\newcommand{\stmet}[1]{
+\ifstrempty{#1}{
+	d_{\te{S}}}{
+	d_{\te{S},#1}}}									%skorokhod metric
+\newcommand{\xf}{x}									%x input
+\newcommand{\xg}{y}									%y input
+\newcommand{\xh}{z}									%z input
+\newcommand{\xj}{t}									%t input
+\newcommand{\met}[2]{
+\ifstrempty{#2}{
+	d_{#1}}{
+	d_{#1,#2}}}										%gen metric
+\newcommand{\bor}{\mc{B}}							%borel
+\newcommand{\poisses}{\mathbf{N}}					%poisson family
+\newcommand{\delt}{\triangle}						%jump size
+\newcommand{\dpoiss}{\omega}						%nonrandom pt pro
+
+%Modifiers
+\newcommand{\poissv}[1]{_{#1}}						%v comp of Poisson
+\newcommand{\poisso}[1]{^{#1}}						%Other P modifier
+\newcommand{\vind}[1]{_{#1}}						%v component
+\newcommand{\tme}[1]{(#1)}							%time
+\newcommand{\tmi}[1]{#1}							%time interval
+\newcommand{\gind}[1]{^{#1}}						%interaction net
+\newcommand{\vpara}[1]{^{#1}}						%vertex param
+\newcommand{\stpara}[1]{_{#1}}						%state parameter	
+\newcommand{\tpara}[1]{_{#1}}						%time parameter
+\newcommand{\gvpara}[2]{^{#1,#2}}					%G and v params
+\newcommand{\psf}{_*}								%push forward
+\newcommand{\tparapsf}[1]{_{#1,*}}					%psf t param
+\newcommand{\vpropara}[2]{^{#1,#2}}					%v and process
+
+%Simultaneous Jumps
+\newcommand{\jmps}{\mc{J}}							%set of jumps
+
+%Assumptions
+%Base Commands
+\newcommand{\psize}{\ell}							%Branching size
+\newcommand{\rateset}{\mathbf{\rate}}				%set of rates
+\newcommand{\jumpbd}[1]{C_{#1}}						%jump bound
+\newcommand{\jumpibd}[2]{C_{#1,#2}}					%jump bds fix i
+\renewcommand{\G}{\mc{G}}							%graphs
+\newcommand{\Gs}{\mc{G}_\ast}						%rooted graphs
+\newcommand{\tmepro}[3]{
+\ifstrempty{#3}{
+	\left(#1,#2\right)}{
+	\left(#1,#2,#3\right)}}							%time, process
+	
+%Examples
+%Base Commands
+\renewcommand{\d}{d}								%degree
+\newcommand{\eneigh}[1]{\mc{N}^E_{#1}}				%eff neighborhood
+\newcommand{\deneigh}[1]{\mc{N}^{2,E}_{#1}}			%eff double neigh
+\newcommand{\ecl}[1]{\ov{#1}^E}						%eff graph closure
+\newcommand{\ebdry}[1]{\partial^E_{#1}}				%eff bdry
+\newcommand{\einte}[1]{{#1}^{\mathrm{o},E}}			%interior
+\newcommand{\tree}[1]{\mc{T}_{#1}}					%subtree	
+\newcommand{\desc}[1]{c\left(#1\right)}						%descendants				
+
+%Well-Posedness
+%Base Commands
+\newcommand{\compen}{a}								%compensator
+\newcommand{\compenbd}{\ov{a}}						%comp max
+\newcommand{\Xfjmp}{\ov{\poiss}}					%X-jump process
+\newcommand{\apppoiss}{\ov{\ov{\poiss}}}			%append poisson
+\newcommand{\tmepoiss}{\alt{\poiss}}				%timechange poiss
+
+%Modifiers
+\newcommand{\poissst}[1]{_{#1}}						%poisson state
+\newcommand{\poissvst}[2]{_{#1,#2}}					%poisson v,state
+\newcommand{\binver}[1]{(#1)^{-1}}					%inverse
+
+%Local Weak Convergence
+%Base Commands
+\newcommand{\iso}{I}								%isomorphism set
+\newcommand{\trnc}[1]{B_{#1}}						%Truncated graph
+\newcommand{\spce}{\mc{Y}}							%space
+\newcommand{\unifvar}{U}							%uniform rv
+\newcommand{\cumrate}{\ov{r}}						%cumul rate over i
+\newcommand{\ptsnum}{n}								%num Pssn pts
+
+%Modifiers
+\renewcommand{\sp}[1]{[#1]}							%include space
+\newcommand{\dit}[2]{_{#1,#2}}						%double iter
+\newcommand{\vindit}[2]{_{#1,#2}}					%\vind + \it
+
+
+%Conditional Independence
+\newcommand{\seto}{U}								%1st set in CI
+\newcommand{\sett}{W}								%2nd set in CI
+\newcommand{\setc}{R}								%set condition CI
+
+%Proof
+\newcommand{\mutex}{\|}								%mutually exclsve
+\newcommand{\rtt}{\theta}							%2nd stopping time
+\newcommand{\apath}{\Gamma}						%path for CI proof
+\newcommand{\pathset}[2]{\Lambda_{#1,#2}}		%A space of paths
+\newcommand{\evnt}{\mc{E}}						%Typical event
+\newcommand{\rv}{A}								%Typical rand elt
+\newcommand{\indo}{n}							%index of \rt
+\newcommand{\indt}{m}							%index of \rtt
+
+
+%Statement
+%Base Commands
+\newcommand{\Xg}{Y}									%Alt proc rep
+\newcommand{\brate}{\alt{\rate}}					%local rt at bdry
+
+%Modifications
+\newcommand{\inte}[1]{{#1}^\mathrm{o}}				%interior
+\newcommand{\alt}[1]{\tilde{#1}}					%alternate
+
+%Existence
+%Base commands
+\newcommand{\pmap}{\Lambda}							%Mk chain to PP
+\newcommand{\rt}{\tau}								%PP time
+\renewcommand{\mark}{\kappa}						%PP mark
+\newcommand{\ratee}{\Gamma}							%generic rate
+\newcommand{\cratee}{\alt{\ratee}}					%gen cdtl rate
+\newcommand{\grate}{\ov{\ratee}}					%2nd generic rate
+\newcommand{\rp}{P}									%generic PP
+\newcommand{\mm}{\nu}								%gen msr
+\newcommand{\law}{\te{Law}}							%law
+\newcommand{\ev}[1]{\ep^{#1}}						%std basis
+\newcommand{\const}{M}								%constant
+
+%Modifications
+\newcommand{\sttpara}[2]{_{#1,#2}}					%state and time
+\newcommand{\mpara}[1]{^{#1}}						%measure param
+\newcommand{\tspara}[2]{_{#1,#2}}					%2 times para
+\newcommand{\tmestpro}[3]{\left(#1,#2,#3\right)}	%time,state,pro
+
+%Uniqueness
+%Base Commands
+\newcommand{\Xh}{Z}									%2nd alt proc
+\newcommand{\crate}{\hat{\rate}}					%dneigh bdry rate
+\newcommand{\bgrate}{\ov{\rate}}					%gen bdry rate
+\newcommand{\bcrate}{\hat{\brate}}					%neigh bdry rate
+\newcommand{\mmm}{\eta}								%std msr
+\newcommand{\ds}{\Upsilon}							%Radon mapping
+\newcommand{\dense}{L}								%density
+\newcommand{\densen}{N}								%density of dneigh
+\newcommand{\denseph}{\alt{N}}						%density of CUdneigh
+\newcommand{\mdense}{M}								%marge density
+
+%Modifications
+\newcommand{\gvjpara}[3]{^{#1,#2,#3}}				%include branch
+\newcommand{\prc}[1]{_{#1}}							%wrt a msr
+\renewcommand{\it}[1]{_{#1}}						%iterator
+\newcommand{\jpara}[1]{^{#1}}						%B_j dependence
+\newcommand{\vjpara}[2]{^{#1,#2}}					%v, B_j depend.
+
+%Appendix
+\newcommand{\Xj}{T}								%4th variable
+\newcommand{\typset}{A}							%typical set
+\newcommand{\topo}{\mc{T}}						%Topology
+
+\newcommand{\indxset}[1]{_{#1}}					%indexed by set
+
+
+\newtheorem{thms}{Theorem}[section]
+\newtheorem{conj}[thms]{Conjecture}
+\newtheorem{prop}[thms]{Proposition}
+\newtheorem{coro}[thms]{Corollary}
+\newtheorem{lem}[thms]{Lemma}
+%\newtheorem{sublem}{Sublemma}[lem]
+\newtheorem{defn}[thms]{Definition}
+\newtheorem{assu}{Assumption}
+\newtheorem{nassu}{New Assumption}
+\renewcommand{\thenassu}{\Alph{nassu}}
+\newtheorem{subnassu}{Sub-assumption}
+\renewcommand{\thesubnassu}{\alph{subnassu}}
+\newtheorem{example}[thms]{Example}
+
+\setlength{\parindent}{0pt}

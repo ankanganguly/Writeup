@@ -11,7 +11,7 @@
 \usepackage{pdfcomment}
 %\usepackage{coffee4}
 \usepackage{lipsum}
-%\usepackage{showkeys}
+\usepackage{showkeys}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \usepackage{verbatim}
@@ -246,6 +246,7 @@
 \newtheorem{defn}[thms]{Definition}
 \newtheorem{assu}{Assumption}
 \renewcommand{\theassu}{\Alph{assu}}
+\newtheorem{example}[thms]{Example}
 
 \setlength{\parindent}{0pt}
 
@@ -284,7 +285,9 @@ A rooted graph \(G = (V,E,\root)\) is a vertex set, \(V\), the set of edges betw
 \subsubsection{Local Weak Convergence}
 \label{g::lwc}
 
-Much of this section draws on the work of \cite{LacRamWu19}.
+Much of this section draws on the work of \cite{LacRamWu19}. \tr{Introduce marked edge rooted graphs. Assuming the mark space of the edges is finite, all results from \cite{LacRamWu19} follow directly in the following manner. Let \(\Gs^\mc{E}\) be the space of countable, connected, locally finite graphs with marked edges and mark space \(\mc{E}\). Let the mark space of the edges be \(\mc{E} = \{1,\dots,m\}\). We can describe the topology of the space the exact same way we do for \(\Gs\) in the section below, except isomorphisms must also preserve the marks of edges. Then we can continuously map \(G \in \Gs^\mc{E}\) to \(G' \in \Gs\) by replacing each edge with mark \(k\) with a \(k\)-tuple edge. This produces a homeomorphism between \(\Gs^\mc{E}\) and \(\Gs\) below.}
+
+\tb{This won't work. The construction applies specifically to simple graphs. I suppose I'll have to renew the theory from scratch. The proofs should be nearly identical.}
 
 \begin{defn}
 \(\Gs\) is the set of countable, connected, locally finite rooted graphs up to rooted isomorphism (see definition \ref{lwc::riso}).
@@ -397,7 +400,7 @@ Assuming there exists a unique in law solution to equation \eqref{p::Xf}, we def
 \section{Assumptions, Well-Posedness and Local Convergence}
 \label{awl}
 \subsection{Assumptions}
-
+\label{awl::a}
 
 We also need some assumptions on the form equation \eqref{p::Xf} can take. It turns out the following assumption is sufficient for equation \eqref{p::Xf} to have a unique strong solution.
 
@@ -709,7 +712,7 @@ The conditional independence property is proved using induction. For it to hold,
 \label{CI::indinit}
 \end{assu}
 
-The results from the main paper are almost sufficient. I just need to extend them to the infinite state space case and to work with non-Markovian processes. Only the arguments of Lemma 4.3 from the main paper rely on the process having a finite state space and Markov structure, so I only have to redo that one.
+\tb{This cannot be easily extended to the case in which \(\{X\gind{G}\vind{v}\tme{0}:v \in V\}\) are merely exchangeable (I bring this up because of a question I received in Edinburgh).}
 
 \begin{thms}
 Suppose \((G,\Xf\gind{G})\in \Gs\sp{\cad}\) satisfy assumptions \ref{a::bddinit},\ref{a::bddr}, \ref{a::liprx} and \ref{CI::indinit}. Let \(\seto \subseteq V\) and let \(\sett = V\setminus \ov{\ov{\seto}}\). Let \(\setc = \dneigh{\seto}\) and suppose \(|\setc| < \infty\). Then for all \(t < \infty\),

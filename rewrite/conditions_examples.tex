@@ -1,0 +1,1100 @@
+\input{ce_macros.tex}
+
+\begin{document}
+
+\title{Local Equations Conditions and Examples}
+\author{Ankan Ganguly}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+
+\section{Notation}
+\label{not}
+
+We consider an interacting particle system for which each node takes values in a finite or countable state-space \(\sta \subseteq \mb{Z}\). Let \(\jmps = \{i-j:i,j \in \sta\}\) be the set of possible jumps between elements of \(\sta\) (for example, if \(\sta = \mb{Z}\), then \(\jmps = \mb{Z}\), but if \(\sta = \{-1,1\}\), then \(\jmps = \{-2,2\}\)). Our goal is to understand the local evolution of a network whose nodes take values in \(\sta\). Therefore, we represent the interaction network between nodes by a rooted graph \(G = (V,E,\root)\) in which \(\root \in V\) is a distinguishable vertex representing the node whose local evolution is of interest to us.
+
+\subsection{Graph Notation}
+\label{not::g}
+
+A rooted graph \(G = (V,E,\root)\) is a vertex set, \(V\), the set of edges between the vertices, \(E\), and a distinguished vertex \(\root \in V\) that will be referred to as the root. When \(G\) is not clear from context, we may write \(V\gind{G}\) for the vertex set of \(G\), \(E\gind{G}\) for the edge set of \(G\) and \(\root\gind{G}\) for the root of \(G\). Given a specific rooted graph \(G\) and any vertex set \(\root \in U \subseteq V\), define \(G\subg{U} \defeq (U,E\cap U^2,\root)\). This is the maximal subgraph of \(G\) restricted to the vertices in \(U\). For any \(v \in V\), let \(\neigh{v}\subseteq V\) be the neighbors of \(v\) in \(g\). Let \(\cl{v} = \{v\}\cup\neigh{v}\). We also define the double neighborhood given by, \(\dneigh{v} = \cl{\neigh{v}}\setminus \{v\}\). 
+%The triple neighborhood will be \(\cl{\dneigh{v}} \setminus \{v\}\).
+ These notions also extend to vertex set. If \(U\subseteq V\), then \(\neigh{U} = \{v \in V\setminus U: \exists u \in U\te{ s.t. } (u,v) \in E\}\). \(\cl{U} = U\cup \neigh{U}\). \(\dneigh{U} = \cl{\neigh{U}}\setminus U\).
+% Similarly, \(\tneigh{U} = \dneigh{U} \cup \cl{\dneigh{U}}\setminus U\). 
+ When the graph we are working on is not clear from context, I may use \(\gneigh{G}{U}\) and \(\dgneigh{G}{U}\) to denote the neighborhood and double neighborhood of \(U\) with respect to \(G\). Let the boundary of \(U\) be denoted by \(\bdry{U} \defeq \{v \in U: \neigh{v}\cap U^c \neq \emptyset\}\). If \(G\) is not clear from context, we may use \(\gbdry{G}{U}\) instead.
+
+\subsubsection{Local Weak Convergence}
+\label{g::lwc}
+
+Much of this section draws on the work of \cite{LacRamWu19}.
+
+\begin{defn}
+\(\G\) is the set of countable, connected, locally finite graphs up to isomorphisms. \(\Gs\) is the set of countable, connected, locally finite rooted graphs up to isomorphisms (see definition \ref{lwc::iso}).
+\label{lwc::gstar}
+\end{defn}
+
+All graphs considered in this paper are assumed to be members of \(\Gs\). Countability is required for obvious reasons. We are interested in local properties of processes on the graph. By restricting our attention to rooted graphs, we can apply the properties of the local topology on \(\Gs\). 
+
+\ind \tr{Connectedness is not actually necessary for my results. For well-posedness, it suffices to prove that the process is well-defined on all components (reducing to the connected case). Local convergence automatically discounts everything except for the connected component on which the root appears, so we can assume everything is connected without loss of generality. The conditional independence property only holds if one of the sets considered is finite. Thus, on a disconnected graph, we only need to consider a finite number of components. This would allow us to consider each component separately. Similarly, the admissible set of the local approximation is finite, so once again, we can consider each connected component separately.}
+
+\begin{defn}
+Given two graphs \(G\) and \(G'\), an isomorphism \(\phi:V\gind{G}\ra V\gind{G'}\) is a bijection such that \((\phi(u),\phi(v)) \in E\gind{G'}\) if and only if \((u,v) \in E\gind{G}\). Furthermore, if \(G,G'\in \Gs\), then \(\phi(\root\gind{G}) = \phi(\root\gind{G'})\).
+\label{lwc::iso}
+\end{defn}
+
+As mentioned in definition \ref{lwc::gstar}, we assume two graphs in \(\Gs\) to be equivalent if there exists an isomorphism between them. This is denoted by the notation \(G \cong G'\). The set of isomorphisms between two graphs \(G\) and \(G'\) is given by \(\iso(G,G')\). If \(G\) and \(G'\) are not isomorphic, then \(\iso(G,G') = \emptyset\).
+
+\begin{defn}
+Let \(G \in \Gs\). For any \(k \in \mb{N}\), define \(\trnc{k}(G)\) to be the maximal rooted subgraph of \(G\) restricted to vertices \(v \in V\) such that \(\met{G}{}(v,\root) \leq k\). The vertex and edge sets of this subgraph will be denoted by \(\trnc{k}(V)\) and \(\trnc{k}(E)\) respectively.
+\label{lwc::trnc}
+\end{defn}
+
+We can now define the notion of local convergence.
+
+\begin{defn}
+Let \(\{G\it{n},G:n\in\mb{N}\}\) be a sequence of graphs in \(\Gs\). Then \(G\it{k} \ra G\) locally if for every \(k \in \mb{N}\), there exists an \(n\it{k}\) such that \(\trnc{k}(G\it{n}) \cong \trnc{k}(G)\) for every \(n \geq n_k\).
+\label{lwc::lc}
+\end{defn}
+
+To extend this notion of convergence to interacting particle system, we mark the vertices.
+
+\begin{defn}
+Let \(\spce\) be a Polish space with metric \(\met{\spce}{}\). Then \(\Gs\sp{\spce} = \{(G,\{\xg\vind{v}:v \in V\gind{G}\}): G \in \Gs, \xg\in \spce^{V\gind{G}}\}\) is the set of graphs with marked vertices.
+\label{lwc::marked}
+\end{defn}
+
+\begin{defn}
+Let \(\{(G\it{n},\xg\it{n}),(G,\xg)\}\) be a sequence of marked graphs in \(\Gs\sp{\spce}\). Then \((G\it{n},\xg\it{n}) \ra (G,\xg)\) locally if \(G\it{n} \ra G\) locally, and for every \(k \in \mb{N}\) and \(n\) sufficiently large, there exists a rooted isomorphism \(\phi\dit{n,k}:\trnc{k}(G\it{n}) \ra \trnc{k}(G)\) such that \(\lim_{n\ra\infty} \met{\spce}{}((\xg\it{n})\vind{\phi\dit{n}{k}(v)},\xg\vind{v}) = 0\) for all \(v \in \trnc{k}(V)\).
+\label{lwc::mlc}
+\end{defn}
+
+Under the topology of local convergence, both \(\Gs\) and \(\Gs\sp{\spce}\) are a Polish spaces \cite[Lemmas A.2, A.3, and A.5]{LacRamWu19}.
+
+\begin{defn}
+Suppose \(\{\Xg\gind{G\it{n}}\vindit{v}{n}:n\in\mb{N},v \in V\gind{G\it{n}}\}\) is a sequence of \(\spce^{V\gind{G\it{n}}}\)-valued random elements. Suppose also that \((G\it{n},\Xg\gind{G\it{n}}\it{n})\) converges to \((G,\Xg\gind{G})\) weakly with respect to convergence in \(\Gs\sp{\spce}\). Then we say that \((G\it{n},\Xg\gind{G\it{n}}\it{n})\) converges to \((G,\Xg\gind{G})\) locally weakly.
+\label{lwc::lwc}
+\end{defn}
+
+\remark A necessary and sufficient condition to prove the local weak convergence of \((G\it{n},\Xg\gind{G\it{n}}\it{n})\) to \((G,\Xg\gind{G})\) is the existence of a sequence of (possibly random) rooted isomorphisms \(\phi_{n,k}: \trnc{k}(G) \ra \trnc{k}(G\it{n})\) such that \(\left((\Xg\gind{G\it{n}}\it{n})\vind{\phi_{n,k}(v)}\right)_{v\in \trnc{k}(G)} \Rightarrow \left(\Xg\gind{G}\vind{v}\right)_{v \in\trnc{k}(G)}\) for all \(k\in\mb{N}\).
+
+%\skipLine
+
+%\remark This notion of weak convergence is valid for random graphs as well. In this case, if \(\{G\it{n},G:n\in\mb{N}\}\) is a sequence of random variables in \(\Gs\) such that \(G\it{n}\Rightarrow G\), then \((G\it{n},\Xg\gind{G\it{n}}\it{n})\) converges locally weakly to \((G,\Xg\gind{G})\) if it converges weakly with respect to the topology of \(\Gs\sp{\spce}\).
+
+\subsection{Process Notation}
+\label{not::p}
+
+Fix a graph \(G = (V,E,\root)\). For any \(U \subseteq V\), let \(\cad\vpara{U} := \cad\left([0,\infty),\sta^U\right)\) be the set of \(\sta^U\)-valued c\`adl\`ag processes up to infinite time. Let \(\cad\vpara{U}\tpara{t} = \cad\left([0,t),\sta^U\right)\). Finally write \(\cad \defeq \cad([0,\infty),\sta)\). We impose the following norms and metrics:
+
+\begin{itemize}
+\item For \(\xf \in \cad\tpara{t}\), \(\|\xf\|\tpara{t} \defeq \sup_{0\leq s \leq t} \xf\tme{s}\). For \(\xf \in \cad\), \(\|\xf\| = \sum_{t=1}^\infty 2^{-1}(1\wedge \|\xf\|\tpara{t})\).
+
+\skipLine
+
+\remark We may write \(\|\xf\|_t\) for some \(\xf \in \cad\). This is shorthand notation for \(\|\xf\tmi{[0,t]}\|_t\). This holds true for all metrics on \(\cad\tpara{t}\) and \(\cad\vpara{U}\tpara{t}\).
+
+\skipLine 
+
+\item For \(\xf,\xg \in \cad\tpara{t}\), \(\utmet{t}(\xf,\xg) \defeq \|\xf-\xg\|\tpara{t}\). For \(\xf,\xg \in \cad\), \(\utmet{}(\xf,\xg) \defeq \|\xf - \xg\|\).
+
+\item For \(\xf,\xg \in \cad\tpara{t}\), \(\stmet{t}(\xf,\xg)  \defeq \inf_{\substack{f:[0,t]\ra[0,t]\\\te{cts}\\\te{str. increasing}}}\max\left\{\|\xf-\xg\circ f\|\tpara{t},\sup_{0<s<s'<t}\left|\ln \frac{f(s') -f(s)}{s-s'}\right|\right\}\).
+
+The space of c\`agl\`ad functions is also complete with respect to the metric. Note, we can compare this to the metric,
+
+\[\ov{d}_{S,t}(\xf,\xg) = \inf_{\substack{f:[0,t]\ra [0,t]\\\te{cts}\\\te{str. increasing}}} \max\left\{\|x - y\circ f\|_t,\|f - I\|_t\right\}.\]
+
+This metric is not complete. However, for piecewise linear \(f\) (suppose WLOG that \(s'-s > f(s')-f(s)\)),
+
+\begin{align*}
+\sup_{0 < s < s' < t}\left|\ln\frac{f(s') - f(s)}{s'-s}\right| &=\sup_{0 < s < s' < t}\left|\ln\left(1 - \frac{s' - s - (f(s') - f(s))}{s'-s}\right)\right|\\
+&\geq \sup_{0 < s < s' < t}\frac{s'-s-(f(s')-f(s))}{s'-s}\\
+&\geq \sup_{0 < s < s' < t} \frac{(s'-f(s')) - (s - f(s))}{t}\\
+&\geq \frac{1}{t}\|f - I\|_t.
+\end{align*}
+
+The last step is accomplished in the limit as \(s' - f(s') \rightarrow \|f - I\|_t\) and \(s \rightarrow 0\) \tr{(if the positive limit exists. Otherwise we look at the convergence of \(s\) to the maximizer of \(f - I\) and \(s'\) to 1)}. Then, for discrete valued functions with finitely many discontinuities, the optimal \(f\) will be piecewise linear. Thus, 
+
+\begin{align*}
+\stmet{t}(\xf,\xg) &= \inf_{\substack{f:[0,t]\ra[0,t]\\\te{cts}\\\te{str. increasing}}}\max\left\{\|\xf-\xg\circ f\|\tpara{t},\sup_{0<s<s'<t}\left|\ln \frac{f(s') -f(s)}{s-s'}\right|\right\}\\
+&\geq \inf_{\substack{f:[0,t]\ra[0,t]\\\te{cts}\\\te{str. increasing}}}\max\left\{\|\xf-\xg\circ f\|\tpara{t},\frac{\|f-I\|_t}{t}\right\}\\
+&\geq \inf_{\substack{f:[0,t]\ra[0,t]\\\te{cts}\\\te{str. increasing}}}\max\left\{\frac{\|\xf-\xg\circ f\|\tpara{t}}{\max\{t,1\}},\frac{\|f-I\|_t}{\max\{t,1\}}\right\}\\
+&\geq \frac{\stmet{t}(\xf,\xg)}{\max\{t,1\}}.
+\end{align*}
+
+\ind This allows us to use the simpler metric to estimate lower bounds of \(\stmet{t}\), especially because we generally use time transformations to match up a finite number of discontinuities, and this can be done optimally using piecewise linear functions.
+
+\item For \(\xf,\xg \in \cad\), \(\stmet{}(\xf,\xg) = \sum_{t=1}^\infty 2^{-t}(1\wedge \stmet{t}(\xf,\xg))\). \tr{This metric is not complete. In fact, convergence under this metric fails if the limiting function is discontinuous at \(t = k\) for any \(k \in \mb{N}\). Find a new metric.}
+
+\item For finite \(U \subset V\) and \(\xf,\xg\in\cad\vpara{U}\),
+
+\[\utmet{t}\vpara{U}(\xf,\xg) = \sum_{v\in U}\utmet{t}(\xf\vind{v},\xg\vind{v}).\]
+
+\[\stmet{t}\vpara{U}(\xf,\xg) = \inf_{\substack{f:[0,t]\ra[0,t]\\\te{cts}\\\te{str. increasing}}} \max\left\{\utmet{t}^U(\xf\vind{v},\xg\vind{v}\circ f), |U|\sup_{0 < s < s' < t}\left|\ln\frac{f(s')-f(s)}{s-s'}\right|\right\}.\]
+\end{itemize}
+
+\tr{Use something other than \(U \subset V\) or U for uniform metric.} In general, for any \(t\in\mb{R}^+\), and any (not necessarily c\`adl\`ag) function \(f\), we define \(\delt f(t) = f(t+) - f(t-)\). If either limit does not exist, \(\delt f\) is not well-defined.
+
+\ind In this context, define \(\Xf \in \cad\vpara{V}\). For any \(v \in V\) and \(t < \infty\), let \(\Xf\vind{v}\tme{t}\) be the value the \(v\)-component of \(\Xf\) at time \(t\). Given a set \(U\subset V\) and an interval \(I \subset \mb{R}^+\), let \(\Xf\vind{U}\tmi{I}\) denote the path taken by the \(U\)-components of \(\Xf\) over \(\tmi{I}\). We denote the natural filtration of this process by \(\F\vpara{U}\tpara{t} \defeq \sigma \left(\Xf\vind{U}\tmi{[0,t]}\right)\). For clarity, this might be amended to \(\F\vpropara{U}{\Xf}\tpara{t}\). We will often be interested in the predictable sigma-algebra of the process given by \(\F\vpara{U}\tpara{t-} \defeq \bigvee_{s < t} \F\vpara{U}\tpara{s} = \sigma\left(\Xf\vind{U}\tmi{[0,t)}\right)\). Furthermore, when the evolution of \(\Xf\) with respect to its topology is clearly defined, but the specific interaction graph of \(\Xf\) is not clear from context, we may write \(\Xf\gind{G}\) to represent the process \(\Xf\) with interaction graph \(G\). Fix any \(v \in V,t \in \mb{R}^+\) and \(i \in \jmps\). Then at time \(t\), we can define the jump rate \(\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf\vind{\cl{v}}}{}\) to be the inverse of the expected time for \(\Xf\vind{v}\) to jump to \(\Xf\vind{v} + i\) given the history of the process up to time \(t\). We will assume without loss of generality that \(\rate\stpara{0}\equiv 0\). It now becomes clear how we can define the interaction graph. The interaction graph is any graph \(G\in \Gs\) such that \(\Xf\) is a \(\sta^{V\gind{G}}\)-valued process and \(\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\Xf\vind{\cl{v}}}{}\) is \(\F\vpara{\cl{v}}\tpara{t-}\)-measurable for every \(v \in V\),\(t\in \mb{R}^+\) and \(i \in \jmps\). 
+
+\ind \tr{This is iffy. I'm interested in spaces with finitely many points on bounded sets, but infinitely many points overall. Make sure I don't misuse this notation.} For any Polish space \(\spce\), define
+
+\[\spce^\sqcup = \bigcup_{i=0}^\infty \spce^i.\]
+
+We will generally denote non-random elements of \(\spce^\sqcup\) by \(\dpoiss\). It will be assumed that \(\dpoiss\) has finitely many points in any bounded subset of \(\spce\) \tr{(\(\dpoiss\) should have finitely many points in all of \(\spce\). Fix this.)}. A point process, \(\poiss\), is a \(\spce^\sqcup\)-valued random element. For \(x \in \spce\), we say \(x \in \poiss\) if one of the components of \(\poiss\) is given by \(x\). We will also treat \(\poiss\) as a non-negative random integer valued measure on \(\spce\). The intensity measure of \(\poiss\) is some \(\mu\in \pmsr(\spce)\) such that \(\mu(\cdot) = \ex{\poiss(\cdot)}\). If \(\spce = [0,a]\times \spce'\) for \(a \in (0,\infty]\), then we call \(\poiss\) a marked point process with mark space \(\spce'\). If \(\spce'\) is equipped with a measure, that measure is called the representative measure of \(\spce'\). \(\dpoiss\it{n} \in \spce^\sqcup\) converges to \(\dpoiss\) if for all bounded and continuous \(f: \spce \ra \mb{R}\), \(\sum_{x \in \dpoiss\it{n}} f(x) \ra \sum_{x \in \dpoiss} f(x)\). Another way of thinking of this is that point processes are measures that converge with respect to vague convergence.
+
+\ind We can rigorously define this in the following manner. Let \(\Sm\) be a positive probability measure on \(\jmps\) with a finite first moment. Let \(\leb\) be the Lebesgue measure on \(\mb{R}^2\). Let \(\poisses \defeq \{\poiss\poissv{v}:v \in V\}\) be a sequence of i.i.d. Poisson point processes on \(\jmps\times \mb{R}^2\) with intensity \(\Sm\times \leb\). Let \(\Xf\tme{0}\) be an \(\sta^V\)-valued random variable. Assume \(\rate\stpara{i}(t)\) is \(\F\vpara{\cl{v}}\tpara{t-}\)-measurable for all \(v,i,t\) and that \(\rate\stpara{i}:\mb{R}^+ \ra\mb{R}^+\) is an almost surely Borel-Measurable function. Consider the following SDE:
+
+\begin{equation}
+\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \int_{\jmps}\int_{(0,t]\times (0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xf\gind{G}\vind{\cl{v}}}{}} \poiss\poissv{v}\left(dr,ds,di\right) \te{ for } v\in V, t \geq 0
+\label{p::Xf}
+\end{equation}
+
+Assuming there exists a unique in law solution to equation \eqref{p::Xf}, we define \(\Xf\gind{G}\) to be that solution. 
+
+\ind Assume \(G\) is fixed. Let \(\m\) be the law of \(\Xf\) (again, if \(G\) is not clear from context, we will use the notation \(\m\gind{G}\)). For any \(U \subseteq V\), let \(\proj\vpara{U}(\Xf)\) map \(\Xf\) to an \(\sta^U\)-valued process defined by \((\proj\vpara{U}(\Xf))\vind{v} = \Xf\vind{v}\) for all \(v\in U\). Then the \(U\)-marginal of \(\m\) is given by the push-forward measure \(\proj\vpara{U}\psf(\m)\). I will often use the shorthand \(\m\vpara{U} \defeq \proj\psf\vpara{U}(\m)\). We may also be interested in restricting the process to some finite time interval \([0,T)\). In this case, we define \((\proj\vpara{U}\tpara{T}(\Xf))\vind{v}\tme{t} = \Xf\vind{v}\tme{t}\) for \(v \in U\) and \(t \in [0,T)\). The corresponding push-forward measure is given by \(\proj\vpara{U}\tparapsf{T}(\m)\). Again, I will use the shorthand \(\m\vpara{U}\tpara{T} \defeq \proj\vpara{U}\tparapsf{T}(\m)\). \(\m\tpara{0} = \law(\Xf\tme{0})\).
+
+\subsection{More on graph symmetries}
+\label{not::sym}
+
+\begin{defn}
+For any graph \(G\), an automorphism \(\phi: V \ra V\) is a bijection such that \((\phi(u),\phi(v))\in E\) if and only if \((u,v)\in E\). Note: if \(G\) has root \(\root\), it is possible that \(\phi(\root) \neq \root\).
+\label{sym::siso}
+\end{defn}
+
+Of course, the most important point is that the symmetry extend to \(\Xf\).
+
+\begin{defn}
+\label{na::Xsim}
+
+Let \((G,\Xf\gind{G})\) be well-defined. \(\phi:V \ra V\) is said to be a symmetry of \(\Xf\gind{G}\) if,
+
+\begin{enumerate}
+\item \(\phi\) is an automorphism of \(G\).
+
+\item 
+
+\[\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf\vind{\cl{v}}}{} = \rate\gvpara{G}{\phi(v)}\stpara{i}\tmepro{t}{\xg\vind{\cl{\phi(v)}}}{} \te{ for all } G\in \Gs, v \in V,i\in \sta, t \in \mb{R}^+, \xf,\xg \in \valid\gind{G}\te{ such that } \xf\vind{\cl{v}} = \xg\vind{\phi(\cl{v})}.\]
+
+\item 
+
+\[\Xf\gind{G}\vind{V}\tme{0} \deq \Xf\gind{G}\vind{\phi(V)}\tme{0}.\]
+\end{enumerate}
+\end{defn}
+
+This is called a symmetry of \(\Xf\) for a simple reason:
+
+\begin{prop}
+Let \((G,\Xf\gind{G})\) be well-defined, and suppose \(\phi\) is a symmetry of \(\Xf\gind{G}\). Then,
+
+\[\Xf\gind{G}\vind{V} \deq \Xf\gind{G}\vind{\phi(V)},\]
+
+where \(\phi(V)\) is treated as a permutation of \(V\).
+\label{a::simprop}
+\end{prop}
+\begin{proof}
+By definition, \(\Xf\gind{G}\) is the unique strong solution to the equation,
+\[\Xf\gind{G}\vind{v}\tme{t} = \Xf\gind{G}\vind{v}\tme{0} + \int_\jmps\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\stpara{i}\tmepro{s}{\Xf\gind{G}\vind{\cl{v}}}{}}\,\poiss\poissv{v}(dr,ds,di) \te{ for } v \in V, t \geq 0.\]
+
+By \cite[Proposition 2.10]{Kur07}, \((\{\poiss\poissv{v}:v\in V\},\Xf\gind{G})\) is also the unique-in-law weak solution to the equation above.
+
+\ind Let \(\Xg\vind{v} = \Xf\vind{\phi(v)}\). Then for all \(v\in V,t\geq 0\),
+
+\begin{align*}
+\Xg\gind{G}\vind{v}\tme{t} &= \Xf\gind{G}\vind{\phi(v)}\tme{t} = \int_\jmps\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{\phi(v)}\stpara{i}\tmepro{s}{\Xf\gind{G}\vind{\cl{\phi(v)}}}{}}\,\poiss\poissv{\phi(v)}(dr,ds,di)\\
+&= \Xg\gind{G}\vind{v}\tme{t} = \int_\jmps\int_{(0,t]\times(0,\infty)} i\mb{I}_{r \leq \rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\Xg\gind{G}\vind{\cl{v}}}{}}\,\poiss\poissv{\phi(v)}(dr,ds,di)\\
+\end{align*}
+
+Then \(\{\poiss\poissv{\phi(v)}:v \in V\} \deq \{\poiss\poissv{v}:v\in V\}\) and \((\{\poiss\poissv{\phi(v)}:v \in V\},\Xg\gind{G}) \deq (\{\poiss\poissv{v}:v \in V\},\Xf\gind{G})\), so \(\Xg\gind{G}\vind{V} = \Xf\gind{G}\vind{\phi(V)} \deq \Xf\gind{G}\vind{V}\).
+\end{proof}
+
+\section{New Assumptions}
+\label{na}
+
+This section introduces the new assumptions I wish to use. They are currently not finalized as I have to read through the document and make sure they still apply. 
+
+\begin{defn}
+\label{na::valid}
+Given a rate function, \(\{\rate\gvpara{G}{v}\stpara{i}\tmepro{\cdot}{\cdot}{}:G \in \Gs,v \in V\gind{G}, i \in \jmps\}\),
+
+\[\valid\gind{G} \subset \cad\vpara{V} = \{\xf \in \cad\vpara{V}: \te{ for all }t>0,v\in V\te{ s.t. } \Delta \xf\vind{v}\tme{t} \neq 0 \te{ implies } \rate\gvpara{G}{v}\stpara{\Delta\xf\vind{v}\tme{t}}\tmepro{t}{\xf\vind{\cl{v}}}{} > 0.\},\]
+
+is the set of \emph{valid histories}.
+\end{defn}
+
+We begin with assumptions on initial histories. 
+
+\lin
+
+\begin{nassu}
+\label{na::start}
+
+The initial distribution is independently distributed \tr{(or second-order Gibbs)} and,
+
+\[\sup_{G,v} \ex{\Xf\gind{G}\vind{v}\tme{0}} < \infty.\]
+\end{nassu}
+
+\lin
+
+\tr{Consider defining the initial history as \((\Xf\gind{G}\vind{v}\tme{0},\Xg\gind{G}\vind{v})\) where \((G,\Xg\gind{G})\in\Gs\sp{\spce}\) for some Polish space \(\spce\) is independently distributed. \(\Xg\) would only appear as an argument in the jump rate. This would be extremely useful for stationary distributions, as we could then directly prove that any particle system satisfying suitable conditions with a second order space-time Gibbs stationary distribution matches a stationary marginal of the local equations. It would also allow us to initialize history-dependent processes with an entire history instead of modifying their evolution to depend on the past up to time 0.}
+
+We need jump rates to be consistent:
+
+\lin
+
+\begin{nassu}
+\label{na::consist}
+
+Suppose \(G\) and \(H\) are rooted graphs such that \(G\vpara{\cl{v}} \cong H\vpara{\cl{u}}\) for some \(v \in V\gind{G}\) and \(u\in V\gind{H}\). Then there exists an isomorphism, \(\phi\),  between \(G\vpara{\cl{v}}\) and \(H\vpara{\cl{u}}\) such that,
+
+\begin{equation}
+\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf\vind{\cl{v}}}{} = \rate\gvpara{H}{\phi(v)}\stpara{i}\tmepro{t}{\xg\vind{\phi(\cl{v})}}{}.
+\label{na::symeqn}
+\end{equation}
+
+Furthermore, if \(G\) and \(H\) are isomorphic rooted graphs, then there exists an isomorphism \(\phi\) such that \(\phi((G,\xf)) = (H,\xg)\) implies equation \eqref{na::symeqn} holds for all \(v \in V\gind{G}\). Such isomorphisms are called "canonical."
+\end{nassu}
+
+\lin
+
+\remark It's relatively simple to prove that inverses and compositions of canonical isomorphisms are themselves canonical.
+
+\remark Assumption \ref{na::consist} automatically holds if \(\rate\gvpara{G}{v}\stpara{i}\) is invariant with respect to permutation of the neighbors of \(v\). In that case, all isomorphisms are canonical.
+
+\remark The set of symmetries of \(\Xf\gind{G}\) are precisely the automorphisms of \(G\) which are canonical and preserve \(\Xf\gind{G}\tme{0}\).
+
+\remark If we define \(r\) on \(G\) for some \(G \in \Gs\), then using canonical isomorphisms, we can define \(r\) uniquely on all members of the same isomorphism class as \(G\). We can also define \(r\) uniquely on a variety of other isomorphism classes by looking at canonical isomorphisms of different neighborhoods in \(G\) to neighborhoods of the other graphs. 
+
+\skipLine
+
+We also need some regularity conditions on the jump rate:
+
+\lin
+
+\begin{nassu}
+\label{na::reg}
+
+For each \(t>0\), there exist constants \(\jumpibd{i}{t}\) and \(\jumpbd{t}\) such that,
+
+\begin{subnassu}
+\label{reg::bddr}
+
+For each \(t>0\),
+
+\[\sup_{\xf\in\valid\gind{G}} \frac{1}{|\neigh{v}|+1}\|\rate\gvpara{G}{v}\stpara{i}\tmepro{\cdot}{\xf}{}\|_t \leq \jumpibd{i}{t}\te{ and } \sum_{i\in\sta} i\Sm(\{i\})\jumpibd{i}{t} = \jumpbd{t} < \infty.\]
+
+for all \(G\in \Gs\) and \(v\in V\). \tr{Instead of \(\frac{1}{|\neigh{v}|}\), we can use \(f(t,|\neigh{v}|)\) for any strictly positive function \(f\) that is non-increasing in \(t\). However \(\frac{1}{|\neigh{v}|}\) suffices for the examples we are interested in.}
+\end{subnassu}
+
+\begin{subnassu}
+\label{reg::liprx}
+For each \(G \in \Gs\) and \(v \in V\), 
+
+\[\sup_{\xf,\xg\in \valid\gind{G}} \sum_{i\in\sta}i\Sm(\{i\})|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xg}{}| \leq \frac{\jumpbd{t}}{|\neigh{v}+1|}\stmet{t-}\vpara{\cl{v}}(\xf\vind{\cl{v}},\xg\vind{\cl{v}}).\]
+
+\tr{Without this inverse dependence on \(|\neigh{v}|\), well-posedness fails in the general finite degree case. However, we can remove the dependence on \(|\neigh{v}|\) if we assume \(G\) has bounded degree.}
+\end{subnassu}
+
+\begin{subnassu}
+\label{reg::liprt}
+
+The continuous part of the jump rate is locally Lipschitz in \(t\). For any \(T < \infty\) and \(0 \leq t_1 < t_2 < T\),
+
+\[\sup_{\xf\in\valid\gind{G}} \frac{1}{|\neigh{v}|+1}\sum_{i\in\sta}|i|\Sm(\{i\})\left|\rate\gvpara{G}{v}\stpara{i}\tmepro{t_2}{\xf}{} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t_1}{\xf}{} - \sum_{t_1\leq s < t_2} \Delta\rate\gvpara{G}{v}\stpara{i}\tmepro{s}{\xf}{}\right| \leq \jumpbd{T}|t-s|.\] 
+
+for each \(G \in \Gs\) and \(v \in V\). \tr{We can once again replace \(\frac{1}{|\neigh{v}|}\) with \(f(t,|\neigh{v}|)\).}
+\end{subnassu}
+
+
+
+\begin{subnassu}
+\label{reg::disc}
+
+For all \(G\in \Gs\), \(v \in V\),\(\xf\in\valid\gind{G}\) and \(i\in \jmps\), \(t\mapsto \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{}\) is left continuous, and its discontinuities are contained in the set of discontinuities of \(t\mapsto \xf\vind{\cl{v}}\tme{t}\).
+\end{subnassu}
+
+\begin{subnassu}
+\label{reg::altdisc}
+
+\tb{This assumption is an alternative to assumption \ref{na::reg} \ref{reg::disc}. I have not verified that the results of the paper hold with it yet.} If \(t_1\) and \(t_2\) are discontinuities of \(t\mapsto \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{}\) for some \(G \in \Gs\),\(v\in V\) and \(i \in \jmps\), but not discontinuities of \(\xf\vind{\cl{v}}\), then 
+
+\[|t_1 - t_2| \geq \frac{1}{C_T}.\]
+
+\tr{Maybe come up with some other method to bound the frequency of jumps. The choice of \(\frac{1}{|\jumpbd{T}|}\) was arbitrary. It can be any constant depending on time and even on the size of the neighborhood. It just needs to be bounded from below by a positive constant on bounded degree graphs.}
+\end{subnassu}
+\end{nassu}
+
+\lin
+
+Finally, we get to the geometric assumptions. Assumption \ref{na::exgeo} is necessary to prove that the marginal of \(\Xf\gind{G}\) is a weak solution to the local equations.
+
+\lin
+
+\begin{nassu}
+\label{na::exgeo}
+
+Suppose \(G \in \Gs\). \(G\) is said to be admissible if there exists a finite set \(A\subset V\) (also called admissible) such that,
+
+\begin{subnassu}
+\label{exgeo::B}
+There exists a finite partition \(\{B_j\}_{j=I}\) of \(A^c\), where \(I\) is some index set, such that \(\dneigh{B_j} \subseteq A\) for all \(j \in I\). \tr{Maybe index \(i\in I\) and \(j \in \jmps\) instead of the other way around?}
+\end{subnassu}
+
+\begin{subnassu}
+\label{exgeo::C}
+Let \(C_j = B_j\cap\neigh{A}\). For each \(j\), there exists a symmetry of \(\Xf\gind{G}\), \(\phi_j\), such that \(\phi_j(C_j\cup\dneigh{B_j}) \subseteq A\).
+\end{subnassu}
+
+We call \(\{B_j\}_{j\in I}\) the set of branches of \(A\). \(I\) is the index set of \(A\) and \(\{C_j\}_{j\in I}\) is the set of boundary vertices of \(A\). 
+\end{nassu}
+
+\lin
+
+We need more geometric assumptions to prove the uniqueness of a solution to the local equations.
+
+\lin
+
+\begin{nassu}
+\label{na::uniqgeo}
+Applying the notation from assumption \ref{na::exgeo},
+
+\begin{subnassu}
+\label{uniqgeo::induct}
+
+\(\ov{A}\) satisfies assumptions \ref{na::exgeo} and \ref{na::uniqgeo}. We denote its branch set \(\{\ov{B}_j\}_{j \in \ov{I}}\), index set \(\ov{I}\) and boundary vertices \(\{\ov{C}_j\}_{j\in\ov{I}}\). \tr{Notational difficulties. \(\ov{A}\) makes sense since \(\ov{A}\) is the union of \(A\) and its neighbors. \(\ov{B}_j\) does not make sense as it is generally a proper subset of \(B_{j'}\) for some \(j'\).}
+\end{subnassu}
+
+\begin{subnassu}
+\label{uniqgeo::exB}
+
+For all \(j \in I\), \(\phi_j(B_j\setminus C_j) \cap A = \emptyset\).
+\end{subnassu}
+\begin{subnassu}
+\label{uniqgeo::dnmix}
+
+For any \(j,j' \in I\), \(\dneigh{B_{j'}}\cap\phi_j(C_j\cup\dneigh{B_j}) \in \{\dneigh{B_{j'}},\emptyset\}\).
+\end{subnassu}
+
+\begin{subnassu}
+\label{uniqgeo::weakdnmix}
+
+For any \(j,j' \in I\), \(\dneigh{B_{j'}}\cap\phi_j(C_j\cup\dneigh{B_j}) = \dneigh{B_{j'}}\) when \(\neigh{B_{j'}}\cap\phi_j(C_j)\) is non-empty. \tr{This is implied by sub-assumption \ref{uniqgeo::dnmix} and sub-assumption \ref{uniqgeo::specificdnmix}. If I can weaken those two sub-assumptions to this sub-assumption, then the smallest admissible set of load balancing will be much smaller.}
+\end{subnassu}
+
+\begin{subnassu}
+\label{uniqgeo::specificdnmix}
+
+For any \(j,j' \in I\), \(\dneigh{B_{j'}}\subseteq \phi_j(C_j\cup\neigh{B_j})\) when \(\neigh{B_{j'}}\cap\phi_j(C_j)\) is non-empty.
+\end{subnassu}
+
+\begin{subnassu}
+\label{uniqgeo::invdnmix}
+
+For any \(j,j' \in I\), if \(\neigh{B_{j'}}\cap\phi_j(C_j)\) is non-empty, then there exists some \(\ov{j} \in \ov{I}\) such that
+
+\begin{itemize}
+\item \(\phi^{-1}_j(\dneigh{B_{j'}}) = \dneigh{\ov{B}_{\ov{j}}}\).
+
+\item \(C_j\cap\phi_j^{-1}(\neigh{B_{j'}}) = \neigh{\ov{B}_{\ov{j}}}\).
+\end{itemize}
+\end{subnassu}
+
+\begin{subnassu}
+\label{uniqgeo::exC}
+
+For any \(j,j' \in I\), if \(\phi_j(\dneigh{B_j}\setminus \neigh{B_j})\cap\neigh{B_{j'}}\) is nonempty, then \(\phi_j(C_j) \cap\dneigh{B_{j'}} = \emptyset\).
+\end{subnassu}
+
+\begin{subnassu}
+\label{uniqgeo::Cmatch}
+
+If \(\ov{C}_{\ov{j}} \subseteq B_j\) for some \(j \in I\) and \(\ov{j}\in \ov{I}\), then there exists a \(j'\) such that \(\phi_j(\ov{C}_{\ov{j}}) = C_{j'}\).
+\end{subnassu}
+
+\end{nassu}
+\lin
+
+\subsection{Applications of the Assumptions}
+
+The results of the paper can be listed as follows:
+
+\begin{description}
+\item[Well-Posedness] Proving that the equation describing \((\Xf\gind{G},G)\) has a unique weak solution in law.
+
+This requires assumptions \ref{na::start} and \ref{na::reg}\ref{reg::liprx}. Independence of the initial distribution is not necessary. \tr{Load balancing fails here. Although it is Lipschitz in its arguments, the Lipschitz coefficient depends on the size and layout of the neighborhood of \(v\), and it can be arbitrarily large on vertices with arbitrarily large neighborhoods.}
+
+\item[Local-Weak Convergence] Proving that \(G \mapsto (\Xf\gind{G},G)\) is continuous with respect to the local-weak topology.
+
+This requires assumptions \ref{na::start}, \ref{na::consist}, \ref{na::reg}\ref{reg::bddr}, \ref{na::reg}\ref{reg::liprx} and \ref{na::reg}\ref{reg::disc}. Independence of the initial distribution is not necessary. Assumption \ref{na::reg}\ref{reg::liprx} and \ref{na::reg}\ref{reg::disc} are not needed to establish tightness.
+
+\ind In fact, this works with a weaker version of assumption \ref{na::reg}\ref{reg::liprx} in which the Lipschitz coefficient is allowed to depend on the neighborhood of \(v\) as long as it is finite for every \(G\in \Gs\).
+
+\ind I need to double check that this works with assumption \ref{na::reg}\ref{reg::altdisc} instead of \ref{na::reg}\ref{reg::disc}.
+
+\ind The required assumptions to prove this theorem remain unchanged even if we assume the infinite particle process has a unique solution.
+
+\item[Conditional Independence] Proving the conditional independence property of \(\Xf\gind{G}\).
+
+This requires assumptions \ref{na::start}, \ref{na::reg}\ref{reg::bddr} and \ref{na::reg}\ref{reg::liprx}. I suspect independence can be replaced with second-order Gibbs. 
+
+\ind Assume the existence of a unique strong solution, \((X\gind{G},G)\), to equation \eqref{p::Xf} for every \(G \in \Gs\) (or at least, assuming there exists a unique strong solution for some \(G \in \Gs\), then there exists a unique strong solution for every subgraph \(H \subset G\)). Then assumption \ref{na::reg}\ref{reg::liprx} is no longer necessary. May also work for weak solutions.
+
+\item[Local equations characterize the marginal] Proving that the marginal distribution of \(\Xf\gind{G}\) satisfies the local equations.
+
+This requires assumptions \ref{na::start}, \ref{na::reg} and \ref{na::exgeo}. Even if we assume well-posedness of the infinite system, assumption \ref{na::reg} is still necessary. However, the constant bounds in assumption \ref{na::reg} may freely depend on the size of the neighborhood as long as they are always finite.
+
+\tb{Unverified hypothesis: If we assume that the conditional expectation of the jump rates form a predictable process and that the infinite particle process is well-posed, then assumptions \ref{na::reg}\ref{reg::disc},\ref{na::reg}\ref{reg::liprx} and \ref{na::reg}\ref{reg::liprt} may no longer be necessary. I also suspect we can weaken assumption \ref{na::reg}\ref{reg::bddr} to \(\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{}\) is finite for all \(t \geq 0\) and \(\xf \in \valid\gind{G}\).}
+
+\item[Local equations uniqueness] Proving that the local equations have a unique solution.
+
+Everything in the previous bullet-point remains true except we also need assumption \ref{na::uniqgeo}.
+\end{description}
+
+\section{Examples}
+\label{ex}
+
+\subsection{Potts Model, Glauber dynamics}
+\label{ex::Potts}
+
+We consider the Potts model with Glauber dynamics \cite{Gla63}, \tr{(citation needed)}. \tr{Include brief description of model and applications.} This model is parameterized by some \(\beta\in\mb{R}\).
+
+\ind Let \(\sta = \{1,\dots,q\}\) for some \(q \in \mb{N}\). Then for \(G \in \Gs\), \(v\in V\), \(\xf \in \cad^V\), \(0 < t < \infty\) and \(i \in \sta\), 
+
+\[\rate\gvpara{G}{v}\stpara{i-\xf\vind{v}\tme{t-}}\tmepro{t}{\xf}{} = \begin{cases}
+\frac{e^{-\beta\sum_{u\in\neigh{v}} \delta_{i,\xf_u\tme{t-}}}}{\sum_{k \in \sta} e^{-\beta\sum_{u\in\neigh{v}} \delta_{k,\xf_u\tme{t-}}}} &\te{ if } i \in \sta\\
+0 &\te{ otherwise}
+\end{cases},\]
+
+where \(\delta_{j,k} = \mb{I}_{j=k}\). Assume \(\{\Xf\vind{v}\tme{0}: v \in V\}\) are i.i.d. uniformly distributed over \(\sta\) and let \(\Sm\) be the uniform probability measure over \(\jmps = \{-q+1,\dots,-1,1,\dots,q-1\}\). 
+
+\ind As for the graph topology, let \(G = (V,E, \root)\) be an undirected, \(d\)-Cayley graph (infinite tree with uniform degree \(d\)) and root \(\root\). Then we can verify all of the assumptions:
+
+\begin{description}
+\item[Assumption \ref{na::start}] \(\Xf\vind{v}\tme{0} \leq q < \infty\) almost surely, and the starting distribution is independent.
+
+\item[Assumption \ref{na::consist}] \(\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{}\) is invariant with respect to permutations of \(\neigh{v}\).
+
+\item[Assumption \ref{na::reg}]
+
+There are five sub-assumptions:
+
+\begin{description}
+\item[Sub-assumption \ref{reg::bddr}] 
+
+\[\rate\gvpara{G}{v}\stpara{i-\xf\vind{v}\tme{t-}}\tmepro{t}{\xf}{} = \begin{cases}
+\frac{e^{-\beta\sum_{u\in\neigh{v}} \delta_{i,\xf_u\tme{t-}}}}{\sum_{k \in \sta} e^{-\beta\sum_{u\in\neigh{v}} \delta_{k,\xf_u\tme{t-}}}} &\te{ if } i \in \sta\\
+0 &\te{ otherwise}
+\end{cases} \leq 1.\]
+
+\item[Sub-assumption \ref{reg::liprx}] 
+
+Whenever \(|\neigh{v}| \leq q\), for all \(\xf,\xg\in\valid\gind{G}\)
+
+\[\frac{\sum_{i\in\jmps}|i|\Sm(\{i\})|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xg}{}|}{\frac{1}{|\neigh{v}|+1}\stmet{t-}^{\cl{v}}(\xf\vind{\cl{v}},\xg\vind{\cl{v}})}\leq (|\neigh{v}|+1)\sum_{i\in\jmps}|i|.\]
+
+Here we apply the convention \(\frac{0}{0} = 0\). Now, if \(|\neigh{v}| > q\), notice that \(\sum_{k\in\sta}e^{-\beta\sum_{u\in\neigh{v}}\delta_{k,\xf\vind{u}\tme{t-}}}\geq |\neigh{v}| - q\) by the pigeonhole principle. \(\sup_{m\in\mb{N},m > q}\frac{m+1}{m-q} = q+2 < \infty\). Then,
+
+\[\frac{\sum_{i\in\jmps}|i|\Sm(\{i\})|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xg}{}|}{\frac{1}{|\neigh{v}|+1}\stmet{t-}^{\cl{v}}(\xf\vind{\cl{v}},\xg\vind{\cl{v}})}\leq \frac{|\neigh{v}|+1}{|\neigh{v}|-q}\sum_{i\in\jmps}|i|\leq (q+2)\sum_{i\in\jmps}|i| < \infty.\]
+
+\item[Sub-assumption \ref{reg::liprt}] This holds automatically because \(\Xf\) is Markov.
+
+\item[Sub-assumption \ref{reg::disc}] This holds automatically because \(\Xf\) is Markov.
+
+\item[Sub-assumption \ref{reg::altdisc}] This is implied by assumption \ref{na::reg}\ref{reg::disc}.
+\end{description}
+
+\item[Assumption \ref{na::exgeo}] 
+
+Before starting this, we need to establish some notation. \(G\) is the \(\d\)-Cayley tree with root \(\root\). The vertices \(\{1,2,\dots,\d\}\) are the children of the root. In general, for any \(v \in V\) and \(i \in \{1,\dots,\d\}\), \(vi\) is the \(i\)th child of \(v\). \(p(v)\) is the parent of \(v\). Note that \(v\d\) is only well-defined when \(v = \root\), and that \(p(\root)\) doesn't exist. Finally, \(\desc{v} = \{u \in V: u\te{ is a descendant of } v\}\).
+
+\ind For example, \(3\) is the third child of the root. \(35\) is the fifth child of the third child of the root. \(p(35) = 3\). \(\desc{3}\) is the set of all vertices whose first digit is 3 (except 3 itself). So \(32,3214,32551 \in \desc{3}\), but \(\root,142,2,3 \notin \desc{3}\).
+
+\ind Define \(A = \{\root,1,\dots,d\}\). Let \(I = \{1,\dots,d\}\) and for \(v\in I\), let \(B_v = \desc{v}\). Since \(\rate\gvpara{G}{v}\) only depends on graph structure in the form of the size of the neighborhood of \(v\), all automorphisms of \(G\) are symmetries of \(\Xf\gind{G}\). Let \(\phi_v\) be any automorphism of \(G\) such that \(\phi_v(v) = \root\) and \(\phi_v(\root) = v\). Then, \(\phi_v(\{1,\dots,\d\}\setminus \{v\}) = \{v1,\dots,v(\d-1)\}\). Similarly, \(\phi_v(v1,\dots,v(\d-1)) = \{1,\dots,\d\}\setminus\{v\}\).
+
+\ind Inductively let \(A\indx{0} = A\) and \(A\indx{k+1} = \cl{A\indx{k}}\) for all \(k \geq 0\). Then \(I\indx{k} = \bdry{A\indx{k}}\). For each \(v \in I\indx{k}\), \(B\indx{k}_v = \desc{v}\). Finally, for \(k > 0\), \(\phi\indx{k}_v\) is any automorphism of \(G\) such that \(\phi\indx{k}_v(v) = p(v)\) and \(\phi\indx{k}_v(p(v)) = p^2(v)\). Then we can do some computations:
+
+\begin{itemize}
+\item For all \(k \geq 0\) and \(v \in I\indx{k}\), \(C\indx{k}_v = \{v1,\dots,v(\d-1)\}\). 
+
+\item For all \(k \geq 0\) and \(v \in I\indx{k}\), \(\neigh{B\indx{k}_v} = \{v\}\). 
+
+\item For all \(k \geq 0\) and \(v \in I\indx{k}\), \(\dneigh{B\indx{k}_v\setminus\neigh{B\indx{k}_v}} = \{p(v)\}\). 
+
+\item \(\phi_v(C_v) = \bdry{A}\setminus\{v\}\).
+
+\item For \(k > 0\), \(\phi\indx{k}_v(C\indx{k}_v) = \{p(v)1,\dots,p(v)(\d-1)\} = \desc{p(v)}\cap A\indx{k}\).
+
+\item For all \(k \geq 0\), \(\phi\indx{k}_v(\neigh{B\indx{k}_v}) = \{p(v)\}\).
+
+\item \(\phi_v(\dneigh{B_v}\setminus\neigh{B_v}) = \{v\}\).
+
+\item For all \(k > 0\), \(\phi\indx{k}_v(\dneigh{B\indx{k}_v}\setminus\neigh{B\indx{k}_v}) = \{p^2(v)\}\).
+\end{itemize}
+
+The figures below show vertex labeling and the definitions of relevant sets and subsets of \(A\) and \(A\indx{k}\). All of this is in the case where \(G\) is the \(3\)-Cayley tree.
+
+\includegraphics[scale=0.1]{treevert.jpg}
+
+\includegraphics[scale=0.1]{pottstree1.jpg}
+
+\includegraphics[scale=0.1]{phismall.jpg}
+
+\includegraphics[scale=0.1]{phibig.jpg}
+
+
+\begin{description}
+\item[Sub-assumption \ref{exgeo::B}] Clearly \(\{B_v: v\in \bdry{A}\}\) forms a partition of \(A^c\). Similarly, \(\{B\indx{k}_v: v\in \bdry{A\indx{k}}\}\) clearly forms a partition of \((A\indx{k})^c\).
+
+\item[Sub-assumption \ref{exgeo::C}] \(C_v\cup\dneigh{B_v} = \{\root,v,v1,\dots,v(\d-1)\}\). Then,
+
+\[\phi_v(C_v\cup\dneigh{B_v}) = \{v,\root,1,\dots,v-1,v+1,\dots,\d\} = \cl{\root} = A.\]
+
+For \(k >0\), \(C\indx{k}_v\cup\dneigh{B\indx{k}_v} = \{p^2(v),p(v)\}\cup \left(\desc{p(v)}\cap A\indx{k}\right) = \cl{p(v)} \subset A\indx{k}\).
+\end{description}
+
+\item[Assumption \ref{na::uniqgeo}] This assumption has several parts. 
+
+\begin{description}
+\item[Sub-assumption \ref{uniqgeo::induct}] It suffices to prove that \(A\indx{k}\) satisfies assumption \ref{na::uniqgeo}\ref{uniqgeo::exB}-\ref{uniqgeo::Cmatch} for all \(k\).
+
+\item[Sub-assumption \ref{uniqgeo::exB}] This is trivially true in the base case, because \(\phi_v(C_v\cup\dneigh{B_v}) = A\).
+
+\ind Fix some \(k\) and \(v \in \bdry{A\indx{k}}\). Then, for any \(u \in B\indx{k}_v\setminus C\indx{k}_v\), \(p(u) \in \desc{v}\). Thus, \(p(\phi\indx{k}_v(u)) \in \desc{p(v)}\). However, \(p(v) \in \bdry{A\indx{k-1}}\), so \(p(\phi\indx{k}_v(u)) \in (A\indx{k-1})^c\). We can then conclude that \(u \in (A\indx{k})^c\), so
+
+\[\phi\indx{k}_v(B\indx{k}_v\setminus C\indx{k}_v) \cap A\indx{k} = \emptyset.\]
+
+\item[Sub-assumption \ref{uniqgeo::dnmix}] Again, since \(\phi_v(C_v\cup\dneigh{B_v}) = A\supset \dneigh{B_{v'}}\), this is trivially true in the base case.
+
+\ind For any \(v,v' \in \bdry{A\indx{k}}\), \(\dneigh{B\indx{k}_{v'}} = \{v',p(v')\}\) and \(\phi\indx{k}_v(C\indx{k}_v\cup\dneigh{B\indx{k}_v}) = \cl{p(v)}\). Thus, \(\dneigh{B\indx{k}_{v'}}\cap\phi\indx{k}_v(C\indx{k}_v\cup\dneigh{B\indx{k}_v})\neq \emptyset\) if and only if \(p(v) = p(v')\), in which case 
+
+\[\dneigh{B\indx{k}_{v'}} = \{v',p(v')\} \subset \cl{p(v)} = \phi\indx{k}_v(C\indx{k}_v\cup\dneigh{B\indx{k}_v}).\]
+
+\item[Sub-assumption \ref{uniqgeo::weakdnmix}] This is implied by sub-assumption \ref{uniqgeo::dnmix}.
+
+\item[Sub-assumption \ref{uniqgeo::specificdnmix}] For \(v \in \bdry{A}\),
+
+\[\phi_v(C_v) = \bdry{A}\setminus\{v\}.\]
+
+Thus, if \(\neigh{B_{v'}} \cap \phi_v(C_v) \neq \emptyset\), \(v' \neq v\). In this case,
+
+\[\dneigh{B_{v'}} = \{v',\root\} \subset A\setminus\{v\} = \phi_v(C_v\cup\neigh{B_v}).\]
+
+Fix \(k>0\) and fix \(v,v'\in\bdry{A\indx{k}}\). Then,
+
+\[\phi\indx{k}_v(C\indx{k}_v) = \cl{p(v)}\cap\bdry{A\indx{k}}.\]
+
+Thus, \(\neigh{B\indx{k}_{v'}}\cap\phi\indx{k}_v(C\indx{k}_v) \neq \emptyset\) if and only if \(p(v) = p(v')\). In this case,
+
+\[\dneigh{B\indx{k}_{v'}} = \{v',p(v')\} \subset \cl{p(v)}\setminus \{p^2(v)\} = \phi\indx{k}_v(C\indx{k}_v\cup\neigh{B\indx{k}_v}).\]
+
+\item[Sub-assumption \ref{uniqgeo::invdnmix}] As pointed out before, \(\neigh{B_{v'}} \cap \phi_v(C_v) \neq \emptyset\) if and only if \(v \neq v'\). In this case, 
+
+\[\phi_v^{-1}(\dneigh{B_{v'}}) =  \phi_v^{-1}(\{v',\root\}) = \{v,vi\}= \dneigh{B\indx{1}_{vi}}\te{ for some } i \in \{1,\dots,\d-1\}.\]
+
+Then,
+
+\[C_v\cap\phi_v^{-1}(\neigh{B_{v'}}) = \{v1,\dots,v(\d-1)\}\cap\{vi\} = \{vi\} = \neigh{B\indx{1}_{vi}}.\]
+
+For fixed \(k\), \(\neigh{B\indx{k}_{v'}} \cap \phi\indx{k}_v(C\indx{k}_v) \neq \emptyset\) if and only if \(p(v) = p(v')\). In this case,
+
+\[(\phi\indx{k}_v)^{-1}(\dneigh{B\indx{k}_{v'}}) = (\phi\indx{k}_v)^{-1}(\{v',p(v)\}) = \{v,vi\} = \dneigh{B\indx{k+1}_{vi}}\te{ for some } i \in \{1,\dots,\d-1\}.\]
+
+Then,
+
+\[C\indx{k}_v\cap(\phi\indx{k}_v)^{-1}(\neigh{B\indx{k}_{v'}}) = \{v1,\dots,v(\d-1)\}\cap\{vi\} = \{vi\} = \neigh{B\indx{k+1}_{vi}}.\]
+
+\item[Sub-assumption \ref{uniqgeo::exC}] For any \(v \in \bdry{A}\),
+
+\[\phi_v(\dneigh{B_v}\setminus \neigh{B_v}) = \phi_v(\root) = \{v\}.\]
+
+Thus, if \(\phi_v(\dneigh{B_v}\setminus \neigh{B_v})\cap\neigh{B_{v'}}\) is non-empty, then \(v = v'\). In this case,
+
+\[\phi_v(C_v)\cap\dneigh{B_v} = \{1,\dots,v-1,v+1,\dots,\d\}\cap \{v,\root\} = \emptyset.\]
+
+For fixed \(k\) and \(v \in \bdry{A\indx{k}}\),
+
+\[\phi\indx{k}_v(\dneigh{B\indx{k}_v}\setminus \neigh{B\indx{k}_v}) = \phi\indx{k}_v(\{p(v)\}) = \{p^2(v)\} \neq \{v'\} = \neigh{B\indx{k}_{v'}}\te{ for all }v'\in\bdry{A\indx{k}}.\]
+
+\item[Sub-assumption \ref{uniqgeo::Cmatch}] If \(C\indx{1}_{v'} \subseteq B_v\), then \(p(v') = v\). In that case,
+
+\[p(\phi_v(C\indx{1}_{v'})) \in \{1,\dots,\d\}\setminus\{v\}.\]
+
+suppose \(p(\phi_v(C\indx{1}_{v'})) = j\). Then,
+
+\[\phi_v(C\indx{1}_{v'}) = C_j.\]
+
+Similarly, if \(C\indx{k+1}_{v'} \subseteq B\indx{k}_v\), then \(p(v') = v\). Then,
+
+\[p(\phi\indx{k}_v(C\indx{k+1}_{v'})) \in \{p(v)1,\dots,p(v)(\d-1)\}.\]
+
+Again, suppose \(p(\phi\indx{k}_v(C\indx{k+1}_{v'})) = p(v)j\). Then,
+
+\[\phi\indx{k}_v(C\indx{k+1}_{v'}) = C\indx{k}_{p(v)j}.\]
+\end{description}
+\end{description}
+
+Therefore the Potts process satisfies all of the assumptions of this paper.
+
+\subsection{Load-Balancing}
+\label{ex::lb}
+\tr{For simplicity I'm only introducing the nearest neighbor load-balancing.} This model is parameterized by some \(\lambda > 0\).
+
+\ind We introduce a model similar to that of \cite{BudMukWu17}. Consider a network of servers. Jobs arrive at each server at a constant rate of \(\lambda\). Upon arrival, the jobs investigate the size of the server's queue as well as all the neighboring queues within the network (\cite{BudMukWu17} has the server choose \(\d\) neighbors uniformly at random). The job chooses uniformly at random from the local servers with the shortest queue lengths. Each queue processes jobs at unit rate.
+
+\ind Let \(\sta = \mb{N}_0\), \(\jmps = \{-1,1\}\) and let \(\Sm\) be the uniform probability measure on \(\jmps\). Let \(G = (V,E)\) represent the topology of the server network. Notice that the evolution of any server \(v \in V\) depends not only on its neighbors \(\neigh{v}\), but also on the neighbors of its neighbors (if \((u,v) \in E\) and a job arrives at \(u\), \(u\) may choose to send the job to \(v\) or to one of the neighbors of \(u\) depending on the queue sizes of its neighbors. Thus the evolution of server \(v\)'s queue length depends on the neighbors of its neighbors). Thus we work in two graph topologies. The first is \(G\), which is assumed to be a \(\d\)-Cayley tree. This is the topology describing how servers are connected. The second is \(G^E = (V,E^E)\). This is the effective graph topology. Here \(E^E = \{(u,v) \in V^2: d_G(u,v) \in \{1,2\}\}\). Any graph operation (such as \(v\mapsto \neigh{v}\)) done with respect to \(G^E\) will have a superscript \(E\). So, the neighbors of \(v\) with respect to \(G\) are \(\neigh{v}\), but \(\eneigh{v}\) denotes the neighbors of \(v\) with respect to \(G^E\). Furthermore, \(\{v\}\cup\eneigh{v} = \ecl{v}\).
+
+\ind For \(v \in V\), \(\xf \in \cad\vpara{\ecl{v}}:=\cad\vpara{\cl{\cl{v}}}\), \(0 < t < \infty\) and \(i \in \sta\),
+
+\begin{align*}
+\rate\stpara{1}\gvpara{G^E}{v}\tmepro{t}{\xf}{} &= \sum_{u \in \cl{v}} \frac{\lambda\mb{I}_{\xf\vind{v}\tme{t-} = \min_{w\in\cl{u}} \xf\vind{w}\tme{t-}}}{|\te{argmin}_{w\in\cl{u}} \xf\vind{w}\tme{t-}|}\\
+\rate\stpara{-1}\gvpara{G^E}{v}\tmepro{t}{\xf}{} &= \mb{I}_{\xf\vind{v}\tme{t-} > 0}
+\end{align*}
+
+Notice that this is only well-defined for \(G^E\) such that there exists a \(G = (V,E)\) with \(G^E = (V,\{(u,v)\in V^2:d_G(u,v) \in \{1,2\})\).
+
+\ind Finally, assume \(\{\Xf\vind{v}\gind{G^E}\tme{0}: v \in V\}\) is i.i.d. Poisson(1) \tr{or any other i.i.d, bounded expectation starting condition}. We can now verify the assumptions.
+
+\begin{description}
+\item[Assumption \ref{na::start}]
+
+This holds trivially because the initial distribution is assumed to be i.i.d. with an expectation of 1.
+
+\item[Assumption \ref{na::consist}] This holds trivially for \(i = -1\). 
+
+The set of canonical isomorphisms of \(G^E\) are precisely the isomorphisms of \(G\) (\(G^E\) and \(G\) have the same vertex sets, and if \(H\) is isomorphic to \(G\), then the same isomorphism maps \(G^E\) to \(H^E\)). Suppose \(\phi\) is a canonical isomorphism such that \(\phi(((G^E)\vpara{\ecl{v}},\xf)) = (((H^E)\vpara{\ecl{\phi(v)}},\xg)\). Note then that \(\phi\) is also an isomorphism between \(G\vpara{\ecl{v}}\) and \(H\vpara{\ecl{\phi(v)}}\). Then,
+
+\[\rate\gvpara{G^E}{v}\stpara{1}\tmepro{t}{\xf\vind{\ecl{v}}}{} = \sum_{u \in \cl{v}\gind{G}} \frac{\lambda\mb{I}_{\xf\vind{v}\tme{t-} = \min_{w\in\cl{u}\gind{G}} \xf\vind{w}\tme{t-}}}{|\te{argmin}_{w\in\cl{u}\gind{G}} \xf\vind{w}\tme{t-}|} = \sum_{u \in \cl{\phi(v)}\gind{H}} \frac{\lambda\mb{I}_{\xg\vind{\phi(v)}\tme{t-} = \min_{w\in\cl{u}\gind{H}} \xg\vind{w}\tme{t-}}}{|\te{argmin}_{w\in\cl{u}\gind{H}} \xg\vind{w}\tme{t-}|} = \rate\gvpara{H^E}{\phi(v)}\stpara{1}\tmepro{t}{\xg\vind{\ecl{\phi(v)}}}{}.\]
+
+\item[Assumption \ref{na::reg}] This is actually violated.
+
+\begin{description}
+\item[Sub-assumption \ref{reg::bddr}] \(\rate\gvpara{G^E}{v}\stpara{-1}\tmepro{\cdot}{\cdot}{} \leq 1\). For every \(\xf\in\valid\gind{G^E}\) and \(t > 0\),
+
+\[\rate\gvpara{G^E}{v}\stpara{1}\tmepro{t}{\xf}{} \leq \lambda\sum_{u \in \cl{v}} 1 = \lambda(|\neigh{v}|+1) \leq \lambda(|\eneigh{v}|+1)\]
+
+\item[Sub-assumption \ref{reg::liprx}] \tr{This is violated on graphs with unbounded degree.} Fix a \(G \in \Gs\) and a \(v \in V\). Let \(\xf\vind{u}\tmi{[0,t)} = \xg\vind{u}\tmi{[0,t)}\) for all \(u \in \eneigh{v}\). Suppose also that for all such \(u\), \(\xf\vind{u}\tme{t-} = \xg\vind{u}\tme{t-} = 1\). Let \(\xf\vind{v}\tmi{[0,t)} \in \valid\gind{G^E}\) be such that \(\xf\vind{v}\tme{t-} = 0\). Let \(\xg\vind{v}\tmi{[0,t)} = \xf\vind{v}\tmi{[0,t)} + 2\) so that \(\stmet{t-}\vpara{\ecl{v}}(\xf\vind{\ecl{v}},\xg\vind{\ecl{v}}) = 2\). In this case,
+
+\[\rate\gvpara{G^E}{v}\stpara{1}\tmepro{t}{\xf}{} = 0\te{ and }\rate\gvpara{G^E}{v}\stpara{1}\tmepro{t}{\xg}{} = (|\neigh{v}|+1)\lambda.\]
+
+Then,
+
+\[\frac{|\rate\gvpara{G^E}{v}\stpara{1}\tmepro{t}{\xf}{}-\rate\gvpara{G^E}{v}\stpara{1}\tmepro{t}{\xg}{}|}{\frac{\stmet{t-}\vpara{\ecl{v}}(\xf,\xg)}{|\eneigh{v}|+1}} = (|\eneigh{v}|+1)(|\neigh{v}|+1)\lambda.\]
+
+The expression on the right is unbounded for any \(G\) with unbounded degree.
+
+
+\ind Suppose the degree of vertices in \(G\) is bounded from above by \(\d < \infty\). Then the degree of vertices in \(G^E\) is bounded from above by \(d(d-1)\). Then for any \(t > 0\) and \(v \in \valid\gind{G^E}\),
+
+\[\frac{|\rate\stpara{1}\gvpara{G^E}{v}\tmepro{t}{\xf}{} - \rate\stpara{1}\gvpara{G^E}{v}\tmepro{t}{\xg}{}|}{\frac{\stmet{t-}^{\ecl{v}}(\xf,\xg)}{|\eneigh{v}|+1}} \leq \lambda(|\neigh{v}|+1)(|\eneigh{v}|+1) \leq \lambda \d(\d+1)^2.\]
+
+Thus this sub-assumption fails precisely when \(G\) is has unbounded degree. \tr{I tried using \cite{BudMukWu17}'s formulation of the problem where each server only checks \(d\) neighboring servers uniformly at random. The computations are much more complex here, but the sub-assumption still fails in general if \(v\) has a very high degree while its neighbors have relatively low degree. However, if the graph is sufficiently regular (say \(||\neigh{v}|-|\neigh{u}|| \leq 1\) for all neighbors \(u\) and \(v\)), then it can hold even if the maximum degree of a vertex in the graph is unbounded.}
+
+
+\item[Sub-assumption \ref{reg::liprt}] This is trivially true because \(\Xf\gind{G}\) is Markov.
+
+\item[Sub-assumption \ref{reg::disc}] This is trivially true because \(\Xf\gind{G}\) is Markov.
+
+\item[Sub-assumption \ref{reg::altdisc}] This is implied by sub-assumption \ref{reg::disc}.
+\end{description}
+
+\item[Assumption \ref{na::exgeo}] We use the same notation as in subsection \ref{ex::Potts} for vertex names and operations on \(G\) (not \(G^E\)).
+
+\ind Let \(\tree{k}\) indicate the subtree of \(G\) with \(k\) generations of descendants. Thus, \(\tree{0} = \{\root\}\), \(\tree{1} = \{\root,1,\dots,d\}\) and so on. That is, \(\tree{k} = \{v \in V: d_G(\root,v) \leq k\}\).
+
+\ind Include the following extra notation: for \(U \subset V\), \(\inte{U} = \{v \in U: \neigh{v}\subseteq U\}\). \(\einte{U} = \{v \in U: \eneigh{v}\subseteq U\}\).
+
+\ind Let \(A = \tree{5}\). In general, define \(A\indx{k} = \tree{5+2k}\). Then \(A\indx{1} = \ecl{A}\) and \(A\indx{k+1} = \ecl{A\indx{k}}\). All arguments will be made for \(A\indx{k}\) for all \(k \in \mb{N}_0\). Notice that (\(A = A\indx{0}\)).
+
+\ind We will define \(I\indx{k} = \bdry{\tree{2k+3}}\). For each \(v \in I\indx{k}\), \(B\indx{k}_v = \desc{v}\cap (A\indx{k})^c\). We define \(\phi\indx{k}_v\) as a automorphism such that \(\phi\indx{k}_v(p(v)) = p^3(v)\) (if \(k=0\), this is just the root) and \(\phi\indx{k}(v) = p^2(v)\). This is allowed because all automorphisms of \(G\) are symmetries of \(\Xf\gind{G}\). Notice that the descendant structure of the descendants of \(p(v)\) is preserved. This means that if \(u,u' \in \desc{p(v)}\) and \(p(u) = u'\), then \(p\left(\phi\indx{k}_v(u)\right) = \phi\indx{k}_v\left(p(u)\right)\).
+
+ Some key computations:
+
+\begin{itemize}
+\item \(C\indx{k}_v = \cup_{m=2k+6}^{2k+7} \bdry{\tree{m}}\cap\desc{v}\).
+
+\item \(\eneigh{B\indx{k}_v} = \cup_{m=2k+4}^{2k+5} \bdry{\tree{m}}\cap\desc{v} = A\indx{k}\cap \desc{v}.\)
+
+\item \(\deneigh{B\indx{k}_v}\setminus\eneigh{B\indx{k}_v} = \{v,p(v)\}\).
+
+\item \(\phi\indx{k}_v(C\indx{k}_v) = \desc{p^2(v)}\cap\cup_{m=2k+4}^{2k+5} \bdry{\tree{m}} = \bigcup_{\substack{u \in \bdry{\tree{2k+3}}\\p^2(u) = p^2(v)}} \eneigh{B\indx{k}_u}\).
+
+\item \(\phi\indx{k}_v(\eneigh{B\indx{k}_v}) = \desc{p^2(v)}\cap\cup_{m=2k+2}^{2k+3}\bdry{\tree{m}}.\)
+
+\item \(\phi\indx{k}_v(\deneigh{B\indx{k}_v}\setminus\eneigh{B\indx{k}_v}) = \{p^2(v),p^3(v)\}\).
+\end{itemize}
+
+The following figure shows important elements of \(A\indx{k}\) such as \(v,B\indx{k},C\indx{k}_v,\eneigh{B\indx{k}_v}\) as well as their images under \(\phi\indx{k}_v\). It also shows how \(\phi\indx{k}_v\) transforms \(B\indx{k+1}_u\) for some \(u\in\desc{v}\).
+
+\includegraphics[scale=0.1]{fattreephi.jpg}
+
+We can now begin the specific verifications.
+
+\begin{description}
+\item[Sub-assumption \ref{exgeo::B}] By definition, \(\{B\indx{k}_v:v \in I\indx{k}\}\) is very clearly a partition of \((A\indx{k})^c\).
+
+\item[Sub-assumption \ref{exgeo::C}] Using the computations above,
+
+\[\phi\indx{k}_v(C\indx{k}_v\cup\deneigh{B\indx{k}_v}) = \desc{p^2(v)}\cap A\indx{k} \subset A\indx{k}.\]
+\end{description}
+
+\item[Assumption \ref{na::uniqgeo}] Continuing on,
+
+\begin{description}
+\item[Sub-assumption \ref{uniqgeo::induct}] This holds as long as all other conditions are proven for \(A\indx{k}\) for all \(k \in \mb{N}_0\).
+
+\item[Sub-assumption \ref{uniqgeo::exB}] Notice that \(B\indx{k}_v\setminus C\indx{k}_v = \desc{v}\cap(\cup_{m=2k+8}^\infty \bdry{\tree{m}})\). Thus,
+
+\[\phi\indx{k}_v(B\indx{k}_v\setminus C\indx{k}_v)\cap A\indx{k} = \left(\desc{p^2(v)}\cap(\cup_{m \geq 2k+6} \bdry{\tree{m}})\right)\cap \tree{2k+5} = \emptyset.\]
+
+\item[Sub-assumption \ref{uniqgeo::dnmix}] 
+
+\[\phi\indx{k}_v(C\indx{k}_v\cup \deneigh{B\indx{k}_v}) = \left(\desc{p^2(v)}\cap A\indx{k}\right)\cup \{p^2(v),p^3(v)\}.\]
+
+\[ \deneigh{B\indx{k}_{v'}} = \{v',p(v')\}.\]
+
+If these sets are not disjoint, then \(v' \in \desc{p^2(v)}\). But then,
+
+\[\{v',p(v')\} \subset \desc{p^2(v)}\cap A\indx{k} \subset \phi\indx{k}_v(C\indx{k}_v\cup \deneigh{B\indx{k}_v}).\]
+
+\item[Sub-assumption \ref{uniqgeo::weakdnmix}] This is implied by sub-assumption \ref{uniqgeo::dnmix}.
+
+\item[Sub-assumption \ref{uniqgeo::specificdnmix}] Suppose \(\eneigh{B\indx{k}_{v'}}\cap \phi\indx{k}_v(C\indx{k}_v)\) is non-empty. 
+
+\[\eneigh{B\indx{k}_{v'}} = \desc{v'}\cap A\indx{k}.\]
+
+\[\phi\indx{k}_v(C\indx{k}_v) = \cup_{p^2(u) = p^2(v)} \eneigh{B\indx{k}_u}.\]
+
+Thus, if \(\eneigh{B\indx{k}_{v'}}\cap \phi\indx{k}_v(C\indx{k}_v)\) is non-empty, then \(p^2(v') = p^2(v)\). Then,
+
+\[\deneigh{B\indx{k}_{v'}} = (\desc{v'}\cap A\indx{k})\cup\{v',p(v')\} \subset \desc{p^2(v)}\cap A\indx{k} = \phi\indx{k}_v(C\indx{k}_v\cup\eneigh{B\indx{k}_v}).\]
+
+\item[Sub-assumption \ref{uniqgeo::invdnmix}] We've already shown that \(\eneigh{B\indx{k}_{v'}}\cap \phi\indx{k}_v(C\indx{k}_v) \neq \emptyset\) implies that \(p^2(v) = p^2(v')\). Since \(\phi\indx{k}_v\) preserves the descendant structure of all \(u\in \desc{p(v)}\), \((\phi\indx{k}_v)^{-1}\) preserves the same descendant structure for all \(u \in \desc{p^3(v)}\). Then,
+
+\begin{align*}
+(\phi\indx{k}_v)^{-1}(\deneigh{B\indx{k}_{v'}}) &= (\phi\indx{k}_v)^{-1}(\{v',p(v')\}\cup(\desc{v'}\cap A\indx{k}))\\
+& = \{vj,vjj'\}\cup\left(\desc{vjj'}\cap\left(\cup_{m=2k+6}^{2k+7}\bdry{\tree{m}}\right)\right) = \deneigh{B\indx{k+1}_{vjj'}}
+\end{align*}
+
+
+for some \(j,j' \in \{1,\dots,\d-1\}\). Furthermore,
+
+\[C\indx{k}_v \cap (\phi\indx{k}_v)^{-1}(\eneigh{B\indx{k}_{v'}}) = \left(\desc{v}\cap\left(\cup_{m=2k+6}^{2k+7}\bdry{\tree{m}}\right)\right)\cap \left(\desc{vjj'}\cap\left(\cup_{m=2k+6}^{2k+7}\bdry{\tree{m}}\right)\right) = \eneigh{B\indx{k+1}_{vjj'}}.\]
+
+\item[Sub-assumption \ref{uniqgeo::exC}] 
+
+\[\phi\indx{k}_v(\deneigh{B\indx{k}_v}\setminus\eneigh{B\indx{k}_v}) = \{p(v),p^2(v).\]
+
+\[\eneigh{B\indx{k}_{v'}} = \desc{v'}\cap\left(\cup_{m=2k+4}^{2k+5}\bdry{\tree{m}}\right).\]
+
+There are no \(v,v'\in I\indx{k}\) such that the intersection of the above sets is non-empty.
+
+\item[Sub-assumption \ref{uniqgeo::Cmatch}] If \(C\indx{k+1}_{v'} \subset B\indx{k}_v\), then \(p^2(v') = v\). Since the descendant structure of all descendants of \(p(v)\) is preserved by \(\phi\indx{k}_v\), 
+
+\[p^2(\phi\indx{k}_v(v')) = \phi\indx{k}_v(p^2(v')) = p^2(v).\]
+
+Suppose \(\phi\indx{k}_v(v') = p^2(v)jj'\) for some \(j,j'\in\{1,\dots,\d-1\}\).
+
+\[\phi\indx{k}_v(C\indx{k+1}_{v'}) = \phi\indx{k}_v(\desc{v'}\cap(\cup_{m=2k+8}^{2k+9}\bdry{\tree{m}})) = \desc{p^2(v)jj'}\cap (\cup_{m=2k+6}^{2k+7} \bdry{\tree{m}}) = C\indx{k}_{p^2(v)jj'}.\]
+\end{description}
+\end{description}
+
+That concludes the assumption verification.
+
+\subsection{Hawkes Process for Neuronal Networks.}
+\label{ex::Hawkes}
+
+In general, the non-linear Hawkes process is used to describe point processes with clustering behavior. We are particularly interested in applications to neuronal modeling. Let the state space be given by \(\sta = \mb{N}_0\), and let \(\jmps = \{1\}\). The jump rates of the Hawkes process can be described in the following manner \cite{BreMas96}:
+
+\[\rate\stpara{1}\gvpara{G}{v}\tmepro{t}{\xf\vind{\cl{v}}}{} = \psi_v\left(\frac{1}{|\neigh{u}|}\sum_{u \in \cl{v}}\int_{(0,t)}  h_{uv}(t-s)\,d\xf\vind{u}(s)\right).\]
+
+\(\rate\stpara{i} \equiv 0\) for any \(i \neq 1\). \tr{The scaling factor and finite history are our additions}. Within the neuroscience community there is a lot of interest in what functions \(\{\psi_v,h_{uv}\}\) and graph topologies can produce stable stationary processes \tr{choose citations}. \cite{GerDegTru17} introduce a specific nonlinear model for the single neuron model, derive an approximation and investigate stability conditions. Their model is given by,
+
+\[\psi(x) = ce^x\te{ and } h(s) = J_r\theta(s)e^{-s/\tau_r} + J_a\theta(s)e^{-s/\tau_a} + J_{ref}\theta(s)\theta(\tau_{ref}-s).\]
+
+Here \(\theta\) is the Heaviside function, \(J_r\) and \(J_a\) are parameters used to model the behavior of the neuron (refractory or burst tendencies, adaptation vs inhibition, etc). \(\tau_r,\tau_s\) are time constants. \(J_{ref} = -\infty\) and \(\tau_{ref}\) are used to enforce an absolute refractory period (time when the neuron cannot fire).
+
+\ind We extend this model to multiple neurons using the simplest approach:
+
+\[\psi_v(x) = \psi(x),\quad h_{vv}(s) = h(s)\tg{ + \theta(s-\tau_{ref})\theta(\tau_{ref}+\tau_{relref}-s)\ln\left(\frac{s-\tau_{ref}}{\tau_{relref}}\right)}\]
+\[h_{uv}(s) = J_{uv}e^{-s/\tau_{uv}}.\]
+
+\tg{The additional term in red text is an extra term added to ensure continuity in time (assumption \ref{na::reg}\ref{reg::disc}). This should loosely model a relative refractory period (when spikes are possible, but with significantly lower probability than would be generally expected) and \(\tau_{relref}\) is a time constant reflecting the length of the relative refractory period. We can remove the extra term if we replace assumption \ref{na::reg}\ref{reg::disc} with assumption \ref{na::reg}\ref{reg::altdisc}} \tb{(I haven't yet verified that the proof works with this new assumption. It should hopefully)}.
+
+\ind We make the following assumptions:
+
+\begin{enumerate}
+\item \(\tau_{\cdot},c > 0\).
+
+\item \(J_{uv} := J_u\) does not depend on \(v\).
+
+\item \(J_u \in \{\pm J\}\) for some fixed \(J > 0\). If \(J_u < 0\), then \(u\) is called inhibitory. Otherwise it is called excitatory.
+
+\item \(\Xf\vind{v}\tme{0} = 0\) a.s. for all \(v\). \tr{Consider including history.}
+
+\item \(\tau_{uv} = \tau_{in}\) if \(u\) is inhibitory. \(\tau_{uv} = \tau_{ex}\) if \(u\) is excitatory.
+\end{enumerate}
+
+\tr{I introduce a heterogenous network here. An alternative approach would be to set \(\sta = \mb{N}_0^2\) to represent an excitatory, inhibitory pair.} Notice this introduces a heterogeneous network with two types of neurons: excitatory and inhibitory. Let \(G^{\pm} = (V^\pm,E^\pm,\root^\pm)\) be two \(\d\)-Cayley graphs representing networks of excitatory and inhibitory neurons. Let \(\phi^{-\ra+}: V^- \ra V^+\) be an isomorphism \tr{(assume \(\phi^{-\ra+}(\root-) = \root+\))}. Let \(G = (V,E,\root^+)\) be the graph defined by,
+
+\[V = V^+\cup V^- \te{ and } E = E^+\cup E^-\cup \{(\phi^{-\ra+}(v),v): v \in V^-\}.\]
+
+Thus we have an excitatory and inhibitory network, and each neuron is connected to precisely one neuron in the other network. We can now start verifying assumptions:
+
+\begin{description}
+\item[Assumption \ref{na::start}] This is trivially true.
+
+\item[Assumption \ref{na::consist}] Suppose \(G\) and \(H\) are isomorphic rooted graphs. Then each vertex of \(G\) is either positive or negative, and same for each vertex of \(H\). This can be fixed by assigning parity to the vertices of some fixed graph \(G\) and passing them to other graphs via certain arbitrary isomorphisms that we will call standard. The isomorphisms between \(G\) and \(H\) that preserve this parity are precisely the canonical isomorphisms of the process. Now, note that \(h_{uv} = h_+\) if \(u \neq v\) and \(u\) is excitatory, \(h_{uv} = h_-\) if \(u\) is inhibitory and \(h_{uv} = h_{vv} = \tilde{h}\) if \(u= v\). let \(p_u \in \{\pm\}\) indicate the parity of \(u\). Suppose \(v\) is excitatory.
+
+\begin{align*}
+\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf}{} &= \phi\left(\frac{1}{|\gneigh{G}{v}|}\sum_{u\in\cl{v}\gind{G}} \int_{(0,t)} h_{uv}(t-s)\,d\xf_u(s)\right)\\
+&=\phi\left(\frac{1}{|\gneigh{G}{v}|}\sum_{u\in\gneigh{G}{v}} \int_{(0,t)} h_{p_u}(t-s)\,d\xf_u(s) + \int_{(0,t)}\tilde{h}(t-s)\,d\xf_v(s)\right)\\
+&= \phi\left(\frac{1}{|\gneigh{H}{\phi(v)}|}\sum_{u\in\gneigh{H}{\phi(v)}} \int_{(0,t)} h_{p_u}(t-s)\,d\xg_u(s) + \int_{(0,t)}\tilde{h}(t-s)\,d\xg_{\phi(v)}(s)\right)\\
+&=\phi\left(\frac{1}{|\gneigh{H}{\phi(v)}|}\sum_{u\in\cl{\phi(v)}\gind{H}} \int_{(0,t)} h_{u\phi(v)}(t-s)\,d\xg_u(s)\right)\\
+&=\rate\gvpara{H}{\phi(v)}\stpara{1}\tmepro{t}{\xg}{}
+\end{align*}
+
+\item[Assumption \ref{na::reg}] There are five sub-assumptions:
+
+\begin{description}
+\item[Sub-assumption \ref{reg::bddr}]
+
+Notice that \(h_{uv}(t) \leq \max\{|J_r| + |J_a|, J\} \defeq J_h\) for all \((u,v) \in E\) and all \((v,v) \in V^2\). Also notice that for all \(\xf\in\valid\gind{G}\), \(\xf\) has at most 1 discontinuity on any interval of size \(\tau_{ref}\). Then,
+
+\begin{align*}
+\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf\vind{\cl{v}}}{} &\leq \phi\left(\frac{1}{|\neigh{v}|}\sum_{u\in\cl{v}}\int_{(0,t)} h_{uv}(t-s)\,d\xf\vind{u}(s)\right)\\
+&\leq c\exp\left(\frac{|\neigh{v}|+1}{|\neigh{v}|}\left\lceil\frac{t}{\tau_{ref}}\right\rceil J_h\right) \leq c\exp\left(2J_h\left\lceil\frac{t}{\tau_{ref}}\right\rceil\right) <\infty.
+\end{align*}
+
+The final term does not depend on \(G,v\) or \(\xf\). Only on \(t\).
+
+\item[Sub-assumption \ref{reg::liprx}] 
+
+Notice that adding or subtracting jumps to \(\xf\vind{\cl{v}}\) multiplies the rate by a factor of \(p \in [e^{-J_h/|\neigh{v}|},e^{J_h/|\neigh{v}|}]\). Since the jump rate is bounded, the resulting change in jump rate is given by,
+
+\[|\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xg}{}| \leq c\exp\left(2J_h\left\lceil\frac{t}{\tau_{ref}}\right\rceil\right)\left(\exp\left(\frac{J_h}{|\neigh{v}|}\right)-1\right).\]
+
+However, notice that \(e^{a/x} - 1 = O(1/x)\). Thus, there exists a constant \(C\) such that,
+
+\[\frac{|\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xg}{}|}{\frac{1}{|\neigh{v}|+1}\stmet{t-}^{\cl{v}}(\xf,\xg)} = |\neigh{v}||\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xg}{}| \leq C.\]
+
+Iterate to obtain the Lipschitz bound on the uniform norm of \(\xf,\xg\). Now assume that \(\xf\) and \(\xg\) have the same jumps perturbed by at most \(1 > \epsilon > 0\) for some \(u \in \cl{v}\). Notice that they have no more than \((|\neigh{v}|+1)\left\lceil\frac{t}{\tau_{ref}}\right\rceil\) jumps total. Furthermore, 
+
+\[\left|\frac{d}{dt} h_{uv}(t)\right| \leq \max\left\{\frac{|J_r|}{\tau_r},\frac{|J_a|}{\tau_a},\frac{J}{\min\{\tau_{in},\tau_{ex}\}}\right\} \defeq J_{dh}\te{ if } u\neq v\te{ or } t > \tau_{ref}\tg{+\tau_{relref}}.\]
+
+\[\left|\frac{d}{dt} h_{vv}(t)\right| \leq J_{dh}\tg{+\frac{\tau_{relref}}{t-\tau_{ref}}\te{ if } \tau_{ref} < t\leq \tau_{ref}+\tau_{relref}.}\]
+
+Thus, for \(u\neq v\) or \(t > \tau_{ref}\tg{+\tau_{relref}}\),
+
+\[\left|\frac{d}{dt}\psi\left(\frac{1}{|\neigh{v}|} (\cdot + h_{uv}(t))\right)\right| \leq \frac{J_{dh}}{|\neigh{v}|}\psi\left(\frac{1}{|\neigh{v}|} (\cdot + h_{uv}(t))\right) \leq \frac{cJ_{dh}}{|\neigh{v}|}\exp\left(2J_h\left\lceil\frac{t}{\tau_{ref}}\right\rceil\right).\]
+
+\tg{If \(\tau_{ref} < t \leq \tau_{ref}+\tau_{relref}\)},
+
+\begin{align*}
+\left|\frac{d}{dt}\psi\left(\frac{1}{|\neigh{v}|} (\cdot + h_{vv}(t))\right)\right| &\leq \left(\frac{J_{dh}}{|\neigh{v}|}\tg{+\frac{\tau_{relref}}{|\neigh{v}|(t-\tau_{ref})}}\right)\psi\left(\frac{1}{|\neigh{v}|} (\cdot + h_{vv}(t))\right)\\
+&=\frac{c}{|\neigh{v}|}\left(J_{dh}\tg{+\frac{\tau_{relref}}{t-\tau_{ref}}}\right)\exp\left(\frac{1}{|\neigh{v}|}(\cdot + h(t))\right)\tg{*\frac{t-\tau_{ref}}{\tau_{relref}}}\\
+&\leq \frac{c}{|\neigh{v}|}\left(J_{dh}\tg{ + 1}\right)\exp\left(2J_h\left\lceil\frac{t}{\tau_{ref}}\right\rceil\right)
+\end{align*}
+
+Finally, if \(t < \tau_{ref}\),
+
+\[\left|\frac{d}{dt}\psi\left(\frac{1}{|\neigh{v}|} (\cdot + h_{vv}(t))\right)\right| = 0.\]
+
+Thus, there exists a constant, \(C\), depending only on time such that,
+
+\[\left|\frac{d}{dt}\psi\left(\frac{1}{|\neigh{v}|} (\cdot + h_{uv}(t))\right)\right| \leq \frac{C}{|\neigh{v}|}.\]
+
+Conclude that a perturbation of the jumps of \(\xf\vind{u}\) by \(\ep\) or less will result in a change in rate of \(\frac{C\ep}{|\neigh{v}|}\left\lceil\frac{t}{\tau_{ref}}\right\rceil\). 
+
+Now suppose \(\xf\vind{\cl{v}}\) and \(\xg\vind{\cl{v}}\) differ only by a perturbation of jump times bounded above by \(1 > \epsilon > 0\) (with at least one jump being perturbed by exactly \(\epsilon\)). Then,
+
+\begin{description}
+\item[Case 1: ] The optimal time transformation is \(\lambda\) such that \(\xf = \xg\circ\lambda\). In this case, by definition, \(\|\lambda - I\|_t = \epsilon\). Then \(\ov{d}^{\cl{v}}_{S,t-}(\xf,\xg) = \ep(|\neigh{v}|+1)\), and \(\stmet{t-}^{\cl{v}}(\xf,\xg) \geq \frac{\ov{d}_{S,t-}^{\cl{v}}(\xf,\xg)}{t\vee 1} = \frac{\ep(|\neigh{v}|+1)}{t\vee 1}\). Then,
+
+\[\frac{|\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xg}{}|}{\frac{1}{|\neigh{v}|+1}\stmet{t-}^{\cl{v}}(\xf,\xg)} \leq (t\vee 1)C\left\lceil\frac{t}{\tau_{ref}}\right\rceil.\]
+
+\item[Case 2: ] \tr{This computation works in general. }The optimal time transformation is \(\lambda\) such that \(\xf \neq \xg\circ \lambda\). In this case, note:
+
+\[\stmet{t-}^{\cl{v}}(\xf,\xg) \geq \sum_{u \in \cl{v}} \stmet{t-}(\xf\vind{u},\xg\vind{u}) \geq \frac{1}{1\vee t}\sum_{u \in \cl{v}} \ov{d}_{S,t-}(\xf\vind{u},\xg\vind{u}).\]
+
+For a given enumeration of \(\cl{v}\) given by \(\{v_1,\dots,v_{|\cl{v}|}\} = \cl{v}\), let \(\xh_m = (\xg\vind{v_1},\dots,\xg\vind{v_m},\xf\vind{v_{m+1}},\dots,\xf\vind{v_{\cl{v}}})\). Thus \(\xh_0 = \xf\) and \(\xh_{|\cl{v}|} = \xg\). Then,
+
+\begin{align*}
+|\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xg}{}| &\leq \sum_{m=1}^{|\cl{v}|}|\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xh_{m-1}}{} - \rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xh_m}{}|\\
+&\leq \sum_{m=1}^{|\cl{v}|} \frac{C\ov{d}_{S,t-}(xf\vind{v_m},\xg\vind{v_m})}{|\neigh{v}|}\left\lceil\frac{t}{\tau_{ref}}\right\rceil\\
+&\frac{C}{|\neigh{v}|}\left\lceil\frac{t}{\tau_{ref}}\right\rceil\sum_{u\in \cl{v}}\ov{d}_{S,t-}(\xf\vind{u},\xg\vind{u}).
+\end{align*}
+
+Thus,
+
+\[\frac{|\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xg}{}|}{\frac{1}{|\neigh{v}|+1}\stmet{t-}^{\cl{v}}(\xf,\xg)} \leq 2(1\vee t)C\left\lceil\frac{t}{\tau_{ref}}\right\rceil.\]
+
+\end{description}
+
+
+\item[Sub-assumption \ref{reg::liprt}] \tg{If \(t\) is a continuity point of \(\xf\vind{\cl{v}}\), then moving forward \(\Delta t\) for sufficiently small \(\Delta t\) is equivalent to perturbing the jump times of \(\xf\) by \(\Delta t\), so Lipschitz continuity follows from the previous proof.}
+
+\ind Without the extra term, there is a discontinuity at time \(t +\tau_{ref}\), where \(t\) is a discontinuity of \(\xf\vind{v}\). However, the argument above still holds outside of time \(t + \tau_{ref}\).
+
+
+\item[Sub-assumption \ref{reg::disc}] We proved that previously
+
+\item[Sub-assumption \ref{reg::altdisc}] Suppose we remove the red part. Then there is also a discontinuity in the jump rate at time \(t + \tau_{ref}\) for every \(t\) such that \(\xf\vind{v}\) is discontinuous. As long as \(\jumpbd{t} > \frac{1}{\tau_{ref}}\), this assumption is satisfied.
+\end{description}
+
+\item[Assumptions \ref{na::exgeo} and \ref{na::uniqgeo}] The symmetries of \(G\) are precisely the automorphisms which preserve the parity of a vertex. Thus, there is a bijection between symmetries of \(\Xf\gind{G}\) and automorphisms of the \(d\)-Cayley tree. We can then apply the same arguments as presented in the Potts model, so these assumptions are satisfied.
+\end{description}
+
+That completes the verification of assumptions.
+
+\subsection{TASEP with delay}
+\label{ex::tasep}
+
+This model is based off of TASEP with movement rate \(\alpha\). However, particle transfer from one vertex is not instantaneous, and instead happens at rate \(\beta\). This produces an example of a process which is distinctly asymmetric and non-Markovian.
+
+\ind These dynamics can be described in the following manner. Let \(\sta = \{0,1\}\) and \(\jmps = \{-1,1\}\). Let \(G = (V,E,\root)\), where \(V = \mb{Z}\), \(E = \{(v,v+1): v \in V\}\) and \(\root = 0\). For \((G,\xf)\in \Gs\sp{\sta}\), let \(\{\tau^v_m(t,\xf)\}\) be the transition times of \(\xf\vind{v}\) in decreasing order. Thus, \(t \geq \tau^v_1(t,\xf) \geq \tau^v_2(t,\xf) \geq\cdots\). If \(\xf\vind{v}\) has had fewer than \(m\) transitions, \(\tau^v_m(t,\xf) = 0\).
+
+\begin{align*}
+\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf_{\cl{v}}}{} &=  \begin{cases}
+\beta &\te{ if } \xf\vind{v}\tme{t-} = \xf\vind{v-1}\tme{t-} = 0\te{ and } \tau^{v-1}_1(t,\xf) > \tau^v_1(t,\xf)\\
+\beta &\te{ if } \xf\vind{v}\tme{t-} = 0,\xf\vind{v-1}\tme{t-} = 1\te{ and } \tau^{v-1}_2(t,\xf) > \tau^v_1(t,\xf)\\
+0&\te{ otherwise}
+\end{cases}\\
+\rate\gvpara{G}{v}\stpara{-1}\tmepro{t}{\xf_{\cl{v}}}{} &=  \begin{cases}
+\alpha &\te{ if } \xf\vind{v}\tme{t-} = 1, \xf\vind{v+1}\tme{t-} = 0\te{ and } \tau^{v}_2(t,\xf) \leq \tau^{v+1}_1(t,\xf)\\
+0&\te{ otherwise}
+\end{cases}\\
+\rate\gvpara{G}{v}\stpara{i}\tmepro{\cdot}{\cdot}{} &\equiv 0\te{ for all } i \neq \pm 1.
+\end{align*}
+
+Finally, we assume for any \(\tilde{G} \in \Gs\), and \(v \in V\gind{\tilde{G}}\) such that \(|\neigh{v}| \neq 2\), \(\rate\gvpara{\tilde{G}}{v}\stpara{i}\tmepro{t}{\cdot}{} \equiv 0\). We can tailor the density of traffic through the initial distribution. \(\{\Xf\vind{v}\tme{0}:v \in V\}\) are assumed to be i.i.d. Bernoulli random variables with parameter \(p \in (0,1)\).
+
+\ind We can now verify assumptions:
+
+\begin{description}
+\item[Assumption \ref{na::start}]
+
+The state space is bounded by 1 and i.i.d, so this is trivially true.
+
+\item[Assumption \ref{na::consist}]
+
+While the canonical isomorphisms of the Hawkes process preserved parity, the canonical isomorphisms of this process must preserve some notion of orientation. That is, there should exist a notion of incrementing so that \(\phi(v+1) = \phi(v)+1\), and the same for decrementing. Thus, \(\phi:\mathbb{Z} \ra \mb{Z}\) given by \(\phi(v) = -v\) would not preserve this isomorphism. Then if \(\phi(G,\xf) = (H,\xg)\),
+
+\begin{align*}
+\rate\gvpara{G}{v}\stpara{1}\tmepro{t}{\xf\vind{\cl{v}}}{} &= \begin{cases}
+\beta &\te{ if } \xf\vind{v}\tme{t-} = \xf\vind{v-1}\tme{t-} = 0\te{ and } \tau^{v-1}_1(t,\xf) > \tau^v_1(t,\xf)\\
+\beta &\te{ if } \xf\vind{v}\tme{t-} = 0,\xf\vind{v-1}\tme{t-} = 1\te{ and } \tau^{v-1}_2(t,\xf) > \tau^v_1(t,\xf)\\
+0&\te{ otherwise}
+\end{cases}\\
+&=\begin{cases}
+\beta &\te{ if } \xg\vind{\phi(v)}\tme{t-} = \xg\vind{\phi(v)-1}\tme{t-} = 0\te{ and } \tau^{\phi(v)-1}_1(t,\xf) > \tau^{\phi(v)}_1(t,\xg)\\
+\beta &\te{ if } \xg\vind{\phi(v)}\tme{t-} = 0,\xg\vind{\phi(v)-1}\tme{t-} = 1\te{ and } \tau^{\phi(v)-1}_2(t,\xg) > \tau^{\phi(v)}_1(t,\xg)\\
+0&\te{ otherwise}
+\end{cases}\\
+&= \rate\gvpara{H}{\phi(v)}\stpara{1}\tmepro{t}{\xg\vind{\cl{\phi(v)}}}{}.
+\end{align*}
+
+Similarly,
+
+\begin{align*}
+\rate\gvpara{G}{v}\stpara{-1}\tmepro{t}{\xf_{\cl{v}}}{} &=  \begin{cases}
+\alpha &\te{ if } \xf\vind{v}\tme{t-} = 1, \xf\vind{v+1}\tme{t-} = 0\te{ and } \tau^{v}_2(t,\xf) \leq \tau^{v+1}_1(t,\xf)\\
+0&\te{ otherwise}
+\end{cases}\\
+&=\begin{cases}
+\alpha &\te{ if } \xg\vind{\phi(v)}\tme{t-} = 1, \xg\vind{\phi(v)+1}\tme{t-} = 0\te{ and } \tau^{\phi(v)}_2(t,\xg) \leq \tau^{\phi(v)+1}_1(t,\xg)\\
+0&\te{ otherwise}
+\end{cases}\\
+&=\rate\gvpara{H}{\phi(v)}\stpara{-1}\tmepro{t}{\xg_{\cl{\phi(v)}}}{}
+\end{align*}
+
+\item[Assumption \ref{na::reg}] There are five sub-assumptions.
+
+\begin{description}
+\item[Sub-assumption \ref{reg::bddr}] Jump rates are bounded from above by \(\max\{\alpha,\beta\}\).
+
+\item[Sub-assumption \ref{reg::liprx}]
+
+Notice that the jump rate is independent of specific jump times, and only depends on the relative order of jumps between neighboring nodes. Therefore, the jump rate can only change if \(\stmet{t-}^{\cl{v}}(\xf,\xg) \geq 1\). Furthermore, the jump rate is constant except when \(|\neigh{v}| = 2\), so 
+
+\[\frac{|\rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xf}{} - \rate\gvpara{G}{v}\stpara{i}\tmepro{t}{\xg}{}|}{\frac{1}{|\neigh{v}|+1}\stmet{t-}^{\cl{v}}(\xf,\xg)}\leq 3\max\{\alpha,\beta\}.\]
+
+\item[Sub-assumption \ref{reg::liprt}] Yup. Even though it's not Markov, it's still constant at continuity points of \(\xf\vind{\cl{v}}\).
+
+\item[Sub-assumption \ref{reg::disc}] See sub-assumption \ref{reg::liprt}.
+
+\item[Sub-assumption \ref{reg::altdisc}] This is implied by sub-assumption \ref{reg::altdisc}.
+\end{description}
+
+\item[Assumption \ref{na::exgeo}] Before we begin, some notation. Vertices will be indexed by \(\mb{Z}\) with \(\root \defeq 0\). \(A = \{-1,0,1\}\) and \(A\indx{k} = \ov{A\indx{k-1}} = \{-k-1,\dots,k+1\}\) with \(A\indx{0} = A\). For all \(k\), \(I\indx{k} = \{+,-\}\), and \(B\indx{k}_+ = \{v > k+1\}\) while \(B\indx{k}_- = \{v < -k-1\}\).
+
+\ind \(\phi\indx{k}_+(v) = v-1\) and \(\phi\indx{k}_-(v) = v+1\). Everything is symmetric with respect to multiplication by \(-1\), so I'll only prove things for \(+\). See figure 6:
+
+\includegraphics[scale=0.1]{dirchain.jpg}
+
+\begin{description}
+\item[Sub-assumption \ref{exgeo::B}] \(\{B\indx{k}_{\pm}\}\) is a partition of \((A\indx{k})^c\). Furthermore,
+
+\[\dneigh{B\indx{k}_+} = \{k,k+1\} \subset A\indx{k}.\]
+
+\item[Sub-assumption \ref{exgeo::C}]
+
+\[\phi\indx{k}_+(C\indx{k}_+\cup\dneigh{B\indx{k}_+}) = \phi\indx{k}_+(\{k,k+1,k+2\}) = \{k-1,k,k+1\} \subset A\indx{k}.\]
+
+\end{description}
+
+\item[Assumption \ref{na::uniqgeo}] 
+
+\begin{description}
+\item[Sub-assumption \ref{uniqgeo::induct}] Suffices to prove that \(A\indx{k}\) satisfies assumptions \ref{na::exgeo} and \ref{na::uniqgeo} for all \(k\in\mb{N}_0\).
+
+\item[Sub-assumption \ref{uniqgeo::exB}]
+
+\[\phi\indx{k}_{+}(B\indx{k}_+\setminus C\indx{k}_+)\cap A\indx{k} = \phi\indx{k}_{+}(\{v >  k+ 2\}) \cap \{|v|\leq k+1\} = \{v >  k+ 1\}\cap \{|v|\leq k+1\} = \emptyset.\]
+
+\item[Sub-assumption \ref{uniqgeo::dnmix}] When \(k=0\), \(\phi_+(C_+\cup\dneigh{B_+}) = A\), so the assumption holds trivially.
+
+\ind For \(k> 0\), 
+
+\[\phi\indx{k}_+(C\indx{k}_+\cup\dneigh{B\indx{k}_+}) = \phi\indx{k}_+(\{k,k+1,k+2\}) = \{k-1,k,k+1\} \supset \{k,k+1\} = \dneigh{B\indx{k}_+}.\]
+
+However,
+
+\[\dneigh{B\indx{k}_-}\cap\{k-1,k,k+1\}= \{-k-1,-k\}\cap\{k-1,k,k+1\} = \emptyset.\]
+
+\item[Sub-assumption \ref{uniqgeo::weakdnmix}] This is implied by sub-assumption \ref{uniqgeo::dnmix}.
+
+\item[Sub-assumption \ref{uniqgeo::specificdnmix}]
+
+\[\phi\indx{k}_+(C\indx{k}_+) = \{k+1\} = \neigh{B\indx{k}_+}\]
+
+Then,
+
+\[\dneigh{B\indx{k}_+} = \{k,k+1\} = \phi\indx{k}_+(C\indx{k}_+\cup\neigh{B\indx{k}_+}).\]
+
+
+\item[Sub-assumption \ref{uniqgeo::invdnmix}] If \(\neigh{B\indx{k}_j}\cap \phi\indx{k}_+(C\indx{k}_+)\) is non-empty, then \(j =+\). Then,
+
+\[(\phi\indx{k}_+)^{-1}(\dneigh{B\indx{k}_+}) = (\phi\indx{k}_+)^{-1}(\{k,k+1\}) = \{k+1,k+2\} = \dneigh{B\indx{k+1}_+}.\]
+
+\[C\indx{k}_+\cap (\phi\indx{k}_+)^{-1}(\neigh{B\indx{k}_+}) = \{k+2\}\cap\{k+2\} = \{k+2\} = \neigh{B\indx{k+1}_+}.\]
+
+\item[Sub-assumption \ref{uniqgeo::exC}]
+
+\[\phi\indx{k}_+(\dneigh{B\indx{k}_+}\setminus\neigh{B\indx{k}_+}) = \phi\indx{k}_+(\{k\}) = \{k-1\} \nsubseteq \{k+1\}\cup\{-k-1\}.\]
+
+So this holds trivially.
+
+\item[Sub-assumption \ref{uniqgeo::Cmatch}] If \(C\indx{k+1}_j \subset B\indx{k}_+\), then \(j = +\). In this case,
+
+\[\phi\indx{k}_+(C\indx{k+1}_j) = \phi\indx{k}_+(\{k+3\}) = \{k+2\} = C\indx{k}_+.\]
+
+\end{description}
+\end{description}
+\newpage
+\bibliographystyle{plain}
+\bibliography{weekly_refs}
+\end{document}
